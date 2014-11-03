@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 12:35:28 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 12:35:30 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/03 15:06:42 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/03 15:06:44 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			*ft_memmove(void *dst, void *src, size_t len)
+int				ft_memcmp(void *s1, void *s2, size_t n)
 {
 	size_t			i;
-	char			*dstBytes;
-	char			*srcBytes;
+	unsigned char	*s1Bytes;
+	unsigned char	*s2Bytes;
 
-	if (dst == src || len == 0)
-		return (dst);
-	dstBytes = (char*)dst;
-	srcBytes = (char*)src;
+	s1Bytes = (unsigned char*)s1;
+	s2Bytes = (unsigned char*)s2;
 	i = 0;
-	while (i < len)
+	while (i < n)
 	{
-		dstBytes[i] = srcBytes[i];
+		if (s1Bytes[i] != s2Bytes[i])
+			return ((int)(s1Bytes[i] - s2Bytes[i]));
 		i++;
 	}
-	return (dst);
+	return (0);
 }

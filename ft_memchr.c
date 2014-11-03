@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 12:35:28 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 12:35:30 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/03 14:59:33 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/03 14:59:35 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			*ft_memmove(void *dst, void *src, size_t len)
+void			*ft_memchr(void *s, int c, size_t n)
 {
 	size_t			i;
-	char			*dstBytes;
-	char			*srcBytes;
+	unsigned char	stop;
+	unsigned char	*strBytes;
 
-	if (dst == src || len == 0)
-		return (dst);
-	dstBytes = (char*)dst;
-	srcBytes = (char*)src;
+	stop = (unsigned char)c;
+	strBytes = (unsigned char*)s;
 	i = 0;
-	while (i < len)
+	while (i < n)
 	{
-		dstBytes[i] = srcBytes[i];
+		if (strBytes[i] == stop)
+			return strBytes + i;
 		i++;
 	}
-	return (dst);
+	return (NULL);
 }
