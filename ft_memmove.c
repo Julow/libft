@@ -15,17 +15,17 @@
 void			*ft_memmove(void *dst, void *src, size_t len)
 {
 	size_t			i;
-	char			*dstBytes;
-	char			*srcBytes;
+	char			*dst_bytes;
+	char			*src_bytes;
 
 	if (dst == src || len == 0)
 		return (dst);
-	dstBytes = (char*)dst;
-	srcBytes = (char*)src;
+	dst_bytes = (char*)dst;
+	src_bytes = (char*)src;
 	i = 0;
 	while (i < len)
 	{
-		dstBytes[i] = srcBytes[i];
+		dst_bytes[i] = src_bytes[i];
 		i++;
 	}
 	return (dst);

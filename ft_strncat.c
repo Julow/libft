@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 11:59:42 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 11:59:46 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/03 18:32:52 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/03 18:32:53 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			*ft_strdup(char *src)
+char			*strncat(char *s1, const char *s2, size_t n)
 {
+	char			*str;
 	size_t			i;
-	size_t			len;
-	char			*dst;
 
-	len = ft_strlen(src);
-	dst = (char*)malloc(sizeof(char*) * (len + 1));
+	str = s1;
+	while (*str != '\0')
+		str++;
 	i = 0;
-	while (i < len)
+	while (s2[i] != '\0' && i < n)
 	{
-		dst[i] = src[i];
+		str[i] = s2[i];
 		i++;
 	}
-	dst[len] = '\0';
-	return (dst);
+	str[i] = '\0';
+	return (s1);
 }

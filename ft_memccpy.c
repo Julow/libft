@@ -16,18 +16,18 @@ void			*ft_memccpy(void *dst, void *src, int c, size_t n)
 {
 	size_t			i;
 	unsigned char	stop;
-	unsigned char	*dstBytes;
-	unsigned char	*srcBytes;
+	unsigned char	*dst_bytes;
+	unsigned char	*src_bytes;
 
 	stop = (unsigned char)c;
-	dstBytes = (unsigned char*)dst;
-	srcBytes = (unsigned char*)src;
+	dst_bytes = (unsigned char*)dst;
+	src_bytes = (unsigned char*)src;
 	i = 0;
 	while (i < n)
 	{
-		dstBytes[i] = srcBytes[i];
-		if (srcBytes[i] == stop)
-			return srcBytes + i + 1;
+		dst_bytes[i] = src_bytes[i];
+		if (src_bytes[i] == stop)
+			return src_bytes + i + 1;
 		i++;
 	}
 	return (NULL);

@@ -32,8 +32,10 @@ char			*ft_strcpy(char *dst, char *src);
 
 char			*ft_strncpy(char *dst, char *src, size_t len);
 
-// strcat
-// strncat
+char			*strcat(char *s1, const char *s2);
+
+char			*strncat(char *s1, const char *s2, size_t n);
+
 // strlcat
 // strchr
 // strrchr
@@ -41,8 +43,8 @@ char			*ft_strncpy(char *dst, char *src, size_t len);
 // strnstr
 // strcmp
 // strncmp
-int				ft_atoi(char *str);
 
+int				ft_atoi(char *str);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
 int				ft_isalnum(int c);
