@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char			*ft_strncpy(char *dst, char *src, size_t len)
+char			*ft_strncpy(char *dst, const char *src, size_t len)
 {
 	size_t			i;
 	char			eosrc;
@@ -23,7 +23,7 @@ char			*ft_strncpy(char *dst, char *src, size_t len)
 	{
 		if (eosrc == 0 && src[i] == '\0')
 			eosrc = 1;
-		dst[i] = (eosrc == 1)? '\0' : src[i];
+		dst[i] = (eosrc == 1) ? '\0' : src[i];
 		i++;
 	}
 	return (dst);
