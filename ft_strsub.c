@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 12:16:53 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 12:16:56 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/04 14:46:54 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/04 14:46:55 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_bzero(void *s, size_t n)
+char			*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	ft_memset(s, 0, n);
+	size_t			i;
+	char			*str;
+
+	str = ft_strnew(len);
+	if (!str || ft_strlen(s) < start)
+		return (NULL);
+	i = 0;
+	while (s[start + i] != '\0' && i < len)
+	{
+		str[i] = s[start + i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

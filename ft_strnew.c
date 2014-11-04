@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 12:16:53 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 12:16:56 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/04 14:13:35 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/04 14:13:36 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_bzero(void *s, size_t n)
+char			*ft_strnew(size_t size)
 {
-	ft_memset(s, 0, n);
+	return ((char*)ft_memalloc(sizeof(char) * (size + 1)));
 }

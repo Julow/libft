@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 12:16:53 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 12:16:56 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/04 14:17:43 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/04 14:17:44 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_bzero(void *s, size_t n)
+void			ft_strdel(char **as)
 {
-	ft_memset(s, 0, n);
+	ft_memdel((void**)as);
 }

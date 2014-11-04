@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 12:16:53 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 12:16:56 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/04 14:42:23 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/04 14:42:23 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_bzero(void *s, size_t n)
+int				ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	ft_memset(s, 0, n);
+	size_t			i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0' && i < n)
+		i++;
+	return ((s1[i] == s2[i]) ? 1 : 0);
 }

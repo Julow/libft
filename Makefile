@@ -29,8 +29,8 @@ C_FILES = ft_memset.c \
 	ft_strncpy.c \
 	ft_strcat.c \
 	ft_strncat.c \
-	ft_strchr.c \
 	ft_strlcat.c \
+	ft_strchr.c \
 	ft_strrchr.c \
 	ft_strstr.c \
 	ft_strnstr.c \
@@ -43,8 +43,25 @@ C_FILES = ft_memset.c \
 	ft_isascii.c \
 	ft_isprint.c \
 	ft_toupper.c \
-	ft_tolower.c
-
+	ft_tolower.c \
+	ft_memalloc.c \
+	ft_memdel.c \
+	ft_strnew.c \
+	ft_strdel.c \
+	ft_strclr.c \
+	ft_striter.c \
+	ft_striteri.c \
+	ft_strmap.c \
+	ft_strmapi.c \
+	ft_strequ.c \
+	ft_strnequ.c \
+	ft_strsub.c \
+	ft_strjoin.c \
+	ft_strtrim.c \
+	ft_strsplit.c \
+	ft_itoa.c \
+	ft_putchar.c \
+	ft_putstr.c
 
 O_FILES = $(addprefix $(O_DIR),$(C_FILES:.c=.o))
 
