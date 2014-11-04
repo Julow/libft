@@ -14,18 +14,20 @@
 
 char			*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	char			*str;
 	size_t			i;
+	size_t			i2;
 
-	str = s1;
-	while (*str != '\0')
-		str++;
 	i = 0;
-	while (s2[i] != '\0' && i < n)
+	while (s1[i] != '\0')
 	{
-		str[i] = s2[i];
 		i++;
 	}
-	str[i] = '\0';
+	i2 = 0;
+	while (s2[i2] != '\0' && i2 < n)
+	{
+		s1[i + i2] = s2[i2];
+		i2++;
+	}
+	s1[i + i2] = '\0';
 	return (s1);
 }

@@ -14,18 +14,18 @@
 
 char			*ft_strcat(char *s1, const char *s2)
 {
-	char			*str;
 	size_t			i;
+	size_t			i2;
 
-	str = s1;
-	while (*str != '\0')
-		str++;
 	i = 0;
-	while (s2[i] != '\0')
-	{
-		str[i] = s2[i];
+	while (s1[i] != '\0')
 		i++;
+	i2 = 0;
+	while (s2[i2] != '\0')
+	{
+		s1[i + i2] = s2[i2];
+		i2++;
 	}
-	str[i] = '\0';
+	s1[i + i2] = '\0';
 	return (s1);
 }
