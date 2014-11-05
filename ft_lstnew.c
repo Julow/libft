@@ -16,7 +16,7 @@ t_list			*ft_lstnew(void const *content, size_t content_size)
 {
 	t_list			*list;
 
-	list = MAL(t_list);
+	list = MAL1(t_list);
 	list->content = content;
 	list->content_size = (content == NULL) ? 0 : content_size;
 	list->next = NULL;
