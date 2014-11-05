@@ -40,6 +40,8 @@ char			**ft_strsplit(char const *s, char c)
 	size_t			length;
 	char			**split;
 
+	if (s == NULL)
+		return (NULL);
 	i = 0;
 	while (s[i] == c)
 		i++;

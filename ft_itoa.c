@@ -38,6 +38,8 @@ char			*ft_itoa(int n)
 	int				tmp;
 	int				div;
 
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
 	a = ft_strnew(0);
 	if (n < 0)
 	{
