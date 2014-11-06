@@ -15,10 +15,21 @@
 t_list			*ft_lstnew(void const *content, size_t content_size)
 {
 	t_list			*list;
+	void			*copy;
 
 	list = MAL1(t_list);
-	list->content = content;
-	list->content_size = (content == NULL) ? 0 : content_size;
+	if (content == NULL)
+	{
+		list->content = NULL;
+		list->content_size = 0;
+	}
+	else
+	{
+		copy = malloc(content_size);
+		ft_memmove(copy, content, content_size);
+		list->content = copy;
+		list->content_size = content_size;
+	}
 	list->next = NULL;
 	return (list);
 }
