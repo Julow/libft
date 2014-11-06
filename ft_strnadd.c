@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 void			ft_strnadd(char **str, char const *add, size_t len)
 {

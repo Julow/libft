@@ -13,8 +13,6 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <unistd.h>
-# include <stdlib.h>
 # include <string.h>
 
 # define MIN(a, b)	((a < b) ? a : b)
@@ -95,6 +93,6 @@ void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 int				ft_isspace(int c);
-void			ft_strnadd(char **str, char const *add, size_t len)
+void			ft_strnadd(char **str, char const *add, size_t len);
 
 #endif
