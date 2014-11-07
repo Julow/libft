@@ -18,7 +18,7 @@
 # define MIN(a, b)	((a < b) ? a : b)
 
 # define MAL1(t)	((t*)malloc(sizeof(t)))
-# define MAL(t, l)	((t*)malloc(sizeof(t) * l))
+# define MAL(t, l)	((t*)malloc(sizeof(t) * (l)))
 
 typedef struct	s_list
 {

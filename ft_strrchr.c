@@ -20,7 +20,7 @@ char			*ft_strrchr(const char *s, int c)
 	search = (char)c;
 	i = ft_strlen(s) - 1;
 	if (search == '\0')
-		return (i + (char*)s);
+		return (i + 1 + (char*)s);
 	while (s[i] != '\0')
 	{
 		if (s[i] == search)
