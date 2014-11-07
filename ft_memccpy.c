@@ -27,7 +27,7 @@ void			*ft_memccpy(void *dst, const void *src, int c, size_t n)
 	{
 		dst_bytes[i] = src_bytes[i];
 		if (src_bytes[i] == stop)
-			return (src_bytes + i + 1);
+			return (dst_bytes + i + 1);
 		i++;
 	}
 	return (NULL);
