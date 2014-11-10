@@ -13,29 +13,28 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static void		ft_array_add(char ***array, char *add)
+static size_t	ft_count_split(char const *s, char c)
 {
+	size_t			split_count;
 	size_t			i;
-	size_t			length;
-	char			**tmp;
 
-	length = 0;
-	while ((*array)[length] != '\0')
-		length++;
-	tmp = *array;
-	(*array) = ft_memalloc(sizeof(char*) * (length + 2));
 	i = 0;
-	while (tmp[i] != 0)
-	{
-		(*array)[i] = tmp[i];
+	while (s[i] == c && s[i] != '\0')
 		i++;
+	while (s[i] != '\0')
+	{
+		while (s[i] != c && s[i] != '\0')
+			i++;
+		split_count++;
+		while (s[i] == c && s[i] != '\0')
+			i++;
 	}
-	(*array)[length] = add;
-	free(tmp);
+	return (split_count);
 }
 
 char			**ft_strsplit(char const *s, char c)
 {
+	size_t			split_i;
 	size_t			i;
 	size_t			length;
 	char			**split;
@@ -43,17 +42,18 @@ char			**ft_strsplit(char const *s, char c)
 	if (s == NULL)
 		return (NULL);
 	i = 0;
-	while (s[i] == c)
+	while (s[i] == c && s[i] != '\0')
 		i++;
-	split = (char**)ft_memalloc(sizeof(char*));
+	split = (char**)ft_memalloc(sizeof(char*) * ft_count_split(s, c));
+	split_i = 0;
 	while (s[i] != '\0')
 	{
 		length = 0;
 		while (s[i + length] != c && s[i + length] != '\0')
 			length++;
-		ft_array_add(&split, ft_strsub(s, i, length));
+		split[split_i++] = ft_strsub(s, i, length);
 		i += length;
-		while (s[i] == c)
+		while (s[i] == c && s[i] != '\0')
 			i++;
 	}
 	return (split);

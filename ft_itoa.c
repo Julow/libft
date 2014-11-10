@@ -13,51 +13,24 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static char		*ft_str_add(char *str, char add)
-{
-	size_t			i;
-	size_t			length;
-	char			*tmp;
-
-	length = ft_strlen(str);
-	tmp = str;
-	str = ft_memalloc(sizeof(char) * (length + 2));
-	i = 0;
-	while (tmp[i] != 0)
-	{
-		str[i] = tmp[i];
-		i++;
-	}
-	str[length] = add;
-	free(tmp);
-	return (str);
-}
-
 char			*ft_itoa(int n)
 {
-	char			*a;
+	char			*str;
 	int				tmp;
-	int				div;
+	size_t			i;
 
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	a = ft_strnew(0);
-	if (n < 0)
-	{
-		n *= -1;
-		a = ft_str_add(a, '-');
-	}
 	tmp = n;
-	div = 0;
-	while (tmp >= 1)
+	i = (tmp < 0) ? 2 : 1;
+	while ((tmp /= 10) != 0)
+		i++;
+	str = ft_strnew(i);
+	tmp = n;
+	while (i-- > 0)
 	{
-		tmp /= 10;
-		div = (div == 0) ? 1 : div * 10;
+		str[i] = '0' + ((n < 0) ? -(n % 10) : n % 10);
+		n /= 10;
 	}
-	while (div > 0)
-	{
-		a = ft_str_add(a, '0' + (n / div % 10));
-		div /= 10;
-	}
-	return ((n == 0) ? ft_str_add(a, '0') : a);
+	if (tmp < 0)
+		str[0] = '-';
+	return (str);
 }
