@@ -17,16 +17,22 @@ void			*ft_memmove(void *dst, const void *src, size_t len)
 	char			*dst_bytes;
 	char			*src_bytes;
 
-	if (dst >= src || len == 0)
-		return (ft_memcpy(dst, src, len));
 	dst_bytes = (char*)dst;
 	src_bytes = (char*)src;
-	while (1)
+	if (dst != src)
 	{
-		dst_bytes[len] = src_bytes[len];
-		if (len == 0)
-			break ;
-		len--;
+		if (src_bytes < dst_bytes && dst_bytes < (src_bytes + len))
+		{
+			dst_bytes = dst_bytes + len - 1;
+			src_bytes = src_bytes + len - 1;
+			while (len-- > 0)
+				*(dst_bytes--) = *(src_bytes--);
+		}
+		else
+		{
+			while (len-- > 0)
+				*(dst_bytes++) = *(src_bytes++);
+		}
 	}
 	return (dst);
 }
