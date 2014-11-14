@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 11:26:28 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 11:26:35 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/14 17:24:23 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/14 17:24:25 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t			ft_strlen(const char *str)
+size_t			ft_tablen(void **array)
 {
-	char			*tmp;
+	void			**tmp;
 
-	tmp = (char*)str;
-	while (*tmp != '\0')
+	tmp = array;
+	while (*tmp != NULL)
 		tmp++;
-	return (tmp - str);
+	return (tmp - array);
 }

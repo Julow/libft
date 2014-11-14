@@ -93,6 +93,7 @@ void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 int				ft_isspace(int c);
+size_t			ft_tablen(void **array);
 void			ft_strnadd(char **str, char const *add, size_t len);
 
 #endif
