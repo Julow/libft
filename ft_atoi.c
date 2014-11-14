@@ -29,9 +29,6 @@ int				ft_atoi(const char *str)
 	else if (*str == '+')
 		str++;
 	while (*str >= '0' && *str <= '9')
-	{
-		nb = nb * 10 + (*str - '0');
-		str++;
-	}
+		nb = nb * 10 + (*(str++) - '0');
 	return (nb * sign);
 }
