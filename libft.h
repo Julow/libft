@@ -20,12 +20,24 @@
 # define MAL1(t)	((t*)malloc(sizeof(t)))
 # define MAL(t, l)	((t*)malloc(sizeof(t) * (l)))
 
+typedef char	t_bool;
+
+#define TRUE	1
+#define FALSE	0
+
 typedef struct	s_list
 {
 	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
 }				t_list;
+
+typedef struct	s_array
+{
+	void			**data;
+	int				length;
+	int				alloc_length;
+}				t_array;
 
 void			ft_bzero(void *s, size_t n);
 void			*ft_memset(void *b, int c, size_t len);
@@ -95,5 +107,16 @@ t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int				ft_isspace(int c);
 size_t			ft_tablen(void **array);
 void			ft_strnadd(char **str, char const *add, size_t len);
+
+t_array			*ft_arraynew();
+t_bool			ft_arrayadd(t_array *array, void *add);
+t_bool			ft_arrayset(t_array *array, void *set, int index);
+t_bool			ft_arrayins(t_array *array, void *ins, int index);
+void			*ft_arrayrem(t_array *array, int index);
+int				ft_arraychr(t_array *array, void *chr);
+t_bool			ft_arrayapp(t_array *array, t_array *app);
+void			ft_arrayclr(t_array *array, void (*f)(void *data));
+void			ft_arraykil(t_array *array, void (*f)(void *data));
+t_bool			ft_arrayext(t_array *array);
 
 #endif
