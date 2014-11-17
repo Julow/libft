@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arraykil.c                                      :+:      :+:    :+:   */
+/*   ft_stringsetc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/15 16:08:57 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/15 16:08:58 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/15 18:46:36 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/15 18:46:36 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void			ft_arraykil(t_array **array, void (*f)(void *data))
+t_bool			ft_stringsetc(t_string *str, char c, int index)
 {
-	if (f != NULL)
-		ft_arrayclr(*array, f);
-	if (array != NULL && *array != NULL)
+	if (index >= str->length)
 	{
-		if ((*array)->data != NULL)
-			free((*array)->data);
-		free(*array);
-		*array = NULL;
+		if (!ft_stringext(str, str->length - index + 1))
+			return (FALSE);
+		str->length = index + 1;
 	}
+	str->content[index] = c;
+	return (TRUE);
 }

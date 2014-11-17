@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arraykil.c                                      :+:      :+:    :+:   */
+/*   ft_stringaddc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/15 16:08:57 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/15 16:08:58 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/15 18:03:59 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/15 18:04:00 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void			ft_arraykil(t_array **array, void (*f)(void *data))
+t_bool			ft_stringaddc(t_string *str, char c)
 {
-	if (f != NULL)
-		ft_arrayclr(*array, f);
-	if (array != NULL && *array != NULL)
-	{
-		if ((*array)->data != NULL)
-			free((*array)->data);
-		free(*array);
-		*array = NULL;
-	}
+	if (!ft_stringext(str, 1))
+		return (FALSE);
+	str->content[str->length] = c;
+	str->length++;
+	return (TRUE);
 }

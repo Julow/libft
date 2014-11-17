@@ -18,8 +18,11 @@ t_array			*ft_arraynew(void)
 	t_array			*array;
 
 	array = MAL1(t_array);
-	array->data = MAL(void*, 0);
-	array->length = 0;
-	array->alloc_length = 0;
+	if (array != NULL)
+	{
+		array->data = MAL(void*, 0);
+		array->length = 0;
+		array->alloc_length = 0;
+	}
 	return (array);
 }

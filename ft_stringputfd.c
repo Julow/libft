@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arraykil.c                                      :+:      :+:    :+:   */
+/*   ft_stringputfd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/15 16:08:57 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/15 16:08:58 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/17 12:24:02 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/17 12:24:03 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
+#include <unistd.h>
 
-void			ft_arraykil(t_array **array, void (*f)(void *data))
+/*
+** Write the string 'str' to the file 'fd'
+** =============
+** Return the return value of the 'write' function
+*/
+int				ft_stringputfd(t_string *str, int const fd)
 {
-	if (f != NULL)
-		ft_arrayclr(*array, f);
-	if (array != NULL && *array != NULL)
-	{
-		if ((*array)->data != NULL)
-			free((*array)->data);
-		free(*array);
-		*array = NULL;
-	}
+	return (write(fd, str->content, str->length));
 }

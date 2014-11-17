@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arraykil.c                                      :+:      :+:    :+:   */
+/*   ft_stringrem.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/15 16:08:57 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/15 16:08:58 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/17 12:27:45 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/17 12:27:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void			ft_arraykil(t_array **array, void (*f)(void *data))
+/*
+** Remove 'len' char in the string 'str' from 'index'
+*/
+void			ft_stringrem(t_string *str, int index, int len)
 {
-	if (f != NULL)
-		ft_arrayclr(*array, f);
-	if (array != NULL && *array != NULL)
-	{
-		if ((*array)->data != NULL)
-			free((*array)->data);
-		free(*array);
-		*array = NULL;
-	}
+	int				i;
+	int				tmp;
+
+	i = index - 1;
+	while (++i + len < str->length)
+		str->content[i] = str->content[i + len];
+	tmp = i;
+	i--;
+	while (++i < str->length)
+		str->content[i] = '\0';
+	str->length -= i - tmp;
 }

@@ -18,12 +18,11 @@ t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 	t_list			*add;
 	t_list			*tmp;
 
-	if (lst != NULL)
-	{
-		maped = f(lst);
-		tmp = maped;
-		lst = lst->next;
-	}
+	if (lst == NULL)
+		return (NULL);
+	maped = f(lst);
+	tmp = maped;
+	lst = lst->next;
 	while (lst != NULL)
 	{
 		add = f(lst);

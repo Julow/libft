@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arraykil.c                                      :+:      :+:    :+:   */
+/*   ft_stringtrim.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/15 16:08:57 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/15 16:08:58 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/17 12:25:35 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/17 12:25:36 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void			ft_arraykil(t_array **array, void (*f)(void *data))
+/*
+** Trim the string 'str'
+** (Remove whitespaces before and after the string)
+*/
+void			ft_stringtrim(t_string *str)
 {
-	if (f != NULL)
-		ft_arrayclr(*array, f);
-	if (array != NULL && *array != NULL)
-	{
-		if ((*array)->data != NULL)
-			free((*array)->data);
-		free(*array);
-		*array = NULL;
-	}
+	int				i;
+
+	i = str->length - 1;
+	while (i >= 0 && ft_isspace(str->content[i]))
+		i--;
+	i++;
+	ft_stringrem(str, i, str->length - i);
+	i = 0;
+	while (ft_isspace(str->content[i]))
+		i++;
+	ft_stringrem(str, 0, i);
 }

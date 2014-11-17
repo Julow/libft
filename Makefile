@@ -24,10 +24,11 @@ all: $(NAME)
 
 $(NAME): $(O_FILES)
 	@ar rc $@ $^ && echo "\033[0;32m$@			\033[1;30m<<--\033[0;0m" || echo "\033[0;31m$@\033[0;0m"
+	@ranlib $@
 
 $(O_DIR)%.o: $(C_DIR)%.c
 	@mkdir $(O_DIR) 2> /dev/null || echo "" > /dev/null
-	@gcc -Wall -Wextra -Werror -I$(H_DIR) -o $@ -c $< && echo "\033[0;0m$<		\033[1;30m-->>	\033[0;32m$@\033[0;0m" || (echo "\033[0;0m$<		\033[1;30m-->>	\033[0;31m$@\033[0;0m" && exit 1)
+	@gcc -Wall -Wextra -Werror -I$(H_DIR) -O2 -o $@ -c $< && echo "\033[0;0m$<		\033[1;30m-->>	\033[0;32m$@\033[0;0m" || (echo "\033[0;0m$<		\033[1;30m-->>	\033[0;31m$@\033[0;0m" && exit 1)
 
 clean:
 	@rm $(O_FILES) 2> /dev/null || echo "" > /dev/null

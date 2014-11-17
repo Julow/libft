@@ -19,7 +19,7 @@ int				ft_atoi(const char *str)
 
 	sign = 1;
 	nb = 0;
-	while (ft_isspace(*str))
+	while (ft_iswhite(*str))
 		str++;
 	if (*str == '-')
 	{

@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arraykil.c                                      :+:      :+:    :+:   */
+/*   ft_stringstr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/15 16:08:57 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/15 16:08:58 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/15 18:37:44 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/15 18:37:45 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void			ft_arraykil(t_array **array, void (*f)(void *data))
+/*
+** Search the string 'chr' in the string 'str' from the index 'start'
+** =============
+** Return the index of the first occurence of 'chr' in 'str'
+** or -1 if not found
+*/
+int				ft_stringstr(t_string *str, char *chr, int start)
 {
-	if (f != NULL)
-		ft_arrayclr(*array, f);
-	if (array != NULL && *array != NULL)
+	int				i;
+
+	while (start < str->length)
 	{
-		if ((*array)->data != NULL)
-			free((*array)->data);
-		free(*array);
-		*array = NULL;
+		i = 0;
+		while (str->content[start + i] == chr[i] && chr[i] != '\0')
+			i++;
+		if (chr[i] == '\0')
+			return (start);
+		start++;
 	}
+	return (-1);
 }
