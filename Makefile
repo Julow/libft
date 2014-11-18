@@ -25,12 +25,15 @@ O_FILES = $(addprefix $(O_DIR),$(C_FILES:.c=.o))
 all: $(NAME)
 
 $(NAME): $(O_FILES)
-	@ar rc $@ $^ && echo "\033[0;32m$@			\033[1;30m<<--\033[0;0m" || echo "\033[0;31m$@\033[0;0m"
+	@ar rc $@ $^ && printf "\033[0;32m" || printf "\033[0;31m"
+	@printf "%-24s\033[1;30m<<--\033[0;0m\n" "$@"
 	@ranlib $@
 
 $(O_DIR)%.o: $(C_DIR)%.c
 	@mkdir $(O_DIR) 2> /dev/null || echo "" > /dev/null
-	@gcc $(FLAGS) -I$(H_DIR) -o $@ -c $< && echo "\033[0;0m$<	\033[1;30m-->>	\033[0;32m$@\033[0;0m" || (echo "\033[0;0m$<		\033[1;30m-->>	\033[0;31m$@\033[0;0m" && exit 1)
+	@printf "\033[0;0m%-24s\033[1;30m-->>	" "$<"
+	@gcc $(FLAGS) -I$(H_DIR) -o $@ -c $< && printf "\033[0;32m$@" || (printf "\033[0;31m$@" && exit 1)
+	@printf "\033[0;0m\n"
 
 debug: _debug all clean
 
