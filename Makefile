@@ -13,10 +13,12 @@
 NAME = libft.a
 
 H_DIR = ./
-C_DIR = ./
+C_DIR = srcs/
 O_DIR = o/
 
-C_FILES = $(shell ls -1 | grep "ft_" | grep ".c")
+FLAGS = -Wall -Wextra -Werror -O2
+
+C_FILES = $(shell ls -1 $(C_DIR) | grep ".c")
 
 O_FILES = $(addprefix $(O_DIR),$(C_FILES:.c=.o))
 
@@ -28,7 +30,9 @@ $(NAME): $(O_FILES)
 
 $(O_DIR)%.o: $(C_DIR)%.c
 	@mkdir $(O_DIR) 2> /dev/null || echo "" > /dev/null
-	@gcc -Wall -Wextra -Werror -I$(H_DIR) -O2 -o $@ -c $< && echo "\033[0;0m$<		\033[1;30m-->>	\033[0;32m$@\033[0;0m" || (echo "\033[0;0m$<		\033[1;30m-->>	\033[0;31m$@\033[0;0m" && exit 1)
+	@gcc $(FLAGS) -I$(H_DIR) -o $@ -c $< && echo "\033[0;0m$<	\033[1;30m-->>	\033[0;32m$@\033[0;0m" || (echo "\033[0;0m$<		\033[1;30m-->>	\033[0;31m$@\033[0;0m" && exit 1)
+
+debug: _debug all clean
 
 clean:
 	@rm $(O_FILES) 2> /dev/null || echo "" > /dev/null
@@ -39,4 +43,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+_debug:
+	$(eval FLAGS += -g)
+
+.PHONY: all debug clean fclean re _debug
