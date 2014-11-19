@@ -31,8 +31,7 @@ $(NAME): $(O_FILES)
 
 $(O_DIR)%.o: $(C_DIR)%.c
 	@mkdir $(O_DIR) 2> /dev/null || echo "" > /dev/null
-	@printf "\033[0;0m%-24s\033[1;30m-->>	" "$<"
-	@gcc $(FLAGS) -I$(H_DIR) -o $@ -c $< && printf "\033[0;32m$@" || (printf "\033[0;31m$@" && exit 1)
+	@gcc $(FLAGS) -I$(H_DIR) -o $@ -c $< && printf "\033[0;0m%-24s\033[1;30m-->>	\033[0;32m$@" "$<" || (printf "\033[0;0m%-24s\033[1;30m-->>	\033[0;31m$@" "$<" && exit 1)
 	@printf "\033[0;0m\n"
 
 debug: _debug all clean
@@ -47,6 +46,6 @@ fclean: clean
 re: fclean all
 
 _debug:
-	$(eval FLAGS += -g)
+	$(eval FLAGS = -Wall -Wextra -g)
 
 .PHONY: all debug clean fclean re _debug
