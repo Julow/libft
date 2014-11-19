@@ -18,7 +18,7 @@ O_DIR = o/
 
 FLAGS = -Wall -Wextra -Werror -O2
 
-C_FILES = $(shell ls -1 $(C_DIR) | grep ".c")
+C_FILES = $(shell ls -1 $(C_DIR) | grep "\.c")
 
 O_FILES = $(addprefix $(O_DIR),$(C_FILES:.c=.o))
 
