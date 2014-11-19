@@ -27,5 +27,6 @@ char			*ft_strmap(char const *s, char (*f)(char))
 		str[i] = f(s[i]);
 		i++;
 	}
+	str[i] = '\0';
 	return (str);
 }
