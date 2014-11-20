@@ -31,8 +31,7 @@ $(NAME): $(O_FILES)
 
 $(O_DIR)%.o: $(C_DIR)%.c
 	@mkdir $(O_DIR) 2> /dev/null || echo "" > /dev/null
-	@gcc $(FLAGS) -I$(H_DIR) -o $@ -c $< && printf "\033[0;0m%-24s\033[1;30m-->>	\033[0;32m$@" "$<" || (printf "\033[0;0m%-24s\033[1;30m-->>	\033[0;31m$@" "$<" && exit 1)
-	@printf "\033[0;0m\n"
+	@gcc $(FLAGS) -I$(H_DIR) -o $@ -c $< && printf "\033[0;0m%-24s\033[1;30m-->>	\033[0;32m$@\033[0;0m\n" "$<" || (printf "\033[0;0m%-24s\033[1;30m-->>	\033[0;31m$@\033[0;0m\n" "$<" && exit 1)
 
 debug: _debug all clean
 
