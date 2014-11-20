@@ -15,8 +15,8 @@
 
 # include <stddef.h>
 
-# define MAL1(t)	((t*)malloc(sizeof(t)))
-# define MAL(t, l)	((t*)malloc(sizeof(t) * (l)))
+# define MAL1(t)	(((t)*)malloc(sizeof(t)))
+# define MAL(t, l)	(((t)*)malloc(sizeof(t) * (l)))
 
 typedef char	t_bool;
 
