@@ -30,6 +30,7 @@ t_bool			ft_stringaddi(t_string *str, int nbr)
 		return (FALSE);
 	str->length += i;
 	i = str->length - 1;
+	str->content[i] = '0';
 	tmp = nbr;
 	while (nbr != 0)
 	{
