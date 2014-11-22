@@ -13,15 +13,14 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void			ft_arraykil(t_array **array, void (*f)(void *data))
+void			ft_arraykil(t_array *array, void (*f)(void *data))
 {
 	if (f != NULL)
-		ft_arrayclr(*array, f);
-	if (array != NULL && *array != NULL)
+		ft_arrayclr(array, f);
+	if (array != NULL)
 	{
-		if ((*array)->data != NULL)
-			free((*array)->data);
-		free(*array);
-		*array = NULL;
+		if ((array)->data != NULL)
+			free((array)->data);
+		free(array);
 	}
 }

@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stringkil.c                                     :+:      :+:    :+:   */
+/*   ft_stringaddcn.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/15 18:32:51 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/15 18:32:52 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/22 18:59:32 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/22 18:59:34 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void			ft_stringkil(t_string *str)
+t_bool			ft_stringaddcn(t_string *str, char c, int n)
 {
-	if (str != NULL)
+	ft_stringext(str, n);
+	while (--n >= 0)
 	{
-		if (str->content != NULL)
-			free(str->content);
-		free(str);
+		if (!ft_stringaddc(str, c))
+			return (FALSE);
 	}
+	return (TRUE);
 }

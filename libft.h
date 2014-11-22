@@ -85,6 +85,9 @@ char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
 char			**ft_strsplit(char const *s, char c);
+void			ft_strlower(char *str);
+void			ft_strupper(char *str);
+void			ft_strnadd(char **str, char const *add, size_t len);
 
 int				ft_atoi(const char *str);
 char			*ft_itoa(int n);
@@ -116,7 +119,6 @@ void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 size_t			ft_tablen(void **array);
-void			ft_strnadd(char **str, char const *add, size_t len);
 
 /*
 ** Store pointers using the struct s_array (t_array)
@@ -131,7 +133,9 @@ int				ft_arraychr(t_array *array, void *chr);
 t_bool			ft_arrayapp(t_array *array, t_array *app);
 t_bool			ft_arrayfree(t_array *array);
 void			ft_arrayclr(t_array *array, void (*f)(void *data));
-void			ft_arraykil(t_array **array, void (*f)(void *data));
+void			ft_arraykil(t_array *array, void (*f)(void *data));
+void			ft_arrayswap(t_array *array, int i1, int i2);
+void			ft_arrayrev(t_array *array);
 t_bool			ft_arrayext(t_array *array);
 
 /*
@@ -143,6 +147,7 @@ t_bool			ft_stringaddc(t_string *str, char c);
 t_bool			ft_stringadd(t_string *str, char *add);
 t_bool			ft_stringaddi(t_string *str, int nbr);
 t_bool			ft_stringaddl(t_string *str, char *add, int len);
+t_bool			ft_stringaddcn(t_string *str, char c, int n);
 t_bool			ft_stringsetc(t_string *str, char c, int index);
 t_bool			ft_stringset(t_string *str, char *set, int index);
 t_bool			ft_stringsetl(t_string *str, char *set, int index, int len);
@@ -161,7 +166,7 @@ int				ft_stringchr(t_string *str, char c);
 int				ft_stringstr(t_string *str, char *chr, int start);
 t_bool			ft_stringfree(t_string *str);
 void			ft_stringclr(t_string *str);
-void			ft_stringkil(t_string **str);
+void			ft_stringkil(t_string *str);
 t_bool			ft_stringext(t_string *str, int need);
 int				ft_stringput(t_string *str);
 int				ft_stringputfd(t_string *str, int const fd);

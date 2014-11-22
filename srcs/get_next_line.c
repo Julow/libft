@@ -89,7 +89,7 @@ int				get_next_line(int const fd, char **line)
 			continue;
 		if (gnl_sub(gnl->buff, i, line) <= 0 && len <= 0)
 		{
-			ft_stringkil(&(gnl->buff));
+			ft_stringkil(gnl->buff);
 			return (GNL_END);
 		}
 		return (GNL_SUCCES);

@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stringkil.c                                     :+:      :+:    :+:   */
+/*   ft_arrayswap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/15 18:32:51 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/15 18:32:52 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/22 18:55:47 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/22 18:55:48 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void			ft_stringkil(t_string *str)
+void			ft_arrayswap(t_array *array, int i1, int i2)
 {
-	if (str != NULL)
-	{
-		if (str->content != NULL)
-			free(str->content);
-		free(str);
-	}
+	void			*tmp;
+
+	tmp = array->data[i1];
+	array->data[i1] = array->data[i2];
+	array->data[i2] = tmp;
 }

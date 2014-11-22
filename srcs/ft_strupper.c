@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stringkil.c                                     :+:      :+:    :+:   */
+/*   ft_strupper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/15 18:32:51 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/15 18:32:52 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/22 18:53:37 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/11/22 18:53:38 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void			ft_stringkil(t_string *str)
+void			ft_strupper(char *str)
 {
-	if (str != NULL)
+	while (*str != '\0')
 	{
-		if (str->content != NULL)
-			free(str->content);
-		free(str);
+		if (*str >= 'a' && *str <= 'z')
+			*str -= 32;
+		str++;
 	}
 }
