@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-void			ft_arrayclr(t_array *array, void (*f)(void *data))
+void			ft_arrayclr(void *array, void (*f)(void *data))
 {
 	int				i;
 
 	i = -1;
-	while (++i < array->length)
-		f(array->data[i]);
+	while (++i < ((t_array*)array)->length)
+		f(((t_array*)array)->data[i]);
 }

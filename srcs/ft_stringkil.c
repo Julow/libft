@@ -13,12 +13,12 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void			ft_stringkil(t_string *str)
+void			ft_stringkil(void *str)
 {
 	if (str != NULL)
 	{
-		if (str->content != NULL)
-			free(str->content);
+		if (((t_string*)str)->content != NULL)
+			free(((t_string*)str)->content);
 		free(str);
 	}
 }
