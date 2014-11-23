@@ -30,6 +30,20 @@ typedef struct	s_gnl
 	struct s_gnl	*next;
 }				t_gnl;
 
+/*
+** Read a file line per line.
+** 'line' is not a buffer.
+** =============
+** Return GNL_SUCCES if a line is read,
+** GNL_END if the end of file is reach
+** GNL_ERROR if an error occured.
+*/
 int				get_next_line(int const fd, char **line);
+
+/*
+** Clear the cache relative to the fd.
+** Call it after close a fd if the end of file is not reach
+*/
+void			gnl_clear_cache(int const fd);
 
 #endif

@@ -31,10 +31,12 @@ static t_gnl	*gnl_getgnl(int const fd)
 	if (tmp != NULL)
 	{
 		tmp->fd = fd;
-		tmp->buff = ft_stringnew();
+		tmp->buff = NULL;
 		tmp->next = gnls;
 		gnls = tmp;
 	}
+	if (tmp->buff == NULL)
+		tmp->buff = ft_stringnew();
 	return (tmp);
 }
 
@@ -70,6 +72,16 @@ static int		gnl_read(int const fd, t_string *str)
 	return (len);
 }
 
+void			gnl_clear_cache(int const fd)
+{
+	t_gnl			*gnl;
+
+	gnl = gnl_getgnl(fd);
+	if (gnl->buff != NULL)
+		ft_stringkil(gnl->buff);
+	gnl->buff = NULL;
+}
+
 int				get_next_line(int const fd, char **line)
 {
 	t_gnl			*gnl;
@@ -90,6 +102,7 @@ int				get_next_line(int const fd, char **line)
 		if (gnl_sub(gnl->buff, i, line) <= 0 && len <= 0)
 		{
 			ft_stringkil(gnl->buff);
+			gnl->buff = NULL;
 			return (GNL_END);
 		}
 		return (GNL_SUCCES);
