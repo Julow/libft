@@ -124,7 +124,7 @@ size_t			ft_tablen(void **array);
 ** Store pointers using the struct s_array (t_array)
 ** Allocate memory by block of 16 to reduce the number of free/malloc/copy
 */
-t_array			*ft_arraynew();
+t_array			*ft_arraynew(void);
 t_bool			ft_arrayadd(t_array *array, void *add);
 t_bool			ft_arrayset(t_array *array, void *set, int index);
 t_bool			ft_arrayins(t_array *array, void *ins, int index);
@@ -142,7 +142,7 @@ t_bool			ft_arrayext(t_array *array);
 ** Manipulate string using the struct s_string (t_string)
 ** Allocate memory by block of 16 to reduce the number of free/malloc/copy
 */
-t_string		*ft_stringnew();
+t_string		*ft_stringnew(void);
 t_bool			ft_stringaddc(t_string *str, char c);
 t_bool			ft_stringadd(t_string *str, char *add);
 t_bool			ft_stringaddi(t_string *str, int nbr);
