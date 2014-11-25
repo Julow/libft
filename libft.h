@@ -18,7 +18,14 @@
 # define MAL1(t)	((t*)malloc(sizeof(t)))
 # define MAL(t, l)	((t*)malloc(sizeof(t) * (l)))
 
+# define UCHAR	unsigned char
+# define UINT	unsigned int
+# define LONG	long long int
+
 typedef char	t_bool;
+typedef UCHAR	t_uchar;
+typedef UINT	t_uint;
+typedef LONG	t_long;
 
 # ifndef TRUE
 #  define TRUE		1
@@ -26,13 +33,9 @@ typedef char	t_bool;
 # ifndef FALSE
 #  define FALSE		0
 # endif
-
-typedef struct	s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}				t_list;
+# ifndef ERROR
+#  define ERROR		-1
+# endif
 
 typedef struct	s_array
 {
@@ -102,22 +105,6 @@ int				ft_isprint(int c);
 t_bool			ft_isspace(char c);
 t_bool			ft_iswhite(char c);
 
-void			ft_putchar(char c);
-void			ft_putstr(char const *s);
-void			ft_putendl(char const *s);
-void			ft_putnbr(int n);
-void			ft_putchar_fd(char c, int fd);
-void			ft_putstr_fd(char const *s, int fd);
-void			ft_putendl_fd(char const *s, int fd);
-void			ft_putnbr_fd(int n, int fd);
-
-t_list			*ft_lstnew(void const *content, size_t content_size);
-void			ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
-void			ft_lstdel(t_list **alst, void (*del)(void*, size_t));
-void			ft_lstadd(t_list **alst, t_list *add);
-void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-
 size_t			ft_tablen(void **array);
 
 /*
@@ -168,7 +155,5 @@ t_bool			ft_stringfree(t_string *str);
 void			ft_stringclr(t_string *str);
 void			ft_stringkil(void *str);
 t_bool			ft_stringext(t_string *str, int need);
-int				ft_stringput(t_string *str);
-int				ft_stringputfd(t_string *str, int const fd);
 
 #endif
