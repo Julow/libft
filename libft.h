@@ -108,6 +108,18 @@ t_bool			ft_iswhite(char c);
 size_t			ft_tablen(void **array);
 
 /*
+** Write
+*/
+void			ft_putchar(char c);
+void			ft_putstr(char const *s);
+void			ft_putendl(char const *s);
+void			ft_putnbr(int n);
+void			ft_putchar_fd(char c, int fd);
+void			ft_putstr_fd(char const *s, int fd);
+void			ft_putendl_fd(char const *s, int fd);
+void			ft_putnbr_fd(int n, int fd);
+
+/*
 ** Store pointers using the struct s_array (t_array)
 ** Allocate memory by block of 16 to reduce the number of free/malloc/copy
 */
@@ -155,5 +167,7 @@ t_bool			ft_stringfree(t_string *str);
 void			ft_stringclr(t_string *str);
 void			ft_stringkil(void *str);
 t_bool			ft_stringext(t_string *str, int need);
+int				ft_stringput(t_string *str);
+int				ft_stringputfd(t_string *str, int const fd);
 
 #endif
