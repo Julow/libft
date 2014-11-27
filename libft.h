@@ -21,11 +21,13 @@
 # define UCHAR	unsigned char
 # define UINT	unsigned int
 # define LONG	long long int
+# define ULONG	unsigned long long int
 
 typedef char	t_bool;
 typedef UCHAR	t_uchar;
 typedef UINT	t_uint;
 typedef LONG	t_long;
+typedef ULONG	t_ulong;
 
 # ifndef TRUE
 #  define TRUE		1
