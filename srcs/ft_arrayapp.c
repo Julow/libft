@@ -19,7 +19,7 @@ t_bool			ft_arrayapp(t_array *array, t_array *app)
 
 	app_len = app->length;
 	array->length += app_len;
-	if (!ft_arrayext(array))
+	if (!ft_arrayext(array, app->length))
 	{
 		array->length -= app_len;
 		return (FALSE);

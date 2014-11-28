@@ -137,7 +137,7 @@ void			ft_arrayclr(void *array, void (*f)(void *data));
 void			ft_arraykil(void *array, void (*f)(void *data));
 void			ft_arrayswap(t_array *array, int i1, int i2);
 void			ft_arrayrev(t_array *array);
-t_bool			ft_arrayext(t_array *array);
+t_bool			ft_arrayext(t_array *array, int need);
 
 /*
 ** Manipulate string using the struct s_string (t_string)

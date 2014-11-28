@@ -18,7 +18,7 @@ t_bool			ft_arrayins(t_array *array, void *ins, int index)
 
 	if (index >= array->length)
 		return (ft_arrayset(array, ins, index));
-	if (!ft_arrayext(array))
+	if (!ft_arrayext(array, 1))
 		return (FALSE);
 	i = array->length - 1;
 	while (--i >= index)

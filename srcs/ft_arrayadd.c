@@ -14,7 +14,7 @@
 
 t_bool			ft_arrayadd(t_array *array, void *add)
 {
-	if (!ft_arrayext(array))
+	if (!ft_arrayext(array, 1))
 		return (FALSE);
 	array->data[array->length] = add;
 	array->length++;

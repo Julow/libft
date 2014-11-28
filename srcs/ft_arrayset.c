@@ -16,7 +16,7 @@ t_bool			ft_arrayset(t_array *array, void *set, int index)
 {
 	if (array->length <= index)
 		array->length = index + 1;
-	if (!ft_arrayext(array))
+	if (!ft_arrayext(array, 1))
 		return (FALSE);
 	array->data[index] = set;
 	return (TRUE);

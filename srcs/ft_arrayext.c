@@ -13,15 +13,16 @@
 #include "libft.h"
 #include <stdlib.h>
 
-t_bool			ft_arrayext(t_array *array)
+t_bool			ft_arrayext(t_array *array, int need)
 {
 	void			**tmp;
 	int				i;
 
-	if (array->length < array->alloc_length)
+	need += array->length;
+	if (need < array->alloc_length)
 		return (TRUE);
 	i = array->alloc_length;
-	while (array->length >= i)
+	while (need >= i)
 		i += 16;
 	tmp = MAL(void*, i);
 	if (tmp == NULL)
