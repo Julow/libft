@@ -88,9 +88,19 @@ char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
 char			**ft_strsplit(char const *s, char c);
-void			ft_strlower(char *str);
-void			ft_strupper(char *str);
+
 void			ft_strnadd(char **str, char const *add, size_t len);
+
+int				ft_isalpha(int c);
+int				ft_isdigit(int c);
+int				ft_isalnum(int c);
+int				ft_isascii(int c);
+int				ft_isprint(int c);
+t_bool			ft_isspace(char c);
+t_bool			ft_iswhite(char c);
+
+t_bool			ft_isato(const char *str);
+t_bool			ft_isnumber(const char *str);
 
 /*
 ** String - Useless
@@ -114,13 +124,8 @@ double			ft_atod(const char *str);
 
 int				ft_toupper(int c);
 int				ft_tolower(int c);
-int				ft_isalpha(int c);
-int				ft_isdigit(int c);
-int				ft_isalnum(int c);
-int				ft_isascii(int c);
-int				ft_isprint(int c);
-t_bool			ft_isspace(char c);
-t_bool			ft_iswhite(char c);
+void			ft_strlower(char *str);
+void			ft_strupper(char *str);
 
 /*
 ** Write
@@ -157,6 +162,7 @@ t_bool			ft_arrayext(t_array *array, int need);
 ** Allocate memory by block of 16 to reduce the number of free/malloc/copy
 */
 t_string		*ft_stringnew(void);
+t_string		*ft_stringnews(char *s);
 t_bool			ft_stringaddc(t_string *str, char c);
 t_bool			ft_stringadd(t_string *str, char *add);
 t_bool			ft_stringaddi(t_string *str, int nbr);
