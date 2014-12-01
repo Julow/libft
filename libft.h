@@ -53,6 +53,12 @@ typedef struct	s_string
 	int				alloc_length;
 }				t_string;
 
+typedef struct	s_pair
+{
+	t_string		*key;
+	void			*value;
+}				t_pair;
+
 /*
 ** Memory
 */
@@ -156,6 +162,16 @@ void			ft_arraykil(void *array, void (*f)(void *data));
 void			ft_arrayswap(t_array *array, int i1, int i2);
 void			ft_arrayrev(t_array *array);
 t_bool			ft_arrayext(t_array *array, int need);
+
+/*
+** Store pointers paired with a t_string 'key'
+** Use the struct s_array (t_array)
+*/
+t_pair			*ft_pairnew(char *key, void *value);
+t_pair			*ft_pairget(t_array *array, char *key);
+int				ft_pairchr(t_array *array, char *key);
+t_pair			*ft_pairrem(t_array *array, char *key);
+void			ft_pairsort(t_array *array);
 
 /*
 ** Manipulate string using the struct s_string (t_string)
