@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putlstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 17:48:48 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/04 17:48:49 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/01 19:53:43 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/12/01 19:53:44 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-void			ft_putstr_fd(char const *s, int fd)
+void			ft_putlstr(char const *s, int len)
 {
-	ft_putlstr_fd(s, ft_strlen(s), fd);
+	ft_putlstr_fd(s, len, 1);
 }
