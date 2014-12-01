@@ -138,12 +138,14 @@ void			ft_strupper(char *str);
 */
 void			ft_putchar(char c);
 void			ft_putstr(char const *s);
-void			ft_putendl(char const *s);
+void			ft_putendl(char *s);
 void			ft_putnbr(int n);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char const *s, int fd);
-void			ft_putendl_fd(char const *s, int fd);
+void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
+void			ft_putnchar(char c, int n);
+void			ft_putnchar_fd(char c, int n, int fd);
 
 /*
 ** Store pointers using the struct s_array (t_array)

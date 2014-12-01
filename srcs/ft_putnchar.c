@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl.c                                       :+:      :+:    :+:   */
+/*   ft_putnchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 17:36:46 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/04 17:36:47 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/01 13:40:20 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/12/01 13:40:21 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-void			ft_putendl(char *s)
+void			ft_putnchar(char c, int n)
 {
-	ft_putendl_fd(s, 1);
+	char			chars[n];
+	int				i;
+
+	i = -1;
+	while (++i < n)
+		chars[i] = c;
+	write(1, chars, n);
 }
