@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-t_bool			ft_stringins(t_string *str, char *ins, int index)
+void			ft_stringins(t_string *str, char *ins, int index)
 {
-	return (ft_stringinsl(str, ins, index, ft_strlen(ins)));
+	ft_stringinsl(str, ins, index, ft_strlen(ins));
 }

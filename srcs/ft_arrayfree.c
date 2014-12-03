@@ -11,31 +11,25 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 /*
 ** Free unused memory
-** =============
-** Return FALSE(0) if the malloc fail, TRUE(1) otherwise
 */
-t_bool			ft_arrayfree(t_array *array)
+void			ft_arrayfree(t_array *array)
 {
 	void			**tmp;
 	int				i;
 
 	if (array->length >= array->alloc_length)
-		return (TRUE);
+		return ;
 	tmp = MAL(void*, array->length);
-	if (tmp == NULL)
-		return (FALSE);
 	array->alloc_length = array->length;
 	if (array->data != NULL)
 	{
 		i = -1;
 		while (++i < array->length)
 			tmp[i] = array->data[i];
-		free(array->data);
+		ft_gbfree(array->data);
 	}
 	array->data = tmp;
-	return (TRUE);
 }

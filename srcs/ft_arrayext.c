@@ -11,22 +11,19 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-t_bool			ft_arrayext(t_array *array, int need)
+void			ft_arrayext(t_array *array, int need)
 {
 	void			**tmp;
 	int				i;
 
 	need += array->length;
 	if (need < array->alloc_length)
-		return (TRUE);
+		return ;
 	i = array->alloc_length;
 	while (need >= i)
 		i += 16;
 	tmp = MAL(void*, i);
-	if (tmp == NULL)
-		return (FALSE);
 	array->alloc_length = i;
 	if (array->data != NULL)
 	{
@@ -36,8 +33,7 @@ t_bool			ft_arrayext(t_array *array, int need)
 		i--;
 		while (++i < array->alloc_length)
 			tmp[i] = NULL;
-		free(array->data);
+		ft_gbfree(array->data);
 	}
 	array->data = tmp;
-	return (TRUE);
 }

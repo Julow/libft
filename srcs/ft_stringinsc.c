@@ -12,18 +12,19 @@
 
 #include "libft.h"
 
-t_bool			ft_stringinsc(t_string *str, char c, int index)
+void			ft_stringinsc(t_string *str, char c, int index)
 {
 	int				i;
 
 	if (index >= str->length)
-		return (ft_stringsetc(str, c, index));
-	if (!ft_stringext(str, 1))
-		return (FALSE);
+	{
+		ft_stringsetc(str, c, index);
+		return ;
+	}
+	ft_stringext(str, 1);
 	i = str->length - 1;
 	while (--i >= index)
 		str->content[i + 1] = str->content[i];
 	str->content[index] = c;
 	str->length++;
-	return (TRUE);
 }

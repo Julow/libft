@@ -12,12 +12,11 @@
 
 #include "libft.h"
 
-t_bool			ft_stringaddl(t_string *str, char *add, int len)
+void			ft_stringaddl(t_string *str, char *add, int len)
 {
 	int				i;
 
-	if (!ft_stringext(str, len))
-		return (FALSE);
+	ft_stringext(str, len);
 	i = 0;
 	while (i < len)
 	{
@@ -25,5 +24,4 @@ t_bool			ft_stringaddl(t_string *str, char *add, int len)
 		i++;
 	}
 	str->length += len;
-	return (TRUE);
 }

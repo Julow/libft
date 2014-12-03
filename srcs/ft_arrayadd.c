@@ -12,11 +12,9 @@
 
 #include "libft.h"
 
-t_bool			ft_arrayadd(t_array *array, void *add)
+void			ft_arrayadd(t_array *array, void *add)
 {
-	if (!ft_arrayext(array, 1))
-		return (FALSE);
+	ft_arrayext(array, 1);
 	array->data[array->length] = add;
 	array->length++;
-	return (TRUE);
 }

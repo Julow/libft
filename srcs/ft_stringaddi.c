@@ -14,10 +14,8 @@
 
 /*
 ** Add the string representation of 'nbr' in the string 'str'
-** =============
-** Return FALSE(0) if the malloc fail, TRUE(1) otherwise
 */
-t_bool			ft_stringaddi(t_string *str, int nbr)
+void			ft_stringaddi(t_string *str, int nbr)
 {
 	int				tmp;
 	int				i;
@@ -26,8 +24,7 @@ t_bool			ft_stringaddi(t_string *str, int nbr)
 	i = ((tmp < 0) ? 2 : 1);
 	while ((tmp /= 10) != 0)
 		i++;
-	if (!ft_stringext(str, i))
-		return (FALSE);
+	ft_stringext(str, i);
 	str->length += i;
 	i = str->length - 1;
 	str->content[i] = '0';
@@ -39,5 +36,4 @@ t_bool			ft_stringaddi(t_string *str, int nbr)
 	}
 	if (tmp < 0)
 		str->content[i] = '-';
-	return (TRUE);
 }

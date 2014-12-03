@@ -12,20 +12,15 @@
 
 #include "libft.h"
 
-t_bool			ft_arrayapp(t_array *array, t_array *app)
+void			ft_arrayapp(t_array *array, t_array *app)
 {
 	int				i;
 	int				app_len;
 
 	app_len = app->length;
 	array->length += app_len;
-	if (!ft_arrayext(array, app->length))
-	{
-		array->length -= app_len;
-		return (FALSE);
-	}
+	ft_arrayext(array, app->length);
 	i = -1;
 	while (++i < app_len)
 		array->data[array->length - app_len + i] = app->data[i];
-	return (TRUE);
 }

@@ -45,7 +45,7 @@ char			**ft_strsplit(char const *s, char c)
 	i = 0;
 	while (s[i] == c && s[i] != '\0')
 		i++;
-	split = (char**)ft_memalloc(sizeof(char*) * (1 + ft_count_split(s, c)));
+	split = MAL(char*, 1 + ft_count_split(s, c));
 	split_i = 0;
 	while (s[i] != '\0')
 	{

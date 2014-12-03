@@ -12,12 +12,10 @@
 
 #include "libft.h"
 
-t_bool			ft_arrayset(t_array *array, void *set, int index)
+void			ft_arrayset(t_array *array, void *set, int index)
 {
 	if (array->length <= index)
 		array->length = index + 1;
-	if (!ft_arrayext(array, 1))
-		return (FALSE);
+	ft_arrayext(array, 1);
 	array->data[index] = set;
-	return (TRUE);
 }

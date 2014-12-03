@@ -17,12 +17,11 @@
 ** =============
 ** Return FALSE(0) if the malloc fail, TRUE(1) otherwise
 */
-t_bool			ft_stringinsl(t_string *str, char *ins, int index, int len)
+void			ft_stringinsl(t_string *str, char *ins, int index, int len)
 {
 	int				i;
 
-	if (!ft_stringext(str, len))
-		return (FALSE);
+	ft_stringext(str, len);
 	i = str->length;
 	while (--i >= index)
 		str->content[len + i] = str->content[i];
@@ -30,5 +29,4 @@ t_bool			ft_stringinsl(t_string *str, char *ins, int index, int len)
 	while (--i >= 0)
 		str->content[index + i] = ins[i];
 	str->length += len;
-	return (TRUE);
 }

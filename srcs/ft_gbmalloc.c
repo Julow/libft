@@ -18,10 +18,12 @@ void			*ft_gbmalloc(t_uint size)
 	void			*ptr;
 
 	ptr = malloc(size);
-	if (ptr == NULL || !ft_arrayadd(*(ft_gbget()), ptr))
+	if (ptr == NULL)
 	{
-		ft_putstr("Error: Not enough memory.\n");
-		exit(gb_clear(1));
+		ft_putstr_fd("Error: Not enough memory.\n", 2);
+		ft_gbclear();
+		exit(1);
 	}
+	ft_arrayadd(*(ft_gbget()), ptr);
 	return (ptr);
 }

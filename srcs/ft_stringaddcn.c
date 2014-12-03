@@ -12,13 +12,9 @@
 
 #include "libft.h"
 
-t_bool			ft_stringaddcn(t_string *str, char c, int n)
+void			ft_stringaddcn(t_string *str, char c, int n)
 {
 	ft_stringext(str, n);
 	while (--n >= 0)
-	{
-		if (!ft_stringaddc(str, c))
-			return (FALSE);
-	}
-	return (TRUE);
+		ft_stringaddc(str, c);
 }

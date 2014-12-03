@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-t_bool			ft_stringadd(t_string *str, char *add)
+void			ft_stringadd(t_string *str, char *add)
 {
-	return (ft_stringaddl(str, add, ft_strlen(add)));
+	ft_stringaddl(str, add, ft_strlen(add));
 }

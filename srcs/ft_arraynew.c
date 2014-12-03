@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 t_array			*ft_arraynew(void)
 {
@@ -22,7 +21,7 @@ t_array			*ft_arraynew(void)
 	{
 		array->data = MAL(void*, 16);
 		array->length = 0;
-		array->alloc_length = (array->data == NULL) ? 0 : 16;
+		array->alloc_length = 16;
 	}
 	return (array);
 }

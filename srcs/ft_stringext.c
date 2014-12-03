@@ -11,22 +11,19 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-t_bool			ft_stringext(t_string *str, int need)
+void			ft_stringext(t_string *str, int need)
 {
 	char			*tmp;
 	int				i;
 
 	need += str->length;
 	if (need + 1 < str->alloc_length)
-		return (TRUE);
+		return ;
 	i = str->alloc_length - 1;
 	while (need >= i)
 		i += 16;
 	tmp = MAL(char, i);
-	if (tmp == NULL)
-		return (FALSE);
 	str->alloc_length = i;
 	i = -1;
 	if (str->content != NULL)
@@ -34,10 +31,9 @@ t_bool			ft_stringext(t_string *str, int need)
 		while (++i < str->length)
 			tmp[i] = str->content[i];
 		i--;
-		free(str->content);
+		ft_gbfree(str->content);
 	}
 	while (++i < str->alloc_length)
 		tmp[i] = '\0';
 	str->content = tmp;
-	return (TRUE);
 }

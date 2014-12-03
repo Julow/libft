@@ -18,7 +18,7 @@
 ** =============
 ** Return FALSE(0) if the malloc fail, TRUE(1) otherwise
 */
-t_bool			ft_stringrep(t_string *str, char *chr, char *rep)
+void			ft_stringrep(t_string *str, char *chr, char *rep)
 {
 	int				i;
 	int				chr_len;
@@ -26,14 +26,13 @@ t_bool			ft_stringrep(t_string *str, char *chr, char *rep)
 
 	chr_len = ft_strlen(chr);
 	if (chr_len == 0)
-		return (TRUE);
+		return ;
 	rep_len = (rep == NULL) ? 0 : ft_strlen(rep);
 	i = -chr_len;
 	while ((i = ft_stringstr(str, chr, i + chr_len)) != -1)
 	{
 		ft_stringrem(str, i, chr_len);
-		if (rep_len > 0 && !ft_stringinsl(str, rep, i, rep_len))
-			return (FALSE);
+		if (rep_len > 0)
+			ft_stringinsl(str, rep, i, rep_len);
 	}
-	return (TRUE);
 }
