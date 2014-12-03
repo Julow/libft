@@ -20,9 +20,9 @@ t_array			**ft_gbget(void)
 	if (gb == NULL)
 	{
 		gb = (t_array*)malloc(sizeof(t_array));
-		gb->data = (void**)malloc(16);
+		gb->data = (void**)malloc(0);
 		gb->length = 0;
-		gb->alloc_length = (gb->data == NULL) ? 0 : 16;
+		gb->alloc_length = 0;
 	}
 	return (&gb);
 }

@@ -22,7 +22,7 @@ void			ft_stringext(t_string *str, int need)
 		return ;
 	i = str->alloc_length - 1;
 	while (need >= i)
-		i += 16;
+		i += 24;
 	tmp = MAL(char, i);
 	str->alloc_length = i;
 	i = -1;
