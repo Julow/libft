@@ -15,8 +15,8 @@
 
 # include <stddef.h>
 
-# define MAL1(t)	((t*)malloc(sizeof(t)))
-# define MAL(t, l)	((t*)malloc(sizeof(t) * (l)))
+# define MAL(t,l)	((t*)gb_malloc(sizeof(t) * (l)))
+# define MAL1(t)	((t*)gb_malloc(sizeof(t)))
 
 # define UCHAR	unsigned char
 # define UINT	unsigned int
@@ -69,6 +69,9 @@ void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
+/*
+** TODO: use ft_gb
+*/
 void			*ft_memalloc(size_t size);
 void			ft_memdel(void **ap);
 
@@ -77,8 +80,14 @@ size_t			ft_tablen(void **array);
 /*
 ** String
 */
+/*
+** TODO: use ft_gb
+*/
 char			*ft_strnew(size_t size);
 size_t			ft_strlen(const char *str);
+/*
+** TODO: use ft_gb
+*/
 char			*ft_strdup(const char *src);
 char			*ft_strcpy(char *dst, const char *src);
 char			*ft_strncpy(char *dst, const char *src, size_t len);
@@ -90,11 +99,26 @@ int				ft_strcmp(const char *s1, const char *s2);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				ft_strequ(char const *s1, char const *s2);
 int				ft_strnequ(char const *s1, char const *s2, size_t n);
+/*
+** TODO: use ft_gb
+*/
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
+/*
+** TODO: use ft_gb
+*/
 char			*ft_strjoin(char const *s1, char const *s2);
+/*
+** TODO: use ft_gb
+*/
 char			*ft_strtrim(char const *s);
+/*
+** TODO: use ft_gb
+*/
 char			**ft_strsplit(char const *s, char c);
 
+/*
+** TODO: use ft_gb
+*/
 void			ft_strnadd(char **str, char const *add, size_t len);
 
 int				ft_isalpha(int c);
@@ -118,7 +142,13 @@ void			ft_strdel(char **as);
 void			ft_strclr(char *s);
 void			ft_striter(char *s, void (*f)(char*));
 void			ft_striteri(char *s, void (*f)(unsigned int, char*));
+/*
+** TODO: use ft_gb
+*/
 char			*ft_strmap(char const *s, char (*f)(char));
+/*
+** TODO: use ft_gb
+*/
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 /*
@@ -150,8 +180,19 @@ void			ft_putendl(char *s);
 void			ft_putendl_fd(char *s, int fd);
 
 /*
+** Manage malloc/free and store pointers to handle malloc error and avoid leaks
+*/
+t_array			**ft_gbget(void);
+void			*ft_gbmalloc(t_uint size);
+void			ft_gbfree(void *ptr);
+void			ft_gbclear(void);
+
+/*
 ** Store pointers using the struct s_array (t_array)
 ** Allocate memory by block of 16 to reduce the number of free/malloc/copy
+*/
+/*
+** TODO: use ft_gb
 */
 t_array			*ft_arraynew(void);
 t_bool			ft_arrayadd(t_array *array, void *add);
@@ -160,16 +201,28 @@ t_bool			ft_arrayins(t_array *array, void *ins, int index);
 void			*ft_arrayrem(t_array *array, int index);
 int				ft_arraychr(t_array *array, void *chr);
 t_bool			ft_arrayapp(t_array *array, t_array *app);
+/*
+** TODO: use ft_gb
+*/
 t_bool			ft_arrayfree(t_array *array);
 void			ft_arrayclr(void *array, void (*f)(void *data));
+/*
+** TODO: use ft_gb
+*/
 void			ft_arraykil(void *array, void (*f)(void *data));
 void			ft_arrayswap(t_array *array, int i1, int i2);
 void			ft_arrayrev(t_array *array);
+/*
+** TODO: use ft_gb
+*/
 t_bool			ft_arrayext(t_array *array, int need);
 
 /*
 ** Store pointers paired with a t_string 'key'
 ** Use the struct s_array (t_array)
+*/
+/*
+** TODO: use ft_gb
 */
 t_pair			*ft_pairnew(char *key, void *value);
 t_pair			*ft_pairget(t_array *array, char *key);
@@ -181,10 +234,16 @@ void			ft_pairsort(t_array *array);
 ** Manipulate string using the struct s_string (t_string)
 ** Allocate memory by block of 16 to reduce the number of free/malloc/copy
 */
+/*
+** TODO: use ft_gb
+*/
 t_string		*ft_stringnew(void);
 t_string		*ft_stringnews(char *s);
 t_bool			ft_stringaddc(t_string *str, char c);
 t_bool			ft_stringadd(t_string *str, char *add);
+/*
+** TODO: use ft_gb
+*/
 t_bool			ft_stringaddi(t_string *str, int nbr);
 t_bool			ft_stringaddl(t_string *str, char *add, int len);
 t_bool			ft_stringaddcn(t_string *str, char c, int n);
@@ -204,9 +263,18 @@ t_array			*ft_stringsplit(t_string *str, char *chr);
 t_array			*ft_stringsplitc(t_string *str, char c);
 int				ft_stringchr(t_string *str, char c);
 int				ft_stringstr(t_string *str, char *chr, int start);
+/*
+** TODO: use ft_gb
+*/
 t_bool			ft_stringfree(t_string *str);
 void			ft_stringclr(t_string *str);
+/*
+** TODO: use ft_gb
+*/
 void			ft_stringkil(void *str);
+/*
+** TODO: use ft_gb
+*/
 t_bool			ft_stringext(t_string *str, int need);
 int				ft_stringput(t_string *str);
 int				ft_stringputfd(t_string *str, int const fd);
