@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 void			ft_arraykil(void *array, void (*f)(void *data))
 {
@@ -20,7 +19,7 @@ void			ft_arraykil(void *array, void (*f)(void *data))
 	if (array != NULL)
 	{
 		if (((t_array*)array)->data != NULL)
-			free(((t_array*)array)->data);
-		free(array);
+			ft_gbfree(((t_array*)array)->data);
+		ft_gbfree(array);
 	}
 }
