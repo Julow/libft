@@ -34,7 +34,7 @@ void			ft_arrayext(t_array *array, int need)
 		i--;
 		while (++i < array->alloc_length)
 			tmp[i] = NULL;
-		ft_gbfree(array->data);
+		free(array->data);
 	}
 	array->data = tmp;
 }

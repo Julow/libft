@@ -21,7 +21,9 @@ void			ft_gbfree(void *ptr)
 	gb = *(ft_gbget());
 	index = ft_arraychr(gb, ptr);
 	if (index >= 0)
+	{
 		ft_arrayrem(gb, index);
-	if (ptr != NULL)
-		free(ptr);
+		if (ptr != NULL)
+			free(ptr);
+	}
 }
