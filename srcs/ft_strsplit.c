@@ -57,5 +57,6 @@ char			**ft_strsplit(char const *s, char c)
 		while (s[i] == c && s[i] != '\0')
 			i++;
 	}
+	split[split_i] = NULL;
 	return (split);
 }
