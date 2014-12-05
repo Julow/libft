@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 void			ft_stringext(t_string *str, int need)
 {
@@ -31,7 +32,7 @@ void			ft_stringext(t_string *str, int need)
 		while (++i < str->length)
 			tmp[i] = str->content[i];
 		i--;
-		ft_gbfree(str->content);
+		free(str->content);
 	}
 	while (++i < str->alloc_length)
 		tmp[i] = '\0';

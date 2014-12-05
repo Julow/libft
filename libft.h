@@ -15,8 +15,8 @@
 
 # include <stddef.h>
 
-# define MAL(t,l)	((t*)ft_gbmalloc(sizeof(t) * (l)))
-# define MAL1(t)	((t*)ft_gbmalloc(sizeof(t)))
+# define MAL(t,l)	((t*)malloc(sizeof(t) * (l)))
+# define MAL1(t)	((t*)malloc(sizeof(t)))
 
 # define UCHAR	unsigned char
 # define UINT	unsigned int
@@ -148,14 +148,6 @@ void			ft_putlstr(char const *s, int len);
 void			ft_putlstr_fd(char const *s, int len, int fd);
 void			ft_putendl(char *s);
 void			ft_putendl_fd(char *s, int fd);
-
-/*
-** Manage malloc/free and store pointers to handle malloc error and avoid leaks
-*/
-t_array			**ft_gbget(void);
-void			*ft_gbmalloc(t_uint size);
-void			ft_gbfree(void *ptr);
-void			ft_gbclear(void);
 
 /*
 ** Store pointers using the struct s_array (t_array)

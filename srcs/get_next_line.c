@@ -13,6 +13,7 @@
 #include "libft.h"
 #include "get_next_line.h"
 #include <unistd.h>
+#include <stdlib.h>
 
 static t_gnl	*gnl_getgnl(int const fd)
 {
@@ -67,7 +68,7 @@ static int		gnl_read(int const fd, t_string *str)
 		return (GNL_ERROR);
 	len = read(fd, buff, GNL_BUFF);
 	ft_stringaddl(str, buff, len);
-	ft_gbfree(buff);
+	free(buff);
 	return (len);
 }
 

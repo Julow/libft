@@ -18,7 +18,7 @@ void			ft_stringkil(void *str)
 	if (str != NULL)
 	{
 		if (((t_string*)str)->content != NULL)
-			ft_gbfree(((t_string*)str)->content);
-		ft_gbfree(str);
+			free(((t_string*)str)->content);
+		free(str);
 	}
 }

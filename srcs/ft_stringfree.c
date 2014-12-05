@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 /*
 ** Free unused memory
@@ -29,7 +30,7 @@ void			ft_stringfree(t_string *str)
 		i = -1;
 		while (++i < str->length)
 			tmp[i] = str->content[i];
-		ft_gbfree(str->content);
+		free(str->content);
 	}
 	str->content = tmp;
 }

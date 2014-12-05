@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 t_pair			*ft_pairnew(char *key, void *value)
 {
