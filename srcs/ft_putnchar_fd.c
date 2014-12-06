@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
 void			ft_putnchar_fd(char c, int n, int fd)
 {
@@ -21,5 +20,5 @@ void			ft_putnchar_fd(char c, int n, int fd)
 	i = -1;
 	while (++i < n)
 		chars[i] = c;
-	write(fd, chars, n);
+	ft_putlstr_fd(chars, n, fd);
 }

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
 void			ft_putlstr(char const *s, int len)
 {

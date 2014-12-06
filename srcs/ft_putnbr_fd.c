@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
 void			ft_putnbr_fd(int n, int fd)
 {
@@ -33,5 +32,5 @@ void			ft_putnbr_fd(int n, int fd)
 	}
 	if (n < 0)
 		nb[0] = '-';
-	write(fd, nb, len);
+	ft_putlstr_fd(nb, len, fd);
 }
