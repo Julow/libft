@@ -97,11 +97,11 @@ char			**ft_strsplit(char const *s, char c);
 
 void			ft_strnadd(char **str, char const *add, size_t len);
 
-int				ft_isalpha(int c);
-int				ft_isdigit(int c);
-int				ft_isalnum(int c);
-int				ft_isascii(int c);
-int				ft_isprint(int c);
+t_bool			ft_isalpha(char c);
+t_bool			ft_isdigit(char c);
+t_bool			ft_isalnum(char c);
+t_bool			ft_isascii(char c);
+t_bool			ft_isprint(char c);
 t_bool			ft_isspace(char c);
 t_bool			ft_iswhite(char c);
 
