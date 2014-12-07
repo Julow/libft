@@ -14,7 +14,7 @@
 
 t_bool			ft_isascii(char c)
 {
-	if (c >= 0 && c <= 127)
-		return (TRUE);
-	return (FALSE);
+	if (c < 0)
+		return (FALSE);
+	return (TRUE);
 }
