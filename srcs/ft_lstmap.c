@@ -12,11 +12,11 @@
 
 #include "ft_lst.h"
 
-t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+t_lst			*ft_lstmap(t_lst *lst, t_lst *(*f)(t_lst*))
 {
-	t_list			*maped;
-	t_list			*add;
-	t_list			*tmp;
+	t_lst			*maped;
+	t_lst			*add;
+	t_lst			*tmp;
 
 	if (lst == NULL)
 		return (NULL);

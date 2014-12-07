@@ -39,6 +39,12 @@ typedef ULONG	t_ulong;
 #  define ERROR		-1
 # endif
 
+typedef struct	s_lst
+{
+	void			*data;
+	struct s_lst	*next;
+}				t_lst;
+
 typedef struct	s_array
 {
 	void			**data;
@@ -159,6 +165,16 @@ void			ft_putendl(char *s);
 void			ft_putendl_fd(char *s, int fd);
 
 /*
+** Store pointers using the struct s_lst (t_lst)
+*/
+t_lst			*ft_lstnew(void *data);
+void			ft_lstadd(t_lst **alst, t_lst *add);
+void			ft_lstdel(t_lst **alst, void (*f)(void*));
+void			ft_lstdelone(t_lst **alst, void (*f)(void*));
+void			ft_lstiter(t_lst *lst, void (*f)(void *data));
+t_lst			*ft_lstmap(t_lst *lst, t_lst *(*f)(t_lst*));
+
+/*
 ** Store pointers using the struct s_array (t_array)
 ** Allocate memory by block of 16 to reduce the number of free/malloc/copy
 */
@@ -178,7 +194,7 @@ void			ft_arrayext(t_array *array, int need);
 
 /*
 ** Store pointers paired with a t_string 'key'
-** Use the struct s_array (t_array)
+** Use with the struct s_array (t_array)
 */
 t_pair			*ft_pairnew(char *key, void *value);
 t_pair			*ft_pairget(t_array *array, char *key);

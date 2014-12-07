@@ -13,18 +13,18 @@
 #include "ft_lst.h"
 #include <stdlib.h>
 
-void			ft_lstdel(t_list **alst, void (*del)(void*, size_t))
+void			ft_lstdel(t_lst **alst, void (*f)(void*))
 {
-	t_list			*list;
-	t_list			*tmp;
+	t_lst			*list;
+	t_lst			*tmp;
 
 	list = (*alst)->next;
 	while (list != NULL)
 	{
-		del(list->content, list->content_size);
+		f(list->data);
 		tmp = list;
 		list = list->next;
 		free(tmp);
 	}
-	ft_lstdelone(alst, del);
+	ft_lstdelone(alst, f);
 }

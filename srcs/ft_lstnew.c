@@ -11,26 +11,13 @@
 /* ************************************************************************** */
 
 #include "ft_lst.h"
-#include <stdlib.h>
 
-t_list			*ft_lstnew(void const *content, size_t content_size)
+t_lst			*ft_lstnew(void *data)
 {
-	t_list			*list;
-	void			*copy;
+	t_lst			*list;
 
-	list = MAL1(t_list);
-	if (content == NULL)
-	{
-		list->content = NULL;
-		list->content_size = 0;
-	}
-	else
-	{
-		copy = malloc(content_size);
-		ft_memmove(copy, content, content_size);
-		list->content = copy;
-		list->content_size = content_size;
-	}
+	list = MAL1(t_lst);
+	list->data = data;
 	list->next = NULL;
 	return (list);
 }
