@@ -152,24 +152,26 @@ void			ft_strupper(char *str);
 ** Write
 */
 void			ft_putchar(char c);
-void			ft_putchar_fd(char c, int fd);
 void			ft_putnchar(char c, int n);
-void			ft_putnchar_fd(char c, int n, int fd);
-void			ft_putnbr(int n);
-void			ft_putnbr_fd(int n, int fd);
 void			ft_putstr(char const *s);
-void			ft_putstr_fd(char const *s, int fd);
 void			ft_putlstr(char const *s, int len);
-void			ft_putlstr_fd(char const *s, int len, int fd);
 void			ft_putendl(char *s);
+void			ft_putnbr(int n);
+void			ft_putchar_fd(char c, int fd);
+void			ft_putnchar_fd(char c, int n, int fd);
+void			ft_putstr_fd(char const *s, int fd);
+void			ft_putlstr_fd(char const *s, int len, int fd);
 void			ft_putendl_fd(char *s, int fd);
+void			ft_putnbr_fd(int n, int fd);
 
 /*
 ** Store pointers using the struct s_lst (t_lst)
 */
 t_lst			*ft_lstnew(void *data);
 void			ft_lstadd(t_lst **alst, t_lst *add);
+void			ft_lstafter(t_lst *lst, t_lst *add);
 void			ft_lstdel(t_lst **alst, void (*f)(void*));
+void			ft_lstdelnext(t_lst *lst, void (*f)(void*));
 void			ft_lstdelone(t_lst **alst, void (*f)(void*));
 void			ft_lstiter(t_lst *lst, void (*f)(void *data));
 t_lst			*ft_lstmap(t_lst *lst, t_lst *(*f)(t_lst*));

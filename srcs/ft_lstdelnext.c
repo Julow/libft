@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   srcs/ft_lstdelnext.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/05 15:06:50 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/05 15:06:51 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/08 00:28:12 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/12/08 00:28:12 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-void			ft_lstdelone(t_lst **alst, void (*f)(void*))
+void			ft_lstdelnext(t_lst *lst, void (*f)(void*))
 {
-	if (alst == NULL || *alst == NULL)
+	t_lst			*tmp;
+
+	if (lst->next == NULL)
 		return ;
-	f((*alst)->data);
-	free(*alst);
-	*alst = NULL;
+	tmp = lst->next;
+	lst->next = tmp->next;
+	f(tmp->data);
+	free(tmp);
 }
