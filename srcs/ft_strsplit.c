@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 static size_t	ft_count_split(char const *s, char c)
 {

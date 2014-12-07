@@ -15,13 +15,13 @@
 
 # include <stddef.h>
 
-# define MAL(t,l)	((t*)malloc(sizeof(t) * (l)))
-# define MAL1(t)	((t*)malloc(sizeof(t)))
+# define MAL(t,l)	((t*)ft_malloc(sizeof(t) * (l)))
+# define MAL1(t)	((t*)ft_malloc(sizeof(t)))
 
-# define UCHAR	unsigned char
-# define UINT	unsigned int
-# define LONG	long long int
-# define ULONG	unsigned long long int
+# define UCHAR		unsigned char
+# define UINT		unsigned int
+# define LONG		long long int
+# define ULONG		unsigned long long int
 
 typedef char	t_bool;
 typedef UCHAR	t_uchar;
@@ -62,6 +62,8 @@ typedef struct	s_pair
 /*
 ** Memory
 */
+void			*ft_malloc(t_uint size);
+
 void			ft_bzero(void *s, size_t n);
 void			*ft_memset(void *b, int c, size_t len);
 void			*ft_memcpy(void *dst, const void *src, size_t n);

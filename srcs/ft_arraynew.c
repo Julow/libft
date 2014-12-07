@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 t_array			*ft_arraynew(void)
 {

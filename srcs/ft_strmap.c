@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 char			*ft_strmap(char const *s, char (*f)(char))
 {
@@ -20,7 +19,7 @@ char			*ft_strmap(char const *s, char (*f)(char))
 
 	if (s == NULL)
 		return (NULL);
-	str = (char*)malloc(sizeof(char) * ft_strlen(s));
+	str = MAL(char, ft_strlen(s) + 1);
 	i = 0;
 	while (s[i] != '\0')
 	{
