@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   srcs/ft_atol.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 16:08:59 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 16:09:00 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/07 23:56:18 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/12/07 23:56:18 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char			ft_toupper(char c)
+#include "libft.h"
+
+t_long			ft_atol(const char *str)
 {
-	if (c >= 'a' && c <= 'z')
-		c -= 32;
-	return (c);
+	t_long			nb;
+	t_bool			negatif;
+
+	negatif = FALSE;
+	nb = 0;
+	while (ft_iswhite(*str))
+		str++;
+	if (*str == '-')
+	{
+		negatif = TRUE;
+		str++;
+	}
+	else if (*str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
+		nb = nb * 10 + (*(str++) - '0');
+	return ((negatif) ? -nb : nb);
 }

@@ -128,11 +128,17 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 ** Conversion
 */
 int				ft_atoi(const char *str);
-char			*ft_itoa(int n);
+t_long			ft_atol(const char *str);
 double			ft_atod(const char *str);
 
-int				ft_toupper(int c);
-int				ft_tolower(int c);
+char			*ft_itoa(int n);
+char			*ft_ltoa(t_long n);
+
+char			*ft_itobase(t_long nb, char *base);
+t_long			ft_basetoi(char *str, char *base);
+
+char			ft_toupper(char c);
+char			ft_tolower(char c);
 void			ft_strlower(char *str);
 void			ft_strupper(char *str);
 
