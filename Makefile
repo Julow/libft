@@ -22,7 +22,8 @@ C_FILES = $(shell ls -1 $(C_DIR) | grep "\.c")
 
 O_FILES = $(addprefix $(O_DIR),$(C_FILES:.c=.o))
 
-all: $(NAME)
+all:
+	@make -j5 $(NAME)
 
 $(NAME): $(O_FILES)
 	@ar rc $@ $^ && printf "\033[0;32m" || printf "\033[0;31m"
@@ -30,7 +31,7 @@ $(NAME): $(O_FILES)
 	@ranlib $@
 
 $(O_DIR)%.o: $(C_DIR)%.c
-	@mkdir $(O_DIR) 2> /dev/null || echo "" > /dev/null
+	@mkdir -p $(O_DIR) 2> /dev/null || echo "" > /dev/null
 	@gcc $(FLAGS) -I$(H_DIR) -o $@ -c $< && printf "\033[0;0m%-24s\033[1;30m-->>	\033[0;32m$@\033[0;0m\n" "$<" || (printf "\033[0;0m%-24s\033[1;30m-->>	\033[0;31m$@\033[0;0m\n" "$<" && exit 1)
 
 debug: _debug all
