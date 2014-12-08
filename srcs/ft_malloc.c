@@ -20,8 +20,8 @@ void			*ft_malloc(t_uint size)
 	tmp = malloc(size);
 	if (tmp == NULL)
 	{
-		ft_putstr_fd("Memory error: Not enough memory\n", 2);
-		exit(1);
+		ft_putstr_fd(MAL_STRERR, 2);
+		exit(MAL_EXIT);
 	}
 	return (tmp);
 }

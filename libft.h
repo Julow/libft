@@ -39,6 +39,9 @@ typedef ULONG	t_ulong;
 #  define ERROR		-1
 # endif
 
+# define MAL_STRERR	("Memory error: Not enough memory\n")
+# define MAL_EXIT	1
+
 typedef struct	s_lst
 {
 	void			*data;

@@ -23,7 +23,7 @@ C_FILES = $(shell ls -1 $(C_DIR) | grep "\.c")
 O_FILES = $(addprefix $(O_DIR),$(C_FILES:.c=.o))
 
 all:
-	@make -j5 $(NAME)
+	@make -j3 $(NAME)
 
 $(NAME): $(O_FILES)
 	@ar rcs $@ $^ && printf "\033[0;32m" || printf "\033[0;31m"
