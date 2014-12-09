@@ -12,6 +12,10 @@
 
 #include "libft.h"
 
+/*
+** Add the scientific representation of 'd'
+** X.XXXXXXe+XX
+*/
 void			ft_stringaddde(t_string *str, double d, int preci)
 {
 	int				p;

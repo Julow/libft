@@ -12,6 +12,9 @@
 
 #include "libft.h"
 
+/*
+** Add the string representation of the integer part of 'nbr'
+*/
 void			ft_stringaddid(t_string *str, double nbr)
 {
 	int				tmp;
