@@ -12,6 +12,9 @@
 
 #include "libft.h"
 
+/*
+** Add the string representation of 'd'
+*/
 static void		fix_precision(t_string *str)
 {
 	int				i;
@@ -22,9 +25,6 @@ static void		fix_precision(t_string *str)
 	str->content[i]++;
 }
 
-/*
-** Add the string representation of 'd'
-*/
 void			ft_stringaddd(t_string *str, double d, int preci)
 {
 	int				i;
