@@ -109,13 +109,13 @@ char			**ft_strsplit(char const *s, char c);
 
 void			ft_strnadd(char **str, char const *add, size_t len);
 
-t_bool			ft_isalpha(char c);
-t_bool			ft_isdigit(char c);
-t_bool			ft_isalnum(char c);
-t_bool			ft_isascii(char c);
-t_bool			ft_isprint(char c);
-t_bool			ft_isspace(char c);
-t_bool			ft_iswhite(char c);
+t_bool			ft_isalpha(int c);
+t_bool			ft_isdigit(int c);
+t_bool			ft_isalnum(int c);
+t_bool			ft_isascii(int c);
+t_bool			ft_isprint(int c);
+t_bool			ft_isspace(int c);
+t_bool			ft_iswhite(int c);
 
 t_bool			ft_isato(const char *str);
 t_bool			ft_isnumber(const char *str);
@@ -146,8 +146,8 @@ char			*ft_ltoa(t_long n);
 char			*ft_itobase(t_long nb, char *base);
 t_long			ft_basetoi(char *str, char *base);
 
-char			ft_toupper(char c);
-char			ft_tolower(char c);
+int				ft_toupper(int c);
+int				ft_tolower(int c);
 void			ft_strlower(char *str);
 void			ft_strupper(char *str);
 

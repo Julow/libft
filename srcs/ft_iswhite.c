@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-t_bool			ft_iswhite(char c)
+t_bool			ft_iswhite(int c)
 {
 	if (c == '\n' || c == ' ' || c == '\f' || c == '\t' || c == '\v'
 		|| c == '\r')
