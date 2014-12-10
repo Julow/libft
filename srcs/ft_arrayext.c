@@ -16,25 +16,23 @@
 void			ft_arrayext(t_array *array, int need)
 {
 	void			**tmp;
-	int				i;
+	int				len;
 
 	need += array->length;
 	if (need < array->alloc_length)
 		return ;
-	i = array->alloc_length;
-	while (need >= i)
-		i += 24;
-	tmp = MAL(void*, i);
-	array->alloc_length = i;
+	len = array->alloc_length;
+	while (need >= len)
+		len += 24;
+	tmp = MAL(void*, len);
+	array->alloc_length = len;
 	if (array->data != NULL)
 	{
-		i = -1;
-		while (++i < array->length)
-			tmp[i] = array->data[i];
-		i--;
-		while (++i < array->alloc_length)
-			tmp[i] = NULL;
+		ft_memmove(tmp, array->data, sizeof(void*) * array->length);
+		ft_bzero(tmp + array->length, len - array->length);
 		free(array->data);
 	}
+	else
+		ft_bzero(tmp, len);
 	array->data = tmp;
 }

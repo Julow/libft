@@ -17,6 +17,8 @@ t_string		*ft_stringdup(t_string *str)
 	t_string		*dup;
 
 	dup = ft_stringnew();
-	ft_stringaddl(dup, str->content, str->length);
+	ft_stringext(dup, str->length);
+	dup->length = str->length;
+	ft_memcpy(dup->content, str->content, sizeof(char) * str->length);
 	return (dup);
 }

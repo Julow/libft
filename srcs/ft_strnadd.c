@@ -15,26 +15,16 @@
 
 void			ft_strnadd(char **str, char const *add, size_t len)
 {
-	size_t			i;
-	size_t			j;
+	size_t			lenstr;
 	char			*tmp;
 
 	tmp = *str;
-	*str = ft_strnew(ft_strlen(tmp) + len + 1);
-	i = 0;
+	lenstr = ft_strlen(tmp);
+	*str = MAL(char, lenstr + len + 1);
+	if (lenstr > 0)
+		ft_memcpy(*str, tmp, lenstr);
+	if (len > 0)
+		ft_memcpy(*str, add, len);
 	if (tmp != NULL)
-	{
-		while (tmp[i] != '\0')
-		{
-			(*str)[i] = tmp[i];
-			i++;
-		}
 		free(tmp);
-	}
-	j = 0;
-	while (j < len)
-	{
-		(*str)[i + j] = add[j];
-		j++;
-	}
 }

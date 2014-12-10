@@ -14,10 +14,6 @@
 
 void			ft_stringclr(t_string *str)
 {
-	int				i;
-
-	i = -1;
-	while (++i < str->length)
-		str->content[i] = '\0';
+	ft_bzero(str->content, sizeof(char) * str->length);
 	str->length = 0;
 }

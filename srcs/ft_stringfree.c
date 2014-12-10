@@ -19,7 +19,6 @@
 void			ft_stringfree(t_string *str)
 {
 	char			*tmp;
-	int				i;
 
 	if (str->length >= str->alloc_length)
 		return ;
@@ -27,10 +26,10 @@ void			ft_stringfree(t_string *str)
 	str->alloc_length = str->length;
 	if (str->content != NULL)
 	{
-		i = -1;
-		while (++i < str->length)
-			tmp[i] = str->content[i];
+		ft_memcpy(tmp, str->content, sizeof(char) * str->length);
 		free(str->content);
 	}
+	else
+		ft_bzero(tmp, sizeof(char) * str->length);
 	str->content = tmp;
 }

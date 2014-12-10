@@ -19,18 +19,17 @@
 void			ft_arrayfree(t_array *array)
 {
 	void			**tmp;
-	int				i;
 
 	if (array->length >= array->alloc_length)
 		return ;
-	tmp = (void**)malloc(sizeof(void*) * array->length);
+	tmp = MAL(void*, array->length);
 	array->alloc_length = array->length;
 	if (array->data != NULL)
 	{
-		i = -1;
-		while (++i < array->length)
-			tmp[i] = array->data[i];
+		ft_memcpy(tmp, array->data, array->length * sizeof(void*));
 		free(array->data);
 	}
+	else
+		ft_bzero(tmp, sizeof(void*) * array->length);
 	array->data = tmp;
 }

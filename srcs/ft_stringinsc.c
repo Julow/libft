@@ -14,17 +14,5 @@
 
 void			ft_stringinsc(t_string *str, char c, int index)
 {
-	int				i;
-
-	if (index >= str->length)
-	{
-		ft_stringsetc(str, c, index);
-		return ;
-	}
-	ft_stringext(str, 1);
-	i = str->length - 1;
-	while (--i >= index)
-		str->content[i + 1] = str->content[i];
-	str->content[index] = c;
-	str->length++;
+	ft_stringinsl(str, &c, index, 1);
 }

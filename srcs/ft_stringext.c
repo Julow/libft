@@ -16,25 +16,23 @@
 void			ft_stringext(t_string *str, int need)
 {
 	char			*tmp;
-	int				i;
+	int				len;
 
 	need += str->length;
 	if (need + 1 < str->alloc_length)
 		return ;
-	i = str->alloc_length - 1;
-	while (need >= i)
-		i += 24;
-	tmp = MAL(char, i);
-	str->alloc_length = i;
-	i = -1;
+	len = str->alloc_length - 1;
+	while (need >= len)
+		len += 24;
+	tmp = MAL(char, len);
+	str->alloc_length = len;
 	if (str->content != NULL)
 	{
-		while (++i < str->length)
-			tmp[i] = str->content[i];
-		i--;
+		ft_memmove(tmp, str->content, sizeof(char) * str->length);
+		ft_bzero(tmp + str->length, len - str->length);
 		free(str->content);
 	}
-	while (++i < str->alloc_length)
-		tmp[i] = '\0';
+	else
+		ft_bzero(tmp, len);
 	str->content = tmp;
 }

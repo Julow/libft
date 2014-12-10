@@ -19,14 +19,9 @@
 */
 void			ft_stringinsl(t_string *str, char *ins, int index, int len)
 {
-	int				i;
-
 	ft_stringext(str, len);
-	i = str->length;
-	while (--i >= index)
-		str->content[len + i] = str->content[i];
-	i = len;
-	while (--i >= 0)
-		str->content[index + i] = ins[i];
+	ft_memmove(str->content + index + len, str->content + index,
+		str->length - index);
+	ft_memmove(str->content + index, ins, len);
 	str->length += len;
 }

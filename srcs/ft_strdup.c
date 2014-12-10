@@ -14,18 +14,11 @@
 
 char			*ft_strdup(const char *src)
 {
-	size_t			i;
-	size_t			len;
+	t_uint			len;
 	char			*dst;
 
 	len = ft_strlen(src);
 	dst = MAL(char, len + 1);
-	i = 0;
-	while (i < len)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[len] = '\0';
+	ft_memcpy(dst, src, len + 1);
 	return (dst);
 }
