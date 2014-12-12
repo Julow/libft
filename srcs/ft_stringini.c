@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stringnew.c                                     :+:      :+:    :+:   */
+/*   ft_stringini.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/15 16:58:45 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/15 17:15:30 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/12 11:12:56 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/12/12 11:12:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_string		*ft_stringnew(void)
+void			ft_stringini(t_string *str)
 {
-	t_string		*str;
-
-	str = MAL1(t_string);
-	ft_stringini(str);
-	return (str);
+	str->content = MAL(char, 16);
+	str->content[0] = '\0';
+	str->length = 0;
+	str->alloc_length = 16;
 }
