@@ -20,11 +20,11 @@ double			ft_atod(const char *str)
 
 	while (ft_iswhite(*str))
 		str++;
-	str = (*str == '-' || *str == '+') ? str : str - 1;
 	sign = (*str == '-') ? -1.0 : 1.0;
+	str = (*str == '-' || *str == '+') ? str + 1 : str;
 	nb = 0.0;
-	while (*str != '\0' && *(++str) >= '0' && *str <= '9')
-		nb = nb * 10 + (*str - '0');
+	while (*str >= '0' && *str <= '9')
+		nb = nb * 10 + (*(str++) - '0');
 	if (*str == '.' || *str == ',')
 	{
 		while (*(++str) >= '0' && *str <= '9')

@@ -19,7 +19,7 @@ char			*ft_strsub(char const *s, unsigned int start, size_t len)
 
 	if (s == NULL || ft_strlen(s) < start)
 		return (NULL);
-	str = MAL(char, len);
+	str = MAL(char, len + 1);
 	i = 0;
 	while (s[start + i] != '\0' && i < len)
 	{
