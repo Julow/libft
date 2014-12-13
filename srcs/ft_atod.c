@@ -23,7 +23,7 @@ double			ft_atod(const char *str)
 	str = (*str == '-' || *str == '+') ? str : str - 1;
 	sign = (*str == '-') ? -1.0 : 1.0;
 	nb = 0.0;
-	while (*(++str) >= '0' && *str <= '9')
+	while (*str != '\0' && *(++str) >= '0' && *str <= '9')
 		nb = nb * 10 + (*str - '0');
 	if (*str == '.' || *str == ',')
 	{

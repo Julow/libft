@@ -184,6 +184,7 @@ t_lst			*ft_lstmap(t_lst *lst, t_lst *(*f)(t_lst*));
 ** Allocate memory by block of 16 to reduce the number of free/malloc/copy
 */
 t_array			*ft_arraynew(void);
+void			ft_arrayini(t_array *array);
 void			ft_arrayadd(t_array *array, void *add);
 void			ft_arrayset(t_array *array, void *set, int index);
 void			ft_arrayins(t_array *array, void *ins, int index);
@@ -213,6 +214,7 @@ void			ft_pairsort(t_array *array);
 */
 t_string		*ft_stringnew(void);
 t_string		*ft_stringnews(char *s);
+void			ft_stringini(t_string *str);
 void			ft_stringaddc(t_string *str, char c);
 void			ft_stringadd(t_string *str, char *add);
 void			ft_stringaddi(t_string *str, int nbr);
