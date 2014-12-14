@@ -15,7 +15,7 @@
 void			ft_arrayini(t_array *array)
 {
 	array->data = MAL(void*, 16);
-	array->data[0] = NULL;
+	ft_bzero(array->data, 16);
 	array->length = 0;
 	array->alloc_length = 16;
 }

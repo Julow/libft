@@ -18,10 +18,10 @@ void			ft_arrayext(t_array *array, int need)
 	void			**tmp;
 	int				len;
 
-	need += array->length;
+	need += array->length + 1;
 	if (need < array->alloc_length)
 		return ;
-	len = array->alloc_length;
+	len = array->alloc_length - 1;
 	while (need >= len)
 		len += 24;
 	tmp = MAL(void*, len);
