@@ -194,6 +194,7 @@ void			ft_arrayapp(t_array *array, t_array *app);
 void			ft_arrayfree(t_array *array);
 void			ft_arrayclr(void *array, void (*f)(void *data));
 void			ft_arraykil(void *array, void (*f)(void *data));
+void			ft_arraykilf(void *array);
 void			ft_arrayswap(t_array *array, int i1, int i2);
 void			ft_arrayrev(t_array *array);
 void			ft_arrayext(t_array *array, int need);
