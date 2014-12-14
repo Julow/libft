@@ -22,7 +22,5 @@ void			ft_stringsetl(t_string *str, char *set, int index, int len)
 		ft_stringext(str, i);
 		str->length += i;
 	}
-	i = -1;
-	while (++i < len)
-		str->content[i + index] = set[i];
+	ft_memmove(str->content + index, set, len);
 }

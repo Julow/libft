@@ -17,15 +17,12 @@
 */
 void			ft_stringrem(t_string *str, int index, int len)
 {
-	int				i;
-	int				tmp;
-
-	i = index - 1;
-	while (++i + len < str->length)
-		str->content[i] = str->content[i + len];
-	tmp = i;
-	i--;
-	while (++i < str->length)
-		str->content[i] = '\0';
-	str->length -= i - tmp;
+	if (index >= str->length)
+		return ;
+	if ((index + len) > str->length)
+		len = str->length - index;
+	str->length -= len;
+	ft_memmove(str->content + index, str->content + index + len,
+		str->length - index);
+	ft_bzero(str->content + str->length, len);
 }

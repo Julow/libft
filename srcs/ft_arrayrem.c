@@ -15,13 +15,11 @@
 void			*ft_arrayrem(t_array *array, int index)
 {
 	void			*tmp;
-	int				i;
 
 	tmp = array->data[index];
 	array->data[index] = NULL;
-	i = index;
-	while (++i < array->length)
-		array->data[i - 1] = array->data[i];
 	array->length--;
+	if (index < array->length)
+		ft_memmove(array->data + index, array->data + index + 1, sizeof(void*));
 	return (tmp);
 }

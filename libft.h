@@ -18,7 +18,7 @@
 # define MAL(t,l)	((t*)ft_malloc(sizeof(t) * (l)))
 # define MAL1(t)	((t*)ft_malloc(sizeof(t)))
 
-#define TGET(t,b,i)	(*((t*)(b->data + (b->size * (i)))))
+#define TGET(t,b,i)	(*((t*)(((t_tab*)b)->data + (((t_tab*)b)->size * (i)))))
 
 # ifndef TRUE
 #  define TRUE		1

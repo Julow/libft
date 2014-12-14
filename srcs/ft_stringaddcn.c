@@ -14,7 +14,12 @@
 
 void			ft_stringaddcn(t_string *str, char c, int n)
 {
+	char			chars[n];
+	int				i;
+
 	ft_stringext(str, n);
-	while (--n >= 0)
-		ft_stringaddc(str, c);
+	i = -1;
+	while (++i < n)
+		chars[i] = c;
+	ft_stringaddl(str, chars, n);
 }
