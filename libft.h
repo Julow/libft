@@ -18,16 +18,7 @@
 # define MAL(t,l)	((t*)ft_malloc(sizeof(t) * (l)))
 # define MAL1(t)	((t*)ft_malloc(sizeof(t)))
 
-# define UCHAR		unsigned char
-# define UINT		unsigned int
-# define LONG		long long int
-# define ULONG		unsigned long long int
-
-typedef char	t_bool;
-typedef UCHAR	t_uchar;
-typedef UINT	t_uint;
-typedef LONG	t_long;
-typedef ULONG	t_ulong;
+#define TGET(t,b,i)	(*((t*)(b->data + (b->size * (i)))))
 
 # ifndef TRUE
 #  define TRUE		1
@@ -42,6 +33,18 @@ typedef ULONG	t_ulong;
 # define MAL_STRERR	("Memory error: Not enough memory\n")
 # define MAL_EXIT	1
 
+# define UCHAR		unsigned char
+# define UINT		unsigned int
+# define LONG		long long int
+# define ULONG		unsigned long long int
+
+typedef char	t_bool;
+typedef UCHAR	t_byte;
+typedef UCHAR	t_uchar;
+typedef UINT	t_uint;
+typedef LONG	t_long;
+typedef ULONG	t_ulong;
+
 typedef struct	s_lst
 {
 	void			*data;
@@ -54,6 +57,15 @@ typedef struct	s_array
 	int				length;
 	int				alloc_length;
 }				t_array;
+
+typedef struct	s_tab
+{
+	t_byte			*data;
+	int				length;
+	int				bytes;
+	int				alloc_bytes;
+	int				size;
+}				t_tab;
 
 typedef struct	s_string
 {
@@ -166,6 +178,25 @@ void			ft_putstr_fd(char const *s, int fd);
 void			ft_putlstr_fd(char const *s, int len, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
+
+/*
+** Store mem using the struct s_tab (t_tab)
+*/
+t_tab			*ft_tabnew(int size);
+void			ft_tabini(t_tab *tab, int size);
+t_byte			*ft_tabget(t_tab *tab, int index);
+void			ft_tabadd(t_tab *tab, t_byte *add);
+void			ft_tabaddn(t_tab *tab, t_byte *add, int n);
+void			ft_tabset(t_tab *tab, t_byte *set, int index, int n);
+void			ft_tabins(t_tab *tab, t_byte *ins, int index, int n);
+void			ft_tabrem(t_tab *tab, int index, int n);
+int				ft_tabchr(t_tab *tab, t_byte *chr);
+void			ft_tabfree(t_tab *tab);
+void			ft_tabclr(t_tab *tab);
+void			ft_tabkil(void *tab);
+void			ft_tabswap(t_tab *tab, int i1, int i2);
+void			ft_tabrev(t_tab *tab);
+void			ft_tabext(t_tab *tab, int need);
 
 /*
 ** Store pointers using the struct s_lst (t_lst)
