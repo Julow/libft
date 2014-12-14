@@ -12,7 +12,6 @@
 
 #include "libft.h"
 #include "ft_internal.h"
-#include "get_next_line.h"
 #include <unistd.h>
 #include <stdlib.h>
 

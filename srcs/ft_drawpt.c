@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_draw.h"
+#include "libft.h"
 
 void			ft_drawpt(t_image *img, t_pt pt, t_color color)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_draw.h"
+#include "libft.h"
 
 void			ft_drawcirclef(t_image *img, t_pt o, int radius, t_color color)
 {

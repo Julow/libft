@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_draw.h"
+#include "libft.h"
 
 void			ft_imageclr(t_image *img)
 {

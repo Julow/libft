@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_internal.h"
 #include <stdlib.h>
 
 void			*ft_malloc(t_uint size)

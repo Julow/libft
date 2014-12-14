@@ -20,18 +20,31 @@
 
 #define TGET(t,b,i)	(*((t*)(((t_tab*)b)->data + (((t_tab*)b)->size * (i)))))
 
+# define MIN(a,b)	(((a) < (b)) ? (a) : (b))
+# define MAX(a,b)	(((a) > (b)) ? (a) : (b))
+# define ABS(a)		(((a) < 0) ? -(a) : (a))
+
+# define UP(n)		((int)(1 + (n)))
+# define ROUND(n)	((int)(0.5 + (n)))
+# define DOWN(n)	((int)(n))
+
+# define PT(x,y)	((t_pt){(x), (y)})
+# define POS(x,y,z)	((t_pos){(x), (y), (z)})
+
 # ifndef TRUE
 #  define TRUE		1
 # endif
 # ifndef FALSE
 #  define FALSE		0
 # endif
+
 # ifndef ERROR
 #  define ERROR		-1
 # endif
 
-# define MAL_STRERR	("Memory error: Not enough memory\n")
-# define MAL_EXIT	1
+# ifndef EOF
+#  define EOF		-1
+# endif
 
 # define UCHAR		unsigned char
 # define UINT		unsigned int
@@ -79,6 +92,42 @@ typedef struct	s_pair
 	t_string		*key;
 	void			*value;
 }				t_pair;
+
+typedef struct	s_image
+{
+	char			*data;
+	void			*img;
+	int				width;
+	int				height;
+	int				l_size;
+	int				opp;
+	int				endian;
+}				t_image;
+
+typedef union	u_color
+{
+	struct			s_color
+	{
+		t_uchar			b;
+		t_uchar			g;
+		t_uchar			r;
+		t_uchar			a;
+	}				b;
+	t_uint			i;
+}				t_color;
+
+typedef struct	s_pt
+{
+	int				x;
+	int				y;
+}				t_pt;
+
+typedef struct	s_pos
+{
+	double			x;
+	double			y;
+	double			z;
+}				t_pos;
 
 /*
 ** Memory
@@ -279,5 +328,37 @@ void			ft_stringkil(void *str);
 void			ft_stringext(t_string *str, int need);
 int				ft_stringput(t_string *str);
 int				ft_stringputfd(t_string *str, int const fd);
+
+/*
+** Draw on struct s_image (t_image)
+*/
+void			ft_resrect(t_pt *p1, t_pt *p2);
+
+void			ft_imageclr(t_image *img);
+
+void			ft_drawxy(t_image *img, int x, int y, t_color color);
+void			ft_drawpt(t_image *img, t_pt pt, t_color color);
+void			ft_drawnpt(t_image *img, t_pt pt, int n, t_color color);
+
+void			ft_drawline(t_image *img, t_pt p1, t_pt p2, t_color color);
+void			ft_drawrect(t_image *img, t_pt p1, t_pt p2, t_color color);
+void			ft_drawrectf(t_image *img, t_pt p1, t_pt p2, t_color color);
+void			ft_drawcircle(t_image *img, t_pt o, int radius, t_color color);
+void			ft_drawcirclef(t_image *img, t_pt o, int radius, t_color color);
+
+/*
+** Read a file line per line.
+** 'line' is not a buffer.
+** =============
+** Return 1 if a line is read, 0 if the end of file is reach
+** or -1 if an error occured.
+*/
+int				get_next_line(int const fd, char **line);
+
+/*
+** Clear the cache relative to the fd.
+** Call it after close a fd if the end of file is not reach
+*/
+void			gnl_clear_cache(int const fd);
 
 #endif
