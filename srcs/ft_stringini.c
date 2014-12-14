@@ -15,7 +15,7 @@
 void			ft_stringini(t_string *str)
 {
 	str->content = MAL(char, 16);
-	str->content[0] = '\0';
+	ft_bzero(str->content, 16);
 	str->length = 0;
 	str->alloc_length = 16;
 }

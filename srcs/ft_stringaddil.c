@@ -14,23 +14,23 @@
 
 void			ft_stringaddil(t_string *str, t_long nbr)
 {
+	char			nb[21];
 	t_long			tmp;
-	int				i;
+	t_uint			i;
+	t_uint			len;
 
 	tmp = nbr;
-	i = ((tmp < 0) ? 2 : 1);
+	len = (nbr < 0) ? 2 : 1;
 	while ((tmp /= 10) != 0)
-		i++;
-	ft_stringext(str, i);
-	str->length += i;
-	i = str->length - 1;
-	str->content[i] = '0';
+		len++;
 	tmp = nbr;
-	while (nbr != 0)
+	i = len;
+	while (i-- > 0)
 	{
-		str->content[i--] = '0' + ((nbr < 0) ? -(nbr % 10) : nbr % 10);
-		nbr /= 10;
+		nb[i] = '0' + ((nbr < 0) ? -(tmp % 10) : tmp % 10);
+		tmp /= 10;
 	}
-	if (tmp < 0)
-		str->content[i] = '-';
+	if (nbr < 0)
+		nb[0] = '-';
+	ft_stringaddl(str, nb, len);
 }

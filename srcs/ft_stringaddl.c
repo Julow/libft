@@ -14,14 +14,7 @@
 
 void			ft_stringaddl(t_string *str, char *add, int len)
 {
-	int				i;
-
 	ft_stringext(str, len);
-	i = 0;
-	while (i < len)
-	{
-		str->content[str->length + i] = add[i];
-		i++;
-	}
+	ft_memmove(str->content + str->length, add, len);
 	str->length += len;
 }
