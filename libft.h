@@ -18,7 +18,8 @@
 # define MAL(t,l)	((t*)ft_malloc(sizeof(t) * (l)))
 # define MAL1(t)	((t*)ft_malloc(sizeof(t)))
 
-#define TGET(t,b,i)	(*((t*)(((t_tab*)b)->data + (((t_tab*)b)->size * (i)))))
+# define TG(t,b,i)	(*((t*)(((t_tab*)b)->data + (((t_tab*)b)->size * (i)))))
+# define AG(t,a,i)	((t)(((t_array*)(a))->data[i]))
 
 # define MIN(a,b)	(((a) < (b)) ? (a) : (b))
 # define MAX(a,b)	(((a) > (b)) ? (a) : (b))
@@ -106,7 +107,7 @@ typedef struct	s_image
 
 typedef union	u_color
 {
-	struct			s_color
+	struct		s_color
 	{
 		t_uchar			b;
 		t_uchar			g;
