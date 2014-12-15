@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-t_byte			*ft_tabget(t_tab *tab, int index)
+void			*ft_tabget(t_tab *tab, int index)
 {
 	return (tab->data + (index * tab->size));
 }

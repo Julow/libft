@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void			ft_tabadd(t_tab *tab, t_byte *add)
+void			ft_tabadd(t_tab *tab, void *add)
 {
 	ft_tabaddn(tab, add, 1);
 }
