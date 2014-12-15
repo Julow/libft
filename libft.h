@@ -154,19 +154,15 @@ size_t			ft_strlen(const char *str);
 char			*ft_strdup(const char *src);
 char			*ft_strcpy(char *dst, const char *src);
 char			*ft_strncpy(char *dst, const char *src, size_t len);
-char			*ft_strchr(const char *s, int c);
-int				ft_strchri(char *str, char c);
-char			*ft_strrchr(const char *s, int c);
-char			*ft_strstr(const char *s1, const char *s2);
-char			*ft_strnstr(const char *s1, const char *s2, size_t n);
-int				ft_strcmp(const char *s1, const char *s2);
-int				ft_strncmp(const char *s1, const char *s2, size_t n);
-int				ft_strequ(char const *s1, char const *s2);
-int				ft_strnequ(char const *s1, char const *s2, size_t n);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
 char			**ft_strsplit(char const *s, char c);
+
+int				ft_strcmp(const char *s1, const char *s2);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+int				ft_strequ(char const *s1, char const *s2);
+int				ft_strnequ(char const *s1, char const *s2, size_t n);
 
 void			ft_strnadd(char **str, char const *add, size_t len);
 
@@ -180,6 +176,18 @@ t_bool			ft_iswhite(int c);
 
 t_bool			ft_isato(const char *str);
 t_bool			ft_isnumber(const char *str);
+
+/*
+** String search
+*/
+char			*ft_strchr(const char *s, int c);
+int				ft_strchri(char *str, char c);
+char			*ft_strrchr(const char *s, int c);
+char			*ft_strstr(const char *s1, const char *s2);
+char			*ft_strnstr(const char *s1, const char *s2, size_t n);
+
+t_bool			ft_match(char *str, char *pattern);
+int				ft_nmatch(char *str, char *pattern);
 
 /*
 ** String - Useless
@@ -233,13 +241,13 @@ void			ft_putnbr_fd(int n, int fd);
 */
 t_tab			*ft_tabnew(int size);
 void			ft_tabini(t_tab *tab, int size);
-t_byte			*ft_tabget(t_tab *tab, int index);
-void			ft_tabadd(t_tab *tab, t_byte *add);
-void			ft_tabaddn(t_tab *tab, t_byte *add, int n);
-void			ft_tabset(t_tab *tab, t_byte *set, int index, int n);
-void			ft_tabins(t_tab *tab, t_byte *ins, int index, int n);
+void			*ft_tabget(t_tab *tab, int index);
+void			ft_tabadd(t_tab *tab, void *add);
+void			ft_tabaddn(t_tab *tab, void *add, int n);
+void			ft_tabset(t_tab *tab, void *set, int index, int n);
+void			ft_tabins(t_tab *tab, void *ins, int index, int n);
 void			ft_tabrem(t_tab *tab, int index, int n);
-int				ft_tabchr(t_tab *tab, t_byte *chr);
+int				ft_tabchr(t_tab *tab, void *chr);
 void			ft_tabfree(t_tab *tab);
 void			ft_tabclr(t_tab *tab);
 void			ft_tabkil(void *tab);
