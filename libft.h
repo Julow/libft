@@ -189,6 +189,7 @@ char			*ft_strnstr(const char *s1, const char *s2, size_t n);
 
 t_bool			ft_match(char *str, char *pattern);
 int				ft_nmatch(char *str, char *pattern);
+t_bool			ft_hidenp(char *hide, char *str);
 
 /*
 ** String - Useless
