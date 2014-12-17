@@ -14,14 +14,14 @@
 
 char			*ft_strrchr(const char *s, int c)
 {
-	size_t			i;
+	int				i;
 	char			search;
 
 	search = (char)c;
 	i = ft_strlen(s) - 1;
 	if (search == '\0')
 		return (i + 1 + (char*)s);
-	while (s[i] != '\0')
+	while (i >= 0)
 	{
 		if (s[i] == search)
 			return (i + (char*)s);
