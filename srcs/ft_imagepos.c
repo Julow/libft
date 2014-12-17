@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_imagept.c                                       :+:      :+:    :+:   */
+/*   ft_imagepos.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/17 18:11:43 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/17 18:11:44 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/17 19:14:11 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/12/17 19:14:11 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_color			ft_imagept(t_image *img, t_pt pt)
+t_color			ft_imagepos(t_image *img, int pos)
 {
 	t_color			c;
-	int				pos;
 	int				i;
 
 	c = C(0xFF000000);
-	if (pt.x < 0 || pt.x >= img->width || pt.y < 0 || pt.y >= img->height)
-		return (c);
-	pos = img->l_size * pt.y + (pt.x * img->opp);
 	i = -1;
 	while (++i < img->opp)
 	{

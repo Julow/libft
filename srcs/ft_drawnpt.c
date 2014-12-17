@@ -26,7 +26,7 @@ void			ft_drawnpt(t_image *img, t_pt pt, int n, t_color color)
 	{
 		tmp = color;
 		if (ALPHA(tmp))
-			ft_resalpha(&tmp, ft_imagept(img, pt));
+			ft_resalpha(&tmp, ft_imagepos(img, pos + n));
 		i = -1;
 		while (++i < img->opp)
 		{
