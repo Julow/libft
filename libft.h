@@ -32,6 +32,13 @@
 # define PT(x,y)	((t_pt){(x), (y)})
 # define POS(x,y,z)	((t_pos){(x), (y), (z)})
 
+# define C(c)		((t_color)(t_uint)(c))
+# define INVI(c)	((c).u < 0x01000000)
+# define ALPHA(c)	((c).u < 0xFF000000)
+
+# define BIG(a)		((a) * 1000000)
+# define BTOI(a)	((a) / 1000000)
+
 # ifndef TRUE
 #  define TRUE		1
 # endif
@@ -51,6 +58,13 @@
 # define UINT		unsigned int
 # define LONG		long long int
 # define ULONG		unsigned long long int
+
+/*
+** t_big represent a decimal number
+** it's a t_long divide by 1000000
+** ==> 9 223 372 000 000.000 000
+*/
+typedef LONG	t_big;
 
 typedef char	t_bool;
 typedef UCHAR	t_byte;
@@ -107,14 +121,15 @@ typedef struct	s_image
 
 typedef union	u_color
 {
-	struct		s_color
+	struct		s_rgba
 	{
 		t_uchar			b;
 		t_uchar			g;
 		t_uchar			r;
 		t_uchar			a;
 	}				b;
-	t_uint			i;
+	t_uint			u;
+	int				i;
 }				t_color;
 
 typedef struct	s_pt
@@ -340,10 +355,17 @@ int				ft_stringput(t_string *str);
 int				ft_stringputfd(t_string *str, int const fd);
 
 /*
+** Math
+*/
+int				ft_mix(int a, int b, t_big pos);
+
+/*
 ** Draw on struct s_image (t_image)
 */
+void			ft_resalpha(t_color *c, t_color bg);
 void			ft_resrect(t_pt *p1, t_pt *p2);
 
+t_color			ft_imagept(t_image *img, t_pt pt);
 void			ft_imageclr(t_image *img);
 
 void			ft_drawxy(t_image *img, int x, int y, t_color color);

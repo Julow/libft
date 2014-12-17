@@ -19,6 +19,8 @@ void			ft_drawxy(t_image *img, int x, int y, t_color color)
 
 	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
 		return ;
+	if (ALPHA(color))
+		ft_resalpha(&color, ft_imagept(img, PT(x, y)));
 	pos = (img->width * y + x) * img->opp;
 	i = -1;
 	while (++i < img->opp)
