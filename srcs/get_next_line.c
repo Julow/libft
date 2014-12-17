@@ -24,19 +24,18 @@ static t_gnl	*gnl_getgnl(int const fd)
 	while (tmp != NULL)
 	{
 		if (tmp->fd == fd)
+		{
+			if (tmp->buff.content == NULL)
+				ft_stringini(&tmp->buff);
 			return (tmp);
+		}
 		tmp = tmp->next;
 	}
 	tmp = MAL1(t_gnl);
-	if (tmp != NULL)
-	{
-		tmp->fd = fd;
-		tmp->buff = NULL;
-		tmp->next = gnls;
-		gnls = tmp;
-	}
-	if (tmp->buff == NULL)
-		tmp->buff = ft_stringnew();
+	tmp->fd = fd;
+	ft_stringini(&tmp->buff);
+	tmp->next = gnls;
+	gnls = tmp;
 	return (tmp);
 }
 
@@ -61,14 +60,10 @@ static int		gnl_sub(t_string *buff, int len, char **line)
 static int		gnl_read(int const fd, t_string *str)
 {
 	int				len;
-	char			*buff;
 
-	buff = MAL(char, GNL_BUFF);
-	if (buff == NULL)
-		return (GNL_ERROR);
-	len = read(fd, buff, GNL_BUFF);
-	ft_stringaddl(str, buff, len);
-	free(buff);
+	ft_stringext(str, GNL_BUFF);
+	len = read(fd, str->content + str->length, GNL_BUFF);
+	str->length += len;
 	return (len);
 }
 
@@ -77,9 +72,9 @@ void			gnl_clear_cache(int const fd)
 	t_gnl			*gnl;
 
 	gnl = gnl_getgnl(fd);
-	if (gnl->buff != NULL)
-		ft_stringkil(gnl->buff);
-	gnl->buff = NULL;
+	if (gnl->buff.content != NULL)
+		free(gnl->buff.content);
+	gnl->buff.content = NULL;
 }
 
 int				get_next_line(int const fd, char **line)
@@ -92,17 +87,17 @@ int				get_next_line(int const fd, char **line)
 	len = 1;
 	i = 0;
 	gnl = gnl_getgnl(fd);
-	while (fd >= 0 && line != NULL && gnl != NULL && gnl->buff != NULL)
+	while (fd >= 0 && line != NULL && gnl != NULL && gnl->buff.content != NULL)
 	{
-		tmp = gnl->buff->content;
+		tmp = gnl->buff.content;
 		while (tmp[i] != '\n' && tmp[i] != '\0' && tmp[i] != EOF)
 			i++;
-		if (tmp[i] == '\0' && (len = gnl_read(fd, gnl->buff)) > 0)
+		if (tmp[i] == '\0' && (len = gnl_read(fd, &gnl->buff)) > 0)
 			continue;
-		if (gnl_sub(gnl->buff, i, line) <= 0 && len <= 0)
+		if (gnl_sub(&gnl->buff, i, line) <= 0 && len <= 0)
 		{
-			ft_stringkil(gnl->buff);
-			gnl->buff = NULL;
+			free(gnl->buff.content);
+			gnl->buff.content = NULL;
 			return (GNL_END);
 		}
 		return (GNL_SUCCES);

@@ -27,7 +27,7 @@
 typedef struct	s_gnl
 {
 	int				fd;
-	t_string		*buff;
+	t_string		buff;
 	struct s_gnl	*next;
 }				t_gnl;
 
