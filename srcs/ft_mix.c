@@ -14,6 +14,5 @@
 
 int				ft_mix(int a, int b, t_big pos)
 {
-	a = BIG(a);
-	return (BTOI(a - (a * pos) + (BIG(b) * pos)));
+	return (MIX(a, b, pos));
 }
