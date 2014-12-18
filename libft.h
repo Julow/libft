@@ -38,7 +38,7 @@
 
 # define BIG(a)		((a) * 1000000)
 # define BTOI(a)	((a) / 1000000)
-# define MIX(a,b,p)	((a) - BTOI(((a) * (p)) + ((b) * (p))))
+# define MIX(a,b,p)	((a) - BTOI((a) * (p)) + BTOI((b) * (p)))
 
 # ifndef TRUE
 #  define TRUE		1
