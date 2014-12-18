@@ -28,6 +28,6 @@ void			ft_drawnpt(t_image *img, t_pt pt, int n, t_color color)
 			ft_resalpha(&tmp, ft_imagepos(img, pos));
 		ft_imageput(img, pos, tmp);
 		n -= img->opp;
-		pos += n;
+		pos += img->opp;
 	}
 }
