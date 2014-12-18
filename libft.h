@@ -260,6 +260,7 @@ void			ft_putnbr_fd(int n, int fd);
 t_tab			*ft_tabnew(int size);
 void			ft_tabini(t_tab *tab, int size);
 void			*ft_tabget(t_tab *tab, int index);
+void			*ft_tabadd0(t_tab *tab);
 void			ft_tabadd(t_tab *tab, void *add);
 void			ft_tabaddn(t_tab *tab, void *add, int n);
 void			ft_tabset(t_tab *tab, void *set, int index, int n);
