@@ -14,8 +14,8 @@
 
 void			ft_drawdiv(t_image *img, int y, int height, t_color color)
 {
-	int				*pos;
-	int				*to;
+	int				pos;
+	int				to;
 
 	if (y >= img->height)
 		return ;

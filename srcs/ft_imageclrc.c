@@ -14,8 +14,9 @@
 
 void			ft_imageclrc(t_image *img, t_color color)
 {
-	const int		end = img->width * img->height * img->opp;
+	int				end;
 
+	end = img->width * img->height * img->opp;
 	if (color.b.b == color.b.g && color.b.g == color.b.r)
 	{
 		ft_memset(img->data, color.i, end);

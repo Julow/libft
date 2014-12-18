@@ -25,7 +25,9 @@ C_FILES = $(shell ls -1 $(C_DIR) | grep "\.c")
 O_FILES = $(addprefix $(O_DIR),$(C_FILES:.c=.o))
 
 all:
-	@if [ "$(DEBUG)" -eq "1" ]; then make -j3 _debug $(NAME); else make -j3 $(NAME); fi
+	@if [ "$(DEBUG)" -eq "1" ]; then \
+		make -j4 _debug $(NAME); else \
+		make -j4 $(NAME); fi
 
 $(NAME): $(O_FILES)
 	@ar rcs $@ $^ && printf "\033[0;32m" || printf "\033[0;31m"
@@ -33,7 +35,10 @@ $(NAME): $(O_FILES)
 
 $(O_DIR)%.o: $(C_DIR)%.c
 	@mkdir -p $(O_DIR) 2> /dev/null || echo "" > /dev/null
-	@gcc $(FLAGS) $(LINKS) -o $@ -c $< && printf "\033[0;0m%-24s\033[1;30m-->>	\033[0;32m$@\033[0;0m\n" "$<" || (printf "\033[0;0m%-24s\033[1;30m-->>	\033[0;31m$@\033[0;0m\n" "$<" && exit 1)
+	@gcc $(FLAGS) $(LINKS) -o $@ -c $< \
+	&& printf "\033[0;0m%-24s\033[1;30m-->>\t\033[0;32m$@\033[0;0m\n" "$<" \
+	|| (printf "\033[0;0m%-24s\033[1;30m-->>\t\033[0;31m$@\033[0;0m\n" "$<" \
+		&& exit 1)
 
 debug: _debug all
 
