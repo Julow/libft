@@ -380,6 +380,7 @@ void			ft_drawnpt(t_image *img, t_pt pt, int n, t_color color);
 void			ft_drawline(t_image *img, t_pt p1, t_pt p2, t_color color);
 void			ft_drawrect(t_image *img, t_pt p1, t_pt p2, t_color color);
 void			ft_drawrectf(t_image *img, t_pt p1, t_pt p2, t_color color);
+void			ft_drawdiv(t_image *img, int y, int height, t_color color);
 void			ft_drawcircle(t_image *img, t_pt o, int radius, t_color color);
 void			ft_drawcirclef(t_image *img, t_pt o, int radius, t_color color);
 
