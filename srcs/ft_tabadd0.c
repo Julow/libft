@@ -14,8 +14,12 @@
 
 void			*ft_tabadd0(t_tab *tab)
 {
+	void			*pos;
+
 	ft_tabext(tab, 1);
-	ft_bzero(tab->data + tab->bytes, tab->size);
+	pos = tab->data + tab->bytes;
+	ft_bzero(pos, tab->size);
 	tab->length++;
 	tab->bytes += tab->size;
+	return (pos);
 }

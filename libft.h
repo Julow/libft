@@ -368,6 +368,7 @@ void			ft_resalpha(t_color *c, t_color bg);
 void			ft_resrect(t_pt *p1, t_pt *p2);
 
 t_color			ft_imagept(t_image *img, t_pt pt);
+void			ft_imageput(t_image *img, int pos, t_color color);
 t_color			ft_imagepos(t_image *img, int pos);
 void			ft_imageclr(t_image *img);
 
