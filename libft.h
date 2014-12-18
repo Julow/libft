@@ -371,6 +371,7 @@ t_color			ft_imagept(t_image *img, t_pt pt);
 void			ft_imageput(t_image *img, int pos, t_color color);
 t_color			ft_imagepos(t_image *img, int pos);
 void			ft_imageclr(t_image *img);
+void			ft_imageclrc(t_image *img, t_color color);
 
 void			ft_drawxy(t_image *img, int x, int y, t_color color);
 void			ft_drawpt(t_image *img, t_pt pt, t_color color);
