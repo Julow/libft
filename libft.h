@@ -152,6 +152,7 @@ typedef struct	s_pos
 void			*ft_malloc(t_uint size);
 
 void			ft_bzero(void *s, size_t n);
+t_ulong			*ft_memalign(void *mem, const void *data, size_t *len);
 void			*ft_memset(void *b, int c, size_t len);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);

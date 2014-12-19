@@ -14,24 +14,24 @@
 
 void			*ft_memmove(void *dst, const void *src, size_t len)
 {
-	t_uchar			*dst8;
+	t_byte			*dst8;
 	t_ulong			*dst64;
-	t_uchar			*src8;
+	t_byte			*src8;
 	t_ulong			*src64;
 
 	if (src == dst)
 		return (dst);
 	else if (src > dst || dst >= (src + len))
 		return (ft_memcpy(dst, src, len));
-	dst64 = (t_ulong*)(dst + len - 1);
+	dst64 = ft_memalign(dst + len - 1, src, &len);
 	src64 = (t_ulong*)(src + len - 1);
 	while (len > 7)
 	{
 		*(dst64--) = *(src64--);
 		len -= 8;
 	}
-	dst8 = (t_uchar*)dst64;
-	src8 = (t_uchar*)src64;
+	dst8 = (t_byte*)dst64;
+	src8 = (t_byte*)src64;
 	while (len-- > 0)
 		*(dst8--) = *(src8--);
 	return (dst);

@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memalign.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 12:20:34 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 12:20:37 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/19 15:03:31 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/12/19 15:03:41 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			*ft_memcpy(void *dst, const void *src, size_t n)
+t_ulong			*ft_memalign(void *mem, const void *data, size_t *len)
 {
-	t_byte			*dst8;
-	t_ulong			*dst64;
+	t_byte			*bytes8;
 	t_byte			*src8;
-	t_ulong			*src64;
+	t_ulong			n;
 
-	dst64 = ft_memalign(dst, src, &n);
-	src64 = (t_ulong*)src;
-	while (n > 7)
-	{
-		*(dst64++) = *(src64++);
-		n -= 8;
-	}
-	dst8 = (t_byte*)dst64;
-	src8 = (t_byte*)src64;
+	bytes8 = (t_byte*)mem;
+	src8 = (t_byte*)data;
+	n = MIN(*len, (t_ulong)mem & 3);
+	*len -= n;
 	while (n-- > 0)
-		*(dst8++) = *(src8++);
-	return (dst);
+		*(bytes8++) = *(src8++);
+	return ((t_ulong*)bytes8);
 }
