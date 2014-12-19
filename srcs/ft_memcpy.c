@@ -19,7 +19,7 @@ void			*ft_memcpy(void *dst, const void *src, size_t n)
 	t_byte			*src8;
 	t_ulong			*src64;
 
-	dst64 = ft_memalign(dst, src, &n);
+	dst64 = (t_ulong*)dst;
 	src64 = (t_ulong*)src;
 	while (n > 7)
 	{

@@ -24,7 +24,7 @@ void			*ft_memset(void *b, int c, size_t len)
 	value64 = (value64 << 8) | (t_ulong)value8;
 	value64 = (value64 << 16) | value64;
 	value64 = (value64 << 32) | value64;
-	bytes64 = ft_memalign(b, &value64, &len);
+	bytes64 = (t_ulong*)b;
 	while (len > 7)
 	{
 		*(bytes64++) = value64;

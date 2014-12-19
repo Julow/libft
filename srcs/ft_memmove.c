@@ -23,7 +23,7 @@ void			*ft_memmove(void *dst, const void *src, size_t len)
 		return (dst);
 	else if (src > dst || dst >= (src + len))
 		return (ft_memcpy(dst, src, len));
-	dst64 = ft_memalign(dst + len - 1, src, &len);
+	dst64 = (t_ulong*)(dst + len - 1);
 	src64 = (t_ulong*)(src + len - 1);
 	while (len > 7)
 	{
