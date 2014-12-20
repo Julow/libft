@@ -35,7 +35,7 @@ void			ft_resrect(t_rect *rect, t_rect bounds)
 		rect->y = bounds.y;
 	}
 	if ((rect->x + rect->width) > (bounds.x + bounds.width))
-		rect->width = bounds.width - rect.x;
+		rect->width = bounds.width - rect->x;
 	if ((rect->y + rect->height) > (bounds.y + bounds.height))
-		rect->height = bounds.height - rect.y;
+		rect->height = bounds.height - rect->y;
 }

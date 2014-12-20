@@ -22,7 +22,7 @@ void			ft_drawimage(t_image *dst, t_image *src, t_pt pos, t_rect part)
 	if (pos.y < 0)
 		part.height += pos.y;
 	pos = PT((pos.x < 0) ? 0 : pos.x, (pos.y < 0) ? 0 : pos.y);
-	ft_resrect(&part, RECT(pos.x, pox.y, dst->width - pos.x,
+	ft_resrect(&part, RECT(pos.x, pos.y, dst->width - pos.x,
 		dst->height - pos.y));
 	if (pos.x >= dst->width || pos.y >= dst->width || part.width <= 0
 		|| part.height <= 0 || dst->opp != src->opp)
