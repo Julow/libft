@@ -375,7 +375,7 @@ int				ft_mix(int a, int b, t_big pos);
 ** Draw on struct s_image (t_image)
 */
 void			ft_resalpha(t_color *c, t_color bg);
-void			ft_resrect(t_pt *p1, t_pt *p2);
+void			ft_resrect(t_rect *rect, t_rect bounds);
 
 t_color			ft_imagept(t_image *img, t_pt pt);
 t_color			ft_imagepos(t_image *img, int pos);

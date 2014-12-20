@@ -12,13 +12,30 @@
 
 #include "libft.h"
 
-void			ft_resrect(t_pt *p1, t_pt *p2)
+void			ft_resrect(t_rect *rect, t_rect bounds)
 {
-	t_pt			tmp;
-
-	tmp.x = MIN(p1->x, p2->x);
-	tmp.y = MIN(p1->y, p2->y);
-	p2->x = MAX(p1->x, p2->x);
-	p2->y = MAX(p1->y, p2->y);
-	*p1 = tmp;
+	if (rect->width < 0)
+	{
+		rect->x += rect->width;
+		rect->x = 0;
+	}
+	if (rect->height < 0)
+	{
+		rect->y += rect->height;
+		rect->y = 0;
+	}
+	if (rect->x < bounds.x)
+	{
+		rect->width -= bounds.x - rect->x;
+		rect->x = bounds.x;
+	}
+	if (rect->y < bounds.y)
+	{
+		rect->height -= bounds.y - rect->y;
+		rect->y = bounds.y;
+	}
+	if ((rect->x + rect->width) > (bounds.x + bounds.width))
+		rect->width = bounds.width - rect.x;
+	if ((rect->y + rect->height) > (bounds.y + bounds.height))
+		rect->height = bounds.height - rect.y;
 }
