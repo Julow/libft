@@ -15,50 +15,51 @@
 
 # include <stddef.h>
 
-# define MAL(t,l)	((t*)ft_malloc(sizeof(t) * (l)))
-# define MAL1(t)	((t*)ft_malloc(sizeof(t)))
+# define MAL(t,l)		((t*)ft_malloc(sizeof(t) * (l)))
+# define MAL1(t)		((t*)ft_malloc(sizeof(t)))
 
-# define TG(t,b,i)	(*((t*)(((t_tab*)b)->data + (((t_tab*)b)->size * (i)))))
-# define AG(t,a,i)	((t)(((t_array*)(a))->data[i]))
+# define TG(t,b,i)		(*(t*)(((t_tab*)b)->data + (((t_tab*)b)->size * (i))))
+# define AG(t,a,i)		((t)(((t_array*)(a))->data[i]))
 
-# define MIN(a,b)	(((a) < (b)) ? (a) : (b))
-# define MAX(a,b)	(((a) > (b)) ? (a) : (b))
-# define ABS(a)		(((a) < 0) ? -(a) : (a))
+# define MIN(a,b)		(((a) < (b)) ? (a) : (b))
+# define MAX(a,b)		(((a) > (b)) ? (a) : (b))
+# define ABS(a)			(((a) < 0) ? -(a) : (a))
 
-# define UP(n)		((int)(1 + (n)))
-# define ROUND(n)	((int)(0.5 + (n)))
-# define DOWN(n)	((int)(n))
+# define UP(n)			((int)(1 + (n)))
+# define ROUND(n)		((int)(0.5 + (n)))
+# define DOWN(n)		((int)(n))
 
-# define PT(x,y)	((t_pt){(x), (y)})
-# define POS(x,y,z)	((t_pos){(x), (y), (z)})
+# define PT(x,y)		((t_pt){(x), (y)})
+# define POS(x,y,z)		((t_pos){(x), (y), (z)})
+# define RECT(x,y,w,h)	((t_rect){(x), (y), (width), (height)})
 
-# define C(c)		((t_color)(t_uint)(c))
-# define INVI(c)	((c).u < 0x01000000)
-# define ALPHA(c)	((c).u < 0xFF000000)
+# define C(c)			((t_color)(t_uint)(c))
+# define INVI(c)		((c).u < 0x01000000)
+# define ALPHA(c)		((c).u < 0xFF000000)
 
-# define BIG(a)		((a) * 1000000)
-# define BTOI(a)	((a) / 1000000)
-# define MIX(a,b,p)	((a) - BTOI((a) * (p)) + BTOI((b) * (p)))
+# define BIG(a)			((a) * 1000000)
+# define BTOI(a)		((a) / 1000000)
+# define MIX(a,b,p)		((a) - BTOI((a) * (p)) + BTOI((b) * (p)))
 
 # ifndef TRUE
-#  define TRUE		1
+#  define TRUE			1
 # endif
 # ifndef FALSE
-#  define FALSE		0
+#  define FALSE			0
 # endif
 
 # ifndef ERROR
-#  define ERROR		-1
+#  define ERROR			-1
 # endif
 
 # ifndef EOF
-#  define EOF		-1
+#  define EOF			-1
 # endif
 
-# define UCHAR		unsigned char
-# define UINT		unsigned int
-# define LONG		long long int
-# define ULONG		unsigned long long int
+# define UCHAR			unsigned char
+# define UINT			unsigned int
+# define LONG			long long int
+# define ULONG			unsigned long long int
 
 /*
 ** t_big represent a decimal number
@@ -111,7 +112,7 @@ typedef struct	s_pair
 
 typedef struct	s_image
 {
-	char			*data;
+	t_byte			*data;
 	void			*img;
 	int				width;
 	int				height;
@@ -138,6 +139,14 @@ typedef struct	s_pt
 	int				x;
 	int				y;
 }				t_pt;
+
+typedef struct	s_rect
+{
+	int				x;
+	int				y;
+	int				width;
+	int				height;
+}				t_rect;
 
 typedef struct	s_pos
 {
@@ -369,14 +378,18 @@ void			ft_resalpha(t_color *c, t_color bg);
 void			ft_resrect(t_pt *p1, t_pt *p2);
 
 t_color			ft_imagept(t_image *img, t_pt pt);
-void			ft_imageput(t_image *img, int pos, t_color color);
 t_color			ft_imagepos(t_image *img, int pos);
+void			ft_imageput(t_image *img, int pos, t_color color);
 void			ft_imageclr(t_image *img);
 void			ft_imageclrc(t_image *img, t_color color);
+t_image			*ft_imageclone(t_image *img);
+void			ft_imageclonekil(t_image *clone);
 
 void			ft_drawxy(t_image *img, int x, int y, t_color color);
 void			ft_drawpt(t_image *img, t_pt pt, t_color color);
 void			ft_drawnpt(t_image *img, t_pt pt, int n, t_color color);
+
+void			ft_drawimage(t_image *dst, t_image *src, t_pt pos, t_rect part);
 
 void			ft_drawline(t_image *img, t_pt p1, t_pt p2, t_color color);
 void			ft_drawrect(t_image *img, t_pt p1, t_pt p2, t_color color);
