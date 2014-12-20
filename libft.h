@@ -34,6 +34,8 @@
 # define RECT(x,y,w,h)	((t_rect){(x), (y), (w), (h)})
 
 # define C(c)			((t_color)(t_uint)(c))
+# define RGBA(r,g,b,a)	((t_rgb){(b), (g), (r), (a)})
+# define RGB(r,g,b)		RGBA(r, g, b, 255)
 # define INVI(c)		((c).u < 0x01000000)
 # define ALPHA(c)		((c).u < 0xFF000000)
 
@@ -121,15 +123,17 @@ typedef struct	s_image
 	int				endian;
 }				t_image;
 
+typedef struct	s_rgb
+{
+	t_uchar			b;
+	t_uchar			g;
+	t_uchar			r;
+	t_uchar			a;
+}				t_rgb;
+
 typedef union	u_color
 {
-	struct		s_rgba
-	{
-		t_uchar			b;
-		t_uchar			g;
-		t_uchar			r;
-		t_uchar			a;
-	}				b;
+	t_rgb			b;
 	t_uint			u;
 	int				i;
 }				t_color;
