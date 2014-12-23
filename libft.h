@@ -18,6 +18,9 @@
 # define MAL(t,l)		((t*)ft_malloc(sizeof(t) * (l)))
 # define MAL1(t)		((t*)ft_malloc(sizeof(t)))
 
+# define VOIDADD(p,n)	((void*)(((t_byte*)(p)) + (n)))
+# define VOIDPP(p)		((p) = (void*)(((t_byte*)(p)) + 1))
+
 # define TG(t,b,i)		(*(t*)(((t_tab*)b)->data + (((t_tab*)b)->size * (i))))
 # define AG(t,a,i)		((t)(((t_array*)(a))->data[i]))
 
