@@ -12,23 +12,28 @@
 
 #include "libft.h"
 
-void			*ft_memcpy(void *dst, const void *src, size_t n)
+void			*ft_memcpy(void *dst, const void *src, t_uint len)
 {
-	t_byte			*dst8;
-	t_ulong			*dst64;
-	t_byte			*src8;
-	t_ulong			*src64;
+	void			*tmp_dst;
+	void			*tmp_src;
 
-	dst64 = (t_ulong*)dst;
-	src64 = (t_ulong*)src;
-	while (n > 7)
+	if (src == dst)
+		return (dst);
+	tmp_dst = dst;
+	tmp_src = (void*)src;
+	while (len > 7)
 	{
-		*(dst64++) = *(src64++);
-		n -= 8;
+		*((t_ulong*)tmp_dst) = *((t_ulong*)tmp_src);
+		tmp_dst = VOIDADD(tmp_dst, 8);
+		tmp_src = VOIDADD(tmp_src, 8);
+		len -= 8;
 	}
-	dst8 = (t_byte*)dst64;
-	src8 = (t_byte*)src64;
-	while (n-- > 0)
-		*(dst8++) = *(src8++);
+	while (len > 0)
+	{
+		*((t_byte*)tmp_dst) = *((t_byte*)tmp_src);
+		VOIDPP(tmp_dst);
+		VOIDPP(tmp_src);
+		len--;
+	}
 	return (dst);
 }

@@ -20,6 +20,7 @@
 
 # define VOIDADD(p,n)	((void*)(((t_byte*)(p)) + (n)))
 # define VOIDPP(p)		((p) = (void*)(((t_byte*)(p)) + 1))
+# define VOIDMM(p)		((p) = (void*)(((t_byte*)(p)) - 1))
 
 # define TG(t,b,i)		(*(t*)(((t_tab*)b)->data + (((t_tab*)b)->size * (i))))
 # define AG(t,a,i)		((t)(((t_array*)(a))->data[i]))
@@ -170,9 +171,9 @@ void			*ft_malloc(t_uint size);
 void			ft_bzero(void *s, size_t n);
 t_ulong			*ft_memalign(void *mem, const void *data, size_t *len);
 void			*ft_memset(void *b, int c, size_t len);
-void			*ft_memcpy(void *dst, const void *src, size_t n);
+void			*ft_memcpy(void *dst, const void *src, t_uint len);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
-void			*ft_memmove(void *dst, const void *src, size_t len);
+void			*ft_memmove(void *dst, const void *src, t_uint len);
 void			ft_memswap(void *mem1, void *mem2, t_uint len);
 void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
