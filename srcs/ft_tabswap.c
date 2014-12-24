@@ -14,15 +14,7 @@
 
 void			ft_tabswap(t_tab *tab, int i1, int i2)
 {
-	char			tmp[tab->size];
-	t_byte			*data1;
-	t_byte			*data2;
-
 	if (i1 >= tab->length || i2 >= tab->length)
-		ft_tabext(tab, ((i1 > i2) ? i1 : i2) - tab->length + 1);
-	data1 = ft_tabget(tab, i1);
-	data2 = ft_tabget(tab, i2);
-	ft_memcpy(tmp, data1, tab->size);
-	ft_memmove(data1, data2, tab->size);
-	ft_memcpy(data2, tmp, tab->size);
+		ft_tabext(tab, MAX(i1, i2) - tab->length + 1);
+	ft_memswap(TI(tab, i1), TI(tab, i2), tab->size);
 }

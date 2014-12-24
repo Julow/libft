@@ -23,6 +23,7 @@
 # define VOIDMM(p)		((p) = (void*)(((t_byte*)(p)) - 1))
 
 # define TG(t,b,i)		(*(t*)(((t_tab*)b)->data + (((t_tab*)b)->size * (i))))
+# define TI(b,i)		(((t_tab*)b)->data + (((t_tab*)b)->size * (i)))
 # define AG(t,a,i)		((t)(((t_array*)(a))->data[i]))
 
 # define MIN(a,b)		(((a) < (b)) ? (a) : (b))
