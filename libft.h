@@ -407,6 +407,7 @@ void			ft_drawrectf(t_image *img, t_rect rect, t_color color);
 void			ft_drawdiv(t_image *img, int y, int height, t_color color);
 void			ft_drawcircle(t_image *img, t_pt o, int radius, t_color color);
 void			ft_drawcirclef(t_image *img, t_pt o, int radius, t_color color);
+void			ft_drawtri(t_image *img, t_pt pts[3], t_color color);
 
 /*
 ** Read a file line per line.
