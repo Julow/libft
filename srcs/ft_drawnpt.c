@@ -17,7 +17,14 @@ void			ft_drawnpt(t_image *img, t_pt pt, int n, t_color color)
 	int				pos;
 	t_color			tmp;
 
-	if (pt.x < 0 || pt.x >= img->width || pt.y < 0 || pt.y >= img->height)
+	if (n < 0)
+		pt.x -= (n = -n);
+	if (pt.x < 0)
+	{
+		n += pt.x;
+		pt.x = 0;
+	}
+	if (n <= 0 || pt.x >= img->width || pt.y < 0 || pt.y >= img->height)
 		return ;
 	pos = (img->width * pt.y + pt.x) * img->opp;
 	n *= img->opp;
