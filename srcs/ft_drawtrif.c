@@ -31,7 +31,7 @@ static void		sortpts(t_pt **pts, int n)
 
 void			ft_drawtrif(t_image *img, t_pt pts[3], t_color color)
 {
-	t_pos			delta;
+	double			delta[2];
 	double			*x;
 	t_pt			middle;
 	int				y;
@@ -40,20 +40,20 @@ void			ft_drawtrif(t_image *img, t_pt pts[3], t_color color)
 	if (pts[1].y == pts[2].y || pts[0].y == pts[1].y)
 		middle = (pts[1].y == pts[2].y) ? pts[2] : pts[0];
 	else
-		middle = PT(ROUND((double)(pts[1].y - pts[0].y) / (double)(pts[2].y -
+		middle = PT(DOWN((double)(pts[1].y - pts[0].y) / (double)(pts[2].y -
 			pts[0].y) * (double)(pts[2].x - pts[0].x)) + pts[0].x, pts[1].y);
-	delta = POS((double)(pts[1].x - pts[0].x) / (double)(pts[1].y - pts[0].y),
-		(double)(middle.x - pts[0].x) / (double)(middle.y - pts[0].y), 0);
+	delta[0] = (double)(pts[1].x - pts[0].x) / (double)(pts[1].y - pts[0].y);
+	delta[1] = (double)(middle.x - pts[0].x) / (double)(middle.y - pts[0].y);
 	x = (double[2]){pts[0].x, pts[0].x};
 	y = pts[0].y;
 	while (++y <= pts[1].y)
-		ft_drawnpt(img, PT(ROUND(x[0] += delta.x), y),
-			ROUND((x[1] += delta.y) - x[0]), color);
-	delta = POS((double)(pts[2].x - pts[1].x) / (double)(pts[2].y - pts[1].y),
-		(double)(pts[2].x - middle.x) / (double)(pts[2].y - middle.y), 0);
-	x = (double[2]){pts[1].x, middle.x};
-	y = middle.y;
-	while (++y < pts[2].y)
-		ft_drawnpt(img, PT(ROUND(x[0] += delta.x), y),
-			ROUND((x[1] += delta.y) - x[0]), color);
+		ft_drawnpt(img, PT(ROUND(x[0]), y), ROUND(x[1] += delta[1]) -
+			ROUND(x[0] += delta[0]), color);
+	delta[0] = (double)(pts[2].x - pts[1].x) / (double)(pts[2].y - pts[1].y);
+	delta[1] = (double)(pts[2].x - middle.x) / (double)(pts[2].y - middle.y);
+	x = (double[2]){pts[2].x, pts[2].x};
+	y = pts[2].y + 1;
+	while (--y > middle.y)
+		ft_drawnpt(img, PT(ROUND(x[0]), y), ROUND(x[1] -= delta[1]) -
+			ROUND(x[0] -= delta[0]), color);
 }
