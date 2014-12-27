@@ -179,6 +179,7 @@ void			ft_memswap(void *mem1, void *mem2, t_uint len);
 void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
 void			*ft_memalloc(size_t size);
+void			ft_memralloc(void **mem, t_uint len, t_uint newlen);
 void			ft_memdel(void **ap);
 
 size_t			ft_tablen(void **array);
