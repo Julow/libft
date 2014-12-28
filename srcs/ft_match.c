@@ -14,18 +14,22 @@
 
 t_bool			ft_match(char *str, char *pattern)
 {
-	while (*str == '\0' && *pattern == '*')
-		pattern++;
-	if (*str == '\0' || *pattern == '\0')
-		return ((*str == *pattern) ? TRUE : FALSE);
-	if (*pattern == '*' && ft_match(str + 1, pattern++))
-		return (TRUE);
-	if (*str != *pattern)
-		return (FALSE);
-	while (*str == *pattern && *str != '\0' && *pattern != '*')
+	while (TRUE)
 	{
-		str++;
-		pattern++;
+		while (*str == '\0' && *pattern == '*')
+			pattern++;
+		if (*str == '\0' || *pattern == '\0')
+			return ((*str == *pattern) ? TRUE : FALSE);
+		if (*pattern == '*' && ft_match(str + 1, pattern))
+			return (TRUE);
+		while (*pattern == '*')
+			pattern++;
+		if (*str != *pattern)
+			return (FALSE);
+		while (*str == *pattern && *str != '\0' && *pattern != '*')
+		{
+			str++;
+			pattern++;
+		}
 	}
-	return (ft_match(str, pattern));
 }
