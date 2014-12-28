@@ -19,6 +19,6 @@ void			ft_putendl_fd(char *s, int fd)
 
 	length = ft_strlen(s);
 	s[length] = '\n';
-	(void)(1 + write(fd, s, length + 1));
+	IGNORE(write(fd, s, length + 1));
 	s[length] = '\0';
 }

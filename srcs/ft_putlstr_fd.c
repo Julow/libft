@@ -16,5 +16,5 @@
 void			ft_putlstr_fd(char const *s, int len, int fd)
 {
 	if (s != NULL)
-		(void)(1 + write(fd, s, len));
+		IGNORE(write(fd, s, len));
 }

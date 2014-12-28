@@ -48,6 +48,8 @@
 # define BTOI(a)		((a) / 1000000)
 # define MIX(a,b,p)		((a) - BTOI((a) * (p)) + BTOI((b) * (p)))
 
+# define IGNORE(f)		((void)((f) + 1))
+
 # ifndef TRUE
 #  define TRUE			1
 # endif

@@ -15,5 +15,5 @@
 
 void			ft_putchar_fd(char c, int fd)
 {
-	(void)(1 + write(fd, &c, 1));
+	IGNORE(write(fd, &c, 1));
 }
