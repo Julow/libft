@@ -26,7 +26,5 @@ void			ft_tabfree(t_tab *tab)
 		ft_memcpy(tmp, tab->data, tab->bytes);
 		free(tab->data);
 	}
-	else
-		ft_bzero(tmp, tab->bytes);
 	tab->data = tmp;
 }

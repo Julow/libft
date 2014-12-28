@@ -15,7 +15,6 @@
 void			ft_tabini(t_tab *tab, int size)
 {
 	tab->data = MAL(t_byte, size * 16);
-	ft_bzero(tab->data, size * 16);
 	tab->length = 0;
 	tab->bytes = 0;
 	tab->alloc_bytes = 16;

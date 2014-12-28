@@ -14,7 +14,6 @@
 
 void			ft_tabclr(t_tab *tab)
 {
-	ft_bzero(tab->data, tab->bytes);
 	tab->bytes = 0;
 	tab->length = 0;
 }

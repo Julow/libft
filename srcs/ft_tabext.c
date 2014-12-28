@@ -29,10 +29,7 @@ void			ft_tabext(t_tab *tab, int need)
 	if (tab->data != NULL)
 	{
 		ft_memcpy(tmp, tab->data, tab->bytes);
-		ft_bzero(tmp + tab->bytes, len - tab->bytes);
 		free(tab->data);
 	}
-	else
-		ft_bzero(tmp, len);
 	tab->data = tmp;
 }
