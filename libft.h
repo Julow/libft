@@ -13,7 +13,7 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stddef.h>
+# include <string.h>
 
 # define MAL(t,l)		((t*)ft_malloc(sizeof(t) * (l)))
 # define MAL1(t)		((t*)ft_malloc(sizeof(t)))
