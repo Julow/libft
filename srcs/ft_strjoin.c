@@ -21,6 +21,8 @@ char			*ft_strjoin(char const *s1, char const *s2)
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
 	str = MAL(char, len1 + len2 + 1);
+	if (str == NULL)
+		return (NULL);
 	if (len1 > 0)
 		ft_memcpy(str, s1, len1);
 	if (len2 > 0)

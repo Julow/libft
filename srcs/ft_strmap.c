@@ -20,6 +20,8 @@ char			*ft_strmap(char const *s, char (*f)(char))
 	if (s == NULL)
 		return (NULL);
 	str = MAL(char, ft_strlen(s) + 1);
+	if (str == NULL)
+		return (NULL);
 	i = 0;
 	while (s[i] != '\0')
 	{

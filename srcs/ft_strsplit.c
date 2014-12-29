@@ -44,7 +44,8 @@ char			**ft_strsplit(char const *s, char c)
 	i = 0;
 	while (s[i] == c && s[i] != '\0')
 		i++;
-	split = MAL(char*, 1 + ft_count_split(s, c));
+	if ((split = MAL(char*, 1 + ft_count_split(s, c))) == NULL)
+		return (NULL);
 	split_i = 0;
 	while (s[i] != '\0')
 	{

@@ -19,6 +19,8 @@ char			*ft_strdup(const char *src)
 
 	len = ft_strlen(src);
 	dst = MAL(char, len + 1);
+	if (dst == NULL)
+		return (NULL);
 	ft_memcpy(dst, src, len + 1);
 	return (dst);
 }
