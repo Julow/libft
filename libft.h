@@ -84,12 +84,6 @@ typedef UINT	t_uint;
 typedef LONG	t_long;
 typedef ULONG	t_ulong;
 
-typedef struct	s_lst
-{
-	void			*data;
-	struct s_lst	*next;
-}				t_lst;
-
 typedef struct	s_array
 {
 	void			**data;
@@ -169,14 +163,14 @@ typedef struct	s_pos
 /*
 ** Memory
 */
-void			*ft_malloc(t_uint size);
+void			*ft_malloc(size_t size);
 
 void			ft_bzero(void *s, size_t n);
 t_ulong			*ft_memalign(void *mem, const void *data, size_t *len);
 void			*ft_memset(void *b, int c, size_t len);
-void			*ft_memcpy(void *dst, const void *src, t_uint len);
+void			*ft_memcpy(void *dst, const void *src, size_t len);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
-void			*ft_memmove(void *dst, const void *src, t_uint len);
+void			*ft_memmove(void *dst, const void *src, size_t len);
 void			ft_memswap(void *mem1, void *mem2, t_uint len);
 void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
@@ -206,13 +200,13 @@ int				ft_strnequ(char const *s1, char const *s2, size_t n);
 
 void			ft_strnadd(char **str, char const *add, size_t len);
 
-t_bool			ft_isalpha(int c);
-t_bool			ft_isdigit(int c);
-t_bool			ft_isalnum(int c);
-t_bool			ft_isascii(int c);
-t_bool			ft_isprint(int c);
-t_bool			ft_isspace(int c);
-t_bool			ft_iswhite(int c);
+int				ft_isalpha(int c);
+int				ft_isdigit(int c);
+int				ft_isalnum(int c);
+int				ft_isascii(int c);
+int				ft_isprint(int c);
+int				ft_isspace(int c);
+int				ft_iswhite(int c);
 
 t_bool			ft_isato(const char *str);
 t_bool			ft_isnumber(const char *str);
@@ -268,13 +262,13 @@ void			ft_putchar(char c);
 void			ft_putnchar(char c, int n);
 void			ft_putstr(char const *s);
 void			ft_putlstr(char const *s, int len);
-void			ft_putendl(char *s);
+void			ft_putendl(char const *s);
 void			ft_putnbr(int n);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putnchar_fd(char c, int n, int fd);
 void			ft_putstr_fd(char const *s, int fd);
 void			ft_putlstr_fd(char const *s, int len, int fd);
-void			ft_putendl_fd(char *s, int fd);
+void			ft_putendl_fd(char const *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 
 /*
@@ -297,18 +291,6 @@ void			ft_tabkil(void *tab);
 void			ft_tabswap(t_tab *tab, int i1, int i2);
 void			ft_tabrev(t_tab *tab);
 void			ft_tabext(t_tab *tab, int need);
-
-/*
-** Store pointers using the struct s_lst (t_lst)
-*/
-t_lst			*ft_lstnew(void *data);
-void			ft_lstadd(t_lst **alst, t_lst *add);
-void			ft_lstafter(t_lst *lst, t_lst *add);
-void			ft_lstdel(t_lst **alst, void (*f)(void*));
-void			ft_lstdelnext(t_lst *lst, void (*f)(void*));
-void			ft_lstdelone(t_lst **alst, void (*f)(void*));
-void			ft_lstiter(t_lst *lst, void (*f)(void *data));
-t_lst			*ft_lstmap(t_lst *lst, t_lst *(*f)(t_lst*));
 
 /*
 ** Store pointers using the struct s_array (t_array)

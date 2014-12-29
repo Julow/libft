@@ -11,15 +11,18 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 char			*ft_strsub(char const *s, unsigned int start, size_t len)
 {
 	size_t			i;
 	char			*str;
 
-	if (s == NULL || ft_strlen(s) < start)
+	if (s == NULL || ft_strlen(s) <= start)
 		return (NULL);
 	str = MAL(char, len + 1);
+	if (str == NULL)
+		return (NULL);
 	i = 0;
 	while (s[start + i] != '\0' && i < len)
 	{

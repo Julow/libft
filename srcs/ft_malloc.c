@@ -11,18 +11,9 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_internal.h"
 #include <stdlib.h>
 
-void			*ft_malloc(t_uint size)
+void			*ft_malloc(size_t size)
 {
-	void			*tmp;
-
-	tmp = malloc(size);
-	if (tmp == NULL)
-	{
-		ft_putstr_fd(MAL_STRERR, 2);
-		exit(MAL_EXIT);
-	}
-	return (tmp);
+	return (malloc(size));
 }

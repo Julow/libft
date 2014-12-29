@@ -15,9 +15,6 @@
 
 # include "libft.h"
 
-# define MAL_STRERR	("Memory error: Not enough memory\n")
-# define MAL_EXIT	1
-
 # define GNL_BUFF	256
 
 # define GNL_SUCCES	1

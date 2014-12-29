@@ -16,14 +16,18 @@ char			*ft_strtrim(char const *s)
 {
 	size_t			start;
 	size_t			to;
+	size_t			s_len;
 
 	if (s == NULL)
 		return (NULL);
+	s_len = ft_strlen(s);
 	start = 0;
 	while (s[start] == ' ' || s[start] == '\n' || s[start] == '\t')
 		start++;
-	to = ft_strlen(s) - 1;
-	while ((s[to] == ' ' || s[to] == '\n' || s[to] == '\t') && start < to)
+	if (start == s_len)
+		return (ft_strnew(0));
+	to = s_len - 1;
+	while (s[to] == ' ' || s[to] == '\n' || s[to] == '\t')
 		to--;
 	return (ft_strsub(s, start, to - start + 1));
 }
