@@ -33,7 +33,8 @@ void			ft_stringaddd(t_string *str, double d, int preci)
 	ft_stringaddid(str, (preci <= 0) ? d + 0.5 : d);
 	if (preci <= 0)
 		return ;
-	ft_stringext(str, preci + 1);
+	if (!ft_stringext(str, preci + 1))
+		return ;
 	ft_stringaddc(str, '.');
 	d -= (int)d;
 	i = -1;

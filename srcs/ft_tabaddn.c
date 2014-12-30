@@ -16,7 +16,8 @@ void			ft_tabaddn(t_tab *tab, void *add, int n)
 {
 	const int		bytes = tab->size * n;
 
-	ft_tabext(tab, n);
+	if (!ft_tabext(tab, n))
+		return ;
 	ft_memmove(tab->data + tab->bytes, add, bytes);
 	tab->length += n;
 	tab->bytes += bytes;

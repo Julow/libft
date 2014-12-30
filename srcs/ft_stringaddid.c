@@ -23,7 +23,8 @@ void			ft_stringaddid(t_string *str, double nbr)
 	length = ((nbr < 0) ? 2 : 1);
 	while ((nbr /= 10) > 1)
 		length++;
-	ft_stringext(str, length);
+	if (!ft_stringext(str, length))
+		return ;
 	if (nbr < 0)
 		str->content[str->length++] = '-';
 	length += str->length;

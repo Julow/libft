@@ -16,7 +16,8 @@ void			ft_stringsetc(t_string *str, char c, int index)
 {
 	if (index >= str->length)
 	{
-		ft_stringext(str, str->length - index + 1);
+		if (!ft_stringext(str, str->length - index + 1))
+			return ;
 		str->length = index + 1;
 	}
 	str->content[index] = c;

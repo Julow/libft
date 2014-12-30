@@ -19,8 +19,10 @@ void			ft_stringsetl(t_string *str, char *set, int index, int len)
 	i = index - str->length + len;
 	if (i > 0)
 	{
-		ft_stringext(str, i);
-		str->length += i;
+		if (ft_stringext(str, i))
+			str->length += i;
+		else
+			len = str->length - i - 1;
 	}
 	ft_memmove(str->content + index, set, len);
 }

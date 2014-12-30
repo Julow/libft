@@ -13,20 +13,19 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void			ft_arrayext(t_array *array, int need)
+t_bool			ft_arrayext(t_array *array, int need)
 {
 	void			**tmp;
 	int				len;
 
 	need += array->length + 1;
 	if (need < array->alloc_length)
-		return ;
+		return (TRUE);
 	len = array->alloc_length - 1;
 	while (need >= len)
 		len += 24;
-	tmp = MAL(void*, len);
-	if (tmp == NULL)
-		return ;
+	if ((tmp = MAL(void*, len)) == NULL)
+		return (FALSE);
 	array->alloc_length = len;
 	if (array->data != NULL)
 	{
@@ -37,4 +36,5 @@ void			ft_arrayext(t_array *array, int need)
 	else
 		ft_bzero(tmp, len);
 	array->data = tmp;
+	return (TRUE);
 }

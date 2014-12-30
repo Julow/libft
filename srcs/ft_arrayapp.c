@@ -19,7 +19,8 @@ void			ft_arrayapp(t_array *array, t_array *app)
 
 	app_len = app->length;
 	array->length += app_len;
-	ft_arrayext(array, app->length);
+	if (!ft_arrayext(array, app->length))
+		return ;
 	i = -1;
 	while (++i < app_len)
 		array->data[array->length - app_len + i] = app->data[i];

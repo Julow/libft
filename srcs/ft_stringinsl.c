@@ -19,7 +19,8 @@
 */
 void			ft_stringinsl(t_string *str, char *ins, int index, int len)
 {
-	ft_stringext(str, len);
+	if (!ft_stringext(str, len))
+		return ;
 	ft_memmove(str->content + index + len, str->content + index,
 		str->length - index);
 	ft_memmove(str->content + index, ins, len);

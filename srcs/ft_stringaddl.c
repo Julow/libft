@@ -14,7 +14,8 @@
 
 void			ft_stringaddl(t_string *str, char *add, int len)
 {
-	ft_stringext(str, len);
+	if (!ft_stringext(str, len))
+		return ;
 	ft_memmove(str->content + str->length, add, len);
 	str->length += len;
 }

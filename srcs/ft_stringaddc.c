@@ -14,7 +14,8 @@
 
 void			ft_stringaddc(t_string *str, char c)
 {
-	ft_stringext(str, 1);
+	if (!ft_stringext(str, 1))
+		return ;
 	str->content[str->length] = c;
 	str->length++;
 }

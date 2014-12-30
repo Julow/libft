@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void			ft_tabext(t_tab *tab, int need)
+t_bool			ft_tabext(t_tab *tab, int need)
 {
 	t_byte			*tmp;
 	int				len;
@@ -21,12 +21,11 @@ void			ft_tabext(t_tab *tab, int need)
 	need = need * tab->size + tab->bytes;
 	len = tab->alloc_bytes;
 	if (need < len)
-		return ;
+		return (TRUE);
 	while (need >= len)
 		len += 24 * tab->size;
-	tmp = MAL(t_byte, len);
-	if (tmp == NULL)
-		return ;
+	if ((tmp = MAL(t_byte, len)) == NULL)
+		return (FALSE);
 	tab->alloc_bytes = len;
 	if (tab->data != NULL)
 	{
@@ -34,4 +33,5 @@ void			ft_tabext(t_tab *tab, int need)
 		free(tab->data);
 	}
 	tab->data = tmp;
+	return (TRUE);
 }

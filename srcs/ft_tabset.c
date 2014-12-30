@@ -16,9 +16,13 @@ void			ft_tabset(t_tab *tab, void *set, int index, int n)
 {
 	if ((index + n) > tab->length)
 	{
-		ft_tabext(tab, index + n - tab->length);
-		tab->length += index + n - tab->length;
-		tab->bytes = tab->length * tab->size;
+		if (ft_tabext(tab, index + n - tab->length))
+		{
+			tab->length += index + n - tab->length;
+			tab->bytes = tab->length * tab->size;
+		}
+		else
+			n = tab->length - index;
 	}
 	ft_memmove(tab->data + (index * tab->size), set, n * tab->size);
 }

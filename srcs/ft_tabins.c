@@ -19,7 +19,8 @@ void			ft_tabins(t_tab *tab, void *ins, int index, int n)
 		ft_tabset(tab, ins, index, n);
 		return ;
 	}
-	ft_tabext(tab, n);
+	if (!ft_tabext(tab, n))
+		return ;
 	index *= tab->size;
 	tab->length += n;
 	n *= tab->size;

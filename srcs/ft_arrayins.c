@@ -21,7 +21,8 @@ void			ft_arrayins(t_array *array, void *ins, int index)
 		ft_arrayset(array, ins, index);
 		return ;
 	}
-	ft_arrayext(array, 1);
+	if (!ft_arrayext(array, 1))
+		return ;
 	i = array->length - 1;
 	while (--i >= index)
 		array->data[i + 1] = array->data[i];

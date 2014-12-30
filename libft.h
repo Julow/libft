@@ -311,7 +311,7 @@ void			ft_tabclr(t_tab *tab);
 void			ft_tabkil(void *tab);
 void			ft_tabswap(t_tab *tab, int i1, int i2);
 void			ft_tabrev(t_tab *tab);
-void			ft_tabext(t_tab *tab, int need);
+t_bool			ft_tabext(t_tab *tab, int need);
 
 /*
 ** Store pointers using the struct s_array (t_array)
@@ -332,7 +332,7 @@ void			ft_arraykil(void *array, void (*f)(void *data));
 void			ft_arraykilf(void *array);
 void			ft_arrayswap(t_array *array, int i1, int i2);
 void			ft_arrayrev(t_array *array);
-void			ft_arrayext(t_array *array, int need);
+t_bool			ft_arrayext(t_array *array, int need);
 
 /*
 ** Store pointers paired with a t_string 'key'
@@ -380,7 +380,7 @@ int				ft_stringstr(t_string *str, char *chr, int start);
 void			ft_stringfree(t_string *str);
 void			ft_stringclr(t_string *str);
 void			ft_stringkil(void *str);
-void			ft_stringext(t_string *str, int need);
+t_bool			ft_stringext(t_string *str, int need);
 int				ft_stringput(t_string *str);
 int				ft_stringputfd(t_string *str, int const fd);
 

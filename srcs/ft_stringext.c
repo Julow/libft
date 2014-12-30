@@ -13,20 +13,19 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void			ft_stringext(t_string *str, int need)
+t_bool			ft_stringext(t_string *str, int need)
 {
 	char			*tmp;
 	int				len;
 
 	need += str->length + 1;
 	if (need < str->alloc_length)
-		return ;
+		return (TRUE);
 	len = str->alloc_length - 1;
 	while (need >= len)
 		len += 24;
-	tmp = MAL(char, len);
-	if (tmp == NULL)
-		return ;
+	if ((tmp = MAL(char, len)) == NULL)
+		return (FALSE);
 	str->alloc_length = len;
 	if (str->content != NULL)
 	{
@@ -37,4 +36,5 @@ void			ft_stringext(t_string *str, int need)
 	else
 		ft_bzero(tmp, len);
 	str->content = tmp;
+	return (TRUE);
 }
