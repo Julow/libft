@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-char			*ft_strmapi(const char *s, char (*f)(unsigned int, char))
+char			*ft_strmapi(const char *s, char (*f)(t_uint, char))
 {
-	unsigned int	i;
+	t_uint			i;
 	char			*str;
 
 	if (s == NULL)

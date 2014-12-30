@@ -16,7 +16,7 @@ char			*ft_itoa(int n)
 {
 	char			*str;
 	int				tmp;
-	size_t			i;
+	t_uint			i;
 
 	tmp = n;
 	i = (tmp < 0) ? 2 : 1;

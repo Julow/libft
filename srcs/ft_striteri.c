@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-void			ft_striteri(char *s, void (*f)(unsigned int, char*))
+void			ft_striteri(char *s, void (*f)(t_uint, char*))
 {
-	unsigned int	i;
+	t_uint			i;
 
 	i = 0;
 	while (s != NULL && f != NULL && s[i] != '\0')

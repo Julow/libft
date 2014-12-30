@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-char			*ft_strnstr(const char *s1, const char *s2, size_t n)
+char			*ft_strnstr(const char *s1, const char *s2, t_uint n)
 {
-	size_t			i;
-	size_t			j;
+	t_uint			i;
+	t_uint			j;
 
 	if (*s2 == '\0')
 		return ((char*)s1);

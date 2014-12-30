@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void			ft_lstdelnext(t_list *lst, void (*f)(void*, size_t))
+void			ft_lstdelnext(t_list *lst, void (*f)(void*, t_uint))
 {
 	t_list			*tmp;
 

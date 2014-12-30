@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void			ft_lstdel(t_list **alst, void (*del)(void*, size_t))
+void			ft_lstdel(t_list **alst, void (*del)(void*, t_uint))
 {
 	t_list			*tmp;
 

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-size_t			ft_tablen(void **array)
+t_uint			ft_tablen(void **array)
 {
 	void			**tmp;
 

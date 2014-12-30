@@ -12,18 +12,18 @@
 
 #include "libft.h"
 
-int				ft_strnequ(const char *s1, const char *s2, size_t n)
+t_bool			ft_strnequ(const char *s1, const char *s2, t_uint n)
 {
-	size_t			i;
+	t_uint			i;
 
 	if (n == 0)
-		return (1);
+		return (TRUE);
 	if (s1 == NULL || s2 == NULL)
-		return ((s1 == s2) ? 1 : 0);
+		return ((s1 == s2) ? TRUE : FALSE);
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] != '\0')
 		i++;
 	if (i >= n)
 		i = n - 1;
-	return ((s1[i] == s2[i]) ? 1 : 0);
+	return ((s1[i] == s2[i]) ? TRUE : FALSE);
 }

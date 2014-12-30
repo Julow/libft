@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void			*ft_memset(void *b, int c, size_t len)
+void			*ft_memset(void *b, int c, t_uint len)
 {
 	t_ulong			*bytes64;
 	t_ulong			value64;

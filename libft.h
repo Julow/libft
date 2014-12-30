@@ -90,7 +90,7 @@ typedef ULONG	t_ulong;
 typedef struct	s_list
 {
 	void			*content;
-	size_t			content_size;
+	t_uint			content_size;
 	struct s_list	*next;
 }				t_list;
 
@@ -173,45 +173,45 @@ typedef struct	s_pos
 /*
 ** Memory
 */
-void			*ft_malloc(size_t size);
+void			*ft_malloc(t_uint size);
 
-void			ft_bzero(void *s, size_t n);
-t_ulong			*ft_memalign(void *mem, const void *data, size_t *len);
-void			*ft_memset(void *b, int c, size_t len);
-void			*ft_memcpy(void *dst, const void *src, size_t len);
-void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
-void			*ft_memmove(void *dst, const void *src, size_t len);
+void			ft_bzero(void *s, t_uint n);
+t_ulong			*ft_memalign(void *mem, const void *data, t_uint *len);
+void			*ft_memset(void *b, int c, t_uint len);
+void			*ft_memcpy(void *dst, const void *src, t_uint len);
+void			*ft_memccpy(void *dst, const void *src, int c, t_uint n);
+void			*ft_memmove(void *dst, const void *src, t_uint len);
 void			ft_memswap(void *mem1, void *mem2, t_uint len);
-void			*ft_memchr(const void *s, int c, size_t n);
-int				ft_memcmp(const void *s1, const void *s2, size_t n);
-void			*ft_memalloc(size_t size);
+void			*ft_memchr(const void *s, int c, t_uint n);
+int				ft_memcmp(const void *s1, const void *s2, t_uint n);
+void			*ft_memalloc(t_uint size);
 void			ft_memralloc(void **mem, t_uint len, t_uint newlen);
 void			ft_memdel(void **ap);
 
-size_t			ft_tablen(void **array);
+t_uint			ft_tablen(void **array);
 
 /*
 ** String
 */
-char			*ft_strnew(size_t size);
-size_t			ft_strlen(const char *str);
+char			*ft_strnew(t_uint size);
+t_uint			ft_strlen(const char *str);
 char			*ft_strdup(const char *src);
 char			*ft_strcpy(char *dst, const char *src);
-char			*ft_strncpy(char *dst, const char *src, size_t len);
-char			*ft_strsub(const char *s, unsigned int start, size_t len);
+char			*ft_strncpy(char *dst, const char *src, t_uint len);
+char			*ft_strsub(const char *s, t_uint start, t_uint len);
 char			*ft_strjoin(const char *s1, const char *s2);
 char			*ft_strtrim(const char *s);
 char			**ft_strsplit(const char *s, char c);
 
 int				ft_strcmp(const char *s1, const char *s2);
-int				ft_strncmp(const char *s1, const char *s2, size_t n);
-int				ft_strequ(const char *s1, const char *s2);
-int				ft_strnequ(const char *s1, const char *s2, size_t n);
+int				ft_strncmp(const char *s1, const char *s2, t_uint n);
+t_bool			ft_strequ(const char *s1, const char *s2);
+t_bool			ft_strnequ(const char *s1, const char *s2, t_uint n);
 
 t_uint			ft_strskip(const char *str, const char *skip);
 t_uint			ft_strskipe(const char *str, const char *skip);
 
-void			ft_strnadd(char **str, const char *add, size_t len);
+void			ft_strnadd(char **str, const char *add, t_uint len);
 
 t_bool			ft_isalpha(char c);
 t_bool			ft_isdigit(char c);
@@ -231,7 +231,7 @@ char			*ft_strchr(const char *s, int c);
 int				ft_strchri(const char *str, char c);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strstr(const char *s1, const char *s2);
-char			*ft_strnstr(const char *s1, const char *s2, size_t n);
+char			*ft_strnstr(const char *s1, const char *s2, t_uint n);
 
 t_bool			ft_match(char *str, char *pattern);
 int				ft_nmatch(char *str, char *pattern);
@@ -241,14 +241,14 @@ t_bool			ft_hidenp(char *hide, char *str);
 ** String - Useless
 */
 char			*ft_strcat(char *s1, const char *s2);
-char			*ft_strncat(char *s1, const char *s2, size_t n);
-size_t			ft_strlcat(char *dst, const char *src, size_t size);
+char			*ft_strncat(char *s1, const char *s2, t_uint n);
+t_uint			ft_strlcat(char *dst, const char *src, t_uint size);
 void			ft_strdel(char **as);
 void			ft_strclr(char *s);
 void			ft_striter(char *s, void (*f)(char*));
-void			ft_striteri(char *s, void (*f)(unsigned int, char*));
+void			ft_striteri(char *s, void (*f)(t_uint, char*));
 char			*ft_strmap(const char *s, char (*f)(char));
-char			*ft_strmapi(const char *s, char (*f)(unsigned int, char));
+char			*ft_strmapi(const char *s, char (*f)(t_uint, char));
 
 /*
 ** Conversion
@@ -287,10 +287,10 @@ void			ft_putnbr_fd(int n, int fd);
 /*
 ** Store mem using the struct s_list (t_list)
 */
-t_list			*ft_lstnew(const void *content, size_t content_size);
-void			ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
-void			ft_lstdelnext(t_list *lst, void (*f)(void*, size_t));
-void			ft_lstdel(t_list **alst, void (*del)(void*, size_t));
+t_list			*ft_lstnew(const void *content, t_uint content_size);
+void			ft_lstdelone(t_list **alst, void (*del)(void*, t_uint));
+void			ft_lstdelnext(t_list *lst, void (*f)(void*, t_uint));
+void			ft_lstdel(t_list **alst, void (*del)(void*, t_uint));
 void			ft_lstadd(t_list **alst, t_list *add);
 void			ft_lstafter(t_list *lst, t_list *add);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));

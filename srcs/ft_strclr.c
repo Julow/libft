@@ -14,7 +14,7 @@
 
 void			ft_strclr(char *s)
 {
-	size_t			i;
+	t_uint			i;
 
 	i = 0;
 	while (s != NULL && s[i] != '\0')

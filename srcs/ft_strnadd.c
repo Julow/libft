@@ -13,9 +13,9 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void			ft_strnadd(char **str, char const *add, size_t len)
+void			ft_strnadd(char **str, char const *add, t_uint len)
 {
-	size_t			lenstr;
+	t_uint			lenstr;
 	char			*tmp;
 
 	tmp = *str;

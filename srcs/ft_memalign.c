@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-t_ulong			*ft_memalign(void *mem, const void *data, size_t *len)
+t_ulong			*ft_memalign(void *mem, const void *data, t_uint *len)
 {
 	t_byte			*bytes8;
 	t_byte			*src8;

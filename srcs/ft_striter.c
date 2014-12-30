@@ -14,7 +14,7 @@
 
 void			ft_striter(char *s, void (*f)(char*))
 {
-	size_t			i;
+	t_uint			i;
 
 	i = 0;
 	while (s != NULL && f != NULL && s[i] != '\0')

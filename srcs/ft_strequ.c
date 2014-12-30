@@ -12,14 +12,14 @@
 
 #include "libft.h"
 
-int				ft_strequ(const char *s1, const char *s2)
+t_bool			ft_strequ(const char *s1, const char *s2)
 {
-	size_t			i;
+	t_uint			i;
 
 	if (s1 == NULL || s2 == NULL)
-		return ((s1 == s2) ? 1 : 0);
+		return ((s1 == s2) ? TRUE : FALSE);
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] != '\0')
 		i++;
-	return ((s1[i] == s2[i]) ? 1 : 0);
+	return ((s1[i] == s2[i]) ? TRUE : FALSE);
 }
