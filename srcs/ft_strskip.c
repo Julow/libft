@@ -12,12 +12,15 @@
 
 #include "libft.h"
 
+/*
+** Count the len of 'str' using only char of 'skip'
+*/
 t_uint			ft_strskip(const char *str, const char *skip)
 {
 	t_uint			i;
 
 	i = 0;
-	while (ft_strchr(skip, str[i]) != NULL)
+	while (str[i] != '\0' && ft_strchr(skip, str[i]) != NULL)
 		i++;
 	return (i);
 }

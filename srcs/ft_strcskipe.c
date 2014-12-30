@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strskipe.c                                      :+:      :+:    :+:   */
+/*   ft_strcskipe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/30 23:08:28 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/30 23:08:28 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/31 00:00:01 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/12/31 00:00:01 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-** Count the len of 'str' using only char of 'skip'
+** Count the len of 'str' using char of 'skip' as stop
 ** Allow char from 'str' to be escaped with '\'
 */
-t_uint			ft_strskipe(const char *str, const char *skip)
+t_uint			ft_strcskipe(const char *str, const char *skip)
 {
 	t_uint			i;
 	t_bool			escaped;
@@ -29,7 +29,7 @@ t_uint			ft_strskipe(const char *str, const char *skip)
 			escaped = FALSE;
 		else if (str[i] == '\\')
 			escaped = TRUE;
-		else if (ft_strchr(skip, str[i]) == NULL)
+		else if (ft_strchr(skip, str[i]) != NULL)
 			break ;
 		i++;
 	}

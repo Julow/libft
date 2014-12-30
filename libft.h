@@ -13,8 +13,6 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stddef.h>
-
 # define MAL(t,l)		((t*)ft_malloc(sizeof(t) * (l)))
 # define MAL1(t)		((t*)ft_malloc(sizeof(t)))
 
@@ -47,6 +45,8 @@
 # define MIX(a,b,p)		((a) - BTOI((a) * (p)) + BTOI((b) * (p)))
 
 # define IGNORE(f)		((void)((f) + 1))
+
+# define NULL			((void*)0)
 
 # ifndef TRUE
 #  define TRUE			1
@@ -209,7 +209,9 @@ t_bool			ft_strequ(const char *s1, const char *s2);
 t_bool			ft_strnequ(const char *s1, const char *s2, t_uint n);
 
 t_uint			ft_strskip(const char *str, const char *skip);
+t_uint			ft_strcskip(const char *str, const char *skip);
 t_uint			ft_strskipe(const char *str, const char *skip);
+t_uint			ft_strcskipe(const char *str, const char *skip);
 
 void			ft_strnadd(char **str, const char *add, t_uint len);
 
