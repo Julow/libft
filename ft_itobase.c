@@ -26,7 +26,8 @@ char			*ft_itobase(t_long nb, char *base)
 	i = (nb < 0) ? 2 : 1;
 	while ((tmp /= base_len) != 0)
 		i++;
-	str = MAL(char, i + 1);
+	if ((str = MAL(char, i + 1)) == NULL)
+		return (NULL);
 	str[i] = '\0';
 	tmp = nb;
 	while (--i >= 0)

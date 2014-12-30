@@ -15,7 +15,8 @@
 void			ft_stringini(t_string *str)
 {
 	str->content = MAL(char, 16);
-	ft_bzero(str->content, 16);
+	if (str->content != NULL)
+		ft_bzero(str->content, 16);
 	str->length = 0;
-	str->alloc_length = 16;
+	str->alloc_length = (str->content == NULL) ? 0 : 16;
 }

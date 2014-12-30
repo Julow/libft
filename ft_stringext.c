@@ -25,6 +25,8 @@ void			ft_stringext(t_string *str, int need)
 	while (need >= len)
 		len += 24;
 	tmp = MAL(char, len);
+	if (tmp == NULL)
+		return ;
 	str->alloc_length = len;
 	if (str->content != NULL)
 	{

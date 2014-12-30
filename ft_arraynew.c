@@ -17,6 +17,8 @@ t_array			*ft_arraynew(void)
 	t_array			*array;
 
 	array = MAL1(t_array);
+	if (array == NULL)
+		return (NULL);
 	ft_arrayini(array);
 	return (array);
 }

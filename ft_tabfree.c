@@ -20,6 +20,8 @@ void			ft_tabfree(t_tab *tab)
 	if (tab->bytes >= tab->alloc_bytes)
 		return ;
 	tmp = MAL(t_byte, tab->bytes);
+	if (tmp == NULL)
+		return ;
 	tab->alloc_bytes = tab->bytes;
 	if (tab->data != NULL)
 	{

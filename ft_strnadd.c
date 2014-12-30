@@ -21,6 +21,11 @@ void			ft_strnadd(char **str, char const *add, size_t len)
 	tmp = *str;
 	lenstr = ft_strlen(tmp);
 	*str = MAL(char, lenstr + len + 1);
+	if (*str == NULL)
+	{
+		*str = tmp;
+		return ;
+	}
 	if (lenstr > 0)
 		ft_memcpy(*str, tmp, lenstr);
 	if (len > 0)

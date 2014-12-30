@@ -25,6 +25,8 @@ void			ft_tabext(t_tab *tab, int need)
 	while (need >= len)
 		len += 24 * tab->size;
 	tmp = MAL(t_byte, len);
+	if (tmp == NULL)
+		return ;
 	tab->alloc_bytes = len;
 	if (tab->data != NULL)
 	{

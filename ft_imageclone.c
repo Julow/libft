@@ -11,13 +11,18 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 t_image			*ft_imageclone(t_image *img)
 {
 	t_image			*clone;
 
 	clone = MAL1(t_image);
+	if (clone == NULL)
+		return (NULL);
 	clone->data = MAL(t_uchar, img->width * img->height * img->opp);
+	if (clone->data == NULL)
+		return (free(clone), NULL);
 	clone->img = img->img;
 	clone->width = img->width;
 	clone->height = img->height;

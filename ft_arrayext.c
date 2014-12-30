@@ -25,6 +25,8 @@ void			ft_arrayext(t_array *array, int need)
 	while (need >= len)
 		len += 24;
 	tmp = MAL(void*, len);
+	if (tmp == NULL)
+		return ;
 	array->alloc_length = len;
 	if (array->data != NULL)
 	{

@@ -17,6 +17,8 @@ t_string		*ft_stringnew(void)
 	t_string		*str;
 
 	str = MAL1(t_string);
+	if (str == NULL)
+		return (NULL);
 	ft_stringini(str);
 	return (str);
 }

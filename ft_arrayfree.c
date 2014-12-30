@@ -23,6 +23,8 @@ void			ft_arrayfree(t_array *array)
 	if (array->length >= array->alloc_length)
 		return ;
 	tmp = MAL(void*, array->length);
+	if (tmp == NULL)
+		return ;
 	array->alloc_length = array->length;
 	if (array->data != NULL)
 	{

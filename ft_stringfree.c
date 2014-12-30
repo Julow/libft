@@ -23,6 +23,8 @@ void			ft_stringfree(t_string *str)
 	if (str->length >= str->alloc_length)
 		return ;
 	tmp = MAL(char, str->length + 1);
+	if (tmp == NULL)
+		return ;
 	str->alloc_length = str->length;
 	if (str->content != NULL)
 	{
