@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static size_t	ft_count_split(char const *s, char c)
+static size_t	ft_count_split(const char *s, char c)
 {
 	size_t			split_count;
 	size_t			i;
@@ -32,7 +32,7 @@ static size_t	ft_count_split(char const *s, char c)
 	return (split_count);
 }
 
-char			**ft_strsplit(char const *s, char c)
+char			**ft_strsplit(const char *s, char c)
 {
 	size_t			split_i;
 	size_t			i;

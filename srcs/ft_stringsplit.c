@@ -17,7 +17,7 @@
 ** =============
 ** Return a t_array of t_string
 */
-t_array			*ft_stringsplit(t_string *str, char *s)
+t_array			*ft_stringsplit(t_string *str, const char *s)
 {
 	t_array			*split;
 	int				i;

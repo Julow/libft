@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void			ft_tabins(t_tab *tab, void *ins, int index, int n)
+void			ft_tabins(t_tab *tab, const void *ins, int index, int n)
 {
 	if (index >= tab->length)
 	{

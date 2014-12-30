@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-t_pair			*ft_pairrem(t_array *array, char *key)
+t_pair			*ft_pairrem(t_array *array, const char *key)
 {
 	int				i;
 	t_pair			*tmp;

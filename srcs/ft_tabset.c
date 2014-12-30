@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void			ft_tabset(t_tab *tab, void *set, int index, int n)
+void			ft_tabset(t_tab *tab, const void *set, int index, int n)
 {
 	if ((index + n) > tab->length)
 	{

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-t_pair			*ft_pairnew(char *key, void *value)
+t_pair			*ft_pairnew(const char *key, void *value)
 {
 	t_pair			*pair;
 

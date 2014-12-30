@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int				ft_isalpha(int c)
+t_bool			ft_isalpha(char c)
 {
 	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 		return (TRUE);

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int				ft_pairchr(t_array *array, char *key)
+int				ft_pairchr(t_array *array, const char *key)
 {
 	int				i;
 	t_pair			*tmp;

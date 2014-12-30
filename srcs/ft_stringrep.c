@@ -18,7 +18,7 @@
 ** =============
 ** Return FALSE(0) if the malloc fail, TRUE(1) otherwise
 */
-void			ft_stringrep(t_string *str, char *chr, char *rep)
+void			ft_stringrep(t_string *str, const char *chr, const char *rep)
 {
 	int				i;
 	int				chr_len;

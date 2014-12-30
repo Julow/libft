@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void			ft_putlstr(char const *s, int len)
+void			ft_putlstr(const char *s, int len)
 {
 	ft_putlstr_fd(s, len, 1);
 }

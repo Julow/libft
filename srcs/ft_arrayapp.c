@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void			ft_arrayapp(t_array *array, t_array *app)
+void			ft_arrayapp(t_array *array, const t_array *app)
 {
 	int				i;
 	int				app_len;

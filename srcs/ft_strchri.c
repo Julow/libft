@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-int				ft_strchri(char *str, char c)
+int				ft_strchri(const char *str, char c)
 {
 	char			*tmp;
 
-	tmp = str;
+	tmp = (char*)str;
 	while (*tmp != c)
 	{
 		if (*tmp == '\0')

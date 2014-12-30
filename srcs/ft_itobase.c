@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char			*ft_itobase(t_long nb, char *base)
+char			*ft_itobase(t_long nb, const char *base)
 {
 	int				base_len;
 	char			*str;

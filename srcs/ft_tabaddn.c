@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void			ft_tabaddn(t_tab *tab, void *add, int n)
+void			ft_tabaddn(t_tab *tab, const void *add, int n)
 {
 	const int		bytes = tab->size * n;
 

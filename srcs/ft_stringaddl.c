@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void			ft_stringaddl(t_string *str, char *add, int len)
+void			ft_stringaddl(t_string *str, const char *add, int len)
 {
 	if (!ft_stringext(str, len))
 		return ;

@@ -13,16 +13,16 @@
 #include "libft.h"
 
 /*
-** Insert 'len' char of 'ins' in the string 'str' at 'index'
+** Insert 'l' char of 'ins' in the string 'str' at 'index'
 ** =============
 ** Return FALSE(0) if the malloc fail, TRUE(1) otherwise
 */
-void			ft_stringinsl(t_string *str, char *ins, int index, int len)
+void			ft_stringinsl(t_string *str, const char *ins, int index, int l)
 {
-	if (!ft_stringext(str, len))
+	if (!ft_stringext(str, l))
 		return ;
-	ft_memmove(str->content + index + len, str->content + index,
+	ft_memmove(str->content + index + l, str->content + index,
 		str->length - index);
-	ft_memmove(str->content + index, ins, len);
-	str->length += len;
+	ft_memmove(str->content + index, ins, l);
+	str->length += l;
 }

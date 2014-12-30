@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <unistd.h>
 
-void			ft_putlstr_fd(char const *s, int len, int fd)
+void			ft_putlstr_fd(const char *s, int len, int fd)
 {
 	if (s != NULL)
 		IGNORE(write(fd, s, len));

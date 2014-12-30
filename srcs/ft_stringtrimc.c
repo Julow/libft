@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void			ft_stringtrimc(t_string *str, char *trim)
+void			ft_stringtrimc(t_string *str, const char *trim)
 {
 	int				i;
 

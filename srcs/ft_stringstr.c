@@ -18,7 +18,7 @@
 ** Return the index of the first occurence of 'chr' in 'str'
 ** or -1 if not found
 */
-int				ft_stringstr(t_string *str, char *chr, int start)
+int				ft_stringstr(t_string *str, const char *chr, int start)
 {
 	int				i;
 

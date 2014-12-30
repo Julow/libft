@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void			ft_stringset(t_string *str, char *set, int index)
+void			ft_stringset(t_string *str, const char *set, int index)
 {
 	ft_stringsetl(str, set, index, ft_strlen(set));
 }

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int				ft_tabchr(t_tab *tab, void *chr)
+int				ft_tabchr(t_tab *tab, const void *chr)
 {
 	int				i;
 

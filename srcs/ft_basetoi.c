@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-t_long			ft_basetoi(char *str, char *base)
+t_long			ft_basetoi(const char *str, const char *base)
 {
 	int				i;
 	int				base_len;

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-t_string		*ft_stringnews(char *s)
+t_string		*ft_stringnews(const char *s)
 {
 	t_string		*str;
 

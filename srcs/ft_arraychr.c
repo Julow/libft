@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int				ft_arraychr(t_array *array, void *chr)
+int				ft_arraychr(t_array *array, const void *chr)
 {
 	int				i;
 
