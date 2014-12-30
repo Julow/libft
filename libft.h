@@ -46,13 +46,15 @@
 
 # define IGNORE(f)		((void)((f) + 1))
 
-# define NULL			((void*)0)
-
 # ifndef TRUE
 #  define TRUE			1
 # endif
 # ifndef FALSE
 #  define FALSE			0
+# endif
+
+# ifndef NULL
+#  define NULL			((void*)0)
 # endif
 
 # ifndef ERROR
@@ -63,29 +65,29 @@
 #  define EOF			-1
 # endif
 
-# define UCHAR			unsigned char
-# define UINT			unsigned int
-# define LONG			long long int
-# define ULONG			unsigned long long int
+# define FTUCHAR		unsigned char
+# define FTUINT			unsigned int
+# define FTLONG			long long int
+# define FTULONG		unsigned long long int
 
 /*
 ** t_big represent a decimal number
 ** it's a t_long divide by 1000000
 ** ==> 9 223 372 000 000.000 000
 */
-typedef LONG	t_big;
+typedef FTLONG	t_big;
 
 typedef char	t_bool;
-typedef UCHAR	t_byte;
-typedef UCHAR	t_uchar;
-typedef UINT	t_uint;
-typedef LONG	t_long;
-typedef ULONG	t_ulong;
+typedef FTUCHAR	t_byte;
+typedef FTUCHAR	t_uchar;
+typedef FTUINT	t_uint;
+typedef FTLONG	t_long;
+typedef FTULONG	t_ulong;
 
-# undef UCHAR
-# undef UINT
-# undef LONG
-# undef ULONG
+# undef FTUCHAR
+# undef FTUINT
+# undef FTLONG
+# undef FTULONG
 
 typedef struct	s_list
 {
