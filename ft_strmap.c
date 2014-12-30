@@ -19,6 +19,8 @@ char			*ft_strmap(char const *s, char (*f)(char))
 
 	if (s == NULL)
 		return (NULL);
+	if (f == NULL)
+		return (ft_strdup(s));
 	str = MAL(char, ft_strlen(s) + 1);
 	if (str == NULL)
 		return (NULL);
