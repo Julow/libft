@@ -208,6 +208,9 @@ int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				ft_strequ(char const *s1, char const *s2);
 int				ft_strnequ(char const *s1, char const *s2, size_t n);
 
+t_uint			ft_strskip(const char *str, const char *skip);
+t_uint			ft_strskipe(const char *str, const char *skip);
+
 void			ft_strnadd(char **str, char const *add, size_t len);
 
 int				ft_isalpha(int c);
