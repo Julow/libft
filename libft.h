@@ -13,10 +13,12 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <string.h>
+# include <stddef.h>
 
 # define MAL(t,l)		((t*)ft_malloc(sizeof(t) * (l)))
 # define MAL1(t)		((t*)ft_malloc(sizeof(t)))
+
+# define S(t,l)			(sizeof(t) * (l))
 
 # define VOIDADD(p,n)	((void*)(((t_byte*)(p)) + (n)))
 # define VOIDPP(p)		((p) = (void*)(((t_byte*)(p)) + 1))

@@ -13,7 +13,7 @@
 NAME = libft.a
 
 H_DIR = ./
-C_DIR = ./
+C_DIR = srcs/
 O_DIR = o/
 
 FLAGS = -Wall -Wextra -Werror -O2
