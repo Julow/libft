@@ -20,10 +20,6 @@
 
 # define S(t,l)			(sizeof(t) * (l))
 
-# define VOIDADD(p,n)	((void*)(((t_byte*)(p)) + (n)))
-# define VOIDPP(p)		((p) = (void*)(((t_byte*)(p)) + 1))
-# define VOIDMM(p)		((p) = (void*)(((t_byte*)(p)) - 1))
-
 # define TG(t,b,i)		(*(t*)(((t_tab*)b)->data + (((t_tab*)b)->size * (i))))
 # define TI(b,i)		(((t_tab*)b)->data + (((t_tab*)b)->size * (i)))
 # define AG(t,a,i)		((t)(((t_array*)(a))->data[i]))
@@ -85,6 +81,11 @@ typedef UCHAR	t_uchar;
 typedef UINT	t_uint;
 typedef LONG	t_long;
 typedef ULONG	t_ulong;
+
+# undef UCHAR
+# undef UINT
+# undef LONG
+# undef ULONG
 
 typedef struct	s_list
 {
@@ -287,7 +288,7 @@ t_list			*ft_lstnew(void const *content, size_t content_size);
 void			ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstdelnext(t_list *lst, void (*f)(void*, size_t));
 void			ft_lstdel(t_list **alst, void (*del)(void*, size_t));
-void			ft_lstadd(t_list **alst, t_list *new);
+void			ft_lstadd(t_list **alst, t_list *add);
 void			ft_lstafter(t_list *lst, t_list *add);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
@@ -417,20 +418,5 @@ void			ft_drawcircle(t_image *img, t_pt o, int radius, t_color color);
 void			ft_drawcirclef(t_image *img, t_pt o, int radius, t_color color);
 void			ft_drawtri(t_image *img, t_pt pts[3], t_color color);
 void			ft_drawtrif(t_image *img, t_pt pts[3], t_color color);
-
-/*
-** Read a file line per line.
-** 'line' is not a buffer.
-** =============
-** Return 1 if a line is read, 0 if the end of file is reach
-** or -1 if an error occured.
-*/
-int				get_next_line(int const fd, char **line);
-
-/*
-** Clear the cache relative to the fd.
-** Call it after close a fd if the end of file is not reach
-*/
-void			gnl_clear_cache(int const fd);
 
 #endif

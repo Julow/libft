@@ -18,16 +18,16 @@ int				ft_memcmp(const void *s1, const void *s2, size_t n)
 	{
 		if (*((t_ulong*)s1) != *((t_ulong*)s2))
 			break ;
-		s1 = VOIDADD(s1, 8);
-		s2 = VOIDADD(s2, 8);
+		s1 += 8;
+		s2 += 8;
 		n -= 8;
 	}
 	while (n-- > 0)
 	{
 		if (*((t_byte*)s1) != *((t_byte*)s2))
 			return ((int)(*((t_byte*)s1) - *((t_byte*)s2)));
-		VOIDPP(s1);
-		VOIDPP(s2);
+		s1++;
+		s2++;
 	}
 	return (0);
 }

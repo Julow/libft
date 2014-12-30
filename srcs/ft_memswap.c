@@ -22,8 +22,8 @@ void			ft_memswap(void *mem1, void *mem2, t_uint len)
 		tmp64 = *((t_ulong*)mem1);
 		*((t_ulong*)mem1) = *((t_ulong*)mem2);
 		*((t_ulong*)mem2) = tmp64;
-		mem1 = VOIDADD(mem1, 8);
-		mem2 = VOIDADD(mem2, 8);
+		mem1 += 8;
+		mem2 += 8;
 		len -= 8;
 	}
 	while (len > 0)
@@ -31,8 +31,8 @@ void			ft_memswap(void *mem1, void *mem2, t_uint len)
 		tmp8 = *((t_byte*)mem1);
 		*((t_byte*)mem1) = *((t_byte*)mem2);
 		*((t_byte*)mem2) = tmp8;
-		VOIDPP(mem1);
-		VOIDPP(mem2);
+		mem1++;
+		mem2++;
 		len--;
 	}
 }

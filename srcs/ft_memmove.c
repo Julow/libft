@@ -23,15 +23,15 @@ void			*ft_memmove(void *dst, const void *src, size_t len)
 	tmp_src = ((void*)src) + len;
 	while (len > 7)
 	{
-		tmp_dst = VOIDADD(tmp_dst, -8);
-		tmp_src = VOIDADD(tmp_src, -8);
+		tmp_dst -= 8;
+		tmp_src -= 8;
 		*((t_ulong*)tmp_dst) = *((t_ulong*)tmp_src);
 		len -= 8;
 	}
 	while (len > 0)
 	{
-		VOIDMM(tmp_dst);
-		VOIDMM(tmp_src);
+		tmp_dst--;
+		tmp_src--;
 		*((t_byte*)tmp_dst) = *((t_byte*)tmp_src);
 		len--;
 	}

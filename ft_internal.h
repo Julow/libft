@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_internal.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/29 19:29:07 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/29 19:29:08 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
+/*   Updated: 2014/12/30 19:49:41 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_INTERNAL_H
+# define FT_INTERNAL_H
 
-void			ft_lstadd(t_list **alst, t_list *add)
-{
-	if (alst == NULL || add == NULL)
-		return ;
-	add->next = *alst;
-	*alst = add;
-}
+# include "libft.h"
+
+#endif
