@@ -55,8 +55,12 @@ re: fclean all
 
 rebug: fclean debug
 
+update: fclean
+	@cd .. ; git subtree pull --prefix=libft --squash \
+		git@github.com:Julow/libft.git master
+
 _debug:
 	$(eval FLAGS = -Wall -Wextra -g)
 	$(eval DEBUG = 1)
 
-.PHONY: all debug clean fclean re rebug _debug
+.PHONY: all debug clean fclean re rebug update _debug
