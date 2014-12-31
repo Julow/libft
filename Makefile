@@ -20,8 +20,8 @@ FLAGS = -Wall -Wextra -Werror -O2
 LINKS = -I$(H_DIR)
 DEBUG = 0
 
-C_FILES = $(shell find $(C_DIR) -regex ".+\.c" -print)
-C_DIRS = $(shell find $(C_DIR) -type d -regex ".+/.+" -print)
+C_FILES = $(shell find -E $(C_DIR) -regex ".+\.c" -print)
+C_DIRS = $(shell find -E $(C_DIR) -type d -regex ".+/.+" -print)
 
 O_DIRS = $(C_DIRS:$(C_DIR)%=$(O_DIR)%)
 O_FILES = $(C_FILES:$(C_DIR)%.c=$(O_DIR)%.o)
@@ -33,13 +33,13 @@ all:
 
 $(NAME): $(O_FILES)
 	@ar rcs $@ $^ && printf "\033[0;32m" || printf "\033[0;31m"
-	@printf "%-33s\033[1;30m<<--\033[0;0m\n" "$@"
+	@printf "%-34s\033[1;30m<<--\033[0;0m\n" "$@"
 
 $(O_DIR)%.o: $(C_DIR)%.c
 	@mkdir -p $(O_DIRS) $(O_DIR) 2> /dev/null || echo "" > /dev/null
 	@gcc $(FLAGS) $(LINKS) -o $@ -c $< \
-	&& printf "\033[0;0m%-33s\033[1;30m-->>\t\033[0;32m$@\033[0;0m\n" "$<" \
-	|| (printf "\033[0;0m%-33s\033[1;30m-->>\t\033[0;31m$@\033[0;0m\n" "$<" \
+	&& printf "\033[0;0m%-34s\033[1;30m-->>\t\033[0;32m$@\033[0;0m\n" "$<" \
+	|| (printf "\033[0;0m%-34s\033[1;30m-->>\t\033[0;31m$@\033[0;0m\n" "$<" \
 		&& exit 1)
 
 debug: _debug all
