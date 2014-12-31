@@ -210,11 +210,6 @@ int				ft_strncmp(const char *s1, const char *s2, t_uint n);
 t_bool			ft_strequ(const char *s1, const char *s2);
 t_bool			ft_strnequ(const char *s1, const char *s2, t_uint n);
 
-t_uint			ft_strskip(const char *str, const char *skip);
-t_uint			ft_strcskip(const char *str, const char *skip);
-t_uint			ft_strskipe(const char *str, const char *skip);
-t_uint			ft_strcskipe(const char *str, const char *skip);
-
 void			ft_strnadd(char **str, const char *add, t_uint len);
 
 t_bool			ft_isalpha(char c);
@@ -236,6 +231,11 @@ int				ft_strchri(const char *str, char c);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strstr(const char *s1, const char *s2);
 char			*ft_strnstr(const char *s1, const char *s2, t_uint n);
+
+t_uint			ft_strskip(const char *str, const char *skip);
+t_uint			ft_strcskip(const char *str, const char *skip);
+t_uint			ft_strskipe(const char *str, const char *skip);
+t_uint			ft_strcskipe(const char *str, const char *skip);
 
 t_bool			ft_match(char *str, char *pattern);
 int				ft_nmatch(char *str, char *pattern);

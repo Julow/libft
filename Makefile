@@ -33,13 +33,13 @@ all:
 
 $(NAME): $(O_FILES)
 	@ar rcs $@ $^ && printf "\033[0;32m" || printf "\033[0;31m"
-	@printf "%-24s\033[1;30m<<--\033[0;0m\n" "$@"
+	@printf "%-33s\033[1;30m<<--\033[0;0m\n" "$@"
 
 $(O_DIR)%.o: $(C_DIR)%.c
 	@mkdir -p $(O_DIRS) $(O_DIR) 2> /dev/null || echo "" > /dev/null
 	@gcc $(FLAGS) $(LINKS) -o $@ -c $< \
-	&& printf "\033[0;0m%-24s\033[1;30m-->>\t\033[0;32m$@\033[0;0m\n" "$<" \
-	|| (printf "\033[0;0m%-24s\033[1;30m-->>\t\033[0;31m$@\033[0;0m\n" "$<" \
+	&& printf "\033[0;0m%-33s\033[1;30m-->>\t\033[0;32m$@\033[0;0m\n" "$<" \
+	|| (printf "\033[0;0m%-33s\033[1;30m-->>\t\033[0;31m$@\033[0;0m\n" "$<" \
 		&& exit 1)
 
 debug: _debug all
