@@ -12,18 +12,18 @@
 
 #include "libft.h"
 
-char			*ft_itobase(t_long nb, const char *base)
+char			*ft_itobase(t_ulong nb, const char *base)
 {
 	int				base_len;
 	char			*str;
 	int				i;
-	t_long			tmp;
+	t_ulong			tmp;
 
 	base_len = ft_strlen(base);
 	if (nb == 0 || base_len == 0)
 		return (ft_strdup("0"));
 	tmp = nb;
-	i = (nb < 0) ? 2 : 1;
+	i = 1;
 	while ((tmp /= base_len) != 0)
 		i++;
 	if ((str = MAL(char, i + 1)) == NULL)
@@ -32,10 +32,8 @@ char			*ft_itobase(t_long nb, const char *base)
 	tmp = nb;
 	while (--i >= 0)
 	{
-		str[i] = base[((nb < 0) ? -(tmp % base_len) : tmp % base_len)];
+		str[i] = base[tmp % base_len];
 		tmp /= base_len;
 	}
-	if (nb < 0)
-		str[0] = '-';
 	return (str);
 }

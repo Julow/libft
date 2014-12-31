@@ -264,8 +264,8 @@ double			ft_atod(const char *str);
 char			*ft_itoa(int n);
 char			*ft_ltoa(t_long n);
 
-char			*ft_itobase(t_long nb, const char *base);
-t_long			ft_basetoi(const char *str, const char *base);
+char			*ft_itobase(t_ulong nb, const char *base);
+t_ulong			ft_basetoi(const char *str, const char *base);
 
 int				ft_toupper(int c);
 int				ft_tolower(int c);
