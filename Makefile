@@ -20,8 +20,8 @@ FLAGS = -Wall -Wextra -Werror -O2
 LINKS = -I$(H_DIR)
 DEBUG = 0
 
-C_FILES = $(shell find -E $(C_DIR) -regex ".+\.c" -print)
-C_DIRS = $(shell find -E $(C_DIR) -type d -regex ".+/.+" -print)
+C_FILES = $(shell find $(C_DIR) -type f -print | grep "\.c")
+C_DIRS = $(shell find $(C_DIR) -type d -print)
 
 O_DIRS = $(C_DIRS:$(C_DIR)%=$(O_DIR)%)
 O_FILES = $(C_FILES:$(C_DIR)%.c=$(O_DIR)%.o)
