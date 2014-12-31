@@ -57,7 +57,7 @@ rebug: fclean debug
 
 update: fclean
 	@cd .. ; git subtree pull --prefix=libft --squash \
-		git@github.com:Julow/libft.git master
+		git@github.com:Julow/libft.git master -m "Update libft"
 
 _debug:
 	$(eval FLAGS = -Wall -Wextra -g)
