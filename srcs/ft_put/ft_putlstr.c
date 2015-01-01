@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-void			ft_putlstr(const char *s, int len)
+int				ft_putlstr(const char *s, int len)
 {
-	ft_putlstr_fd(s, len, 1);
+	return (write(1, s, len));
 }

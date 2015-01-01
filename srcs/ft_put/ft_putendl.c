@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-void			ft_putendl(const char *s)
+int				ft_putendl(const char *s)
 {
-	ft_putendl_fd(s, 1);
+	return (ft_putstr(s) + ft_putchar('\n'));
 }

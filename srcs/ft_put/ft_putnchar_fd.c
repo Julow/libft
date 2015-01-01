@@ -11,14 +11,13 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-void			ft_putnchar_fd(char c, int n, int fd)
+int				ft_putnchar_fd(char c, int n, int fd)
 {
 	char			chars[n];
-	int				i;
 
-	i = -1;
-	while (++i < n)
-		chars[i] = c;
-	ft_putlstr_fd(chars, n, fd);
+	while (n-- > 0)
+		chars[n] = c;
+	return (write(fd, chars, n));
 }

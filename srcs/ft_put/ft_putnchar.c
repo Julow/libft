@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void			ft_putnchar(char c, int n)
+int				ft_putnchar(char c, int n)
 {
-	ft_putnchar_fd(c, n, 1);
+	return (ft_putnchar_fd(c, n, 1));
 }

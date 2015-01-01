@@ -276,18 +276,18 @@ void			ft_strupper(char *str);
 /*
 ** Write
 */
-void			ft_putchar(char c);
-void			ft_putnchar(char c, int n);
-void			ft_putstr(const char *s);
-void			ft_putlstr(const char *s, int len);
-void			ft_putendl(const char *s);
-void			ft_putnbr(int n);
-void			ft_putchar_fd(char c, int fd);
-void			ft_putnchar_fd(char c, int n, int fd);
-void			ft_putstr_fd(const char *s, int fd);
-void			ft_putlstr_fd(const char *s, int len, int fd);
-void			ft_putendl_fd(const char *s, int fd);
-void			ft_putnbr_fd(int n, int fd);
+int				ft_putchar(char c);
+int				ft_putnchar(char c, int n);
+int				ft_putstr(const char *s);
+int				ft_putlstr(const char *s, int len);
+int				ft_putendl(const char *s);
+int				ft_putnbr(int n);
+int				ft_putchar_fd(char c, int fd);
+int				ft_putnchar_fd(char c, int n, int fd);
+int				ft_putstr_fd(const char *s, int fd);
+int				ft_putlstr_fd(const char *s, int len, int fd);
+int				ft_putendl_fd(const char *s, int fd);
+int				ft_putnbr_fd(int n, int fd);
 
 /*
 ** Store mem using the struct s_list (t_list)
