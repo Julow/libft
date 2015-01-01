@@ -226,7 +226,8 @@ t_bool			ft_isnumber(const char *str);
 /*
 ** String search
 */
-char			*ft_strchr(const char *s, int c);
+char			*ft_strchr(const char *s, char c);
+char			*ft_strnchr(const char *s, char c, int len);
 int				ft_strchri(const char *str, char c);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strstr(const char *s1, const char *s2);
