@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 char			*ft_itobase(t_ulong nb, const char *base)
 {

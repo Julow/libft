@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 char			*ft_strmap(const char *s, char (*f)(char))
 {

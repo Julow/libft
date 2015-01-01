@@ -13,8 +13,8 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# define MAL(t,l)		((t*)ft_malloc(sizeof(t) * (l)))
-# define MAL1(t)		((t*)ft_malloc(sizeof(t)))
+# define MAL(t,l)		((t*)malloc(sizeof(t) * (l)))
+# define MAL1(t)		((t*)malloc(sizeof(t)))
 
 # define S(t,l)			(sizeof(t) * (l))
 
@@ -175,8 +175,6 @@ typedef struct	s_pos
 /*
 ** Memory
 */
-void			*ft_malloc(t_uint size);
-
 void			ft_bzero(void *s, t_uint n);
 t_ulong			*ft_memalign(void *mem, const void *data, t_uint *len);
 void			*ft_memset(void *b, int c, t_uint len);

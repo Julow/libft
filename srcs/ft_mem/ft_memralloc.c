@@ -19,7 +19,7 @@ void			ft_memralloc(void **mem, t_uint len, t_uint newlen)
 
 	if (mem == NULL)
 		return ;
-	tmp = ft_malloc(newlen);
+	tmp = malloc(newlen);
 	if (*mem != NULL)
 	{
 		ft_memcpy(tmp, *mem, MIN(len, newlen));
