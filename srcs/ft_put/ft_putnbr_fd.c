@@ -10,27 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_internal.h"
+#include <unistd.h>
 
-void			ft_putnbr_fd(int n, int fd)
+int				ft_putnbr_fd(int n, int fd)
 {
-	char			nb[10];
-	int				tmp;
+	char			nb[PUTNBR_BUFF];
 	t_uint			i;
-	t_uint			len;
 
-	tmp = n;
-	len = (n < 0) ? 2 : 1;
-	while ((tmp /= 10) != 0)
-		len++;
-	tmp = n;
-	i = len;
-	while (i-- > 0)
+	i = PUTNBR_BUFF;
+	nb[0] = (n < 0) ? '-' : '+';
+	if (n <= 0)
 	{
-		nb[i] = '0' + ((n < 0) ? -(tmp % 10) : tmp % 10);
-		tmp /= 10;
+		nb[--i] = '0' - (n % 10);
+		n /= -10;
 	}
-	if (n < 0)
-		nb[0] = '-';
-	ft_putlstr_fd(nb, len, fd);
+	while (n != 0)
+	{
+		nb[--i] = '0' + (n % 10);
+		n /= 10;
+	}
+	if (nb[0] == '-')
+		nb[--i] = '-';
+	return (write(fd, nb + i, PUTNBR_BUFF - i));
 }
