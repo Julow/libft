@@ -282,12 +282,14 @@ int				ft_putstr(const char *s);
 int				ft_putlstr(const char *s, int len);
 int				ft_putendl(const char *s);
 int				ft_putnbr(int n);
+int				ft_putlong(t_long n);
 int				ft_putchar_fd(char c, int fd);
 int				ft_putnchar_fd(char c, int n, int fd);
 int				ft_putstr_fd(const char *s, int fd);
 int				ft_putlstr_fd(const char *s, int len, int fd);
 int				ft_putendl_fd(const char *s, int fd);
 int				ft_putnbr_fd(int n, int fd);
+int				ft_putlong_fd(t_long n, int fd);
 
 /*
 ** Store mem using the struct s_list (t_list)
