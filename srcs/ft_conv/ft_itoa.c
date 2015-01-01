@@ -10,26 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_internal.h"
 
 char			*ft_itoa(int n)
 {
-	char			*str;
-	int				tmp;
+	char			nb[PUTNBR_BUFF];
 	t_uint			i;
 
-	tmp = n;
-	i = (tmp < 0) ? 2 : 1;
-	while ((tmp /= 10) != 0)
-		i++;
-	str = ft_strnew(i);
-	tmp = n;
-	while (i-- > 0)
+	i = PUTNBR_BUFF;
+	nb[0] = (n < 0) ? '-' : '+';
+	if (n <= 0)
 	{
-		str[i] = '0' + ((n < 0) ? -(n % 10) : n % 10);
+		nb[--i] = '0' - (n % 10);
+		n /= -10;
+	}
+	while (n != 0)
+	{
+		nb[--i] = '0' + (n % 10);
 		n /= 10;
 	}
-	if (tmp < 0)
-		str[0] = '-';
-	return (str);
+	if (nb[0] == '-')
+		nb[--i] = '-';
+	return (ft_strndup(nb + i, PUTNBR_BUFF - i));
 }
