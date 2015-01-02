@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/09 23:43:53 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/09 23:43:53 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/02 16:33:37 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ void			ft_stringaddde(t_string *str, double d, int preci)
 {
 	int				p;
 
-	if (d < 0)
+	if (ISNAN(d))
 	{
-		ft_stringaddc(str, '-');
-		d = -d;
+		ft_stringadd(str, "nan");
+		return ;
 	}
+	if (d < 0 && (d = -1) == -1)
+		ft_stringaddc(str, '-');
 	p = 0;
 	while (d > 10)
 	{
