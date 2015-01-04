@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/02 16:25:42 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/04 23:29:48 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -401,13 +401,14 @@ int				ft_stringputfd(t_string *str, int const fd);
 ** Math
 */
 int				ft_mix(int a, int b, t_big pos);
+int				ft_max(int a, int b);
+
+void			ft_resalpha(t_color *c, t_color bg);
+void			ft_resrect(t_rect *rect, t_rect bounds);
 
 /*
 ** Draw on struct s_image (t_image)
 */
-void			ft_resalpha(t_color *c, t_color bg);
-void			ft_resrect(t_rect *rect, t_rect bounds);
-
 t_color			ft_imagept(t_image *img, t_pt pt);
 t_color			ft_imagepos(t_image *img, int pos);
 void			ft_imageput(t_image *img, int pos, t_color color);
