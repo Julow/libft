@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/04 23:29:48 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/05 12:25:20 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -431,5 +431,10 @@ void			ft_drawcircle(t_image *img, t_pt o, int radius, t_color color);
 void			ft_drawcirclef(t_image *img, t_pt o, int radius, t_color color);
 void			ft_drawtri(t_image *img, t_pt pts[3], t_color color);
 void			ft_drawtrif(t_image *img, t_pt pts[3], t_color color);
+
+/*
+** get_next_line
+*/
+int				get_next_line(int const fd, char **line);
 
 #endif

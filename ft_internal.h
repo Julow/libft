@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/30 19:49:41 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/05 12:24:39 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,20 @@
 
 # define PUTNBR_BUFF	11
 # define PUTLONG_BUFF	21
+
+# define GNL_BUFF		192
+
+# define GNL_SUCCES		1
+# define GNL_EOF		0
+# define GNL_ERROR		-1
+
+typedef struct	s_gnlfd
+{
+	char			*buff;
+	int				fd;
+	int				length;
+	int				offset;
+	struct s_gnlfd	*next;
+}				t_gnlfd;
 
 #endif
