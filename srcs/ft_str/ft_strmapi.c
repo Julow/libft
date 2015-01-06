@@ -6,16 +6,16 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 14:34:05 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/04 14:34:05 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/06 13:24:25 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-char			*ft_strmapi(const char *s, char (*f)(t_uint, char))
+char			*ft_strmapi(const char *s, char (*f)(int, char))
 {
-	t_uint			i;
+	int				i;
 	char			*str;
 
 	if (s == NULL)

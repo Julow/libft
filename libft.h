@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/05 12:25:20 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/06 13:24:51 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,9 +253,9 @@ t_uint			ft_strlcat(char *dst, const char *src, t_uint size);
 void			ft_strdel(char **as);
 void			ft_strclr(char *s);
 void			ft_striter(char *s, void (*f)(char*));
-void			ft_striteri(char *s, void (*f)(t_uint, char*));
+void			ft_striteri(char *s, void (*f)(int, char*));
 char			*ft_strmap(const char *s, char (*f)(char));
-char			*ft_strmapi(const char *s, char (*f)(t_uint, char));
+char			*ft_strmapi(const char *s, char (*f)(int, char));
 
 /*
 ** Conversion

@@ -6,15 +6,15 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 14:26:51 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/04 14:26:51 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/06 13:24:18 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_striteri(char *s, void (*f)(t_uint, char*))
+void			ft_striteri(char *s, void (*f)(int, char*))
 {
-	t_uint			i;
+	int				i;
 
 	i = 0;
 	while (s != NULL && f != NULL && s[i] != '\0')
