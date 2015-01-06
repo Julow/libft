@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/05 12:24:39 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/06 23:05:01 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_gnlfd
 	int				fd;
 	int				length;
 	int				offset;
+	int				i;
 	struct s_gnlfd	*next;
 }				t_gnlfd;
 
