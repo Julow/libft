@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/01 13:45:19 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/01 13:45:20 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/07 18:17:07 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 int				ft_putnchar_fd(char c, int n, int fd)
 {
-	char			chars[n];
+	const int		len = MAX(n, 0);
+	char			chars[len];
 
 	while (n-- > 0)
 		chars[n] = c;
-	return (write(fd, chars, n));
+	return (write(fd, chars, len));
 }
