@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/06 13:24:51 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/09 11:31:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@
 # define IGNORE(f)		((void)((f) + 1))
 
 # define ISNAN(d)		((d) != (d))
+
+# ifdef DEBUG_MODE
+#  define DEBUG(d, ...) ft_fdprintf(2, d, ##__VA_ARGS__)
+# else
+#  define DEBUG(d, ...)
+# endif
 
 # ifndef TRUE
 #  define TRUE			1
@@ -436,5 +442,40 @@ void			ft_drawtrif(t_image *img, t_pt pts[3], t_color color);
 ** get_next_line
 */
 int				get_next_line(int const fd, char **line);
+
+/*
+** =============
+** A format sequence be like:
+**    %[flags][width][.precision]format
+** flags can be 0 or more: '#', ' ', '-', '+', '^', '0', ''', '>', 'm', 'M', 'T'
+** width is a positive integer
+** precision is a positive integer or '*', precision start with '.'
+** format can be one of "%sSdDoOuUxXicCnp"
+** =============
+** =
+** =
+** ft_printf
+** =============
+** Process the format sequence like printf and print the result to stdout
+** =============
+** Return the total of char printed.
+** =
+** =
+** ft_printf_fd
+** =============
+** Like ft_printf but the result is printed to the fd 'fd'
+** =============
+** Return the total of char printed.
+** =
+** =
+** ft_stringf
+** =============
+** Like ft_printf but the result return in a t_string
+** =============
+** A t_string containing the result.
+*/
+int				ft_printf(const char *format, ...);
+int				ft_fdprintf(const int fd, const char *format, ...);
+t_string		*ft_stringf(const char *format, ...);
 
 #endif
