@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 11:59:38 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/09 12:53:54 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,8 @@ int				ft_strcmp(const char *s1, const char *s2);
 int				ft_strncmp(const char *s1, const char *s2, t_uint n);
 t_bool			ft_strequ(const char *s1, const char *s2);
 t_bool			ft_strnequ(const char *s1, const char *s2, t_uint n);
+t_bool			ft_strcase(const char *s1, const char *s2);
+t_bool			ft_strncase(const char *s1, const char *s2, t_uint n);
 
 void			ft_strnadd(char **str, const char *add, t_uint len);
 
@@ -349,6 +351,7 @@ void			*ft_arrayrem(t_array *array, int index);
 void			*ft_arraypop(t_array *array);
 int				ft_arraychr(t_array *array, const void *chr);
 void			ft_arrayapp(t_array *array, const t_array *app);
+t_array			*ft_arraydup(const t_array *array);
 void			ft_arrayfree(t_array *array);
 void			ft_arrayclr(void *array, void (*f)(void *data));
 void			ft_arraykil(void *array, void (*f)(void *data));
