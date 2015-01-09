@@ -6,11 +6,23 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/05 17:08:10 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 11:35:13 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/09 11:47:39 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
+
+t_uint			ft_wstrlen(wchar_t *wstr)
+{
+	t_uint			i;
+
+	if (wstr == NULL)
+		return (0);
+	i = 0;
+	while (wstr[i] != '\0')
+		i++;
+	return (i);
+}
 
 void			ft_stringaddupper(t_string *str, const char *add, int len)
 {

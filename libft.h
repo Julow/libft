@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 11:31:29 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/09 11:45:48 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,6 +280,10 @@ int				ft_toupper(int c);
 int				ft_tolower(int c);
 void			ft_strlower(char *str);
 void			ft_strupper(char *str);
+
+int				ft_wstrconv(char *buff, int *wstr);
+int				ft_wstrnconv(char *buff, int *wstr, int n);
+int				ft_widetoa(char *buff, int w);
 
 /*
 ** Write

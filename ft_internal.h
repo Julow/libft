@@ -6,19 +6,22 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 11:33:13 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/09 11:47:53 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_INTERNAL_H
 # define FT_INTERNAL_H
 
+# include "libft.h"
+
+# include <stdarg.h>
+# include <wchar.h>
+
 /*
 ** =============
 ** libft
 */
-
-# include "libft.h"
 
 # define PUTNBR_BUFF	11
 # define PUTLONG_BUFF	21
@@ -48,9 +51,6 @@ typedef struct	s_gnlfd
 ** =============
 ** ft_printf
 */
-
-# include <stdarg.h>
-# include <wchar.h>
 
 # define HASF(c)	(ft_strchr(opt->flags, (c)) != NULL)
 
@@ -100,6 +100,7 @@ int				parse_format(t_string *out, const char *format, va_list *ap);
 
 int				parse_meta(t_string *out, const char *format);
 
+t_uint			ft_wstrlen(wchar_t *wstr);
 void			ft_stringaddupper(t_string *str, const char *add, int len);
 void			ft_stringaddlower(t_string *str, const char *add, int len);
 int				ft_atoin(const char *str, int len);
@@ -109,11 +110,6 @@ void			add_nchar(t_string *out, char c, int len, t_opt *opt);
 void			pad_preci(t_string *str, int start, t_opt *opt);
 t_bool			is_separator(char c);
 void			clear_dis(t_opt *opt);
-
-t_uint			ft_wstrlen(wchar_t *wstr);
-int				ft_wstrconv(char *buff, wchar_t *wstr);
-int				ft_wstrnconv(char *buff, wchar_t *wstr, int n);
-int				ft_widetoa(char *buff, wchar_t w);
 
 t_long			get_arg(t_opt *opt, va_list *ap);
 t_ulong			get_unsigned_arg(t_opt *opt, va_list *ap);

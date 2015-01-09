@@ -1,60 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wutils.c                                           :+:      :+:    :+:   */
+/*   ft_widetoa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/02 17:45:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 11:34:01 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/01/09 11:38:19 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/01/09 11:45:30 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_internal.h"
+#include "libft.h"
 
-t_uint			ft_wstrlen(wchar_t *wstr)
-{
-	t_uint			i;
-
-	if (wstr == NULL)
-		return (0);
-	i = 0;
-	while (wstr[i] != '\0')
-		i++;
-	return (i);
-}
-
-int				ft_wstrconv(char *buff, wchar_t *wstr)
-{
-	int				i;
-	int				len;
-
-	len = 0;
-	i = -1;
-	while (wstr[++i] != 0)
-		len += ft_widetoa(buff + len, wstr[i]);
-	return (len);
-}
-
-int				ft_wstrnconv(char *buff, wchar_t *wstr, int n)
-{
-	int				i;
-	int				tmp;
-	int				len;
-
-	len = 0;
-	i = -1;
-	while (wstr[++i] != 0)
-	{
-		tmp = ft_widetoa(buff + len, wstr[i]);
-		if ((tmp + len) > n)
-			break ;
-		len += tmp;
-	}
-	return (len);
-}
-
-int				ft_widetoa(char *buff, wchar_t w)
+int				ft_widetoa(char *buff, int w)
 {
 	if (w < 0x80)
 		return (*buff = ((w & 0x7F) | 0), 1);
