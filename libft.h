@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 12:53:54 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/10 18:22:05 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@
 # define ISNAN(d)		((d) != (d))
 
 # ifdef DEBUG_MODE
-#  define DEBUG(d, ...) ft_debug(#__FILE__, #__LINE__, d, ##__VA_ARGS__)
+#  define DEBUG(d, ...) ft_debug(__func__, __FILE__, __LINE__, d, __VA_ARGS__)
+#  define TRACE			ft_debug(__func__, __FILE__, __LINE__, NULL)
 # else
 #  define DEBUG(d, ...)
+#  define TRACE
 # endif
 
 # ifndef TRUE
@@ -484,6 +486,6 @@ int				get_next_line(int const fd, char **line);
 int				ft_printf(const char *format, ...);
 int				ft_fdprintf(const int fd, const char *format, ...);
 t_string		*ft_stringf(const char *format, ...);
-void			ft_debug(char *file, int line, const char *format, ...);
+void			ft_debug(const char *c, char *f, int l, const char *s, ...);
 
 #endif
