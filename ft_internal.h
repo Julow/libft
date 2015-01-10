@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/10 18:03:33 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/10 19:38:27 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,6 @@ typedef struct	s_gnlfd
 # define HASF(c)	(ft_strchr(opt->flags, (c)) != NULL)
 
 # define LONG_BUFF	(40)
-
-typedef struct	s_ldouble_bits
-{
-	t_ulong			fract:64;
-	t_uint			e:15;
-	t_bool			sign:1;
-}				t_ldouble_bits;
-
-typedef union	u_ldouble
-{
-	t_ldouble_bits	b;
-	long double		d;
-}				t_ldouble;
-
-# define EXP(d)		((((t_ldouble)(d)).b).e)
 
 typedef struct	s_format
 {
@@ -128,6 +113,5 @@ void			flag_e(t_string *out, t_opt *opt, va_list *ap);
 void			flag_f(t_string *out, t_opt *opt, va_list *ap);
 void			flag_b(t_string *out, t_opt *opt, va_list *ap);
 void			flag_r(t_string *out, t_opt *opt, va_list *ap);
-void			flag_g(t_string *out, t_opt *opt, va_list *ap);
 
 #endif
