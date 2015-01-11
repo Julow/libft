@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/11 17:37:34 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/11 17:41:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -475,7 +475,7 @@ void			ft_drawtrif(t_image *img, t_pt pts[3], t_color color);
 /*
 ** get_next_line
 */
-int				get_next_line(int const fd, char **line);
+int				get_next_line(int const fd, t_buff *line);
 
 /*
 ** =============
