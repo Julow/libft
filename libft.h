@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/11 17:45:46 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/11 19:19:31 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -431,11 +431,13 @@ int				ft_stringputfd(t_string *str, int const fd);
 ** macro BUFF() init a t_buff
 */
 void			ft_parse(t_buff *buff, const char *parse);
+void			ft_parsenot(t_buff *buff, const char *parse);
 t_buff			ft_parsesub(t_buff *buff, const char *parse);
 int				ft_parseint(t_buff *buff);
 t_long			ft_parselong(t_buff *buff);
 double			ft_parsedouble(t_buff *buff);
 void			ft_parsespace(t_buff *buff);
+t_bool			ft_parsestr(t_buff *buff, const char *str);
 
 /*
 ** Math
