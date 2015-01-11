@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/11 17:41:58 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/11 17:45:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -460,6 +460,7 @@ void			ft_imageclonekil(t_image *clone);
 void			ft_drawxy(t_image *img, int x, int y, t_color color);
 void			ft_drawpt(t_image *img, t_pt pt, t_color color);
 void			ft_drawnpt(t_image *img, t_pt pt, int n, t_color color);
+void			ft_drawvert(t_image *img, t_pt pt, int height, t_color color);
 
 void			ft_drawimage(t_image *dst, t_image *src, t_pt pos, t_rect part);
 
