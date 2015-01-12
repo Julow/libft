@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 16:40:16 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/11 16:40:17 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:26:12 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_drawxy(t_image *img, int x, int y, t_color color)
+inline void		ft_drawxy(t_image *img, int x, int y, t_color color)
 {
 	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
 		return ;

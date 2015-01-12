@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 16:08:59 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 16:09:00 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:33:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int				ft_toupper(int c)
+inline int		ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')
 		c -= 32;

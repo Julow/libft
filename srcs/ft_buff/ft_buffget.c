@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 20:47:21 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/12 21:22:21 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:16:42 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /*
 ** Like ft_readbuff() but don't increment the buff index
 */
-char			ft_buffget(t_buff *buff)
+inline char		ft_buffget(t_buff *buff)
 {
 	if (buff->i >= buff->length)
 	{

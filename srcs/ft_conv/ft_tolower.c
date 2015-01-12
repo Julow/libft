@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 16:14:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 16:14:18 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:33:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int				ft_tolower(int c)
+inline int		ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
 		c += 32;

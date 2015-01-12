@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 17:45:04 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/04 17:45:06 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:32:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int				ft_putnbr(int n)
+inline int		ft_putnbr(int n)
 {
 	return (ft_putnbr_fd(n, 1));
 }

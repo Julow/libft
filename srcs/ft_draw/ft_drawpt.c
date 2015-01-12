@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 15:51:49 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/11 15:51:49 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:26:27 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_drawpt(t_image *img, t_pt pt, t_color color)
+inline void		ft_drawpt(t_image *img, t_pt pt, t_color color)
 {
 	if (pt.x < 0 || pt.x >= img->width || pt.y < 0 || pt.y >= img->height)
 		return ;

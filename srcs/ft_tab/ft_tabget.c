@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/14 22:04:24 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/14 22:04:24 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:30:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			*ft_tabget(t_tab *tab, int index)
+inline void		*ft_tabget(t_tab *tab, int index)
 {
 	return (tab->data + (index * tab->size));
 }

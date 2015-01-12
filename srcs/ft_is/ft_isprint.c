@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 15:45:35 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 15:45:39 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:34:40 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_bool			ft_isprint(char c)
+inline t_bool	ft_isprint(char c)
 {
 	if (c >= ' ' && c <= '~')
 		return (TRUE);

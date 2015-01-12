@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 16:09:23 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/11 16:09:23 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:24:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_resrect(t_rect *rect, t_rect bounds)
+inline void		ft_resrect(t_rect *rect, t_rect bounds)
 {
 	if (rect->width < 0)
 	{

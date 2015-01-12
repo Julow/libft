@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 18:11:43 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/17 18:11:44 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:25:54 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_color			ft_imagept(t_image *img, t_pt pt)
+inline t_color	ft_imagept(t_image *img, t_pt pt)
 {
 	t_color			c;
 	int				pos;

@@ -6,17 +6,16 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/18 14:55:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/18 14:55:41 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:25:23 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_imageput(t_image *img, int pos, t_color color)
+inline void		ft_imageput(t_image *img, int pos, t_color color)
 {
-	int				to;
+	const int		to = pos + img->opp;
 
-	to = pos + img->opp;
 	while (pos < to)
 	{
 		img->data[pos] = color.b.b;

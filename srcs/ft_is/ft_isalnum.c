@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 15:35:22 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 15:35:23 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:35:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_bool			ft_isalnum(char c)
+inline t_bool	ft_isalnum(char c)
 {
 	return (ft_isdigit(c) || ft_isalpha(c));
 }

@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/14 22:04:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/14 22:04:39 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:30:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_tabaddn(t_tab *tab, const void *add, int n)
+inline void		ft_tabaddn(t_tab *tab, const void *add, int n)
 {
 	const int		bytes = tab->size * n;
 

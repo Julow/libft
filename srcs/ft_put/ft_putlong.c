@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/01 18:51:45 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/01 18:51:45 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:32:32 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int				ft_putlong(t_long n)
+inline int		ft_putlong(t_long n)
 {
 	return (ft_putlong_fd(n, 1));
 }

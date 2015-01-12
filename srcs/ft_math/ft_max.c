@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/04 23:29:03 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/04 23:29:26 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:24:48 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int				ft_max(int a, int b)
+inline int		ft_max(int a, int b)
 {
 	return ((a > b) ? a : b);
 }

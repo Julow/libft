@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 17:25:51 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/17 17:25:52 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:24:39 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_resalpha(t_color *c, t_color bg)
+inline void		ft_resalpha(t_color *c, t_color bg)
 {
 	t_big			delta;
 

@@ -6,14 +6,14 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 17:29:59 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/04 17:30:00 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 22:32:59 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
 
-int				ft_putchar(char c)
+inline int		ft_putchar(char c)
 {
 	return (write(1, &c, 1));
 }
