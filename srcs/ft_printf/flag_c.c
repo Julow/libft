@@ -6,11 +6,12 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/27 15:27:34 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 11:35:49 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 23:30:44 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
+#include <wchar.h>
 
 static int		push_wide(char *buff, int i, wchar_t w)
 {

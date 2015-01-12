@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/12 22:35:43 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 23:29:45 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,7 @@ char			*ft_strnew(t_uint size);
 inline t_uint	ft_strlen(const char *str);
 char			*ft_strdup(const char *src);
 char			*ft_strndup(const char *src, t_uint len);
-char			*ft_strcpy(char *dst, const char *src);
+inline char		*ft_strcpy(char *dst, const char *src);
 char			*ft_strncpy(char *dst, const char *src, t_uint len);
 char			*ft_strsub(const char *s, t_uint start, t_uint len);
 char			*ft_strjoin(const char *s1, const char *s2);
@@ -297,6 +297,11 @@ inline int		ft_tolower(int c);
 void			ft_strlower(char *str);
 void			ft_strupper(char *str);
 
+/*
+** W String
+*/
+
+inline t_uint	ft_wstrlen(int *wstr);
 int				ft_wstrconv(char *buff, int *wstr);
 int				ft_wstrnconv(char *buff, int *wstr, int n);
 int				ft_widetoa(char *buff, int w);
@@ -460,6 +465,8 @@ inline int		ft_max(int a, int b);
 inline void		ft_resalpha(t_color *c, t_color bg);
 inline void		ft_resrect(t_rect *rect, t_rect bounds);
 
+inline t_pt		ft_nearest(t_pt pos, t_pt p1, t_pt p2);
+
 /*
 ** Draw on struct s_image (t_image)
 */
@@ -496,10 +503,13 @@ int				get_next_line(int const fd, t_buff *line);
 ** =============
 ** A format sequence be like:
 **    %[flags][width][.precision]format
-** flags can be 0 or more: '#', ' ', '-', '+', '^', '0', ''', '>', 'm', 'M', 'T'
+** flags can be 0 or more: '#', ' ', '-', '+', '^', '0', ''', '>', 'm', 'M'
 ** width is a positive integer
 ** precision is a positive integer or '*', precision start with '.'
-** format can be one of "%sSdDoOuUxXicCnp"
+** format can be one of "%sSdDoOuUxXicCnpfFeE"
+** A meta sequence be like:
+**    {meta_name}
+** (list of meta in srcs/ft_printf/parse_meta.c)
 ** =============
 ** =
 ** =
@@ -520,6 +530,13 @@ int				get_next_line(int const fd, t_buff *line);
 ** ft_stringf
 ** =============
 ** Like ft_printf but the result return in a t_string
+** =============
+** A t_string containing the result.
+** =
+** =
+** ft_debug
+** =============
+** Print debug, used by macros DEBUG and TRACE
 ** =============
 ** A t_string containing the result.
 */

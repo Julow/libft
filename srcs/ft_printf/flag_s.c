@@ -6,11 +6,12 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/27 13:11:08 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 11:35:22 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 23:30:36 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
+#include <wchar.h>
 
 static t_bool	s_null(t_string *out, t_opt *opt)
 {

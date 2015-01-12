@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/12 20:16:08 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 23:30:03 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@
 # include "libft.h"
 
 # include <stdarg.h>
-# include <wchar.h>
 
 /*
 ** =============
-** libft
+** ft_put
 */
 
 # define PUTNBR_BUFF	11
@@ -28,7 +27,7 @@
 
 /*
 ** =============
-** t_buff
+** ft_buff
 */
 
 # define BUFF_SIZE		192
@@ -92,7 +91,6 @@ int				parse_format(t_string *out, const char *format, va_list *ap);
 
 int				parse_meta(t_string *out, const char *format);
 
-t_uint			ft_wstrlen(wchar_t *wstr);
 void			ft_stringaddupper(t_string *str, const char *add, int len);
 void			ft_stringaddlower(t_string *str, const char *add, int len);
 int				ft_atoin(const char *str, int len);
