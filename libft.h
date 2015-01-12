@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/11 19:19:31 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/12 21:30:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # define AG(t,a,i)		((t)(((t_array*)(a))->data[i]))
 
 # define B(b)			((b)->data[(b)->i])
-# define BUFF(s,i,l)	((t_buff){(s), (i), (l)})
+# define BUFF(s,i,l)	((t_buff){(s), (i), (l), -1})
+# define FBUFF(fd)		((t_buff){MAL(char, BUFF_SIZE), 0, 0, fd})
 
 # define MIN(a,b)		(((a) < (b)) ? (a) : (b))
 # define MAX(a,b)		(((a) > (b)) ? (a) : (b))
@@ -143,6 +144,7 @@ typedef struct	s_buff
 	char			*data;
 	int				i;
 	int				length;
+	int				fd;
 }				t_buff;
 
 typedef struct	s_image
@@ -423,20 +425,30 @@ int				ft_stringput(t_string *str);
 int				ft_stringputfd(t_string *str, int const fd);
 
 /*
-** =============
 ** struct s_buff (t_buff) represent a buffer being parsed
-** 'data' is not the original malloced pointer (can't be free)
 ** 'data' may not be NULL terminated
+** == string buff ('fd' < 0)
+** 'data' is not the original malloced pointer (can't be free)
 ** macro B() return the current char
 ** macro BUFF() init a t_buff
+** == file buff ('fd' >= 0)
+** 'data' need to be the original malloced pointer (automaticaly free)
+** macro FBUFF() init a file t_buff (malloc 'data')
 */
+char			ft_readbuff(t_buff *buff);
+char			ft_buffget(t_buff *buff);
 void			ft_parse(t_buff *buff, const char *parse);
 void			ft_parsenot(t_buff *buff, const char *parse);
-t_buff			ft_parsesub(t_buff *buff, const char *parse);
+t_string		ft_parsesub(t_buff *buff, const char *parse);
+t_string		ft_parseline(t_buff *buff);
 int				ft_parseint(t_buff *buff);
 t_long			ft_parselong(t_buff *buff);
-double			ft_parsedouble(t_buff *buff);
 void			ft_parsespace(t_buff *buff);
+
+/*
+** Work only for string buff
+*/
+double			ft_parsedouble(t_buff *buff);
 t_bool			ft_parsestr(t_buff *buff, const char *str);
 
 /*

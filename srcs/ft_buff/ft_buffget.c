@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parseint.c                                      :+:      :+:    :+:   */
+/*   ft_buffget.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/11 17:32:54 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/12 21:07:17 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/01/12 20:47:21 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/01/12 21:22:21 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_internal.h"
+#include <unistd.h>
+#include <stdlib.h>
 
-int				ft_parseint(t_buff *buff)
+/*
+** Like ft_readbuff() but don't increment the buff index
+*/
+char			ft_buffget(t_buff *buff)
 {
-	int				nb;
-	t_bool			negatif;
-
-	negatif = FALSE;
-	nb = 0;
-	if ((ft_buffget(buff) == '-' && (negatif = TRUE))
-		|| ft_buffget(buff) == '+')
-		buff->i++;
-	while (ft_isdigit(ft_buffget(buff)))
-		nb = nb * 10 + (ft_readbuff(buff) - '0');
-	return (negatif ? -nb : nb);
+	if (buff->i >= buff->length)
+	{
+		if (buff->fd < 0)
+			return (EOF);
+		if ((buff->length = read(buff->fd, buff->data, BUFF_SIZE)) <= 0)
+			return (free(buff->data), (*buff = BUFF(NULL, 0, 0)), EOF);
+	}
+	return (buff->data[buff->i]);
 }
