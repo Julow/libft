@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/13 15:28:31 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/13 15:32:01 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/13 16:11:41 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_string		ft_parsesubf(t_buff *buff, t_bool (*f)(char c))
 	c = ft_buffget(buff);
 	while (c != '\0')
 	{
-		if (f((c = ft_buffget(buff))))
+		if (!f((c = ft_buffget(buff))))
 			break ;
 		ft_stringaddc(&sub, c);
 		buff->i++;
