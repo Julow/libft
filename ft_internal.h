@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/12 23:30:03 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/13 15:17:40 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@
 
 # define PUTNBR_BUFF	11
 # define PUTLONG_BUFF	21
-
-/*
-** =============
-** ft_buff
-*/
-
-# define BUFF_SIZE		192
 
 /*
 ** =============

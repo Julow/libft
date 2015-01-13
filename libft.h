@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/12 23:29:45 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/13 15:29:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define TG(t,b,i)		(*(t*)(((t_tab*)b)->data + (((t_tab*)b)->size * (i))))
 # define TI(b,i)		(((t_tab*)b)->data + (((t_tab*)b)->size * (i)))
 # define AG(t,a,i)		((t)(((t_array*)(a))->data[i]))
+
+# define BUFF_SIZE		192
 
 # define B(b)			((b)->data[(b)->i])
 # define BUFF(s,i,l)	((t_buff){(s), (i), (l), -1})
@@ -443,12 +445,16 @@ int				ft_stringputfd(t_string *str, int const fd);
 inline char		ft_readbuff(t_buff *buff);
 inline char		ft_buffget(t_buff *buff);
 void			ft_parse(t_buff *buff, const char *parse);
+void			ft_parsef(t_buff *buff, t_bool (*f)(char c));
 void			ft_parsenot(t_buff *buff, const char *parse);
 t_string		ft_parsesub(t_buff *buff, const char *parse);
+t_string		ft_parsesubf(t_buff *buff, t_bool (*f)(char c));
 t_string		ft_parseline(t_buff *buff);
+void			ft_parseendl(t_buff *buff);
 int				ft_parseint(t_buff *buff);
 t_long			ft_parselong(t_buff *buff);
 void			ft_parsespace(t_buff *buff);
+void			ft_parsewhite(t_buff *buff);
 
 /*
 ** Work only for string buff
