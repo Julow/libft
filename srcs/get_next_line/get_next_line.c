@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/05 12:23:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/11 17:43:41 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/14 11:18:22 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static int		buff_cut(t_gnlfd *gnlfd, int len, t_buff *dst, int rem)
 	gnlfd->buff[len] = '\0';
 	dst->data = gnlfd->buff;
 	dst->i = 0;
+	dst->fd = -1;
 	dst->length = len;
 	len += rem;
 	gnlfd->offset += len;
