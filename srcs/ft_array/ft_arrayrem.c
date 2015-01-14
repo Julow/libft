@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/15 16:08:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 20:11:43 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/14 11:36:13 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void			*ft_arrayrem(t_array *array, int index)
 	array->length--;
 	if (index < array->length)
 	{
-		ft_memmove(array->data + index, array->data + index + 1, sizeof(void*));
+		ft_memmove(array->data + index, array->data + index + 1,
+			S(void*, array->length - index));
 		array->data[array->length] = NULL;
 	}
 	return (tmp);
