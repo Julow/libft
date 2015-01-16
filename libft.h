@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/16 18:48:22 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 22:40:13 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,19 @@
 ** ========================================================================== **
 ** ========================================================================== **
 ** Configuration
+** ---
+** BUFF_SIZE
+** GNL_BUFF
+** ARRAY_CHUNK
+** TAB_CHUNK
+** STRING_CHUNK
+** MEM_TYPE
+** EMAL_ERROR
+** EMAL_EXIT
+** EMAL_ALL
+** ---
 */
+
 # ifdef FT_CONFIG
 #  include FT_CONFIG
 # endif
@@ -37,14 +49,29 @@
 # ifndef MEM_TYPE
 #  define MEM_TYPE		unsigned long long int
 # endif
+# ifndef EMAL_ERROR
+#  define EMAL_ERROR	"Error: not enougth memory"
+# endif
+# ifndef EMAL_EXIT
+#  define EMAL_EXIT		1
+# endif
 
 /*
 ** ========================================================================== **
 ** ========================================================================== **
 ** Macros
 */
-# define MAL(t,l)		((t*)malloc(sizeof(t) * (l)))
-# define MAL1(t)		((t*)malloc(sizeof(t)))
+
+# define EMAL(t,l)		((t*)ft_emalloc(sizeof(t) * (l)))
+# define EMAL1(t)		((t*)ft_emalloc(sizeof(t)))
+
+# ifdef EMAL_ALL
+#  define MAL			EMAL
+#  define MAL1			EMAL1
+# else
+#  define MAL(t,l)		((t*)malloc(sizeof(t) * (l)))
+#  define MAL1(t)		((t*)malloc(sizeof(t)))
+# endif
 
 # define S(t,l)			(sizeof(t) * (l))
 
@@ -240,6 +267,7 @@ typedef struct	s_pos
 ** Memory
 */
 inline void		ft_bzero(void *s, t_uint n);
+inline void		*ft_emalloc(t_uint size);
 t_ulong			*ft_memalign(void *mem, const void *data, t_uint *len);
 void			*ft_memset(void *b, int c, t_uint len);
 void			*ft_memcpy(void *dst, const void *src, t_uint len);
@@ -557,38 +585,16 @@ int				get_next_line(int const fd, t_buff *line);
 **    {meta_name}
 ** (list of meta in srcs/ft_printf/parse_meta.c)
 ** =============
-** =
-** =
 ** ft_printf
-** =============
+** ---
 ** Process the format sequence like printf and print the result to stdout
-** =============
+** ---
 ** Return the total of char printed.
-** =
-** =
-** ft_printf_fd
-** =============
-** Like ft_printf but the result is printed to the fd 'fd'
-** =============
-** Return the total of char printed.
-** =
-** =
-** ft_stringf
-** =============
-** Like ft_printf but the result return in a t_string
-** =============
-** A t_string containing the result.
-** =
-** =
-** ft_debug
-** =============
-** Print debug, used by macros DEBUG and TRACE
-** =============
-** A t_string containing the result.
 */
 int				ft_printf(const char *format, ...);
 int				ft_fdprintf(const int fd, const char *format, ...);
 t_string		*ft_stringf(const char *format, ...);
+
 void			ft_debug(const char *c, char *f, int l, const char *s, ...);
 
 #endif
