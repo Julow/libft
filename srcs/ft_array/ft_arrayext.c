@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/15 16:09:19 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/16 17:55:44 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 22:48:40 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ t_bool			ft_arrayext(t_array *array, int need)
 
 	need += array->length + 1;
 	if (need < array->alloc_length)
-		return (TRUE);
+		return (true);
 	len = array->alloc_length - 1;
 	while (need >= len)
 		len += ARRAY_CHUNK;
 	if ((tmp = MAL(void*, len)) == NULL)
-		return (FALSE);
+		return (false);
 	array->alloc_length = len;
 	if (array->data != NULL)
 	{
@@ -36,5 +36,5 @@ t_bool			ft_arrayext(t_array *array, int need)
 	else
 		ft_bzero(tmp, len);
 	array->data = tmp;
-	return (TRUE);
+	return (true);
 }

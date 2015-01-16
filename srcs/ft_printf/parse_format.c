@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/27 11:29:03 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/10 19:38:10 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 22:50:57 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ static int		parse_precision(t_opt *opt, const char *format, va_list *ap)
 	int				length;
 
 	if (*format != '.')
-		return (opt->preci_set = FALSE,
+		return (opt->preci_set = false,
 		opt->preci = 0, 0);
 	length = 1;
 	while (format[length] == '.')
@@ -129,7 +129,7 @@ static int		parse_precision(t_opt *opt, const char *format, va_list *ap)
 	}
 	while (is_separator(format[length]))
 		length++;
-	return (opt->preci_set = TRUE, length);
+	return (opt->preci_set = true, length);
 }
 
 static int		parse_length(t_opt *opt, const char *format)

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/16 22:40:13 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 22:46:59 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,19 +117,8 @@
 #  define TRACE
 # endif
 
-# ifndef TRUE
-#  define TRUE			1
-# endif
-# ifndef FALSE
-#  define FALSE			0
-# endif
-
 # ifndef NULL
 #  define NULL			((void*)0)
-# endif
-
-# ifndef ERROR
-#  define ERROR			-1
 # endif
 
 # ifndef EOF
@@ -154,7 +143,6 @@
 */
 typedef FTLONG	t_big;
 
-typedef char	t_bool;
 typedef FTUCHAR	t_byte;
 typedef FTUCHAR	t_uchar;
 typedef FTUINT	t_uint;
@@ -256,6 +244,12 @@ typedef struct	s_pos
 	double			y;
 	double			z;
 }				t_pos;
+
+typedef enum	e_bool
+{
+	false = 0,
+	true = 1
+}				t_bool;
 
 /*
 ** ========================================================================== **

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/29 17:53:38 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/29 17:53:39 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 22:49:01 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ t_bool			ft_isnumber(const char *str)
 		str++;
 	while (ft_iswhite(*str))
 		str++;
-	return (*str == '\0') ? TRUE : FALSE;
+	return (*str == '\0') ? true : false;
 }

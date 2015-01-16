@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/27 13:11:08 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/12 23:30:36 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 22:47:34 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_bool	s_null(t_string *out, t_opt *opt)
 	}
 	else
 		add_string(out, "(null)", 6, opt);
-	return (TRUE);
+	return (true);
 }
 
 static void		flag_ws(t_string *out, t_opt *opt, wchar_t *wstr)
@@ -47,7 +47,7 @@ void			flag_s(t_string *out, t_opt *opt, va_list *ap)
 	int				length;
 
 	if (opt->preci_set && opt->preci < 0)
-		opt->preci_set = FALSE;
+		opt->preci_set = false;
 	if (opt->format->name == 'S' || ft_strequ(opt->length, "l"))
 	{
 		flag_ws(out, opt, va_arg(*ap, wchar_t*));

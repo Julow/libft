@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/26 19:47:13 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 11:34:52 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 22:47:44 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void			pad_preci(t_string *str, int start, t_opt *opt)
 
 t_bool			is_separator(char c)
 {
-	return ((c == ',' || c == ';' || c == ':' || c == '_') ? TRUE : FALSE);
+	return ((c == ',' || c == ';' || c == ':' || c == '_') ? true : false);
 }
 
 void			clear_dis(t_opt *opt)

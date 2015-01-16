@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 14:48:22 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/11 14:48:23 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 22:50:39 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void			ft_drawline(t_image *img, t_pt p1, t_pt p2, t_color color)
 	delta = PT(ABS(p2.x - p1.x), -ABS(p2.y - p1.y));
 	dirr = PT((p1.x < p2.x) ? 1 : -1, (p1.y < p2.y) ? 1 : -1);
 	err = (delta.x + delta.y) * 2;
-	while (TRUE)
+	while (true)
 	{
 		ft_drawpt(img, p1, color);
 		if (err >= delta.y)

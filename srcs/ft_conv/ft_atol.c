@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   srcs/ft_atol.c                                     :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/07 23:56:18 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/07 23:56:18 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 22:47:50 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ t_long			ft_atol(const char *str)
 	t_long			nb;
 	t_bool			negatif;
 
-	negatif = FALSE;
+	negatif = false;
 	nb = 0;
 	while (ft_iswhite(*str))
 		str++;
 	if (*str == '-')
 	{
-		negatif = TRUE;
+		negatif = true;
 		str++;
 	}
 	else if (*str == '+')

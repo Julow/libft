@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/11 17:32:54 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/12 21:13:51 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 22:49:42 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ double			ft_parsedouble(t_buff *buff)
 	double			part;
 	t_bool			negatif;
 
-	negatif = (B(buff) == '-') ? TRUE : FALSE;
+	negatif = (B(buff) == '-') ? true : false;
 	if (B(buff) == '-' || B(buff) == '+')
 		buff->i++;
 	nb = 0.0;

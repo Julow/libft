@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/16 22:55:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/16 22:55:17 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 22:47:11 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@ t_bool			ft_hidenp(char *hide, char *str)
 	while (*(str++) != '\0')
 		if (*hide == *str)
 			hide++;
-	return ((*hide == '\0') ? TRUE : FALSE);
+	return ((*hide == '\0') ? true : false);
 }

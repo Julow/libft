@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/14 22:05:38 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/16 17:54:14 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 22:47:05 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ t_bool			ft_tabext(t_tab *tab, int need)
 	need = need * tab->size + tab->bytes;
 	len = tab->alloc_bytes;
 	if (need < len)
-		return (TRUE);
+		return (true);
 	while (need >= len)
 		len += TAB_CHUNK * tab->size;
 	if ((tmp = MAL(t_byte, len)) == NULL)
-		return (FALSE);
+		return (false);
 	tab->alloc_bytes = len;
 	if (tab->data != NULL)
 	{
@@ -33,5 +33,5 @@ t_bool			ft_tabext(t_tab *tab, int need)
 		free(tab->data);
 	}
 	tab->data = tmp;
-	return (TRUE);
+	return (true);
 }
