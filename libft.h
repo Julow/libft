@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/16 17:52:49 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 18:48:22 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@
 # endif
 # ifndef STRING_CHUNK
 #  define STRING_CHUNK	32
+# endif
+# ifndef MEM_TYPE
+#  define MEM_TYPE		unsigned long long int
 # endif
 
 /*

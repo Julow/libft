@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 12:20:34 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 12:20:37 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 18:47:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void			*ft_memcpy(void *dst, const void *src, t_uint len)
 		return (dst);
 	tmp_dst = dst;
 	tmp_src = (void*)src;
-	while (len > 7)
+	while (len >= sizeof(MEM_TYPE))
 	{
-		*((t_ulong*)tmp_dst) = *((t_ulong*)tmp_src);
-		tmp_dst += 8;
-		tmp_src += 8;
-		len -= 8;
+		*((MEM_TYPE*)tmp_dst) = *((MEM_TYPE*)tmp_src);
+		tmp_dst += sizeof(MEM_TYPE);
+		tmp_src += sizeof(MEM_TYPE);
+		len -= sizeof(MEM_TYPE);
 	}
 	while (len > 0)
 	{

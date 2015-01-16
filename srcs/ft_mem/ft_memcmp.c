@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 15:06:42 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 15:06:44 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 18:47:40 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int				ft_memcmp(const void *s1, const void *s2, t_uint n)
 {
-	while (n > 7)
+	while (n > sizeof(MEM_TYPE))
 	{
-		if (*((t_ulong*)s1) != *((t_ulong*)s2))
+		if (*((MEM_TYPE*)s1) != *((MEM_TYPE*)s2))
 			break ;
-		s1 += 8;
-		s2 += 8;
-		n -= 8;
+		s1 += sizeof(MEM_TYPE);
+		s2 += sizeof(MEM_TYPE);
+		n -= sizeof(MEM_TYPE);
 	}
 	while (n-- > 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 12:35:28 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 12:35:30 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 18:47:10 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void			*ft_memmove(void *dst, const void *src, t_uint len)
 		return (ft_memcpy(dst, src, len));
 	tmp_dst = dst + len;
 	tmp_src = ((void*)src) + len;
-	while (len > 7)
+	while (len >= sizeof(MEM_TYPE))
 	{
-		tmp_dst -= 8;
-		tmp_src -= 8;
-		*((t_ulong*)tmp_dst) = *((t_ulong*)tmp_src);
-		len -= 8;
+		tmp_dst -= sizeof(MEM_TYPE);
+		tmp_src -= sizeof(MEM_TYPE);
+		*((MEM_TYPE*)tmp_dst) = *((MEM_TYPE*)tmp_src);
+		len -= sizeof(MEM_TYPE);
 	}
 	while (len > 0)
 	{
