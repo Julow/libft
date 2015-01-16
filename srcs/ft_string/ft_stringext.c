@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/15 17:29:19 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/15 17:29:20 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 17:55:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ t_bool			ft_stringext(t_string *str, int need)
 		return (TRUE);
 	len = str->alloc_length - 1;
 	while (need >= len)
-		len += 24;
+		len += STRING_CHUNK;
 	if ((tmp = MAL(char, len)) == NULL)
 		return (FALSE);
 	str->alloc_length = len;
 	if (str->content != NULL)
 	{
-		ft_memmove(tmp, str->content, sizeof(char) * str->length);
+		ft_memmove(tmp, str->content, str->length);
 		ft_bzero(tmp + str->length, len - str->length);
 		free(str->content);
 	}

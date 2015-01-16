@@ -6,13 +6,40 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/13 15:29:49 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 17:52:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+/*
+** ========================================================================== **
+** ========================================================================== **
+** Configuration
+*/
+# ifdef FT_CONFIG
+#  include FT_CONFIG
+# endif
+
+# ifndef BUFF_SIZE
+#  define BUFF_SIZE		192
+# endif
+# ifndef ARRAY_CHUNK
+#  define ARRAY_CHUNK	32
+# endif
+# ifndef TAB_CHUNK
+#  define TAB_CHUNK		32
+# endif
+# ifndef STRING_CHUNK
+#  define STRING_CHUNK	32
+# endif
+
+/*
+** ========================================================================== **
+** ========================================================================== **
+** Macros
+*/
 # define MAL(t,l)		((t*)malloc(sizeof(t) * (l)))
 # define MAL1(t)		((t*)malloc(sizeof(t)))
 
@@ -21,8 +48,6 @@
 # define TG(t,b,i)		(*(t*)(((t_tab*)b)->data + (((t_tab*)b)->size * (i))))
 # define TI(b,i)		(((t_tab*)b)->data + (((t_tab*)b)->size * (i)))
 # define AG(t,a,i)		((t)(((t_array*)(a))->data[i]))
-
-# define BUFF_SIZE		192
 
 # define B(b)			((b)->data[(b)->i])
 # define BUFF(s,i,l)	((t_buff){(s), (i), (l), -1})
@@ -80,6 +105,12 @@
 # ifndef EOF
 #  define EOF			-1
 # endif
+
+/*
+** ========================================================================== **
+** ========================================================================== **
+** Types
+*/
 
 # define FTUCHAR		unsigned char
 # define FTUINT			unsigned int
@@ -195,6 +226,12 @@ typedef struct	s_pos
 	double			y;
 	double			z;
 }				t_pos;
+
+/*
+** ========================================================================== **
+** ========================================================================== **
+** Prototypes
+*/
 
 /*
 ** Memory

@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 13:05:11 by jaguillo          #+#    #+#              #
-#    Updated: 2015/01/07 12:53:46 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/01/16 17:48:18 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ O_DIR = o
 
 FLAGS = -Wall -Wextra -Werror -O2
 LINKS = -I$(H_DIR)
+CONFG =
 DEBUG = 0
 
 C_FILES = $(shell find $(C_DIR) -type f -print | grep "\.c")
@@ -37,7 +38,7 @@ $(NAME): $(O_FILES)
 
 $(O_DIR)/%.o: $(C_DIR)/%.c
 	@mkdir -p $(O_DIRS) $(O_DIR) 2> /dev/null || echo "" > /dev/null
-	@gcc $(FLAGS) $(LINKS) -o $@ -c $< \
+	@gcc $(FLAGS) $(LINKS) $(CONFG) -o $@ -c $< \
 	&& printf "\033[0;0m%-34s\033[1;30m -->>\t\033[0;32m$@\033[0;0m\n" "$<" \
 	|| (printf "\033[0;0m%-34s\033[1;30m -->>\t\033[0;31m$@\033[0;0m\n" "$<" \
 		&& exit 1)

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/13 15:17:40 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/16 17:56:51 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@
 ** get_next_line
 */
 
-# define GNL_BUFF		192
+# ifndef GNL_BUFF
+#  define GNL_BUFF		BUFF_SIZE
+# endif
 
 # define GNL_SUCCES		1
 # define GNL_EOF		0
