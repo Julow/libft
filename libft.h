@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/16 22:46:59 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/17 12:21:32 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 ** EMAL_ERROR
 ** EMAL_EXIT
 ** EMAL_ALL
+** DEBUG_MODE
 ** ---
 */
 
@@ -96,7 +97,7 @@
 # define RECT(x,y,w,h)	((t_rect){(x), (y), (w), (h)})
 
 # define C(c)			((t_color)(t_uint)(c))
-# define RGBA(r,g,b,a)	((t_rgb){(b), (g), (r), (a)})
+# define RGBA(r,g,b,a)	((t_color)((t_rgb){(b), (g), (r), (a)}))
 # define RGB(r,g,b)		RGBA(r, g, b, 255)
 # define INVI(c)		((c).u < 0x01000000)
 # define ALPHA(c)		((c).u < 0xFF000000)
@@ -131,28 +132,22 @@
 ** Types
 */
 
-# define FTUCHAR		unsigned char
-# define FTUINT			unsigned int
-# define FTLONG			long long int
-# define FTULONG		unsigned long long int
+# define TUCHAR			unsigned char
+# define TUINT			unsigned int
+# define TLONG			long long int
+# define TULONG			unsigned long long int
 
-/*
-** t_big represent a decimal number
-** it's a t_long divide by 1000000
-** ==> 9 223 372 000 000.000 000
-*/
-typedef FTLONG	t_big;
+typedef TUCHAR	t_byte;
+typedef TUCHAR	t_uchar;
+typedef TUINT	t_uint;
+typedef TLONG	t_long;
+typedef TULONG	t_ulong;
+typedef TLONG	t_big;
 
-typedef FTUCHAR	t_byte;
-typedef FTUCHAR	t_uchar;
-typedef FTUINT	t_uint;
-typedef FTLONG	t_long;
-typedef FTULONG	t_ulong;
-
-# undef FTUCHAR
-# undef FTUINT
-# undef FTLONG
-# undef FTULONG
+# undef TUCHAR
+# undef TUINT
+# undef TLONG
+# undef TULONG
 
 typedef struct	s_list
 {
@@ -222,6 +217,7 @@ typedef union	u_color
 	t_rgb			b;
 	t_uint			u;
 	int				i;
+	t_uchar			t[4];
 }				t_color;
 
 typedef struct	s_pt
