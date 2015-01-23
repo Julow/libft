@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/16 22:33:49 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/16 22:41:13 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/23 14:13:00 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@
 */
 inline void		*ft_emalloc(t_uint size)
 {
-	void*			mem;
+	void			*mem;
 
-	mem = malloc(size);
-	if (mem == NULL)
+	if ((mem = malloc(size)) == NULL)
 	{
 		ft_putstr_fd(EMAL_ERROR, 2);
 		exit(EMAL_EXIT);
