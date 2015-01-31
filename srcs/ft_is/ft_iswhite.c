@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/17 12:15:51 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/16 22:49:11 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/31 23:56:18 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-inline t_bool	ft_iswhite(char c)
+inline t_bool	ft_iswhite(int c)
 {
 	if (c == '\n' || c == ' ' || c == '\f' || c == '\t' || c == '\v'
 		|| c == '\r')

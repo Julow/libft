@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/05 14:02:50 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/16 22:49:18 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/31 23:56:21 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-inline t_bool	ft_isspace(char c)
+inline t_bool	ft_isspace(int c)
 {
 	return ((c == '\n' || c == ' ' || c == '\t') ? true : false);
 }
