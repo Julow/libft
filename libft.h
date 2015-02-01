@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/01 00:15:47 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/01 10:29:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,14 @@
 # define TI(b,i)		(((t_tab*)b)->data + (((t_tab*)b)->size * (i)))
 # define AG(t,a,i)		((t)(((t_array*)(a))->data[i]))
 
-# define B(b)			((b)->data[(b)->i])
+# define BI(b)			((b)->i < (b)->length)
+# define BG(b)			(BI(b) ? (b)->data[(b)->i] : ft_buffget(b))
+# define BR(b)			(BI(b) ? (b)->data[(b)->i++] : ft_readbuff(b))
+# define BIS(b,c)		((BG(b) == c && ++((b)->i)) ? true : false)
 # define BUFF(s,i,l)	((t_buff){(s), (i), (l), -1})
 # define FBUFF(fd)		((t_buff){MAL(char, BUFF_SIZE), 0, 0, fd})
+
+# define SUB(s,l)		((t_sub){(s), (l)})
 
 # define MIN(a,b)		(((a) < (b)) ? (a) : (b))
 # define MAX(a,b)		(((a) > (b)) ? (a) : (b))
@@ -269,6 +274,12 @@ typedef struct	s_pos
 	double			y;
 	double			z;
 }				t_pos;
+
+typedef struct	s_sub
+{
+	char			*str;
+	int				length;
+}				t_sub;
 
 typedef enum	e_bool
 {
@@ -526,19 +537,19 @@ int				ft_stringputfd(t_string *str, int const fd);
 ** 'data' may not be NULL terminated
 ** == string buff ('fd' < 0)
 ** 'data' is not the original malloced pointer (can't be free)
-** macro B() return the current char
-** macro BUFF() init a t_buff
 ** == file buff ('fd' >= 0)
 ** 'data' need to be the original malloced pointer (automaticaly free)
 ** macro FBUFF() init a file t_buff (malloc 'data')
 */
 inline char		ft_readbuff(t_buff *buff);
 inline char		ft_buffget(t_buff *buff);
+inline t_bool	ft_buffis(t_buff *buff, char c);
 void			ft_parse(t_buff *buff, const char *parse);
-void			ft_parsef(t_buff *buff, t_bool (*f)(char c));
 void			ft_parsenot(t_buff *buff, const char *parse);
+void			ft_parsef(t_buff *buff, t_bool (*f)(char c));
 t_string		ft_parsesub(t_buff *buff, const char *parse);
 t_string		ft_parsesubf(t_buff *buff, t_bool (*f)(char c));
+t_string		ft_parsesubnf(t_buff *buff, t_bool (*f)(char c));
 t_string		ft_parseline(t_buff *buff);
 void			ft_parseendl(t_buff *buff);
 int				ft_parseint(t_buff *buff);
