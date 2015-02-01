@@ -6,12 +6,41 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/17 12:21:32 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/01/31 23:56:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+/*
+** ========================================================================== **
+** ========================================================================== **
+** Cheat Sheet Shit
+** ---
+** Registers
+** ;64				32			16		[8	8]
+** ;%rax			%eax		%ax		%ah	%al 	Return 1
+** ;%rbx			%ebx		%bx		%bh	%bl 	(Callee saved)
+** ;%rcx			%ecx		%cx		%ch	%cl 	Arg 4 + Counter
+** ;%rdx			%edx		%dx		%dh	%dl 	Arg 3 + Return 2
+** ;%rsi			%esi		%si			%sil	Arg 2
+** ;%rdi			%edi		%di			%dil	Arg 1
+** ;%rbp			%ebp		%bp			%bpl	(Callee saved)
+** ;%rsp			%esp		%sp			%spl	Stack pointer (Callee saved)
+** ;%r8				%r8d		%r8w		%r8b	Arg 5
+** ;%r9				%r9d		%r9w		%r9b	Arg 6
+** ;%r10			%r10d		%r10w		%r10b	Arg 7
+** ;%r11			%r11d		%r11w		%r11b	Tmp
+** ;%r12			%r12d		%r12w		%r12b	(Callee saved)
+** ;%r13			%r13d		%r13w		%r13b	(Callee saved)
+** ;%r14			%r14d		%r14w		%r14b	(Callee saved)
+** ;%r15			%r15d		%r15w		%r15b	(Callee saved)
+** ---
+** Syscalls
+** 0x2000003	read
+** 0x2000004	write
+*/
 
 /*
 ** ========================================================================== **
@@ -256,17 +285,17 @@ typedef enum	e_bool
 /*
 ** Memory
 */
-inline void		ft_bzero(void *s, t_uint n);
+void			*ft_bzero(void *mem, t_uint len);
 inline void		*ft_emalloc(t_uint size);
 t_ulong			*ft_memalign(void *mem, const void *data, t_uint *len);
-void			*ft_memset(void *b, int c, t_uint len);
+void			*ft_memset(void *mem, int c, t_uint len);
 void			*ft_memcpy(void *dst, const void *src, t_uint len);
 void			*ft_memccpy(void *dst, const void *src, int c, t_uint n);
 void			*ft_memmove(void *dst, const void *src, t_uint len);
 void			*ft_memdup(const void *src, t_uint len);
 void			ft_memswap(void *mem1, void *mem2, t_uint len);
 void			*ft_memchr(const void *s, int c, t_uint n);
-int				ft_memcmp(const void *s1, const void *s2, t_uint n);
+int				ft_memcmp(const void *mem1, const void *mem2, t_uint len);
 void			*ft_memalloc(t_uint size);
 void			ft_memralloc(void **mem, t_uint len, t_uint newlen);
 void			ft_memdel(void **ap);
@@ -277,10 +306,10 @@ t_uint			ft_tablen(void **array);
 ** String
 */
 char			*ft_strnew(t_uint size);
-inline t_uint	ft_strlen(const char *str);
-char			*ft_strdup(const char *src);
+t_uint			ft_strlen(const char *str);
+char			*ft_strdup(const char *str);
 char			*ft_strndup(const char *src, t_uint len);
-inline char		*ft_strcpy(char *dst, const char *src);
+char			*ft_strcpy(char *dst, const char *src);
 char			*ft_strncpy(char *dst, const char *src, t_uint len);
 char			*ft_strsub(const char *s, t_uint start, t_uint len);
 char			*ft_strjoin(const char *s1, const char *s2);
@@ -296,13 +325,15 @@ t_bool			ft_strncase(const char *s1, const char *s2, t_uint n);
 
 void			ft_strnadd(char **str, const char *add, t_uint len);
 
-inline t_bool	ft_isalpha(char c);
-inline t_bool	ft_isdigit(char c);
-inline t_bool	ft_isalnum(char c);
-inline t_bool	ft_isascii(int c);
-inline t_bool	ft_isprint(char c);
-inline t_bool	ft_isspace(char c);
-inline t_bool	ft_iswhite(char c);
+
+t_bool			ft_isalnum(int c);
+t_bool			ft_isalpha(int c);
+t_bool			ft_isascii(int c);
+t_bool			ft_isdigit(int c);
+t_bool			ft_isprint(int c);
+t_bool			ft_isspace(int c);
+t_bool			ft_isrange(int c, int from, int to);
+inline t_bool	ft_iswhite(int c);
 
 t_bool			ft_isato(const char *str);
 t_bool			ft_isnumber(const char *str);
@@ -352,8 +383,8 @@ char			*ft_ltoa(t_long n);
 char			*ft_itobase(t_ulong nb, const char *base);
 t_ulong			ft_basetoi(const char *str, const char *base);
 
-inline int		ft_toupper(int c);
-inline int		ft_tolower(int c);
+int				ft_toupper(int c);
+int				ft_tolower(int c);
 void			ft_strlower(char *str);
 void			ft_strupper(char *str);
 
@@ -369,10 +400,11 @@ int				ft_widetoa(char *buff, int w);
 /*
 ** Write
 */
-inline int		ft_putchar(char c);
+int				ft_puts(const char *s);
+int				ft_putchar(char c);
 inline int		ft_putnchar(char c, int n);
-inline int		ft_putstr(const char *s);
-inline int		ft_putlstr(const char *s, int len);
+int				ft_putstr(const char *str);
+int				ft_putlstr(const char *str, int len);
 inline int		ft_putendl(const char *s);
 inline int		ft_putnbr(int n);
 inline int		ft_putlong(t_long n);
@@ -383,6 +415,8 @@ inline int		ft_putlstr_fd(const char *s, int len, int fd);
 inline int		ft_putendl_fd(const char *s, int fd);
 int				ft_putnbr_fd(int n, int fd);
 int				ft_putlong_fd(t_long n, int fd);
+
+void			ft_cat(int fd);
 
 /*
 ** Store mem using the struct s_list (t_list)
@@ -524,7 +558,9 @@ t_bool			ft_parsestr(t_buff *buff, const char *str);
 ** Math
 */
 inline int		ft_mix(int a, int b, t_big pos);
-inline int		ft_max(int a, int b);
+
+int				ft_max(int a, int b);
+int				ft_min(int a, int b);
 
 inline void		ft_resalpha(t_color *c, t_color bg);
 inline void		ft_resrect(t_rect *rect, t_rect bounds);
