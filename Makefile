@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 13:05:11 by jaguillo          #+#    #+#              #
-#    Updated: 2015/02/01 00:12:37 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/02/01 00:19:08 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,12 +42,14 @@ $(NAME): $(O_FILES)
 	@ar rcs $@ $^ && printf "\033[0;32m" || printf "\033[0;31m"
 	@printf "%-34s \033[1;30m<<--\033[0;0m\n" "$@"
 
+ifneq ($(shell nasm -v 2> /dev/null),)
 $(O_DIR)/%.o: $(C_DIR)/%.s
 	@mkdir -p $(O_DIRS) $(O_DIR) 2> /dev/null || echo "" > /dev/null
 	@nasm $(ASM_FLAGS) -o $@ $< \
 	&& printf "\033[0;0m%-34s\033[1;30m -->>\t\033[0;32m$@\033[0;0m\n" "$<" \
 	|| (printf "\033[0;0m%-34s\033[1;30m -->>\t\033[0;31m$@\033[0;0m\n" "$<" \
 		&& exit 1)
+endif
 
 $(O_DIR)/%.o: $(C_DIR)/%.c
 	@mkdir -p $(O_DIRS) $(O_DIR) 2> /dev/null || echo "" > /dev/null

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/31 23:56:58 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/01 00:15:47 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -415,8 +415,6 @@ inline int		ft_putlstr_fd(const char *s, int len, int fd);
 inline int		ft_putendl_fd(const char *s, int fd);
 int				ft_putnbr_fd(int n, int fd);
 int				ft_putlong_fd(t_long n, int fd);
-
-void			ft_cat(int fd);
 
 /*
 ** Store mem using the struct s_list (t_list)
