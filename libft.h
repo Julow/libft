@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/01 10:29:02 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/01 11:06:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -574,7 +574,10 @@ int				ft_min(int a, int b);
 inline void		ft_resalpha(t_color *c, t_color bg);
 inline void		ft_resrect(t_rect *rect, t_rect bounds);
 
-inline t_pt		ft_nearest(t_pt pos, t_pt p1, t_pt p2);
+int				ft_dist2(t_pt p1, t_pt p2);
+
+t_pt			ft_nearest(t_pt pos, t_pt p1, t_pt p2);
+t_pt			ft_farthest(t_pt pos, t_pt p1, t_pt p2);
 
 /*
 ** Draw on struct s_image (t_image)
