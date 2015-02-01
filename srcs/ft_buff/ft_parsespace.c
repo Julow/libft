@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/11 17:32:54 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/12 21:08:55 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/01 10:34:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void			ft_parsespace(t_buff *buff)
 {
-	while (ft_isspace(ft_buffget(buff)))
+	while (ft_isspace(BG(buff)))
 		buff->i++;
 }

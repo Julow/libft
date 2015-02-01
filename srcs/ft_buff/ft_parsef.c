@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/13 15:28:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/13 15:29:06 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/01 10:35:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void			ft_parsef(t_buff *buff, t_bool (*f)(char c))
 {
-	while (f(ft_buffget(buff)))
+	while (f(BG(buff)))
 		buff->i++;
 }

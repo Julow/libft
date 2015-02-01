@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/13 15:29:27 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/13 15:29:35 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/01 10:34:03 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void			ft_parsewhite(t_buff *buff)
 {
-	while (ft_iswhite(ft_buffget(buff)))
+	while (ft_iswhite(BG(buff)))
 		buff->i++;
 }

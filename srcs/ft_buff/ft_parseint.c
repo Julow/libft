@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/11 17:32:54 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/16 22:49:54 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/01 10:35:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int				ft_parseint(t_buff *buff)
 
 	negatif = false;
 	nb = 0;
-	if ((ft_buffget(buff) == '-' && (negatif = true))
-		|| ft_buffget(buff) == '+')
+	if ((BG(buff) == '-' && (negatif = true))
+		|| BG(buff) == '+')
 		buff->i++;
-	while (ft_isdigit(ft_buffget(buff)))
-		nb = nb * 10 + (ft_readbuff(buff) - '0');
+	while (ft_isdigit(BG(buff)))
+		nb = nb * 10 + (BR(buff) - '0');
 	return (negatif ? -nb : nb);
 }
