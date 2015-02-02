@@ -6,7 +6,7 @@
 ;;   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        ;;
 ;;                                                +#+#+#+#+#+   +#+           ;;
 ;;   Created: 2015/01/22 13:36:51 by jaguillo          #+#    #+#             ;;
-;;   Updated: 2015/01/24 23:38:35 by jaguillo         ###   ########.fr       ;;
+;;   Updated: 2015/02/02 22:55:33 by jaguillo         ###   ########.fr       ;;
 ;;                                                                            ;;
 ;; ************************************************************************** ;;
 
@@ -15,17 +15,19 @@ global	ft_strcat
 extern	ft_strlen
 
 ft_strcat:
+	push	rdi				; save rdi
 	call	ft_strlen
+	pop		rdi				; restore rdi
 	mov		rcx, rdi
 	add		rcx, rax
 .loop:
-	mov		cl, [rsi]	; get char
-	mov		[rcx], cl	; set char
+	mov		cl, [rsi]		; get char
+	mov		[rcx], cl		; set char
 	cmp		cl, 0
-	jz		.ret		; break loop
-	inc		rcx			; ++
+	jz		.ret			; break loop
+	inc		rcx				; ++
 	inc		rsi
 	jmp		.loop
 .ret:
-	mov		rax, rdi	; return rdi
+	mov		rax, rdi		; return rdi
 	ret

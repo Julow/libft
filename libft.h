@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/02 19:05:54 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/02 22:49:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 ** ---
 ** Flags
 ** 	name				set		clear	jump	jump not
+** -
 **	CF	(carry)			stc		clc		jc		jnc
 **	PF	(parity)		-		-		jp		jnp
 **	AF	(adjust)		-		-		-		-
@@ -52,6 +53,7 @@
 **	OF	(overflow)		-		-		jo		jno
 ** ---
 ** Syscalls
+** -
 ** 0x2000003	read
 ** 0x2000004	write
 */
