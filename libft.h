@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/01 11:06:02 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/02 19:05:54 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,37 @@
 ** Cheat Sheet Shit
 ** ---
 ** Registers
-** ;64				32			16		[8	8]
-** ;%rax			%eax		%ax		%ah	%al 	Return 1
-** ;%rbx			%ebx		%bx		%bh	%bl 	(Callee saved)
-** ;%rcx			%ecx		%cx		%ch	%cl 	Arg 4 + Counter
-** ;%rdx			%edx		%dx		%dh	%dl 	Arg 3 + Return 2
-** ;%rsi			%esi		%si			%sil	Arg 2
-** ;%rdi			%edi		%di			%dil	Arg 1
-** ;%rbp			%ebp		%bp			%bpl	(Callee saved)
-** ;%rsp			%esp		%sp			%spl	Stack pointer (Callee saved)
-** ;%r8				%r8d		%r8w		%r8b	Arg 5
-** ;%r9				%r9d		%r9w		%r9b	Arg 6
-** ;%r10			%r10d		%r10w		%r10b	Arg 7
-** ;%r11			%r11d		%r11w		%r11b	Tmp
-** ;%r12			%r12d		%r12w		%r12b	(Callee saved)
-** ;%r13			%r13d		%r13w		%r13b	(Callee saved)
-** ;%r14			%r14d		%r14w		%r14b	(Callee saved)
-** ;%r15			%r15d		%r15w		%r15b	(Callee saved)
+**	qword			dword		word	byte
+** 	64				32			16		[8	8]
+** -
+** 	rax				eax			ax		ah	al 		Return 1
+** 	rbx				ebx			bx		bh	bl 		(Callee saved)
+** 	rcx				ecx			cx		ch	cl 		Arg 4 + Counter
+** 	rdx				edx			dx		dh	dl 		Arg 3 + Return 2
+** 	rsi				esi			si			sil		Arg 2
+** 	rdi				edi			di			dil		Arg 1
+** 	rbp				ebp			bp			bpl		(Callee saved)
+** 	rsp				esp			sp			spl		Stack ptr (Callee saved)
+** 	r8				r8d			r8w			r8b		Arg 5
+** 	r9				r9d			r9w			r9b		Arg 6
+** 	r10				r10d		r10w		r10b	Arg 7
+** 	r11				r11d		r11w		r11b	Tmp
+** 	r12				r12d		r12w		r12b	(Callee saved)
+** 	r13				r13d		r13w		r13b	(Callee saved)
+** 	r14				r14d		r14w		r14b	(Callee saved)
+** 	r15				r15d		r15w		r15b	(Callee saved)
+** ---
+** Flags
+** 	name				set		clear	jump	jump not
+**	CF	(carry)			stc		clc		jc		jnc
+**	PF	(parity)		-		-		jp		jnp
+**	AF	(adjust)		-		-		-		-
+**	ZF	(zero)			-		-		jz/je	jnz/jne
+**	SF	(sign)			-		-		js		jns
+**	TF	(trap)			-		-		-		-
+**	IF	(int)			-		-		-		-
+**	DF	(direction)		std		cld		-		-
+**	OF	(overflow)		-		-		jo		jno
 ** ---
 ** Syscalls
 ** 0x2000003	read
