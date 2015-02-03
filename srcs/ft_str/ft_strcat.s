@@ -6,7 +6,7 @@
 ;;   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        ;;
 ;;                                                +#+#+#+#+#+   +#+           ;;
 ;;   Created: 2015/01/22 13:36:51 by jaguillo          #+#    #+#             ;;
-;;   Updated: 2015/02/02 22:55:33 by jaguillo         ###   ########.fr       ;;
+;;   Updated: 2015/02/03 22:58:11 by jaguillo         ###   ########.fr       ;;
 ;;                                                                            ;;
 ;; ************************************************************************** ;;
 
@@ -21,9 +21,9 @@ ft_strcat:
 	mov		rcx, rdi
 	add		rcx, rax
 .loop:
-	mov		cl, [rsi]		; get char
-	mov		[rcx], cl		; set char
-	cmp		cl, 0
+	mov		al, [rsi]		; get char
+	mov		[rcx], al		; set char
+	cmp		al, 0
 	jz		.ret			; break loop
 	inc		rcx				; ++
 	inc		rsi
