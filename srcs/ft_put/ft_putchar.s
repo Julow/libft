@@ -6,7 +6,7 @@
 ;;   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        ;;
 ;;                                                +#+#+#+#+#+   +#+           ;;
 ;;   Created: 2015/01/23 11:20:52 by jaguillo          #+#    #+#             ;;
-;;   Updated: 2015/01/26 12:18:09 by jaguillo         ###   ########.fr       ;;
+;;   Updated: 2015/02/04 22:29:00 by jaguillo         ###   ########.fr       ;;
 ;;                                                                            ;;
 ;; ************************************************************************** ;;
 
@@ -19,7 +19,7 @@ ft_putchar:
 	mov		[rcx], dil
 	mov		rdi, rcx	; char (rdi)
 	mov		rsi, 1		; len
-	call	ft_putlstr
+	jmp		ft_putlstr
 	ret
 
 section .bss
