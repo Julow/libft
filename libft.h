@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/02 22:49:16 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/04 22:00:22 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -359,6 +359,7 @@ t_bool			ft_isascii(int c);
 t_bool			ft_isdigit(int c);
 t_bool			ft_isprint(int c);
 t_bool			ft_isspace(int c);
+t_bool			ft_isword(char c);
 t_bool			ft_isrange(int c, int from, int to);
 inline t_bool	ft_iswhite(int c);
 
