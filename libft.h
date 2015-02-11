@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/11 21:53:47 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/11 21:59:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -571,6 +571,7 @@ t_string		ft_parseline(t_buff *buff);
 void			ft_parseendl(t_buff *buff);
 int				ft_parseint(t_buff *buff);
 t_long			ft_parselong(t_buff *buff);
+t_ulong			ft_parsebase(t_buff *buff, const char *base);
 void			ft_parsespace(t_buff *buff);
 void			ft_parsewhite(t_buff *buff);
 
