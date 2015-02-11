@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/11 22:08:51 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/11 23:15:45 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,8 @@
 # define BIS(b,c)		((BG(b) == c && ++((b)->i)) ? true : false)
 # define BUFF(s,i,l)	((t_buff){(s), (i), (l), -1})
 # define FBUFF(fd)		((t_buff){MAL(char, BUFF_SIZE), 0, BUFF_SIZE, fd})
+
+# define FTOUT			(ft_out())
 
 # define SUB(s,l)		((t_sub){(s), (l)})
 
@@ -587,6 +589,18 @@ inline void		ft_writenl(t_buff *buff);
 void			ft_writeint(t_buff *buff, int n);
 void			ft_writebase(t_buff *buff, t_ulong n, const char *base);
 int				ft_flush(t_buff *buff);
+
+/*
+** print to the static t_buff FTOUT
+*/
+t_buff			*ft_out(void);
+inline void		ft_print(const char *data, t_uint len);
+inline void		ft_printstr(const char *str);
+inline void		ft_printchar(char c);
+inline void		ft_printnchar(char c, int n);
+inline void		ft_printnl(void);
+inline void		ft_printint(int n);
+inline void		ft_printbase(t_ulong n, const char *base);
 
 /*
 ** Work only for string buff
