@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/04 22:00:22 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/11 21:53:47 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@
 # define BR(b)			(BI(b) ? (b)->data[(b)->i++] : ft_readbuff(b))
 # define BIS(b,c)		((BG(b) == c && ++((b)->i)) ? true : false)
 # define BUFF(s,i,l)	((t_buff){(s), (i), (l), -1})
-# define FBUFF(fd)		((t_buff){MAL(char, BUFF_SIZE), 0, 0, fd})
+# define FBUFF(fd)		((t_buff){MAL(char, BUFF_SIZE), 0, BUFF_SIZE, fd})
 
 # define SUB(s,l)		((t_sub){(s), (l)})
 
@@ -556,7 +556,7 @@ int				ft_stringputfd(t_string *str, int const fd);
 ** 'data' is not the original malloced pointer (can't be free)
 ** == file buff ('fd' >= 0)
 ** 'data' need to be the original malloced pointer (automaticaly free)
-** macro FBUFF() init a file t_buff (malloc 'data')
+** macro FBUFF() init a file t_buff (and malloc 'data')
 */
 inline char		ft_readbuff(t_buff *buff);
 inline char		ft_buffget(t_buff *buff);
@@ -573,6 +573,19 @@ int				ft_parseint(t_buff *buff);
 t_long			ft_parselong(t_buff *buff);
 void			ft_parsespace(t_buff *buff);
 void			ft_parsewhite(t_buff *buff);
+
+/*
+** use the struct s_buff (t_buff) to write to a file
+** macro FBUFF() init a file t_buff
+*/
+void			ft_write(t_buff *buff, const char *data, t_uint len);
+inline void		ft_writestr(t_buff *buff, const char *str);
+void			ft_writechar(t_buff *buff, char c);
+void			ft_writenchar(t_buff *buff, char c, int n);
+inline void		ft_writenl(t_buff *buff);
+void			ft_writeint(t_buff *buff, int n);
+void			ft_writebase(t_buff *buff, t_ulong n, const char *base);
+void			ft_flush(t_buff *buff);
 
 /*
 ** Work only for string buff
