@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 21:23:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/11 21:44:57 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/11 22:11:57 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void			ft_write(t_buff *buff, const char *data, t_uint len)
 		data += free_buff;
 		len -= free_buff;
 	}
-	ft_memcpy(buff->data + buff->i, data len);
+	ft_memcpy(buff->data + buff->i, data, len);
+	buff->i += len;
 }

@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 21:23:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/11 21:46:31 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/11 22:06:32 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_internal.h"
 
 void			ft_writeint(t_buff *buff, int n)
 {
@@ -31,5 +31,5 @@ void			ft_writeint(t_buff *buff, int n)
 	}
 	if (nb[0] == '-')
 		nb[--i] = '-';
-	ft_write(nb + i, PUTNBR_BUFF - i);
+	ft_write(buff, nb + i, PUTNBR_BUFF - i);
 }

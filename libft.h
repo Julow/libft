@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/11 21:59:43 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/11 22:08:51 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -586,7 +586,7 @@ void			ft_writenchar(t_buff *buff, char c, int n);
 inline void		ft_writenl(t_buff *buff);
 void			ft_writeint(t_buff *buff, int n);
 void			ft_writebase(t_buff *buff, t_ulong n, const char *base);
-void			ft_flush(t_buff *buff);
+int				ft_flush(t_buff *buff);
 
 /*
 ** Work only for string buff

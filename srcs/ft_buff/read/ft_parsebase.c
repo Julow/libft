@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 21:55:25 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/11 21:59:31 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/11 22:07:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_ulong			ft_parsebase(t_buff *buff, const char *base)
 	int				tmp;
 
 	nb = 0;
-	while ((tmp = ft_strchr(base, BG(buff))) != -1)
+	while ((tmp = ft_strchri(base, BG(buff))) != -1)
 		nb = nb * base_len + tmp;
 	return (nb);
 }
