@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/11 23:15:45 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/12 20:45:22 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,22 @@
 # define BUFF(s,i,l)	((t_buff){(s), (i), (l), -1})
 # define FBUFF(fd)		((t_buff){MAL(char, BUFF_SIZE), 0, BUFF_SIZE, fd})
 
+# define BASE_2			"01"
+# define BASE_10		"0123456789"
+# define BASE_16		"0123456789ABCDEF"
+# define BASE_36		"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 # define FTOUT			(ft_out())
+
+# define OUT(f)			(ft_setout(f))
+# define P(d,l)			(ft_write(FTOUT, (d), (l)))
+# define PS(s)			(ft_writestr(FTOUT, (s)))
+# define PC(c)			(ft_writechar(FTOUT, (c)))
+# define PCN(c,n)		(ft_writenchar(FTOUT, (c), (n)))
+# define PI(i)			(ft_writeint(FTOUT, (i)))
+# define PB(i,b)		(ft_writebase(FTOUT, (i), (b)))
+# define NL				(ft_writenl(FTOUT))
+# define FL				(ft_flush(FTOUT))
 
 # define SUB(s,l)		((t_sub){(s), (l)})
 
@@ -594,6 +609,7 @@ int				ft_flush(t_buff *buff);
 ** print to the static t_buff FTOUT
 */
 t_buff			*ft_out(void);
+void			ft_setout(int fd);
 inline void		ft_print(const char *data, t_uint len);
 inline void		ft_printstr(const char *str);
 inline void		ft_printchar(char c);
