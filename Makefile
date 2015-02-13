@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 13:05:11 by jaguillo          #+#    #+#              #
-#    Updated: 2015/02/01 00:58:10 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/02/13 16:52:20 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,14 @@ C_FLAGS = -Wall -Wextra -Werror -O2
 LINKS = -I$(H_DIR) $(FT_CONFIG)
 
 # NASM flags
-ifeq ($(shell uname),Linux)
-	ASM_FLAGS = -f elf64 -DLINUX -Wall
+ASM_FLAGS = -Wall -Werror
+
+ifeq ($(shell uname),Darwin)
+	ASM_FORMAT = macho64
+	ASM_SPECIAL = -f $(ASM_FORMAT) --prefix _
 else
-	ASM_FLAGS = -f macho64 --prefix _ -Wall
+	ASM_FORMAT = elf64
+	ASM_SPECIAL = -f $(ASM_FORMAT) -D LINUX
 endif
 
 # Debug mode
@@ -57,11 +61,13 @@ $(NAME): $(O_FILES)
 	@ar rcs $@ $^ && printf "\033[0;32m" || printf "\033[0;31m"
 	@printf $(MSG_2) "$@"
 
-# Compile .s sources (only if nasm is installed)
+# Compile .s sources (only if nasm is installed and support ASM_FORMAT)
 ifneq ($(shell nasm -v 2> /dev/null),)
+ifneq ($(shell nasm -hf | grep "$(ASM_FORMAT)"),)
 $(O_DIR)/%.o: $(C_DIR)/%.s
-	@nasm $(ASM_FLAGS) -o $@ $< \
+	@nasm $(ASM_SPECIAL) $(ASM_FLAGS) -o $@ $< \
 		&& printf $(MSG_0) "$<" "$@" || (printf $(MSG_1) "$<" "$@" && exit 1)
+endif
 endif
 
 # Compile .c sources
@@ -95,7 +101,7 @@ update: fclean
 # Enable debug mode and change compilation flags
 _debug:
 	$(eval C_FLAGS = -Wall -Wextra -g -D DEBUG_MODE)
-	$(eval ASM_FLAGS += -g)
+	$(eval ASM_FLAGS = -Wall -g -D DEBUG_MODE)
 	$(eval DEBUG = 1)
 
 .PHONY: all debug clean fclean re rebug update _debug
