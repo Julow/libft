@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/12 20:45:22 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/13 14:07:53 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@
 ** 	r13				r13d		r13w		r13b	(Callee saved)
 ** 	r14				r14d		r14w		r14b	(Callee saved)
 ** 	r15				r15d		r15w		r15b	(Callee saved)
+** -
+**  256				128
+** -
+**  ymm0			xmm0
+** ...
+**  ymm15			xmm15
 ** ---
 ** Flags
 ** 	name				set		clear	jump	jump not
