@@ -6,7 +6,7 @@
 ;;   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        ;;
 ;;                                                +#+#+#+#+#+   +#+           ;;
 ;;   Created: 2015/01/21 17:54:38 by jaguillo          #+#    #+#             ;;
-;;   Updated: 2015/02/13 15:51:28 by jaguillo         ###   ########.fr       ;;
+;;   Updated: 2015/02/13 16:27:12 by jaguillo         ###   ########.fr       ;;
 ;;                                                                            ;;
 ;; ************************************************************************** ;;
 
@@ -38,7 +38,7 @@ ft_memset:
 	jz		.ret			; if len == 0 .ret
 .loop1:
 	dec		rdx				; len--
-	mov		[rdi+rdx], al	; set byte
+	mov		[rdi+rdx], sil	; set byte
 	cmp		rdx, 0
 	jg		.loop1			; while len > 0 .loop1
 .ret:
