@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 13:05:11 by jaguillo          #+#    #+#              #
-#    Updated: 2015/02/13 16:52:20 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/02/13 16:59:08 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ DEBUG = 0
 
 # Search source files
 C_FILES = $(shell find $(C_DIR) -type f -print)
-C_DIRS = $(shell find $(C_DIR) -type d -print)
+C_DIRS = $(shell find -d $(C_DIR) -type d -print)
 
 # Build .o list
 O_DIRS = $(C_DIRS:$(C_DIR)/%=$(O_DIR)/%)
