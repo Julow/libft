@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/13 14:07:53 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/13 15:22:44 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -337,9 +337,9 @@ typedef enum	e_bool
 */
 void			*ft_bzero(void *mem, t_uint len);
 inline void		*ft_emalloc(t_uint size);
-t_ulong			*ft_memalign(void *mem, const void *data, t_uint *len);
 void			*ft_memset(void *mem, int c, t_uint len);
 void			*ft_memcpy(void *dst, const void *src, t_uint len);
+void			*ft_memrcpy(void *dst, const void *src, t_uint len);
 void			*ft_memccpy(void *dst, const void *src, int c, t_uint n);
 void			*ft_memmove(void *dst, const void *src, t_uint len);
 void			*ft_memdup(const void *src, t_uint len);
@@ -374,7 +374,6 @@ t_bool			ft_strcase(const char *s1, const char *s2);
 t_bool			ft_strncase(const char *s1, const char *s2, t_uint n);
 
 void			ft_strnadd(char **str, const char *add, t_uint len);
-
 
 t_bool			ft_isalnum(int c);
 t_bool			ft_isalpha(int c);
