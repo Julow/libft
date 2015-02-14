@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 13:05:11 by jaguillo          #+#    #+#              #
-#    Updated: 2015/02/13 16:59:08 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/02/14 10:43:55 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,18 @@ C_DIR = srcs
 O_DIR = o
 
 # GCC flags
-C_FLAGS = -Wall -Wextra -Werror -O2
+ifeq ($(C_FLAGS),)
+	export C_FLAGS = -Wall -Wextra -Werror -O2
+endif
 LINKS = -I$(H_DIR) $(FT_CONFIG)
 
 # NASM flags
-ASM_FLAGS = -Wall -Werror
+ifeq ($(ASM_ENABLE),)
+	export ASM_ENABLE = 1
+endif
+ifeq ($(ASM_FLAGS),)
+	export ASM_FLAGS = -Wall -Werror
+endif
 
 ifeq ($(shell uname),Darwin)
 	ASM_FORMAT = macho64
@@ -31,12 +38,9 @@ else
 	ASM_SPECIAL = -f $(ASM_FORMAT) -D LINUX
 endif
 
-# Debug mode
-DEBUG = 0
-
 # Search source files
 C_FILES = $(shell find $(C_DIR) -type f -print)
-C_DIRS = $(shell find -d $(C_DIR) -type d -print)
+C_DIRS = $(shell find $(C_DIR) -depth -type d -print)
 
 # Build .o list
 O_DIRS = $(C_DIRS:$(C_DIR)/%=$(O_DIR)/%)
@@ -51,10 +55,9 @@ MSG_0 = "%-34s\033[1;30m -->>  \033[0;32m%s\033[0;0m\n"
 MSG_1 = "%-34s\033[1;30m -->>  \033[0;31m%s\033[0;0m\n"
 MSG_2 = "%-34s\033[1;30m <<--\033[0;0m\n"
 
+# Call $(NAME) in async mode
 all:
-	@if [ "$(DEBUG)" -eq "1" ]; then \
-		make -j4 _debug $(NAME); else \
-		make -j4 $(NAME); fi
+	@make -j4 $(NAME)
 
 # Compile all sources and build the .a archive
 $(NAME): $(O_FILES)
@@ -62,11 +65,13 @@ $(NAME): $(O_FILES)
 	@printf $(MSG_2) "$@"
 
 # Compile .s sources (only if nasm is installed and support ASM_FORMAT)
+ifeq ($(ASM_ENABLE),1)
 ifneq ($(shell nasm -v 2> /dev/null),)
 ifneq ($(shell nasm -hf | grep "$(ASM_FORMAT)"),)
 $(O_DIR)/%.o: $(C_DIR)/%.s
 	@nasm $(ASM_SPECIAL) $(ASM_FLAGS) -o $@ $< \
 		&& printf $(MSG_0) "$<" "$@" || (printf $(MSG_1) "$<" "$@" && exit 1)
+endif
 endif
 endif
 
@@ -98,10 +103,13 @@ update: fclean
 	@cd .. ; git subtree pull --prefix=libft --squash \
 		git@github.com:Julow/libft.git master -m "Update libft"
 
+# Disable ASM
+_noasm:
+	$(eval ASM_ENABLE = 0)
+
 # Enable debug mode and change compilation flags
 _debug:
 	$(eval C_FLAGS = -Wall -Wextra -g -D DEBUG_MODE)
 	$(eval ASM_FLAGS = -Wall -g -D DEBUG_MODE)
-	$(eval DEBUG = 1)
 
-.PHONY: all debug clean fclean re rebug update _debug
+.PHONY: all debug clean fclean re rebug update _noasm _debug
