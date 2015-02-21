@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/21 19:54:18 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/21 20:24:18 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@
 ** Configuration
 ** ---
 ** BUFF_SIZE
+** FTOUT_BUFF
 ** GNL_BUFF
 ** ARRAY_CHUNK
 ** TAB_CHUNK
@@ -88,6 +89,9 @@
 
 # ifndef BUFF_SIZE
 #  define BUFF_SIZE		256
+# endif
+# ifndef FTOUT_BUFF
+#  define FTOUT_BUFF	512
 # endif
 # ifndef ARRAY_CHUNK
 #  define ARRAY_CHUNK	64
@@ -143,6 +147,8 @@
 # define BASE_10		"0123456789"
 # define BASE_16		"0123456789ABCDEF"
 # define BASE_36		"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+# define DB(l,v)		{[0 ... ((l) - 1)] = (v)}
 
 # define FTOUT			(ft_out())
 
