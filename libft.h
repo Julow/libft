@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/13 15:22:44 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/21 19:54:18 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,16 @@
 # endif
 
 # ifndef BUFF_SIZE
-#  define BUFF_SIZE		192
+#  define BUFF_SIZE		256
 # endif
 # ifndef ARRAY_CHUNK
-#  define ARRAY_CHUNK	32
+#  define ARRAY_CHUNK	64
 # endif
 # ifndef TAB_CHUNK
 #  define TAB_CHUNK		32
 # endif
 # ifndef STRING_CHUNK
-#  define STRING_CHUNK	32
+#  define STRING_CHUNK	128
 # endif
 # ifndef MEM_TYPE
 #  define MEM_TYPE		unsigned long long int
@@ -127,8 +127,8 @@
 
 # define S(t,l)			(sizeof(t) * (l))
 
-# define TG(t,b,i)		(*(t*)(((t_tab*)b)->data + (((t_tab*)b)->size * (i))))
 # define TI(b,i)		(((t_tab*)b)->data + (((t_tab*)b)->size * (i)))
+# define TG(t,b,i)		((t*)TI((b), (i)))
 # define AG(t,a,i)		((t)(((t_array*)(a))->data[i]))
 
 # define BI(b)			((b)->i < (b)->length)
@@ -139,6 +139,7 @@
 # define FBUFF(fd)		((t_buff){MAL(char, BUFF_SIZE), 0, BUFF_SIZE, fd})
 
 # define BASE_2			"01"
+# define BASE_8			"01234567"
 # define BASE_10		"0123456789"
 # define BASE_16		"0123456789ABCDEF"
 # define BASE_36		"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -611,17 +612,10 @@ void			ft_writebase(t_buff *buff, t_ulong n, const char *base);
 int				ft_flush(t_buff *buff);
 
 /*
-** print to the static t_buff FTOUT
+** static t_buff FTOUT
 */
 t_buff			*ft_out(void);
 void			ft_setout(int fd);
-inline void		ft_print(const char *data, t_uint len);
-inline void		ft_printstr(const char *str);
-inline void		ft_printchar(char c);
-inline void		ft_printnchar(char c, int n);
-inline void		ft_printnl(void);
-inline void		ft_printint(int n);
-inline void		ft_printbase(t_ulong n, const char *base);
 
 /*
 ** Work only for string buff
