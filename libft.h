@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/21 20:24:18 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/22 23:58:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,43 @@
 ** ...
 **  ymm15			xmm15
 ** ---
-** Flags
-** 	name				set		clear	jump	jump not
-** -
-**	CF	(carry)			stc		clc		jc		jnc
-**	PF	(parity)		-		-		jp		jnp
-**	AF	(adjust)		-		-		-		-
-**	ZF	(zero)			-		-		jz/je	jnz/jne
-**	SF	(sign)			-		-		js		jns
-**	TF	(trap)			-		-		-		-
-**	IF	(int)			-		-		-		-
-**	DF	(direction)		std		cld		-		-
-**	OF	(overflow)		-		-		jo		jno
+** ========================================================================== **
 ** ---
-** Syscalls
+** Signals
+** 			Name			Action			Comment
 ** -
-** 0x2000003	read
-** 0x2000004	write
+**  1		SIGHUP			Terminate		Hangup or Parent terminated
+**  2		SIGINT			Terminate		^C
+**  3		SIGQUIT			Core Dump		^\
+**  4		SIGILL			Core Dump		Illegal Instruction
+**  5		SIGTRAP			Core Dump		Breakpoint
+**  6		SIGABRT			Core Dump		Abort
+**  		SIGBUS			Core Dump		Bus error
+**  8		SIGFPE			Core Dump		Floating point exception
+**  9		SIGKILL			! Terminate		Kill
+**  		SIGUSR1			Terminate		User 1
+**  11		SIGSEGV			Core Dump		Segmentation fault
+**  		SIGUSR2			Terminate		User 2
+**  13		SIGPIPE			Terminate		Broken pipe
+**  14		SIGALRM			Terminate		Timer
+**  15		SIGTERM			Terminate		Terminate
+**  		SIGSTKFLT		Terminate		Stack fault
+**  		SIGCHLD			Ignore			Child terminated
+**  		SIGCONT			Continue		Continue after a Stop
+**  		SIGSTOP			! Stop			Stop
+**  		SIGTSTP			Stop			Stop
+**  		SIGTTIN			Stop			Terminal input
+**  		SIGTTOU			Stop			Terminal output
+**  		SIGURG			Ignore			Urgent
+**  		SIGXCPU			Core Dump		CPU time limit
+**  		SIGXFSZ			Core Dump		File size limit
+**  		SIGVTALRM		Terminate		Virtual alarm
+**  		SIGPROF			Terminate		Profiling timer
+**  		SIGWINCH		Ignore			Window resize
+**  		SIGIO			Terminate		-
+**  		SIGPWR			Terminate		Power failure
+**  		SIGSYS			Core Dump		-
+** ---
 */
 
 /*
