@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/13 15:28:31 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/01 10:34:23 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/25 00:03:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_string		ft_parsesubf(t_buff *buff, t_bool (*f)(char c))
+t_string		ft_parsesubf(t_buff *buff, t_bool (*f)(int))
 {
 	char			c;
 	t_string		sub;

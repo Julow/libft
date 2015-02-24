@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/23 22:15:27 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/25 00:03:01 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,14 +151,14 @@
 
 # define S(t,l)			(sizeof(t) * (l))
 
-# define TI(b,i)		(((t_tab*)b)->data + (((t_tab*)b)->size * (i)))
-# define TG(t,b,i)		((t*)TI((b), (i)))
+# define TI(b,i)		(((t_tab*)(b))->data + (((t_tab*)(b))->size * (i)))
+# define TG(t,b,i)		((t*)TI(&(b), (i)))
 # define AG(t,a,i)		((t)(((t_array*)(a))->data[i]))
 
 # define BI(b)			((b)->i < (b)->length)
 # define BG(b)			(BI(b) ? (b)->data[(b)->i] : ft_buffget(b))
 # define BR(b)			(BI(b) ? (b)->data[(b)->i++] : ft_readbuff(b))
-# define BIS(b,c)		((BG(b) == c && ++((b)->i)) ? true : false)
+# define BIS(b,c)		(BG(b) == c && ++((b)->i))
 # define BUFF(s,i,l)	((t_buff){(s), (i), (l), -1})
 # define FBUFF(fd)		((t_buff){MAL(char, BUFF_SIZE), 0, BUFF_SIZE, fd})
 
@@ -408,7 +408,7 @@ t_bool			ft_isascii(int c);
 t_bool			ft_isdigit(int c);
 t_bool			ft_isprint(int c);
 t_bool			ft_isspace(int c);
-t_bool			ft_isword(char c);
+t_bool			ft_isword(int c);
 t_bool			ft_isrange(int c, int from, int to);
 inline t_bool	ft_iswhite(int c);
 
@@ -612,10 +612,10 @@ inline char		ft_buffget(t_buff *buff);
 inline t_bool	ft_buffis(t_buff *buff, char c);
 void			ft_parse(t_buff *buff, const char *parse);
 void			ft_parsenot(t_buff *buff, const char *parse);
-void			ft_parsef(t_buff *buff, t_bool (*f)(char c));
+void			ft_parsef(t_buff *buff, t_bool (*f)(int c));
 t_string		ft_parsesub(t_buff *buff, const char *parse);
-t_string		ft_parsesubf(t_buff *buff, t_bool (*f)(char c));
-t_string		ft_parsesubnf(t_buff *buff, t_bool (*f)(char c));
+t_string		ft_parsesubf(t_buff *buff, t_bool (*f)(int c));
+t_string		ft_parsesubnf(t_buff *buff, t_bool (*f)(int c));
 t_string		ft_parseline(t_buff *buff);
 void			ft_parseendl(t_buff *buff);
 int				ft_parseint(t_buff *buff);
