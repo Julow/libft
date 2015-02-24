@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/22 23:58:33 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/02/23 22:15:27 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@
 **  		SIGCHLD			Ignore			Child terminated
 **  		SIGCONT			Continue		Continue after a Stop
 **  		SIGSTOP			! Stop			Stop
-**  		SIGTSTP			Stop			Stop
+**  		SIGTSTP			Stop			^Z
 **  		SIGTTIN			Stop			Terminal input
 **  		SIGTTOU			Stop			Terminal output
 **  		SIGURG			Ignore			Urgent
