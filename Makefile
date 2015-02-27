@@ -6,9 +6,16 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 13:05:11 by jaguillo          #+#    #+#              #
-#    Updated: 2015/02/14 10:43:55 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/02/27 13:31:14 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+#
+# exportable vars:
+#  DEBUG_MODE	(0)		Enable debug flags
+#  ASM_ENABLE	(1)		Enable/Disable ASM
+#  FT_CONFIG	("")	Extra macros/includes (C only)
+#
 
 NAME = libft.a
 
@@ -16,18 +23,37 @@ H_DIR = .
 C_DIR = srcs
 O_DIR = o
 
-# GCC flags
-ifeq ($(C_FLAGS),)
-	export C_FLAGS = -Wall -Wextra -Werror -O2
+# Debug mode
+ifeq ($(DEBUG_MODE),)
+	export DEBUG_MODE = 0
 endif
+
+# GCC flags
+C_DEBUG_FLAGS = -Wall -Wextra -g -D DEBUG_MODE
+
 LINKS = -I$(H_DIR) $(FT_CONFIG)
+
+ifeq ($(C_FLAGS),)
+ifeq ($(DEBUG_MODE),1)
+	C_FLAGS = $(C_DEBUG_FLAGS)
+else
+	C_FLAGS = -Wall -Wextra -Werror -O2
+endif
+endif
 
 # NASM flags
 ifeq ($(ASM_ENABLE),)
 	export ASM_ENABLE = 1
 endif
+
+ASM_DEBUG_FLAGS = -Wall -g -D DEBUG_MODE
+
 ifeq ($(ASM_FLAGS),)
-	export ASM_FLAGS = -Wall -Werror
+ifeq ($(DEBUG_MODE),1)
+	ASM_FLAGS = $(ASM_DEBUG_FLAGS)
+else
+	ASM_FLAGS = -Wall -Werror
+endif
 endif
 
 ifeq ($(shell uname),Darwin)
@@ -109,7 +135,8 @@ _noasm:
 
 # Enable debug mode and change compilation flags
 _debug:
-	$(eval C_FLAGS = -Wall -Wextra -g -D DEBUG_MODE)
-	$(eval ASM_FLAGS = -Wall -g -D DEBUG_MODE)
+	$(eval C_FLAGS = $(C_DEBUG_FLAGS))
+	$(eval ASM_FLAGS = $(ASM_DEBUG_FLAGS))
+	$(eval DEBUG_MODE = 1)
 
 .PHONY: all debug clean fclean re rebug update _noasm _debug
