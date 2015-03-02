@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/05 12:23:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/14 21:31:52 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/02 13:31:22 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int				get_next_line(int const fd, t_buff *line)
 			if ((len = buff_read(gnl)) < 0)
 				break ;
 			if (len == 0 && gnl->length == 0)
-				return (*line = BUFF(NULL, 0, 0), free(gnl->buff - gnl->offset),
+				return (*line = SBUFF(NULL, 0), free(gnl->buff - gnl->offset),
 				*gnl = (t_gnlfd){NULL, fd, 0, 0, 0, gnl->next}, GNL_EOF);
 			if (len == 0)
 				return (buff_cut(gnl, gnl->length, line, 0));

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/02 12:43:17 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/02 13:31:14 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,8 +159,9 @@
 # define BG(b)			(BI(b) ? (b)->data[(b)->i] : ft_buffget(b))
 # define BR(b)			(BI(b) ? (b)->data[(b)->i++] : ft_readbuff(b))
 # define BIS(b,c)		(BG(b) == c && ++((b)->i))
-# define BUFF(s,i,l)	((t_buff){(s), (i), (l), -1})
-# define FBUFF(fd)		((t_buff){MAL(char, BUFF_SIZE), 0, BUFF_SIZE, fd})
+# define SBUFF(s,l)		((t_buff){(s), 0, (l), -1})
+# define INBUFF(f,b,l)	((t_buff){(b), (l), (l), (f)})
+# define OUTBUFF(f,b,l)	((t_buff){(b), 0, (l), (f)})
 
 # define BASE_2			"01"
 # define BASE_8			"01234567"
@@ -608,13 +609,10 @@ int				ft_stringput(t_string *str);
 int				ft_stringputfd(t_string *str, int const fd);
 
 /*
-** struct s_buff (t_buff) represent a buffer being parsed
-** 'data' may not be NULL terminated
-** == string buff ('fd' < 0)
-** 'data' is not the original malloced pointer (can't be free)
-** == file buff ('fd' >= 0)
-** 'data' need to be the original malloced pointer (automaticaly free)
-** macro FBUFF() init a file t_buff (and malloc 'data')
+** Use the struct s_buff (t_buff) to read and parse a file
+**  INBUFF() macro init a file buff
+** Can parse simple string
+**  SBUFF() macro init a string buff
 */
 inline char		ft_readbuff(t_buff *buff);
 inline char		ft_buffget(t_buff *buff);
@@ -634,8 +632,8 @@ void			ft_parsespace(t_buff *buff);
 void			ft_parsewhite(t_buff *buff);
 
 /*
-** use the struct s_buff (t_buff) to write to a file
-** macro FBUFF() init a file t_buff
+** Use the struct s_buff (t_buff) to write to a fd
+**  OUTBUFF() init a out buff
 */
 void			ft_write(t_buff *buff, const char *data, t_uint len);
 inline void		ft_writestr(t_buff *buff, const char *str);
