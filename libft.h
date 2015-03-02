@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/25 00:03:01 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/02 12:43:17 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -454,6 +454,8 @@ int				ft_atoi(const char *str);
 t_long			ft_atol(const char *str);
 double			ft_atod(const char *str);
 
+int				ft_itoab(int n, char *buff);
+
 char			*ft_itoa(int n);
 char			*ft_ltoa(t_long n);
 
@@ -473,6 +475,13 @@ inline t_uint	ft_wstrlen(int *wstr);
 int				ft_wstrconv(char *buff, int *wstr);
 int				ft_wstrnconv(char *buff, int *wstr, int n);
 int				ft_widetoa(char *buff, int w);
+
+/*
+** Rand
+** (use rand() from stdlib.h)
+*/
+int				ft_rand(int min, int max);
+t_bool			ft_randbool(double chance);
 
 /*
 ** Write

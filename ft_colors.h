@@ -6,12 +6,12 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/24 18:07:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/24 20:03:07 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/02 12:38:12 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLORS_H
-# define COLORS_H
+#ifndef FT_COLORS_H
+# define FT_COLORS_H
 
 /*
 ** Text color
