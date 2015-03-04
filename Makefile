@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 13:05:11 by jaguillo          #+#    #+#              #
-#    Updated: 2015/02/27 13:31:14 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/03/04 23:05:05 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ C_DIRS = $(shell find $(C_DIR) -depth -type d -print)
 # Build .o list
 O_DIRS = $(C_DIRS:$(C_DIR)/%=$(O_DIR)/%)
 TMP = $(C_FILES:$(C_DIR)/%.c=$(O_DIR)/%.o)
-O_FILES = $(TMP:$(C_DIR)/%.s=$(O_DIR)/%.o)
+O_FILES = $(TMP:$(C_DIR)/%.asm=$(O_DIR)/%.o)
 
 # Create O_DIR and childs
 $(shell mkdir -p $(O_DIRS) $(O_DIR) 2> /dev/null || echo "" > /dev/null)
@@ -90,11 +90,11 @@ $(NAME): $(O_FILES)
 	@ar rcs $@ $^ && printf "\033[0;32m" || printf "\033[0;31m"
 	@printf $(MSG_2) "$@"
 
-# Compile .s sources (only if nasm is installed and support ASM_FORMAT)
+# Compile .asm sources (only if nasm is installed and support ASM_FORMAT)
 ifeq ($(ASM_ENABLE),1)
 ifneq ($(shell nasm -v 2> /dev/null),)
 ifneq ($(shell nasm -hf | grep "$(ASM_FORMAT)"),)
-$(O_DIR)/%.o: $(C_DIR)/%.s
+$(O_DIR)/%.o: $(C_DIR)/%.asm
 	@nasm $(ASM_SPECIAL) $(ASM_FLAGS) -o $@ $< \
 		&& printf $(MSG_0) "$<" "$@" || (printf $(MSG_1) "$<" "$@" && exit 1)
 endif
