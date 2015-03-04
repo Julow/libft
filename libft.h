@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/02 13:31:14 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/04 23:36:52 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,6 +210,9 @@
 # define IGNORE(f)		((void)((f) + 1))
 
 # define ISNAN(d)		((d) != (d))
+
+# define TRY(t)			if (ft_try(t) == 0)
+# define CATCH			else
 
 # ifdef DEBUG_MODE
 #  define DEBUG(d, ...) ft_debug(__func__, __FILE__, __LINE__, d, __VA_ARGS__)
@@ -483,6 +486,13 @@ int				ft_widetoa(char *buff, int w);
 */
 int				ft_rand(int min, int max);
 t_bool			ft_randbool(double chance);
+
+/*
+** Try/Catch
+** (see TRY() and CATCH macros)
+*/
+int				ft_try(void *t);
+void			ft_throw(void *t);
 
 /*
 ** Write
