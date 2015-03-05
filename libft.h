@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/04 23:36:52 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/05 12:32:32 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -367,7 +367,7 @@ typedef enum	e_bool
 ** Memory
 */
 void			*ft_bzero(void *mem, t_uint len);
-inline void		*ft_emalloc(t_uint size);
+void			*ft_emalloc(t_uint size);
 void			*ft_memset(void *mem, int c, t_uint len);
 void			*ft_memcpy(void *dst, const void *src, t_uint len);
 void			*ft_memrcpy(void *dst, const void *src, t_uint len);
@@ -414,7 +414,7 @@ t_bool			ft_isprint(int c);
 t_bool			ft_isspace(int c);
 t_bool			ft_isword(int c);
 t_bool			ft_isrange(int c, int from, int to);
-inline t_bool	ft_iswhite(int c);
+t_bool			ft_iswhite(int c);
 
 t_bool			ft_isato(const char *str);
 t_bool			ft_isnumber(const char *str);
@@ -475,7 +475,7 @@ void			ft_strupper(char *str);
 ** W String
 */
 
-inline t_uint	ft_wstrlen(int *wstr);
+t_uint			ft_wstrlen(int *wstr);
 int				ft_wstrconv(char *buff, int *wstr);
 int				ft_wstrnconv(char *buff, int *wstr, int n);
 int				ft_widetoa(char *buff, int w);
@@ -499,17 +499,17 @@ void			ft_throw(void *t);
 */
 int				ft_puts(const char *s);
 int				ft_putchar(char c);
-inline int		ft_putnchar(char c, int n);
+int				ft_putnchar(char c, int n);
 int				ft_putstr(const char *str);
 int				ft_putlstr(const char *str, int len);
-inline int		ft_putendl(const char *s);
-inline int		ft_putnbr(int n);
-inline int		ft_putlong(t_long n);
-inline int		ft_putchar_fd(char c, int fd);
+int				ft_putendl(const char *s);
+int				ft_putnbr(int n);
+int				ft_putlong(t_long n);
+int				ft_putchar_fd(char c, int fd);
 int				ft_putnchar_fd(char c, int n, int fd);
-inline int		ft_putstr_fd(const char *s, int fd);
-inline int		ft_putlstr_fd(const char *s, int len, int fd);
-inline int		ft_putendl_fd(const char *s, int fd);
+int				ft_putstr_fd(const char *s, int fd);
+int				ft_putlstr_fd(const char *s, int len, int fd);
+int				ft_putendl_fd(const char *s, int fd);
 int				ft_putnbr_fd(int n, int fd);
 int				ft_putlong_fd(t_long n, int fd);
 
@@ -530,14 +530,14 @@ t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 */
 t_tab			*ft_tabnew(int size);
 void			ft_tabini(t_tab *tab, int size);
-inline void		*ft_tabget(t_tab *tab, int index);
+void			*ft_tabget(t_tab *tab, int index);
 void			*ft_tabadd0(t_tab *tab);
-inline void		ft_tabadd(t_tab *tab, const void *add);
-inline void		ft_tabaddn(t_tab *tab, const void *add, int n);
+void			ft_tabadd(t_tab *tab, const void *add);
+void			ft_tabaddn(t_tab *tab, const void *add, int n);
 void			ft_tabset(t_tab *tab, const void *set, int index, int n);
 void			ft_tabins(t_tab *tab, const void *ins, int index, int n);
 void			ft_tabrem(t_tab *tab, int index, int n);
-inline void		ft_tabpop(t_tab *tab);
+void			ft_tabpop(t_tab *tab);
 int				ft_tabchr(t_tab *tab, const void *chr);
 void			ft_tabfree(t_tab *tab);
 void			ft_tabclr(t_tab *tab);
@@ -552,11 +552,11 @@ t_bool			ft_tabext(t_tab *tab, int need);
 */
 t_array			*ft_arraynew(void);
 void			ft_arrayini(t_array *array);
-inline void		ft_arrayadd(t_array *array, void *add);
+void			ft_arrayadd(t_array *array, void *add);
 void			ft_arrayset(t_array *array, void *set, int index);
 void			ft_arrayins(t_array *array, void *ins, int index);
 void			*ft_arrayrem(t_array *array, int index);
-inline void		*ft_arraypop(t_array *array);
+void			*ft_arraypop(t_array *array);
 int				ft_arraychr(t_array *array, const void *chr);
 void			ft_arrayapp(t_array *array, const t_array *app);
 t_array			*ft_arraydup(const t_array *array);
@@ -585,14 +585,14 @@ void			ft_pairsort(t_array *array);
 t_string		*ft_stringnew(void);
 t_string		*ft_stringnews(const char *s);
 void			ft_stringini(t_string *str);
-inline void		ft_stringaddc(t_string *str, char c);
-inline void		ft_stringadd(t_string *str, const char *add);
+void			ft_stringaddc(t_string *str, char c);
+void			ft_stringadd(t_string *str, const char *add);
 void			ft_stringaddi(t_string *str, int nbr);
 void			ft_stringaddil(t_string *str, t_long nbr);
 void			ft_stringaddid(t_string *str, double nbr);
 void			ft_stringaddd(t_string *str, double d, int preci);
 void			ft_stringaddde(t_string *str, double d, int preci);
-inline void		ft_stringaddl(t_string *str, const char *add, int len);
+void			ft_stringaddl(t_string *str, const char *add, int len);
 void			ft_stringaddcn(t_string *str, char c, int n);
 void			ft_stringsetc(t_string *str, char c, int index);
 void			ft_stringset(t_string *str, const char *set, int index);
@@ -624,9 +624,9 @@ int				ft_stringputfd(t_string *str, int const fd);
 ** Can parse simple string
 **  SBUFF() macro init a string buff
 */
-inline char		ft_readbuff(t_buff *buff);
-inline char		ft_buffget(t_buff *buff);
-inline t_bool	ft_buffis(t_buff *buff, char c);
+char			ft_readbuff(t_buff *buff);
+char			ft_buffget(t_buff *buff);
+t_bool			ft_buffis(t_buff *buff, char c);
 void			ft_parse(t_buff *buff, const char *parse);
 void			ft_parsenot(t_buff *buff, const char *parse);
 void			ft_parsef(t_buff *buff, t_bool (*f)(int c));
@@ -646,10 +646,10 @@ void			ft_parsewhite(t_buff *buff);
 **  OUTBUFF() init a out buff
 */
 void			ft_write(t_buff *buff, const char *data, t_uint len);
-inline void		ft_writestr(t_buff *buff, const char *str);
+void			ft_writestr(t_buff *buff, const char *str);
 void			ft_writechar(t_buff *buff, char c);
 void			ft_writenchar(t_buff *buff, char c, int n);
-inline void		ft_writenl(t_buff *buff);
+void			ft_writenl(t_buff *buff);
 void			ft_writeint(t_buff *buff, int n);
 void			ft_writebase(t_buff *buff, t_ulong n, const char *base);
 int				ft_flush(t_buff *buff);
@@ -669,13 +669,13 @@ t_bool			ft_parsestr(t_buff *buff, const char *str);
 /*
 ** Math
 */
-inline int		ft_mix(int a, int b, t_big pos);
+int				ft_mix(int a, int b, t_big pos);
 
 int				ft_max(int a, int b);
 int				ft_min(int a, int b);
 
-inline void		ft_resalpha(t_color *c, t_color bg);
-inline void		ft_resrect(t_rect *rect, t_rect bounds);
+void			ft_resalpha(t_color *c, t_color bg);
+void			ft_resrect(t_rect *rect, t_rect bounds);
 
 int				ft_dist2(t_pt p1, t_pt p2);
 
@@ -685,16 +685,16 @@ t_pt			ft_farthest(t_pt pos, t_pt p1, t_pt p2);
 /*
 ** Draw on struct s_image (t_image)
 */
-inline t_color	ft_imagept(t_image *img, t_pt pt);
-inline t_color	ft_imagepos(t_image *img, int pos);
-inline void		ft_imageput(t_image *img, int pos, t_color color);
+t_color			ft_imagept(t_image *img, t_pt pt);
+t_color			ft_imagepos(t_image *img, int pos);
+void			ft_imageput(t_image *img, int pos, t_color color);
 void			ft_imageclr(t_image *img);
 void			ft_imageclrc(t_image *img, t_color color);
 t_image			*ft_imageclone(t_image *img);
 void			ft_imageclonekil(t_image *clone);
 
-inline void		ft_drawxy(t_image *img, int x, int y, t_color color);
-inline void		ft_drawpt(t_image *img, t_pt pt, t_color color);
+void			ft_drawxy(t_image *img, int x, int y, t_color color);
+void			ft_drawpt(t_image *img, t_pt pt, t_color color);
 void			ft_drawnpt(t_image *img, t_pt pt, int n, t_color color);
 void			ft_drawvert(t_image *img, t_pt pt, int height, t_color color);
 
