@@ -6,9 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 16:08:59 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/12 22:33:29 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/06 19:11:52 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 inline int		ft_toupper(int c)
 {

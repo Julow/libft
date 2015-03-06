@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 13:05:11 by jaguillo          #+#    #+#              #
-#    Updated: 2015/03/04 23:25:02 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/03/06 18:31:27 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,14 +102,9 @@ endif
 endif
 endif
 
-# Compile .s sources
-$(O_DIR)/%.o: $(C_DIR)/%.s
-	@gcc $(C_FLAGS) $(LINKS) -o $@ -c $< \
-		&& printf $(MSG_0) "$<" "$@" || (printf $(MSG_1) "$<" "$@" && exit 1)
-
 # Compile .c sources
 $(O_DIR)/%.o: $(C_DIR)/%.c
-	@gcc $(C_FLAGS) $(LINKS) -o $@ -c $< \
+	@clang $(C_FLAGS) $(LINKS) -o $@ -c $< \
 		&& printf $(MSG_0) "$<" "$@" || (printf $(MSG_1) "$<" "$@" && exit 1)
 
 # Enable debug mode, change flags and build

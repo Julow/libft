@@ -6,9 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 16:14:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/12 22:33:33 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/06 19:11:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 inline int		ft_tolower(int c)
 {

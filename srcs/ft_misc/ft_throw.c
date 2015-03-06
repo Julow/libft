@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_try.s                                           :+:      :+:    :+:   */
+/*   ft_throw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/04 23:26:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/04 23:26:17 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/06 17:28:57 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/06 19:10:36 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** int			ft_try(void *t)
-*/
-.global	ft_try
+#include "libft.h"
 
-ft_try:
-	movq	%rbx, (%rdi)
-	movq	%rbp, 8(%rdi)
-	movq	%rsp, 16(%rdi)
-	movq	%r12, 24(%rdi)
-	movq	%r13, 32(%rdi)
-	movq	%r14, 40(%rdi)
-	movq	%r15, 48(%rdi)
-	popq	56(%rdi)
-	pushq	56(%rdi)
-	movq	$0, %rax
-	ret
+#define VASM		asm volatile
+
+void			ft_throw(void *t)
+{
+	VASM("movq	(%rdi), %rbx\n"
+		"popq	%rbp\n"
+		"movq	8(%rdi), %rbp\n"
+		"pushq	%rbp\n"
+		"movq	8(%rdi), %rbp\n"
+		"movq	16(%rdi), %rsp\n"
+		"movq	24(%rdi), %r12\n"
+		"movq	32(%rdi), %r13\n"
+		"movq	40(%rdi), %r14\n"
+		"movq	48(%rdi), %r15\n"
+		"movq	$1, %rax\n"
+		"jmpq	*56(%rdi)\n");
+	(void)t;
+}
