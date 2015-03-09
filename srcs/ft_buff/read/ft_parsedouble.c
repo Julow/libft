@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/11 17:32:54 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/01 10:58:24 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/10 00:21:17 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,16 @@
 
 double			ft_parsedouble(t_buff *buff)
 {
-	double			nb;
-	double			part;
 	t_bool			negatif;
+	double			nb;
+	double			po;
 
-	negatif = (BIS(buff, '-')) ? true : false;
-	if (BG(buff) == '+' && !negatif)
-		buff->i++;
+	negatif = (!BIS(buff, '+') && BIS(buff, '-')) ? true : false;
 	nb = 0.0;
 	while (ft_isdigit(BG(buff)))
-		nb = nb * 10 + (buff->data[buff->i++] - '0');
-	if (BG(buff) == '.' || BG(buff) == ',')
-	{
-		part = 0.0;
-		while (ft_isdigit(buff->data[++buff->i]))
-			;
-		while (ft_isdigit(buff->data[--buff->i]))
-			part = (part + (BG(buff) - '0')) / 10.0;
-		nb += part;
-	}
+		nb = nb * 10.0 + (double)(BR(buff) - '0');
+	if (BIS(buff, '.') && (po = 1.0))
+		while (ft_isdigit(BG(buff)))
+			nb += ((double)(BR(buff) - '0')) / (po *= 10.0);
 	return (negatif ? -nb : nb);
 }

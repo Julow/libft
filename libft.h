@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/09 16:51:16 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/10 00:24:42 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -631,10 +631,12 @@ void			ft_parsesub(t_buff *buff, t_string *dst, const char *parse);
 void			ft_parsesubf(t_buff *buff, t_string *dst, t_bool (*f)(int c));
 void			ft_parsesubnf(t_buff *buff, t_string *dst, t_bool (*f)(int c));
 void			ft_parseline(t_buff *buff, t_string *dst);
+t_bool			ft_parsestr(t_buff *buff, const char *str);
 void			ft_parseendl(t_buff *buff);
 int				ft_parseint(t_buff *buff);
 t_long			ft_parselong(t_buff *buff);
 t_ulong			ft_parsebase(t_buff *buff, const char *base);
+double			ft_parsedouble(t_buff *buff);
 void			ft_parsespace(t_buff *buff);
 void			ft_parsewhite(t_buff *buff);
 
@@ -656,12 +658,6 @@ int				ft_flush(t_buff *buff);
 */
 t_buff			*ft_out(void);
 void			ft_setout(int fd);
-
-/*
-** Work only for string buff
-*/
-double			ft_parsedouble(t_buff *buff);
-t_bool			ft_parsestr(t_buff *buff, const char *str);
 
 /*
 ** Math
