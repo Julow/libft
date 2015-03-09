@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/05 12:32:32 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/09 16:51:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,6 @@
 #  include FT_CONFIG
 # endif
 
-# ifndef BUFF_SIZE
-#  define BUFF_SIZE		256
-# endif
 # ifndef FTOUT_BUFF
 #  define FTOUT_BUFF	512
 # endif
@@ -630,10 +627,10 @@ t_bool			ft_buffis(t_buff *buff, char c);
 void			ft_parse(t_buff *buff, const char *parse);
 void			ft_parsenot(t_buff *buff, const char *parse);
 void			ft_parsef(t_buff *buff, t_bool (*f)(int c));
-t_string		ft_parsesub(t_buff *buff, const char *parse);
-t_string		ft_parsesubf(t_buff *buff, t_bool (*f)(int c));
-t_string		ft_parsesubnf(t_buff *buff, t_bool (*f)(int c));
-t_string		ft_parseline(t_buff *buff);
+void			ft_parsesub(t_buff *buff, t_string *dst, const char *parse);
+void			ft_parsesubf(t_buff *buff, t_string *dst, t_bool (*f)(int c));
+void			ft_parsesubnf(t_buff *buff, t_string *dst, t_bool (*f)(int c));
+void			ft_parseline(t_buff *buff, t_string *dst);
 void			ft_parseendl(t_buff *buff);
 int				ft_parseint(t_buff *buff);
 t_long			ft_parselong(t_buff *buff);
