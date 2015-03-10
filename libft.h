@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 00:24:42 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/10 18:24:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,9 +156,9 @@
 # define BG(b)			(BI(b) ? (b)->data[(b)->i] : ft_buffget(b))
 # define BR(b)			(BI(b) ? (b)->data[(b)->i++] : ft_readbuff(b))
 # define BIS(b,c)		(BG(b) == c && ++((b)->i))
-# define SBUFF(s,l)		((t_buff){(s), 0, (l), -1})
-# define INBUFF(f,b,l)	((t_buff){(b), (l), (l), (f)})
-# define OUTBUFF(f,b,l)	((t_buff){(b), 0, (l), (f)})
+# define SBUFF(s,l)		((t_buff){(s), 0, (l), -1, -1})
+# define INBUFF(f,b,l)	((t_buff){(b), 0, 0, (l), (f)})
+# define OUTBUFF(f,b,l)	((t_buff){(b), 0, (l), (l), (f)})
 
 # define BASE_2			"01"
 # define BASE_8			"01234567"
@@ -291,6 +291,7 @@ typedef struct	s_buff
 	char			*data;
 	int				i;
 	int				length;
+	int				buff_len;
 	int				fd;
 }				t_buff;
 

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 20:15:15 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/09 16:41:20 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/10 18:26:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 */
 inline char		ft_readbuff(t_buff *buff)
 {
-	if (buff->i >= buff->length)
-		ft_buffget(buff);
-	return (buff->data[buff->i++]);
+	char			c;
+
+	c = BG(buff);
+	buff->i++;
+	return (c);
 }
