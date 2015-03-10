@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 19:19:01 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/10 23:23:57 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,8 +182,12 @@
 
 # define SUB(s,l)		((t_sub){(s), (l)})
 
-#define LOWER(c)		(((c) >= 'A' && (c) <= 'Z') ? (c) - 32 : (c))
-#define UPPER(c)		(((c) >= 'a' && (c) <= 'z') ? (c) + 32 : (c))
+# define LOWER(c)		(((c) >= 'A' && (c) <= 'Z') ? (c) + 32 : (c))
+# define UPPER(c)		(((c) >= 'a' && (c) <= 'z') ? (c) - 32 : (c))
+
+# define MASK(f,m)		((m) == ((f) & (m)))
+# define FLAG(f,b)		(((f) & (1 << (b))) != 0)
+# define BIT(b)			(1 << (b))
 
 # define MIN(a,b)		(((a) < (b)) ? (a) : (b))
 # define MAX(a,b)		(((a) > (b)) ? (a) : (b))
@@ -488,6 +492,11 @@ int				ft_widetoa(char *buff, int w);
 */
 int				ft_rand(int min, int max);
 t_bool			ft_randbool(double chance);
+
+/*
+** Misc
+*/
+char			*ft_getenv(const char *key);
 
 /*
 ** Try/Catch
