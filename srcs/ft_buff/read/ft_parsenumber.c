@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_out.c                                           :+:      :+:    :+:   */
+/*   ft_parsenumber.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/11 23:08:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 19:13:58 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/10 19:18:36 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/10 19:18:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_buff			*ft_out(void)
+/*
+** Parse an integer
+** decimal/hexa/octal/binary
+** hexa is case insensitive
+*/
+t_ulong			ft_parsenumber(t_buff *buff)
 {
-	static char		buffer[FTOUT_BUFF] = DB(FTOUT_BUFF, 0);
-	static t_buff	out = (t_buff){buffer, 0, FTOUT_BUFF, FTOUT_BUFF, 1};
-
-	return (&out);
+	if (BIS(buff, '0'))
+	{
+		if (BIS(buff, 'x'))
+			return (ft_parsebasei(buff, BASE_16));
+		else if (BIS(buff, 'b'))
+			return (ft_parsebase(buff, BASE_2));
+		return (ft_parsebase(buff, BASE_8));
+	}
+	return (ft_parsebase(buff, BASE_10));
 }

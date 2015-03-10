@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 18:24:43 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/10 19:19:01 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,9 @@
 # define FL				(ft_flush(FTOUT))
 
 # define SUB(s,l)		((t_sub){(s), (l)})
+
+#define LOWER(c)		(((c) >= 'A' && (c) <= 'Z') ? (c) - 32 : (c))
+#define UPPER(c)		(((c) >= 'a' && (c) <= 'z') ? (c) + 32 : (c))
 
 # define MIN(a,b)		(((a) < (b)) ? (a) : (b))
 # define MAX(a,b)		(((a) > (b)) ? (a) : (b))
@@ -423,6 +426,7 @@ t_bool			ft_isnumber(const char *str);
 char			*ft_strchr(const char *s, char c);
 char			*ft_strnchr(const char *s, char c, int len);
 int				ft_strchri(const char *str, char c);
+int				ft_strichri(const char *str, char c);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strstr(const char *s1, const char *s2);
 char			*ft_strnstr(const char *s1, const char *s2, t_uint n);
@@ -637,6 +641,8 @@ void			ft_parseendl(t_buff *buff);
 int				ft_parseint(t_buff *buff);
 t_long			ft_parselong(t_buff *buff);
 t_ulong			ft_parsebase(t_buff *buff, const char *base);
+t_ulong			ft_parsebasei(t_buff *buff, const char *base);
+t_ulong			ft_parsenumber(t_buff *buff);
 double			ft_parsedouble(t_buff *buff);
 void			ft_parsespace(t_buff *buff);
 void			ft_parsewhite(t_buff *buff);

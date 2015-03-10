@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_out.c                                           :+:      :+:    :+:   */
+/*   ft_parsebasei.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/11 23:08:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 19:13:58 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/10 19:14:44 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/10 19:19:24 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_buff			*ft_out(void)
+t_ulong			ft_parsebasei(t_buff *buff, const char *base)
 {
-	static char		buffer[FTOUT_BUFF] = DB(FTOUT_BUFF, 0);
-	static t_buff	out = (t_buff){buffer, 0, FTOUT_BUFF, FTOUT_BUFF, 1};
+	const t_uint	base_len = ft_strlen(base);
+	t_ulong			nb;
+	int				tmp;
 
-	return (&out);
+	nb = 0;
+	while ((tmp = ft_strichri(base, BG(buff))) != -1)
+		nb = nb * base_len + tmp;
+	return (nb);
 }
