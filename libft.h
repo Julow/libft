@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/16 22:34:37 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/16 22:40:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,6 +280,8 @@ t_bool			ft_iswhite(int c);
 t_bool			ft_isato(const char *str);
 t_bool			ft_isnumber(const char *str);
 
+t_bool			ft_sisint(const char *s);
+
 /*
 ** ========================================================================== **
 ** String - Useless
@@ -430,6 +432,7 @@ void			ft_tabaddn(t_tab *tab, const void *add, int n);
 void			ft_tabset(t_tab *tab, const void *set, int index, int n);
 void			ft_tabins(t_tab *tab, const void *ins, int index, int n);
 void			ft_tabrem(t_tab *tab, int index, int n);
+void			ft_tabrot(t_tab *tab, int rot);
 void			ft_tabpop(t_tab *tab);
 int				ft_tabchr(t_tab *tab, const void *chr);
 void			ft_tabfree(t_tab *tab);
@@ -668,6 +671,7 @@ typedef struct	s_rect
 
 int				ft_mix(int a, int b, t_big pos);
 
+int				ft_abs(int a);
 int				ft_max(int a, int b);
 int				ft_min(int a, int b);
 
