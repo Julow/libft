@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/16 22:40:26 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/17 00:09:56 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -554,9 +554,12 @@ void			ft_pairsort(t_array *array);
 # define BG(b)			(BI(b) ? (b)->data[(b)->i] : ft_buffget(b))
 # define BR(b)			(BI(b) ? (b)->data[(b)->i++] : ft_readbuff(b))
 # define BIS(b,c)		(BG(b) == c && ++((b)->i))
+# define BIF(b,f)		((f)(BG(b)) && ++((b)->i))
 
-# define SBUFF(s,l)		((t_buff){(s), 0, (l), -1, -1})
-# define INBUFF(f,b,l)	((t_buff){(b), 0, 0, (l), (f)})
+# define BEOF(b)		((b)->fd == -1)
+
+# define SBUFF(s,l)		((t_buff){(s), 0, (l), (l), -1})
+# define INBUFF(f,b,l)	((t_buff){(b), 0, 0, (l), f})
 
 typedef struct	s_buff
 {
@@ -569,24 +572,28 @@ typedef struct	s_buff
 
 char			ft_readbuff(t_buff *buff);
 char			ft_buffget(t_buff *buff);
-t_bool			ft_buffis(t_buff *buff, char c);
-void			ft_parse(t_buff *buff, const char *parse);
-void			ft_parsenot(t_buff *buff, const char *parse);
-void			ft_parsef(t_buff *buff, t_bool (*f)(int c));
-void			ft_parsesub(t_buff *buff, t_string *dst, const char *parse);
-void			ft_parsesubf(t_buff *buff, t_string *dst, t_bool (*f)(int c));
-void			ft_parsesubnf(t_buff *buff, t_string *dst, t_bool (*f)(int c));
-void			ft_parseline(t_buff *buff, t_string *dst);
+
+t_bool			ft_parseint(t_buff *buff, int *nb);
+t_bool			ft_parselong(t_buff *buff, t_long *nb);
+t_bool			ft_parsebase(t_buff *buff, const char *base, t_ulong *nb);
+t_bool			ft_parsebasei(t_buff *buff, const char *base, t_ulong *nb);
+t_bool			ft_parsenumber(t_buff *buff, t_ulong *nb);
+t_bool			ft_parsedouble(t_buff *buff, double *nb);
+
+t_bool			ft_parse(t_buff *buff, const char *parse);
+t_bool			ft_parsenot(t_buff *buff, const char *parse);
 t_bool			ft_parsestr(t_buff *buff, const char *str);
+
+int				ft_parsesub(t_buff *buff, t_string *dst, const char *parse);
+int				ft_parsesubf(t_buff *buff, t_string *dst, t_bool (*f)(int c));
+int				ft_parsesubnf(t_buff *buff, t_string *dst, t_bool (*f)(int c));
+int				ft_parseline(t_buff *buff, t_string *dst);
+
 void			ft_parseendl(t_buff *buff);
-int				ft_parseint(t_buff *buff);
-t_long			ft_parselong(t_buff *buff);
-t_ulong			ft_parsebase(t_buff *buff, const char *base);
-t_ulong			ft_parsebasei(t_buff *buff, const char *base);
-t_ulong			ft_parsenumber(t_buff *buff);
-double			ft_parsedouble(t_buff *buff);
-void			ft_parsespace(t_buff *buff);
-void			ft_parsewhite(t_buff *buff);
+
+t_bool			ft_parsef(t_buff *buff, t_bool (*f)(int c));
+t_bool			ft_parsespace(t_buff *buff);
+t_bool			ft_parsewhite(t_buff *buff);
 
 /*
 ** ========================================================================== **

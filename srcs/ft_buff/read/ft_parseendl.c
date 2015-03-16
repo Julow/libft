@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/13 15:27:51 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/01 10:35:38 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/16 23:52:42 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 void			ft_parseendl(t_buff *buff)
 {
-	char			c;
-
-	c = '\0';
-	while ((c = BG(buff)) != '\n' && c != '\0')
-		buff->i++;
-	if (c == '\n')
+	while (!BEOF(buff) && !BIS(buff, '\n'))
 		buff->i++;
 }

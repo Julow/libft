@@ -6,23 +6,25 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/11 17:32:54 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/09 17:05:43 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/16 23:34:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_parsesub(t_buff *buff, t_string *dst, const char *parse)
+int				ft_parsesub(t_buff *buff, t_string *dst, const char *parse)
 {
 	char			c;
+	int				len;
 
-	ft_stringini(dst);
-	c = BG(buff);
-	while (c != '\0')
+	len = dst->length;
+	while (!BEOF(buff))
 	{
-		if (ft_strchr(parse, (c = BG(buff))) == NULL)
+		c = BG(buff);
+		if (ft_strchr(parse, c) == NULL)
 			break ;
 		ft_stringaddc(dst, c);
 		buff->i++;
 	}
+	return (dst->length - len);
 }

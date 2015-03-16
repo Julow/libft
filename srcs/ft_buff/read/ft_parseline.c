@@ -6,25 +6,22 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 20:13:55 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/09 16:50:59 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/16 23:50:56 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_parseline(t_buff *buff, t_string *dst)
+int				ft_parseline(t_buff *buff, t_string *dst)
 {
-	char			c;
+	int				len;
 
-	ft_stringini(dst);
-	c = BG(buff);
-	while (c != '\0')
+	len = dst->length;
+	while (!BEOF(buff))
 	{
-		if ((c = BG(buff)) == '\n' || c == '\0')
+		if (BIS(buff, '\n'))
 			break ;
-		ft_stringaddc(dst, c);
-		buff->i++;
+		ft_stringaddc(dst, BR(buff));
 	}
-	if (c == '\n')
-		buff->i++;
+	return (dst->length - len);
 }
