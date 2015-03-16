@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_setout.c                                        :+:      :+:    :+:   */
+/*   ft_writenchar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/12 20:33:28 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/12 20:34:15 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/02/11 21:21:01 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/17 00:23:41 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_setout(int fd)
+void			ft_writenchar(t_out *out, char c, int n)
 {
-	t_buff			*buff;
+	int				free_buff;
 
-	buff = FTOUT;
-	if (buff->fd != fd)
+	while (true)
 	{
-		ft_flush(buff);
-		buff->fd = fd;
+		free_buff = out->length - out->i;
+		if (n <= free_buff)
+			break ;
+		ft_writenchar(out, c, free_buff);
+		ft_flush(out);
+		n -= free_buff;
 	}
+	ft_memset(out->buff + out->i, c, n);
+	out->i += n;
 }

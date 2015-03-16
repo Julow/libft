@@ -6,16 +6,20 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 23:08:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 19:13:58 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/17 00:33:25 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_buff			*ft_out(void)
-{
-	static char		buffer[FTOUT_BUFF] = DB(FTOUT_BUFF, 0);
-	static t_buff	out = (t_buff){buffer, 0, FTOUT_BUFF, FTOUT_BUFF, 1};
+char			g_ftout_buff[FTOUT_BUFF] = DB(FTOUT_BUFF, 0);
+t_out			g_ftout = OUT(1, g_ftout_buff, FTOUT_BUFF);
 
-	return (&out);
+void			ft_out(int fd)
+{
+	if (FTOUT->fd != fd)
+	{
+		ft_flush(FTOUT);
+		FTOUT->fd = fd;
+	}
 }

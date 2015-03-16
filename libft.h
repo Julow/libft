@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/17 00:09:56 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/17 00:32:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -597,29 +597,37 @@ t_bool			ft_parsewhite(t_buff *buff);
 
 /*
 ** ========================================================================== **
-** Use the struct s_buff (t_buff) to write to a fd
-**  OUTBUFF() init a out buff
+** Use the struct s_out (t_out) to write to a fd
 */
 
-# define OUTBUFF(f,b,l)	((t_buff){(b), 0, (l), (l), (f)})
+# define OUT(f,b,l)		((t_out){(b), 0, (l), (f)})
 
-void			ft_write(t_buff *buff, const char *data, t_uint len);
-void			ft_writestr(t_buff *buff, const char *str);
-void			ft_writechar(t_buff *buff, char c);
-void			ft_writenchar(t_buff *buff, char c, int n);
-void			ft_writenl(t_buff *buff);
-void			ft_writeint(t_buff *buff, int n);
-void			ft_writebase(t_buff *buff, t_ulong n, const char *base);
-int				ft_flush(t_buff *buff);
+typedef struct	s_out
+{
+	char			*buff;
+	int				i;
+	int				length;
+	int				fd;
+}				t_out;
+
+void			ft_write(t_out *out, const char *data, t_uint len);
+void			ft_writestr(t_out *out, const char *str);
+void			ft_writechar(t_out *out, char c);
+void			ft_writenchar(t_out *out, char c, int n);
+void			ft_writenl(t_out *out);
+void			ft_writeint(t_out *out, int n);
+void			ft_writebase(t_out *out, t_ulong n, const char *base);
+int				ft_flush(t_out *out);
 
 /*
 ** ========================================================================== **
-** static t_buff FTOUT
+** static t_out FTOUT
 */
 
-# define FTOUT			(ft_out())
+extern t_out	g_ftout;
 
-# define OUT(f)			(ft_setout(f))
+# define FTOUT			(&g_ftout)
+
 # define P(d,l)			(ft_write(FTOUT, (d), (l)))
 # define PS(s)			(ft_writestr(FTOUT, (s)))
 # define PC(c)			(ft_writechar(FTOUT, (c)))
@@ -629,8 +637,7 @@ int				ft_flush(t_buff *buff);
 # define NL				(ft_writenl(FTOUT))
 # define FL				(ft_flush(FTOUT))
 
-t_buff			*ft_out(void);
-void			ft_setout(int fd);
+void			ft_out(int fd);
 
 /*
 ** ========================================================================== **

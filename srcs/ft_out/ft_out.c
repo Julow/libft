@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_writenl.c                                       :+:      :+:    :+:   */
+/*   ft_out.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/11 21:21:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/11 21:22:52 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/02/11 23:08:06 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/17 00:29:05 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-** ft_writenl
-** Write '\n' to the buffer
-** and flush the buffer
-*/
-inline void		ft_writenl(t_buff *buff)
+char			g_ftout_buff[FTOUT_BUFF] = DB(FTOUT_BUFF, 0);
+t_out			g_ftout = OUT(1, g_ftout_buff, FTOUT_BUFF);
+
+void			ft_out(int fd)
 {
-	ft_writechar(buff, '\n');
-	ft_flush(buff);
+	t_out			*out;
+
+	out = FTOUT;
+	if (out->fd != fd)
+	{
+		ft_flush(out);
+		out->fd = fd;
+	}
 }

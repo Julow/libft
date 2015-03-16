@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_writenchar.c                                    :+:      :+:    :+:   */
+/*   ft_writenl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/11 21:21:01 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/15 00:46:34 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/02/11 21:21:40 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/17 00:23:14 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_writenchar(t_buff *buff, char c, int n)
+/*
+** ft_writenl
+** Write '\n' to the buffer
+** and flush the buffer
+*/
+inline void		ft_writenl(t_out *out)
 {
-	int				free_buff;
-
-	while (true)
-	{
-		free_buff = buff->length - buff->i;
-		if (n <= free_buff)
-			break ;
-		ft_writenchar(buff, c, free_buff);
-		ft_flush(buff);
-		n -= free_buff;
-	}
-	ft_memset(buff->data + buff->i, c, n);
-	buff->i += n;
+	ft_writechar(out, '\n');
+	ft_flush(out);
 }

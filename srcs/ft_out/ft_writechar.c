@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_writebase.c                                     :+:      :+:    :+:   */
+/*   ft_writechar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 21:23:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/11 22:07:24 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/17 00:24:30 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_internal.h"
+#include "libft.h"
 
-void			ft_writebase(t_buff *buff, t_ulong n, const char *base)
+void			ft_writechar(t_out *out, char c)
 {
-	const t_uint	base_len = ft_strlen(base);
-	char			nb[PUTBASE_BUFF];
-	t_uint			i;
-
-	i = PUTBASE_BUFF;
-	while (n != 0)
-	{
-		nb[--i] = base[(n % base_len)];
-		n /= base_len;
-	}
-	ft_write(buff, nb + i, PUTBASE_BUFF - i);
+	if (out->i >= out->length)
+		ft_flush(out);
+	out->buff[out->i++] = c;
 }
