@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 23:23:57 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/16 22:34:37 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define LIBFT_H
 
 /*
-** ========================================================================== **
 ** ========================================================================== **
 ** Cheat Sheet Shit
 ** ---
@@ -82,12 +81,12 @@
 **  		SIGPWR			Terminate		Power failure
 **  		SIGSYS			Core Dump		-
 ** ---
+** ========================================================================== **
 */
 
 /*
 ** ========================================================================== **
-** ========================================================================== **
-** Configuration
+** Config
 ** ---
 ** BUFF_SIZE
 ** FTOUT_BUFF
@@ -131,100 +130,16 @@
 
 /*
 ** ========================================================================== **
-** ========================================================================== **
-** Macros
+** Types
 */
-
-# define EMAL(t,l)		((t*)ft_emalloc(sizeof(t) * (l)))
-# define EMAL1(t)		((t*)ft_emalloc(sizeof(t)))
-
-# ifdef EMAL_ALL
-#  define MAL			EMAL
-#  define MAL1			EMAL1
-# else
-#  define MAL(t,l)		((t*)malloc(sizeof(t) * (l)))
-#  define MAL1(t)		((t*)malloc(sizeof(t)))
-# endif
-
-# define S(t,l)			(sizeof(t) * (l))
-
-# define TI(b,i)		(((t_tab*)(b))->data + (((t_tab*)(b))->size * (i)))
-# define TG(t,b,i)		((t*)TI(&(b), (i)))
-# define AG(t,a,i)		((t)(((t_array*)(a))->data[i]))
-
-# define BI(b)			((b)->i < (b)->length)
-# define BG(b)			(BI(b) ? (b)->data[(b)->i] : ft_buffget(b))
-# define BR(b)			(BI(b) ? (b)->data[(b)->i++] : ft_readbuff(b))
-# define BIS(b,c)		(BG(b) == c && ++((b)->i))
-# define SBUFF(s,l)		((t_buff){(s), 0, (l), -1, -1})
-# define INBUFF(f,b,l)	((t_buff){(b), 0, 0, (l), (f)})
-# define OUTBUFF(f,b,l)	((t_buff){(b), 0, (l), (l), (f)})
-
-# define BASE_2			"01"
-# define BASE_8			"01234567"
-# define BASE_10		"0123456789"
-# define BASE_16		"0123456789ABCDEF"
-# define BASE_36		"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-# define DB(l,v)		{[0 ... ((l) - 1)] = (v)}
-
-# define FTOUT			(ft_out())
-
-# define OUT(f)			(ft_setout(f))
-# define P(d,l)			(ft_write(FTOUT, (d), (l)))
-# define PS(s)			(ft_writestr(FTOUT, (s)))
-# define PC(c)			(ft_writechar(FTOUT, (c)))
-# define PCN(c,n)		(ft_writenchar(FTOUT, (c), (n)))
-# define PI(i)			(ft_writeint(FTOUT, (i)))
-# define PB(i,b)		(ft_writebase(FTOUT, (i), (b)))
-# define NL				(ft_writenl(FTOUT))
-# define FL				(ft_flush(FTOUT))
-
-# define SUB(s,l)		((t_sub){(s), (l)})
-
-# define LOWER(c)		(((c) >= 'A' && (c) <= 'Z') ? (c) + 32 : (c))
-# define UPPER(c)		(((c) >= 'a' && (c) <= 'z') ? (c) - 32 : (c))
 
 # define MASK(f,m)		((m) == ((f) & (m)))
 # define FLAG(f,b)		(((f) & (1 << (b))) != 0)
 # define BIT(b)			(1 << (b))
 
-# define MIN(a,b)		(((a) < (b)) ? (a) : (b))
-# define MAX(a,b)		(((a) > (b)) ? (a) : (b))
-# define ABS(a)			(((a) < 0) ? -(a) : (a))
-
-# define UP(n)			((int)(1 + (n)))
-# define ROUND(n)		((int)(0.5 + (n)))
-# define DOWN(n)		((int)(n))
-
-# define PT(x,y)		((t_pt){(x), (y)})
-# define POS(x,y,z)		((t_pos){(x), (y), (z)})
-# define RECT(x,y,w,h)	((t_rect){(x), (y), (w), (h)})
-
-# define C(c)			((t_color)(t_uint)(c))
-# define RGBA(r,g,b,a)	((t_color)((t_rgb){(b), (g), (r), (a)}))
-# define RGB(r,g,b)		RGBA(r, g, b, 255)
-# define INVI(c)		((c).u < 0x01000000)
-# define ALPHA(c)		((c).u < 0xFF000000)
-
-# define BIG(a)			((a) * 1000000)
-# define BTOI(a)		((a) / 1000000)
-# define MIX(a,b,p)		((a) - BTOI((a) * (p)) + BTOI((b) * (p)))
-
 # define IGNORE(f)		((void)((f) + 1))
 
-# define ISNAN(d)		((d) != (d))
-
-# define TRY(t)			if (ft_try(t) == 0)
-# define CATCH			else
-
-# ifdef DEBUG_MODE
-#  define DEBUG(d, ...) ft_debug(__func__, __FILE__, __LINE__, d, __VA_ARGS__)
-#  define TRACE			ft_debug(__func__, __FILE__, __LINE__, NULL)
-# else
-#  define DEBUG(d, ...)
-#  define TRACE
-# endif
+# define DB(l,v)		{[0 ... ((l) - 1)] = (v)}
 
 # ifndef NULL
 #  define NULL			((void*)0)
@@ -233,12 +148,6 @@
 # ifndef EOF
 #  define EOF			-1
 # endif
-
-/*
-** ========================================================================== **
-** ========================================================================== **
-** Types
-*/
 
 # define TUCHAR			unsigned char
 # define TUINT			unsigned int
@@ -257,105 +166,6 @@ typedef TLONG	t_big;
 # undef TLONG
 # undef TULONG
 
-typedef struct	s_list
-{
-	void			*content;
-	t_uint			content_size;
-	struct s_list	*next;
-}				t_list;
-
-typedef struct	s_array
-{
-	void			**data;
-	int				length;
-	int				alloc_length;
-}				t_array;
-
-typedef struct	s_tab
-{
-	t_byte			*data;
-	int				length;
-	int				bytes;
-	int				alloc_bytes;
-	int				size;
-}				t_tab;
-
-typedef struct	s_string
-{
-	char			*content;
-	int				length;
-	int				alloc_length;
-}				t_string;
-
-typedef struct	s_pair
-{
-	t_string		*key;
-	void			*value;
-}				t_pair;
-
-typedef struct	s_buff
-{
-	char			*data;
-	int				i;
-	int				length;
-	int				buff_len;
-	int				fd;
-}				t_buff;
-
-typedef struct	s_image
-{
-	t_byte			*data;
-	void			*img;
-	int				width;
-	int				height;
-	int				l_size;
-	int				opp;
-	int				endian;
-}				t_image;
-
-typedef struct	s_rgb
-{
-	t_uchar			b;
-	t_uchar			g;
-	t_uchar			r;
-	t_uchar			a;
-}				t_rgb;
-
-typedef union	u_color
-{
-	t_rgb			b;
-	t_uint			u;
-	int				i;
-	t_uchar			t[4];
-}				t_color;
-
-typedef struct	s_pt
-{
-	int				x;
-	int				y;
-}				t_pt;
-
-typedef struct	s_rect
-{
-	int				x;
-	int				y;
-	int				width;
-	int				height;
-}				t_rect;
-
-typedef struct	s_pos
-{
-	double			x;
-	double			y;
-	double			z;
-}				t_pos;
-
-typedef struct	s_sub
-{
-	char			*str;
-	int				length;
-}				t_sub;
-
 typedef enum	e_bool
 {
 	false = 0,
@@ -364,13 +174,22 @@ typedef enum	e_bool
 
 /*
 ** ========================================================================== **
-** ========================================================================== **
-** Prototypes
-*/
-
-/*
 ** Memory
 */
+
+# define EMAL(t,l)		((t*)ft_emalloc(sizeof(t) * (l)))
+# define EMAL1(t)		((t*)ft_emalloc(sizeof(t)))
+
+# ifdef EMAL_ALL
+#  define MAL			EMAL
+#  define MAL1			EMAL1
+# else
+#  define MAL(t,l)		((t*)malloc(sizeof(t) * (l)))
+#  define MAL1(t)		((t*)malloc(sizeof(t)))
+# endif
+
+# define S(t,l)			(sizeof(t) * (l))
+
 void			*ft_bzero(void *mem, t_uint len);
 void			*ft_emalloc(t_uint size);
 void			*ft_memset(void *mem, int c, t_uint len);
@@ -389,8 +208,18 @@ void			ft_memdel(void **ap);
 t_uint			ft_tablen(void **array);
 
 /*
+** ========================================================================== **
 ** String
 */
+
+# define SUB(s,l)		((t_sub){(s), (l)})
+
+typedef struct	s_sub
+{
+	char			*str;
+	int				length;
+}				t_sub;
+
 char			*ft_strnew(t_uint size);
 t_uint			ft_strlen(const char *str);
 char			*ft_strdup(const char *str);
@@ -411,6 +240,33 @@ t_bool			ft_strncase(const char *s1, const char *s2, t_uint n);
 
 void			ft_strnadd(char **str, const char *add, t_uint len);
 
+/*
+** ========================================================================== **
+** String search
+*/
+
+char			*ft_strchr(const char *s, char c);
+char			*ft_strnchr(const char *s, char c, int len);
+int				ft_strchri(const char *str, char c);
+int				ft_strichri(const char *str, char c);
+char			*ft_strrchr(const char *s, int c);
+char			*ft_strstr(const char *s1, const char *s2);
+char			*ft_strnstr(const char *s1, const char *s2, t_uint n);
+
+t_uint			ft_strskip(const char *str, const char *skip);
+t_uint			ft_strcskip(const char *str, const char *skip);
+t_uint			ft_strskipe(const char *str, const char *skip);
+t_uint			ft_strcskipe(const char *str, const char *skip);
+
+/*
+** ========================================================================== **
+** String test
+*/
+
+t_bool			ft_match(char *str, char *pattern);
+int				ft_nmatch(char *str, char *pattern);
+t_bool			ft_hidenp(char *hide, char *str);
+
 t_bool			ft_isalnum(int c);
 t_bool			ft_isalpha(int c);
 t_bool			ft_isascii(int c);
@@ -425,26 +281,7 @@ t_bool			ft_isato(const char *str);
 t_bool			ft_isnumber(const char *str);
 
 /*
-** String search
-*/
-char			*ft_strchr(const char *s, char c);
-char			*ft_strnchr(const char *s, char c, int len);
-int				ft_strchri(const char *str, char c);
-int				ft_strichri(const char *str, char c);
-char			*ft_strrchr(const char *s, int c);
-char			*ft_strstr(const char *s1, const char *s2);
-char			*ft_strnstr(const char *s1, const char *s2, t_uint n);
-
-t_uint			ft_strskip(const char *str, const char *skip);
-t_uint			ft_strcskip(const char *str, const char *skip);
-t_uint			ft_strskipe(const char *str, const char *skip);
-t_uint			ft_strcskipe(const char *str, const char *skip);
-
-t_bool			ft_match(char *str, char *pattern);
-int				ft_nmatch(char *str, char *pattern);
-t_bool			ft_hidenp(char *hide, char *str);
-
-/*
+** ========================================================================== **
 ** String - Useless
 */
 char			*ft_strcat(char *s1, const char *s2);
@@ -458,8 +295,19 @@ char			*ft_strmap(const char *s, char (*f)(char));
 char			*ft_strmapi(const char *s, char (*f)(int, char));
 
 /*
+** ========================================================================== **
 ** Conversion
 */
+
+# define BASE_2			"01"
+# define BASE_8			"01234567"
+# define BASE_10		"0123456789"
+# define BASE_16		"0123456789ABCDEF"
+# define BASE_36		"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+# define LOWER(c)		(((c) >= 'A' && (c) <= 'Z') ? (c) + 32 : (c))
+# define UPPER(c)		(((c) >= 'a' && (c) <= 'z') ? (c) - 32 : (c))
+
 int				ft_atoi(const char *str);
 t_long			ft_atol(const char *str);
 double			ft_atod(const char *str);
@@ -478,6 +326,7 @@ void			ft_strlower(char *str);
 void			ft_strupper(char *str);
 
 /*
+** ========================================================================== **
 ** W String
 */
 
@@ -487,27 +336,37 @@ int				ft_wstrnconv(char *buff, int *wstr, int n);
 int				ft_widetoa(char *buff, int w);
 
 /*
+** ========================================================================== **
 ** Rand
 ** (use rand() from stdlib.h)
 */
+
 int				ft_rand(int min, int max);
 t_bool			ft_randbool(double chance);
 
 /*
+** ========================================================================== **
 ** Misc
 */
+
 char			*ft_getenv(const char *key);
 
 /*
+** ========================================================================== **
 ** Try/Catch
-** (see TRY() and CATCH macros)
 */
+
+# define TRY(t)			if (ft_try(t) == 0)
+# define CATCH			else
+
 int				ft_try(void *t);
 void			ft_throw(void *t);
 
 /*
+** ========================================================================== **
 ** Write
 */
+
 int				ft_puts(const char *s);
 int				ft_putchar(char c);
 int				ft_putnchar(char c, int n);
@@ -525,8 +384,17 @@ int				ft_putnbr_fd(int n, int fd);
 int				ft_putlong_fd(t_long n, int fd);
 
 /*
+** ========================================================================== **
 ** Store mem using the struct s_list (t_list)
 */
+
+typedef struct	s_list
+{
+	void			*content;
+	t_uint			content_size;
+	struct s_list	*next;
+}				t_list;
+
 t_list			*ft_lstnew(const void *content, t_uint content_size);
 void			ft_lstdelone(t_list **alst, void (*del)(void*, t_uint));
 void			ft_lstdelnext(t_list *lst, void (*f)(void*, t_uint));
@@ -537,8 +405,22 @@ void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 /*
+** ========================================================================== **
 ** Store mem using the struct s_tab (t_tab)
 */
+
+# define TI(b,i)		(((t_tab*)(b))->data + (((t_tab*)(b))->size * (i)))
+# define TG(t,b,i)		((t*)TI(&(b), (i)))
+
+typedef struct	s_tab
+{
+	t_byte			*data;
+	int				length;
+	int				bytes;
+	int				alloc_bytes;
+	int				size;
+}				t_tab;
+
 t_tab			*ft_tabnew(int size);
 void			ft_tabini(t_tab *tab, int size);
 void			*ft_tabget(t_tab *tab, int index);
@@ -558,9 +440,20 @@ void			ft_tabrev(t_tab *tab);
 t_bool			ft_tabext(t_tab *tab, int need);
 
 /*
+** ========================================================================== **
 ** Store pointers using the struct s_array (t_array)
 ** Allocate memory by block of 16 to reduce the number of free/malloc/copy
 */
+
+# define AG(t,a,i)		((t)(((t_array*)(a))->data[i]))
+
+typedef struct	s_array
+{
+	void			**data;
+	int				length;
+	int				alloc_length;
+}				t_array;
+
 t_array			*ft_arraynew(void);
 void			ft_arrayini(t_array *array);
 void			ft_arrayadd(t_array *array, void *add);
@@ -580,19 +473,18 @@ void			ft_arrayrev(t_array *array);
 t_bool			ft_arrayext(t_array *array, int need);
 
 /*
-** Store pointers paired with a t_string 'key'
-** Use with the struct s_array (t_array)
-*/
-t_pair			*ft_pairnew(const char *key, void *value);
-t_pair			*ft_pairget(t_array *array, const char *key);
-int				ft_pairchr(t_array *array, const char *key);
-t_pair			*ft_pairrem(t_array *array, const char *key);
-void			ft_pairsort(t_array *array);
-
-/*
+** ========================================================================== **
 ** Manipulate string using the struct s_string (t_string)
 ** Allocate memory by block of 16 to reduce the number of free/malloc/copy
 */
+
+typedef struct	s_string
+{
+	char			*content;
+	int				length;
+	int				alloc_length;
+}				t_string;
+
 t_string		*ft_stringnew(void);
 t_string		*ft_stringnews(const char *s);
 void			ft_stringini(t_string *str);
@@ -630,11 +522,48 @@ int				ft_stringput(t_string *str);
 int				ft_stringputfd(t_string *str, int const fd);
 
 /*
+** ========================================================================== **
+** Store pointers paired with a t_string 'key'
+** Use with the struct s_array (t_array)
+*/
+
+typedef struct	s_pair
+{
+	t_string		*key;
+	void			*value;
+}				t_pair;
+
+t_pair			*ft_pairnew(const char *key, void *value);
+t_pair			*ft_pairget(t_array *array, const char *key);
+int				ft_pairchr(t_array *array, const char *key);
+t_pair			*ft_pairrem(t_array *array, const char *key);
+void			ft_pairsort(t_array *array);
+
+/*
+** ========================================================================== **
 ** Use the struct s_buff (t_buff) to read and parse a file
 **  INBUFF() macro init a file buff
 ** Can parse simple string
 **  SBUFF() macro init a string buff
 */
+
+# define BI(b)			((b)->i < (b)->length)
+# define BG(b)			(BI(b) ? (b)->data[(b)->i] : ft_buffget(b))
+# define BR(b)			(BI(b) ? (b)->data[(b)->i++] : ft_readbuff(b))
+# define BIS(b,c)		(BG(b) == c && ++((b)->i))
+
+# define SBUFF(s,l)		((t_buff){(s), 0, (l), -1, -1})
+# define INBUFF(f,b,l)	((t_buff){(b), 0, 0, (l), (f)})
+
+typedef struct	s_buff
+{
+	char			*data;
+	int				i;
+	int				length;
+	int				buff_len;
+	int				fd;
+}				t_buff;
+
 char			ft_readbuff(t_buff *buff);
 char			ft_buffget(t_buff *buff);
 t_bool			ft_buffis(t_buff *buff, char c);
@@ -657,9 +586,13 @@ void			ft_parsespace(t_buff *buff);
 void			ft_parsewhite(t_buff *buff);
 
 /*
+** ========================================================================== **
 ** Use the struct s_buff (t_buff) to write to a fd
 **  OUTBUFF() init a out buff
 */
+
+# define OUTBUFF(f,b,l)	((t_buff){(b), 0, (l), (l), (f)})
+
 void			ft_write(t_buff *buff, const char *data, t_uint len);
 void			ft_writestr(t_buff *buff, const char *str);
 void			ft_writechar(t_buff *buff, char c);
@@ -670,20 +603,74 @@ void			ft_writebase(t_buff *buff, t_ulong n, const char *base);
 int				ft_flush(t_buff *buff);
 
 /*
+** ========================================================================== **
 ** static t_buff FTOUT
 */
+
+# define FTOUT			(ft_out())
+
+# define OUT(f)			(ft_setout(f))
+# define P(d,l)			(ft_write(FTOUT, (d), (l)))
+# define PS(s)			(ft_writestr(FTOUT, (s)))
+# define PC(c)			(ft_writechar(FTOUT, (c)))
+# define PCN(c,n)		(ft_writenchar(FTOUT, (c), (n)))
+# define PI(i)			(ft_writeint(FTOUT, (i)))
+# define PB(i,b)		(ft_writebase(FTOUT, (i), (b)))
+# define NL				(ft_writenl(FTOUT))
+# define FL				(ft_flush(FTOUT))
+
 t_buff			*ft_out(void);
 void			ft_setout(int fd);
 
 /*
+** ========================================================================== **
 ** Math
 */
+
+# define MIN(a,b)		(((a) < (b)) ? (a) : (b))
+# define MAX(a,b)		(((a) > (b)) ? (a) : (b))
+# define ABS(a)			(((a) < 0) ? -(a) : (a))
+
+# define UP(n)			((int)(1 + (n)))
+# define ROUND(n)		((int)(0.5 + (n)))
+# define DOWN(n)		((int)(n))
+
+# define PT(x,y)		((t_pt){(x), (y)})
+# define POS(x,y,z)		((t_pos){(x), (y), (z)})
+# define RECT(x,y,w,h)	((t_rect){(x), (y), (w), (h)})
+
+# define BIG(a)			((a) * 1000000)
+# define BTOI(a)		((a) / 1000000)
+# define MIX(a,b,p)		((a) - BTOI((a) * (p)) + BTOI((b) * (p)))
+
+# define ISNAN(d)		((d) != (d))
+
+typedef struct	s_pos
+{
+	double			x;
+	double			y;
+	double			z;
+}				t_pos;
+
+typedef struct	s_pt
+{
+	int				x;
+	int				y;
+}				t_pt;
+
+typedef struct	s_rect
+{
+	int				x;
+	int				y;
+	int				width;
+	int				height;
+}				t_rect;
+
 int				ft_mix(int a, int b, t_big pos);
 
 int				ft_max(int a, int b);
 int				ft_min(int a, int b);
 
-void			ft_resalpha(t_color *c, t_color bg);
 void			ft_resrect(t_rect *rect, t_rect bounds);
 
 int				ft_dist2(t_pt p1, t_pt p2);
@@ -692,8 +679,45 @@ t_pt			ft_nearest(t_pt pos, t_pt p1, t_pt p2);
 t_pt			ft_farthest(t_pt pos, t_pt p1, t_pt p2);
 
 /*
-** Draw on struct s_image (t_image)
+** ========================================================================== **
+** Draw
 */
+
+# define C(c)			((t_color)(t_uint)(c))
+# define RGBA(r,g,b,a)	((t_color)((t_rgb){(b), (g), (r), (a)}))
+# define RGB(r,g,b)		RGBA(r, g, b, 255)
+# define INVI(c)		((c).u < 0x01000000)
+# define ALPHA(c)		((c).u < 0xFF000000)
+
+typedef struct	s_image
+{
+	t_byte			*data;
+	void			*img;
+	int				width;
+	int				height;
+	int				l_size;
+	int				opp;
+	int				endian;
+}				t_image;
+
+typedef struct	s_rgb
+{
+	t_uchar			b;
+	t_uchar			g;
+	t_uchar			r;
+	t_uchar			a;
+}				t_rgb;
+
+typedef union	u_color
+{
+	t_rgb			b;
+	t_uint			u;
+	int				i;
+	t_uchar			t[4];
+}				t_color;
+
+void			ft_resalpha(t_color *c, t_color bg);
+
 t_color			ft_imagept(t_image *img, t_pt pt);
 t_color			ft_imagepos(t_image *img, int pos);
 void			ft_imageput(t_image *img, int pos, t_color color);
@@ -719,12 +743,14 @@ void			ft_drawtri(t_image *img, t_pt pts[3], t_color color);
 void			ft_drawtrif(t_image *img, t_pt pts[3], t_color color);
 
 /*
+** ========================================================================== **
 ** get_next_line
 */
+
 int				get_next_line(int const fd, t_buff *line);
 
 /*
-** =============
+** ========================================================================== **
 ** A format sequence be like:
 **    %[flags][width][.precision]format
 ** flags can be 0 or more: '#', ' ', '-', '+', '^', '0', ''', '>', 'm', 'M'
@@ -734,17 +760,30 @@ int				get_next_line(int const fd, t_buff *line);
 ** A meta sequence be like:
 **    {meta_name}
 ** (list of meta in srcs/ft_printf/parse_meta.c)
-** =============
+** -
 ** ft_printf
-** ---
+** -
 ** Process the format sequence like printf and print the result to stdout
-** ---
+** -
 ** Return the total of char printed.
 */
+
+# ifdef DEBUG_MODE
+#  define DEBUG(d, ...) ft_debug(__func__, __FILE__, __LINE__, d, __VA_ARGS__)
+#  define TRACE			ft_debug(__func__, __FILE__, __LINE__, NULL)
+# else
+#  define DEBUG(d, ...)
+#  define TRACE
+# endif
+
 int				ft_printf(const char *format, ...);
 int				ft_fdprintf(const int fd, const char *format, ...);
 t_string		*ft_stringf(const char *format, ...);
 
 void			ft_debug(const char *c, char *f, int l, const char *s, ...);
+
+/*
+** ========================================================================== **
+*/
 
 #endif
