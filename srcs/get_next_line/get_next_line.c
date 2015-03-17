@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/05 12:23:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/02 13:31:22 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/17 22:51:55 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,10 @@ static int		buff_read(t_gnlfd *gnlfd)
 	return (len);
 }
 
-static int		buff_cut(t_gnlfd *gnlfd, int len, t_buff *dst, int rem)
+static int		buff_cut(t_gnlfd *gnlfd, int len, t_sub *dst, int rem)
 {
 	gnlfd->buff[len] = '\0';
-	dst->data = gnlfd->buff;
-	dst->i = 0;
-	dst->fd = -1;
+	dst->str = gnlfd->buff;
 	dst->length = len;
 	len += rem;
 	gnlfd->offset += len;
@@ -66,7 +64,7 @@ static int		buff_cut(t_gnlfd *gnlfd, int len, t_buff *dst, int rem)
 	return (GNL_SUCCES);
 }
 
-int				get_next_line(int const fd, t_buff *line)
+int				get_next_line(int const fd, t_sub *line)
 {
 	t_gnlfd			*gnl;
 	int				len;
@@ -81,7 +79,7 @@ int				get_next_line(int const fd, t_buff *line)
 			if ((len = buff_read(gnl)) < 0)
 				break ;
 			if (len == 0 && gnl->length == 0)
-				return (*line = SBUFF(NULL, 0), free(gnl->buff - gnl->offset),
+				return (*line = SUB(NULL, 0), free(gnl->buff - gnl->offset),
 				*gnl = (t_gnlfd){NULL, fd, 0, 0, 0, gnl->next}, GNL_EOF);
 			if (len == 0)
 				return (buff_cut(gnl, gnl->length, line, 0));

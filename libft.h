@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/17 00:32:29 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/17 22:52:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -545,7 +545,7 @@ void			ft_pairsort(t_array *array);
 /*
 ** ========================================================================== **
 ** Use the struct s_buff (t_buff) to read and parse a file
-**  INBUFF() macro init a file buff
+**  BUFF() macro init a file buff
 ** Can parse simple string
 **  SBUFF() macro init a string buff
 */
@@ -556,10 +556,15 @@ void			ft_pairsort(t_array *array);
 # define BIS(b,c)		(BG(b) == c && ++((b)->i))
 # define BIF(b,f)		((f)(BG(b)) && ++((b)->i))
 
-# define BEOF(b)		((b)->fd == -1)
+# define BF_EOF			20
+# define BF_STR			21
 
-# define SBUFF(s,l)		((t_buff){(s), 0, (l), (l), -1})
-# define INBUFF(f,b,l)	((t_buff){(b), 0, 0, (l), f})
+# define BEOF(b)		FLAG((b)->fd, BF_EOF)
+# define BSTR(b)		FLAG((b)->fd, BF_STR)
+# define BFD(b)			((b)->fd & 0xFF)
+
+# define BUFF(f,b,l)	((t_buff){(b), 0, 0, (l), (f) & 0xFF})
+# define SBUFF(s,l)		((t_buff){(s), 0, (l), (l), -1 & 0xFF | BF_STR})
 
 typedef struct	s_buff
 {
@@ -765,7 +770,7 @@ void			ft_drawtrif(t_image *img, t_pt pts[3], t_color color);
 ** get_next_line
 */
 
-int				get_next_line(int const fd, t_buff *line);
+int				get_next_line(int const fd, t_sub *line);
 
 /*
 ** ========================================================================== **

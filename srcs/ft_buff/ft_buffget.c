@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 20:47:21 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/16 23:29:35 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/17 22:45:10 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ inline char		ft_buffget(t_buff *buff)
 {
 	if (buff->i >= buff->length)
 	{
-		if (buff->fd < 0)
+		if (BEOF(buff) || BSTR(buff))
 			return (EOF);
 		buff->i = 0;
-		if ((buff->length = read(buff->fd, buff->data, buff->buff_len)) <= 0)
-			return ((buff->fd = -1), EOF);
+		if ((buff->length = read(BFD(buff), buff->data, buff->buff_len)) <= 0)
+		{
+			buff->fd |= BIT(BF_EOF);
+			return (EOF);
+		}
 	}
 	return (buff->data[buff->i]);
 }
