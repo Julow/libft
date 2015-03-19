@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/17 22:52:16 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/20 00:17:50 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -622,6 +622,7 @@ void			ft_writenchar(t_out *out, char c, int n);
 void			ft_writenl(t_out *out);
 void			ft_writeint(t_out *out, int n);
 void			ft_writebase(t_out *out, t_ulong n, const char *base);
+void			ft_writedouble(t_out *out, double d, int preci);
 int				ft_flush(t_out *out);
 
 /*
@@ -631,6 +632,8 @@ int				ft_flush(t_out *out);
 
 extern t_out	g_ftout;
 
+# define DEF_PRECI		7
+
 # define FTOUT			(&g_ftout)
 
 # define P(d,l)			(ft_write(FTOUT, (d), (l)))
@@ -639,6 +642,8 @@ extern t_out	g_ftout;
 # define PCN(c,n)		(ft_writenchar(FTOUT, (c), (n)))
 # define PI(i)			(ft_writeint(FTOUT, (i)))
 # define PB(i,b)		(ft_writebase(FTOUT, (i), (b)))
+# define PF(f)			(ft_writedouble(FTOUT, (f), DEF_PRECI))
+# define PFP(f,p)		(ft_writedouble(FTOUT, (f), (p)))
 # define NL				(ft_writenl(FTOUT))
 # define FL				(ft_flush(FTOUT))
 
