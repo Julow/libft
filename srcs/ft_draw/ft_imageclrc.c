@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/18 15:10:01 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/18 15:10:03 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 15:22:04 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ void			ft_imageclrc(t_image *img, t_color color)
 		return ;
 	}
 	while ((end -= img->opp) >= 0)
-		ft_imageput(img, end, color);
+		IMAGEPOS(img, end) = color;
 }

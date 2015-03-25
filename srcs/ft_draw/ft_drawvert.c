@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/11 17:45:01 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/11 17:45:13 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 15:15:06 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void			ft_drawvert(t_image *img, t_pt pt, int height, t_color color)
 	{
 		tmp = color;
 		if (ALPHA(tmp))
-			ft_resalpha(&tmp, ft_imagepos(img, pos));
-		ft_imageput(img, pos, tmp);
+			ft_resalpha(&tmp, IMAGEPOS(img, pos));
+		IMAGEPOS(img, pos) = tmp;
 		pos += img->width * img->opp;
 	}
 }

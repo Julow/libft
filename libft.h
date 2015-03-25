@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 14:55:59 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 15:27:57 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -717,6 +717,9 @@ t_pt			ft_farthest(t_pt pos, t_pt p1, t_pt p2);
 # define INVI(c)		((c).u > 0xFF000000)
 # define ALPHA(c)		((c).u >= 0x01000000)
 
+# define IMAGEPOS(i,p)	*((t_color*)((void*)((i)->data + (p))))
+# define IMAGEPT(i,x,y)	IMAGEPOS(i, ((i)->width * y + x) * (i)->opp)
+
 typedef struct	s_image
 {
 	t_byte			*data;
@@ -746,9 +749,6 @@ typedef union	u_color
 
 void			ft_resalpha(t_color *c, t_color bg);
 
-t_color			ft_imagept(t_image *img, t_pt pt);
-t_color			ft_imagepos(t_image *img, int pos);
-void			ft_imageput(t_image *img, int pos, t_color color);
 void			ft_imageclr(t_image *img);
 void			ft_imageclrc(t_image *img, t_color color);
 t_image			*ft_imageclone(t_image *img);

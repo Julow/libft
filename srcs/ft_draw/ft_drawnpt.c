@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 16:40:11 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/11 16:40:12 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 15:21:21 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void			ft_drawnpt(t_image *img, t_pt pt, int n, t_color color)
 	{
 		tmp = color;
 		if (ALPHA(tmp))
-			ft_resalpha(&tmp, ft_imagepos(img, pos));
-		ft_imageput(img, pos, tmp);
+			ft_resalpha(&tmp, IMAGEPOS(img, pos));
+		IMAGEPOS(img, pos) = tmp;
 		n -= img->opp;
 		pos += img->opp;
 	}
