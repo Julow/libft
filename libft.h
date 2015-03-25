@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/20 00:17:50 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 14:55:59 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -713,9 +713,9 @@ t_pt			ft_farthest(t_pt pos, t_pt p1, t_pt p2);
 
 # define C(c)			((t_color)(t_uint)(c))
 # define RGBA(r,g,b,a)	((t_color)((t_rgb){(b), (g), (r), (a)}))
-# define RGB(r,g,b)		RGBA(r, g, b, 255)
-# define INVI(c)		((c).u < 0x01000000)
-# define ALPHA(c)		((c).u < 0xFF000000)
+# define RGB(r,g,b)		RGBA(r, g, b, 0)
+# define INVI(c)		((c).u > 0xFF000000)
+# define ALPHA(c)		((c).u >= 0x01000000)
 
 typedef struct	s_image
 {
