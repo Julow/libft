@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 15:27:57 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/27 15:37:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@
 ** ========================================================================== **
 ** Config
 ** ---
+** REG_START
 ** BUFF_SIZE
 ** FTOUT_BUFF
 ** GNL_BUFF
@@ -352,6 +353,42 @@ t_bool			ft_randbool(double chance);
 */
 
 char			*ft_getenv(const char *key);
+
+/*
+** ========================================================================== **
+** Regex
+** ---
+** ?<n><match>
+** ---
+** n:
+** - 1		Match 1 (Default)
+** - ?		Match 0 or 1
+** - *		Match 0 or more
+** - +		Match 1 or more
+** - n		Match n
+** - n,		Match n or more
+** - n,N	Match n to N
+** ---
+** match:
+** - w		ft_isword
+** - a		ft_isalpha
+** - c		ft_isascii
+** - d		ft_isdigit
+** - p		ft_isprint
+** - s		ft_isspace
+** - h		ft_iswhite
+** - [abc]	Match a set of char (empty set match any char)
+** - [a-z]	Match an interval of char (commulable with char set)
+** - 'abc'	Match a string (can contains regex)
+** ---
+** TODO:
+** - regex in string
+** - ?<n><match>|<n><match>| ...
+** - !
+** ---
+*/
+
+t_bool			ft_rmatch(const char *str, const char *pattern);
 
 /*
 ** ========================================================================== **

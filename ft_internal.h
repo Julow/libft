@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/09 16:36:57 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/27 15:29:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,30 @@
 # include "libft.h"
 
 # include <stdarg.h>
+
+/*
+** =============
+** ft_rmatch
+*/
+
+typedef struct	s_reg
+{
+	int				flags;
+	t_uint			from;
+	t_uint			to;
+	int				reg_len;
+	char			*reg;
+}				t_reg;
+
+# ifndef REG_START
+#  define REG_START		'?'
+# endif
+
+# define FLAG_R_SET		(1 << 8)
+# define FLAG_R_F		(1 << 16)
+
+const char		*reg_parse(t_reg *reg, const char *pattern);
+t_bool			reg_match(const char *str, const char *pattern);
 
 /*
 ** =============
