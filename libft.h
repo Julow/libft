@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/27 15:37:43 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/28 00:00:56 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -359,6 +359,7 @@ char			*ft_getenv(const char *key);
 ** Regex
 ** ---
 ** ?<n><match>
+** ?<n><match>|<n><match>| ...
 ** ---
 ** n:
 ** - 1		Match 1 (Default)
@@ -377,13 +378,12 @@ char			*ft_getenv(const char *key);
 ** - p		ft_isprint
 ** - s		ft_isspace
 ** - h		ft_iswhite
-** - [abc]	Match a set of char (empty set match any char)
+** - [abc]	Match a set of char
 ** - [a-z]	Match an interval of char (commulable with char set)
-** - 'abc'	Match a string (can contains regex)
+** - 'abc'	Match a string (empty string match any char)
 ** ---
 ** TODO:
 ** - regex in string
-** - ?<n><match>|<n><match>| ...
 ** - !
 ** ---
 */
