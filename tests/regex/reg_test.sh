@@ -32,11 +32,12 @@ test "0bcdef" "?w|dbcdef" 1
 test "abcdef" "ab?![A-Zabd-z]def" 1
 test "abcd" "ab?[ab]|[cd]d" 1
 test "abcd" "ab?[abc]|[d]d" 1
-test "abcd" "?!'cd'abcd" 1
+test "abcd" "?!'xd'cd" 1
 test "aaaaaaaaaaaaaaaaaaa" "?*''" 1
 test "aaaaaaaaaaaaaaaaaaa" "?*:a" 1
 test "aaaaaaaaaaaaaaaaaaa" "?*'a'" 1
 test "aaaaaaaaaaaaaaaaaaa" "?!*:b" 1
+test "aaaaaaaaaaaaaaaaaaa" "?!*'b'" 1
 test "aaaaaaaaabaaaaaaaaa" "?*:a?.?+:a" 1
 test "aaaaaaaaabaaaaaaaaa" "?*:a?+.?+:a" 1
 test "aaaaaaaaaaaaaaaaaaa" "?!*:?" 1
@@ -55,6 +56,7 @@ test "abcd" "?!'ab'cd" 0
 test "abc" "ab?[ab]|[cd]d" 0
 test "abcd" "ab?[abc]|[cd]" 0
 test "abcdef" "ab?![c]def" 0
+test "abcd" "?!'cd'abcd" 0
 test "aaaaaaaaaaaaaaaaaaa" "?+[]" 0
 test "aaaaaaaaaaaaaaaaaaa" "?*:b" 0
 test "0127.0.0.11" "?1,3d.?1,3d.?1,3d.?1,3d" 0

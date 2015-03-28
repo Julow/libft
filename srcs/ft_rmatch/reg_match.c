@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:13:14 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/28 02:00:43 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/28 23:01:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ static t_bool	reg_match_str(t_reg *reg, const char **str)
 	{
 		if (reg->reg[i] == REG_START)
 		{
-			if (!reg_match(*str, reg->reg + i))
+			if (!MATCH_NOT(reg, reg_match(*str, reg->reg + i)))
 				return (false);
 		}
-		else if ((*str)[i] != reg->reg[i])
+		else if (MATCH_NOT(reg, (*str)[i] != reg->reg[i]))
 			return (false);
 	}
 	*str += (i == 0) ? 1 : i;
@@ -63,7 +63,7 @@ static t_bool	reg_match_1(t_reg *reg, const char **str)
 	else if (reg->flags & FLAG_R_SET)
 		return (MATCH_NOT(reg, reg_match_set(reg, *((*str)++))));
 	else
-		return (MATCH_NOT(reg, reg_match_str(reg, str)));
+		return (reg_match_str(reg, str));
 }
 
 static void		skip_or(const char **pattern)
