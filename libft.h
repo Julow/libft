@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/28 00:00:56 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/28 02:16:09 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -358,8 +358,11 @@ char			*ft_getenv(const char *key);
 ** ========================================================================== **
 ** Regex
 ** ---
-** ?<n><match>
-** ?<n><match>|<n><match>| ...
+** ?<opt><n><match>
+** ?<opt><n><match>|<opt><n><match>| ...
+** ---
+** opt:
+** - !		Match not (invert matching)
 ** ---
 ** n:
 ** - 1		Match 1 (Default)
@@ -371,20 +374,22 @@ char			*ft_getenv(const char *key);
 ** - n,N	Match n to N
 ** ---
 ** match:
-** - w		ft_isword
-** - a		ft_isalpha
-** - c		ft_isascii
-** - d		ft_isdigit
-** - p		ft_isprint
-** - s		ft_isspace
-** - h		ft_iswhite
+** - w		ft_isword		[a-zA-Z0-9_]
+** - a		ft_isalpha		[a-zA-Z]
+** - n		ft_isalnum		[a-zA-Z0-9]
+** - .		ft_isascii		All
+** - c		ft_isascii		.
+** - d		ft_isdigit		[0-9]
+** - p		ft_isprint		[ -~]
+** - s		ft_isspace		[ \t]
+** - h		ft_iswhite		[ \t\n\r\v\f]
 ** - [abc]	Match a set of char
 ** - [a-z]	Match an interval of char (commulable with char set)
-** - 'abc'	Match a string (empty string match any char)
+** - 'abc'	Match a string (empty string match any char even non-ascii)
 ** ---
 ** TODO:
 ** - regex in string
-** - !
+** - sprintf like parsing (using va_arg)
 ** ---
 */
 

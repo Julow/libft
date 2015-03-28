@@ -6,11 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:13:14 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/27 23:59:24 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/28 02:00:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
+
+#define MATCH_NOT(r,f)	(((r)->flags & FLAG_R_NOT) ? !(f) : (f))
 
 static t_bool	reg_match_set(t_reg *reg, char c)
 {
@@ -56,12 +58,12 @@ static t_bool	reg_match_1(t_reg *reg, const char **str)
 	{
 		if (reg->reg == NULL)
 			return (false);
-		return (((t_bool (*)(char))reg->reg)(*((*str)++)));
+		return (MATCH_NOT(reg, ((t_bool (*)(char))reg->reg)(*((*str)++))));
 	}
 	else if (reg->flags & FLAG_R_SET)
-		return (reg_match_set(reg, *((*str)++)));
+		return (MATCH_NOT(reg, reg_match_set(reg, *((*str)++))));
 	else
-		return (reg_match_str(reg, str));
+		return (MATCH_NOT(reg, reg_match_str(reg, str)));
 }
 
 static void		skip_or(const char **pattern)

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/27 15:29:46 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/28 01:56:55 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct	s_reg
 #  define REG_START		'?'
 # endif
 
+# define FLAG_R_NOT		(1 << 1)
 # define FLAG_R_SET		(1 << 8)
 # define FLAG_R_F		(1 << 16)
 

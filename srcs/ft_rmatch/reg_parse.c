@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:14:27 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/27 15:32:17 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/28 02:13:21 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ static const char	*parse_reg_rf(t_reg *reg, const char *pattern)
 		reg->reg = (char*)&ft_isword;
 	else if (*pattern == 'a')
 		reg->reg = (char*)&ft_isalpha;
-	else if (*pattern == 'c')
+	else if (*pattern == 'n')
+		reg->reg = (char*)&ft_isalnum;
+	else if (*pattern == 'c' || *pattern == '.')
 		reg->reg = (char*)&ft_isascii;
 	else if (*pattern == 'd')
 		reg->reg = (char*)&ft_isdigit;
@@ -94,6 +96,8 @@ static const char	*parse_reg_r(t_reg *reg, const char *pattern)
 const char			*reg_parse(t_reg *reg, const char *pattern)
 {
 	*reg = (t_reg){0, 1, 1, 0, NULL};
+	if (*pattern == '!' && pattern++)
+		reg->flags |= FLAG_R_NOT;
 	if (ft_isdigit(*pattern))
 		pattern = parse_reg_n(reg, pattern);
 	else if (*pattern == '*' && pattern++)
