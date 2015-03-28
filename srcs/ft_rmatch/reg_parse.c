@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:14:27 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/28 02:13:21 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/28 18:43:41 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,13 @@ static const char	*parse_reg_r(t_reg *reg, const char *pattern)
 		reg->reg_len = ft_strcskip(pattern, "]");
 		reg->flags |= FLAG_R_SET;
 		pattern += reg->reg_len + 1;
+	}
+	else if (*pattern == ':')
+	{
+		reg->reg = (char*)++pattern;
+		reg->flags |= FLAG_R_SET;
+		reg->reg_len = 1;
+		pattern++;
 	}
 	else
 		return (parse_reg_rf(reg, pattern));
