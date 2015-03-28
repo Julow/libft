@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:13:14 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/28 23:01:02 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/29 00:38:40 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,16 @@ static t_bool	reg_match_str(t_reg *reg, const char **str)
 	{
 		if (reg->reg[i] == REG_START)
 		{
-			if (!MATCH_NOT(reg, reg_match(*str, reg->reg + i)))
+			if ((*str = reg_match(*str, reg->reg + i)) == NULL)
 				return (false);
+			continue ;
 		}
-		else if (MATCH_NOT(reg, (*str)[i] != reg->reg[i]))
+		else if (MATCH_NOT(reg, **str != reg->reg[i]))
 			return (false);
+		(*str)++;
 	}
-	*str += (i == 0) ? 1 : i;
+	if (i == 0)
+		(*str)++;
 	return (true);
 }
 
@@ -74,25 +77,28 @@ static void		skip_or(const char **pattern)
 		*pattern = reg_parse(&tmp, *pattern + 1);
 }
 
-t_bool			reg_match(const char *str, const char *pattern)
+const char		*reg_match(const char *str, const char *pattern)
 {
 	t_reg			reg;
 	t_uint			i;
+	char const		*tmp;
 
 	pattern = reg_parse(&reg, pattern + 1);
+	// ft_printf("Match '%s' '%s'\n", str, pattern);
+	// ft_printf("	(%x) ?%u,%u'%.*s' (%d)\n", reg.flags, reg.from, reg.to, reg.reg_len, reg.reg, reg.reg_len);
 	if (*pattern == '|')
 	{
-		if (reg_match(str, pattern))
-			return (true);
+		if ((tmp = reg_match(str, pattern)) != NULL)
+			return (tmp);
 		skip_or(&pattern);
 	}
 	i = -1;
 	while (++i < reg.to)
 	{
-		if (i >= reg.from && ft_rmatch(str, pattern))
-			return (true);
+		if (i >= reg.from && (tmp = rmatch(str, pattern)) != NULL)
+			return (tmp);
 		if (!reg_match_1(&reg, &str))
-			return (false);
+			return (NULL);
 	}
-	return (ft_rmatch(str, pattern));
+	return (rmatch(str, pattern));
 }
