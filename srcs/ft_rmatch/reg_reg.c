@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/29 20:25:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 21:55:14 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/30 01:31:59 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static t_bool	reg_match_set(t_reg *reg, char c)
 	return (false);
 }
 
-static t_bool	reg_match_str(t_reg *reg, const char **str)
+static t_bool	reg_match_sub(t_reg *reg, const char **str)
 {
 	char			tmp[reg->reg_len];
 	const char		*ptr = tmp;
@@ -58,6 +58,20 @@ static t_bool	reg_match_str(t_reg *reg, const char **str)
 	return (true);
 }
 
+static t_bool	reg_match_str(t_reg *reg, const char **str)
+{
+	if (reg->reg_len == 0)
+		return (false);
+	if (reg->flags & FLAG_R_CASE)
+	{
+		if (MATCH_NOT(reg, ft_strncase(*str, reg->reg, reg->reg_len)))
+			return (false);
+	}
+	else if (MATCH_NOT(reg, ft_memcmp(*str, reg->reg, reg->reg_len) != 0))
+		return (false);
+	return (((*str) += reg->reg_len), true);
+}
+
 static t_bool	reg_match_1(t_reg *reg, const char **str)
 {
 	int				c;
@@ -66,23 +80,20 @@ static t_bool	reg_match_1(t_reg *reg, const char **str)
 		return (false);
 	if (reg->flags & FLAG_R_PRE)
 	{
-		c = ((int (*)(const char*))reg->reg)(*str);
-		(*str) += c;
+		(*str) += (c = ((int (*)(const char*))reg->reg)(*str));
 		if (c == 0 && reg->flags & FLAG_R_NOT)
 			(*str)++;
 		return (MATCH_NOT(reg, (c > 0)));
 	}
 	else if (reg->flags & FLAG_R_IS)
-	{
-		c = *((*str)++);
-		return (MATCH_NOT(reg, ((t_bool (*)(char))reg->reg)(c)));
-	}
+		return (MATCH_NOT(reg, ((t_bool (*)(char))reg->reg)(*((*str)++))));
 	else if (reg->flags & FLAG_R_SET)
 	{
 		c = MATCH_I(reg, (**str));
-		(*str)++;
-		return (MATCH_NOT(reg, reg_match_set(reg, c)));
+		return (((*str)++), MATCH_NOT(reg, reg_match_set(reg, c)));
 	}
+	else if (reg->flags & FLAG_R_SUB)
+		return (reg_match_sub(reg, str));
 	return (reg_match_str(reg, str));
 }
 

@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/27 15:18:58 by jaguillo          #+#    #+#              #
-#    Updated: 2015/03/29 21:54:21 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/03/30 01:31:24 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ rmatch:
 	@./test_rmatch "abcdef" "a?+w" 1
 	@./test_rmatch "a0cdef" "a?+dcdef" 1
 	@./test_rmatch "127.0.0.11" "?1,3d.?1,3d.?1,3d.?1,3d" 1
-	@./test_rmatch "127.0.0.11" "?1,3d?3'.?1,3d'" 1
+	@./test_rmatch "127.0.0.11" "?1,3d?3(.?1,3d)" 1
 	@./test_rmatch "127.0.0.11:4242" "?1,3d.?1,3d.?1,3d.?1,3d:?+d" 1
 	@./test_rmatch "ababab" "??'ab'??'ab'??'ab'" 1
 	@./test_rmatch "ababab" "?*[ab]" 1
@@ -71,10 +71,10 @@ rmatch:
 	@./test_rmatch "AaAaAaAa" "?i*:a" 1
 	@./test_rmatch "AaAaAaAa" "?i*'a'" 1
 	@./test_rmatch "AaAaAaAa" "?i*'aa'" 1
-	@./test_rmatch "aaaa" "?*'?:a'" 1
+	@./test_rmatch "aaaa" "?*(?:a)" 1
 	@./test_rmatch "abc123Abc0ABC_LOL" "?*[a-zA-Z0-9_]" 1
 	@./test_rmatch "abcdef" "?!*d" 1
-	@./test_rmatch "l0l1l2" "?*'l?d'" 1
+	@./test_rmatch "l0l1l2" "?*(l?d)" 1
 	@./test_rmatch "" "a" 0
 	@./test_rmatch "a" "" 0
 	@./test_rmatch "abcdef" 'a?+z' 0

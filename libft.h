@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 21:56:00 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/30 00:50:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -388,7 +388,8 @@ char			*ft_getenv(const char *key);
 ** - &i		Match a valid int
 ** - [abc]	Match a set of char
 ** - [a-z]	Match an interval of char (cummulable with char set)
-** - 'abc'	Match a string (can contains regex)
+** - 'abc'	Match a string
+** - (abc)	Match a string (can contains regex)
 ** ---
 ** TODO:
 ** - global lower case mode (?i;)
