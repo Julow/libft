@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/27 15:18:58 by jaguillo          #+#    #+#              #
-#    Updated: 2015/03/29 03:04:43 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/03/29 03:48:22 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ ft_rmatch: libft
 	clang $(FLAGS) reg_test.c -o $@ -L ../.. -lft
 
 libft:
-	@make -C ../..
+	@make -C ../.. debug
 
 clean:
 	rm -f ft_rmatch
@@ -61,8 +61,10 @@ test: all
 	@./ft_rmatch "aaaaaaaaabaaaaaaaaa" "?*:a?+.?+:a" 1
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?!*:?" 1
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?!*:b" 1
+	@./ft_rmatch "aaaa" "?*'?:a'" 1
 	@./ft_rmatch "abc123Abc0ABC_LOL" "?*[a-zA-Z0-9_]" 1
 	@./ft_rmatch "abcdef" "?!*d" 1
+	@./ft_rmatch "l0l1l2" "?*'l?d'" 1
 	@./ft_rmatch "" "a" 0
 	@./ft_rmatch "a" "" 0
 	@./ft_rmatch "abcdef" 'a?+z' 0
@@ -75,6 +77,9 @@ test: all
 	@./ft_rmatch "abcd" "ab?[abc]|[cd]" 0
 	@./ft_rmatch "abcdef" "ab?![c]def" 0
 	@./ft_rmatch "abcd" "?!'cd'abcd" 0
+	@./ft_rmatch "abcd" "?!*''abcd" 0
+	@./ft_rmatch "abcd" "?*''abcd" 0
+	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?!*'?:a'" 0
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?*''" 0
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?+[]" 0
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?*:b" 0

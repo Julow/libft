@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:16:18 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 03:06:13 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/29 03:48:40 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #include <stdio.h>
 
 /*
-** i = 300000		55 tests: 1450ms
-** i = 300000		55 tests: 1370ms
-** i = 300000		55 tests: 1190ms
+** i = 300000		55 tests: 1450ms (base)
+** i = 300000		55 tests: 1370ms (cleanup)
+** i = 300000		55 tests: 1190ms (match biggest)
+** i = 300000		60 tests: 1410ms (support sub-regex)
 */
 
 int				main(int argc, char **argv)

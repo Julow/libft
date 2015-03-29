@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 01:40:32 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/29 03:49:37 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -386,10 +386,9 @@ char			*ft_getenv(const char *key);
 ** - :a		Match a char
 ** - [abc]	Match a set of char
 ** - [a-z]	Match an interval of char (commulable with char set)
-** - 'abc'	Match a string
+** - 'abc'	Match a string (can contains regex)
 ** ---
 ** TODO:
-** - regex in string
 ** - sprintf like parsing (using va_arg)
 ** ---
 */

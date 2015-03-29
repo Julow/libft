@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:12:42 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 03:04:30 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/29 03:27:18 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ const char		*rmatch(const char *str, const char *pattern)
 	while (true)
 	{
 		if (*pattern == REG_START)
-			return (reg_match(str, pattern));
+			return (reg_match(str, &pattern));
 		if (*pattern == '\0')
 			break ;
 		if (*str != *pattern)
