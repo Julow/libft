@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:12:42 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 00:18:48 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/29 03:04:30 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ const char		*rmatch(const char *str, const char *pattern)
 	{
 		if (*pattern == REG_START)
 			return (reg_match(str, pattern));
+		if (*pattern == '\0')
+			break ;
 		if (*str != *pattern)
 			return (NULL);
-		if (*str == '\0')
-			break ;
 		str++;
 		pattern++;
 	}
@@ -30,5 +30,9 @@ const char		*rmatch(const char *str, const char *pattern)
 
 t_bool			ft_rmatch(const char *str, const char *pattern)
 {
-	return ((rmatch(str, pattern) == NULL) ? false : true);
+	const char		*tmp = rmatch(str, pattern);
+
+	if (tmp != NULL && *tmp == '\0')
+		return (true);
+	return (false);
 }

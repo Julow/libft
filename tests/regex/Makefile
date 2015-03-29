@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/27 15:18:58 by jaguillo          #+#    #+#              #
-#    Updated: 2015/03/28 23:11:06 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/03/29 03:04:43 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,6 @@ test: all
 	@./ft_rmatch "abcd" "ab?[ab]|[cd]d" 1
 	@./ft_rmatch "abcd" "ab?[abc]|[d]d" 1
 	@./ft_rmatch "abcd" "?!'xd'cd" 1
-	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?*''" 1
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?*:a" 1
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?*'a'" 1
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?!*:b" 1
@@ -76,6 +75,7 @@ test: all
 	@./ft_rmatch "abcd" "ab?[abc]|[cd]" 0
 	@./ft_rmatch "abcdef" "ab?![c]def" 0
 	@./ft_rmatch "abcd" "?!'cd'abcd" 0
+	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?*''" 0
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?+[]" 0
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?*:b" 0
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?!*'b'b" 0

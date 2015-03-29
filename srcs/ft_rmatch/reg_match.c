@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:13:14 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 00:38:40 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/29 03:05:28 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_bool	reg_match_str(t_reg *reg, const char **str)
 	{
 		if (reg->reg[i] == REG_START)
 		{
-			if ((*str = reg_match(*str, reg->reg + i)) == NULL)
+			// if ((*str = reg_match(*str, reg->reg + i)) == NULL)
 				return (false);
 			continue ;
 		}
@@ -51,18 +51,16 @@ static t_bool	reg_match_str(t_reg *reg, const char **str)
 		(*str)++;
 	}
 	if (i == 0)
-		(*str)++;
+		return (false);
 	return (true);
 }
 
 static t_bool	reg_match_1(t_reg *reg, const char **str)
 {
+	if (reg->reg == NULL || **str == '\0')
+		return (false);
 	if (reg->flags & FLAG_R_F)
-	{
-		if (reg->reg == NULL)
-			return (false);
 		return (MATCH_NOT(reg, ((t_bool (*)(char))reg->reg)(*((*str)++))));
-	}
 	else if (reg->flags & FLAG_R_SET)
 		return (MATCH_NOT(reg, reg_match_set(reg, *((*str)++))));
 	else
@@ -77,28 +75,30 @@ static void		skip_or(const char **pattern)
 		*pattern = reg_parse(&tmp, *pattern + 1);
 }
 
+const char		*reg_match_reg(t_reg *reg, const char *str, const char *pattern, t_uint lvl)
+{
+	char const		*tmp;
+
+	if (!reg_match_1(reg, &str))
+		return (NULL);
+	if (lvl < reg->to && (tmp = reg_match_reg(reg, str, pattern, lvl + 1)) != NULL)
+		return (tmp);
+	if (lvl >= reg->from && (tmp = rmatch(str, pattern)) != NULL)
+		return (tmp);
+	return (NULL);
+}
+
 const char		*reg_match(const char *str, const char *pattern)
 {
 	t_reg			reg;
-	t_uint			i;
 	char const		*tmp;
 
 	pattern = reg_parse(&reg, pattern + 1);
-	// ft_printf("Match '%s' '%s'\n", str, pattern);
-	// ft_printf("	(%x) ?%u,%u'%.*s' (%d)\n", reg.flags, reg.from, reg.to, reg.reg_len, reg.reg, reg.reg_len);
 	if (*pattern == '|')
 	{
 		if ((tmp = reg_match(str, pattern)) != NULL)
 			return (tmp);
 		skip_or(&pattern);
 	}
-	i = -1;
-	while (++i < reg.to)
-	{
-		if (i >= reg.from && (tmp = rmatch(str, pattern)) != NULL)
-			return (tmp);
-		if (!reg_match_1(&reg, &str))
-			return (NULL);
-	}
-	return (rmatch(str, pattern));
+	return (reg_match_reg(&reg, str, pattern, 1));
 }
