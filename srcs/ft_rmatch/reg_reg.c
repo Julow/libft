@@ -1,0 +1,94 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reg_reg.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/03/29 20:25:09 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/29 20:25:19 by jaguillo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_internal.h"
+
+#define MATCH_NOT(r,f)	(((r)->flags & FLAG_R_NOT) ? !(f) : (f))
+#define MATCH_I(r,c)	(((r)->flags & FLAG_R_CASE) ? LOWER(c) : (c))
+
+static t_bool	reg_match_set(t_reg *reg, char c)
+{
+	int				i;
+
+	i = -1;
+	while (++i < reg->reg_len)
+	{
+		if (c == reg->reg[i])
+			return (true);
+		if ((i + 2) < reg->reg_len && reg->reg[i + 1] == '-')
+		{
+			if (c >= reg->reg[i] && c <= reg->reg[i + 2])
+				return (true);
+			i += 2;
+		}
+	}
+	return (false);
+}
+
+static t_bool	reg_match_str(t_reg *reg, const char **str)
+{
+	char			tmp[reg->reg_len];
+	const char		*ptr = tmp;
+
+	if (reg->reg_len == 0)
+		return (false);
+	ft_memcpy(tmp, reg->reg, reg->reg_len);
+	tmp[reg->reg_len] = '\0';
+	while (*ptr != '\0')
+	{
+		if (*ptr == REG_START)
+		{
+			if ((*str = reg_match(*str, &ptr)) == NULL)
+				return (false);
+			continue ;
+		}
+		else if (MATCH_NOT(reg, MATCH_I(reg, **str) != *(ptr++)))
+			return (false);
+		(*str)++;
+	}
+	return (true);
+}
+
+static t_bool	reg_match_1(t_reg *reg, const char **str)
+{
+	char			c;
+
+	if (reg->reg == NULL || **str == '\0')
+		return (false);
+	if (reg->flags & FLAG_R_F)
+	{
+		c = **str;
+		(*str)++;
+		return (MATCH_NOT(reg, ((t_bool (*)(char))reg->reg)(c)));
+	}
+	else if (reg->flags & FLAG_R_SET)
+	{
+		c = MATCH_I(reg, (**str));
+		(*str)++;
+		return (MATCH_NOT(reg, reg_match_set(reg, c)));
+	}
+	else
+		return (reg_match_str(reg, str));
+}
+
+const char		*reg_reg(t_reg *r, const char *s, const char *p, t_uint l)
+{
+	char const		*tmp;
+
+	if (!reg_match_1(r, &s))
+		return (NULL);
+	if (l < r->to && (tmp = reg_reg(r, s, p, l + 1)) != NULL)
+		return (tmp);
+	if (l >= r->from && (tmp = reg_test(s, p)) != NULL)
+		return (tmp);
+	return (NULL);
+}

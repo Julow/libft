@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 15:40:05 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/29 20:25:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ typedef struct	s_reg
 
 const char		*reg_parse(t_reg *reg, const char *pattern);
 const char		*reg_match(const char *str, const char **pattern);
-const char		*rmatch(const char *str, const char *pattern);
+const char		*reg_test(const char *str, const char *pattern);
+const char		*reg_reg(t_reg *r, const char *s, const char *p, t_uint l);
 
 /*
 ** =============

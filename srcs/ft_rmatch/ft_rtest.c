@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reg_match.c                                        :+:      :+:    :+:   */
+/*   ft_rtest.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/27 14:13:14 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 20:24:58 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/29 17:11:02 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/29 17:15:36 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
 
-static void		skip_or(const char **pattern)
+/*
+** ft_rtest
+** ---
+** Evaluate regex and check if 'str' match 'pattern'
+** ---
+** Return
+**  the count of char that match
+**  -1 if the match fail
+** ---
+*/
+int				ft_rtest(const char *str, const char *pattern)
 {
-	t_reg			tmp;
+	const char		*tmp = reg_test(str, pattern);
 
-	while (**pattern == '|')
-		*pattern = reg_parse(&tmp, *pattern + 1);
-}
-
-const char		*reg_match(const char *str, const char **pattern)
-{
-	t_reg			reg;
-	char const		*tmp;
-
-	*pattern = reg_parse(&reg, (*pattern) + 1);
-	if (**pattern == '|')
-	{
-		if ((tmp = reg_match(str, pattern)) != NULL)
-			return (tmp);
-		skip_or(pattern);
-	}
-	return (reg_reg(&reg, str, *pattern, 1));
+	if (tmp == NULL)
+		return (-1);
+	return (tmp - str);
 }

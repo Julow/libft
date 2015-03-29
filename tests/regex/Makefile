@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/27 15:18:58 by jaguillo          #+#    #+#              #
-#    Updated: 2015/03/29 16:08:05 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/03/29 17:19:20 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ ft_rmatch: libft
 	clang $(FLAGS) reg_test.c -o $@ -L ../.. -lft
 
 libft:
-	@make -C ../.. debug
+	@make -C ../..
 
 clean:
 	rm -f ft_rmatch
@@ -51,6 +51,10 @@ test:
 	@./ft_rmatch "abcdef" "ab?![A-Zabd-z]def" 1
 	@./ft_rmatch "abcd" "ab?[ab]|[cd]d" 1
 	@./ft_rmatch "abcd" "ab?[abc]|[d]d" 1
+	@./ft_rmatch "a" "?:a|:b|:c|:d|:e|:f|:g|:h" 1
+	@./ft_rmatch "h" "?:a|:b|:c|:d|:e|:f|:g|:h" 1
+	@./ft_rmatch "c" "?[abcdefgh]" 1
+	@./ft_rmatch "c" "?[a-h]" 1
 	@./ft_rmatch "abcd" "?!'xd'cd" 1
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?*:a" 1
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?*'a'" 1

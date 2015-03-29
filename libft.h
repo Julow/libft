@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 16:14:53 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/29 20:23:22 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -391,11 +391,14 @@ char			*ft_getenv(const char *key);
 ** ---
 ** TODO:
 ** - predefined match functions
+** - global lower case mode (?i;)
 ** - sprintf like parsing (using va_arg)
 ** ---
 */
 
 t_bool			ft_rmatch(const char *str, const char *pattern);
+int				ft_rtest(const char *str, const char *pattern);
+t_bool			ft_rfind(t_sub *dst, const char *str, const char *pattern);
 
 /*
 ** ========================================================================== **

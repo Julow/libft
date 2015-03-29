@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reg_match.c                                        :+:      :+:    :+:   */
+/*   reg_test.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/27 14:13:14 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 20:24:58 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/29 17:10:11 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/29 17:10:27 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
 
-static void		skip_or(const char **pattern)
+const char		*reg_test(const char *str, const char *pattern)
 {
-	t_reg			tmp;
-
-	while (**pattern == '|')
-		*pattern = reg_parse(&tmp, *pattern + 1);
-}
-
-const char		*reg_match(const char *str, const char **pattern)
-{
-	t_reg			reg;
-	char const		*tmp;
-
-	*pattern = reg_parse(&reg, (*pattern) + 1);
-	if (**pattern == '|')
+	while (true)
 	{
-		if ((tmp = reg_match(str, pattern)) != NULL)
-			return (tmp);
-		skip_or(pattern);
+		if (*pattern == REG_START)
+			return (reg_match(str, &pattern));
+		if (*pattern == '\0')
+			break ;
+		if (*str != *pattern)
+			return (NULL);
+		str++;
+		pattern++;
 	}
-	return (reg_reg(&reg, str, *pattern, 1));
+	return (str);
 }
