@@ -6,19 +6,12 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:16:18 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 03:48:40 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/29 16:13:36 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
-
-/*
-** i = 300000		55 tests: 1450ms (base)
-** i = 300000		55 tests: 1370ms (cleanup)
-** i = 300000		55 tests: 1190ms (match biggest)
-** i = 300000		60 tests: 1410ms (support sub-regex)
-*/
 
 int				main(int argc, char **argv)
 {
@@ -29,7 +22,7 @@ int				main(int argc, char **argv)
 	{
 		printf("%-22s %-25s ", argv[1], argv[2]);
 		tmp = ft_rmatch(argv[1], argv[2]);
-		i = 300000;
+		i = 200000;
 		while (i--)
 			if (tmp != ft_rmatch(argv[1], argv[2]))
 				return (printf("-1 (Not stable)\n"), 0);

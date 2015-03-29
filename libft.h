@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 03:49:37 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/29 16:14:53 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -361,8 +361,9 @@ char			*ft_getenv(const char *key);
 ** ?<opt><n><match>
 ** ?<opt><n><match>|<opt><n><match>| ...
 ** ---
-** opt:
+** opt: (need to be in this order)
 ** - !		Match not (invert matching)
+** - i		Lower case (str is treated as lower, match need to be lower case)
 ** ---
 ** n:
 ** - 1		Match 1 (Default)
@@ -385,10 +386,11 @@ char			*ft_getenv(const char *key);
 ** - h		ft_iswhite		[ \t\n\r\v\f]
 ** - :a		Match a char
 ** - [abc]	Match a set of char
-** - [a-z]	Match an interval of char (commulable with char set)
+** - [a-z]	Match an interval of char (cummulable with char set)
 ** - 'abc'	Match a string (can contains regex)
 ** ---
 ** TODO:
+** - predefined match functions
 ** - sprintf like parsing (using va_arg)
 ** ---
 */

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:14:27 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/28 18:43:41 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/29 15:41:27 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ const char			*reg_parse(t_reg *reg, const char *pattern)
 	*reg = (t_reg){0, 1, 1, 0, NULL};
 	if (*pattern == '!' && pattern++)
 		reg->flags |= FLAG_R_NOT;
+	if (*pattern == 'i' && pattern++)
+		reg->flags |= FLAG_R_CASE;
 	if (ft_isdigit(*pattern))
 		pattern = parse_reg_n(reg, pattern);
 	else if (*pattern == '*' && pattern++)

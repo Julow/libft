@@ -6,13 +6,14 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:13:14 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 03:42:48 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/29 16:10:45 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
 
 #define MATCH_NOT(r,f)	(((r)->flags & FLAG_R_NOT) ? !(f) : (f))
+#define MATCH_I(r,c)	(((r)->flags & FLAG_R_CASE) ? LOWER(c) : (c))
 
 static t_bool	reg_match_set(t_reg *reg, char c)
 {
@@ -50,7 +51,7 @@ static t_bool	reg_match_str(t_reg *reg, const char **str)
 				return (false);
 			continue ;
 		}
-		else if (MATCH_NOT(reg, **str != *(ptr++)))
+		else if (MATCH_NOT(reg, MATCH_I(reg, **str) != *(ptr++)))
 			return (false);
 		(*str)++;
 	}
@@ -59,12 +60,22 @@ static t_bool	reg_match_str(t_reg *reg, const char **str)
 
 static t_bool	reg_match_1(t_reg *reg, const char **str)
 {
+	char			c;
+
 	if (reg->reg == NULL || **str == '\0')
 		return (false);
 	if (reg->flags & FLAG_R_F)
-		return (MATCH_NOT(reg, ((t_bool (*)(char))reg->reg)(*((*str)++))));
+	{
+		c = **str;
+		(*str)++;
+		return (MATCH_NOT(reg, ((t_bool (*)(char))reg->reg)(c)));
+	}
 	else if (reg->flags & FLAG_R_SET)
-		return (MATCH_NOT(reg, reg_match_set(reg, *((*str)++))));
+	{
+		c = MATCH_I(reg, (**str));
+		(*str)++;
+		return (MATCH_NOT(reg, reg_match_set(reg, c)));
+	}
 	else
 		return (reg_match_str(reg, str));
 }

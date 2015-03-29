@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/27 15:18:58 by jaguillo          #+#    #+#              #
-#    Updated: 2015/03/29 03:48:22 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/03/29 16:08:05 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ fclean: clean
 
 re: fclean all
 
-test: all
+test:
 	@./ft_rmatch "" "" 1
 	@./ft_rmatch "abc" "abc" 1
 	@./ft_rmatch "abcdef" "a?wcdef" 1
@@ -61,6 +61,9 @@ test: all
 	@./ft_rmatch "aaaaaaaaabaaaaaaaaa" "?*:a?+.?+:a" 1
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?!*:?" 1
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?!*:b" 1
+	@./ft_rmatch "AaAaAaAa" "?i*:a" 1
+	@./ft_rmatch "AaAaAaAa" "?i*'a'" 1
+	@./ft_rmatch "AaAaAaAa" "?i*'aa'" 1
 	@./ft_rmatch "aaaa" "?*'?:a'" 1
 	@./ft_rmatch "abc123Abc0ABC_LOL" "?*[a-zA-Z0-9_]" 1
 	@./ft_rmatch "abcdef" "?!*d" 1
@@ -84,6 +87,7 @@ test: all
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?+[]" 0
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?*:b" 0
 	@./ft_rmatch "aaaaaaaaaaaaaaaaaaa" "?!*'b'b" 0
+	@./ft_rmatch "AaAaAaAa" "?i*:A" 0
 	@./ft_rmatch "0127.0.0.11" "?1,3d.?1,3d.?1,3d.?1,3d" 0
 	@./ft_rmatch "127.00.11" "?1,3d.?1,3d.?1,3d.?1,3d" 0
 	@./ft_rmatch "127.0.0.11.5" "?1,3d.?1,3d.?1,3d.?1,3d" 0
