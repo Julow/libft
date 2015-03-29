@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:14:27 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 15:41:27 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/29 21:49:53 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,17 @@ static const char	*parse_reg_n(t_reg *reg, const char *pattern)
 	return (pattern);
 }
 
-static const char	*parse_reg_rf(t_reg *reg, const char *pattern)
+static const char	*parse_reg_pre(t_reg *reg, const char *pattern)
+{
+	if (*pattern == 'i')
+		reg->reg = (char*)&ft_matchint;
+	else
+		reg->reg = NULL;
+	reg->flags |= FLAG_R_PRE;
+	return (pattern + 1);
+}
+
+static const char	*parse_reg_is(t_reg *reg, const char *pattern)
 {
 	if (*pattern == 'w')
 		reg->reg = (char*)&ft_isword;
@@ -69,7 +79,7 @@ static const char	*parse_reg_rf(t_reg *reg, const char *pattern)
 		reg->reg = (char*)&ft_iswhite;
 	else
 		reg->reg = NULL;
-	reg->flags |= FLAG_R_F;
+	reg->flags |= FLAG_R_IS;
 	return (pattern + 1);
 }
 
@@ -95,8 +105,10 @@ static const char	*parse_reg_r(t_reg *reg, const char *pattern)
 		reg->reg_len = 1;
 		pattern++;
 	}
+	else if (*pattern == '&')
+		return (parse_reg_pre(reg, pattern + 1));
 	else
-		return (parse_reg_rf(reg, pattern));
+		return (parse_reg_is(reg, pattern));
 	return (pattern);
 }
 

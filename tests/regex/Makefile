@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/27 15:18:58 by jaguillo          #+#    #+#              #
-#    Updated: 2015/03/29 21:03:09 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/03/29 21:54:21 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,9 @@ rmatch:
 	@./test_rmatch "aaaaaaaaabaaaaaaaaa" "?*:a?+.?+:a" 1
 	@./test_rmatch "aaaaaaaaaaaaaaaaaaa" "?!*:?" 1
 	@./test_rmatch "aaaaaaaaaaaaaaaaaaa" "?!*:b" 1
+	@./test_rmatch "0" "?&i" 1
+	@./test_rmatch "2147483647" "?&i" 1
+	@./test_rmatch "-2147483648" "?&i" 1
 	@./test_rmatch "AaAaAaAa" "?i*:a" 1
 	@./test_rmatch "AaAaAaAa" "?i*'a'" 1
 	@./test_rmatch "AaAaAaAa" "?i*'aa'" 1
@@ -91,6 +94,8 @@ rmatch:
 	@./test_rmatch "aaaaaaaaaaaaaaaaaaa" "?+[]" 0
 	@./test_rmatch "aaaaaaaaaaaaaaaaaaa" "?*:b" 0
 	@./test_rmatch "aaaaaaaaaaaaaaaaaaa" "?!*'b'b" 0
+	@./test_rmatch "2147483648" "?&i" 0
+	@./test_rmatch "-" "?&i" 0
 	@./test_rmatch "AaAaAaAa" "?i*:A" 0
 	@./test_rmatch "0127.0.0.11" "?1,3d.?1,3d.?1,3d.?1,3d" 0
 	@./test_rmatch "127.00.11" "?1,3d.?1,3d.?1,3d.?1,3d" 0

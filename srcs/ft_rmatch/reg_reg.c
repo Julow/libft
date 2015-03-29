@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/29 20:25:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 20:25:19 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/29 21:55:14 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,21 @@ static t_bool	reg_match_str(t_reg *reg, const char **str)
 
 static t_bool	reg_match_1(t_reg *reg, const char **str)
 {
-	char			c;
+	int				c;
 
 	if (reg->reg == NULL || **str == '\0')
 		return (false);
-	if (reg->flags & FLAG_R_F)
+	if (reg->flags & FLAG_R_PRE)
 	{
-		c = **str;
-		(*str)++;
+		c = ((int (*)(const char*))reg->reg)(*str);
+		(*str) += c;
+		if (c == 0 && reg->flags & FLAG_R_NOT)
+			(*str)++;
+		return (MATCH_NOT(reg, (c > 0)));
+	}
+	else if (reg->flags & FLAG_R_IS)
+	{
+		c = *((*str)++);
 		return (MATCH_NOT(reg, ((t_bool (*)(char))reg->reg)(c)));
 	}
 	else if (reg->flags & FLAG_R_SET)
@@ -76,8 +83,7 @@ static t_bool	reg_match_1(t_reg *reg, const char **str)
 		(*str)++;
 		return (MATCH_NOT(reg, reg_match_set(reg, c)));
 	}
-	else
-		return (reg_match_str(reg, str));
+	return (reg_match_str(reg, str));
 }
 
 const char		*reg_reg(t_reg *r, const char *s, const char *p, t_uint l)

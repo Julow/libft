@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 21:02:51 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/29 21:56:00 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -385,12 +385,12 @@ char			*ft_getenv(const char *key);
 ** - s		ft_isspace		[ \t]
 ** - h		ft_iswhite		[ \t\n\r\v\f]
 ** - :a		Match a char
+** - &i		Match a valid int
 ** - [abc]	Match a set of char
 ** - [a-z]	Match an interval of char (cummulable with char set)
 ** - 'abc'	Match a string (can contains regex)
 ** ---
 ** TODO:
-** - predefined match functions (?&f)
 ** - global lower case mode (?i;)
 ** - str end (?$)
 ** - sprintf like parsing (using va_arg)
@@ -401,6 +401,8 @@ t_bool			ft_rmatch(const char *str, const char *pattern);
 int				ft_rtest(const char *str, const char *pattern);
 t_bool			ft_rfind(t_sub *dst, const char *str, const char *pattern);
 t_bool			ft_rnext(t_sub *last, const char *pattern);
+
+int				ft_matchint(const char *str);
 
 /*
 ** ========================================================================== **
