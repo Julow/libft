@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/29 20:23:22 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/29 21:02:51 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -361,7 +361,7 @@ char			*ft_getenv(const char *key);
 ** ?<opt><n><match>
 ** ?<opt><n><match>|<opt><n><match>| ...
 ** ---
-** opt: (need to be in this order)
+** opt: (cummulable but need to be in this order)
 ** - !		Match not (invert matching)
 ** - i		Lower case (str is treated as lower, match need to be lower case)
 ** ---
@@ -390,8 +390,9 @@ char			*ft_getenv(const char *key);
 ** - 'abc'	Match a string (can contains regex)
 ** ---
 ** TODO:
-** - predefined match functions
+** - predefined match functions (?&f)
 ** - global lower case mode (?i;)
+** - str end (?$)
 ** - sprintf like parsing (using va_arg)
 ** ---
 */
@@ -399,6 +400,7 @@ char			*ft_getenv(const char *key);
 t_bool			ft_rmatch(const char *str, const char *pattern);
 int				ft_rtest(const char *str, const char *pattern);
 t_bool			ft_rfind(t_sub *dst, const char *str, const char *pattern);
+t_bool			ft_rnext(t_sub *last, const char *pattern);
 
 /*
 ** ========================================================================== **
