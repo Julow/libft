@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/30 00:50:33 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/30 01:37:40 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,8 @@ t_uint			ft_strskip(const char *str, const char *skip);
 t_uint			ft_strcskip(const char *str, const char *skip);
 t_uint			ft_strskipe(const char *str, const char *skip);
 t_uint			ft_strcskipe(const char *str, const char *skip);
+
+int				ft_strbrace(const char *str, char open, char close);
 
 /*
 ** ========================================================================== **

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/29 20:25:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/30 01:31:59 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/30 01:58:22 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_bool	reg_match_set(t_reg *reg, char c)
 
 static t_bool	reg_match_sub(t_reg *reg, const char **str)
 {
-	char			tmp[reg->reg_len];
+	char			tmp[reg->reg_len + 1];
 	const char		*ptr = tmp;
 
 	if (reg->reg_len == 0)
@@ -46,11 +46,7 @@ static t_bool	reg_match_sub(t_reg *reg, const char **str)
 	while (*ptr != '\0')
 	{
 		if (*ptr == REG_START)
-		{
-			if ((*str = reg_match(*str, &ptr)) == NULL)
-				return (false);
-			continue ;
-		}
+			return (((*str = reg_match(*str, &ptr)) == NULL) ? false : true);
 		else if (MATCH_NOT(reg, MATCH_I(reg, **str) != *(ptr++)))
 			return (false);
 		(*str)++;
