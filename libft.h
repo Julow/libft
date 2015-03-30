@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/30 01:37:40 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/30 13:18:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -316,6 +316,9 @@ char			*ft_strmapi(const char *s, char (*f)(int, char));
 int				ft_atoi(const char *str);
 t_long			ft_atol(const char *str);
 double			ft_atod(const char *str);
+
+int				ft_atoib(const char *str, int *nb);
+int				ft_atoub(const char *str, t_uint *nb);
 
 int				ft_itoab(int n, char *buff);
 

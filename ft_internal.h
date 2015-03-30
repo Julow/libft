@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/30 00:57:39 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/30 13:23:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,14 @@ typedef struct	s_reg
 # define FLAG_R_PRE		(1 << 18)
 # define FLAG_R_SUB		(1 << 19)
 
+const char		*parse_reg_pre(t_reg *reg, const char *pattern);
+const char		*parse_reg_is(t_reg *reg, const char *pattern);
+const char		*parse_reg_sub(t_reg *reg, const char *str);
 const char		*reg_parse(t_reg *reg, const char *pattern);
+
+const char		*reg_reg(t_reg *r, const char *s, const char *p, t_uint l);
 const char		*reg_match(const char *str, const char **pattern);
 const char		*reg_test(const char *str, const char *pattern);
-const char		*reg_reg(t_reg *r, const char *s, const char *p, t_uint l);
 
 /*
 ** =============

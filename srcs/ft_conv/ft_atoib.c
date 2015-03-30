@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_rfind.c                                       :+:      :+:    :+:   */
+/*   ft_atoib.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/29 20:37:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/30 13:09:20 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/30 13:12:56 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/30 13:15:28 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-int				main(int argc, char **argv)
+int				ft_atoib(const char *str, int *nb)
 {
-	t_sub			sub;
+	int				sign;
+	int				i;
 
-	if (argc > 2)
+	sign = 1;
+	*nb = 0;
+	i = 0;
+	while (ft_iswhite(str[i]))
+		i++;
+	if (str[i] == '-')
 	{
-		if (ft_rfind(&sub, argv[1], argv[2]))
-		{
-			printf("'%.*s'  l: %d ; o: %ld\n", sub.length, sub.str,
-				sub.length, sub.str - argv[1]);
-			while (ft_rnext(&sub, argv[2]))
-				printf("- '%.*s'  l: %d ; o: %ld\n", sub.length, sub.str,
-					sub.length, sub.str - argv[1]);
-		}
-		else
-			printf("NULL\n");
+		sign = -1;
+		i++;
 	}
-	return (0);
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+		*nb = *nb * 10 + (str[i++] - '0');
+	*nb *= sign;
+	return (i);
 }

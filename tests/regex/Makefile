@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/27 15:18:58 by jaguillo          #+#    #+#              #
-#    Updated: 2015/03/30 02:00:40 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/03/30 12:12:24 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,8 @@ rmatch:
 	@./test_rmatch "AaAaAaAa" "?i*:a" 1
 	@./test_rmatch "AaAaAaAa" "?i*'a'" 1
 	@./test_rmatch "AaAaAaAa" "?i*'aa'" 1
+	@./test_rmatch "lol'lol'lol" "?+w?('?'lol'')?+w" 1
+	@./test_rmatch "lol'lol'lol" "?+w?('?(lol?:'))?+w" 1
 	@./test_rmatch "aaaa" "?*(?:a)" 1
 	@./test_rmatch "abc123Abc0ABC_LOL" "?*[a-zA-Z0-9_]" 1
 	@./test_rmatch "abcdef" "?!*d" 1
