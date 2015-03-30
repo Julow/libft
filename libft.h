@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/30 13:18:49 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/30 23:56:52 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -680,6 +680,7 @@ void			ft_writenl(t_out *out);
 void			ft_writeint(t_out *out, int n);
 void			ft_writebase(t_out *out, t_ulong n, const char *base);
 void			ft_writedouble(t_out *out, double d, int preci);
+int				ft_writef(t_out *out, const char *format, ...);
 int				ft_flush(t_out *out);
 
 /*
@@ -693,7 +694,7 @@ extern t_out	g_ftout;
 
 # define FTOUT			(&g_ftout)
 
-# define P(d,l)			(ft_write(FTOUT, (d), (l)))
+# define P(f, ...)		(ft_writef(FTOUT, (f), __VA_ARGS__))
 # define PS(s)			(ft_writestr(FTOUT, (s)))
 # define PC(c)			(ft_writechar(FTOUT, (c)))
 # define PCN(c,n)		(ft_writenchar(FTOUT, (c), (n)))
