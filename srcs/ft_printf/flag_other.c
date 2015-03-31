@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_debug.c                                         :+:      :+:    :+:   */
+/*   flag_other.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/09 11:52:31 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/10 18:23:00 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/31 18:52:20 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/31 19:00:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
-#include <stdlib.h>
 
-void			ft_debug(const char *c, char *f, int l, const char *s, ...)
+void			flag_other(t_printf *pf, t_pfopt *opt, char c)
 {
-	va_list			ap;
-	t_string		out;
-
-	ft_fdprintf(2, "%s %s():%-3d ", f, c, l);
-	if (s != NULL)
-	{
-		ft_stringini(&out);
-		va_start(ap, s);
-		parsef(&out, s, &ap);
-		va_end(ap);
-		ft_stringputfd(&out, 2);
-		free(out.content);
-	}
-	ft_putchar_fd('\n', 2);
+	if (c == '\0')
+		return ;
+	margin_before(pf, opt, 1);
+	ft_writechar(pf->out, c);
+	pf->printed += 1;
+	margin_after(pf, opt, 1);
 }

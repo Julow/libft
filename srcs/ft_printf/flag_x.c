@@ -6,35 +6,27 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/28 18:13:26 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 11:35:18 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/31 19:18:54 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
-#include <stdlib.h>
 
-void			flag_x(t_string *out, t_opt *opt, va_list *ap)
+void			flag_x(t_printf *pf, t_pfopt *opt)
 {
-	char			*hex;
-	t_ulong			x;
-	t_string		tmp;
+	t_ulong			nb;
+	int				len;
+	t_bool			upper;
 
-	x = get_unsigned_arg(opt, ap);
-	if (x == 0 && opt->preci_set && opt->preci == 0)
-	{
-		add_string(out, "", 0, opt);
-		return ;
-	}
-	if (opt->format->name == 'x')
-		hex = ft_itobase(x, "0123456789abcdef");
-	else
-		hex = ft_itobase(x, "0123456789ABCDEF");
-	ft_stringini(&tmp);
-	if (ft_strchr(opt->flags, '#') && x > 0)
-		ft_stringadd(&tmp, (opt->format->name == 'x') ? "0x" : "0X");
-	ft_stringadd(&tmp, hex);
-	pad_preci(&tmp, (ft_strchr(opt->flags, '#') && x > 0) ? 2 : 0, opt);
-	add_string(out, tmp.content, tmp.length, opt);
-	free(tmp.content);
-	free(hex);
+	nb = get_unsigned_arg(pf, opt);
+	len = ft_unumlen(nb, 16);
+	upper = (opt->flags & PFLAG_UPPER || opt->format == 'X') ? true : false;
+	if (opt->flags & PFLAG_ALT && nb != 0)
+		len += 2;
+	margin_before(pf, opt, len);
+	if (opt->flags & PFLAG_ALT && nb != 0)
+		ft_writestr(pf->out, upper ? "0X" : "0x");
+	ft_writebase(pf->out, nb, upper ? BASE_16 : BASE_16_LOWER);
+	pf->printed += len;
+	margin_after(pf, opt, len);
 }

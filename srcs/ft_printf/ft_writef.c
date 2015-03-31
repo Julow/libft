@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/30 23:58:02 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/31 13:32:47 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/31 20:26:32 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/31 20:28:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 
 int				ft_writef(t_out *out, const char *format, ...)
 {
-	t_string		output;
+	t_printf		pf;
 	va_list			ap;
 
-	ft_stringini(&output);
 	va_start(ap, format);
-	parsef(&output, (char*)format, &ap);
-	ft_write(out, output.content, output.length);
+	pf = (t_printf){out, 0, &ap};
+	writef(&pf, format);
 	va_end(ap);
-	free(output.content);
-	return (output.length);
+	return (pf.printed);
 }

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 21:23:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/17 00:25:08 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/31 18:15:22 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void			ft_writebase(t_out *out, t_ulong n, const char *base)
 	t_uint			i;
 
 	i = PUTBASE_BUFF;
+	if (n == 0)
+		nb[--i] = base[0];
 	while (n != 0)
 	{
 		nb[--i] = base[(n % base_len)];

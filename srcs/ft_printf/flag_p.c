@@ -5,28 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/02 16:06:18 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 11:35:30 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/31 18:08:47 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/31 19:57:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
-#include <stdlib.h>
 
-void			flag_p(t_string *out, t_opt *opt, va_list *ap)
+void			flag_p(t_printf *pf, t_pfopt *opt)
 {
-	char			*hex;
-	t_string		tmp;
+	t_ulong			nb;
+	int				len;
+	t_bool			upper;
 
-	ft_stringini(&tmp);
-	ft_stringins(&tmp, "0x", 0);
-	if (!opt->preci_set || opt->preci != 0)
-	{
-		hex = ft_itobase((t_ulong)(va_arg(*ap, void*)), "0123456789abcdef");
-		ft_stringadd(&tmp, hex);
-		pad_preci(&tmp, 2, opt);
-		free(hex);
-	}
-	add_string(out, tmp.content, tmp.length, opt);
-	free(tmp.content);
+	nb = (t_ulong)va_arg(*(pf->ap), void*);
+	len = (nb == 0) ? 3 : ft_unumlen(nb, 16) + 2;
+	upper = (opt->flags & PFLAG_UPPER || opt->format == 'P') ? true : false;
+	if (opt->flags & PFLAG_ALT)
+		len += 1;
+	if (!(opt->flags & PFLAG_ZERO))
+		margin_before(pf, opt, len);
+	if (opt->flags & PFLAG_ALT)
+		ft_writechar(pf->out, '*');
+	ft_writestr(pf->out, upper ? "0X" : "0x");
+	if (opt->flags & PFLAG_ZERO)
+		margin_before(pf, opt, len);
+	ft_writebase(pf->out, nb, upper ? BASE_16 : BASE_16_LOWER);
+	pf->printed += len;
+	margin_after(pf, opt, len);
 }

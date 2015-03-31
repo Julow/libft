@@ -5,48 +5,41 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/28 18:09:04 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 11:35:20 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/31 18:30:26 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/31 18:35:27 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
 
-static int		add_ulong(char *str, int i, t_ulong nb, t_opt *opt)
+void			ft_writeulong(t_out *out, t_ulong n)
 {
-	const int		len = i;
+	char			nb[PUTLONG_BUFF];
+	t_uint			i;
 
-	while (i > 0 && nb != 0)
+	i = PUTLONG_BUFF;
+	if (n == 0)
+		nb[--i] = '0';
+	while (n != 0)
 	{
-		str[i--] = '0' + (nb % 10);
-		if (((len - i + 1) % 4) == 0 && HASF('\''))
-			str[i--] = ' ';
-		nb /= 10;
+		nb[--i] = '0' + (n % 10);
+		n /= 10;
 	}
-	return (i);
+	ft_write(out, nb + i, PUTLONG_BUFF - i);
 }
 
-void			flag_u(t_string *out, t_opt *opt, va_list *ap)
+void			flag_u(t_printf *pf, t_pfopt *opt)
 {
-	const int		len = MAX(LONG_BUFF, MAX(opt->width, opt->preci));
-	char			str[len];
-	int				i;
-	int				pad;
-	t_ulong			nb;
+	t_ulong			d;
+	int				len;
 
-	nb = (opt->format->name != 'U') ? get_unsigned_arg(opt, ap) :
-		(t_ulong)(va_arg(*ap, unsigned long int));
-	i = len - 1;
-	if (nb == 0 && (!opt->preci_set || opt->preci != 0))
-		str[i--] = '0';
+	if (opt->format == 'U')
+		d = (t_ulong)va_arg(*(pf->ap), unsigned long int);
 	else
-		i = add_ulong(str, i, nb, opt);
-	pad = ((opt->preci_set) ? MIN(opt->width, opt->preci) : opt->width) + 1;
-	if (HASF('0'))
-		while ((len - i) < pad)
-			str[i--] = '0';
-	if (opt->preci_set)
-		while ((len - i - 1) < opt->preci)
-			str[i--] = '0';
-	add_string(out, str + 1 + i, len - 1 - i, opt);
+		d = get_unsigned_arg(pf, opt);
+	len = ft_unumlen(d, 10);
+	margin_before(pf, opt, len);
+	pf->printed += len;
+	ft_writeulong(pf->out, d);
+	margin_after(pf, opt, len);
 }
