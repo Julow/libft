@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_b.c                                           :+:      :+:    :+:   */
+/*   flag_p.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/28 18:13:26 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/31 17:47:41 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/31 18:08:47 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/31 19:57:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
 
-void			flag_b(t_printf *pf, t_pfopt *opt)
+void			flag_p(t_printf *pf, t_pfopt *opt)
 {
 	t_ulong			nb;
 	int				len;
 	t_bool			upper;
 
-	nb = get_unsigned_arg(pf, opt);
-	len = ft_unumlen(nb, 2);
-	upper = (opt->flags & PFLAG_UPPER || opt->format == 'B') ? true : false;
+	nb = (t_ulong)va_arg(*(pf->ap), void*);
+	len = (nb == 0) ? 3 : ft_unumlen(nb, 16) + 2;
+	upper = (opt->flags & PFLAG_UPPER || opt->format == 'P') ? true : false;
 	if (opt->flags & PFLAG_ALT)
-		len += 2;
-	margin_before(pf, opt, len);
+		len += 1;
+	if (!(opt->flags & PFLAG_ZERO))
+		margin_before(pf, opt, len);
 	if (opt->flags & PFLAG_ALT)
-		ft_writestr(pf->out, upper ? "0B" : "0b");
-	ft_writebase(pf->out, nb, BASE_2);
+		ft_writechar(pf->out, '*');
+	ft_writestr(pf->out, upper ? "0X" : "0x");
+	if (opt->flags & PFLAG_ZERO)
+		margin_before(pf, opt, len);
+	ft_writebase(pf->out, nb, upper ? BASE_16 : BASE_16_LOWER);
 	pf->printed += len;
 	margin_after(pf, opt, len);
 }

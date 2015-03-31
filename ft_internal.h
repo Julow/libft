@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/31 17:36:28 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/31 18:54:56 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,5 +174,8 @@ void			flag_n(t_printf *pf, t_pfopt *opt);
 void			flag_x(t_printf *pf, t_pfopt *opt);
 void			flag_o(t_printf *pf, t_pfopt *opt);
 void			flag_b(t_printf *pf, t_pfopt *opt);
+void			flag_p(t_printf *pf, t_pfopt *opt);
+void			flag_u(t_printf *pf, t_pfopt *opt);
+void			flag_other(t_printf *pf, t_pfopt *opt, char c);
 
 #endif

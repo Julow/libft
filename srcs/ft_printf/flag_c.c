@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/27 15:27:34 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/31 17:15:23 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/31 17:47:35 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ void			flag_c(t_printf *pf, t_pfopt *opt)
 			c[i--] = '0';
 	margin_before(pf, opt, len - 1 - i);
 	ft_write(pf->out, c + 1 + i, len - 1 - i);
+	pf->printed += len - 1 - i;
 	margin_after(pf, opt, len - 1 - i);
 }

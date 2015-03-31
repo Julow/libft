@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/31 13:51:27 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/31 17:36:42 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/31 19:03:41 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ const t_pflen	g_lengths[] = {
 
 const t_pformat	g_formats[] = {
 	{'d', &flag_d},
+	{'D', &flag_d},
+	{'i', &flag_d},
 	{'c', &flag_c},
 	{'C', &flag_c},
 	{'%', &flag_percent},
@@ -54,6 +56,10 @@ const t_pformat	g_formats[] = {
 	{'O', &flag_o},
 	{'b', &flag_b},
 	{'B', &flag_b},
+	{'p', &flag_p},
+	{'P', &flag_p},
+	{'u', &flag_u},
+	{'U', &flag_u},
 	{'\0', NULL}
 };
 
@@ -145,6 +151,8 @@ int				parse_format(t_printf *pf, const char *format)
 	len += parse_width(pf, &opt, format + len);
 	len += parse_precision(pf, &opt, format + len);
 	len += parse_length(&opt, format + len);
+	if (format[len] == '\0')
+		return (0);
 	i = -1;
 	while (g_formats[++i].name != '\0')
 		if (g_formats[i].name == format[len])
@@ -154,6 +162,6 @@ int				parse_format(t_printf *pf, const char *format)
 			break ;
 		}
 	if (g_formats[i].name == '\0')
-		return (ft_writechar(pf->out, '%'), 0);
+		flag_other(pf, &opt, format[len]);
 	return (len + 1);
 }
