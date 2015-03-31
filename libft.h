@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/31 17:31:40 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/31 20:28:07 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -681,7 +681,6 @@ void			ft_writenl(t_out *out);
 void			ft_writeint(t_out *out, int n);
 void			ft_writebase(t_out *out, t_ulong n, const char *base);
 void			ft_writedouble(t_out *out, double d, int preci);
-int				ft_writef(t_out *out, const char *format, ...);
 int				ft_flush(t_out *out);
 
 /*
@@ -856,18 +855,14 @@ int				get_next_line(int const fd, t_sub *line);
 */
 
 # ifdef DEBUG_MODE
-#  define DEBUG(d, ...) ft_debug(__func__, __FILE__, __LINE__, d, __VA_ARGS__)
-#  define TRACE			ft_debug(__func__, __FILE__, __LINE__, NULL)
+#  define TRACE			ft_printf("%s %s:%d\n", __func__, __FILE__, __LINE__)
 # else
-#  define DEBUG(d, ...)
 #  define TRACE
 # endif
 
 int				ft_printf(const char *format, ...);
 int				ft_fdprintf(const int fd, const char *format, ...);
-t_string		*ft_stringf(const char *format, ...);
-
-void			ft_debug(const char *c, char *f, int l, const char *s, ...);
+int				ft_writef(t_out *out, const char *format, ...);
 
 /*
 ** ========================================================================== **
