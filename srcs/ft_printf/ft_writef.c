@@ -6,11 +6,12 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/30 23:58:02 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/30 23:58:21 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/31 13:32:47 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
+#include <stdlib.h>
 
 int				ft_writef(t_out *out, const char *format, ...)
 {
