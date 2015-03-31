@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/30 13:23:26 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/31 17:36:28 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,65 +89,90 @@ typedef struct	s_gnlfd
 ** ft_printf
 */
 
-# define HASF(c)	(ft_strchr(opt->flags, (c)) != NULL)
-
-# define LONG_BUFF	(40)
-
-typedef struct	s_format
+typedef struct	s_printf
 {
-	char			name;
-	void			(*func)();
-	char			*disabled;
-}				t_format;
+	t_out			*out;
+	int				printed;
+	va_list			*ap;
+}				t_printf;
 
-typedef struct	s_opt
+typedef enum	e_pflen_t
 {
-	char			*flags;
+	pflen_hh,
+	pflen_h,
+	pflen_ll,
+	pflen_l,
+	pflen_L,
+	pflen_j,
+	pflen_t,
+	pflen_I,
+	pflen_z,
+	pflen_q,
+	pflen_def
+}				t_pflen_t;
+
+# define PFLAG_ALT		(BIT(1))
+# define PFLAG_SPACE	(BIT(2))
+# define PFLAG_ZERO		(BIT(3))
+# define PFLAG_MOINS	(BIT(4))
+# define PFLAG_PLUS		(BIT(5))
+# define PFLAG_GROUP	(BIT(6))
+# define PFLAG_CENTER	(BIT(7))
+# define PFLAG_RIGHT	(BIT(8))
+# define PFLAG_LOWER	(BIT(9))
+# define PFLAG_UPPER	(BIT(10))
+
+# define PFLAG_PRECI	(BIT(24))
+
+typedef struct	s_pfopt
+{
+	int				flags;
 	int				width;
 	int				preci;
-	t_bool			preci_set;
-	char const		*length;
-	t_format		*format;
-}				t_opt;
+	t_pflen_t		length;
+	char			format;
+}				t_pfopt;
 
-typedef struct	s_meta
+typedef struct	s_pflen
 {
 	char			*name;
-	char			*value;
-}				t_meta;
+	t_pflen_t		length;
+}				t_pflen;
 
-void			parsef(t_string *out, const char *format, va_list *ap);
+typedef struct	s_pfflag
+{
+	char			name;
+	int				mask;
+	int				override;
+}				t_pfflag;
 
-int				parse_format(t_string *out, const char *format, va_list *ap);
+typedef struct	s_pformat
+{
+	char			name;
+	void			(*f)(t_printf*, t_pfopt*);
+}				t_pformat;
 
-int				parse_meta(t_string *out, const char *format);
+void			writef(t_printf *pf, const char *format);
 
-void			ft_stringaddupper(t_string *str, const char *add, int len);
-void			ft_stringaddlower(t_string *str, const char *add, int len);
-int				ft_atoin(const char *str, int len);
+int				parse_format(t_printf *pf, const char *format);
 
-void			add_string(t_string *out, const char *add, int len, t_opt *opt);
-void			add_nchar(t_string *out, char c, int len, t_opt *opt);
-void			pad_preci(t_string *str, int start, t_opt *opt);
+t_long			get_arg(t_printf *pf, t_pfopt *opt);
+t_ulong			get_unsigned_arg(t_printf *pf, t_pfopt *opt);
+long double		get_float_arg(t_printf *pf, t_pfopt *opt);
+
 t_bool			is_separator(char c);
-void			clear_dis(t_opt *opt);
+void			margin_before(t_printf *pf, t_pfopt *opt, int len);
+void			margin_after(t_printf *pf, t_pfopt *opt, int len);
+int				ft_numlen(t_long num, int base);
+int				ft_unumlen(t_ulong num, int base);
 
-t_long			get_arg(t_opt *opt, va_list *ap);
-t_ulong			get_unsigned_arg(t_opt *opt, va_list *ap);
-long double		get_float_arg(t_opt *opt, va_list *ap);
-
-void			flag_percent(t_string *out, t_opt *opt, va_list *ap);
-void			flag_s(t_string *out, t_opt *opt, va_list *ap);
-void			flag_d(t_string *out, t_opt *opt, va_list *ap);
-void			flag_o(t_string *out, t_opt *opt, va_list *ap);
-void			flag_u(t_string *out, t_opt *opt, va_list *ap);
-void			flag_x(t_string *out, t_opt *opt, va_list *ap);
-void			flag_c(t_string *out, t_opt *opt, va_list *ap);
-void			flag_n(t_string *out, t_opt *opt, va_list *ap);
-void			flag_p(t_string *out, t_opt *opt, va_list *ap);
-void			flag_e(t_string *out, t_opt *opt, va_list *ap);
-void			flag_f(t_string *out, t_opt *opt, va_list *ap);
-void			flag_b(t_string *out, t_opt *opt, va_list *ap);
-void			flag_r(t_string *out, t_opt *opt, va_list *ap);
+void			flag_d(t_printf *pf, t_pfopt *opt);
+void			flag_c(t_printf *pf, t_pfopt *opt);
+void			flag_percent(t_printf *pf, t_pfopt *opt);
+void			flag_s(t_printf *pf, t_pfopt *opt);
+void			flag_n(t_printf *pf, t_pfopt *opt);
+void			flag_x(t_printf *pf, t_pfopt *opt);
+void			flag_o(t_printf *pf, t_pfopt *opt);
+void			flag_b(t_printf *pf, t_pfopt *opt);
 
 #endif

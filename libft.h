@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/30 23:56:52 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/31 17:31:40 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,6 +308,7 @@ char			*ft_strmapi(const char *s, char (*f)(int, char));
 # define BASE_8			"01234567"
 # define BASE_10		"0123456789"
 # define BASE_16		"0123456789ABCDEF"
+# define BASE_16_LOWER	"0123456789abcdef"
 # define BASE_36		"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 # define LOWER(c)		(((c) >= 'A' && (c) <= 'Z') ? (c) + 32 : (c))

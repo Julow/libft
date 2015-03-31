@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/26 15:52:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 11:35:37 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/31 17:14:37 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,24 @@
 #include <inttypes.h>
 #include <stddef.h>
 
-void			flag_n(t_string *out, t_opt *opt, va_list *ap)
+void			flag_n(t_printf *pf, t_pfopt *opt)
 {
-	if (ft_strequ(opt->length, "hh"))
-		*(va_arg(*ap, signed char*)) = out->length;
-	else if (ft_strequ(opt->length, "h"))
-		*(va_arg(*ap, short*)) = out->length;
-	else if (ft_strequ(opt->length, "ll"))
-		*(va_arg(*ap, unsigned long long*)) = out->length;
-	else if (ft_strequ(opt->length, "l"))
-		*(va_arg(*ap, unsigned long*)) = out->length;
-	else if (ft_strequ(opt->length, "j"))
-		*(va_arg(*ap, uintmax_t*)) = out->length;
-	else if (ft_strequ(opt->length, "t"))
-		*(va_arg(*ap, ptrdiff_t*)) = out->length;
-	else if (ft_strequ(opt->length, "z"))
-		*(va_arg(*ap, long int*)) = out->length;
-	else if (ft_strequ(opt->length, "q"))
-		*(va_arg(*ap, u_quad_t*)) = out->length;
+	if (opt->length == pflen_hh)
+		*(va_arg(*(pf->ap), signed char*)) = pf->printed;
+	else if (opt->length == pflen_h)
+		*(va_arg(*(pf->ap), short*)) = pf->printed;
+	else if (opt->length == pflen_ll)
+		*(va_arg(*(pf->ap), unsigned long long*)) = pf->printed;
+	else if (opt->length == pflen_l)
+		*(va_arg(*(pf->ap), unsigned long*)) = pf->printed;
+	else if (opt->length == pflen_j)
+		*(va_arg(*(pf->ap), uintmax_t*)) = pf->printed;
+	else if (opt->length == pflen_t)
+		*(va_arg(*(pf->ap), ptrdiff_t*)) = pf->printed;
+	else if (opt->length == pflen_z)
+		*(va_arg(*(pf->ap), long int*)) = pf->printed;
+	else if (opt->length == pflen_q)
+		*(va_arg(*(pf->ap), u_quad_t*)) = pf->printed;
 	else
-		*(va_arg(*ap, unsigned int*)) = out->length;
+		*(va_arg(*(pf->ap), unsigned int*)) = pf->printed;
 }

@@ -5,50 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/26 13:34:31 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 11:33:27 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/31 13:42:59 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/31 16:42:39 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
-#include <stdlib.h>
-
-t_string		*ft_stringf(const char *format, ...)
-{
-	t_string		*str;
-	va_list			ap;
-
-	str = ft_stringnew();
-	va_start(ap, format);
-	parsef(str, (char*)format, &ap);
-	va_end(ap);
-	return (str);
-}
 
 int				ft_printf(const char *format, ...)
 {
-	t_string		output;
+	t_printf		pf;
 	va_list			ap;
 
-	ft_stringini(&output);
 	va_start(ap, format);
-	parsef(&output, (char*)format, &ap);
-	ft_stringput(&output);
+	pf = (t_printf){FTOUT, 0, &ap};
+	writef(&pf, format);
 	va_end(ap);
-	free(output.content);
-	return (output.length);
-}
-
-int				ft_fdprintf(const int fd, const char *format, ...)
-{
-	t_string		output;
-	va_list			ap;
-
-	ft_stringini(&output);
-	va_start(ap, format);
-	parsef(&output, (char*)format, &ap);
-	ft_stringputfd(&output, fd);
-	va_end(ap);
-	free(output.content);
-	return (output.length);
+	ft_flush(pf.out);
+	return (pf.printed);
 }

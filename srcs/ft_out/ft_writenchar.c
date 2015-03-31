@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 21:21:01 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/17 00:23:41 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/31 16:40:55 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void			ft_writenchar(t_out *out, char c, int n)
 {
 	int				free_buff;
 
+	if (n <= 0)
+		return ;
 	while (true)
 	{
 		free_buff = out->length - out->i;
