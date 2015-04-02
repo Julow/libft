@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/03 00:25:34 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/03 00:54:19 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,9 +171,10 @@ typedef struct	s_meta
 
 void			writef(t_printf *pf, const char *format);
 
+/*
+** formats
+*/
 int				parse_format(t_printf *pf, const char *format);
-
-int				parse_meta(t_printf *pf, t_pfopt *opt, const char *format);
 
 t_long			get_arg(t_printf *pf, t_pfopt *opt);
 t_ulong			get_unsigned_arg(t_printf *pf, t_pfopt *opt);
@@ -197,7 +198,15 @@ void			flag_p(t_printf *pf, t_pfopt *opt);
 void			flag_u(t_printf *pf, t_pfopt *opt);
 void			flag_other(t_printf *pf, t_pfopt *opt, char c);
 
-void			meta_nl(t_printf *pf, t_pfopt *opt);
-void			meta_fl(t_printf *pf, t_pfopt *opt);
+/*
+** metas
+*/
+int				parse_meta(t_printf *pf, t_pfopt *opt, const char *format);
+
+int				end_meta(const char *format);
+
+int				meta_t(t_printf *pf, t_pfopt *opt, const char *format);
+int				meta_nl(t_printf *pf, t_pfopt *opt, const char *format);
+int				meta_fl(t_printf *pf, t_pfopt *opt, const char *format);
 
 #endif

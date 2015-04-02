@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 00:04:36 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/03 00:37:52 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/03 00:59:09 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 const t_meta	g_metas[] = {
 	META_T("nl", meta_t_func, &meta_nl),
 	META_T("fl", meta_t_func, &meta_fl),
+
+	META_T("t", meta_t_func, &meta_t),
 
 	META_T("reset", meta_t_str, "\033[0;0m"),
 	META_T("bold", meta_t_str, "\033[1m"),
@@ -81,20 +83,18 @@ int				parse_meta(t_printf *pf, t_pfopt *opt, const char *format)
 	int				i;
 
 	len = 0;
-	while (format[len] != '\0' && format[len] != '}')
+	while (format[len] && format[len] != '}' && !ft_isspace(format[len]))
 		len++;
-	if (format[len] != '}')
-		return (0);
 	i = -1;
 	while (g_metas[++i].type != meta_t_nope)
 		if (g_metas[i].name_len == len &&
 			ft_memcmp(g_metas[i].name, format, len) == 0)
 		{
 			if (g_metas[i].type == meta_t_func)
-				((void (*)())g_metas[i].data)(pf, opt);
+				len += ((int (*)())g_metas[i].data)(pf, opt, format + len);
 			else if (g_metas[i].type == meta_t_str)
 				print_meta(pf, opt, g_metas[i].data);
-			return (len + 1);
+			return ((format[len] == '}') ? len + 1 : len);
 		}
 	return (0);
 }
