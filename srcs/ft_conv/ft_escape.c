@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_out.c                                           :+:      :+:    :+:   */
+/*   ft_escape.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/11 23:08:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/17 00:33:25 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/04/03 01:28:18 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/04/03 01:28:56 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			g_ftout_buff[FTOUT_BUFF] = DB(FTOUT_BUFF, 0);
-t_out			g_ftout = OUT(1, g_ftout_buff, FTOUT_BUFF);
+char			*g_escapes = "a\ab\bf\fn\nr\rt\tv\v0\0\0";
 
-void			ft_out(int fd)
+char			ft_escape(char c)
 {
-	if (FTOUT->fd != fd)
+	char			*escs;
+
+	escs = g_escapes + 1;
+	while (*escs != c)
 	{
-		ft_flush(FTOUT);
-		FTOUT->fd = fd;
+		if (*escs == '\0')
+			return (c);
+		escs += 2;
 	}
+	return (escs[-1]);
 }

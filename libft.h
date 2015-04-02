@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/31 20:28:07 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/03 01:29:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -329,6 +329,9 @@ char			*ft_ltoa(t_long n);
 char			*ft_itobase(t_ulong nb, const char *base);
 t_ulong			ft_basetoi(const char *str, const char *base);
 
+char			ft_escape(char c);
+char			ft_unescape(char c);
+
 int				ft_toupper(int c);
 int				ft_tolower(int c);
 void			ft_strlower(char *str);
@@ -635,6 +638,7 @@ typedef struct	s_buff
 
 char			ft_readbuff(t_buff *buff);
 char			ft_buffget(t_buff *buff);
+void			ft_buffclear(t_buff *buff);
 
 t_bool			ft_parseint(t_buff *buff, int *nb);
 t_bool			ft_parselong(t_buff *buff, t_long *nb);
@@ -651,6 +655,7 @@ int				ft_parsesub(t_buff *buff, t_string *dst, const char *parse);
 int				ft_parsesubf(t_buff *buff, t_string *dst, t_bool (*f)(int c));
 int				ft_parsesubnf(t_buff *buff, t_string *dst, t_bool (*f)(int c));
 int				ft_parseline(t_buff *buff, t_string *dst);
+t_bool			ft_parsequote(t_buff *buff, t_string *dst);
 
 void			ft_parseendl(t_buff *buff);
 
