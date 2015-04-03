@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/03 01:29:49 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/03 15:52:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -363,6 +363,8 @@ t_bool			ft_randbool(double chance);
 
 char			*ft_getenv(const char *key);
 
+void			ft_splitfree(char **split);
+
 /*
 ** ========================================================================== **
 ** Regex
@@ -658,6 +660,7 @@ int				ft_parseline(t_buff *buff, t_string *dst);
 t_bool			ft_parsequote(t_buff *buff, t_string *dst);
 
 void			ft_parseendl(t_buff *buff);
+t_bool			ft_parsen(t_buff *buff, char *dst, int len);
 
 t_bool			ft_parsef(t_buff *buff, t_bool (*f)(int c));
 t_bool			ft_parsespace(t_buff *buff);
