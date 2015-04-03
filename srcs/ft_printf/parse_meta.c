@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 00:04:36 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/03 00:59:09 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/03 15:47:20 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 const t_meta	g_metas[] = {
 	META_T("nl", meta_t_func, &meta_nl),
 	META_T("fl", meta_t_func, &meta_fl),
-
-	META_T("t", meta_t_func, &meta_t),
 
 	META_T("reset", meta_t_str, "\033[0;0m"),
 	META_T("bold", meta_t_str, "\033[1m"),
