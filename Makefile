@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 13:05:11 by jaguillo          #+#    #+#              #
-#    Updated: 2015/04/03 13:28:47 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/04/03 20:22:41 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,13 +78,15 @@ O_FILES = $(TMP2:$(C_DIR)/%.asm=$(O_DIR)/%.o)
 $(shell mkdir -p $(O_DIRS) $(O_DIR) 2> /dev/null || echo "" > /dev/null)
 
 # Print
-MSG_0 = "\r%80c\r%-34s\033[1;30m -->>  \033[0;32m%-34s\033[0;0m" " "
-MSG_1 = "\n%-34s\033[1;30m -->>  \033[0;31m%-34s\033[0;0m\n"
+MSG_0 = "\r%80c\r%-34s\033[1;30m -->>  \033[0;32m%s\033[0;0m" " "
+MSG_1 = "\n%-34s\033[1;30m -->>  \033[0;31m%s\033[0;0m\n"
 MSG_2 = "\r%80c\r%s\033[0;0m\n" " "
 
 # Call $(NAME) in async mode
 all:
-	@make -j4 $(NAME)
+	@tput vi
+	@(make -j4 $(NAME) || true)
+	@tput ve
 
 # Compile all sources and build the .a archive
 $(NAME): $(O_FILES)
