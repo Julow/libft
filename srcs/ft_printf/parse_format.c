@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/31 13:51:27 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/03 01:41:38 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/04 00:41:07 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ const t_pformat	g_formats[] = {
 	{'u', &flag_u},
 	{'U', &flag_u},
 	{'r', &flag_r},
+	{'w', &flag_w},
+	{'W', &flag_w},
 	{'\0', NULL}
 };
 

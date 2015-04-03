@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 13:05:11 by jaguillo          #+#    #+#              #
-#    Updated: 2015/04/03 20:22:41 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/04/03 23:56:26 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,15 +78,17 @@ O_FILES = $(TMP2:$(C_DIR)/%.asm=$(O_DIR)/%.o)
 $(shell mkdir -p $(O_DIRS) $(O_DIR) 2> /dev/null || echo "" > /dev/null)
 
 # Print
-MSG_0 = "\r%80c\r%-34s\033[1;30m -->>  \033[0;32m%s\033[0;0m" " "
-MSG_1 = "\n%-34s\033[1;30m -->>  \033[0;31m%s\033[0;0m\n"
-MSG_2 = "\r%80c\r%s\033[0;0m\n" " "
+MSG_0 = "%40c\r\033[0;32m%s\033[0;0m\r" " "
+MSG_1 = "\033[0;31m%s\033[0;0m\n"
+MSG_2 = "\r%40c\r%s\033[0;0m\n" " "
+COUNT = 0
+SHELL = /bin/bash
 
 # Call $(NAME) in async mode
 all:
-	@tput vi
+	@(tput civis || true)
 	@(make -j4 $(NAME) || true)
-	@tput ve
+	@(tput cnorm || true)
 
 # Compile all sources and build the .a archive
 $(NAME): $(O_FILES)
@@ -99,7 +101,7 @@ ifneq ($(shell nasm -v 2> /dev/null),)
 ifneq ($(shell nasm -hf | grep "$(ASM_FORMAT)"),)
 $(O_DIR)/%.o: $(C_DIR)/%.asm
 	@nasm $(ASM_SPECIAL) $(ASM_FLAGS) -o $@ $< \
-		&& printf $(MSG_0) "$<" "$@" || (printf $(MSG_1) "$<" "$@" && exit 1)
+		&& printf $(MSG_0) "$<" || (printf $(MSG_1) "$<" && exit 1)
 endif
 endif
 endif
@@ -107,15 +109,19 @@ endif
 # Compile .c sources
 $(O_DIR)/%.o: $(C_DIR)/%.c
 	@clang $(C_FLAGS) $(LINKS) -o $@ -c $< \
-		&& printf $(MSG_0) "$<" "$@" || (printf $(MSG_1) "$<" "$@" && exit 1)
+		&& printf $(MSG_0) "$<" || (printf $(MSG_1) "$<" && exit 1)
 
 # Enable debug mode, change flags and build
 debug: _debug all
 
 # Remove all .o files
 clean:
+	@(tput civis || true)
+	@printf "Clearing..."
 	@rm $(O_FILES) 2> /dev/null || echo "" > /dev/null
 	@rmdir $(O_DIRS) $(O_DIR) 2> /dev/null || echo "" > /dev/null
+	@printf "\r%40c\r" " "
+	@(tput cnorm || true)
 
 # Remove all .o files and the .a archive
 fclean: clean
