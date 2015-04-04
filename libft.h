@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/03 15:52:33 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/04 01:26:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -714,6 +714,8 @@ extern t_out	g_ftout;
 # define FL				(ft_flush(FTOUT))
 
 void			ft_out(int fd);
+
+void			ft_hexdump(const void *data, t_uint len);
 
 /*
 ** ========================================================================== **

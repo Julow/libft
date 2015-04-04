@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 23:35:08 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/04 01:06:26 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/04 02:53:28 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void			flag_w(t_printf *pf, t_pfopt *opt)
 	data_len = (opt->flags & PFLAG_PRECI) ? opt->preci : ft_strlen((char*)data);
 	len = (opt->flags & PFLAG_SPACE) ? data_len * 3 - 1 : data_len * 2;
 	if (opt->flags & PFLAG_GROUP)
-		len += (data_len - ((t_ulong)data & 3) + 2) / 4;
+		len += ((((t_ulong)data & 3) <= 0) ? data_len + 1 : data_len) / 4;
 	margin_before(pf, opt, len);
 	write_w(pf->out, opt, data, data_len);
 	pf->printed += len;
