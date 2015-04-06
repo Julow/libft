@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/04 01:54:21 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/06 17:45:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ typedef struct	s_pformat
 	void			(*f)(t_printf*, t_pfopt*);
 }				t_pformat;
 
-typedef enum	s_meta_t
+typedef enum	e_meta_t
 {
 	meta_t_str,
 	meta_t_func,
