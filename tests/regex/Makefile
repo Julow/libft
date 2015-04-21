@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/27 15:18:58 by jaguillo          #+#    #+#              #
-#    Updated: 2015/03/30 12:12:24 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/04/21 20:08:24 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,15 @@ rmatch:
 	@./test_rmatch "aaaaaaaaabaaaaaaaaa" "?*:a?+.?+:a" 1
 	@./test_rmatch "aaaaaaaaaaaaaaaaaaa" "?!*:?" 1
 	@./test_rmatch "aaaaaaaaaaaaaaaaaaa" "?!*:b" 1
+	@./test_rmatch "Lol Lol Lol" "?+w?+s?+w?+s?+w" 1
+	@./test_rmatch " Lol Lol Lol" "?*s?+w?+s?+w?+s?+w" 1
+	@./test_rmatch "Lol Lol Lol" "?*s?+w?+s?+w?+s?+w" 1
+	@./test_rmatch "Lol Lol Lol" "?+w?+s?+w?+s?+w?*s" 1
+	@./test_rmatch "Lol Lol Lol " "?+w?+s?+w?+s?+w?*s" 1
+	@./test_rmatch "Lol Lol Lol" "?*s?+w?+s?+w?+s?+w?*s" 1
+	@./test_rmatch "Lol Lol Lol " "?*s?+w?+s?+w?+s?+w?*s" 1
+	@./test_rmatch " Lol Lol Lol" "?*s?+w?+s?+w?+s?+w?*s" 1
+	@./test_rmatch " Lol Lol Lol " "?*s?+w?+s?+w?+s?+w?*s" 1
 	@./test_rmatch "abc" "?(?*:a?*:b?*:c)" 1
 	@./test_rmatch "aabbcc" "?*(?*:a?*:b?*:c)" 1
 	@./test_rmatch "aabbccabcaaaabccccabbbcc" "?*(?*:a?*:b?*:c)" 1
