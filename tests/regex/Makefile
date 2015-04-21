@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#                                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/27 15:18:58 by jaguillo          #+#    #+#              #
-#    Updated: 2015/04/21 20:08:24 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/04/21 23:39:23 by juloo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,8 +101,6 @@ rmatch:
 	@./test_rmatch "abcd" "ab?[abc]|[cd]" 0
 	@./test_rmatch "abcdef" "ab?![c]def" 0
 	@./test_rmatch "abcd" "?!'cd'abcd" 0
-	@./test_rmatch "abcd" "?!*''abcd" 0
-	@./test_rmatch "abcd" "?*''abcd" 0
 	@./test_rmatch "aaaaaaaaaaaaaaaaaaa" "?!*'?:a'" 0
 	@./test_rmatch "aaaaaaaaaaaaaaaaaaa" "?*''" 0
 	@./test_rmatch "aaaaaaaaaaaaaaaaaaa" "?+[]" 0

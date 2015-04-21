@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reg_reg.c                                          :+:      :+:    :+:   */
+/*                                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/29 20:25:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/30 01:58:22 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/21 23:40:21 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,11 @@ const char		*reg_reg(t_reg *r, const char *s, const char *p, t_uint l)
 {
 	char const		*tmp;
 
-	if (!reg_match_1(r, &s))
-		return (NULL);
-	if (l < r->to && (tmp = reg_reg(r, s, p, l + 1)) != NULL)
-		return (tmp);
-	if (l >= r->from && (tmp = reg_test(s, p)) != NULL)
+	tmp = s;
+	if (reg_match_1(r, &s) && l < r->to
+		&& (s = reg_reg(r, s, p, l + 1)) != NULL)
+		return (s);
+	if (l >= r->from && (tmp = reg_test(tmp, p)) != NULL)
 		return (tmp);
 	return (NULL);
 }

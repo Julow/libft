@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reg_match.c                                        :+:      :+:    :+:   */
+/*                                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:13:14 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/30 01:58:59 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/21 23:31:58 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ const char		*reg_match(const char *str, const char **pattern)
 			return (tmp);
 		skip_or(pattern);
 	}
-	return (reg_reg(&reg, str, *pattern, 1));
+	return (reg_reg(&reg, str, *pattern, 0));
 }
