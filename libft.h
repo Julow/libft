@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/06 17:46:53 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/23 23:24:54 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -624,12 +624,12 @@ void			ft_pairsort(t_array *array);
 # define BF_EOF			20
 # define BF_STR			21
 
-# define BEOF(b)		FLAG((b)->fd, BF_EOF)
+# define BEOF(b)		(FLAG((b)->fd, BF_EOF) || (BSTR(b) && !BI(b)))
 # define BSTR(b)		FLAG((b)->fd, BF_STR)
 # define BFD(b)			((b)->fd & 0xFF)
 
 # define BUFF(f,b,l)	((t_buff){(b), 0, 0, (l), (f) & 0xFF})
-# define SBUFF(s,l)		((t_buff){(s), 0, (l), (l), -1 & 0xFF | BF_STR})
+# define SBUFF(s,l)		((t_buff){(s), 0, (l), (l), -1 & 0xFF | BIT(BF_STR)})
 
 typedef struct	s_buff
 {
