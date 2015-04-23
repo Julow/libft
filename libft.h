@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/23 23:24:54 by juloo            ###   ########.fr       */
+/*   Updated: 2015/04/24 01:20:03 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -424,10 +424,14 @@ int				ft_matchint(const char *str);
 */
 
 # define TRY(t)			if (ft_try(t) == 0)
-# define CATCH			else
+# define CATCH(t)		if (t[64] == 1)
 
-int				ft_try(void *t);
-void			ft_throw(void *t);
+# define VASM			asm volatile
+
+typedef char	t_bp[65];
+
+int				ft_try(t_bp *t);
+void			ft_throw(t_bp *t);
 
 /*
 ** ========================================================================== **

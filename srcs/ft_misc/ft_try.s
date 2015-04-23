@@ -1,17 +1,22 @@
 ;; ************************************************************************** ;;
 ;;                                                                            ;;
 ;;                                                        :::      ::::::::   ;;
-;;   ft_try.asm                                         :+:      :+:    :+:   ;;
+;;   ft_try.s                                           :+:      :+:    :+:   ;;
 ;;                                                    +:+ +:+         +:+     ;;
 ;;   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        ;;
 ;;                                                +#+#+#+#+#+   +#+           ;;
 ;;   Created: 2015/03/04 23:27:20 by jaguillo          #+#    #+#             ;;
-;;   Updated: 2015/03/04 23:32:21 by jaguillo         ###   ########.fr       ;;
+;;   Updated: 2015/04/24 01:19:01 by juloo            ###   ########.fr       ;;
 ;;                                                                            ;;
 ;; ************************************************************************** ;;
 
 ; int			ft_try(void *t)
 global	ft_try
+
+save_backjump:
+	pop		qword [rdi + 56]
+	push	qword [rdi + 56]
+	ret
 
 ft_try:
 	mov		[rdi], rbx			; save all callee saved registers
@@ -21,8 +26,8 @@ ft_try:
 	mov		[rdi + 32], r13
 	mov		[rdi + 40], r14
 	mov		[rdi + 48], r15
+	mov		[rdi + 64], byte 0	; clear catch flag
 	mov		rax, 0				; return 0
-	pop		qword [rdi + 56]	; save back jump
-	push	qword [rdi + 56]
+	call	save_backjump
 	ret
 

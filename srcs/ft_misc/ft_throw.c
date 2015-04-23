@@ -6,15 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/06 17:28:57 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/06 19:10:36 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/24 01:19:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#define VASM		asm volatile
-
-void			ft_throw(void *t)
+void			ft_throw(t_bp *t)
 {
 	VASM("movq	(%rdi), %rbx\n"
 		"popq	%rbp\n"
@@ -26,7 +24,7 @@ void			ft_throw(void *t)
 		"movq	32(%rdi), %r13\n"
 		"movq	40(%rdi), %r14\n"
 		"movq	48(%rdi), %r15\n"
-		"movq	$1, %rax\n"
+		"movb	$1, 64(%rdi)\n"
 		"jmpq	*56(%rdi)\n");
 	(void)t;
 }
