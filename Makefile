@@ -70,9 +70,8 @@ C_DIRS = $(shell find $(C_DIR) -depth -type d -print)
 
 # Build .o list
 O_DIRS = $(C_DIRS:$(C_DIR)/%=$(O_DIR)/%)
-TMP = $(C_FILES:$(C_DIR)/%.c=$(O_DIR)/%.o)
-TMP2 = $(TMP:$(C_DIR)/%.s=$(O_DIR)/%.o)
-O_FILES = $(TMP2:$(C_DIR)/%.s=$(O_DIR)/%.o)
+O_DIR_TMP = $(C_FILES:$(C_DIR)/%.c=$(O_DIR)/%.o)
+O_FILES = $(O_DIR_TMP:$(C_DIR)/%.s=$(O_DIR)/%.o)
 
 # Create O_DIR and childs
 $(shell mkdir -p $(O_DIRS) $(O_DIR) 2> /dev/null || echo "" > /dev/null)
@@ -81,8 +80,6 @@ $(shell mkdir -p $(O_DIRS) $(O_DIR) 2> /dev/null || echo "" > /dev/null)
 MSG_0 = "%40c\r\033[0;32m%s\033[0;0m\r" " "
 MSG_1 = "\033[0;31m%s\033[0;0m\n"
 MSG_2 = "\r%40c\r%s\033[0;0m\n" " "
-COUNT = 0
-SHELL = /bin/bash
 
 # Call $(NAME) in async mode
 all:
