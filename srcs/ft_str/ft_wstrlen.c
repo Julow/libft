@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 23:26:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/12 23:27:12 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/27 15:33:33 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-inline t_uint	ft_wstrlen(int *wstr)
+inline t_uint	ft_wstrlen(wchar_t *wstr)
 {
 	t_uint			i;
 

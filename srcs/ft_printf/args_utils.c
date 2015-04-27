@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argsutils.c                                        :+:      :+:    :+:   */
+/*   args_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/02 17:27:23 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/31 16:42:23 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/27 15:33:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_long			get_arg(t_printf *pf, t_pfopt *opt)
 	if (opt->length == pflen_z)
 		return ((t_long)(va_arg(*(pf->ap), long)));
 	if (opt->length == pflen_q)
-		return ((t_long)(va_arg(*(pf->ap), quad_t)));
+		return ((t_long)(va_arg(*(pf->ap), int64_t)));
 	return ((t_long)(va_arg(*(pf->ap), int)));
 }
 
@@ -53,7 +53,7 @@ t_ulong			get_unsigned_arg(t_printf *pf, t_pfopt *opt)
 	if (opt->length == pflen_z)
 		return ((t_ulong)(va_arg(*(pf->ap), size_t)));
 	if (opt->length == pflen_q)
-		return ((t_ulong)(va_arg(*(pf->ap), u_quad_t)));
+		return ((t_ulong)(va_arg(*(pf->ap), u_int64_t)));
 	return ((t_ulong)(va_arg(*(pf->ap), unsigned int)));
 }
 

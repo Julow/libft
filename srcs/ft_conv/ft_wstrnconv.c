@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/09 11:37:54 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 11:45:23 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/27 15:33:39 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int				ft_wstrnconv(char *buff, int *wstr, int n)
+int				ft_wstrnconv(char *buff, wchar_t *wstr, int n)
 {
 	int				i;
 	int				tmp;

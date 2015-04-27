@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/24 01:20:03 by juloo            ###   ########.fr       */
+/*   Updated: 2015/04/27 15:34:24 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -344,9 +344,11 @@ void			ft_strupper(char *str);
 ** W String
 */
 
-t_uint			ft_wstrlen(int *wstr);
-int				ft_wstrconv(char *buff, int *wstr);
-int				ft_wstrnconv(char *buff, int *wstr, int n);
+# include <wchar.h>
+
+t_uint			ft_wstrlen(wchar_t *wstr);
+int				ft_wstrconv(char *buff, wchar_t *wstr);
+int				ft_wstrnconv(char *buff, wchar_t *wstr, int n);
 int				ft_widetoa(char *buff, int w);
 
 /*

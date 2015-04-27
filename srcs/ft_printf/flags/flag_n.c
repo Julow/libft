@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/26 15:52:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/31 17:14:37 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/04/27 15:33:36 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void			flag_n(t_printf *pf, t_pfopt *opt)
 	else if (opt->length == pflen_z)
 		*(va_arg(*(pf->ap), long int*)) = pf->printed;
 	else if (opt->length == pflen_q)
-		*(va_arg(*(pf->ap), u_quad_t*)) = pf->printed;
+		*(va_arg(*(pf->ap), u_int64_t*)) = pf->printed;
 	else
 		*(va_arg(*(pf->ap), unsigned int*)) = pf->printed;
 }
