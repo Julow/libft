@@ -6,7 +6,7 @@
 #    By: juloo <juloo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/04/27 15:05:13 by juloo             #+#    #+#              #
-#    Updated: 2015/04/27 19:04:21 by juloo            ###   ########.fr        #
+#    Updated: 2015/04/27 19:46:27 by juloo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,24 +29,23 @@ fclean: clean
 re: fclean all
 
 test: all
-	@echo Small sorted
+	@echo " ---> Sorted"
 	@./$(NAME) a b c d
 	@./$(NAME) a b c d e f g h i j
 	@./$(NAME) a b c d e f g h i j k l m n o p q r s t u v w x y z
-	@echo Small Reversed
+	@./$(NAME) `ls /bin`
+	@echo " ---> Reversed"
 	@./$(NAME) d c b a
 	@./$(NAME) j i h g f e d c b a
 	@./$(NAME) z y x w v u t s r q p o n m l k j i h g f e d c b a
-	@echo Small Random
+	@./$(NAME) `ls -r /bin`
+	@echo " ---> Random"
 	@./$(NAME) a z e r
 	@./$(NAME) a z e r t y u i o p
 	@./$(NAME) a z e r t y u i o p q s d f g h j k l m w x c v b n
-	@echo Big sorted
-	@./$(NAME) `ls -R /usr`
-	@echo Big Reversed
-	@./$(NAME) `ls -Rr /usr`
-	@echo Big Random
-	@./$(NAME) `ls -Rt /usr`
-	@./$(NAME) `ls -Rtr /usr`
+	@./$(NAME) `ls -r /bin | shuf`
+	@echo " ---> Big"
+	@./$(NAME) `ls -R /usr | shuf`
+	@./$(NAME) `ls -R / 2>&1 | head -n 50000 | shuf`
 
 .PHONY: all clean fclean re

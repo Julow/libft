@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/27 19:23:22 by juloo            ###   ########.fr       */
+/*   Updated: 2015/04/27 19:28:59 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -437,6 +437,7 @@ int				ft_matchint(const char *str);
 
 void			ft_simplesort(void **tab, int length, int (*cmp)());
 void			ft_mergesort(void **tab, int length, int (*cmp)());
+void			ft_bubblesort(void **tab, int length, int (*cmp)());
 
 t_bool			ft_issort(void **tab, int length, int (*cmp)());
 
