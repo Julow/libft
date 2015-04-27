@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/27 15:34:46 by juloo            ###   ########.fr       */
+/*   Updated: 2015/04/27 19:23:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -350,6 +350,16 @@ t_uint			ft_wstrlen(wchar_t *wstr);
 int				ft_wstrconv(char *buff, wchar_t *wstr);
 int				ft_wstrnconv(char *buff, wchar_t *wstr, int n);
 int				ft_widetoa(char *buff, int w);
+
+/*
+** ========================================================================== **
+** Clock
+** (use clock_gettime() from time.h)
+*/
+
+# define FT_CPS			1000000000
+
+t_ulong			ft_clock(t_ulong start);
 
 /*
 ** ========================================================================== **
