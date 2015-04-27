@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/27 15:34:24 by juloo            ###   ########.fr       */
+/*   Updated: 2015/04/27 15:34:46 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -419,6 +419,16 @@ t_bool			ft_rfind(t_sub *dst, const char *str, const char *pattern);
 t_bool			ft_rnext(t_sub *last, const char *pattern);
 
 int				ft_matchint(const char *str);
+
+/*
+** ========================================================================== **
+** Sort
+*/
+
+void			ft_simplesort(void **tab, int length, int (*cmp)());
+void			ft_mergesort(void **tab, int length, int (*cmp)());
+
+t_bool			ft_issort(void **tab, int length, int (*cmp)());
 
 /*
 ** ========================================================================== **
