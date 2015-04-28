@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 15:03:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/04/27 22:38:13 by juloo            ###   ########.fr       */
+/*   Updated: 2015/04/28 17:17:25 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,7 @@ static void		test(char **argv, int length,
 	start = ft_clock(0);
 	sort((void**)array, length, &test_cmp);
 	start = ft_clock(start);
-	if (g_best_name == NULL || g_cmp_count < g_best_cmp)
-	{
-		g_best_name = name;
-		g_best_time = start;
-		g_best_cmp = g_cmp_count;
-	}
-	ft_printf("(%d %lluns) ", g_cmp_count, start);
+	ft_printf("%s %d %lluns\n", name + 3, g_cmp_count, start);
 	i = -1;
 	if (!ft_issort((void**)array, length, &test_cmp))
 	{
@@ -53,6 +47,12 @@ static void		test(char **argv, int length,
 			ft_printf(" %s", array[i]);
 		ft_printf("%{reset}\n");
 	}
+	else if (g_best_name == NULL || g_cmp_count < g_best_cmp)
+	{
+		g_best_name = name;
+		g_best_time = start;
+		g_best_cmp = g_cmp_count;
+	}
 }
 
 int				main(int argc, char **argv)
@@ -60,6 +60,7 @@ int				main(int argc, char **argv)
 	TEST(ft_simplesort);
 	TEST(ft_mergesort);
 	TEST(ft_bubblesort);
+	TEST(ft_insertsort);
 	ft_printf("%{green}%s %{cyan}%dns (cmp: %d, len: %d)%{reset}\n",
 		g_best_name, g_best_time, g_best_cmp, argc - 1);
 	return (0);
