@@ -6,55 +6,49 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/28 17:18:35 by juloo             #+#    #+#             */
-/*   Updated: 2015/04/29 23:16:03 by juloo            ###   ########.fr       */
+/*   Updated: 2015/04/30 23:19:12 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+#define PIVOT		0
+
+static void		check_pivot(void **tab, int length)
+{
+	void			*tmp;
+
+	length >>= 2;
+	tmp = tab[PIVOT];
+	tab[PIVOT] = tab[length];
+	tab[length] = tmp;
+}
+
 void			ft_quicksort(void **tab, int length, int (*cmp)())
 {
-	int				pivot;
 	int				right;
 	int				left;
 	void			*tmp;
 
-	if (length <= 3)
-		return (ft_bubblesort(tab, length, cmp));
-	pivot = length / 2;
-	right = pivot;
-	left = pivot;
-	while (true)
-	{
-		while (right < length && cmp(tab[right], tab[pivot]) >= 0)
-			right++;
-		while (left >= 0 && cmp(tab[left], tab[pivot]) <= 0)
-			left--;
-		if (left < 0)
+	if (length <= 4)
+		return (ft_insertsort(tab, length, cmp));
+	check_pivot(tab, length);
+	right = length;
+	left = 1;
+	while (left < right)
+		if (cmp(tab[left], tab[PIVOT]) >= 0)
 		{
-			if (right >= length)
-				break ;
-			tmp = tab[pivot];
-			tab[pivot] = tab[right];
-			tab[right] = tab[++pivot];
-			tab[pivot] = tmp;
-		}
-		else if (right >= length)
-		{
-			tmp = tab[pivot];
-			tab[pivot] = tab[left];
-			tab[left] = tab[--pivot];
-			tab[pivot] = tmp;
-		}
-		else
-		{
-			tmp = tab[right];
+			tmp = tab[--right];
 			tab[right] = tab[left];
 			tab[left] = tmp;
 		}
-	}
-	if (pivot > 0)
-		ft_quicksort(tab, pivot, cmp);
-	if ((pivot + 1) <= length)
-		ft_quicksort(tab + pivot, length - pivot, cmp);
+		else
+			left++;
+	tmp = tab[PIVOT];
+	tab[PIVOT] = tab[left - 1];
+	tab[left - 1] = tmp;
+	if (left > 1)
+		ft_quicksort(tab, left, cmp);
+	if (left < (length - 1))
+		ft_quicksort(tab + left, length - left, cmp);
 }
