@@ -6,12 +6,14 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/28 17:28:02 by juloo            ###   ########.fr       */
+/*   Updated: 2015/05/01 20:11:07 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# include <wchar.h>
 
 /*
 ** ========================================================================== **
@@ -343,8 +345,6 @@ void			ft_strupper(char *str);
 ** ========================================================================== **
 ** W String
 */
-
-# include <wchar.h>
 
 t_uint			ft_wstrlen(wchar_t *wstr);
 int				ft_wstrconv(char *buff, wchar_t *wstr);
