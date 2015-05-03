@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/05/03 20:32:15 by juloo            ###   ########.fr       */
+/*   Updated: 2015/05/03 23:09:42 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -452,6 +452,7 @@ t_bool			ft_issort(void **tab, int length, int (*cmp)());
 ** - The size is constant but can store infinite pairs
 ** - The hash function must be not modified
 ** - Each key is unique, dupplicate keys will be overwritten
+** - The data is always 0-terminated when copied into the map
 */
 
 typedef struct	s_h
@@ -473,6 +474,10 @@ typedef struct	s_hmap
 
 void			ft_hmapini(t_hmap *map, int size, int (*h)(char const*, int));
 void			*ft_hmapget(t_hmap *map, char const *key);
+void			ft_hmapputp(t_hmap *map, char const *key, void *data);
+void			*ft_hmapput(t_hmap *map, char const *key, void const *data, int size);
+void			*ft_hmapput0(t_hmap *map, char const *key, int size);
+void			ft_hmaprem(t_hmap *map, char const *key, void (*f)(void*));
 
 /*
 ** ========================================================================== **
