@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/05/01 20:11:07 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/05/03 16:34:55 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -442,21 +442,6 @@ void			ft_insertsort(void **tab, int length, int (*cmp)());
 void			ft_quicksort(void **tab, int length, int (*cmp)());
 
 t_bool			ft_issort(void **tab, int length, int (*cmp)());
-
-/*
-** ========================================================================== **
-** Try/Catch
-*/
-
-# define TRY(t)			if (ft_try(t) == 0)
-# define CATCH(t)		if (t[64] == 1)
-
-# define VASM			asm volatile
-
-typedef char	t_bp[65];
-
-int				ft_try(t_bp *t);
-void			ft_throw(t_bp *t);
 
 /*
 ** ========================================================================== **
