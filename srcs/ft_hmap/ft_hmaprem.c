@@ -6,11 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 19:56:04 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/03 23:15:46 by juloo            ###   ########.fr       */
+/*   Updated: 2015/05/04 02:03:15 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_internal.h"
+#include <stdlib.h>
 
 /*
 ** Remove the data at 'key'
@@ -26,15 +27,20 @@ void			ft_hmaprem(t_hmap *map, char const *key, void (*f)(void*))
 	t_h				*tmp;
 
 	hash = map->hash(key, key_len);
-	h = map->data + (h->hash % map->size);
+	h = map->data + (hash % map->size);
 	while (*h != NULL)
+	{
 		if ((*h)->hash == hash && (*h)->key_len == key_len
 			&& ft_memcmp((*h)->key, key, key_len) == 0)
 		{
 			tmp = *h;
 			*h = tmp->next;
-			f(tmp->data);
+			if (f != NULL)
+				f(tmp->data);
 			free(tmp);
+			map->size--;
 			break ;
 		}
+		h = &((*h)->next);
+	}
 }

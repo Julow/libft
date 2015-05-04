@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/06 17:45:16 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/05/04 01:49:53 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,22 @@ const char		*reg_parse(t_reg *reg, const char *pattern);
 const char		*reg_reg(t_reg *r, const char *s, const char *p, t_uint l);
 const char		*reg_match(const char *str, const char **pattern);
 const char		*reg_test(const char *str, const char *pattern);
+
+/*
+** =============
+** ft_hmap
+*/
+
+typedef struct	s_h
+{
+	int				hash;
+	int				key_len;
+	char			*key;
+	void			*data;
+	struct s_h		*next;
+}				t_h;
+
+void			hmap_puth(t_hmap *map, t_h *h);
 
 /*
 ** =============

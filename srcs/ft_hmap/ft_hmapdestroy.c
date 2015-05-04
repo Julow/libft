@@ -1,35 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hmapget.c                                       :+:      :+:    :+:   */
+/*   ft_hmapdestroy.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/03 19:56:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/04 01:50:01 by juloo            ###   ########.fr       */
+/*   Created: 2015/05/03 19:55:57 by juloo             #+#    #+#             */
+/*   Updated: 2015/05/04 02:03:01 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
+#include <stdlib.h>
 
 /*
-** Return the data at 'key'
-** Return NULL if not found
+** Destroy the map
+** -
+** If 'f' is not NULL, 'f' is call for each datas
+** The pointer 'map' is not free
 */
-void			*ft_hmapget(t_hmap *map, char const *key)
+void			ft_hmapdestroy(t_hmap *map, void (*f)(void*))
 {
-	const int		key_len = ft_strlen(key);
-	int				hash;
 	t_h				*h;
+	t_h				*tmp;
+	int				i;
 
-	hash = map->hash(key, key_len);
-	h = map->data[hash % map->alloc_size];
-	while (h != NULL)
+	i = -1;
+	while (++i < map->alloc_size)
 	{
-		if (h->hash == hash && h->key_len == key_len
-			&& ft_memcmp(h->key, key, key_len) == 0)
-			return (h->data);
-		h = h->next;
+		h = map->data[i];
+		while (h != NULL)
+		{
+			if (f != NULL)
+				f(h->data);
+			tmp = h;
+			h = h->next;
+			free(tmp);
+		}
 	}
-	return (NULL);
+	free(map->data);
+	map->size = 0;
+	map->alloc_size = 0;
+	map->data = NULL;
 }

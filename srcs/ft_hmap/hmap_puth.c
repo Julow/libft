@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hmapget.c                                       :+:      :+:    :+:   */
+/*   hmap_puth.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/03 19:56:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/04 01:50:01 by juloo            ###   ########.fr       */
+/*   Created: 2015/05/04 01:50:44 by juloo             #+#    #+#             */
+/*   Updated: 2015/05/04 01:55:29 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
+#include <stdlib.h>
 
-/*
-** Return the data at 'key'
-** Return NULL if not found
-*/
-void			*ft_hmapget(t_hmap *map, char const *key)
+void			hmap_puth(t_hmap *map, t_h *h)
 {
-	const int		key_len = ft_strlen(key);
-	int				hash;
-	t_h				*h;
+	t_h				**tmp;
 
-	hash = map->hash(key, key_len);
-	h = map->data[hash % map->alloc_size];
-	while (h != NULL)
+	tmp = map->data + (ABS(h->hash) % map->alloc_size);
+	while (*tmp != NULL)
 	{
-		if (h->hash == hash && h->key_len == key_len
-			&& ft_memcmp(h->key, key, key_len) == 0)
-			return (h->data);
-		h = h->next;
+		if ((*tmp)->hash == h->hash && (*tmp)->key_len == h->key_len
+			&& ft_memcmp((*tmp)->key, h->key, h->key_len) == 0)
+		{
+			h->next = (*tmp)->next;
+			free(*tmp);
+			map->size--;
+			break ;
+		}
+		tmp = &((*tmp)->next);
 	}
-	return (NULL);
+	*tmp = h;
+	map->size++;
 }

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/05/03 23:09:42 by juloo            ###   ########.fr       */
+/*   Updated: 2015/05/04 01:53:01 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -449,27 +449,19 @@ t_bool			ft_issort(void **tab, int length, int (*cmp)());
 ** Store data using string as index (key)
 ** The key is hashed to speedup operations
 ** - Can store pointers and/or data
-** - The size is constant but can store infinite pairs
-** - The hash function must be not modified
+** - The alloc_size and the hash function must be not modified
 ** - Each key is unique, dupplicate keys will be overwritten
-** - The data is always 0-terminated when copied into the map
+** - Copied datas are always 0-terminated
+** - Datas are not ordered nor continuous
+**   (simple iteration and sort are impossible)
 */
-
-typedef struct	s_h
-{
-	int				hash;
-	int				key_len;
-	char const		*key;
-	void			*data;
-	t_h				*next;
-}				t_h;
 
 typedef struct	s_hmap
 {
 	int				size;
 	int				alloc_size;
-	t_h				**data;
-	int				(*const hash)(char const *key, int len);
+	struct s_h		**data;
+	int				(*hash)(char const *key, int len);
 }				t_hmap;
 
 void			ft_hmapini(t_hmap *map, int size, int (*h)(char const*, int));
@@ -478,6 +470,7 @@ void			ft_hmapputp(t_hmap *map, char const *key, void *data);
 void			*ft_hmapput(t_hmap *map, char const *key, void const *data, int size);
 void			*ft_hmapput0(t_hmap *map, char const *key, int size);
 void			ft_hmaprem(t_hmap *map, char const *key, void (*f)(void*));
+void			ft_hmapdestroy(t_hmap *map, void (*f)(void*));
 
 /*
 ** ========================================================================== **

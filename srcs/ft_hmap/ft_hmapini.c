@@ -6,11 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 16:45:03 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/03 19:55:19 by juloo            ###   ########.fr       */
+/*   Updated: 2015/05/04 01:50:03 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_internal.h"
+#include <stdlib.h>
 
 /*
 ** Init a hmap
