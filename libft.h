@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/05/04 01:53:01 by juloo            ###   ########.fr       */
+/*   Updated: 2015/05/04 02:14:42 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -471,6 +471,8 @@ void			*ft_hmapput(t_hmap *map, char const *key, void const *data, int size);
 void			*ft_hmapput0(t_hmap *map, char const *key, int size);
 void			ft_hmaprem(t_hmap *map, char const *key, void (*f)(void*));
 void			ft_hmapdestroy(t_hmap *map, void (*f)(void*));
+int				ft_hmapdatas(t_hmap *map, void **dst);
+int				ft_hmapkeys(t_hmap *map, char **dst);
 
 /*
 ** ========================================================================== **
