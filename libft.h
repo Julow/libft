@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/05/04 02:14:42 by juloo            ###   ########.fr       */
+/*   Updated: 2015/05/04 19:13:59 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@
 ** MEM_TYPE
 ** EMAL_ERROR
 ** EMAL_EXIT
-** EMAL_ALL
+** NO_EMAL
 ** DEBUG_MODE
 ** ---
 */
@@ -183,12 +183,12 @@ typedef enum	e_bool
 # define EMAL(t,l)		((t*)ft_emalloc(sizeof(t) * (l)))
 # define EMAL1(t)		((t*)ft_emalloc(sizeof(t)))
 
-# ifdef EMAL_ALL
-#  define MAL			EMAL
-#  define MAL1			EMAL1
-# else
+# ifdef NO_EMAL
 #  define MAL(t,l)		((t*)malloc(sizeof(t) * (l)))
 #  define MAL1(t)		((t*)malloc(sizeof(t)))
+# else
+#  define MAL			EMAL
+#  define MAL1			EMAL1
 # endif
 
 # define S(t,l)			(sizeof(t) * (l))
