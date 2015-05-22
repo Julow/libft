@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/05/04 19:13:59 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/05/23 00:04:16 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,11 @@
 # define IGNORE(f)		((void)((f) + 1))
 
 # define DB(l,v)		{[0 ... ((l) - 1)] = (v)}
+
+# define STR(s)			#s
+# define STR_VALUE(s)	STR(s)
+
+# define VOID			((void)0)
 
 # ifndef NULL
 #  define NULL			((void*)0)
@@ -288,6 +293,43 @@ t_bool			ft_isato(const char *str);
 t_bool			ft_isnumber(const char *str);
 
 t_bool			ft_sisint(const char *s);
+
+/*
+** ========================================================================== **
+** Char classification
+*/
+
+# define IS_GRAPH		(IS_PUNCT | IS_ALNUM)
+# define IS_PRINT		(IS_GRAPH | IS_BLANK)
+# define IS_CNTRL		(1 << 1)
+
+# define IS_BLANK		(1 << 2)
+# define IS_WHITE		(1 << 3)
+# define IS_SPACE		(IS_WHITE | IS_BLANK)
+
+# define IS_DIGIT		(1 << 4)
+# define IS_LOWER		(1 << 5)
+# define IS_UPPER		(1 << 6)
+# define IS_ALPHA		(IS_LOWER | IS_UPPER)
+# define IS_ALNUM		(IS_DIGIT | IS_ALPHA)
+# define IS_WORD		(IS_ALNUM | IS_UNDERSCORE)
+
+# define IS_PUNCT		(1 << 7)
+# define IS_XDIGIT		(IS_DIGIT | IS_XALPHA)
+
+# define IS_XALPHA		(1 << 8)
+# define IS_UNDERSCORE	(1 << 9)
+
+typedef int		t_is;
+
+extern t_is		g_is_table[];
+
+# define IS(c,f)		(g_is_table[(unsigned char)(c)] & (f))
+
+/*
+** ft_is function is equivalent to IS macro
+*/
+t_bool			ft_is(char c, t_is mask);
 
 /*
 ** ========================================================================== **
