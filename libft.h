@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/05/23 00:04:16 by juloo            ###   ########.fr       */
+/*   Updated: 2015/05/23 01:32:56 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,14 +220,6 @@ t_uint			ft_tablen(void **array);
 ** String
 */
 
-# define SUB(s,l)		((t_sub){(s), (l)})
-
-typedef struct	s_sub
-{
-	char			*str;
-	int				length;
-}				t_sub;
-
 char			*ft_strnew(t_uint size);
 t_uint			ft_strlen(const char *str);
 char			*ft_strdup(const char *str);
@@ -328,6 +320,7 @@ extern t_is		g_is_table[];
 
 /*
 ** ft_is function is equivalent to IS macro
+** also the IS macro use only once it's arguments
 */
 t_bool			ft_is(char c, t_is mask);
 
@@ -344,6 +337,32 @@ void			ft_striter(char *s, void (*f)(char*));
 void			ft_striteri(char *s, void (*f)(int, char*));
 char			*ft_strmap(const char *s, char (*f)(char));
 char			*ft_strmapi(const char *s, char (*f)(int, char));
+
+/*
+** ========================================================================== **
+** Sub
+** ----
+** Represent a sub-string
+*/
+
+# define SUB(s,l)		((t_sub){(s), (l)})
+
+typedef struct	s_sub
+{
+	char			*str;
+	int				length;
+}				t_sub;
+
+t_sub			ft_sub(char const *str, int from, int to);
+t_sub			ft_subsub(t_sub sub, int from, int to);
+
+int				ft_subtrim(t_sub *sub, t_is mask);
+int				ft_subtrimr(t_sub *sub, t_is mask);
+int				ft_subtriml(t_sub *sub, t_is mask);
+
+int				ft_subnext(t_sub *sub, t_is mask);
+int				ft_subcount(t_sub sub, t_is mask);
+int				ft_subextract(t_sub sub, t_sub *dst, int max, t_is mask);
 
 /*
 ** ========================================================================== **
