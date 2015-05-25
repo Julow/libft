@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/05/26 01:09:48 by juloo            ###   ########.fr       */
+/*   Updated: 2015/05/26 01:39:21 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,6 +219,46 @@ t_uint			ft_tablen(void **array);
 
 /*
 ** ========================================================================== **
+** Char classification
+** ----
+** '\0' is not classified
+*/
+
+# define IS_GRAPH		(IS_PUNCT | IS_ALNUM)
+# define IS_PRINT		(IS_GRAPH | IS_BLANK)
+# define IS_CNTRL		(1 << 1)
+
+# define IS_BLANK		(1 << 2)
+# define IS_WHITE		(1 << 3)
+# define IS_SPACE		(IS_WHITE | IS_BLANK)
+
+# define IS_DIGIT		(1 << 4)
+# define IS_LOWER		(1 << 5)
+# define IS_UPPER		(1 << 6)
+# define IS_ALPHA		(IS_LOWER | IS_UPPER)
+# define IS_ALNUM		(IS_DIGIT | IS_ALPHA)
+# define IS_WORD		(IS_ALNUM | IS_UNDERSCORE)
+
+# define IS_PUNCT		(1 << 7)
+# define IS_XDIGIT		(IS_DIGIT | IS_XALPHA)
+
+# define IS_XALPHA		(1 << 8)
+# define IS_UNDERSCORE	(1 << 9)
+
+typedef int		t_is;
+
+extern t_is		g_is_table[];
+
+# define IS(c,f)		(g_is_table[(unsigned char)(c)] & (f))
+
+/*
+** ft_is function is equivalent to IS macro
+** also the IS macro use only once it's arguments
+*/
+t_bool			ft_is(char c, t_is mask);
+
+/*
+** ========================================================================== **
 ** String
 */
 
@@ -293,46 +333,6 @@ t_bool			ft_sisint(const char *s);
 
 /*
 ** ========================================================================== **
-** Char classification
-** ----
-** '\0' is not classified
-*/
-
-# define IS_GRAPH		(IS_PUNCT | IS_ALNUM)
-# define IS_PRINT		(IS_GRAPH | IS_BLANK)
-# define IS_CNTRL		(1 << 1)
-
-# define IS_BLANK		(1 << 2)
-# define IS_WHITE		(1 << 3)
-# define IS_SPACE		(IS_WHITE | IS_BLANK)
-
-# define IS_DIGIT		(1 << 4)
-# define IS_LOWER		(1 << 5)
-# define IS_UPPER		(1 << 6)
-# define IS_ALPHA		(IS_LOWER | IS_UPPER)
-# define IS_ALNUM		(IS_DIGIT | IS_ALPHA)
-# define IS_WORD		(IS_ALNUM | IS_UNDERSCORE)
-
-# define IS_PUNCT		(1 << 7)
-# define IS_XDIGIT		(IS_DIGIT | IS_XALPHA)
-
-# define IS_XALPHA		(1 << 8)
-# define IS_UNDERSCORE	(1 << 9)
-
-typedef int		t_is;
-
-extern t_is		g_is_table[];
-
-# define IS(c,f)		(g_is_table[(unsigned char)(c)] & (f))
-
-/*
-** ft_is function is equivalent to IS macro
-** also the IS macro use only once it's arguments
-*/
-t_bool			ft_is(char c, t_is mask);
-
-/*
-** ========================================================================== **
 ** String - Useless
 */
 char			*ft_strcat(char *s1, const char *s2);
@@ -360,14 +360,14 @@ typedef struct	s_sub
 	int				length;
 }				t_sub;
 
-t_sub			ft_sub(char const *str, int from, int to);
+t_sub			ft_sub(char *str, int from, int to);
 t_sub			ft_subsub(t_sub sub, int from, int to);
 
 int				ft_subtrim(t_sub *sub, t_is mask);
 int				ft_subtrimr(t_sub *sub, t_is mask);
 int				ft_subtriml(t_sub *sub, t_is mask);
 
-int				ft_subnext(t_sub *sub, t_is mask);
+t_bool			ft_subnext(t_sub *sub, t_is mask);
 int				ft_subcount(t_sub sub, t_is mask);
 int				ft_subextract(t_sub sub, t_sub *dst, int max, t_is mask);
 

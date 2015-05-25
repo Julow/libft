@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/23 01:03:03 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/23 01:25:20 by juloo            ###   ########.fr       */
+/*   Updated: 2015/05/26 01:39:56 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int				ft_subextract(t_sub sub, t_sub *dst, int max, t_is mask)
 		tmp = i;
 		while (IS(sub.str[i], mask))
 			i++;
-		dst[count++] = SUB(str.str + tmp, i - tmp);
+		dst[count++] = SUB(sub.str + tmp, i - tmp);
 		while (!IS(sub.str[i], mask) && i < sub.length)
 			i++;
 	}

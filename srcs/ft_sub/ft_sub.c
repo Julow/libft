@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/23 00:28:50 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/23 01:05:30 by juloo            ###   ########.fr       */
+/*   Updated: 2015/05/26 01:34:06 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 ** Return t_sub struct
 ** ----
 */
-t_sub			ft_sub(char const *str, int from, int to)
+t_sub			ft_sub(char *str, int from, int to)
 {
 	int				str_len;
 
