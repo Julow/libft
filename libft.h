@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/05/23 01:32:56 by juloo            ###   ########.fr       */
+/*   Updated: 2015/05/26 01:09:48 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,12 +140,7 @@
 # define FLAG(f,b)		(((f) & (1 << (b))) != 0)
 # define BIT(b)			(1 << (b))
 
-# define IGNORE(f)		((void)((f) + 1))
-
 # define DB(l,v)		{[0 ... ((l) - 1)] = (v)}
-
-# define STR(s)			#s
-# define STR_VALUE(s)	STR(s)
 
 # define VOID			((void)0)
 
@@ -179,6 +174,13 @@ typedef enum	e_bool
 	false = 0,
 	true = 1
 }				t_bool;
+
+# define IGNORE(f)		((void)((f) + 1))
+
+# define CAT(a,b)		a##b
+
+# define STR(s)			#s
+# define STR_VALUE(s)	STR(s)
 
 /*
 ** ========================================================================== **
@@ -240,6 +242,8 @@ t_bool			ft_strncase(const char *s1, const char *s2, t_uint n);
 
 void			ft_strnadd(char **str, const char *add, t_uint len);
 
+int				ft_strcount(char const *str, t_is mask);
+
 /*
 ** ========================================================================== **
 ** String search
@@ -259,6 +263,7 @@ t_uint			ft_strskipe(const char *str, const char *skip);
 t_uint			ft_strcskipe(const char *str, const char *skip);
 
 char			*ft_strstart(char *str, const char *start);
+t_bool			ft_strend(const char *str, const char *end);
 
 int				ft_strbrace(const char *str, char open, char close);
 
@@ -289,6 +294,8 @@ t_bool			ft_sisint(const char *s);
 /*
 ** ========================================================================== **
 ** Char classification
+** ----
+** '\0' is not classified
 */
 
 # define IS_GRAPH		(IS_PUNCT | IS_ALNUM)
@@ -606,6 +613,7 @@ void			ft_tabrem(t_tab *tab, int index, int n);
 void			ft_tabrot(t_tab *tab, int rot);
 void			ft_tabpop(t_tab *tab);
 int				ft_tabchr(t_tab *tab, const void *chr);
+t_bool			ft_tabiter(t_tab *tab, t_bool (*f)(), void *data);
 void			ft_tabfree(t_tab *tab);
 void			ft_tabclr(t_tab *tab);
 void			ft_tabkil(void *tab);
