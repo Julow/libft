@@ -6,36 +6,34 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 23:22:56 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 23:23:06 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/05/28 22:47:32 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*key_equ(char *env, const char *key)
+/*
+** ========================================================================== **
+** ft_getenv
+** ----
+** Search the variable 'name' in 'env'
+** and return it's value (or NULL if not found)
+** ----
+** If 'env' is NULL, 'environ' is used
+** ----
+*/
+char			*ft_getenv(char const *name, char **env)
 {
 	int				i;
-
-	i = 0;
-	while (env[i] != '\0' && env[i] == key[i])
-		i++;
-	if (key[i] == '\0' && env[i] == '=')
-		return (env + i + 1);
-	return (NULL);
-}
-
-char			*ft_getenv(const char *key)
-{
+	int				name_len;
 	extern char		**environ;
-	char			*tmp;
-	int				i;
 
+	name_len = ft_strlen(name);
+	if (env == NULL)
+		env = environ;
 	i = -1;
-	while (environ[++i] != NULL)
-	{
-		tmp = key_equ(environ[i], key);
-		if (tmp != NULL)
-			return (tmp);
-	}
+	while (env[++i] != NULL)
+		if (ft_strnequ(env[i], name, name_len) && env[i][name_len] == '=')
+			return (env[i] + name_len + 1);
 	return (NULL);
 }

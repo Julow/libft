@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:48:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/16 16:57:53 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/05/28 23:29:46 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_bool			ft_tinit(t_term *term)
 {
 	struct termios	tc;
 
-	if ((term->name = ft_getenv("TERM")) == NULL
+	if ((term->name = ft_getenv("TERM", NULL)) == NULL
 		|| tgetent(NULL, term->name) <= 0)
 		term->name = DEFAULT_TERM;
 	if (tgetent(NULL, term->name) <= 0)
