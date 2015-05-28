@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/05/28 22:39:19 by juloo            ###   ########.fr       */
+/*   Updated: 2015/05/28 23:33:00 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -443,6 +443,8 @@ t_bool			ft_randbool(double chance);
 ** ========================================================================== **
 ** Misc
 */
+
+int				ft_exec(char **argv, char **env);
 
 char			*ft_getenv(char const *name, char **env);
 
