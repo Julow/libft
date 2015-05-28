@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_subnext.c                                       :+:      :+:    :+:   */
+/*   ft_subnextc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/23 01:03:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/28 22:25:39 by juloo            ###   ########.fr       */
+/*   Created: 2015/05/28 18:47:40 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/05/28 22:23:37 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-** ft_subnext
+** ft_subnextc
 ** ----
 ** Iter into a string using the rules of ft_subextract
 ** ----
@@ -22,13 +22,13 @@
 ** Return 'false' if the end of the string is reach
 ** 'true' otherwise
 */
-t_bool			ft_subnext(t_sub *sub, t_is mask)
+t_bool			ft_subnextc(t_sub *sub, char c)
 {
 	int				i;
 
 	sub->str += sub->length;
 	i = 0;
-	while (IS(sub->str[i], mask) && sub->str[i] != '\0')
+	while (sub->str[i] == c && sub->str[i] != '\0')
 		i++;
 	sub->str += i;
 	if (sub->str[0] == '\0')
@@ -37,7 +37,7 @@ t_bool			ft_subnext(t_sub *sub, t_is mask)
 		return (false);
 	}
 	i = 0;
-	while (!IS(sub->str[i], mask) && sub->str[i] != '\0')
+	while (sub->str[i] != c && sub->str[i] != '\0')
 		i++;
 	sub->length = i;
 	return (true);
