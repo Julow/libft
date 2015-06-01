@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/05/28 23:33:00 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/01 18:11:06 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -538,7 +538,7 @@ typedef struct	s_hmap
 void			ft_hmapini(t_hmap *map, int size, int (*h)(char const*, int));
 void			*ft_hmapget(t_hmap *map, char const *key);
 void			ft_hmapputp(t_hmap *map, char const *key, void *data);
-void			*ft_hmapput(t_hmap *map, char const *key, void const *data, int size);
+void			*ft_hmapput(t_hmap *map, char const *key, void const *d, int l);
 void			*ft_hmapput0(t_hmap *map, char const *key, int size);
 void			ft_hmaprem(t_hmap *map, char const *key, void (*f)(void*));
 void			ft_hmapdestroy(t_hmap *map, void (*f)(void*));

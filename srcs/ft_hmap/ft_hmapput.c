@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 19:56:19 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/04 01:52:07 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/01 18:15:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,20 @@
 ** -
 ** Return a pointer to the copy of 'data'
 */
-void			*ft_hmapput(t_hmap *map, char const *key, void const *data, int size)
+void			*ft_hmapput(t_hmap *map, char const *key, void const *d, int l)
 {
 	const int		key_len = ft_strlen(key);
 	t_h				*h;
 
-	h = (t_h*)malloc(sizeof(t_h) + key_len + 1 + size + 1);
+	h = (t_h*)malloc(sizeof(t_h) + key_len + 1 + l + 1);
 	h->hash = map->hash(key, key_len);
 	h->key_len = key_len;
 	h->key = ((char*)h) + sizeof(t_h);
 	h->data = (void*)(h->key + key_len + 1);
 	h->next = NULL;
 	ft_memcpy(h->key, key, key_len + 1);
-	ft_memcpy(h->data, data, size);
-	((char*)h->data)[size] = '\0';
+	ft_memcpy(h->data, d, l);
+	((char*)h->data)[l] = '\0';
 	hmap_puth(map, h);
 	return (h->data);
 }
