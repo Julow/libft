@@ -6,12 +6,16 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/18 21:19:59 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/26 00:49:56 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/07 23:01:28 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_ARGV_H
 # define FT_ARGV_H
+
+/*
+** ========================================================================== **
+*/
 
 # define FTARGS_END			(1 << 2)
 # define FTARGS_LONG		(1 << 3)
@@ -91,5 +95,47 @@ char			*ft_argvopt(t_args *args);
 ** ---
 */
 char			*ft_argvarg(t_args *args);
+
+/*
+** ========================================================================== **
+** ft_argv
+** ----
+** Iter over options using ft_argvopt
+** Take an array of t_opt:
+**  t_opt.opt     Opt name (first arg of t_opt.f)
+**  t_opt.alias   Opt name (compared with result of ft_argvopt)
+**  t_opt.arg     If require a argument
+**  t_opt.f       Callback(opt name, argument if t_opt.arg else NULL)
+** ----
+** t_bool			callback(void *data, t_args *args, char *opt, char *arg);
+**  If the callback function return false, ft_argv stop
+** ----
+** Warning: An empty opt name cause an undefined behavior
+** ----
+** Return false if an option fail or does not exists
+** true otherwise
+*/
+
+typedef struct	s_opt
+{
+	char			*opt;
+	char const		*alias;
+	t_bool			arg;
+	t_bool			(*f)();
+}				t_opt;
+
+t_bool			ft_argv(t_args *args, t_opt const *opts, int len, void *data);
+
+/*
+** Error messages
+**  E_ARGV_NO      Option does not exists
+**  E_ARGV_ARG     t_opt.arg is true and there is no argment
+*/
+# define E_ARGV_NO		"%s: -%s: unknown option\n"
+# define E_ARGV_ARG		"%s: -%s: need an argument\n"
+
+/*
+** ========================================================================== **
+*/
 
 #endif
