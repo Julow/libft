@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/09 11:38:19 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/09 11:45:30 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/07 23:08:50 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_wchar.h"
 
 int				ft_widetoa(char *buff, int w)
 {
