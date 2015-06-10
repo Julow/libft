@@ -6,10 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 19:56:19 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/01 18:15:29 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/11 01:42:02 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_hmap.h"
 #include "ft_internal.h"
 #include <stdlib.h>
 
@@ -23,18 +24,17 @@
 ** -
 ** Return a pointer to the copy of 'data'
 */
-void			*ft_hmapput(t_hmap *map, char const *key, void const *d, int l)
+void			*ft_hmapput(t_hmap *map, t_sub key, void const *d, int l)
 {
-	const int		key_len = ft_strlen(key);
 	t_h				*h;
 
-	h = (t_h*)malloc(sizeof(t_h) + key_len + 1 + l + 1);
-	h->hash = map->hash(key, key_len);
-	h->key_len = key_len;
+	h = (t_h*)malloc(sizeof(t_h) + key.length + 1 + l + 1);
+	h->hash = map->hash(key);
+	h->key_len = key.length;
 	h->key = ((char*)h) + sizeof(t_h);
-	h->data = (void*)(h->key + key_len + 1);
+	h->data = (void*)(h->key + key.length + 1);
 	h->next = NULL;
-	ft_memcpy(h->key, key, key_len + 1);
+	ft_memcpy(h->key, key.str, key.length + 1);
 	ft_memcpy(h->data, d, l);
 	((char*)h->data)[l] = '\0';
 	hmap_puth(map, h);
