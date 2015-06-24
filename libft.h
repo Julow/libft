@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/24 22:48:25 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/25 00:05:49 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -369,6 +369,9 @@ t_bool			ft_subnext(t_sub *sub, t_is mask);
 t_bool			ft_subnextc(t_sub *sub, char c);
 int				ft_subcount(t_sub sub, t_is mask);
 int				ft_subextract(t_sub sub, t_sub *dst, int max, t_is mask);
+
+int				ft_subindex(t_sub sub, char c);
+int				ft_subchr(t_sub sub, t_is mask);
 
 /*
 ** ========================================================================== **
