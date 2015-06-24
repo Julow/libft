@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/24 22:32:44 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/24 22:48:25 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -959,6 +959,8 @@ int				get_next_line(int const fd, t_sub *line);
 
 int				ft_printf(const char *format, ...);
 int				ft_fdprintf(const int fd, const char *format, ...);
+int				ft_sprintf(char *dst, char const *format, ...);
+int				ft_snprintf(char *dst, int max_len, char const *format, ...);
 int				ft_writef(t_out *out, const char *format, ...);
 
 /*

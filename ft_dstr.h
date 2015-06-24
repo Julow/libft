@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/08 22:10:54 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/09 14:10:49 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/24 22:51:08 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,25 @@ t_dstr			ft_dstr(char const *src, int length);
 ** Add a string fragment to the dstr
 */
 void			ft_dstradd(t_dstr *str, char const *add, int length);
+
+/*
+** ft_aprintf
+** ----
+** Process the format sequence using ft_printf rules
+** and return it's result into a dstr
+** ----
+** Return a dstr
+*/
+t_dstr			ft_aprintf(char const *format, ...);
+
+/*
+** ft_asprintf
+** ----
+** Like ft_aprintf but the result is added to 'dst'
+** ----
+** Return the number of char added
+*/
+int				ft_asprintf(t_dstr *dst, char const *format, ...);
 
 /*
 ** ft_dstradd_{char,nchar,sub}
