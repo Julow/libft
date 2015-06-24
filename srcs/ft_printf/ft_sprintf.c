@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/24 22:43:25 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/24 22:45:24 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/24 23:53:39 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ int				ft_sprintf(char *dst, const char *format, ...)
 	t_out			out;
 
 	va_start(ap, format);
-	out = BUFF_OUT(dst, (t_uint)-1);
+	out = BUFF_OUT(dst, SPRINTF_MAX);
 	pf = (t_printf){&out, 0, &ap};
 	writef(&pf, format);
+	ft_writechar(&out, '\0');
 	va_end(ap);
 	return (pf.printed);
 }

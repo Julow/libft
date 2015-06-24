@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/11 01:43:26 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/24 23:53:59 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ typedef struct	s_printf
 	int				printed;
 	va_list			*ap;
 }				t_printf;
+
+# define SPRINTF_MAX	(1024 * 1024)
 
 typedef enum	e_pflen_t
 {
