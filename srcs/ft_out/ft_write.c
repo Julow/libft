@@ -6,26 +6,35 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 21:23:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/17 00:30:52 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/24 22:32:35 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_dstr.h"
 
 void			ft_write(t_out *out, const char *data, t_uint len)
 {
 	t_uint			free_buff;
 
-	while (1)
+	if (out->flags & OUT_DSTR)
+	{
+		ft_dstradd((t_dstr*)out->buff, data, len);
+		return ;
+	}
+	while (len > 0)
 	{
 		free_buff = out->length - out->i;
-		if (len <= free_buff)
-			break ;
-		ft_write(out, data, free_buff);
-		ft_flush(out);
-		data += free_buff;
+		if (free_buff <= 0)
+		{
+			ft_flush(out);
+			continue ;
+		}
+		if (len < free_buff)
+			free_buff = len;
+		ft_memcpy(out->buff + out->i, data, free_buff);
+		out->i += free_buff;
 		len -= free_buff;
+		data += free_buff;
 	}
-	ft_memcpy(out->buff + out->i, data, len);
-	out->i += len;
 }
