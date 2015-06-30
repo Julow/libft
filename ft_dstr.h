@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/08 22:10:54 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/24 22:51:08 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/30 15:47:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ t_sub			ft_dstrsub(t_dstr *str, int from, int to);
 ** ft_dstrset
 ** ----
 ** Replace a part of string with an other
+** ----
+** from and to are swaped if from > to
 */
 void			ft_dstrset(t_dstr *str, int from, int to, t_sub sub);
 

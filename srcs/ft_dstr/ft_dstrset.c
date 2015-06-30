@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/09 13:15:13 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/09 14:06:08 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/30 15:49:18 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ void			ft_dstrset(t_dstr *str, int from, int to, t_sub sub)
 		from += str->length + 1;
 	if (to < 0)
 		to += str->length + 1;
+	if (from > to)
+	{
+		move = from;
+		from = to;
+		to = move;
+	}
 	move = sub.length - to + from;
 	if (DSTR_NEED(str, move))
 		ft_dstrextend(str, move);
