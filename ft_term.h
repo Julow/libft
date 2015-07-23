@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:45:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/16 01:56:06 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/23 20:19:16 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,29 +73,5 @@ void			ft_trestore(t_term *term, t_bool enable);
 ** Like cfmakeraw
 */
 void			ft_tmakeraw(t_term *term);
-
-/*
-** Keys
-** -
-** Return value of ft_getchr()
-** -
-** Ascii chars have their own value as key
-*/
-
-# define KEY_ASCII(c)	(c)
-
-# define KEY_ESC		27
-# define KEY_BACK		127
-# define KEY_DELETE		2117294875
-# define KEY_RETURN		10
-# define KEY_END		4607771
-
-# define KEY_UP			4283163
-# define KEY_LEFT		4479771
-# define KEY_RIGHT		4414235
-# define KEY_DOWN		4348699
-
-# define KEY_CTRL_A		1
-# define KEY_CTRL_E		5
 
 #endif
