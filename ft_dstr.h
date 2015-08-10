@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/08 22:10:54 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 15:47:33 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/08/10 03:12:13 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ typedef struct	s_dstr
 
 # define DSTRC(s)		((t_dstr){(s), sizeof(s) - 1, 0})
 # define DSTR0()		((t_dstr){"", 0, 0})
-
-# define SUBC(s)		SUB(s, sizeof(s) - 1)
 
 # define DBEGIN(d)		((d)->str)
 # define DEND(d)		((d)->str + (d)->length)

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:01:35 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/10 02:18:18 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/10 14:20:27 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ typedef struct	s_op
 	float			(*f)(float a, float b);
 }				t_op;
 
+typedef struct	s_func
+{
+	t_sub			name;
+	float			(*f)(float a);
+}				t_func;
+
 typedef struct	s_expr
 {
 	t_op			*op;
@@ -29,15 +35,12 @@ typedef struct	s_expr
 	float			n;
 }				t_expr;
 
-float			op_plus(float a, float b);
-float			op_moins(float a, float b);
-float			op_mult(float a, float b);
-float			op_div(float a, float b);
+# define MAX_PRIORITY	3
 
 t_bool			parse_op(char c, t_expr *expr);
-t_bool			exec_expr(t_expr *expr);
-t_bool			eval_parenthesis(t_sub sub, int i, t_expr *curr, t_expr *first);
-t_bool			eval_next(t_sub sub, int i, t_expr *prev, t_expr *first);
+t_bool			parse_func(t_sub sub, int *i_ptr, float *value);
+
+t_bool			eval_value(t_sub sub, int *i_ptr, float *value);
 
 /*
 ** ft_evalexpr
@@ -45,7 +48,11 @@ t_bool			eval_next(t_sub sub, int i, t_expr *prev, t_expr *first);
 ** Evaluate a math expresion
 ** -
 ** Supported operators:
-**   * / - + ( )
+**   * / - + % ^ ( )
+** Supported functions:
+**   cos  sin   tan   acos  asin  atan
+**   exp  log   log2  log10 sqrt
+**   ceil floor round abs
 */
 t_bool			ft_evalexpr(t_sub expr, float *result);
 

@@ -6,33 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:01:27 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/10 02:54:30 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/10 14:35:59 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_evalexpr.h"
-
-t_op			g_ops[] = {
-	{'+', 1, &op_plus},
-	{'-', 1, &op_moins},
-	{'*', 2, &op_mult},
-	{'/', 2, &op_div},
-	{'\0', 0, NULL}
-};
-
-t_bool			parse_op(char c, t_expr *expr)
-{
-	int				i;
-
-	i = -1;
-	while (g_ops[++i].symbol != '\0')
-		if (g_ops[i].symbol == c)
-		{
-			expr->op = g_ops + i;
-			return (true);
-		}
-	return (false);
-}
 
 // DEBUG
 #include <stdio.h>
@@ -56,7 +34,7 @@ t_bool			exec_expr(t_expr *expr)
 	t_expr			*tmp;
 
 	print_expr(expr);
-	priority = 2;
+	priority = MAX_PRIORITY;
 	while (priority >= 1)
 	{
 		tmp = expr;
@@ -85,24 +63,27 @@ t_bool			eval_value(t_sub sub, int *i_ptr, float *value)
 	i = *i_ptr;
 	while (i < sub.length && IS(sub.str[i], IS_SPACE))
 		++i;
+	*i_ptr = i;
 	if (i < sub.length && sub.str[i] == '(')
 	{
-		tmp = i;
-		while (tmp < sub.length && sub.str[tmp] != ')')
-			++tmp;
-		if (tmp >= sub.length)
+		tmp = 1;
+		while (++i < sub.length)
+			if (sub.str[i] == '(')
+				tmp++;
+			else if (sub.str[i] == ')' && --tmp <= 0)
+				break ;
+		if (tmp != 0)
 			return (false);
-		*i_ptr = tmp + 1;
-		tmp -= i;
-		return (ft_evalexpr(SUB(sub.str + i + 1, tmp - 1), value));
+		tmp = *i_ptr;
+		*i_ptr = i + 1;
+		return (ft_evalexpr(SUB(sub.str + tmp + 1, i - tmp - 1), value));
 	}
 	if ((tmp = ft_subfloat(SUB(sub.str + i, sub.length - i), value)) > 0)
 	{
-		i += tmp;
-		*i_ptr = i;
+		*i_ptr = i + tmp;
 		return (true);
 	}
-	return (false); // TODO functions
+	return (parse_func(sub, i_ptr, value));
 }
 
 t_bool			eval_next(t_sub sub, int i, t_expr *prev, t_expr *first)
@@ -113,7 +94,7 @@ t_bool			eval_next(t_sub sub, int i, t_expr *prev, t_expr *first)
 	expr.next = NULL;
 	prev->next = &expr;
 	if (!eval_value(sub, &i, &(expr.n)))
-		return (printf("Invalid value\n"), false);
+		return (false);
 	while (i < sub.length && IS(sub.str[i], IS_SPACE))
 		++i;
 	if (i >= sub.length)
@@ -128,8 +109,9 @@ t_bool			ft_evalexpr(t_sub expr, float *result)
 	t_expr			first;
 
 	first.n = 0.f;
-	first.op = &(t_op){'+', 1, &op_plus};
 	first.next = NULL;
+	if (!parse_op('+', &first))
+		return (false);
 	if (eval_next(expr, 0, &first, &first))
 	{
 		*result = first.n;

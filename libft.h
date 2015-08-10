@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/25 00:05:49 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/10 03:12:27 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,6 +351,7 @@ char			*ft_strmapi(const char *s, char (*f)(int, char));
 */
 
 # define SUB(s,l)		((t_sub){(s), (l)})
+# define SUBC(s)		SUB(s, sizeof(s) - 1)
 
 typedef struct	s_sub
 {
