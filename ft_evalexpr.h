@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:01:35 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/10 14:20:27 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/10 15:06:14 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ t_bool			ft_evalexpr(t_sub expr, float *result);
 **  on error return 0 (0 char parsed)
 ** -
 ** Valid float:
-**   0  0.  0.0  .0  0,  0,0  ,0  .  ,
+**   0
+**   0.  0.0  .0   .
+**   0,  0,0  ,0   ,
+**   -   -.0  -,0  -0
 */
 int				ft_subfloat(t_sub sub, float *f);
 

@@ -6,34 +6,17 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:01:27 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/10 14:35:59 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/10 15:12:14 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_evalexpr.h"
-
-// DEBUG
-#include <stdio.h>
-
-void			print_expr(t_expr *expr)
-{
-	while (expr != NULL)
-	{
-		if (expr->op == NULL)
-			printf("%f\n", expr->n);
-		else
-			printf("%f %c ", expr->n, expr->op->symbol);
-		expr = expr->next;
-	}
-}
-// -
 
 t_bool			exec_expr(t_expr *expr)
 {
 	int				priority;
 	t_expr			*tmp;
 
-	print_expr(expr);
 	priority = MAX_PRIORITY;
 	while (priority >= 1)
 	{
@@ -45,7 +28,6 @@ t_bool			exec_expr(t_expr *expr)
 				tmp->n = tmp->op->f(tmp->n, tmp->next->n);
 				tmp->op = tmp->next->op;
 				tmp->next = tmp->next->next;
-				print_expr(expr);
 			}
 			else
 				tmp = tmp->next;
@@ -69,7 +51,7 @@ t_bool			eval_value(t_sub sub, int *i_ptr, float *value)
 		tmp = 1;
 		while (++i < sub.length)
 			if (sub.str[i] == '(')
-				tmp++;
+				++tmp;
 			else if (sub.str[i] == ')' && --tmp <= 0)
 				break ;
 		if (tmp != 0)
@@ -79,10 +61,7 @@ t_bool			eval_value(t_sub sub, int *i_ptr, float *value)
 		return (ft_evalexpr(SUB(sub.str + tmp + 1, i - tmp - 1), value));
 	}
 	if ((tmp = ft_subfloat(SUB(sub.str + i, sub.length - i), value)) > 0)
-	{
-		*i_ptr = i + tmp;
-		return (true);
-	}
+		return ((*i_ptr = i + tmp), true);
 	return (parse_func(sub, i_ptr, value));
 }
 
