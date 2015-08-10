@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:01:35 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/10 01:57:32 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/10 02:18:18 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,18 @@ float			op_moins(float a, float b);
 float			op_mult(float a, float b);
 float			op_div(float a, float b);
 
+t_bool			parse_op(char c, t_expr *expr);
+t_bool			exec_expr(t_expr *expr);
+t_bool			eval_parenthesis(t_sub sub, int i, t_expr *curr, t_expr *first);
+t_bool			eval_next(t_sub sub, int i, t_expr *prev, t_expr *first);
+
 /*
 ** ft_evalexpr
 ** -
 ** Evaluate a math expresion
 ** -
 ** Supported operators:
-**   * / - +
+**   * / - + ( )
 */
 t_bool			ft_evalexpr(t_sub expr, float *result);
 

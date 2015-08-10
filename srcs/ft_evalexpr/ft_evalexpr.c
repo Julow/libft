@@ -6,12 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:01:27 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/10 01:57:35 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/10 02:17:48 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_evalexpr.h"
-#include <math.h>
 
 t_op			g_ops[] = {
 	{'+', 1, &op_plus},
@@ -78,26 +77,52 @@ t_bool			exec_expr(t_expr *expr)
 	return (true);
 }
 
+t_bool			eval_parenthesis(t_sub sub, int i, t_expr *curr, t_expr *first)
+{
+	int				len;
+
+	len = i;
+	while (len < sub.length && sub.str[len] != ')')
+		++len;
+	if (len >= sub.length)
+		return (false);
+	len -= i;
+	curr->op = &(t_op){'+', 1, &op_plus};
+	curr->n = 0.f;
+	if (!eval_next(SUB(sub.str + i, len), 0, curr, curr))
+		return (false);
+	i += len + 1;
+	while (i < sub.length && IS(sub.str[i], IS_SPACE))
+		++i;
+	if (i >= sub.length)
+		return (exec_expr(first));
+	if (!parse_op(sub.str[i++], curr))
+		return (false); // TODO implicit multiplication
+	return (eval_next(sub, i, curr, first));
+}
+
 t_bool			eval_next(t_sub sub, int i, t_expr *prev, t_expr *first)
 {
 	t_expr			expr;
 	int				tmp;
 
+	expr.op = NULL;
+	expr.next = NULL;
+	prev->next = &expr;
 	while (i < sub.length && IS(sub.str[i], IS_SPACE))
 		++i;
+	if (i < sub.length && sub.str[i] == '(')
+		return (eval_parenthesis(sub, i + 1, &expr, first));
 	// TODO ( )
 	if ((tmp = ft_subfloat(SUB(sub.str + i, sub.length - i), &(expr.n))) <= 0)
 		return (false); // TODO functions
 	i += tmp;
 	while (i < sub.length && IS(sub.str[i], IS_SPACE))
 		++i;
-	expr.op = NULL;
-	expr.next = NULL;
-	prev->next = &expr;
 	if (i >= sub.length)
 		return (exec_expr(first));
 	if (!parse_op(sub.str[i++], &expr))
-		return (false);
+		return (false); // TODO implicit multiplication
 	return (eval_next(sub, i, &expr, first));
 }
 
