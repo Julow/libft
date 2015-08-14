@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/08/10 03:12:27 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/14 01:54:25 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -587,106 +587,6 @@ t_bool			ft_tabext(t_tab *tab, int need);
 
 /*
 ** ========================================================================== **
-** Store pointers using the struct s_array (t_array)
-** Allocate memory by block of 16 to reduce the number of free/malloc/copy
-*/
-
-# define AG(t,a,i)		((t)(((t_array*)(a))->data[i]))
-
-typedef struct	s_array
-{
-	void			**data;
-	int				length;
-	int				alloc_length;
-}				t_array;
-
-t_array			*ft_arraynew(void);
-void			ft_arrayini(t_array *array);
-void			ft_arrayadd(t_array *array, void *add);
-void			ft_arrayset(t_array *array, void *set, int index);
-void			ft_arrayins(t_array *array, void *ins, int index);
-void			*ft_arrayrem(t_array *array, int index);
-void			*ft_arraypop(t_array *array);
-int				ft_arraychr(t_array *array, const void *chr);
-void			ft_arrayapp(t_array *array, const t_array *app);
-t_array			*ft_arraydup(const t_array *array);
-void			ft_arrayfree(t_array *array);
-void			ft_arrayclr(void *array, void (*f)(void *data));
-void			ft_arraykil(void *array, void (*f)(void *data));
-void			ft_arraykilf(void *array);
-void			ft_arrayswap(t_array *array, int i1, int i2);
-void			ft_arrayrev(t_array *array);
-t_bool			ft_arrayext(t_array *array, int need);
-
-/*
-** ========================================================================== **
-** Manipulate string using the struct s_string (t_string)
-** Allocate memory by block of 16 to reduce the number of free/malloc/copy
-*/
-
-typedef struct	s_string
-{
-	char			*content;
-	int				length;
-	int				alloc_length;
-}				t_string;
-
-t_string		*ft_stringnew(void);
-t_string		*ft_stringnews(const char *s);
-void			ft_stringini(t_string *str);
-void			ft_stringaddc(t_string *str, char c);
-void			ft_stringadd(t_string *str, const char *add);
-void			ft_stringaddi(t_string *str, int nbr);
-void			ft_stringaddil(t_string *str, t_long nbr);
-void			ft_stringaddid(t_string *str, double nbr);
-void			ft_stringaddd(t_string *str, double d, int preci);
-void			ft_stringaddde(t_string *str, double d, int preci);
-void			ft_stringaddl(t_string *str, const char *add, int len);
-void			ft_stringaddcn(t_string *str, char c, int n);
-void			ft_stringsetc(t_string *str, char c, int index);
-void			ft_stringset(t_string *str, const char *set, int index);
-void			ft_stringsetl(t_string *str, const char *set, int index, int l);
-void			ft_stringinsc(t_string *str, char c, int index);
-void			ft_stringins(t_string *str, const char *ins, int index);
-void			ft_stringinsl(t_string *str, const char *ins, int index, int l);
-void			ft_stringrepc(t_string *str, char c, char r);
-void			ft_stringrep(t_string *str, const char *chr, const char *rep);
-t_string		*ft_stringdup(t_string *str);
-t_string		*ft_stringsub(t_string *str, int index, int len);
-void			ft_stringrem(t_string *str, int index, int len);
-void			ft_stringtrim(t_string *str);
-void			ft_stringtrimc(t_string *str, const char *trim);
-t_array			*ft_stringsplit(t_string *str, const char *chr);
-t_array			*ft_stringsplitc(t_string *str, char c);
-int				ft_stringchr(t_string *str, char c);
-int				ft_stringstr(t_string *str, const char *chr, int start);
-void			ft_stringfree(t_string *str);
-void			ft_stringclr(t_string *str);
-void			ft_stringkil(void *str);
-t_bool			ft_stringext(t_string *str, int need);
-int				ft_stringput(t_string *str);
-int				ft_stringputfd(t_string *str, int const fd);
-
-/*
-** ========================================================================== **
-** Store pointers paired with a t_string 'key'
-** Use with the struct s_array (t_array)
-*/
-
-typedef struct	s_pair
-{
-	t_string		*key;
-	void			*value;
-}				t_pair;
-
-t_pair			*ft_pairnew(const char *key, void *value);
-t_pair			*ft_pairget(t_array *array, const char *key);
-int				ft_pairchr(t_array *array, const char *key);
-t_pair			*ft_pairrem(t_array *array, const char *key);
-void			ft_pairsort(t_array *array);
-
-/*
-** ========================================================================== **
 ** Use the struct s_buff (t_buff) to read and parse a file
 **  BUFF() macro init a file buff
 ** Can parse simple string
@@ -732,12 +632,6 @@ t_bool			ft_parsedouble(t_buff *buff, double *nb);
 t_bool			ft_parse(t_buff *buff, const char *parse);
 t_bool			ft_parsenot(t_buff *buff, const char *parse);
 t_bool			ft_parsestr(t_buff *buff, const char *str);
-
-int				ft_parsesub(t_buff *buff, t_string *dst, const char *parse);
-int				ft_parsesubf(t_buff *buff, t_string *dst, t_bool (*f)(int c));
-int				ft_parsesubnf(t_buff *buff, t_string *dst, t_bool (*f)(int c));
-int				ft_parseline(t_buff *buff, t_string *dst);
-t_bool			ft_parsequote(t_buff *buff, t_string *dst);
 
 void			ft_parseendl(t_buff *buff);
 t_bool			ft_parsen(t_buff *buff, char *dst, int len);
