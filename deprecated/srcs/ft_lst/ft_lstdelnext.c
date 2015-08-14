@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/29 19:52:35 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/29 19:52:35 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/08/14 02:05:24 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_lst.h"
 #include <stdlib.h>
 
 void			ft_lstdelnext(t_list *lst, void (*f)(void*, t_uint))

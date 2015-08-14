@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/08/14 01:54:25 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/14 02:03:36 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -526,27 +526,6 @@ int				ft_putlstr_fd(const char *s, int len, int fd);
 int				ft_putendl_fd(const char *s, int fd);
 int				ft_putnbr_fd(int n, int fd);
 int				ft_putlong_fd(t_long n, int fd);
-
-/*
-** ========================================================================== **
-** Store mem using the struct s_list (t_list)
-*/
-
-typedef struct	s_list
-{
-	void			*content;
-	t_uint			content_size;
-	struct s_list	*next;
-}				t_list;
-
-t_list			*ft_lstnew(const void *content, t_uint content_size);
-void			ft_lstdelone(t_list **alst, void (*del)(void*, t_uint));
-void			ft_lstdelnext(t_list *lst, void (*f)(void*, t_uint));
-void			ft_lstdel(t_list **alst, void (*del)(void*, t_uint));
-void			ft_lstadd(t_list **alst, t_list *add);
-void			ft_lstafter(t_list *lst, t_list *add);
-void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 /*
 ** ========================================================================== **

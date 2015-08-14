@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_lstafter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/29 19:24:10 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/29 19:24:11 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/29 19:45:42 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/08/14 02:05:25 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "ft_lst.h"
 
-void			ft_lstdel(t_list **alst, void (*del)(void*, t_uint))
+void			ft_lstafter(t_list *lst, t_list *add)
 {
-	t_list			*tmp;
-
-	if (alst == NULL)
+	if (lst == NULL || add == NULL)
 		return ;
-	while (*alst != NULL)
-	{
-		if (del != NULL)
-			del((*alst)->content, (*alst)->content_size);
-		tmp = *alst;
-		*alst = (*alst)->next;
-		free(tmp);
-	}
-	*alst = NULL;
+	add->next = lst->next;
+	lst->next = add;
 }

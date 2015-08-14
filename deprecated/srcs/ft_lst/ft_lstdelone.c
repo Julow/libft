@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/29 19:32:45 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/29 19:32:46 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/29 19:21:16 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/08/14 02:05:24 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_lst.h"
+#include <stdlib.h>
 
-t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+void			ft_lstdelone(t_list **alst, void (*del)(void*, t_uint))
 {
-	t_list			*map;
-	t_list			*add;
-	t_list			*tmp;
-
-	if (lst == NULL || f == NULL)
-		return (NULL);
-	map = f(lst);
-	tmp = map;
-	lst = lst->next;
-	while (lst != NULL)
-	{
-		add = f(lst);
-		if (add == NULL)
-			return (NULL);
-		tmp->next = add;
-		tmp = add;
-		lst = lst->next;
-	}
-	return (map);
+	if (alst == NULL || *alst == NULL)
+		return ;
+	if (del != NULL)
+		del((*alst)->content, (*alst)->content_size);
+	free(*alst);
+	*alst = NULL;
 }
