@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 02:55:42 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/14 17:08:32 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/14 20:13:41 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@
 ** Storage
 ** -
 ** Cool for:
-**   Stack (push/pop)
-**   Queue (or double queue) (push/pop back/front)
-**   Priority queue (insert/pop)
-**   Instable vector (push/remove)
+**   Stack (fast push/pop)
+**   Queue (or double queue) (fast push/pop back/front)
+**   Priority queue (fast insert/pop)
+**   Instable vector (fast push/remove)
+**   Temporary vector (fast push back/pop front)
+** -
+** Extendable for:
+**   Sorted set (fast insert/chunk jump)
 ** ---
 ** + fast push/pop
 ** + fast insert/remove
@@ -29,6 +33,7 @@
 ** + fast alloc front/back/insert
 ** + iterator (+ fast)
 ** + insert/remove while itering
+** + memory efficient
 ** - slow random access
 */
 
@@ -47,7 +52,7 @@ typedef struct	s_vec_c
 typedef struct	s_vector
 {
 	int				length;
-	int				element_size;
+	const int		element_size;
 	t_vec_c			*first;
 	t_vec_c			*last;
 }				t_vector;
@@ -56,15 +61,15 @@ typedef struct	s_vector_it
 {
 	t_vector		*vector;
 	t_vec_c			*next;
-	void			*curr;
+	void			*data;
 	void			*end;
 }				t_vector_it;
 
 /*
 ** Create a vector
-** Take the size of a single element as param
+** Take the type of an element as param
 */
-# define VECTOR(s)			((t_vector){0, (s), NULL, NULL})
+# define VECTOR(t)			((t_vector){0, sizeof(t), NULL, NULL})
 
 /*
 ** Create a vector iterator
@@ -76,24 +81,7 @@ typedef struct	s_vector_it
 ** Increment the iterator
 ** Take an iterator as param
 */
-# define VECTOR_NEXT(i)		(VECTOR_IT_NEXT(i) ? vector_it_c(&i) : i.curr)
-
-/*
-** iterator usage:
-** -
-** check_all_mdr(t_vector *v)
-** {
-** 	t_vector_it		it;
-** 	t_mdr			*mdr;
-** -
-** 	it = VECTOR_IT(vector);
-** 	while (mdr = VECTOR_NEXT(it))
-** 	{
-** 		if (!check_mdr(mdr))
-** 			ft_vremove(&it);
-** 	}
-** }
-*/
+# define VECTOR_NEXT(i)		(VECTOR_IT_NEXT(i) ? vector_it_c(&i) : i.data)
 
 /*
 ** Add an element to the back of the vector
@@ -125,23 +113,31 @@ void			ft_vpop_front(t_vector *v, void *data);
 ** Insert at iterator position
 ** if 'data' is not NULL then copy it else bzero
 ** Return a pointer to the new element
-** Iterator is invalid until next call to VECTOR_NEXT
+** Pointer returned by previous call to VECTOR_NEXT become invalid
 ** Next call to VECTOR_NEXT jump over the new element
 */
 void			*ft_vinsert(t_vector_it *it, void *data);
 
 /*
 ** Remove at iterator position
-** Iterator is invalid until next call to VECTOR_NEXT
+** Pointer returned by previous call to VECTOR_NEXT become invalid
 */
 void			ft_vremove(t_vector_it *it, void *data);
 
 /*
+** Completly free all datas
+** The vector is reusable after a clear
+*/
+void			ft_vclear(t_vector *v);
+
+/*
 ** Internaly used
 */
-# define VECTOR_IT_NEXT(i)	((i.curr += i.vector->element_size) >= i.end)
+# define VECTOR_IT_NEXT(i)	((i.data += i.vector->element_size) >= i.end)
 
 void			*vector_it_c(t_vector_it *it);
+
+void			vector_c_del(t_vector *v, t_vec_c *c);
 
 void			vector_c_after(t_vector *v, t_vec_c *c);
 void			vector_c_before(t_vector *v, t_vec_c *c);
