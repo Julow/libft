@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 17:31:13 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/14 20:35:41 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/14 22:24:23 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,30 @@ static void		test_pop_back(t_vector *v, int count)
 	}
 }
 
+static void		test_remove(t_vector *v, float max)
+{
+	t_vector_it		it;
+	t_mdr			*mdr;
+
+	it = VECTOR_IT(v);
+	while ((mdr = VECTOR_NEXT(it)))
+	{
+		if (mdr->n < max)
+		{
+			printf("remove %f\n", mdr->n);
+			ft_vremove(&it);
+		}
+	}
+	it = VECTOR_IT(v);
+	while ((mdr = VECTOR_NEXT(it)))
+	{
+		if (mdr->n < max)
+		{
+			printf("error %f found\n", mdr->n);
+		}
+	}
+}
+
 static void		test_pop_front(t_vector *v, int count)
 {
 	t_mdr			tmp;
@@ -119,7 +143,9 @@ int				main(void)
 	test_it(&v);
 	test_push_front(&v, 30);
 	test_it(&v);
-	test_pop_front(&v, 125);
+	test_remove(&v, 50);
+	test_it(&v);
+	test_pop_front(&v, v.length);
 	test_it(&v);
 	ft_vclear(&v);
 	return (0);

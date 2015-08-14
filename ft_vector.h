@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 02:55:42 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/14 20:13:41 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/14 22:22:54 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 **   Queue (or double queue) (fast push/pop back/front)
 **   Priority queue (fast insert/pop)
 **   Instable vector (fast push/remove)
-**   Temporary vector (fast push back/pop front)
+**   Temporary vector (fast push back/iter/clear)
 ** -
 ** Extendable for:
 **   Sorted set (fast insert/chunk jump)
@@ -73,13 +73,13 @@ typedef struct	s_vector_it
 
 /*
 ** Create a vector iterator
-** Take a pointer of vector as param
+** The iterator is invalid until the first call to VECTOR_NEXT
 */
 # define VECTOR_IT(v)		((t_vector_it){(v), (v)->first, NULL, NULL})
 
 /*
 ** Increment the iterator
-** Take an iterator as param
+** At the end the iterator become invalid and NULL is returned
 */
 # define VECTOR_NEXT(i)		(VECTOR_IT_NEXT(i) ? vector_it_c(&i) : i.data)
 
@@ -120,9 +120,9 @@ void			*ft_vinsert(t_vector_it *it, void *data);
 
 /*
 ** Remove at iterator position
-** Pointer returned by previous call to VECTOR_NEXT become invalid
+** Pointer returned by last call to VECTOR_NEXT become invalid
 */
-void			ft_vremove(t_vector_it *it, void *data);
+void			ft_vremove(t_vector_it *it);
 
 /*
 ** Completly free all datas

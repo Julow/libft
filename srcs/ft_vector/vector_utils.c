@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 17:03:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/14 19:46:09 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/14 20:45:37 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,7 @@ void			vector_c_before(t_vector *v, t_vec_c *c)
 		if (c->prev == NULL)
 			v->first = before;
 		else
-		{
-			ft_printf("%p\n", c->next);
 			c->prev->next = c;
-		}
 		c->prev = before;
 	}
 }
