@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 18:30:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/14 20:00:51 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/14 23:41:39 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 void			ft_vpop_back(t_vector *v, void *data)
 {
+	if (v->last == NULL)
+		return ;
 	v->last->end -= v->element_size;
 	v->length--;
 	if (data != NULL)

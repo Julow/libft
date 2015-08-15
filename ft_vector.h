@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 02:55:42 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/14 22:22:54 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/16 00:57:44 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,9 @@
 	
 /*
 ** ========================================================================== **
+** Array list
+** -
 ** Storage
-** -
-** Cool for:
-**   Stack (fast push/pop)
-**   Queue (or double queue) (fast push/pop back/front)
-**   Priority queue (fast insert/pop)
-**   Instable vector (fast push/remove)
-**   Temporary vector (fast push back/iter/clear)
-** -
-** Extendable for:
-**   Sorted set (fast insert/chunk jump)
-** ---
-** + fast push/pop
-** + fast insert/remove
-** + fast push_front/pop_front
-** + fast alloc front/back/insert
-** + iterator (+ fast)
-** + insert/remove while itering
-** + memory efficient
-** - slow random access
 */
 
 typedef struct	s_vec_c
@@ -108,15 +91,6 @@ void			*ft_vpush_front(t_vector *v, void *data);
 ** if 'data' is not NULL then fill it with the old value
 */
 void			ft_vpop_front(t_vector *v, void *data);
-
-/*
-** Insert at iterator position
-** if 'data' is not NULL then copy it else bzero
-** Return a pointer to the new element
-** Pointer returned by previous call to VECTOR_NEXT become invalid
-** Next call to VECTOR_NEXT jump over the new element
-*/
-void			*ft_vinsert(t_vector_it *it, void *data);
 
 /*
 ** Remove at iterator position

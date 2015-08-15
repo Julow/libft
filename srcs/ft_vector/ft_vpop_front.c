@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 19:59:06 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/14 20:25:35 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/14 23:41:47 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 void			ft_vpop_front(t_vector *v, void *data)
 {
+	if (v->first == NULL)
+		return ;
 	if (data != NULL)
 		ft_memcpy(data, VEC_C_DATA(v->first) + v->first->start,
 			v->element_size);
