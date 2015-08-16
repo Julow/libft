@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 01:00:32 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/16 16:00:26 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/16 16:07:34 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ typedef struct	s_list
 #define LIST_PREV(n)	(*(((void**)(n)) - 1))
 
 /*
-** Create a new node and add it before 'next'
-** if 'next' is NULL add to the end
+** Create a new node and add it after 'after'
+** if 'after' is NULL add to the front
 ** the node is bzero
-** Should not be used with 'next' not NULL while itering using LIST_PREV
-** Return the new node
+** Should not be used with 'after' not NULL while itering using LIST_PREV
+** Return the new node (it's also the iterator if 'after' is not NULL)
 */
-void			*ft_listadd(t_list *lst, void *next);
+void			*ft_listadd(t_list *lst, void *after);
 
 /*
 ** Remove a node
