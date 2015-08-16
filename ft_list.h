@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 01:00:32 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/16 01:58:04 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/16 16:00:26 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@
 ** Double chained list
 ** -
 */
-
-typedef struct	s_l_node
-{
-	void			*next;
-	void			*prev;
-}				t_l_node;
 
 typedef struct	s_list
 {
@@ -44,7 +38,7 @@ typedef struct	s_list
 ** Create an iterator
 ** (the pointer is invalid until LIST_NEXT or LIST_PREV is called)
 */
-#define LIST_IT(l)		(((void*)(l)) + sizeof(t_l_node))
+#define LIST_IT(l)		(((void*)(l)) + S(void*, 2))
 
 /*
 ** Increment or decrement the iterator
@@ -56,13 +50,16 @@ typedef struct	s_list
 ** Create a new node and add it before 'next'
 ** if 'next' is NULL add to the end
 ** the node is bzero
+** Should not be used with 'next' not NULL while itering using LIST_PREV
 ** Return the new node
 */
 void			*ft_listadd(t_list *lst, void *next);
 
 /*
 ** Remove a node
+** Should not be used while itering using LIST_PREV
+** Return a new iterator (invalid until next call to LIST_NEXT)
 */
-void			ft_listremove(t_list *lst, void *node);
+void			*ft_listremove(t_list *lst, void *node);
 
 #endif
