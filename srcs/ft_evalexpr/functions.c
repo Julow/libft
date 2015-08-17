@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/10 02:56:41 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/10 14:18:49 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/17 23:42:20 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,5 @@ t_bool			parse_func(t_sub sub, int *i_ptr, float *value)
 			*value = g_funcs[i].f(*value);
 			return (true);
 		}
-	ft_printf("NOT FOUND %.*s\n", len, sub.str + *i_ptr);
 	return (false);
 }

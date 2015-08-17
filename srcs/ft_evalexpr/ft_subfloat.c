@@ -6,34 +6,64 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:21:00 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/17 19:43:15 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/08/17 23:43:46 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_evalexpr.h"
 
+static int		ft_subfloatbase(t_sub sub, t_bool neg, float *f)
+{
+	int				i;
+	int				base_i;
+	t_sub			base;
+	float			tmp;
+
+	if (sub.length <= 0)
+		return ((*f = 0.f), 0);
+	if (sub.str[0] == 'X' || sub.str[0] == 'x')
+		base = SUBC(BASE_16);
+	else if (sub.str[0] == 'b')
+		base = SUBC(BASE_2);
+	tmp = 0.f;
+	i = 0;
+	while (++i < sub.length
+		&& (base_i = ft_subindex(base, UPPER(sub.str[i]))) >= 0)
+		tmp = tmp * ((float)base.length) + ((float)base_i);
+	*f = neg ? -tmp : tmp;
+	if (i >= sub.length || (sub.str[i] != '.' && sub.str[i] != ','))
+		return (i);
+	tmp = 0.f;
+	while (++i < sub.length
+		&& (base_i = ft_subindex(base, UPPER(sub.str[i]))) >= 0)
+		tmp = (tmp + (float)base_i) / (float)base.length;
+	*f += neg ? -tmp : tmp;
+	return (i);
+}
+
 int				ft_subfloat(t_sub sub, float *f)
 {
 	int				i;
-	float			dec;
+	float			tmp;
 	t_bool			negative;
 
-	*f = 0.f;
 	if (sub.length <= 0)
-		return (0);
+		return ((*f = 0.f), 0);
 	negative = (sub.str[0] == '-') ? true : false;
-	i = (sub.str[0] == '-' || sub.str[0] == '+') ? 1 : 0;
-	while (i < sub.length && sub.str[i] == '0')
-		i++;
+	i = (negative || sub.str[0] == '+') ? 1 : 0;
+	if ((i + 1) < sub.length && sub.str[i] == '0'
+		&& (sub.str[++i] == 'X' || sub.str[i] == 'x' || sub.str[i] == 'b'))
+		return (i
+			+ ft_subfloatbase(SUB(sub.str + i, sub.length - i), negative, f));
+	tmp = 0.f;
 	while (i < sub.length && IS(sub.str[i], IS_DIGIT))
-		*f = *f * 10.f + (float)(sub.str[i++] - '0');
-	if (negative)
-		*f = -(*f);
+		tmp = tmp * 10.f + (float)(sub.str[i++] - '0');
+	*f = negative ? -tmp : tmp;
 	if (i >= sub.length || (sub.str[i] != '.' && sub.str[i] != ','))
 		return (i);
-	dec = 0.f;
+	tmp = 0.f;
 	while (++i < sub.length && IS(sub.str[i], IS_DIGIT))
-		dec = (dec + (float)(sub.str[i] - '0')) / 10.f;
-	*f += negative ? -dec : dec;
+		tmp = (tmp + (float)(sub.str[i] - '0')) / 10.f;
+	*f += negative ? -tmp : tmp;
 	return (i);
 }
