@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:01:35 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/10 15:06:14 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/17 19:43:24 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,10 @@ t_bool			ft_evalexpr(t_sub expr, float *result);
 ** Return the length of the float (in the string)
 **  on error return 0 (0 char parsed)
 ** -
+** Allow hexa (0x) and binary (0b) number
+** -
 ** Valid float:
-**   0
-**   0.  0.0  .0   .
-**   0,  0,0  ,0   ,
-**   -   -.0  -,0  -0
+**  -?[0-9]*([.,][0-9]*)?
 */
 int				ft_subfloat(t_sub sub, float *f);
 
