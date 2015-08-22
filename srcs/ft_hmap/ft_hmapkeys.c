@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 19:55:42 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/22 23:02:25 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/22 23:18:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int				ft_hmapkeys(t_hmap *map, char **dst, int max)
 		h = map->data[i];
 		while (h != NULL && count < max)
 		{
-			dst[count++] = h->key;
+			dst[count++] = HMAP_H_KEY(h);
 			h = h->next;
 		}
 	}

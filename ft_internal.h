@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/24 23:53:59 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/22 23:26:05 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,11 @@ typedef struct	s_h
 {
 	int				hash;
 	int				key_len;
-	char			*key;
 	void			*data;
 	struct s_h		*next;
 }				t_h;
+
+# define HMAP_H_KEY(h)	((char*)(((void*)(h)) + sizeof(t_h)))
 
 void			hmap_puth(t_hmap *map, t_h *h);
 

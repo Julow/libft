@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 19:56:04 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/22 22:59:24 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/22 23:24:02 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void			ft_hmaprem(t_hmap *map, t_sub key, void (*f)(void*))
 	while (*h != NULL)
 	{
 		if ((*h)->hash == hash && (*h)->key_len == key.length
-			&& ft_memcmp((*h)->key, key.str, key.length) == 0)
+			&& ft_memcmp(HMAP_H_KEY(*h), key.str, key.length) == 0)
 		{
 			tmp = *h;
 			*h = tmp->next;

@@ -6,26 +6,24 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 19:56:19 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/22 22:59:16 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/22 23:26:18 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_hmap.h"
 #include "ft_internal.h"
-#include <stdlib.h>
 
 void			*ft_hmapput(t_hmap *map, t_sub key, void const *data, int size)
 {
 	t_h				*h;
 
-	h = (t_h*)malloc(sizeof(t_h) + key.length + 1 + size + 1);
+	h = (t_h*)ft_emalloc(sizeof(t_h) + key.length + 1 + size + 1);
 	h->hash = map->hash(key);
 	h->key_len = key.length;
-	h->key = ((char*)h) + sizeof(t_h);
-	h->data = (void*)(h->key + key.length + 1);
+	h->data = (void*)(HMAP_H_KEY(h) + key.length + 1);
 	h->next = NULL;
-	ft_memcpy(h->key, key.str, key.length);
-	h->key[key.length] = '\0';
+	ft_memcpy(HMAP_H_KEY(h), key.str, key.length);
+	HMAP_H_KEY(h)[key.length] = '\0';
 	if (data != NULL)
 	{
 		ft_memcpy(h->data, data, size);
