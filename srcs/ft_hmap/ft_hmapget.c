@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 19:56:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/22 23:18:27 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/23 01:00:40 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			*ft_hmapget(t_hmap *map, t_sub key)
 	t_h				*h;
 
 	hash = map->hash(key);
-	h = map->data[hash % map->alloc_size];
+	h = map->data[ABS(hash) % map->alloc_size];
 	while (h != NULL)
 	{
 		if (h->hash == hash && h->key_len == key.length
