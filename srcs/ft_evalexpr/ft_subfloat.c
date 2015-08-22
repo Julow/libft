@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:21:00 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/17 23:43:46 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/22 18:17:37 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int				ft_subfloat(t_sub sub, float *f)
 	i = (negative || sub.str[0] == '+') ? 1 : 0;
 	if ((i + 1) < sub.length && sub.str[i] == '0'
 		&& (sub.str[++i] == 'X' || sub.str[i] == 'x' || sub.str[i] == 'b'))
-		return (i
-			+ ft_subfloatbase(SUB(sub.str + i, sub.length - i), negative, f));
+		return (i + ft_subfloatbase(SUB(sub.str + i, sub.length - i),
+			negative, f));
 	tmp = 0.f;
 	while (i < sub.length && IS(sub.str[i], IS_DIGIT))
 		tmp = tmp * 10.f + (float)(sub.str[i++] - '0');
@@ -63,7 +63,9 @@ int				ft_subfloat(t_sub sub, float *f)
 		return (i);
 	tmp = 0.f;
 	while (++i < sub.length && IS(sub.str[i], IS_DIGIT))
+		;
+	sub.length = i;
+	while (sub.str[--i] != '.' && sub.str[i] != ',')
 		tmp = (tmp + (float)(sub.str[i] - '0')) / 10.f;
-	*f += negative ? -tmp : tmp;
-	return (i);
+	return ((*f += negative ? -tmp : tmp), sub.length);
 }
