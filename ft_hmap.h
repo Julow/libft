@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/11 01:35:55 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/22 23:03:24 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/22 23:16:18 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,13 @@ typedef struct	s_hmap
 	int				size;
 	int const		alloc_size;
 	struct s_h		**data;
-	int				(const *hash)(t_sub key);
+	int				(*const hash)(t_sub key);
 }				t_hmap;
 
 /*
-** Init a hmap
-** (make an alloc)
+** Alloc a new hmap
 */
-void			ft_hmapini(t_hmap *map, int size, int (*h)(t_sub));
+t_hmap			*ft_hmapnew(int size, int (*h)(t_sub));
 
 /*
 ** Retrieve an element
@@ -64,12 +63,15 @@ void			*ft_hmapput(t_hmap *map, t_sub key, void const *data, int size);
 
 /*
 ** Remove an element of the hmap
+** Do nothing if not found
+** Apply 'f' (if not NULL) to the removed element
 */
 void			ft_hmaprem(t_hmap *map, t_sub key, void (*f)(void*));
 
 /*
 ** Destroy the hmap
-** The hmap is unusable
+** The map pointer is also freed (it become invalid)
+** 'f' is applied to all element (if not NULL)
 */
 void			ft_hmapdestroy(t_hmap *map, void (*f)(void*));
 

@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hmapini.c                                       :+:      :+:    :+:   */
+/*   ft_hmapnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/03 16:45:03 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/22 22:59:08 by juloo            ###   ########.fr       */
+/*   Created: 2015/08/22 23:07:51 by juloo             #+#    #+#             */
+/*   Updated: 2015/08/22 23:13:29 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_hmap.h"
 #include "ft_internal.h"
-#include <stdlib.h>
 
-void			ft_hmapini(t_hmap *map, int size, int (*h)(t_sub))
+t_hmap			*ft_hmapnew(int size, int (*h)(t_sub))
 {
-	map->size = 0;
-	map->alloc_size = size;
-	map->data = MAL(t_h*, size);
+	t_hmap			*map;
+
+	map = (t_hmap*)ft_emalloc(sizeof(t_hmap) + S(t_h*, size));
+	*map = (t_hmap){0, size, ((void*)map) + sizeof(t_hmap), h};
 	ft_bzero(map->data, S(t_h*, size));
-	map->hash = h;
+	return (map);
 }

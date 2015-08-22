@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 19:55:57 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/22 22:58:47 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/22 23:14:15 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,5 @@ void			ft_hmapdestroy(t_hmap *map, void (*f)(void*))
 			free(tmp);
 		}
 	}
-	free(map->data);
-	map->size = 0;
-	map->data = NULL;
+	free(map);
 }
