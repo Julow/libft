@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 16:45:03 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/11 01:43:04 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/22 22:59:08 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 #include "ft_internal.h"
 #include <stdlib.h>
 
-/*
-** Init a hmap
-*/
 void			ft_hmapini(t_hmap *map, int size, int (*h)(t_sub))
 {
 	map->size = 0;

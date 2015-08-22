@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 19:56:23 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/11 01:40:56 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/22 22:59:21 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 #include "ft_internal.h"
 #include <stdlib.h>
 
-/*
-** Put a pointer in the map with 'key'
-** -
-** Warning: If the key already exists in the map,
-** the old data will be overwritten and not free
-*/
 void			ft_hmapputp(t_hmap *map, t_sub key, void *data)
 {
 	t_h				*h;

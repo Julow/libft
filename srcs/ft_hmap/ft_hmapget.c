@@ -6,17 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 19:56:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/11 01:42:55 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/22 22:58:56 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_hmap.h"
 #include "ft_internal.h"
 
-/*
-** Return the data at 'key'
-** Return NULL if not found
-*/
 void			*ft_hmapget(t_hmap *map, t_sub key)
 {
 	int				hash;
