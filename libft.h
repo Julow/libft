@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/08/14 02:03:36 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/22 23:47:08 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -415,11 +415,13 @@ void			ft_strupper(char *str);
 /*
 ** ========================================================================== **
 ** Clock
-** (use clock_gettime() from time.h)
 */
 
-# define FT_CPS			1000000000
+# define FT_CPS			1000000
 
+/*
+** Return the current time in micro second - start
+*/
 t_ulong			ft_clock(t_ulong start);
 
 /*
