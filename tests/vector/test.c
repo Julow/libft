@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/22 23:33:02 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/23 15:34:18 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/08/23 15:52:21 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int				main(void)
 	add_t += test_add(&v, 10000000);
 	add_t += test_add(&v, 1000);
 	minmax_t += test_min_max(&v);
+	ft_vclear(&v);
 	ft_printf("Total add time: %lld\n", add_t);
 	ft_printf("Total remove time: %lld\n", rem_t);
 	ft_printf("Total minmax time: %lld\n", minmax_t);
