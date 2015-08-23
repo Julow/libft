@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabadd.c                                        :+:      :+:    :+:   */
+/*   ft_tabchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/14 22:04:32 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/12 22:30:31 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/14 22:05:02 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/08/23 15:54:50 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_tab.h"
 
-inline void		ft_tabadd(t_tab *tab, const void *add)
+int				ft_tabchr(t_tab *tab, const void *chr)
 {
-	ft_tabaddn(tab, add, 1);
+	int				i;
+
+	i = -1;
+	while (++i < tab->length)
+		if (ft_memcmp(ft_tabget(tab, i), chr, tab->size) == 0)
+			return (i);
+	return (-1);
 }

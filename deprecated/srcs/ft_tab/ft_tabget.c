@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabpop.c                                        :+:      :+:    :+:   */
+/*   ft_tabget.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/28 23:48:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/01/12 22:48:46 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/14 22:04:24 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/08/23 15:54:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_tab.h"
 
-inline void		ft_tabpop(t_tab *tab)
+inline void		*ft_tabget(t_tab *tab, int index)
 {
-	if (tab->length > 0)
-	{
-		tab->length--;
-		tab->bytes -= tab->size;
-	}
+	return (tab->data + (index * tab->size));
 }

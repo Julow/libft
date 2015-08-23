@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabfree.c                                       :+:      :+:    :+:   */
+/*   ft_tabins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/14 22:05:07 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/14 22:05:07 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/14 22:04:47 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/08/23 15:54:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "ft_tab.h"
 
-void			ft_tabfree(t_tab *tab)
+void			ft_tabins(t_tab *tab, const void *ins, int index, int n)
 {
-	t_byte			*tmp;
-
-	if (tab->bytes >= tab->alloc_bytes)
-		return ;
-	tmp = MAL(t_byte, tab->bytes);
-	if (tmp == NULL)
-		return ;
-	tab->alloc_bytes = tab->bytes;
-	if (tab->data != NULL)
+	if (index >= tab->length)
 	{
-		ft_memcpy(tmp, tab->data, tab->bytes);
-		free(tab->data);
+		ft_tabset(tab, ins, index, n);
+		return ;
 	}
-	tab->data = tmp;
+	if (!ft_tabext(tab, n))
+		return ;
+	index *= tab->size;
+	tab->length += n;
+	n *= tab->size;
+	ft_memmove(tab->data + index + n, tab->data + index, tab->bytes - index);
+	ft_memmove(tab->data + index, ins, n);
+	tab->bytes += n;
 }

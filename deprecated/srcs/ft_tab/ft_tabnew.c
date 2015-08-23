@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabclr.c                                        :+:      :+:    :+:   */
+/*   ft_tabnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/14 22:05:15 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/14 22:05:15 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/14 22:03:15 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/08/23 15:54:48 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_tab.h"
+#include <stdlib.h>
 
-void			ft_tabclr(t_tab *tab)
+t_tab			*ft_tabnew(int size)
 {
-	tab->bytes = 0;
-	tab->length = 0;
+	t_tab			*tab;
+
+	tab = MAL1(t_tab);
+	if (tab == NULL)
+		return (NULL);
+	ft_tabini(tab, size);
+	return (tab);
 }

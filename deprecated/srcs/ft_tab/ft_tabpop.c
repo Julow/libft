@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabchr.c                                        :+:      :+:    :+:   */
+/*   ft_tabpop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/14 22:05:02 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/14 22:05:02 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/28 23:48:15 by juloo             #+#    #+#             */
+/*   Updated: 2015/08/23 15:54:47 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_tab.h"
 
-int				ft_tabchr(t_tab *tab, const void *chr)
+inline void		ft_tabpop(t_tab *tab)
 {
-	int				i;
-
-	i = -1;
-	while (++i < tab->length)
-		if (ft_memcmp(ft_tabget(tab, i), chr, tab->size) == 0)
-			return (i);
-	return (-1);
+	if (tab->length > 0)
+	{
+		tab->length--;
+		tab->bytes -= tab->size;
+	}
 }

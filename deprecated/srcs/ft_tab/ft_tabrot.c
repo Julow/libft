@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 19:46:41 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/16 22:38:54 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/08/23 15:54:47 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_tab.h"
 
 static void		tabrot(t_tab *tab, int rot)
 {

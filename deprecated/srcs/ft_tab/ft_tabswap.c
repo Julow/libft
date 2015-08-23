@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabadd0.c                                       :+:      :+:    :+:   */
+/*   ft_tabswap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/18 08:10:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/30 21:12:22 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/14 22:05:30 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/08/23 15:54:45 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_tab.h"
 
-void			*ft_tabadd0(t_tab *tab)
+void			ft_tabswap(t_tab *tab, int i1, int i2)
 {
-	void			*pos;
-
-	if (!ft_tabext(tab, 1))
-		return (NULL);
-	pos = tab->data + tab->bytes;
-	tab->length++;
-	tab->bytes += tab->size;
-	ft_bzero(pos, tab->size);
-	return (pos);
+	if (i1 >= tab->length || i2 >= tab->length)
+		if (!ft_tabext(tab, MAX(i1, i2) - tab->length + 1))
+			return ;
+	ft_memswap(TI(tab, i1), TI(tab, i2), tab->size);
 }

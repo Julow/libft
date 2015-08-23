@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/14 22:05:25 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/14 22:05:25 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/08/23 15:54:47 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_tab.h"
 
 void			ft_tabrev(t_tab *tab)
 {

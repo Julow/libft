@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabins.c                                        :+:      :+:    :+:   */
+/*   ft_tabadd0.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/14 22:04:47 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/14 22:04:47 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/18 08:10:39 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/08/23 15:54:51 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_tab.h"
 
-void			ft_tabins(t_tab *tab, const void *ins, int index, int n)
+void			*ft_tabadd0(t_tab *tab)
 {
-	if (index >= tab->length)
-	{
-		ft_tabset(tab, ins, index, n);
-		return ;
-	}
-	if (!ft_tabext(tab, n))
-		return ;
-	index *= tab->size;
-	tab->length += n;
-	n *= tab->size;
-	ft_memmove(tab->data + index + n, tab->data + index, tab->bytes - index);
-	ft_memmove(tab->data + index, ins, n);
-	tab->bytes += n;
+	void			*pos;
+
+	if (!ft_tabext(tab, 1))
+		return (NULL);
+	pos = tab->data + tab->bytes;
+	tab->length++;
+	tab->bytes += tab->size;
+	ft_bzero(pos, tab->size);
+	return (pos);
 }

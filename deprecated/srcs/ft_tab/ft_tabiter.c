@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/10 12:30:18 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/26 00:56:30 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/23 15:54:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_tab.h"
 
 t_bool			ft_tabiter(t_tab *tab, t_bool (*f)(), void *data)
 {

@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabget.c                                        :+:      :+:    :+:   */
+/*   ft_tabfree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/14 22:04:24 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/12 22:30:43 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/14 22:05:07 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/08/23 15:54:50 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_tab.h"
+#include <stdlib.h>
 
-inline void		*ft_tabget(t_tab *tab, int index)
+void			ft_tabfree(t_tab *tab)
 {
-	return (tab->data + (index * tab->size));
+	t_byte			*tmp;
+
+	if (tab->bytes >= tab->alloc_bytes)
+		return ;
+	tmp = MAL(t_byte, tab->bytes);
+	if (tmp == NULL)
+		return ;
+	tab->alloc_bytes = tab->bytes;
+	if (tab->data != NULL)
+	{
+		ft_memcpy(tmp, tab->data, tab->bytes);
+		free(tab->data);
+	}
+	tab->data = tmp;
 }

@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/14 22:05:38 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/16 22:47:05 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/08/23 15:54:50 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_tab.h"
 #include <stdlib.h>
 
 t_bool			ft_tabext(t_tab *tab, int need)

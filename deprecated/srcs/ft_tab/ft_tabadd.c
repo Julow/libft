@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabini.c                                        :+:      :+:    :+:   */
+/*   ft_tabadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/14 22:03:57 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/14 22:03:57 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/14 22:04:32 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/08/23 15:54:51 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "ft_tab.h"
 
-void			ft_tabini(t_tab *tab, int size)
+inline void		ft_tabadd(t_tab *tab, const void *add)
 {
-	tab->data = MAL(t_byte, size * 16);
-	tab->length = 0;
-	tab->bytes = 0;
-	tab->alloc_bytes = (tab->data == NULL) ? 0 : 16;
-	tab->size = size;
+	ft_tabaddn(tab, add, 1);
 }
