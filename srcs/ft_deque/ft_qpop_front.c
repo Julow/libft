@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vpop_back.c                                     :+:      :+:    :+:   */
+/*   ft_qpop_front.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/08/14 18:30:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/14 23:41:39 by juloo            ###   ########.fr       */
+/*   Created: 2015/08/14 19:59:06 by juloo             #+#    #+#             */
+/*   Updated: 2015/08/23 12:15:10 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_vector.h"
+#include "ft_deque.h"
 
-void			ft_vpop_back(t_vector *v, void *data)
+void			ft_qpop_front(t_deque *v, void *data)
 {
-	if (v->last == NULL)
+	if (v->first == NULL)
 		return ;
-	v->last->end -= v->element_size;
-	v->length--;
 	if (data != NULL)
-		ft_memcpy(data, VEC_C_DATA(v->last) + v->last->end, v->element_size);
-	if (v->last->start >= v->last->end)
-		vector_c_del(v, v->last);
+		ft_memcpy(data, QUE_C_DATA(v->first) + v->first->start,
+			v->element_size);
+	v->first->start += v->element_size;
+	v->length--;
+	if (v->first->start >= v->first->end)
+		deque_c_del(v, v->first);
 }

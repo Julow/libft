@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vclear.c                                        :+:      :+:    :+:   */
+/*   ft_qpush_back.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/08/14 18:21:59 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/14 18:24:31 by juloo            ###   ########.fr       */
+/*   Created: 2015/08/14 16:38:02 by juloo             #+#    #+#             */
+/*   Updated: 2015/08/23 12:15:09 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vector.h"
-#include <stdlib.h>
+#include "libft.h"
+#include "ft_deque.h"
 
-void			ft_vclear(t_vector *v)
+void			*ft_qpush_back(t_deque *v, void *data)
 {
-	t_vec_c			*next;
-	t_vec_c			*tmp;
+	void			*dst;
 
-	next = v->first;
-	while (next != NULL)
-	{
-		tmp = next;
-		next = next->next;
-		free(tmp);
-	}
-	v->length = 0;
-	v->first = NULL;
-	v->last = NULL;
+	if (v->last == NULL || (v->last->end + v->element_size) > QUE_C_SIZE)
+		deque_c_after(v, v->last);
+	dst = QUE_C_DATA(v->last) + v->last->end;
+	v->last->end += v->element_size;
+	v->length++;
+	if (data == NULL)
+		ft_bzero(dst, v->element_size);
+	else
+		ft_memcpy(dst, data, v->element_size);
+	return (dst);
 }

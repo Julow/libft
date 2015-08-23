@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 17:31:13 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/14 22:24:23 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/23 12:17:59 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vector.h"
+#include "ft_deque.h"
 #include "libft.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -21,26 +21,26 @@ typedef struct	s_mdr
 	char			c;
 }				t_mdr;
 
-static void		test_it(t_vector *v)
+static void		test_it(t_deque *v)
 {
-	t_vector_it		it;
+	t_deque_it		it;
 	t_mdr			*f;
 
-	it = VECTOR_IT(v);
-	if ((f = VECTOR_NEXT(it)))
+	it = DEQUE_IT(v);
+	if ((f = DEQUE_NEXT(it)))
 		printf("[ %f", f->n);
-	while ((f = VECTOR_NEXT(it)))
+	while ((f = DEQUE_NEXT(it)))
 	{
 		printf(", %f", f->n);
 	}
 	printf(" ]\n");
 }
 
-static void		test_chunks(t_vector *v)
+static void		test_chunks(t_deque *v)
 {
 	int				total_len;
 	int				len;
-	t_vec_c			*c;
+	t_que_c			*c;
 
 	total_len = 0;
 	c = v->first;
@@ -55,60 +55,60 @@ static void		test_chunks(t_vector *v)
 	printf("\n");
 }
 
-static void		test_push_back(t_vector *v, int count)
+static void		test_push_back(t_deque *v, int count)
 {
 	t_mdr			tmp;
 
 	while (--count >= 0)
 	{
 		tmp = (t_mdr){(float)ft_rand(0, 100), 'a'};
-		ft_vpush_back(v, &tmp);
+		ft_qpush_back(v, &tmp);
 		// test_chunks(v);
 		// test_it(v);
 	}
 }
 
-static void		test_push_front(t_vector *v, int count)
+static void		test_push_front(t_deque *v, int count)
 {
 	t_mdr			tmp;
 
 	while (--count >= 0)
 	{
 		tmp = (t_mdr){(float)ft_rand(0, 100), 'a'};
-		ft_vpush_front(v, &tmp);
+		ft_qpush_front(v, &tmp);
 		test_chunks(v);
 		// test_it(v);
 	}
 }
 
-static void		test_pop_back(t_vector *v, int count)
+static void		test_pop_back(t_deque *v, int count)
 {
 	t_mdr			tmp;
 
 	while (--count >= 0)
 	{
-		ft_vpop_back(v, &tmp);
+		ft_qpop_back(v, &tmp);
 		test_chunks(v);
 		// test_it(v);
 	}
 }
 
-static void		test_remove(t_vector *v, float max)
+static void		test_remove(t_deque *v, float max)
 {
-	t_vector_it		it;
+	t_deque_it		it;
 	t_mdr			*mdr;
 
-	it = VECTOR_IT(v);
-	while ((mdr = VECTOR_NEXT(it)))
+	it = DEQUE_IT(v);
+	while ((mdr = DEQUE_NEXT(it)))
 	{
 		if (mdr->n < max)
 		{
 			printf("remove %f\n", mdr->n);
-			ft_vremove(&it);
+			ft_qremove(&it);
 		}
 	}
-	it = VECTOR_IT(v);
-	while ((mdr = VECTOR_NEXT(it)))
+	it = DEQUE_IT(v);
+	while ((mdr = DEQUE_NEXT(it)))
 	{
 		if (mdr->n < max)
 		{
@@ -117,13 +117,13 @@ static void		test_remove(t_vector *v, float max)
 	}
 }
 
-static void		test_pop_front(t_vector *v, int count)
+static void		test_pop_front(t_deque *v, int count)
 {
 	t_mdr			tmp;
 
 	while (--count >= 0)
 	{
-		ft_vpop_front(v, &tmp);
+		ft_qpop_front(v, &tmp);
 		test_chunks(v);
 		// test_it(v);
 	}
@@ -131,10 +131,10 @@ static void		test_pop_front(t_vector *v, int count)
 
 int				main(void)
 {
-	t_vector		v;
+	t_deque		v;
 
 	srand(ft_clock(0));
-	v = VECTOR(t_mdr);
+	v = DEQUE(t_mdr);
 	printf("sizeof(t_mdr): %d; size: %d\n", (int)sizeof(t_mdr), v.element_size);
 	test_push_back(&v, 150);
 	test_chunks(&v);
@@ -147,6 +147,6 @@ int				main(void)
 	test_it(&v);
 	test_pop_front(&v, v.length);
 	test_it(&v);
-	ft_vclear(&v);
+	ft_qclear(&v);
 	return (0);
 }

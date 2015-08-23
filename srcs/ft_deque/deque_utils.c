@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_utils.c                                     :+:      :+:    :+:   */
+/*   deque_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 17:03:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/14 20:45:37 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/23 12:15:14 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_vector.h"
+#include "ft_deque.h"
 #include <stdlib.h>
 
-void			*vector_it_c(t_vector_it *it)
+void			*deque_it_c(t_deque_it *it)
 {
 	while (it->data >= it->end)
 	{
 		if (it->next == NULL)
 			return (NULL);
-		it->data = VEC_C_DATA(it->next) + it->next->start;
-		it->end = VEC_C_DATA(it->next) + it->next->end;
+		it->data = QUE_C_DATA(it->next) + it->next->start;
+		it->end = QUE_C_DATA(it->next) + it->next->end;
 		it->next = it->next->next;
 	}
 	return (it->data);
 }
 
-void			vector_c_del(t_vector *v, t_vec_c *c)
+void			deque_c_del(t_deque *v, t_que_c *c)
 {
 	if (c == v->first)
 		v->first = c->next;
@@ -40,11 +40,11 @@ void			vector_c_del(t_vector *v, t_vec_c *c)
 	free(c);
 }
 
-void			vector_c_after(t_vector *v, t_vec_c *c)
+void			deque_c_after(t_deque *v, t_que_c *c)
 {
-	t_vec_c			*after;
+	t_que_c			*after;
 
-	after = (t_vec_c*)ft_emalloc(sizeof(t_vec_c) + VEC_C_SIZE);
+	after = (t_que_c*)ft_emalloc(sizeof(t_que_c) + QUE_C_SIZE);
 	after->start = 0;
 	after->end = 0;
 	after->prev = c;
@@ -65,13 +65,13 @@ void			vector_c_after(t_vector *v, t_vec_c *c)
 	}
 }
 
-void			vector_c_before(t_vector *v, t_vec_c *c)
+void			deque_c_before(t_deque *v, t_que_c *c)
 {
-	t_vec_c			*before;
+	t_que_c			*before;
 
-	before = (t_vec_c*)ft_emalloc(sizeof(t_vec_c) + VEC_C_SIZE);
-	before->start = VEC_C_SIZE;
-	before->end = VEC_C_SIZE;
+	before = (t_que_c*)ft_emalloc(sizeof(t_que_c) + QUE_C_SIZE);
+	before->start = QUE_C_SIZE;
+	before->end = QUE_C_SIZE;
 	before->next = c;
 	if (c == NULL)
 	{
