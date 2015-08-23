@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:22:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/08/23 14:01:49 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/08/23 14:58:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ typedef struct	s_vector
 # define VECTOR_MIN_CAP		16
 
 # define VECTOR(t)			((t_vector){NULL, 0, 0, sizeof(t)})
+
+# define VECTOR_IT(v)		((v)->data - (v)->element_size)
+# define VECTOR_END(v)		((v)->data + ((v)->length * (v)->element_size))
 
 /*
 ** Push 'count' elements to the back of the vector
