@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:22:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/08/23 15:39:43 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/08/24 12:01:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,10 @@ typedef struct	s_vector
 
 /*
 ** Get an element by index
-** t		type
 ** v		vector
-** i		index
+** i		index (used once)
 */
-# define VECTOR_GET(t,v,i)	(((t*)(v)->data) + i)
+# define VECTOR_GET(v,i)	(((v)->data) + (i * (v)->element_size))
 
 /*
 ** Push 'count' elements to the back of the vector

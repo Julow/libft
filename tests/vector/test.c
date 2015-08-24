@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/22 23:33:02 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/23 15:52:21 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/08/24 12:09:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@ static t_ulong	test_min_max(t_vector const *v)
 	int				max;
 
 	t = ft_clock(0);
-	min = VECTOR_GET(t_lol, v, 0)->a;
+	min = ((t_lol*)VECTOR_GET(v, 0))->a;
 	i = -1;
 	while (++i < v->length)
-		if (VECTOR_GET(t_lol, v, i)->a < min)
-			min = VECTOR_GET(t_lol, v, i)->a;
-	max = VECTOR_GET(t_lol, v, 0)->a;
+		if (((t_lol*)VECTOR_GET(v, i))->a < min)
+			min = ((t_lol*)VECTOR_GET(v, i))->a;
+	max = ((t_lol*)VECTOR_GET(v, 0))->a;
 	i = -1;
 	while (++i < v->length)
-		if (VECTOR_GET(t_lol, v, i)->a > max)
-			max = VECTOR_GET(t_lol, v, i)->a;
+		if (((t_lol*)VECTOR_GET(v, i))->a > max)
+			max = ((t_lol*)VECTOR_GET(v, i))->a;
 	t = ft_clock(t);
 	ft_printf("min: %d; max: %d; time: %lld\n", min, max, t);
 	return (t);
@@ -67,7 +67,7 @@ static t_ulong	test_remove_bigger(t_vector *v, int than)
 	i = v->length;
 	t = ft_clock(0);
 	while (--i >= 0)
-		if (VECTOR_GET(t_lol, v, i)->a > than)
+		if (((t_lol*)VECTOR_GET(v, i))->a > than)
 		{
 			ft_vremove(v, i, 1);
 			removed++;
