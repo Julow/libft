@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 13:05:11 by jaguillo          #+#    #+#              #
-#    Updated: 2015/04/24 01:20:36 by juloo            ###   ########.fr        #
+#    Updated: 2015/09/04 17:22:08 by juloo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,9 @@ H_DIR = .
 C_DIR = srcs
 O_DIR = o
 
+EXTRAS = ft_term
+EXTRA_DIR = extra
+
 # Debug mode
 ifeq ($(DEBUG_MODE),)
 	export DEBUG_MODE = 0
@@ -31,7 +34,7 @@ endif
 # GCC flags
 C_DEBUG_FLAGS = -Wall -Wextra -g -D DEBUG_MODE
 
-LINKS = -I$(H_DIR) $(FT_CONFIG)
+LINKS = -I$(H_DIR) -I$(EXTRA_DIR) $(FT_CONFIG)
 
 ifeq ($(C_FLAGS),)
 ifeq ($(DEBUG_MODE),1)
@@ -65,13 +68,13 @@ else
 endif
 
 # Search source files
-C_FILES = $(shell find $(C_DIR) -type f -print)
-C_DIRS = $(shell find $(C_DIR) -depth -type d -print)
+C_FILES := $(shell find $(C_DIR) -type f -print) $(EXTRA_FILES)
+C_DIRS := $(shell find $(C_DIR) $(EXTRA_DIR) -depth -type d -print)
 
 # Build .o list
-O_DIRS = $(C_DIRS:$(C_DIR)/%=$(O_DIR)/%)
-O_DIR_TMP = $(C_FILES:$(C_DIR)/%.c=$(O_DIR)/%.o)
-O_FILES = $(O_DIR_TMP:$(C_DIR)/%.s=$(O_DIR)/%.o)
+O_DIRS = $(addprefix $(O_DIR)/,$(C_DIRS))
+O_DIR_TMP = $(C_FILES:%.c=$(O_DIR)/%.o)
+O_FILES = $(O_DIR_TMP:%.s=$(O_DIR)/%.o)
 
 # Create O_DIR and childs
 $(shell mkdir -p $(O_DIRS) $(O_DIR) 2> /dev/null || echo "" > /dev/null)
@@ -96,7 +99,7 @@ $(NAME): $(O_FILES)
 ifeq ($(ASM_ENABLE),1)
 ifneq ($(shell nasm -v 2> /dev/null),)
 ifneq ($(shell nasm -hf | grep "$(ASM_FORMAT)"),)
-$(O_DIR)/%.o: $(C_DIR)/%.s
+$(O_DIR)/%.o: %.s
 	@nasm $(ASM_SPECIAL) $(ASM_FLAGS) -o $@ $< \
 		&& printf $(MSG_0) "$<" || (printf $(MSG_1) "$<" && exit 1)
 endif
@@ -104,7 +107,7 @@ endif
 endif
 
 # Compile .c sources
-$(O_DIR)/%.o: $(C_DIR)/%.c
+$(O_DIR)/%.o: %.c
 	@clang $(C_FLAGS) $(LINKS) -o $@ -c $< \
 		&& printf $(MSG_0) "$<" || (printf $(MSG_1) "$<" && exit 1)
 
@@ -135,6 +138,10 @@ update: fclean
 	@cd .. ; git subtree pull --prefix=libft --squash \
 		git@github.com:Julow/libft.git master -m "Update libft"
 
+# Extra
+$(addprefix extra/,$(EXTRAS)):
+	@EXTRA_FILES=`find $@ -type f | tr '\n' ' '` make
+
 # Disable ASM
 _noasm:
 	$(eval ASM_ENABLE = 0)
@@ -145,4 +152,4 @@ _debug:
 	$(eval ASM_FLAGS = $(ASM_DEBUG_FLAGS))
 	$(eval DEBUG_MODE = 1)
 
-.PHONY: all debug clean fclean re rebug update _noasm _debug
+.PHONY: all debug clean fclean re rebug update _noasm _debug $(addprefix extra/,$(EXTRAS))

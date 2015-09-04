@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/31 13:51:27 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/04 01:53:11 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/04 16:39:39 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ int				parse_format(t_printf *pf, const char *format)
 	if (format[len] == '\0')
 		return (0);
 	if (format[len] == '{')
-		return (parse_meta(pf, &opt, format + (++len)) + len);
+		return (parse_meta(pf, &opt, format + len + 1) + len + 1);
 	i = -1;
 	while (g_formats[++i].name != '\0')
 		if (g_formats[i].name == format[len])
