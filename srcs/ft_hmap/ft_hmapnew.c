@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/22 23:07:51 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/22 23:13:29 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/04 22:16:21 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_hmap.h"
 #include "ft_internal.h"
 
-t_hmap			*ft_hmapnew(int size, int (*h)(t_sub))
+t_hmap			*ft_hmapnew(int size, t_uint (*h)(t_sub))
 {
 	t_hmap			*map;
 

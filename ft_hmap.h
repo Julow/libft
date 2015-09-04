@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/11 01:35:55 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/04 21:52:05 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/04 22:16:33 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ typedef struct	s_hmap
 {
 	int				size;
 	int const		alloc_size;
-	struct s_h		**data;
-	int				(*const hash)(t_sub key);
+	struct s_h		**const data;
+	t_uint			(*const hash)(t_sub key);
 }				t_hmap;
 
 /*
 ** Alloc a new hmap
 */
-t_hmap			*ft_hmapnew(int size, int (*h)(t_sub));
+t_hmap			*ft_hmapnew(int size, t_uint (*h)(t_sub));
 
 /*
 ** Retrieve an element
