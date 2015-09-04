@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/04 21:44:38 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/04 22:09:44 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,8 @@ typedef enum	e_bool
 
 # define STR(s)			#s
 # define STR_VALUE(s)	STR(s)
+
+# define G_ARRAY_LEN(g)	((int)(sizeof(g) / sizeof(*(g))))
 
 /*
 ** ========================================================================== **
@@ -362,6 +364,8 @@ typedef struct	s_sub
 t_sub			ft_sub(char const *str, int from, int to);
 t_sub			ft_subsub(t_sub sub, int from, int to);
 
+t_bool			ft_subequ(t_sub a, t_sub b);
+
 int				ft_subtrim(t_sub *sub, t_is mask);
 int				ft_subtrimr(t_sub *sub, t_is mask);
 int				ft_subtriml(t_sub *sub, t_is mask);
@@ -373,6 +377,25 @@ int				ft_subextract(t_sub sub, t_sub *dst, int max, t_is mask);
 
 int				ft_subindex(t_sub sub, char c);
 int				ft_subchr(t_sub sub, t_is mask);
+
+int				ft_subint(t_sub sub, int *dst);
+
+/*
+** ft_subfloat
+** -
+** Parse a float number
+** Stop at the first invalid char
+** Store result in the *f param
+** -
+** Return the length of the float (in the string)
+**  on error return 0 (0 char parsed)
+** -
+** Allow hexa (0x) and binary (0b) number
+** -
+** Valid float:
+**  -?[0-9]*([.,][0-9]*)?
+*/
+int				ft_subfloat(t_sub sub, float *f);
 
 /*
 ** ========================================================================== **
@@ -417,12 +440,18 @@ void			ft_strupper(char *str);
 ** Clock
 */
 
-# define FT_CPS			1000000
+# define MICRO_SEC		1000000
+# define NANO_SEC		1000000000
 
 /*
-** Return the current time in micro second - start
+** Return the current time in micro second since start
 */
 t_ulong			ft_clock(t_ulong start);
+
+/*
+** Return the current time in nano second since start
+*/
+t_ulong			ft_nanoclock(t_ulong start);
 
 /*
 ** ========================================================================== **

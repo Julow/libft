@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:01:35 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/17 19:43:24 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/04 22:09:33 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,5 @@ t_bool			eval_value(t_sub sub, int *i_ptr, float *value);
 **   ceil floor round abs
 */
 t_bool			ft_evalexpr(t_sub expr, float *result);
-
-/*
-** ft_subfloat
-** -
-** Parse a float number
-** Stop at the first invalid char
-** Store result in the *f param
-** -
-** Return the length of the float (in the string)
-**  on error return 0 (0 char parsed)
-** -
-** Allow hexa (0x) and binary (0b) number
-** -
-** Valid float:
-**  -?[0-9]*([.,][0-9]*)?
-*/
-int				ft_subfloat(t_sub sub, float *f);
 
 #endif

@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clock.c                                         :+:      :+:    :+:   */
+/*   ft_subint.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/04/27 19:23:34 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/04 22:08:13 by juloo            ###   ########.fr       */
+/*   Created: 2015/09/04 21:56:49 by juloo             #+#    #+#             */
+/*   Updated: 2015/09/04 21:57:00 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <sys/time.h>
 
-t_ulong			ft_clock(t_ulong start)
+int				ft_subint(t_sub sub, int *dst)
 {
-	struct timeval	tval;
+	int			tmp;
+	int			i;
 
-	gettimeofday(&tval, NULL);
-	return (tval.tv_sec * MICRO_SEC + tval.tv_usec - start);
+	tmp = 0;
+	i = -1;
+	while (++i < sub.length && IS(sub.str[i], IS_DIGIT))
+		tmp = tmp * 10 + sub.str[i] - '0';
+	*dst = tmp;
+	return (i);
 }
