@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/08/22 23:26:05 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/04 21:53:27 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ const char		*reg_test(const char *str, const char *pattern);
 
 typedef struct	s_h
 {
-	int				hash;
+	t_uint			hash;
 	int				key_len;
 	void			*data;
 	struct s_h		*next;
