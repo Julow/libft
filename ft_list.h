@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 01:00:32 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/16 16:07:34 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/04 21:43:04 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ typedef struct	s_list
 
 /*
 ** Create a new node and add it after 'after'
+** Each nodes are alloc'd (lst->node_size + extra_size)
 ** if 'after' is NULL add to the front
 ** the node is bzero
 ** Should not be used with 'after' not NULL while itering using LIST_PREV
 ** Return the new node (it's also the iterator if 'after' is not NULL)
 */
-void			*ft_listadd(t_list *lst, void *after);
+void			*ft_listadd(t_list *lst, void *after, int extra_size);
 
 /*
 ** Remove a node

@@ -6,18 +6,18 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 01:04:59 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/16 16:11:56 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/04 21:43:57 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-void			*ft_listadd(t_list *lst, void *after)
+void			*ft_listadd(t_list *lst, void *after, int extra_size)
 {
 	void			*node;
 
-	node = ft_emalloc(S(void*, 2) + lst->node_size) + S(void*, 2);
-	ft_bzero(node, lst->node_size);
+	node = ft_emalloc(S(void*, 2) + lst->node_size + extra_size) + S(void*, 2);
+	ft_bzero(node, lst->node_size + extra_size);
 	lst->length++;
 	if (after == lst->last)
 		lst->last = node;

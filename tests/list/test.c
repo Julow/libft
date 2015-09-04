@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 01:46:45 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/16 16:12:50 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/04 21:46:57 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void		test_add_front(t_list *list, int count)
 
 	while (--count >= 0)
 	{
-		tmp = ft_listadd(list, NULL);
+		tmp = ft_listadd(list, NULL, 0);
 		tmp->a = rand() % 100;
 		print_list(list);
 	}
@@ -52,7 +52,7 @@ static void		test_add_after(t_list *list, int min)
 	{
 		if (tmp->a <= min)
 		{
-			tmp = ft_listadd(list, tmp);
+			tmp = ft_listadd(list, tmp, 0);
 			tmp->a = 0;
 			print_list(list);
 		}
