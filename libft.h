@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/08/23 15:53:59 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/04 21:44:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -355,11 +355,11 @@ char			*ft_strmapi(const char *s, char (*f)(int, char));
 
 typedef struct	s_sub
 {
-	char			*str;
+	char const		*str;
 	int				length;
 }				t_sub;
 
-t_sub			ft_sub(char *str, int from, int to);
+t_sub			ft_sub(char const *str, int from, int to);
 t_sub			ft_subsub(t_sub sub, int from, int to);
 
 int				ft_subtrim(t_sub *sub, t_is mask);
