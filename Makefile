@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 13:05:11 by jaguillo          #+#    #+#              #
-#    Updated: 2015/09/04 17:32:04 by juloo            ###   ########.fr        #
+#    Updated: 2015/09/06 00:14:30 by juloo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ O_DIR := o
 
 EXTRAS := ft_term
 EXTRA_DIR := extra
+
+SHELL := /bin/bash
 
 # Debug mode
 ifeq ($(DEBUG_MODE),)
@@ -67,6 +69,8 @@ else
 	ASM_SPECIAL := -f $(ASM_FORMAT) -D LINUX
 endif
 
+JOBS ?= 4
+
 # Search source files
 C_FILES := $(shell find $(C_DIR) -type f -print) $(EXTRA_FILES)
 C_DIRS := $(shell find $(C_DIR) $(EXTRA_DIR) -depth -type d -print)
@@ -80,34 +84,35 @@ O_FILES := $(O_FILES_TMP:%.s=$(O_DIR)/%.o)
 $(shell mkdir -p $(O_DIRS) $(O_DIR) 2> /dev/null || true)
 
 # Print
-MSG_0 := "%40c\r\033[0;32m%s\033[0;0m\r" " "
-MSG_1 := "\033[0;31m%s\033[0;0m\n"
-MSG_2 := "\r%40c\r%s\033[0;0m\n" " "
+COUNT = 0
+TOTAL := $(words $(filter %.c,$(C_FILES)))
+
+PRINT_BAR = printf "\r%100c\r\033[42;39m%-56s\033[0;32m %s\033[0m" " " "`printf "%$$(((($(COUNT)) * 51 - 1) / $(TOTAL)))s\033[100m"`"
+PRINT_OK = $(eval COUNT += +1) $(PRINT_BAR) "$(subst $(C_DIR)/,,$<)"
+PRINT_LINK = $(PRINT_BAR) "$@" && echo
+PRINT_ERROR = (printf "%60c\r \033[0;31m%s\033[0m\n" " " "$<" && exit 1)
 
 # Call $(NAME) in async mode
 all:
-	@make -j4 $(NAME)
+	@make -j$(JOBS) $(NAME)
 
 # Compile all sources and build the .a archive
 $(NAME): $(O_FILES)
-	@ar rcs $@ $^ && printf "\033[0;32m" || printf "\033[0;31m"
-	@printf $(MSG_2) "$@"
+	@ar rcs $@ $^ && $(PRINT_LINK)
 
 # Compile .s sources (only if nasm is installed and support ASM_FORMAT)
 ifeq ($(ASM_ENABLE),1)
 ifneq ($(shell nasm -v 2> /dev/null),)
 ifneq ($(shell nasm -hf | grep "$(ASM_FORMAT)"),)
 $(O_DIR)/%.o: %.s
-	@nasm $(ASM_SPECIAL) $(ASM_FLAGS) -o $@ $< \
-		&& printf $(MSG_0) "$<" || (printf $(MSG_1) "$<" && exit 1)
+	@nasm $(ASM_SPECIAL) $(ASM_FLAGS) -o $@ $< && $(PRINT_OK) || $(PRINT_ERROR)
 endif
 endif
 endif
 
 # Compile .c sources
 $(O_DIR)/%.o: %.c
-	@clang $(C_FLAGS) $(LINKS) -o $@ -c $< \
-		&& printf $(MSG_0) "$<" || (printf $(MSG_1) "$<" && exit 1)
+	@clang $(C_FLAGS) $(LINKS) -o $@ -c $< && $(PRINT_OK) || $(PRINT_ERROR)
 
 # Enable debug mode, change flags and build
 debug: _debug all
@@ -141,4 +146,5 @@ _debug:
 	$(eval ASM_FLAGS := $(ASM_DEBUG_FLAGS))
 	$(eval DEBUG_MODE := 1)
 
-.PHONY: all debug clean fclean re rebug update _noasm _debug $(addprefix extra/,$(EXTRAS))
+.PHONY: all debug clean fclean re rebug _noasm _debug $(addprefix extra/,$(EXTRAS))
+.SILENT:
