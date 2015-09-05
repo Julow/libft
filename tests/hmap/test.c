@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/22 23:33:02 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/23 00:59:45 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/05 15:15:42 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,20 +201,79 @@ t_sub const		g_test_keys[] = {
 	SUBC("ask"), SUBC("concentrate"), SUBC("thin"), SUBC("psychotic"), SUBC("wiry"), SUBC("measly"), SUBC("thirsty"), SUBC("dry"), SUBC("truculent"), SUBC("like"), SUBC("scary"), SUBC("monkey"), SUBC("spiteful"), SUBC("summer"), SUBC("obsolete"), SUBC("pretend"), SUBC("room"), SUBC("run"), SUBC("lyrical"), SUBC("position"), SUBC("grieving"), SUBC("husky"), SUBC("harmony"), SUBC("sheet"), SUBC("rain"), SUBC("jolly"), SUBC("offer"), SUBC("snow"), SUBC("excuse"), SUBC("lacking"),
 	SUBC("gabby"), SUBC("successful"), SUBC("healthy"), SUBC("regret"), SUBC("tremble"), SUBC("lace"), SUBC("stupid"), SUBC("flaky"), SUBC("wanting"), SUBC("experience"), SUBC("loose"), SUBC("wry"), SUBC("colorful"), SUBC("hideous"), SUBC("liquid"), SUBC("absurd"), SUBC("zoom"), SUBC("two"), SUBC("steam"), SUBC("warlike"), SUBC("grab"), SUBC("heat"), SUBC("basketball"), SUBC("swanky"), SUBC("birds"), SUBC("five"), SUBC("breath"), SUBC("calculating"), SUBC("approve"), SUBC("dangerous"),
 	SUBC("club"), SUBC("giants"), SUBC("uncle"), SUBC("downtown"), SUBC("extend"), SUBC("dusty"), SUBC("jobless"), SUBC("impress"), SUBC("press"), SUBC("grandiose"), SUBC("jam"), SUBC("useless"), SUBC("female"), SUBC("board"), SUBC("doubt"), SUBC("report"), SUBC("sound"), SUBC("mourn"), SUBC("flagrant"), SUBC("sigh"), SUBC("boot"), SUBC("suspend"), SUBC("entertaining"), SUBC("precious"), SUBC("efficacious"), SUBC("tame"), SUBC("old-fashioned"), SUBC("spicy"), SUBC("quicksand"), SUBC("vulgar"),
-	SUBC("house"), SUBC("jaded"), SUBC("fine"), SUBC("roasted"), SUBC("selection"), SUBC("near"), SUBC("curious"), SUBC("caring"), SUBC("detect"), SUBC("zoo")
+	SUBC("house"), SUBC("jaded"), SUBC("fine"), SUBC("roasted"), SUBC("selection"), SUBC("near"), SUBC("curious"), SUBC("caring"), SUBC("detect"), SUBC("zoo"),
+	SUBC("100"), SUBC("101"), SUBC("102"), SUBC("103"), SUBC("104"), SUBC("105"), SUBC("106"), SUBC("107"), SUBC("108"), SUBC("109"), SUBC("110"), SUBC("111"), SUBC("112"), SUBC("113"), SUBC("114"), SUBC("115"), SUBC("116"), SUBC("117"), SUBC("118"), SUBC("119"), SUBC("120"), SUBC("121"), SUBC("122"), SUBC("123"), SUBC("124"), SUBC("125"), SUBC("126"), SUBC("127"), SUBC("128"), SUBC("129"), SUBC("130"),
+	SUBC("131"), SUBC("132"), SUBC("133"), SUBC("134"), SUBC("135"), SUBC("136"), SUBC("137"), SUBC("138"), SUBC("139"), SUBC("140"), SUBC("141"), SUBC("142"), SUBC("143"), SUBC("144"), SUBC("145"), SUBC("146"), SUBC("147"), SUBC("148"), SUBC("149"), SUBC("150"), SUBC("151"), SUBC("152"), SUBC("153"), SUBC("154"), SUBC("155"), SUBC("156"), SUBC("157"), SUBC("158"), SUBC("159"), SUBC("160"), SUBC("161"),
+	SUBC("162"), SUBC("163"), SUBC("164"), SUBC("165"), SUBC("166"), SUBC("167"), SUBC("168"), SUBC("169"), SUBC("170"), SUBC("171"), SUBC("172"), SUBC("173"), SUBC("174"), SUBC("175"), SUBC("176"), SUBC("177"), SUBC("178"), SUBC("179"), SUBC("180"), SUBC("181"), SUBC("182"), SUBC("183"), SUBC("184"), SUBC("185"), SUBC("186"), SUBC("187"), SUBC("188"), SUBC("189"), SUBC("190"), SUBC("191"), SUBC("192"),
+	SUBC("193"), SUBC("194"), SUBC("195"), SUBC("196"), SUBC("197"), SUBC("198"), SUBC("199"), SUBC("200"), SUBC("201"), SUBC("202"), SUBC("203"), SUBC("204"), SUBC("205"), SUBC("206"), SUBC("207"), SUBC("208"), SUBC("209"), SUBC("210"), SUBC("211"), SUBC("212"), SUBC("213"), SUBC("214"), SUBC("215"), SUBC("216"), SUBC("217"), SUBC("218"), SUBC("219"), SUBC("220"), SUBC("221"), SUBC("222"), SUBC("223"),
+	SUBC("224"), SUBC("225"), SUBC("226"), SUBC("227"), SUBC("228"), SUBC("229"), SUBC("230"), SUBC("231"), SUBC("232"), SUBC("233"), SUBC("234"), SUBC("235"), SUBC("236"), SUBC("237"), SUBC("238"), SUBC("239"), SUBC("240"), SUBC("241"), SUBC("242"), SUBC("243"), SUBC("244"), SUBC("245"), SUBC("246"), SUBC("247"), SUBC("248"), SUBC("249"), SUBC("250"), SUBC("251"), SUBC("252"), SUBC("253"), SUBC("254"),
+	SUBC("255"), SUBC("256"), SUBC("257"), SUBC("258"), SUBC("259"), SUBC("260"), SUBC("261"), SUBC("262"), SUBC("263"), SUBC("264"), SUBC("265"), SUBC("266"), SUBC("267"), SUBC("268"), SUBC("269"), SUBC("270"), SUBC("271"), SUBC("272"), SUBC("273"), SUBC("274"), SUBC("275"), SUBC("276"), SUBC("277"), SUBC("278"), SUBC("279"), SUBC("280"), SUBC("281"), SUBC("282"), SUBC("283"), SUBC("284"), SUBC("285"),
+	SUBC("286"), SUBC("287"), SUBC("288"), SUBC("289"), SUBC("290"), SUBC("291"), SUBC("292"), SUBC("293"), SUBC("294"), SUBC("295"), SUBC("296"), SUBC("297"), SUBC("298"), SUBC("299"), SUBC("300"), SUBC("301"), SUBC("302"), SUBC("303"), SUBC("304"), SUBC("305"), SUBC("306"), SUBC("307"), SUBC("308"), SUBC("309"), SUBC("310"), SUBC("311"), SUBC("312"), SUBC("313"), SUBC("314"), SUBC("315"), SUBC("316"),
+	SUBC("317"), SUBC("318"), SUBC("319"), SUBC("320"), SUBC("321"), SUBC("322"), SUBC("323"), SUBC("324"), SUBC("325"), SUBC("326"), SUBC("327"), SUBC("328"), SUBC("329"), SUBC("330"), SUBC("331"), SUBC("332"), SUBC("333"), SUBC("334"), SUBC("335"), SUBC("336"), SUBC("337"), SUBC("338"), SUBC("339"), SUBC("340"), SUBC("341"), SUBC("342"), SUBC("343"), SUBC("344"), SUBC("345"), SUBC("346"), SUBC("347"),
+	SUBC("348"), SUBC("349"), SUBC("350"), SUBC("351"), SUBC("352"), SUBC("353"), SUBC("354"), SUBC("355"), SUBC("356"), SUBC("357"), SUBC("358"), SUBC("359"), SUBC("360"), SUBC("361"), SUBC("362"), SUBC("363"), SUBC("364"), SUBC("365"), SUBC("366"), SUBC("367"), SUBC("368"), SUBC("369"), SUBC("370"), SUBC("371"), SUBC("372"), SUBC("373"), SUBC("374"), SUBC("375"), SUBC("376"), SUBC("377"), SUBC("378"),
+	SUBC("379"), SUBC("380"), SUBC("381"), SUBC("382"), SUBC("383"), SUBC("384"), SUBC("385"), SUBC("386"), SUBC("387"), SUBC("388"), SUBC("389"), SUBC("390"), SUBC("391"), SUBC("392"), SUBC("393"), SUBC("394"), SUBC("395"), SUBC("396"), SUBC("397"), SUBC("398"), SUBC("399"), SUBC("400"), SUBC("401"), SUBC("402"), SUBC("403"), SUBC("404"), SUBC("405"), SUBC("406"), SUBC("407"), SUBC("408"), SUBC("409"),
+	SUBC("410"), SUBC("411"), SUBC("412"), SUBC("413"), SUBC("414"), SUBC("415"), SUBC("416"), SUBC("417"), SUBC("418"), SUBC("419"), SUBC("420"), SUBC("421"), SUBC("422"), SUBC("423"), SUBC("424"), SUBC("425"), SUBC("426"), SUBC("427"), SUBC("428"), SUBC("429"), SUBC("430"), SUBC("431"), SUBC("432"), SUBC("433"), SUBC("434"), SUBC("435"), SUBC("436"), SUBC("437"), SUBC("438"), SUBC("439"), SUBC("440"),
+	SUBC("441"), SUBC("442"), SUBC("443"), SUBC("444"), SUBC("445"), SUBC("446"), SUBC("447"), SUBC("448"), SUBC("449"), SUBC("450"), SUBC("451"), SUBC("452"), SUBC("453"), SUBC("454"), SUBC("455"), SUBC("456"), SUBC("457"), SUBC("458"), SUBC("459"), SUBC("460"), SUBC("461"), SUBC("462"), SUBC("463"), SUBC("464"), SUBC("465"), SUBC("466"), SUBC("467"), SUBC("468"), SUBC("469"), SUBC("470"), SUBC("471"),
+	SUBC("472"), SUBC("473"), SUBC("474"), SUBC("475"), SUBC("476"), SUBC("477"), SUBC("478"), SUBC("479"), SUBC("480"), SUBC("481"), SUBC("482"), SUBC("483"), SUBC("484"), SUBC("485"), SUBC("486"), SUBC("487"), SUBC("488"), SUBC("489"), SUBC("490"), SUBC("491"), SUBC("492"), SUBC("493"), SUBC("494"), SUBC("495"), SUBC("496"), SUBC("497"), SUBC("498"), SUBC("499"), SUBC("500"), SUBC("501"), SUBC("502"),
+	SUBC("503"), SUBC("504"), SUBC("505"), SUBC("506"), SUBC("507"), SUBC("508"), SUBC("509"), SUBC("510"), SUBC("511"), SUBC("512"), SUBC("513"), SUBC("514"), SUBC("515"), SUBC("516"), SUBC("517"), SUBC("518"), SUBC("519"), SUBC("520"), SUBC("521"), SUBC("522"), SUBC("523"), SUBC("524"), SUBC("525"), SUBC("526"), SUBC("527"), SUBC("528"), SUBC("529"), SUBC("530"), SUBC("531"), SUBC("532"), SUBC("533"),
+	SUBC("534"), SUBC("535"), SUBC("536"), SUBC("537"), SUBC("538"), SUBC("539"), SUBC("540"), SUBC("541"), SUBC("542"), SUBC("543"), SUBC("544"), SUBC("545"), SUBC("546"), SUBC("547"), SUBC("548"), SUBC("549"), SUBC("550"), SUBC("551"), SUBC("552"), SUBC("553"), SUBC("554"), SUBC("555"), SUBC("556"), SUBC("557"), SUBC("558"), SUBC("559"), SUBC("560"), SUBC("561"), SUBC("562"), SUBC("563"), SUBC("564"),
+	SUBC("565"), SUBC("566"), SUBC("567"), SUBC("568"), SUBC("569"), SUBC("570"), SUBC("571"), SUBC("572"), SUBC("573"), SUBC("574"), SUBC("575"), SUBC("576"), SUBC("577"), SUBC("578"), SUBC("579"), SUBC("580"), SUBC("581"), SUBC("582"), SUBC("583"), SUBC("584"), SUBC("585"), SUBC("586"), SUBC("587"), SUBC("588"), SUBC("589"), SUBC("590"), SUBC("591"), SUBC("592"), SUBC("593"), SUBC("594"), SUBC("595"),
+	SUBC("596"), SUBC("597"), SUBC("598"), SUBC("599"), SUBC("600"), SUBC("601"), SUBC("602"), SUBC("603"), SUBC("604"), SUBC("605"), SUBC("606"), SUBC("607"), SUBC("608"), SUBC("609"), SUBC("610"), SUBC("611"), SUBC("612"), SUBC("613"), SUBC("614"), SUBC("615"), SUBC("616"), SUBC("617"), SUBC("618"), SUBC("619"), SUBC("620"), SUBC("621"), SUBC("622"), SUBC("623"), SUBC("624"), SUBC("625"), SUBC("626"),
+	SUBC("627"), SUBC("628"), SUBC("629"), SUBC("630"), SUBC("631"), SUBC("632"), SUBC("633"), SUBC("634"), SUBC("635"), SUBC("636"), SUBC("637"), SUBC("638"), SUBC("639"), SUBC("640"), SUBC("641"), SUBC("642"), SUBC("643"), SUBC("644"), SUBC("645"), SUBC("646"), SUBC("647"), SUBC("648"), SUBC("649"), SUBC("650"), SUBC("651"), SUBC("652"), SUBC("653"), SUBC("654"), SUBC("655"), SUBC("656"), SUBC("657"),
+	SUBC("658"), SUBC("659"), SUBC("660"), SUBC("661"), SUBC("662"), SUBC("663"), SUBC("664"), SUBC("665"), SUBC("666"), SUBC("667"), SUBC("668"), SUBC("669"), SUBC("670"), SUBC("671"), SUBC("672"), SUBC("673"), SUBC("674"), SUBC("675"), SUBC("676"), SUBC("677"), SUBC("678"), SUBC("679"), SUBC("680"), SUBC("681"), SUBC("682"), SUBC("683"), SUBC("684"), SUBC("685"), SUBC("686"), SUBC("687"), SUBC("688"),
+	SUBC("689"), SUBC("690"), SUBC("691"), SUBC("692"), SUBC("693"), SUBC("694"), SUBC("695"), SUBC("696"), SUBC("697"), SUBC("698"), SUBC("699"), SUBC("700"), SUBC("701"), SUBC("702"), SUBC("703"), SUBC("704"), SUBC("705"), SUBC("706"), SUBC("707"), SUBC("708"), SUBC("709"), SUBC("710"), SUBC("711"), SUBC("712"), SUBC("713"), SUBC("714"), SUBC("715"), SUBC("716"), SUBC("717"), SUBC("718"), SUBC("719"),
+	SUBC("720"), SUBC("721"), SUBC("722"), SUBC("723"), SUBC("724"), SUBC("725"), SUBC("726"), SUBC("727"), SUBC("728"), SUBC("729"), SUBC("730"), SUBC("731"), SUBC("732"), SUBC("733"), SUBC("734"), SUBC("735"), SUBC("736"), SUBC("737"), SUBC("738"), SUBC("739"), SUBC("740"), SUBC("741"), SUBC("742"), SUBC("743"), SUBC("744"), SUBC("745"), SUBC("746"), SUBC("747"), SUBC("748"), SUBC("749"), SUBC("750"),
+	SUBC("751"), SUBC("752"), SUBC("753"), SUBC("754"), SUBC("755"), SUBC("756"), SUBC("757"), SUBC("758"), SUBC("759"), SUBC("760"), SUBC("761"), SUBC("762"), SUBC("763"), SUBC("764"), SUBC("765"), SUBC("766"), SUBC("767"), SUBC("768"), SUBC("769"), SUBC("770"), SUBC("771"), SUBC("772"), SUBC("773"), SUBC("774"), SUBC("775"), SUBC("776"), SUBC("777"), SUBC("778"), SUBC("779"), SUBC("780"), SUBC("781"),
+	SUBC("782"), SUBC("783"), SUBC("784"), SUBC("785"), SUBC("786"), SUBC("787"), SUBC("788"), SUBC("789"), SUBC("790"), SUBC("791"), SUBC("792"), SUBC("793"), SUBC("794"), SUBC("795"), SUBC("796"), SUBC("797"), SUBC("798"), SUBC("799"), SUBC("800"), SUBC("801"), SUBC("802"), SUBC("803"), SUBC("804"), SUBC("805"), SUBC("806"), SUBC("807"), SUBC("808"), SUBC("809"), SUBC("810"), SUBC("811"), SUBC("812"),
+	SUBC("813"), SUBC("814"), SUBC("815"), SUBC("816"), SUBC("817"), SUBC("818"), SUBC("819"), SUBC("820"), SUBC("821"), SUBC("822"), SUBC("823"), SUBC("824"), SUBC("825"), SUBC("826"), SUBC("827"), SUBC("828"), SUBC("829"), SUBC("830"), SUBC("831"), SUBC("832"), SUBC("833"), SUBC("834"), SUBC("835"), SUBC("836"), SUBC("837"), SUBC("838"), SUBC("839"), SUBC("840"), SUBC("841"), SUBC("842"), SUBC("843"),
+	SUBC("844"), SUBC("845"), SUBC("846"), SUBC("847"), SUBC("848"), SUBC("849"), SUBC("850"), SUBC("851"), SUBC("852"), SUBC("853"), SUBC("854"), SUBC("855"), SUBC("856"), SUBC("857"), SUBC("858"), SUBC("859"), SUBC("860"), SUBC("861"), SUBC("862"), SUBC("863"), SUBC("864"), SUBC("865"), SUBC("866"), SUBC("867"), SUBC("868"), SUBC("869"), SUBC("870"), SUBC("871"), SUBC("872"), SUBC("873"), SUBC("874"),
+	SUBC("875"), SUBC("876"), SUBC("877"), SUBC("878"), SUBC("879"), SUBC("880"), SUBC("881"), SUBC("882"), SUBC("883"), SUBC("884"), SUBC("885"), SUBC("886"), SUBC("887"), SUBC("888"), SUBC("889"), SUBC("890"), SUBC("891"), SUBC("892"), SUBC("893"), SUBC("894"), SUBC("895"), SUBC("896"), SUBC("897"), SUBC("898"), SUBC("899"), SUBC("900"), SUBC("901"), SUBC("902"), SUBC("903"), SUBC("904"), SUBC("905"),
+	SUBC("906"), SUBC("907"), SUBC("908"), SUBC("909"), SUBC("910"), SUBC("911"), SUBC("912"), SUBC("913"), SUBC("914"), SUBC("915"), SUBC("916"), SUBC("917"), SUBC("918"), SUBC("919"), SUBC("920"), SUBC("921"), SUBC("922"), SUBC("923"), SUBC("924"), SUBC("925"), SUBC("926"), SUBC("927"), SUBC("928"), SUBC("929"), SUBC("930"), SUBC("931"), SUBC("932"), SUBC("933"), SUBC("934"), SUBC("935"), SUBC("936"),
+	SUBC("937"), SUBC("938"), SUBC("939"), SUBC("940"), SUBC("941"), SUBC("942"), SUBC("943"), SUBC("944"), SUBC("945"), SUBC("946"), SUBC("947"), SUBC("948"), SUBC("949"), SUBC("950"), SUBC("951"), SUBC("952"), SUBC("953"), SUBC("954"), SUBC("955"), SUBC("956"), SUBC("957"), SUBC("958"), SUBC("959"), SUBC("960"), SUBC("961"), SUBC("962"), SUBC("963"), SUBC("964"), SUBC("965"), SUBC("966"), SUBC("967"),
+	SUBC("968"), SUBC("969"), SUBC("970"), SUBC("971"), SUBC("972"), SUBC("973"), SUBC("974"), SUBC("975"), SUBC("976"), SUBC("977"), SUBC("978"), SUBC("979"), SUBC("980"), SUBC("981"), SUBC("982"), SUBC("983"), SUBC("984"), SUBC("985"), SUBC("986"), SUBC("987"), SUBC("988"), SUBC("989"), SUBC("990"), SUBC("991"), SUBC("992"), SUBC("993"), SUBC("994"), SUBC("995"), SUBC("996"), SUBC("997"), SUBC("998"),
+	SUBC("999")
 };
 
 int const		g_test_keys_count = sizeof(g_test_keys) / sizeof(t_sub);
 
-static int		test_h(t_sub s)
+#define HASH_FUNCTION	ft_djb2
+
+// #define HASH_FUNCTION	test_h
+t_uint			test_h(t_sub s)
 {
-	int				h;
+	t_uint			h;
 	int				i;
 
 	i = -1;
-	h = 0;
+	h = s.length;
 	while (++i < s.length)
 		h = (h << 2) + s.str[i];
+	return (h);
+}
+
+// #define HASH_FUNCTION	test_h_ignorecase
+t_uint			test_h_ignorecase(t_sub s)
+{
+	t_uint			h;
+	int				i;
+
+	i = -1;
+	h = s.length;
+	while (++i < s.length)
+		h = (h << 2) + LOWER(s.str[i]);
+	return (h);
+}
+
+// #define HASH_FUNCTION	test_bad_h
+t_uint			test_bad_h(t_sub s)
+{
+	t_uint			h;
+	int				i;
+
+	i = -1;
+	h = s.length;
+	while (++i < s.length)
+		h = h * s.str[i] + h;
 	return (h);
 }
 
@@ -239,10 +298,35 @@ static void		print_hmap_debug(t_hmap *map)
 	int				i;
 	int				len;
 	int				total_len;
+	int				average;
+	int				average_plus;
+	int				average_less;
+	int				min;
+	int				max;
 	t_h				*tmp;
 
 	PS("hmap:");
 	total_len = 0;
+	i = -1;
+	average = 0;
+	while (++i < map->alloc_size)
+	{
+		len = 0;
+		tmp = map->data[i];
+		while (tmp != NULL)
+		{
+			len++;
+			tmp = tmp->next;
+		}
+		average += len;
+		total_len += len;
+		P(" %d", len);
+	}
+	average /= map->alloc_size;
+	average_plus = 0;
+	average_less = 0;
+	min = total_len;
+	max = 0;
 	i = -1;
 	while (++i < map->alloc_size)
 	{
@@ -253,9 +337,17 @@ static void		print_hmap_debug(t_hmap *map)
 			len++;
 			tmp = tmp->next;
 		}
-		total_len += len;
-		P(" %d", len);
+		if (len > max)
+			max = len;
+		if (len < min)
+			min = len;
+		if (len < average)
+			average_less++;
+		else if (len > average)
+			average_plus++;
 	}
+	P(";\n\ttotal: %d; size: %d; average: %d; -: %d; +: %d; min: %d; max: %d",
+		total_len, map->alloc_size, average, average_less, average_plus, min, max);
 	NL;
 	if (total_len != map->size)
 		P("Error: total_len != size (%d, %d)", total_len, map->size), NL;
@@ -279,6 +371,20 @@ static t_ulong	test_get(t_hmap *map, int count)
 	return (t);
 }
 
+static t_ulong	test_add_all(t_hmap *map)
+{
+	int				i;
+	t_ulong			t;
+
+	i = -1;
+	t = ft_clock(0);
+	while (++i < G_ARRAY_LEN(g_test_keys))
+		ft_hmapput(map, g_test_keys[i], &(int){5}, sizeof(int));
+	t = ft_clock(t);
+	ft_printf("Add all (size: %d)\n", map->size);
+	return (t);
+}
+
 int				main(int argc, char **argv)
 {
 	t_hmap			*map;
@@ -287,7 +393,7 @@ int				main(int argc, char **argv)
 
 	alloc_size = (argc > 1) ? ft_atoi(argv[1]) : 50;
 	srand(ft_clock(0));
-	map = ft_hmapnew(alloc_size, &test_h);
+	map = ft_hmapnew(alloc_size, &HASH_FUNCTION);
 	ft_printf("Start test: alloc_size:%d\n", map->alloc_size);
 	print_hmap_debug(map);
 	t = test_add(map, 20);
@@ -304,6 +410,9 @@ int				main(int argc, char **argv)
 	t += test_get(map, 20);
 	t += test_get(map, 200);
 	t += test_get(map, g_test_keys_count);
+	ft_printf("Total time: %lld\n", t);
+	print_hmap_debug(map);
+	t = test_add_all(map);
 	ft_printf("Total time: %lld\n", t);
 	print_hmap_debug(map);
 	return (0);
