@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/11 01:35:55 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/04 22:16:33 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/07 19:02:02 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_hmap			*ft_hmapnew(int size, t_uint (*h)(t_sub));
 ** Retrieve an element
 ** Return NULL if not found
 */
-void			*ft_hmapget(t_hmap *map, t_sub key);
+void			*ft_hmapget(t_hmap const *map, t_sub key);
 
 /*
 ** Put 'data' into the hmap
