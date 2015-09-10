@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/10 00:49:06 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/10 02:08:23 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/11 00:23:10 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct	s_var
 ** VAR_INIT_A(v, param)		Call va_start
 ** VAR_INIT_S(v, ptr)		Create a struct variadic
 */
-# define VAR_INIT_A(v,p)	((v)=(t_var){var_t_arg});va_start((v).data.a,p)
+# define VAR_INIT_A(v,p)	((v)=(t_var){.t=var_t_arg});va_start((v).data.a,p)
 # define VAR_INIT_S(v,p)	((v)=(t_var){var_t_strct,{.s=(t_var_strct){(p),0}}})
 
 /*

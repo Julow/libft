@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   test_var.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/10 01:30:25 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/10 02:06:09 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/11 00:23:53 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_test			test_var_struct(t_test *lol)
 
 void			test_print(t_test *test)
 {
-	printf("test {%lf, %c, %llx, %d}\n", test->a, test->b, test->c, test->d);
+	printf("test {%lf, '%c', \"%s\", %d}\n", test->a, test->b, test->c, test->d);
 }
 
 int				main(void)
