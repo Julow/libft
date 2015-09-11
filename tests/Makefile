@@ -6,11 +6,11 @@
 #    By: juloo <juloo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/10 22:34:26 by juloo             #+#    #+#              #
-#    Updated: 2015/09/11 00:21:08 by juloo            ###   ########.fr        #
+#    Updated: 2015/09/12 00:35:00 by juloo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-TESTS := deque evalexpr hmap list vector rmatch rfind sort var
+TESTS := deque evalexpr hmap list vector rmatch rfind sort var path
 
 FLAGS := -Wall -Wextra -O2 -g
 HEADS := -I ..
@@ -21,12 +21,11 @@ SHELL := /bin/bash
 all:
 	echo "Available tests: $(TESTS)"
 
-$(TESTS): %: out_%
-%: out_%
+$(TESTS): %: libft out_%
+%: libft out_%
 	./out_$@
 
-out_evalexpr: LINKS += -lm
-out_%: test_%.c libft
+out_%: test_%.c
 	clang $(FLAGS) $(HEADS) $< -o $@ $(LINKS)
 
 libft:
@@ -40,7 +39,22 @@ fclean: clean
 .PHONY: all clean fclean libft
 .SILENT:
 
+# Extra flags
+
+evalexpr: LINKS += -lm
+
 # Tests
+
+path:
+	./out_path "" ""
+	./out_path "" "libft.h"
+	./out_path "include" "libft.h"
+	./out_path "libft/include" "libft.h"
+	./out_path "libft/include" ""
+	./out_path "libft/include" "/"
+	./out_path "/" "libft.h"
+	./out_path "/home/juloo" "libft.h"
+	./out_path "" "/"
 
 evalexpr:
 	./out_evalexpr "5" 5
