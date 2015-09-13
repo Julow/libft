@@ -6,7 +6,7 @@
 #    By: juloo <juloo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/10 22:34:26 by juloo             #+#    #+#              #
-#    Updated: 2015/09/12 00:35:00 by juloo            ###   ########.fr        #
+#    Updated: 2015/09/13 16:54:17 by juloo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ $(TESTS): %: libft out_%
 %: libft out_%
 	./out_$@
 
-out_%: test_%.c
+out_%: test_%.c ../libft.a
 	clang $(FLAGS) $(HEADS) $< -o $@ $(LINKS)
 
 libft:
@@ -54,7 +54,14 @@ path:
 	./out_path "libft/include" "/"
 	./out_path "/" "libft.h"
 	./out_path "/home/juloo" "libft.h"
-	./out_path "" "/"
+	./out_path "" "/" "/"
+	./out_path "/" "\//libft" "/\//libft"
+	./out_path "/lol/../mdr/../././libft" "srcs" "/libft/srcs"
+	./out_path "../mdr/../././libft" "srcs" "../libft/srcs"
+	./out_path "a/b/c" "../../d" "a/d"
+	./out_path "/a/b/c" "../../d" "/a/d"
+	./out_path "/../../a" "" "/a"
+	./out_path "a/../b" "" "b"
 
 evalexpr:
 	./out_evalexpr "5" 5

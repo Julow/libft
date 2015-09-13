@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 13:05:11 by jaguillo          #+#    #+#              #
-#    Updated: 2015/09/06 00:14:30 by juloo            ###   ########.fr        #
+#    Updated: 2015/09/13 17:46:58 by juloo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,7 @@ TOTAL := $(words $(filter %.c,$(C_FILES)))
 
 PRINT_BAR = printf "\r%100c\r\033[42;39m%-56s\033[0;32m %s\033[0m" " " "`printf "%$$(((($(COUNT)) * 51 - 1) / $(TOTAL)))s\033[100m"`"
 PRINT_OK = $(eval COUNT += +1) $(PRINT_BAR) "$(subst $(C_DIR)/,,$<)"
-PRINT_LINK = $(PRINT_BAR) "$@" && echo
+PRINT_LINK = $(eval COUNT = $(TOTAL)) $(PRINT_BAR) "$@" && echo
 PRINT_ERROR = (printf "%60c\r \033[0;31m%s\033[0m\n" " " "$<" && exit 1)
 
 # Call $(NAME) in async mode
