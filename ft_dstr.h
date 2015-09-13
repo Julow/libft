@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/08 22:10:54 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/10 03:12:13 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/13 20:26:56 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,7 @@
 
 /*
 ** ========================================================================== **
-** dstr
-** ----
-** Represent a (dynamic) string
-** ----
-** t_dstr._		contains private field
-** t_dstr.sub	a sub representation of the string
+** Dynamic string
 ** ----
 ** No memory is allocated if capacity is <= 0
 ** literal "" is used as default string
@@ -43,6 +38,7 @@ typedef struct	s_dstr
 
 # define DSTR_NEED(d,n)	(((d)->length + (n)) > (d)->capacity)
 
+# define DSTR(s,l)		((t_dstr){(s), (l), 0})
 # define DSTRC(s)		((t_dstr){(s), sizeof(s) - 1, 0})
 # define DSTR0()		((t_dstr){"", 0, 0})
 
@@ -50,22 +46,11 @@ typedef struct	s_dstr
 # define DEND(d)		((d)->str + (d)->length)
 
 /*
-** ft_dstr
-** ----
-** Create a dstr
-** ----
-** The resulting dstr contains allocated data
-** ----
-** Return a dstr
-*/
-t_dstr			ft_dstr(char const *src, int length);
-
-/*
 ** ft_dstradd
 ** ----
-** Add a string fragment to the dstr
+** Add a sub to the dstr
 */
-void			ft_dstradd(t_dstr *str, char const *add, int length);
+void			ft_dstradd(t_dstr *str, t_sub add);
 
 /*
 ** ft_aprintf
@@ -87,54 +72,17 @@ t_dstr			ft_aprintf(char const *format, ...);
 int				ft_asprintf(t_dstr *dst, char const *format, ...);
 
 /*
-** ft_dstradd_{char,nchar,sub}
+** ft_dstrspan
 ** ----
-** ft_dstradd_char		Add a char
-** ft_dstradd_nchar		Add a char 'n' time
-** ft_dstradd_sub		Add a sub string
-*/
-void			ft_dstradd_char(t_dstr *str, char c);
-void			ft_dstradd_nchar(t_dstr *str, char c, int n);
-void			ft_dstradd_sub(t_dstr *str, t_sub sub);
-
-/*
-** ft_dstradd_{int,uint,long,ulong}
-** ----
-** Add a representation of an integer to the dstr
-** ----
-** NOT IMPLEMENTED
-*/
-void			ft_dstradd_int(t_dstr *str, int nb);
-void			ft_dstradd_uint(t_dstr *str, t_uint nb);
-void			ft_dstradd_long(t_dstr *str, t_long nb);
-void			ft_dstradd_ulong(t_dstr *str, t_long nb);
-
-/*
-** ft_dstrsub
-** ----
-** Create a sub from a dstr
-** ----
-** Return a sub
-*/
-t_sub			ft_dstrsub(t_dstr *str, int from, int to);
-
-/*
-** ft_dstrset
-** ----
-** Replace a part of string with an other
-** ----
+** Change the size of a span ('from' - 'to')
+** -
+** Can be used to remove/insert characters
+** -
 ** from and to are swaped if from > to
-*/
-void			ft_dstrset(t_dstr *str, int from, int to, t_sub sub);
-
-/*
-** ft_dstrpop
 ** ----
-** Remove char from the end of the string
-** ----
-** Ex: a length of -1 will clear the dstr
+** Return a pointer to the start of the span
 */
-void			ft_dstrpop(t_dstr *str, int length);
+char			*ft_dstrspan(t_dstr *str, int from, int to, int size);
 
 /*
 ** ft_dstrextend
@@ -145,20 +93,11 @@ void			ft_dstrpop(t_dstr *str, int length);
 void			ft_dstrextend(t_dstr *str, int need);
 
 /*
-** ft_dstrdestroy
+** ft_dstrclear
 ** ----
 ** Free allocated memory
 ** The dstr is still usable
 */
-void			ft_dstrdestroy(t_dstr *str);
-
-/*
-** ft_dstrfree
-** ----
-** Reduce capacity to fit real length
-** ----
-** NOT IMPLEMENTED
-*/
-void			ft_dstrfree(t_dstr *str);
+void			ft_dstrclear(t_dstr *str);
 
 #endif
