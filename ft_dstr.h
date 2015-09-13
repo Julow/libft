@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/08 22:10:54 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/13 20:26:56 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/13 20:58:26 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@
 ** No memory is allocated if capacity is <= 0
 ** literal "" is used as default string
 ** Capacity field does not count the terminating '\0'
-** ----
-** Any 'length', 'index', 'from' or 'to' arguments follow this rule:
-** If length is negative then: length = length + str_len + 1
 */
 
 typedef struct	s_dstr
@@ -74,11 +71,15 @@ int				ft_asprintf(t_dstr *dst, char const *format, ...);
 /*
 ** ft_dstrspan
 ** ----
-** Change the size of a span ('from' - 'to')
+** Change the size of a span ('from', 'to') to ('from', 'from' + 'size')
 ** -
 ** Can be used to remove/insert characters
+** (Care about the terminating '\0')
 ** -
-** from and to are swaped if from > to
+** if 'from' or 'to' are negative then str->length + 1 is added to it
+** -1 mean str->length
+** -2 mean str->length -1
+** 'from' and 'to' are swaped if 'from' > 'to'
 ** ----
 ** Return a pointer to the start of the span
 */

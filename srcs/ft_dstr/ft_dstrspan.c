@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/13 20:02:16 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/13 20:15:03 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/13 20:36:44 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ char			*ft_dstrspan(t_dstr *str, int from, int to, int size)
 	int				move;
 
 	if (from < 0)
-		from += str->size + 1;
+		from += str->length + 1;
 	if (to < 0)
-		to += str->size + 1;
+		to += str->length + 1;
 	if (from > to)
 	{
 		move = from;
@@ -31,10 +31,10 @@ char			*ft_dstrspan(t_dstr *str, int from, int to, int size)
 		ft_dstrextend(str, move);
 	if (move != 0)
 	{
-		if ((str->size - to) > 0)
-			ft_memmove(str->str + to + move, str->str + to, str->size - to);
-		str->size += move;
-		str->str[str->size] = '\0';
+		if ((str->length - to) > 0)
+			ft_memmove(str->str + to + move, str->str + to, str->length - to);
+		str->length += move;
+		str->str[str->length] = '\0';
 	}
 	return (str->str + from);
 }

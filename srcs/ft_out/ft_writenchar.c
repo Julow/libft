@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 21:21:01 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/24 22:36:16 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/13 20:34:00 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			ft_writenchar(t_out *out, char c, int n)
 
 	if (out->flags & OUT_DSTR)
 	{
-		ft_dstradd_nchar((t_dstr*)out->buff, c, n);
+		ft_memset(ft_dstrspan((t_dstr*)out->buff, -1, -1, 0), c, n);
 		return ;
 	}
 	while (n > 0)

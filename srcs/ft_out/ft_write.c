@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 21:23:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/24 22:32:35 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/13 20:36:09 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			ft_write(t_out *out, const char *data, t_uint len)
 
 	if (out->flags & OUT_DSTR)
 	{
-		ft_dstradd((t_dstr*)out->buff, data, len);
+		ft_dstradd((t_dstr*)out->buff, SUB(data, len));
 		return ;
 	}
 	while (len > 0)

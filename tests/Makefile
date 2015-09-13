@@ -6,11 +6,11 @@
 #    By: juloo <juloo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/10 22:34:26 by juloo             #+#    #+#              #
-#    Updated: 2015/09/13 16:54:17 by juloo            ###   ########.fr        #
+#    Updated: 2015/09/13 21:55:26 by juloo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-TESTS := deque evalexpr hmap list vector rmatch rfind sort var path
+TESTS := deque evalexpr hmap list vector rmatch rfind sort var
 
 FLAGS := -Wall -Wextra -O2 -g
 HEADS := -I ..
@@ -44,24 +44,6 @@ fclean: clean
 evalexpr: LINKS += -lm
 
 # Tests
-
-path:
-	./out_path "" ""
-	./out_path "" "libft.h"
-	./out_path "include" "libft.h"
-	./out_path "libft/include" "libft.h"
-	./out_path "libft/include" ""
-	./out_path "libft/include" "/"
-	./out_path "/" "libft.h"
-	./out_path "/home/juloo" "libft.h"
-	./out_path "" "/" "/"
-	./out_path "/" "\//libft" "/\//libft"
-	./out_path "/lol/../mdr/../././libft" "srcs" "/libft/srcs"
-	./out_path "../mdr/../././libft" "srcs" "../libft/srcs"
-	./out_path "a/b/c" "../../d" "a/d"
-	./out_path "/a/b/c" "../../d" "/a/d"
-	./out_path "/../../a" "" "/a"
-	./out_path "a/../b" "" "b"
 
 evalexpr:
 	./out_evalexpr "5" 5

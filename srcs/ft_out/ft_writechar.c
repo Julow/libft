@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 21:23:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/24 22:35:32 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/13 20:35:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void			ft_writechar(t_out *out, char c)
 {
 	if (out->flags & OUT_DSTR)
 	{
-		ft_dstradd_char((t_dstr*)out->buff, c);
+		ft_dstradd((t_dstr*)out->buff, SUB(&c, 1));
 		return ;
 	}
 	if (out->i >= out->length)
