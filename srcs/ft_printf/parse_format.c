@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/31 13:51:27 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/04 16:39:39 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/17 16:25:21 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ static int		parse_length(t_pfopt *opt, const char *format)
 	while (g_lengths[++i].name != NULL)
 	{
 		len = ft_strlen(g_lengths[i].name);
-		if (ft_strnequ(format, g_lengths[i].name, len))
+		if (ft_memcmp(format, g_lengths[i].name, len) == 0)
 			break ;
 		len = 0;
 	}
