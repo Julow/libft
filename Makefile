@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 13:05:11 by jaguillo          #+#    #+#              #
-#    Updated: 2015/09/13 17:46:58 by juloo            ###   ########.fr        #
+#    Updated: 2015/09/17 16:51:33 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ H_DIR := .
 C_DIR := srcs
 O_DIR := o
 
-EXTRAS := ft_term
+EXTRAS := ft_term ft_draw
 EXTRA_DIR := extra
 
 SHELL := /bin/bash

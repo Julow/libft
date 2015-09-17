@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_drawxy.c                                        :+:      :+:    :+:   */
+/*   ft_nearest.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/11 16:40:16 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 15:26:28 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/01/12 23:28:56 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/09/17 16:54:13 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_draw.h"
 
-inline void		ft_drawxy(t_image *img, int x, int y, t_color color)
+t_pt			ft_nearest(t_pt pos, t_pt p1, t_pt p2)
 {
-	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
-		return ;
-	if (ALPHA(color))
-		ft_resalpha(&color, IMAGEPT(img, x, y));
-	IMAGEPT(img, x, y) = color;
+	const t_pt		t1 = PT(p1.x - pos.x, p1.y - pos.y);
+	const t_pt		t2 = PT(p2.x - pos.x, p2.y - pos.y);
+
+	if (((t1.x * t1.x) + (t1.y * t1.y)) > ((t2.x * t2.x) + (t2.y * t2.y)))
+		return (p2);
+	return (p1);
 }

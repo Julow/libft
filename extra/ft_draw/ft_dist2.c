@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_drawdiv.c                                       :+:      :+:    :+:   */
+/*   ft_dist2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/18 15:18:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 15:21:00 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/02/01 11:03:48 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/09/17 16:54:52 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_draw.h"
 
-void			ft_drawdiv(t_image *img, int y, int height, t_color color)
+int				ft_dist2(t_pt p1, t_pt p2)
 {
-	int				pos;
-	int				to;
-
-	if (y >= img->height)
-		return ;
-	if ((height + y) > img->height)
-		height = img->height - y;
-	pos = y * img->width * img->opp;
-	to = pos + ((height + 1) * img->width * img->opp);
-	while (pos > to)
-	{
-		IMAGEPOS(img, pos) = color;
-		pos++;
-	}
+	p1 = PT(p1.x - p2.x, p1.y - p2.y);
+	return ((p1.x * p1.x) + (p1.y * p1.y));
 }

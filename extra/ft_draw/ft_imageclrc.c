@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dist2.c                                         :+:      :+:    :+:   */
+/*   ft_imageclrc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/01 11:03:48 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/01 11:04:02 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/18 15:10:01 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/09/17 16:54:21 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_draw.h"
 
-int				ft_dist2(t_pt p1, t_pt p2)
+void			ft_imageclrc(t_image *img, t_color color)
 {
-	p1 = PT(p1.x - p2.x, p1.y - p2.y);
-	return ((p1.x * p1.x) + (p1.y * p1.y));
+	int				end;
+
+	end = img->width * img->height * img->opp;
+	if (color.b.b == color.b.g && color.b.g == color.b.r)
+	{
+		ft_memset(img->data, color.i, end);
+		return ;
+	}
+	while ((end -= img->opp) >= 0)
+		IMAGEPOS(img, end) = color;
 }

@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_resalpha.c                                      :+:      :+:    :+:   */
+/*   ft_drawdiv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/17 17:25:51 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 14:54:59 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/18 15:18:06 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/09/17 16:54:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_draw.h"
 
-inline void		ft_resalpha(t_color *c, t_color bg)
+void			ft_drawdiv(t_image *img, int y, int height, t_color color)
 {
-	t_big			delta;
+	int				pos;
+	int				to;
 
-	if (INVI(*c))
-	{
-		*c = bg;
+	if (y >= img->height)
 		return ;
+	if ((height + y) > img->height)
+		height = img->height - y;
+	pos = y * img->width * img->opp;
+	to = pos + ((height + 1) * img->width * img->opp);
+	while (pos > to)
+	{
+		IMAGEPOS(img, pos) = color;
+		pos++;
 	}
-	delta = BIG(c->b.a) / 255;
-	c->b.a = 0;
-	c->b.r = ft_mix(c->b.r, bg.b.r, delta);
-	c->b.g = ft_mix(c->b.g, bg.b.g, delta);
-	c->b.b = ft_mix(c->b.b, bg.b.b, delta);
 }

@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 15:08:27 by juloo             #+#    #+#             */
-/*   Updated: 2014/12/20 15:08:27 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/17 16:54:28 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_draw.h"
 #include <stdlib.h>
 
 t_image			*ft_imageclone(t_image *img)

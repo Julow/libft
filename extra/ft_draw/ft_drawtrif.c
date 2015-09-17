@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/25 20:24:17 by juloo             #+#    #+#             */
-/*   Updated: 2014/12/25 20:24:17 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/17 16:55:24 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_draw.h"
 
 static void		sortpts(t_pt **pts, int n)
 {
@@ -40,7 +40,7 @@ void			ft_drawtrif(t_image *img, t_pt pts[3], t_color color)
 	if (pts[1].y == pts[2].y || pts[0].y == pts[1].y)
 		middle = (pts[1].y == pts[2].y) ? pts[2] : pts[0];
 	else
-		middle = PT(DOWN((double)(pts[1].y - pts[0].y) / (double)(pts[2].y -
+		middle = PT(FLOOR((double)(pts[1].y - pts[0].y) / (double)(pts[2].y -
 			pts[0].y) * (double)(pts[2].x - pts[0].x)) + pts[0].x, pts[1].y);
 	delta[0] = (double)(pts[1].x - pts[0].x) / (double)(pts[1].y - pts[0].y);
 	delta[1] = (double)(middle.x - pts[0].x) / (double)(middle.y - pts[0].y);

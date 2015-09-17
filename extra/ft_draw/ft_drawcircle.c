@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 14:48:13 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/11 14:48:14 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/17 16:54:51 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_draw.h"
 
 void			ft_drawcircle(t_image *img, t_pt o, int radius, t_color color)
 {

@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_imageclonekil.c                                 :+:      :+:    :+:   */
+/*   ft_drawtri.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/20 15:08:51 by juloo             #+#    #+#             */
-/*   Updated: 2014/12/20 15:08:51 by juloo            ###   ########.fr       */
+/*   Created: 2014/12/25 20:24:30 by juloo             #+#    #+#             */
+/*   Updated: 2015/09/17 16:54:38 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "ft_draw.h"
 
-void			ft_imageclonekil(t_image *clone)
+void			ft_drawtri(t_image *img, t_pt pts[3], t_color color)
 {
-	free(clone->data);
-	free(clone);
+	ft_drawline(img, pts[0], pts[1], color);
+	ft_drawline(img, pts[0], pts[2], color);
+	ft_drawline(img, pts[1], pts[2], color);
 }

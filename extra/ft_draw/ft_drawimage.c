@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 15:08:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/12/20 15:08:09 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/17 16:54:47 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_draw.h"
 
 void			ft_drawimage(t_image *dst, t_image *src, t_pt pos, t_rect part)
 {

@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_imageclrc.c                                     :+:      :+:    :+:   */
+/*   ft_drawxy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/18 15:10:01 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 15:22:04 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/12/11 16:40:16 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/09/17 16:54:31 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_draw.h"
 
-void			ft_imageclrc(t_image *img, t_color color)
+inline void		ft_drawxy(t_image *img, int x, int y, t_color color)
 {
-	int				end;
-
-	end = img->width * img->height * img->opp;
-	if (color.b.b == color.b.g && color.b.g == color.b.r)
-	{
-		ft_memset(img->data, color.i, end);
+	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
 		return ;
-	}
-	while ((end -= img->opp) >= 0)
-		IMAGEPOS(img, end) = color;
+	if (ALPHA(color))
+		ft_resalpha(&color, IMAGEPT(img, x, y));
+	IMAGEPT(img, x, y) = color;
 }
