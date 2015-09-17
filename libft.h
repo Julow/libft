@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 16:37:14 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/17 16:40:00 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -482,27 +482,6 @@ void			ft_insertsort(void **tab, int length, int (*cmp)());
 void			ft_quicksort(void **tab, int length, int (*cmp)());
 
 t_bool			ft_issort(void **tab, int length, int (*cmp)());
-
-/*
-** ========================================================================== **
-** Write
-*/
-
-int				ft_puts(const char *s);
-int				ft_putchar(char c);
-int				ft_putnchar(char c, int n);
-int				ft_putstr(const char *str);
-int				ft_putlstr(const char *str, int len);
-int				ft_putendl(const char *s);
-int				ft_putnbr(int n);
-int				ft_putlong(t_long n);
-int				ft_putchar_fd(char c, int fd);
-int				ft_putnchar_fd(char c, int n, int fd);
-int				ft_putstr_fd(const char *s, int fd);
-int				ft_putlstr_fd(const char *s, int len, int fd);
-int				ft_putendl_fd(const char *s, int fd);
-int				ft_putnbr_fd(int n, int fd);
-int				ft_putlong_fd(t_long n, int fd);
 
 /*
 ** ========================================================================== **
