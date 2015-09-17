@@ -6,10 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:14:27 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/30 13:22:45 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/17 19:32:20 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_rmatch.h"
 #include "ft_internal.h"
 
 static const char	*parse_reg_n(t_reg *reg, const char *pattern)
