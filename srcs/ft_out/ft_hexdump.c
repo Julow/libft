@@ -6,10 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/04 01:09:08 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/04 02:54:26 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/17 17:05:56 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_out.h"
 #include "ft_internal.h"
 
 void			ft_hexdump(const void *data, t_uint len)

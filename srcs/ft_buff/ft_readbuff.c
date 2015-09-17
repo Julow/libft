@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 20:15:15 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 18:26:29 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/17 17:03:23 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_internal.h"
+#include "ft_buff.h"
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -20,7 +20,7 @@
 ** (only if 'buff' is a file buffer ('fd' >= 0))
 ** Return '\0' if the end of the buffer is reach
 */
-inline char		ft_readbuff(t_buff *buff)
+char			ft_readbuff(t_buff *buff)
 {
 	char			c;
 

@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 21:23:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/13 20:35:22 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/17 17:05:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_out.h"
 #include "ft_dstr.h"
 
 void			ft_writechar(t_out *out, char c)

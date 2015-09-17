@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/11 17:32:54 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/16 23:43:31 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/17 17:02:08 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_buff.h"
 
 t_bool			ft_parse(t_buff *buff, const char *parse)
 {

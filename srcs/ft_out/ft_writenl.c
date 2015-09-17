@@ -6,18 +6,18 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 21:21:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/17 00:23:14 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/17 17:05:24 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_out.h"
 
 /*
 ** ft_writenl
 ** Write '\n' to the buffer
 ** and flush the buffer
 */
-inline void		ft_writenl(t_out *out)
+void			ft_writenl(t_out *out)
 {
 	ft_writechar(out, '\n');
 	ft_flush(out);

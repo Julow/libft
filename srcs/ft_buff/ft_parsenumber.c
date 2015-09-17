@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 19:18:36 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/17 00:02:48 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/17 17:01:54 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_buff.h"
 
 /*
 ** Parse an integer

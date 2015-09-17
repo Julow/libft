@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 16:53:20 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/17 17:08:13 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -485,123 +485,6 @@ t_bool			ft_issort(void **tab, int length, int (*cmp)());
 
 /*
 ** ========================================================================== **
-** Use the struct s_buff (t_buff) to read and parse a file
-**  BUFF() macro init a file buff
-** Can parse simple string
-**  SBUFF() macro init a string buff
-*/
-
-# define BI(b)			((b)->i < (b)->length)
-# define BG(b)			(BI(b) ? (b)->data[(b)->i] : ft_buffget(b))
-# define BR(b)			(BI(b) ? (b)->data[(b)->i++] : ft_readbuff(b))
-# define BIS(b,c)		(BG(b) == c && ++((b)->i))
-# define BIF(b,f)		((f)(BG(b)) && ++((b)->i))
-
-# define BF_EOF			20
-# define BF_STR			21
-
-# define BEOF(b)		(FLAG((b)->fd, BF_EOF) || (BSTR(b) && !BI(b)))
-# define BSTR(b)		FLAG((b)->fd, BF_STR)
-# define BFD(b)			((b)->fd & 0xFF)
-
-# define BUFF(f,b,l)	((t_buff){(b), 0, 0, (l), (f) & 0xFF})
-# define SBUFF(s,l)		((t_buff){(s), 0, (l), (l), -1 & 0xFF | BIT(BF_STR)})
-
-typedef struct	s_buff
-{
-	char			*data;
-	int				i;
-	int				length;
-	int				buff_len;
-	int				fd;
-}				t_buff;
-
-char			ft_readbuff(t_buff *buff);
-char			ft_buffget(t_buff *buff);
-void			ft_buffclear(t_buff *buff);
-
-t_bool			ft_parseint(t_buff *buff, int *nb);
-t_bool			ft_parselong(t_buff *buff, t_long *nb);
-t_bool			ft_parsebase(t_buff *buff, const char *base, t_ulong *nb);
-t_bool			ft_parsebasei(t_buff *buff, const char *base, t_ulong *nb);
-t_bool			ft_parsenumber(t_buff *buff, t_ulong *nb);
-t_bool			ft_parsedouble(t_buff *buff, double *nb);
-
-t_bool			ft_parse(t_buff *buff, const char *parse);
-t_bool			ft_parsenot(t_buff *buff, const char *parse);
-t_bool			ft_parsestr(t_buff *buff, const char *str);
-
-void			ft_parseendl(t_buff *buff);
-t_bool			ft_parsen(t_buff *buff, char *dst, int len);
-
-t_bool			ft_parsef(t_buff *buff, t_bool (*f)(int c));
-t_bool			ft_parsespace(t_buff *buff);
-t_bool			ft_parsewhite(t_buff *buff);
-
-/*
-** ========================================================================== **
-** Use the struct s_out (t_out) to write to a fd
-** ----
-** Constructors:
-**  OUT (fd, buff, buff_size)	Create a file out
-**  DSTR_OUT (dstr)				Create a dynamic string (ft_dstr) out
-**  BUFF_OUT (buff, buff_size)	Create a static (circular) buffer out
-*/
-
-# define OUT_NOFLUSH	(1 << 1)
-# define OUT_DSTR		(1 << 2)
-
-# define OUT(f,b,l)		((t_out){(b), 0, (l), (f), 0})
-# define DSTR_OUT(d)	((t_out){(char*)(d), 0, 0, -1, OUT_DSTR})
-# define BUFF_OUT(b,l)	((t_out){(b), 0, (l), -1, OUT_NOFLUSH})
-
-typedef struct	s_out
-{
-	char			*buff;
-	int				i;
-	int				length;
-	int				fd;
-	int				flags;
-}				t_out;
-
-void			ft_write(t_out *out, const char *data, t_uint len);
-void			ft_writestr(t_out *out, const char *str);
-void			ft_writechar(t_out *out, char c);
-void			ft_writenchar(t_out *out, char c, int n);
-void			ft_writenl(t_out *out);
-void			ft_writeint(t_out *out, int n);
-void			ft_writebase(t_out *out, t_ulong n, const char *base);
-void			ft_writedouble(t_out *out, double d, int preci);
-int				ft_flush(t_out *out);
-
-/*
-** ========================================================================== **
-** static t_out FTOUT
-*/
-
-extern t_out	g_ftout;
-
-# define DEF_PRECI		7
-
-# define FTOUT			(&g_ftout)
-
-# define P(f, ...)		(ft_writef(FTOUT, (f), __VA_ARGS__))
-# define PS(s)			(ft_writestr(FTOUT, (s)))
-# define PC(c)			(ft_writechar(FTOUT, (c)))
-# define PCN(c,n)		(ft_writenchar(FTOUT, (c), (n)))
-# define PI(i)			(ft_writeint(FTOUT, (i)))
-# define PB(i,b)		(ft_writebase(FTOUT, (i), (b)))
-# define PF(f)			(ft_writedouble(FTOUT, (f), DEF_PRECI))
-# define PFP(f,p)		(ft_writedouble(FTOUT, (f), (p)))
-# define NL				(ft_writenl(FTOUT))
-# define FL				(ft_flush(FTOUT))
-
-void			ft_out(int fd);
-
-void			ft_hexdump(const void *data, t_uint len);
-
-/*
-** ========================================================================== **
 ** Math
 */
 
@@ -657,7 +540,6 @@ int				ft_printf(const char *format, ...);
 int				ft_fdprintf(const int fd, const char *format, ...);
 int				ft_sprintf(char *dst, char const *format, ...);
 int				ft_snprintf(char *dst, int max_len, char const *format, ...);
-int				ft_writef(t_out *out, const char *format, ...);
 
 /*
 ** ========================================================================== **

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/04 21:53:27 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/17 17:09:15 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_INTERNAL_H
 
 # include "libft.h"
+# include "ft_out.h"
 # include "ft_hmap.h"
 
 # include <stdarg.h>

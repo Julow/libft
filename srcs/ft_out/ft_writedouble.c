@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/20 00:16:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/20 00:16:46 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/17 17:05:44 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_out.h"
 
 static void		writedi(t_out *out, double d)
 {

@@ -6,18 +6,18 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 20:47:21 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/17 22:45:10 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/17 17:03:27 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_internal.h"
+#include "ft_buff.h"
 #include <unistd.h>
 #include <stdlib.h>
 
 /*
 ** Like ft_readbuff() but don't increment the buff index
 */
-inline char		ft_buffget(t_buff *buff)
+char			ft_buffget(t_buff *buff)
 {
 	if (buff->i >= buff->length)
 	{
