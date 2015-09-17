@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 16:25:53 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/17 16:37:14 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,24 +200,22 @@ typedef enum	e_bool
 
 # define S(t,l)			(sizeof(t) * (l))
 
-void			*ft_bzero(void *mem, t_uint len);
 void			*ft_emalloc(t_uint size);
+void			*ft_memdup(const void *src, t_uint len);
+
+void			*ft_bzero(void *mem, t_uint len);
 void			*ft_memset(void *mem, int c, t_uint len);
+
 void			*ft_memcpy(void *dst, const void *src, t_uint len);
 void			*ft_memrcpy(void *dst, const void *src, t_uint len);
-void			*ft_memccpy(void *dst, const void *src, int c, t_uint n);
 void			*ft_memmove(void *dst, const void *src, t_uint len);
-void			ft_memfill(void *dst, void const *src, int size, int dst_size);
-void			*ft_memdup(const void *src, t_uint len);
-void			ft_memswap(void *mem1, void *mem2, t_uint len);
-void			*ft_memchr(const void *s, int c, t_uint n);
-int				ft_memcmp(const void *mem1, const void *mem2, t_uint len);
-t_uint			ft_memstart(void const *s1, void const *s2, t_uint n);
-void			*ft_memalloc(t_uint size);
-void			ft_memralloc(void **mem, t_uint len, t_uint newlen);
-void			ft_memdel(void **ap);
 
-t_uint			ft_tablen(void **array);
+void			ft_memfill(void *dst, void const *src, int size, int dst_size);
+void			ft_memswap(void *mem1, void *mem2, t_uint len);
+
+int				ft_memcmp(const void *mem1, const void *mem2, t_uint len);
+
+t_uint			ft_memstart(void const *s1, void const *s2, t_uint n);
 
 /*
 ** ========================================================================== **
@@ -262,6 +260,8 @@ t_bool			ft_is(char c, t_is mask);
 /*
 ** ========================================================================== **
 ** String
+** TODO: deprecate ft_is*
+** TODO: deprecate ft_str* (except ft_strlen)
 */
 
 t_uint			ft_strlen(const char *str);
@@ -373,10 +373,6 @@ int				ft_atoub(const char *str, t_uint *nb);
 
 int				ft_itoab(int n, char *buff);
 
-char			*ft_itoa(int n);
-char			*ft_ltoa(t_long n);
-
-char			*ft_itobase(t_ulong nb, const char *base);
 t_ulong			ft_basetoi(const char *str, const char *base);
 
 char			ft_escape(char c);
