@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/09 12:51:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/16 22:48:03 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/18 15:46:56 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_bool			ft_strcase(const char *s1, const char *s2)
 	if (s1 == NULL || s2 == NULL)
 		return ((s1 == s2) ? true : false);
 	i = 0;
-	while (ft_tolower(s1[i]) == ft_tolower(s2[i]) && s1[i] != '\0')
+	while (LOWER(s1[i]) == LOWER(s2[i]) && s1[i] != '\0')
 		i++;
-	return ((ft_tolower(s1[i]) == ft_tolower(s2[i])) ? true : false);
+	return ((LOWER(s1[i]) == LOWER(s2[i])) ? true : false);
 }

@@ -6,83 +6,12 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/18 15:00:13 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/18 15:50:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
-/*
-** ========================================================================== **
-** Cheat Sheet Shit
-** ---
-** Registers
-**	qword			dword		word	byte
-** 	64				32			16		[8	8]
-** -
-** 	rax				eax			ax		ah	al 		Return 1
-** 	rbx				ebx			bx		bh	bl 		(Callee saved)
-** 	rcx				ecx			cx		ch	cl 		Arg 4 + Counter
-** 	rdx				edx			dx		dh	dl 		Arg 3 + Return 2
-** 	rsi				esi			si			sil		Arg 2
-** 	rdi				edi			di			dil		Arg 1
-** 	rbp				ebp			bp			bpl		(Callee saved)
-** 	rsp				esp			sp			spl		Stack ptr (Callee saved)
-** 	r8				r8d			r8w			r8b		Arg 5
-** 	r9				r9d			r9w			r9b		Arg 6
-** 	r10				r10d		r10w		r10b	Arg 7
-** 	r11				r11d		r11w		r11b	Tmp
-** 	r12				r12d		r12w		r12b	(Callee saved)
-** 	r13				r13d		r13w		r13b	(Callee saved)
-** 	r14				r14d		r14w		r14b	(Callee saved)
-** 	r15				r15d		r15w		r15b	(Callee saved)
-** -
-**  256				128
-** -
-**  ymm0			xmm0
-** ...
-**  ymm15			xmm15
-** ---
-** ========================================================================== **
-** ---
-** Signals
-** 			Name			Action			Comment
-** -
-**  1		SIGHUP			Terminate		Hangup or Parent terminated
-**  2		SIGINT			Terminate		^C
-**  3		SIGQUIT			Core Dump		^\
-**  4		SIGILL			Core Dump		Illegal Instruction
-**  5		SIGTRAP			Core Dump		Breakpoint
-**  6		SIGABRT			Core Dump		Abort
-**  		SIGBUS			Core Dump		Bus error
-**  8		SIGFPE			Core Dump		Floating point exception
-**  9		SIGKILL			! Terminate		Kill
-**  		SIGUSR1			Terminate		User 1
-**  11		SIGSEGV			Core Dump		Segmentation fault
-**  		SIGUSR2			Terminate		User 2
-**  13		SIGPIPE			Terminate		Broken pipe
-**  14		SIGALRM			Terminate		Timer
-**  15		SIGTERM			Terminate		Terminate
-**  		SIGSTKFLT		Terminate		Stack fault
-**  		SIGCHLD			Ignore			Child terminated
-**  		SIGCONT			Continue		Continue after a Stop
-**  		SIGSTOP			! Stop			Stop
-**  		SIGTSTP			Stop			^Z
-**  		SIGTTIN			Stop			Terminal input
-**  		SIGTTOU			Stop			Terminal output
-**  		SIGURG			Ignore			Urgent
-**  		SIGXCPU			Core Dump		CPU time limit
-**  		SIGXFSZ			Core Dump		File size limit
-**  		SIGVTALRM		Terminate		Virtual alarm
-**  		SIGPROF			Terminate		Profiling timer
-**  		SIGWINCH		Ignore			Window resize
-**  		SIGIO			Terminate		-
-**  		SIGPWR			Terminate		Power failure
-**  		SIGSYS			Core Dump		-
-** ---
-** ========================================================================== **
-*/
 
 /*
 ** ========================================================================== **
@@ -92,14 +21,10 @@
 ** BUFF_SIZE
 ** FTOUT_BUFF
 ** GNL_BUFF
-** ARRAY_CHUNK
-** TAB_CHUNK
-** STRING_CHUNK
 ** MEM_TYPE
 ** EMAL_ERROR
 ** EMAL_EXIT
 ** NO_EMAL
-** DEBUG_MODE
 ** ---
 */
 
@@ -110,15 +35,6 @@
 # ifndef FTOUT_BUFF
 #  define FTOUT_BUFF	512
 # endif
-# ifndef ARRAY_CHUNK
-#  define ARRAY_CHUNK	64
-# endif
-# ifndef TAB_CHUNK
-#  define TAB_CHUNK		32
-# endif
-# ifndef STRING_CHUNK
-#  define STRING_CHUNK	128
-# endif
 # ifndef MEM_TYPE
 #  define MEM_TYPE		unsigned long long int
 # endif
@@ -128,6 +44,16 @@
 # ifndef EMAL_EXIT
 #  define EMAL_EXIT		1
 # endif
+
+/*
+** ========================================================================== **
+** Debug
+*/
+
+# define _DEBUG_PARAMS	__FILE__, __LINE__, __func__, ##__VA_ARGS__
+
+# define DEBUG(f,...)	(ft_printf("%s:%d %s(); " f "\n", _DEBUG_PARAMS))
+# define TRACE			(DEBUG("TRACE", NULL))
 
 /*
 ** ========================================================================== **
@@ -150,22 +76,11 @@
 #  define EOF			-1
 # endif
 
-# define TUCHAR			unsigned char
-# define TUINT			unsigned int
-# define TLONG			long long int
-# define TULONG			unsigned long long int
-
-typedef TUCHAR	t_byte;
-typedef TUCHAR	t_uchar;
-typedef TUINT	t_uint;
-typedef TLONG	t_long;
-typedef TULONG	t_ulong;
-typedef TLONG	t_big;
-
-# undef TUCHAR
-# undef TUINT
-# undef TLONG
-# undef TULONG
+typedef unsigned char			t_byte;
+typedef unsigned char			t_uchar;
+typedef unsigned int			t_uint;
+typedef long long int			t_long;
+typedef unsigned long long int	t_ulong;
 
 typedef enum	e_bool
 {
@@ -260,7 +175,6 @@ t_bool			ft_is(char c, t_is mask);
 /*
 ** ========================================================================== **
 ** String
-** TODO: deprecate ft_is*
 ** TODO: deprecate ft_str* (except ft_strlen)
 */
 
@@ -365,9 +279,6 @@ t_ulong			ft_basetoi(const char *str, const char *base);
 char			ft_escape(char c);
 char			ft_unescape(char c);
 
-int				ft_toupper(int c);
-int				ft_tolower(int c);
-
 /*
 ** ========================================================================== **
 ** Clock
@@ -404,8 +315,6 @@ int				ft_exec(char **argv, char **env);
 
 char			*ft_getenv(char const *name, char **env);
 
-void			ft_splitfree(char **split);
-
 /*
 ** ========================================================================== **
 ** Sort
@@ -433,8 +342,6 @@ t_bool			ft_issort(void **tab, int length, int (*cmp)());
 # define FLOOR(n)		((int)(n))
 
 # define ISNAN(d)		((d) != (d))
-
-int				ft_mix(int a, int b, t_big pos);
 
 int				ft_abs(int a);
 int				ft_max(int a, int b);
@@ -465,12 +372,6 @@ int				get_next_line(int const fd, t_sub *line);
 ** -
 ** Return the total of char printed.
 */
-
-# ifdef DEBUG_MODE
-#  define TRACE			ft_printf("%s %s:%d\n", __func__, __FILE__, __LINE__)
-# else
-#  define TRACE
-# endif
 
 int				ft_printf(const char *format, ...);
 int				ft_fdprintf(const int fd, const char *format, ...);

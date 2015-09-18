@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 16:32:19 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 16:35:02 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/18 15:45:56 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ void			ft_memralloc(void **mem, t_uint len, t_uint newlen);
 void			ft_memdel(void **ap);
 
 t_uint			ft_tablen(void **array);
+
+void			ft_splitfree(char **split);
 
 #endif

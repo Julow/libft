@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 16:15:27 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 16:37:25 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/18 15:36:30 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ char			*ft_itoa(int n);
 char			*ft_ltoa(t_long n);
 
 char			*ft_itobase(t_ulong nb, const char *base);
+
+int				ft_toupper(int c);
+int				ft_tolower(int c);
 
 /*
 ** ========================================================================== **

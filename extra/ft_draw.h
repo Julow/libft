@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 16:48:15 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 16:53:12 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/18 15:49:48 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define BTOI(a)		((a) / 1000000)
 # define MIX(a,b,p)		((a) - BTOI((a) * (p)) + BTOI((b) * (p)))
 
+typedef long long int	t_big;
+
 typedef struct	s_pos
 {
 	double			x;
@@ -48,6 +50,8 @@ typedef struct	s_rect
 	int				width;
 	int				height;
 }				t_rect;
+
+int				ft_mix(int a, int b, t_big pos);
 
 void			ft_resrect(t_rect *rect, t_rect bounds);
 
