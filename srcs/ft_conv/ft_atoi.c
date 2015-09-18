@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 16:22:57 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 16:22:58 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/18 15:01:59 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int				ft_atoi(const char *str)
 
 	sign = 1;
 	nb = 0;
-	while (ft_iswhite(*str))
+	while (IS(*str, IS_WHITE))
 		str++;
 	if (*str == '-')
 	{

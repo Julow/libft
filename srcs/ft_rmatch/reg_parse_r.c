@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/30 13:21:27 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 19:32:18 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/18 15:15:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,24 @@ const char		*parse_reg_pre(t_reg *reg, const char *pattern)
 const char		*parse_reg_is(t_reg *reg, const char *pattern)
 {
 	if (*pattern == 'w')
-		reg->reg = (char*)&ft_isword;
+		reg->reg_len = IS_WORD;
 	else if (*pattern == 'a')
-		reg->reg = (char*)&ft_isalpha;
+		reg->reg_len = IS_ALPHA;
 	else if (*pattern == 'n')
-		reg->reg = (char*)&ft_isalnum;
+		reg->reg_len = IS_ALNUM;
 	else if (*pattern == 'c' || *pattern == '.')
-		reg->reg = (char*)&ft_isascii;
+		reg->reg_len = -1;
 	else if (*pattern == 'd')
-		reg->reg = (char*)&ft_isdigit;
+		reg->reg_len = IS_DIGIT;
 	else if (*pattern == 'p')
-		reg->reg = (char*)&ft_isprint;
+		reg->reg_len = IS_PRINT;
 	else if (*pattern == 's')
-		reg->reg = (char*)&ft_isspace;
+		reg->reg_len = IS_SPACE;
 	else if (*pattern == 'h')
-		reg->reg = (char*)&ft_iswhite;
+		reg->reg_len = IS_WHITE;
 	else
-		reg->reg = NULL;
+		reg->reg_len = 0;
+	reg->reg = NULL;
 	reg->flags |= FLAG_R_IS;
 	return (pattern + 1);
 }

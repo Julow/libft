@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/29 20:29:07 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/30 01:59:23 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/18 15:15:45 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_rmatch.h"
 #include <stdio.h>
 
 int				main(int argc, char **argv)
@@ -32,6 +32,6 @@ int				main(int argc, char **argv)
 			printf("%d\n", tmp);
 	}
 	else
-		ft_putstr("Need 2 args\n");
+		printf("Need 2 args\n");
 	return (0);
 }

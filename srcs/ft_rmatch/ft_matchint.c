@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/29 21:25:54 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 19:32:34 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/18 15:02:11 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				ft_matchint(const char *str)
 	int				len;
 
 	len = (*str == '-') ? 1 : 0;
-	while (ft_isdigit(str[len]))
+	while (IS(str[len], IS_DIGIT))
 		len++;
 	if (len == 1 && *str == '-')
 		return (0);

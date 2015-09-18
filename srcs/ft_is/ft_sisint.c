@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 22:36:23 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/16 22:36:28 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/18 15:06:29 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_bool			ft_sisint(const char *s)
 	int				len;
 
 	len = (*s == '-') ? 1 : 0;
-	while (ft_isdigit(s[len]))
+	while (IS(s[len], IS_DIGIT))
 		len++;
 	if (s[len] != '\0' || (len == 1 && *s == '-'))
 		return (false);

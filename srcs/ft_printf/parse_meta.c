@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 00:04:36 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/03 15:47:20 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/18 15:06:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int				parse_meta(t_printf *pf, t_pfopt *opt, const char *format)
 	int				i;
 
 	len = 0;
-	while (format[len] && format[len] != '}' && !ft_isspace(format[len]))
+	while (format[len] && format[len] != '}' && !IS(format[len], IS_SPACE))
 		len++;
 	i = -1;
 	while (g_metas[++i].type != meta_t_nope)

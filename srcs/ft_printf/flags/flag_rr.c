@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/04 01:53:15 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/04 02:48:38 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/18 15:04:59 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void			flag_rr(t_printf *pf, t_pfopt *opt)
 	margin_before(pf, opt, length);
 	i = -1;
 	while (++i < length)
-		ft_writechar(pf->out, ft_isprint(str[i]) ? str[i] : '.');
+		ft_writechar(pf->out, IS(str[i], IS_PRINT) ? str[i] : '.');
 	pf->printed += length;
 	margin_after(pf, opt, length);
 }

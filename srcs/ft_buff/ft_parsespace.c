@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/11 17:32:54 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 17:01:53 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/18 15:12:52 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 t_bool			ft_parsespace(t_buff *buff)
 {
-	if (!BIF(buff, &ft_isspace))
+	if (!IS(BG(buff), IS_SPACE))
 		return (false);
-	while (ft_isspace(BG(buff)))
+	BR(buff);
+	while (IS(BG(buff), IS_SPACE))
 		buff->i++;
 	return (true);
 }

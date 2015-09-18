@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 17:11:42 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/18 15:00:13 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,19 +269,6 @@ t_uint			ft_strlen(const char *str);
 t_bool			ft_match(char *str, char *pattern);
 int				ft_nmatch(char *str, char *pattern);
 t_bool			ft_hidenp(char *hide, char *str);
-
-t_bool			ft_isalnum(int c);
-t_bool			ft_isalpha(int c);
-t_bool			ft_isascii(int c);
-t_bool			ft_isdigit(int c);
-t_bool			ft_isprint(int c);
-t_bool			ft_isspace(int c);
-t_bool			ft_isword(int c);
-t_bool			ft_isrange(int c, int from, int to);
-t_bool			ft_iswhite(int c);
-
-t_bool			ft_isato(const char *str);
-t_bool			ft_isnumber(const char *str);
 
 t_bool			ft_sisint(const char *s);
 

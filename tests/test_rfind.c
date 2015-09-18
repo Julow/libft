@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/29 20:37:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/30 13:09:20 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/18 15:17:33 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_rmatch.h"
 #include <stdio.h>
 
 int				main(int argc, char **argv)

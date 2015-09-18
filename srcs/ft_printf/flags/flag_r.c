@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 01:31:36 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/04/06 17:42:42 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/18 15:05:46 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int		write_r(t_out *out, const char *str, int len)
 	i = -1;
 	printed = len;
 	while (++i < len)
-		if (!ft_isprint(str[i]))
+		if (!IS(str[i], IS_PRINT))
 		{
 			ft_writechar(out, '\\');
 			printed++;

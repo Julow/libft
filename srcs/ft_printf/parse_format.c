@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/31 13:51:27 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 16:25:21 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/18 15:06:03 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static int		parse_width(t_printf *pf, t_pfopt *opt, const char *f)
 	int				len;
 
 	len = 0;
-	if (ft_isdigit(*f))
+	if (IS(*f, IS_DIGIT))
 		len += ft_atoib(f, &(opt->width));
 	else if (*f == '*' && ++len)
 		opt->width = (int)(va_arg(*(pf->ap), int));
@@ -115,7 +115,7 @@ static int		parse_precision(t_printf *pf, t_pfopt *opt, const char *f)
 	if (*f != '.')
 		return ((opt->preci = 0), 0);
 	len = 1;
-	if (ft_isdigit(f[len]))
+	if (IS(f[len], IS_DIGIT))
 		len += ft_atoib(f + len, &(opt->preci));
 	else if (f[len] == '*' && ++len)
 		opt->preci = (int)(va_arg(*(pf->ap), int));
