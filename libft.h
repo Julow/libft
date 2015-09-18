@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/18 15:50:38 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/18 15:57:04 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@
 ** Debug
 */
 
-# define _DEBUG_PARAMS	__FILE__, __LINE__, __func__, ##__VA_ARGS__
+# define _DEBUG	__FILE__, __LINE__, __func__
 
-# define DEBUG(f,...)	(ft_printf("%s:%d %s(); " f "\n", _DEBUG_PARAMS))
+# define DEBUG(f,...)	(ft_printf("%s:%d [%s] " f "\n", _DEBUG, ##__VA_ARGS__))
 # define TRACE			(DEBUG("TRACE", NULL))
 
 /*
