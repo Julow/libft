@@ -6,16 +6,16 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:01:27 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/10 15:12:14 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/19 12:26:11 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_evalexpr.h"
 
-t_bool			exec_expr(t_expr *expr)
+static t_bool	exec_expr(struct s_expr *expr)
 {
 	int				priority;
-	t_expr			*tmp;
+	struct s_expr	*tmp;
 
 	priority = MAX_PRIORITY;
 	while (priority >= 1)
@@ -37,6 +37,23 @@ t_bool			exec_expr(t_expr *expr)
 	return (true);
 }
 
+static t_bool	eval_subexpr(t_sub sub, int i, int *i_ptr, float *value)
+{
+	int				tmp;
+
+	tmp = 1;
+	while (++i < sub.length)
+		if (sub.str[i] == '(')
+			++tmp;
+		else if (sub.str[i] == ')' && --tmp <= 0)
+			break ;
+	if (tmp != 0)
+		return (false);
+	tmp = *i_ptr;
+	*i_ptr = i + 1;
+	return (ft_evalexpr(SUB(sub.str + tmp + 1, i - tmp - 1), value));
+}
+
 t_bool			eval_value(t_sub sub, int *i_ptr, float *value)
 {
 	int				tmp;
@@ -47,27 +64,16 @@ t_bool			eval_value(t_sub sub, int *i_ptr, float *value)
 		++i;
 	*i_ptr = i;
 	if (i < sub.length && sub.str[i] == '(')
-	{
-		tmp = 1;
-		while (++i < sub.length)
-			if (sub.str[i] == '(')
-				++tmp;
-			else if (sub.str[i] == ')' && --tmp <= 0)
-				break ;
-		if (tmp != 0)
-			return (false);
-		tmp = *i_ptr;
-		*i_ptr = i + 1;
-		return (ft_evalexpr(SUB(sub.str + tmp + 1, i - tmp - 1), value));
-	}
+		return (eval_subexpr(sub, i, i_ptr, value));
 	if ((tmp = ft_subfloat(SUB(sub.str + i, sub.length - i), value)) > 0)
 		return ((*i_ptr = i + tmp), true);
 	return (parse_func(sub, i_ptr, value));
 }
 
-t_bool			eval_next(t_sub sub, int i, t_expr *prev, t_expr *first)
+t_bool			eval_next(t_sub sub, int i, struct s_expr *prev,
+		struct s_expr *first)
 {
-	t_expr			expr;
+	struct s_expr	expr;
 
 	expr.op = NULL;
 	expr.next = NULL;
@@ -85,7 +91,7 @@ t_bool			eval_next(t_sub sub, int i, t_expr *prev, t_expr *first)
 
 t_bool			ft_evalexpr(t_sub expr, float *result)
 {
-	t_expr			first;
+	struct s_expr	first;
 
 	first.n = 0.f;
 	first.next = NULL;

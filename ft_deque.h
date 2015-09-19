@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 02:55:42 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/19 11:26:49 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/19 12:11:27 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_DEQUE_H
 
 # include "libft.h"
-	
+
 /*
 ** ========================================================================== **
 ** Array list
@@ -66,7 +66,7 @@ struct			s_deque_it
 ** Increment the iterator
 ** At the end the iterator become invalid and NULL is returned
 */
-# define DEQUE_NEXT(i)		(deque_IT_NEXT(i) ? deque_it_c(&i) : i.data)
+# define DEQUE_NEXT(i)		(DEQUE_IT_NEXT(i) ? deque_it_c(&i) : i.data)
 
 /*
 ** Add an element to the back of the deque
@@ -109,7 +109,7 @@ void			ft_qclear(t_deque *v);
 /*
 ** Internaly used
 */
-# define deque_IT_NEXT(i)	((i.data += i.deque->element_size) >= i.end)
+# define DEQUE_IT_NEXT(i)	((i.data += i.deque->element_size) >= i.end)
 
 void			*deque_it_c(t_deque_it *it);
 

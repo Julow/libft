@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/08 22:10:54 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/19 11:23:12 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/19 19:45:34 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ struct			s_dstr
 
 # define DSTR_MIN		16
 
-# define DSTR_NEED(d,n)	(((d)->length + (n)) > (d)->capacity)
+# define DSTR_NEED(d,n)	(((d)->length + (n) + 1) > (d)->capacity)
 
 # define DSTR(s,l)		((t_dstr){(s), (l), 0})
 # define DSTRC(s)		((t_dstr){(s), sizeof(s) - 1, 0})

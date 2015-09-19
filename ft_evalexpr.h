@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:01:35 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/04 22:09:33 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/19 12:20:11 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,37 @@
 
 # include "libft.h"
 
-typedef struct	s_op
+struct			s_op
 {
 	char			symbol;
 	int				priority;
 	float			(*f)(float a, float b);
-}				t_op;
+};
 
-typedef struct	s_func
+struct			s_func
 {
 	t_sub			name;
 	float			(*f)(float a);
-}				t_func;
+};
 
-typedef struct	s_expr
+struct			s_expr
 {
-	t_op			*op;
+	struct s_op		*op;
 	struct s_expr	*next;
 	float			n;
-}				t_expr;
+};
 
 # define MAX_PRIORITY	3
 
-t_bool			parse_op(char c, t_expr *expr);
+t_bool			parse_op(char c, struct s_expr *expr);
 t_bool			parse_func(t_sub sub, int *i_ptr, float *value);
 
 t_bool			eval_value(t_sub sub, int *i_ptr, float *value);
+
+float			op_plus(float a, float b);
+float			op_moins(float a, float b);
+float			op_mult(float a, float b);
+float			op_div(float a, float b);
 
 /*
 ** ft_evalexpr

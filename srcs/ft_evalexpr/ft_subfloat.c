@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:21:00 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/22 18:17:37 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/19 12:21:12 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int				ft_subfloat(t_sub sub, float *f)
 	if ((i + 1) < sub.length && sub.str[i] == '0'
 		&& (sub.str[++i] == 'X' || sub.str[i] == 'x' || sub.str[i] == 'b'))
 		return (i + ft_subfloatbase(SUB(sub.str + i, sub.length - i),
-			negative, f));
+				negative, f));
 	tmp = 0.f;
 	while (i < sub.length && IS(sub.str[i], IS_DIGIT))
 		tmp = tmp * 10.f + (float)(sub.str[i++] - '0');

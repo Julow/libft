@@ -6,16 +6,18 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/09 11:38:19 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/07 23:08:50 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/19 12:18:37 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_wchar.h"
 
+#define FUCK		((*buff = ((w & 0x7F) | 0)), 1)
+
 int				ft_widetoa(char *buff, int w)
 {
 	if (w < 0x80)
-		return (*buff = ((w & 0x7F) | 0), 1);
+		return (FUCK);
 	else if (w < 0x800)
 	{
 		*(buff++) = ((w >> 6) & 0x1F) | 0xC0;

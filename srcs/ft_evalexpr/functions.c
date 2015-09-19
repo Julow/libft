@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/10 02:56:41 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/17 23:42:20 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/19 11:48:09 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_evalexpr.h"
 #include <math.h>
 
-static t_func		g_funcs[] = {
+static struct s_func	g_funcs[] = {
 	{SUBC("cos"), cosf},
 	{SUBC("sin"), sinf},
 	{SUBC("tan"), tanf},

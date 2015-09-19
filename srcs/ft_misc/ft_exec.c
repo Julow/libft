@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/28 23:18:37 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/28 23:29:30 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/19 12:27:23 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 ** Never return if success
 ** Return errno if fail
 */
-static void		try_exec(t_sub path, t_sub cmd, char **argv, char **env)
+static int		try_exec(t_sub path, t_sub cmd, char **argv, char **env)
 {
 	char			cmd_path[path.length + cmd.length + 2];
 
@@ -39,6 +39,7 @@ static void		try_exec(t_sub path, t_sub cmd, char **argv, char **env)
 		execve(cmd_path + 1, argv, env);
 	else
 		execve(cmd_path, argv, env);
+	return (errno);
 }
 
 int				ft_exec(char **argv, char **env)
@@ -55,7 +56,7 @@ int				ft_exec(char **argv, char **env)
 	path.length = 0;
 	cmd_len = ft_strlen(argv[0]);
 	if (ft_strchr(argv[0], '/') != NULL)
-		return (try_exec(path, SUB(argv[0], cmd_len), argv, env), errno);
+		return (try_exec(path, SUB(argv[0], cmd_len), argv, env));
 	err = ENOENT;
 	while (ft_subnextc(&path, ':'))
 	{
