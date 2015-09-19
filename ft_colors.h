@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/24 18:07:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/09 16:47:36 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/19 21:32:32 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,23 @@
 
 # define BG_RESET			"\033[49m"
 
-# define BG_LRED			"\033[41m"
-# define BG_LGREEN			"\033[42m"
-# define BG_LYELLOW			"\033[43m"
-# define BG_LBLUE			"\033[44m"
-# define BG_LMAGENTA		"\033[45m"
-# define BG_LCYAN			"\033[46m"
-# define BG_LGRAY			"\033[47m"
-
-# define BG_BLACK			"\033[40m"
 # define BG_WHITE			"\033[107m"
-
-# define BG_RED				"\033[101m"
-# define BG_GREEN			"\033[102m"
-# define BG_YELLOW			"\033[103m"
-# define BG_BLUE			"\033[104m"
-# define BG_MAGENTA			"\033[105m"
-# define BG_CYAN			"\033[106m"
+# define BG_BLACK			"\033[40m"
 # define BG_GRAY			"\033[100m"
+# define BG_LCYAN			"\033[106m"
+
+# define BG_RED				"\033[41m"
+# define BG_GREEN			"\033[42m"
+# define BG_YELLOW			"\033[43m"
+# define BG_BLUE			"\033[44m"
+# define BG_MAGENTA			"\033[45m"
+# define BG_CYAN			"\033[46m"
+
+# define BG_LGRAY			"\033[47m"
+# define BG_LRED			"\033[101m"
+# define BG_LGREEN			"\033[102m"
+# define BG_LYELLOW			"\033[103m"
+# define BG_LBLUE			"\033[104m"
+# define BG_LMAGENTA		"\033[105m"
 
 #endif

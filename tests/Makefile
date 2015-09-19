@@ -6,7 +6,7 @@
 #    By: juloo <juloo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/10 22:34:26 by juloo             #+#    #+#              #
-#    Updated: 2015/09/13 21:55:26 by juloo            ###   ########.fr        #
+#    Updated: 2015/09/20 00:03:45 by juloo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ $(TESTS): %: libft out_%
 
 out_%: test_%.c ../libft.a
 	clang $(FLAGS) $(HEADS) $< -o $@ $(LINKS)
+	printf "\033[32m$@\033[0m\n"
 
 libft:
 	make -C ..

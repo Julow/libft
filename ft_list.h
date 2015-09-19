@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 01:00:32 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/19 12:12:23 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/20 00:06:14 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,12 @@ void			*ft_listadd(t_list *lst, void *after, int extra_size);
 ** Return a new iterator (invalid until next call to LIST_NEXT)
 */
 void			*ft_listremove(t_list *lst, void *node);
+
+/*
+** Sort a list
+** Merge sort
+** stable ?
+*/
+void			ft_listsort(t_list *lst, int (*cmp)());
 
 #endif
