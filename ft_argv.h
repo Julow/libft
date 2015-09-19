@@ -6,12 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/18 21:19:59 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/07 23:01:28 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/19 11:24:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_ARGV_H
 # define FT_ARGV_H
+
+# include "libft.h"
 
 /*
 ** ========================================================================== **
@@ -20,7 +22,7 @@
 # define FTARGS_END			(1 << 2)
 # define FTARGS_LONG		(1 << 3)
 
-typedef struct	s_args
+struct			s_args
 {
 	char			**argv;
 	int				argc;
@@ -28,7 +30,7 @@ typedef struct	s_args
 	int				c;
 	int				i;
 	char			opt[2];
-}				t_args;
+};
 
 /*
 ** ARGS
@@ -116,13 +118,13 @@ char			*ft_argvarg(t_args *args);
 ** true otherwise
 */
 
-typedef struct	s_opt
+struct			s_opt
 {
 	char			*opt;
 	char const		*alias;
 	t_bool			arg;
 	t_bool			(*f)();
-}				t_opt;
+};
 
 t_bool			ft_argv(t_args *args, t_opt const *opts, int len, void *data);
 

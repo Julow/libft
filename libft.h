@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/18 15:57:04 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/19 11:28:47 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,32 @@
 ** Types
 */
 
+typedef unsigned char			t_byte;
+typedef unsigned char			t_uchar;
+typedef unsigned int			t_uint;
+typedef long long int			t_long;
+typedef unsigned long long int	t_ulong;
+
+typedef struct s_vector			t_vector;
+typedef struct s_list			t_list;
+typedef struct s_hmap			t_hmap;
+typedef struct s_deque			t_deque;
+typedef struct s_dstr			t_dstr;
+
+typedef struct s_deque_it		t_deque_it;
+
+typedef enum e_bool				t_bool;
+
+typedef struct s_sub			t_sub;
+
+typedef struct s_var			t_var;
+
+typedef struct s_out			t_out;
+typedef struct s_buff			t_buff;
+
+typedef struct s_args			t_args;
+typedef struct s_opt			t_opt;
+
 # define MASK(f,m)		((m) == ((f) & (m)))
 # define FLAG(f,b)		(((f) & (1 << (b))) != 0)
 # define BIT(b)			(1 << (b))
@@ -76,18 +102,6 @@
 #  define EOF			-1
 # endif
 
-typedef unsigned char			t_byte;
-typedef unsigned char			t_uchar;
-typedef unsigned int			t_uint;
-typedef long long int			t_long;
-typedef unsigned long long int	t_ulong;
-
-typedef enum	e_bool
-{
-	false = 0,
-	true = 1
-}				t_bool;
-
 # define IGNORE(f)		((void)((f) + 1))
 
 # define CAT(a,b)		a##b
@@ -96,6 +110,12 @@ typedef enum	e_bool
 # define STR_VALUE(s)	STR(s)
 
 # define G_ARRAY_LEN(g)	((int)(sizeof(g) / sizeof(*(g))))
+
+enum			e_bool
+{
+	false = 0,
+	true = 1
+};
 
 /*
 ** ========================================================================== **
@@ -208,11 +228,11 @@ char			*ft_strndup(const char *src, t_uint len);
 # define SUB(s,l)		((t_sub){(s), (l)})
 # define SUBC(s)		SUB(s, sizeof(s) - 1)
 
-typedef struct	s_sub
+struct			s_sub
 {
 	char const		*str;
 	int				length;
-}				t_sub;
+};
 
 t_sub			ft_sub(char const *str, int from, int to);
 t_sub			ft_subsub(t_sub sub, int from, int to);

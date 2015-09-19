@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/08 22:10:54 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/13 20:58:26 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/19 11:23:12 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 ** Capacity field does not count the terminating '\0'
 */
 
-typedef struct	s_dstr
+struct			s_dstr
 {
 	char			*str;
 	int				length;
 	int				capacity;
-}				t_dstr;
+};
 
 # define DSTR_MIN		16
 

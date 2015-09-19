@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/10 00:49:06 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/11 00:23:10 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/19 11:21:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ typedef union	u_var_data
 	t_var_strct		s;
 }				t_var_data;
 
-typedef struct	s_var
+struct			s_var
 {
 	t_var_type		t;
 	t_var_data		data;
-}				t_var;
+};
 
 /*
 ** VAR_INIT

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 16:59:59 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 17:00:13 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/19 11:23:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@
 # define BUFF(f,b,l)	((t_buff){(b), 0, 0, (l), (f) & 0xFF})
 # define SBUFF(s,l)		((t_buff){(s), 0, (l), (l), -1 & 0xFF | BIT(BF_STR)})
 
-typedef struct	s_buff
+struct			s_buff
 {
 	char			*data;
 	int				i;
 	int				length;
 	int				buff_len;
 	int				fd;
-}				t_buff;
+};
 
 char			ft_readbuff(t_buff *buff);
 char			ft_buffget(t_buff *buff);

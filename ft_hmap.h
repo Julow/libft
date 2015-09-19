@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/11 01:35:55 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/07 19:02:02 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/19 11:22:44 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ t_uint			ft_djb2(t_sub sub);
 **   (simple iteration and sort are not possible)
 */
 
-typedef struct	s_hmap
+struct			s_hmap
 {
 	int				size;
 	int const		alloc_size;
 	struct s_h		**const data;
 	t_uint			(*const hash)(t_sub key);
-}				t_hmap;
+};
 
 /*
 ** Alloc a new hmap

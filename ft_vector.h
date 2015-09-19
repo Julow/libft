@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:22:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/06 15:58:39 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/19 11:21:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@
 ** Vector (Continuous dynamic array)
 */
 
-typedef struct	s_vector
+struct			s_vector
 {
 	void			*data;
 	int				length;
 	int				capacity;
 	int const		element_size;
-}				t_vector;
+};
 
 # define VECTOR_MIN_CAP		16
 

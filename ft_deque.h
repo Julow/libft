@@ -6,12 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 02:55:42 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/23 12:15:40 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/19 11:26:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_DEQUE_H
 # define FT_DEQUE_H
+
+# include "libft.h"
 	
 /*
 ** ========================================================================== **
@@ -32,21 +34,21 @@ typedef struct	s_que_c
 
 # define QUE_C_SIZE			256
 
-typedef struct	s_deque
+struct			s_deque
 {
 	int				length;
 	const int		element_size;
 	t_que_c			*first;
 	t_que_c			*last;
-}				t_deque;
+};
 
-typedef struct	s_deque_it
+struct			s_deque_it
 {
 	t_deque			*deque;
 	t_que_c			*next;
 	void			*data;
 	void			*end;
-}				t_deque_it;
+};
 
 /*
 ** Create a deque

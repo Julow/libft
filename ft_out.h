@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 17:00:20 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 17:08:51 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/19 11:22:06 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@
 # define DSTR_OUT(d)	((t_out){(char*)(d), 0, 0, -1, OUT_DSTR})
 # define BUFF_OUT(b,l)	((t_out){(b), 0, (l), -1, OUT_NOFLUSH})
 
-typedef struct	s_out
+struct			s_out
 {
 	char			*buff;
 	int				i;
 	int				length;
 	int				fd;
 	int				flags;
-}				t_out;
+};
 
 void			ft_write(t_out *out, const char *data, t_uint len);
 void			ft_writestr(t_out *out, const char *str);

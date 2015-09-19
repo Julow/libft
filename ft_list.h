@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 01:00:32 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/04 21:43:04 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/19 11:22:30 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@
 ** -
 */
 
-typedef struct	s_list
+struct			s_list
 {
 	void			*first;
 	void			*last;
 	int				length;
 	int const		node_size;
-}				t_list;
+};
 
 /*
 ** Create a list of t
