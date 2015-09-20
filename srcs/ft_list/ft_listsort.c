@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/19 21:43:26 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/20 00:07:45 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/20 02:21:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,9 @@ static void		*list_merge(void *lst, void *add, int (*cmp)(void*, void*))
 	void			*first;
 
 	if (cmp(lst, add) > 0)
-	{
-		first = add;
-		add = LIST_NEXT(add);
-	}
+		add = LIST_NEXT(first = add);
 	else
-	{
-		first = lst;
-		lst = LIST_NEXT(lst);
-	}
+		lst = LIST_NEXT(first = lst);
 	merged = first;
 	while (true)
 	{
@@ -58,16 +52,6 @@ static void		*list_n(void *lst, int n)
 	return (lst);
 }
 
-static void		*list_swap_next(void *lst)
-{
-	void			*tmp;
-
-	tmp = LIST_NEXT(lst);
-	LIST_NEXT(lst) = LIST_NEXT(tmp);
-	LIST_NEXT(tmp) = lst;
-	return (tmp);
-}
-
 static void		*list_split(void *lst, int length, int (*cmp)(void*, void*))
 {
 	if (LIST_PREV(lst) != NULL)
@@ -76,9 +60,12 @@ static void		*list_split(void *lst, int length, int (*cmp)(void*, void*))
 	{
 		if (length < 2)
 			return (lst);
-		if (cmp(lst, LIST_NEXT(lst)) > 0)
-			return (list_swap_next(lst));
-		return (lst);
+		if (cmp(lst, LIST_NEXT(lst)) <= 0)
+			return (lst);
+		cmp = LIST_NEXT(lst);
+		LIST_NEXT(lst) = LIST_NEXT(cmp);
+		LIST_NEXT(cmp) = lst;
+		return (cmp);
 	}
 	return (list_merge(
 		list_split(list_n(lst, length / 2), (length + 1) / 2, cmp),

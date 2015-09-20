@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 01:46:45 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/20 00:13:22 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/20 01:50:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ typedef struct	s_data
 
 static void		print_list(t_list *list)
 {
-	t_data			*tmp;
+	// t_data			*tmp;
 
-	tmp = LIST_IT(list);
-	ft_printf("[ ");
-	while ((tmp = LIST_PREV(tmp)))
-	{
-		ft_printf("%d ", tmp->a);
-	}
-	ft_printf("]\n");
+	// tmp = LIST_IT(list);
+	// ft_printf("[ ");
+	// while ((tmp = LIST_PREV(tmp)))
+	// {
+	// 	ft_printf("%d ", tmp->a);
+	// }
+	// ft_printf("]\n");
 }
 
 static void		test_add_front(t_list *list, int count)
@@ -38,7 +38,7 @@ static void		test_add_front(t_list *list, int count)
 	while (--count >= 0)
 	{
 		tmp = ft_listadd(list, NULL, 0);
-		tmp->a = rand() % 100;
+		tmp->a = rand();
 		print_list(list);
 	}
 }
@@ -53,8 +53,8 @@ static void		test_add_after(t_list *list, int min)
 		if (tmp->a <= min)
 		{
 			tmp = ft_listadd(list, tmp, 0);
-			tmp->a = 0;
-			// print_list(list);
+			tmp->a = rand();
+			print_list(list);
 		}
 	}
 }
@@ -112,24 +112,9 @@ int				main(void)
 	list = LIST(t_data);
 	test_add_front(&list, 20);
 	print_list(&list);
-	test_add_after(&list, 50);
+	test_add_after(&list, RAND_MAX / 2);
 	print_list(&list);
-	test_add_after(&list, 100);
-	test_add_after(&list, 100);
-	test_add_after(&list, 100);
-	test_add_after(&list, 100);
-	test_add_after(&list, 100);
-	test_add_after(&list, 100);
-	test_add_after(&list, 100);
-	test_add_after(&list, 100);
-	test_add_after(&list, 100);
-	test_add_after(&list, 100);
-	test_add_after(&list, 100);
-	test_add_after(&list, 100);
-	test_add_after(&list, 100);
-	test_add_after(&list, 100);
-	test_add_after(&list, 100);
-	test_add_after(&list, 100);
+	test_add_front(&list, 1500000000);
 	// print_list(&list);
 	test_sort(&list);
 	// print_list(&list);
@@ -139,8 +124,3 @@ int				main(void)
 	// print_list(&list);
 	return (0);
 }
-// 512			15 us
-// 4000			160 us
-// 15000		700 us
-// 270336		14000 us
-// 2031616		13500 us
