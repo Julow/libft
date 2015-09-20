@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/30 19:49:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 17:09:15 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/20 14:52:46 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ void			flag_other(t_printf *pf, t_pfopt *opt, char c);
 void			flag_r(t_printf *pf, t_pfopt *opt);
 void			flag_rr(t_printf *pf, t_pfopt *opt);
 void			flag_w(t_printf *pf, t_pfopt *opt);
+void			flag_f(t_printf *pf, t_pfopt *opt);
 
 /*
 ** metas
