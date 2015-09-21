@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/10 00:49:06 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/19 11:21:46 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/21 12:13:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,6 @@ struct			s_var
 # define VAR_IS_VA(v)		((v).t==var_t_arg)
 # define VAR_S_GET(v,t)		*((t*)ft_varget(&((v).data.s), sizeof(t)))
 
-static inline void	*ft_varget(t_var_strct *v, int size)
-{
-	void *const		tmp = v->data + v->curr;
-
-	v->curr += (size - ((v->curr + size) % size)) % size + size;
-	return (tmp);
-}
+void			*ft_varget(t_var_strct *v, int size);
 
 #endif

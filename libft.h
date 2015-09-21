@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/19 11:28:47 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/21 12:37:01 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@
 ** Types
 */
 
+enum			e_bool
+{
+	false = 0,
+	true = 1
+};
+
 typedef unsigned char			t_byte;
 typedef unsigned char			t_uchar;
 typedef unsigned int			t_uint;
@@ -110,12 +116,6 @@ typedef struct s_opt			t_opt;
 # define STR_VALUE(s)	STR(s)
 
 # define G_ARRAY_LEN(g)	((int)(sizeof(g) / sizeof(*(g))))
-
-enum			e_bool
-{
-	false = 0,
-	true = 1
-};
 
 /*
 ** ========================================================================== **
@@ -226,6 +226,7 @@ char			*ft_strndup(const char *src, t_uint len);
 */
 
 # define SUB(s,l)		((t_sub){(s), (l)})
+# define SUB0()			(SUB("", 0))
 # define SUBC(s)		SUB(s, sizeof(s) - 1)
 
 struct			s_sub

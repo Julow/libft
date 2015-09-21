@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/23 01:02:28 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/23 01:13:42 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/21 12:26:50 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 ** Return the total of reduced chars
 ** ----
 */
+
 int				ft_subtriml(t_sub *sub, t_is mask)
 {
 	int				i;

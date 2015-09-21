@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/31 13:51:27 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/20 14:52:38 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/21 12:33:34 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
 
-const t_pfflag	g_flags[] = {
+static const t_pfflag	g_flags[] = {
 	{'#', PFLAG_ALT, 0},
 	{' ', PFLAG_SPACE, 0},
 	{'0', PFLAG_ZERO, 0},
@@ -26,7 +26,7 @@ const t_pfflag	g_flags[] = {
 	{'\0', 0, 0}
 };
 
-const t_pflen	g_lengths[] = {
+static const t_pflen	g_lengths[] = {
 	{"hh", pflen_hh},
 	{"h", pflen_h},
 	{"ll", pflen_ll},
@@ -40,7 +40,7 @@ const t_pflen	g_lengths[] = {
 	{NULL, pflen_def}
 };
 
-const t_pformat	g_formats[] = {
+static const t_pformat	g_formats[] = {
 	{'d', &flag_d},
 	{'D', &flag_d},
 	{'i', &flag_d},
@@ -114,7 +114,7 @@ static int		parse_precision(t_printf *pf, t_pfopt *opt, const char *f)
 	int				len;
 
 	if (*f != '.')
-		return ((opt->preci = 0), 0);
+		return ((opt->preci = 0));
 	len = 1;
 	if (IS(f[len], IS_DIGIT))
 		len += ft_atoib(f + len, &(opt->preci));

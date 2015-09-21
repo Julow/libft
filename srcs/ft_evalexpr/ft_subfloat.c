@@ -6,13 +6,15 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:21:00 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/19 12:21:12 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/21 12:36:37 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_evalexpr.h"
 
-static int		ft_subfloatbase(t_sub sub, t_bool neg, float *f)
+#define RETURN(...)		return (__VA_ARGS__)
+
+static int		sub_float(t_sub sub, t_bool neg, float *f)
 {
 	int				i;
 	int				base_i;
@@ -20,7 +22,7 @@ static int		ft_subfloatbase(t_sub sub, t_bool neg, float *f)
 	float			tmp;
 
 	if (sub.length <= 0)
-		return ((*f = 0.f), 0);
+		RETURN((*f = 0.f), 0);
 	if (sub.str[0] == 'X' || sub.str[0] == 'x')
 		base = SUBC(BASE_16);
 	else if (sub.str[0] == 'b')
@@ -48,13 +50,12 @@ int				ft_subfloat(t_sub sub, float *f)
 	t_bool			negative;
 
 	if (sub.length <= 0)
-		return ((*f = 0.f), 0);
+		RETURN((*f = 0.f), 0);
 	negative = (sub.str[0] == '-') ? true : false;
 	i = (negative || sub.str[0] == '+') ? 1 : 0;
 	if ((i + 1) < sub.length && sub.str[i] == '0'
 		&& (sub.str[++i] == 'X' || sub.str[i] == 'x' || sub.str[i] == 'b'))
-		return (i + ft_subfloatbase(SUB(sub.str + i, sub.length - i),
-				negative, f));
+		return (i + sub_float(SUB(sub.str + i, sub.length - i), negative, f));
 	tmp = 0.f;
 	while (i < sub.length && IS(sub.str[i], IS_DIGIT))
 		tmp = tmp * 10.f + (float)(sub.str[i++] - '0');
@@ -67,5 +68,5 @@ int				ft_subfloat(t_sub sub, float *f)
 	sub.length = i;
 	while (sub.str[--i] != '.' && sub.str[i] != ',')
 		tmp = (tmp + (float)(sub.str[i] - '0')) / 10.f;
-	return ((*f += negative ? -tmp : tmp), sub.length);
+	RETURN((*f += negative ? -tmp : tmp), sub.length);
 }

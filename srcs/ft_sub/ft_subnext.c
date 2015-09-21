@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/23 01:03:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/28 22:25:39 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/21 12:26:12 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 ** Return 'false' if the end of the string is reach
 ** 'true' otherwise
 */
+
 t_bool			ft_subnext(t_sub *sub, t_is mask)
 {
 	int				i;

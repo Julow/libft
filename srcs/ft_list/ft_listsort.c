@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/19 21:43:26 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/20 02:21:38 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/21 12:19:34 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ static void		*list_merge(void *lst, void *add, int (*cmp)(void*, void*))
 	void			*first;
 
 	if (cmp(lst, add) > 0)
-		add = LIST_NEXT(first = add);
+		add = LIST_NEXT(
+			first = add);
 	else
-		lst = LIST_NEXT(first = lst);
+		lst = LIST_NEXT(
+			first = lst);
 	merged = first;
 	while (true)
 	{

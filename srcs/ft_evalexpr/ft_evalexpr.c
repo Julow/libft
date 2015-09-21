@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:01:27 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/19 12:26:11 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/21 12:28:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,7 @@ static t_bool	eval_subexpr(t_sub sub, int i, int *i_ptr, float *value)
 	return (ft_evalexpr(SUB(sub.str + tmp + 1, i - tmp - 1), value));
 }
 
-t_bool			eval_value(t_sub sub, int *i_ptr, float *value)
-{
-	int				tmp;
-	int				i;
-
-	i = *i_ptr;
-	while (i < sub.length && IS(sub.str[i], IS_SPACE))
-		++i;
-	*i_ptr = i;
-	if (i < sub.length && sub.str[i] == '(')
-		return (eval_subexpr(sub, i, i_ptr, value));
-	if ((tmp = ft_subfloat(SUB(sub.str + i, sub.length - i), value)) > 0)
-		return ((*i_ptr = i + tmp), true);
-	return (parse_func(sub, i_ptr, value));
-}
-
-t_bool			eval_next(t_sub sub, int i, struct s_expr *prev,
+static t_bool	eval_next(t_sub sub, int i, struct s_expr *prev,
 		struct s_expr *first)
 {
 	struct s_expr	expr;
@@ -87,6 +71,25 @@ t_bool			eval_next(t_sub sub, int i, struct s_expr *prev,
 	if (!parse_op(sub.str[i++], &expr))
 		return (false);
 	return (eval_next(sub, i, &expr, first));
+}
+
+t_bool			eval_value(t_sub sub, int *i_ptr, float *value)
+{
+	int				tmp;
+	int				i;
+
+	i = *i_ptr;
+	while (i < sub.length && IS(sub.str[i], IS_SPACE))
+		++i;
+	*i_ptr = i;
+	if (i < sub.length && sub.str[i] == '(')
+		return (eval_subexpr(sub, i, i_ptr, value));
+	if ((tmp = ft_subfloat(SUB(sub.str + i, sub.length - i), value)) > 0)
+	{
+		*i_ptr = i + tmp;
+		return (true);
+	}
+	return (parse_func(sub, i_ptr, value));
 }
 
 t_bool			ft_evalexpr(t_sub expr, float *result)

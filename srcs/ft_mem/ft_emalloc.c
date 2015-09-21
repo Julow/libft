@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/16 22:33:49 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 16:41:39 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/21 12:16:50 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 ** Try to malloc 'size' bytes
 ** If malloc fail, put EMAL_ERROR on stderr and exit with code EMAL_EXIT
 */
+
 inline void		*ft_emalloc(t_uint size)
 {
 	void			*mem;

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/28 18:47:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/05/28 22:23:37 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/21 12:26:52 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 ** Return 'false' if the end of the string is reach
 ** 'true' otherwise
 */
+
 t_bool			ft_subnextc(t_sub *sub, char c)
 {
 	int				i;

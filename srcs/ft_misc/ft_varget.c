@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_subsub.c                                        :+:      :+:    :+:   */
+/*   ft_varget.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/23 01:04:51 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/21 12:32:32 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/09/21 12:11:53 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/09/21 12:13:12 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_var.h"
 
-/*
-** ft_subsub
-** ----
-** See ft_sub
-*/
-
-t_sub			ft_subsub(t_sub sub, int from, int to)
+void			*ft_varget(t_var_strct *v, int size)
 {
-	if (from < 0)
-		from += sub.length + 1;
-	if (to < 0)
-		to += sub.length + 1;
-	return ((t_sub){sub.str + from, to - from});
+	void *const		tmp = v->data + v->curr;
+
+	v->curr += (size - ((v->curr + size) % size)) % size + size;
+	return (tmp);
 }

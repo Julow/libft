@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/23 01:03:25 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/23 01:18:46 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/21 12:26:13 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 ** ----
 ** See ft_subextract
 */
+
 int				ft_subcount(t_sub sub, t_is mask)
 {
 	int				count;

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:12:42 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 19:32:30 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/21 12:25:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 **  false otherwise
 ** ---
 */
+
 t_bool			ft_rmatch(const char *str, const char *pattern)
 {
 	const char		*tmp = reg_test(str, pattern);

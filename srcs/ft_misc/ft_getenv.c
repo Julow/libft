@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 23:22:56 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 16:23:55 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/21 12:24:20 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 ** If 'env' is NULL, 'environ' is used
 ** ----
 */
+
 char			*ft_getenv(char const *name, char **env)
 {
 	int				i;

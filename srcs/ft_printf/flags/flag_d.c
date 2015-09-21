@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/31 15:40:35 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/31 19:54:39 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/21 11:42:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
 
-void			write_long(t_out *out, t_long n)
+static void		write_long(t_out *out, t_long n)
 {
 	char			nb[PUTLONG_BUFF];
 	t_uint			i;

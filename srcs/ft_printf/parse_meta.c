@@ -6,14 +6,14 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 00:04:36 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/18 15:06:22 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/21 11:43:59 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
 #include "ft_colors.h"
 
-const t_meta	g_metas[] = {
+static const t_meta	g_metas[] = {
 	META_T("nl", meta_t_func, &meta_nl),
 	META_T("fl", meta_t_func, &meta_fl),
 

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/31 00:00:01 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/16 22:50:45 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/21 12:25:25 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 ** Count the len of 'str' using char of 'skip' as stop
 ** Allow char from 'str' to be escaped with '\'
 */
+
 t_uint			ft_strcskipe(const char *str, const char *skip)
 {
 	t_uint			i;

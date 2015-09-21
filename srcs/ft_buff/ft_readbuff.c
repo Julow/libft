@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 20:15:15 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 17:03:23 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/21 12:16:30 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 ** (only if 'buff' is a file buffer ('fd' >= 0))
 ** Return '\0' if the end of the buffer is reach
 */
+
 char			ft_readbuff(t_buff *buff)
 {
 	char			c;

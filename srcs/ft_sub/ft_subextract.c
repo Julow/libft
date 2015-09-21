@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/23 01:03:03 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/26 01:39:56 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/21 12:26:10 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 ** Return the total of subs extracted
 ** ----
 */
+
 int				ft_subextract(t_sub sub, t_sub *dst, int max, t_is mask)
 {
 	int				count;

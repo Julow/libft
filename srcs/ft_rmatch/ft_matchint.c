@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/29 21:25:54 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/18 15:02:11 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/21 12:24:50 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 **  0 if 'str' don't start with a valid int
 ** ---
 */
+
 int				ft_matchint(const char *str)
 {
 	int				len;

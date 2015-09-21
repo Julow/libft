@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/31 18:30:26 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/31 18:35:27 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/21 11:42:53 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_internal.h"
 
-void			ft_writeulong(t_out *out, t_ulong n)
+static void		ft_writeulong(t_out *out, t_ulong n)
 {
 	char			nb[PUTLONG_BUFF];
 	t_uint			i;

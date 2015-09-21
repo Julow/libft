@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 00:42:32 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/12 00:43:58 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/21 12:18:05 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 ** Return the number of byte that are equals in 's1' and 's2'
 ** Return 'n' if all bytes match
 */
+
 t_uint			ft_memstart(void const *s1, void const *s2, t_uint n)
 {
 	t_uint const	length = n;

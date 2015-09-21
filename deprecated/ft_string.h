@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 01:52:25 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/14 01:56:17 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/21 11:55:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ t_bool			ft_parsequote(t_buff *buff, t_string *dst);
 ** ========================================================================== **
 ** Pair extension
 */
-
-# include "ft_array.h"
 
 typedef struct	s_pair
 {

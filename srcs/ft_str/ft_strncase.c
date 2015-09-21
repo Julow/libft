@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/09 12:51:20 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/18 15:46:51 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/21 12:26:17 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 ** Compare 's1' and 's2' case insensitive
 ** Compare 'n' characters
 */
+
 t_bool			ft_strncase(const char *s1, const char *s2, t_uint n)
 {
 	t_uint			i;

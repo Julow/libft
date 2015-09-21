@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/02 12:38:47 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/02 12:40:56 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/09/21 12:16:37 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 ** Write the string representation of 'n' in 'buff' and return the len
 */
+
 int				ft_itoab(int n, char *buff)
 {
 	int				len;
