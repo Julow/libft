@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   test_hmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/22 23:33:02 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/05 15:15:42 by juloo            ###   ########.fr       */
+/*   Updated: 2015/09/23 14:03:05 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,8 +234,6 @@ t_sub const		g_test_keys[] = {
 	SUBC("999")
 };
 
-int const		g_test_keys_count = sizeof(g_test_keys) / sizeof(t_sub);
-
 #define HASH_FUNCTION	ft_djb2
 
 // #define HASH_FUNCTION	test_h
@@ -285,8 +283,8 @@ static t_ulong	test_add(t_hmap *map, int count)
 	t = ft_clock(0);
 	for (i = 0; i < count; ++i)
 	{
-		ft_hmapputp(map, g_test_keys[rand() % g_test_keys_count],
-			(void*)(g_test_keys + (rand() % g_test_keys_count)));
+		ft_hmapputp(map, g_test_keys[rand() % G_ARRAY_LEN(g_test_keys)],
+			(void*)(g_test_keys + (rand() % G_ARRAY_LEN(g_test_keys))));
 	}
 	t = ft_clock(t);
 	ft_printf("Added %d: size:%d; time:%lld\n", count, map->size, t);
@@ -363,7 +361,7 @@ static t_ulong	test_get(t_hmap *map, int count)
 	t = ft_clock(0);
 	for (i = 0; i < count; ++i)
 	{
-		if (ft_hmapget(map, g_test_keys[rand() % g_test_keys_count]) != NULL)
+		if (ft_hmapget(map, g_test_keys[rand() % G_ARRAY_LEN(g_test_keys)]) != NULL)
 			found++;
 	}
 	t = ft_clock(t);
@@ -404,12 +402,15 @@ int				main(int argc, char **argv)
 	t += test_add(map, 20);
 	t += test_add(map, 200);
 	t += test_add(map, 2000);
+	t += test_add(map, 20000);
+	t += test_add(map, 20000);
+	t += test_add(map, 20000);
 	print_hmap_debug(map);
 	ft_printf("Total time: %lld\n", t);
 	t = test_get(map, 5);
 	t += test_get(map, 20);
 	t += test_get(map, 200);
-	t += test_get(map, g_test_keys_count);
+	t += test_get(map, G_ARRAY_LEN(g_test_keys));
 	ft_printf("Total time: %lld\n", t);
 	print_hmap_debug(map);
 	t = test_add_all(map);
