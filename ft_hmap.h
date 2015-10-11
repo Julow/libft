@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/11 01:35:55 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/19 12:05:29 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/10/11 19:22:39 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ struct			s_hmap
 	t_uint			(*const hash)(t_sub key);
 };
 
+struct			s_hpair
+{
+	char const		*key;
+	void			*value;
+};
+
 /*
 ** Alloc a new hmap
 */
@@ -50,23 +56,25 @@ t_hmap			*ft_hmapnew(int size, t_uint (*h)(t_sub));
 
 /*
 ** Retrieve an element
-** Return NULL if not found
+** Return a hpair
+** Return {NULL, NULL} if not found
 */
-void			*ft_hmapget(t_hmap const *map, t_sub key);
+t_hpair			ft_hmapget(t_hmap const *map, t_sub key);
 
 /*
 ** Put 'data' into the hmap
 ** The content of 'data' is not copied and won't be freed if it is overrided
+** Return a hpair
 */
-void			ft_hmapputp(t_hmap *map, t_sub key, void *data);
+t_hpair			ft_hmapputp(t_hmap *map, t_sub key, void *data);
 
 /*
 ** Put the content of 'data' into the hmap
 ** an extra NUL byte is added
 ** if 'data' is NULL, the data is bzero
-** Return a pointer to the data
+** Return a hpair
 */
-void			*ft_hmapput(t_hmap *map, t_sub key, void const *data, int size);
+t_hpair			ft_hmapput(t_hmap *map, t_sub key, void const *data, int size);
 
 /*
 ** Remove an element of the hmap

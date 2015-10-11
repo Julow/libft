@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/21 12:37:01 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/10/11 19:18:09 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef unsigned long long int	t_ulong;
 typedef struct s_vector			t_vector;
 typedef struct s_list			t_list;
 typedef struct s_hmap			t_hmap;
+typedef struct s_hpair			t_hpair;
 typedef struct s_deque			t_deque;
 typedef struct s_dstr			t_dstr;
 

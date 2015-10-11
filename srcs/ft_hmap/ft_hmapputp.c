@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 19:56:23 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/22 23:26:33 by juloo            ###   ########.fr       */
+/*   Updated: 2015/10/11 19:21:24 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_hmap.h"
 #include "ft_internal.h"
 
-void			ft_hmapputp(t_hmap *map, t_sub key, void *data)
+t_hpair			ft_hmapputp(t_hmap *map, t_sub key, void *data)
 {
 	t_h				*h;
 
@@ -24,4 +24,5 @@ void			ft_hmapputp(t_hmap *map, t_sub key, void *data)
 	h->next = NULL;
 	ft_memcpy(HMAP_H_KEY(h), key.str, key.length + 1);
 	hmap_puth(map, h);
+	return ((t_hpair){HMAP_H_KEY(h), h->data});
 }
