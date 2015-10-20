@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/20 15:07:14 by juloo             #+#    #+#             */
-/*   Updated: 2015/10/20 20:07:23 by juloo            ###   ########.fr       */
+/*   Updated: 2015/10/20 21:07:56 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,28 @@ void			ft_bst_print(t_out *out, t_bst const *bst, t_bst_print_f print)
 ** ========================================================================== **
 */
 
+static int			bst_node_height(t_bst_node *node)
+{
+	if (node == NULL)
+		return (0);
+	return (1 + ft_max(bst_node_height(node->left),
+		bst_node_height(node->right)));
+}
+
+void			test_height(t_bst_node *node)
+{
+	if (node == NULL)
+		return ;
+	if (node->height != bst_node_height(node))
+	{
+		printf("ERROR: Bad height: %d vs %d (%d)\n", node->height,
+			bst_node_height(node), *(int*)ENDOF(node));
+		return ;
+	}
+	test_height(node->left);
+	test_height(node->right);
+}
+
 int				int_cmp(int const *a, int const *b)
 {
 	return (*a - *b);
@@ -88,16 +110,19 @@ int				main(void)
 
 	srand(time(NULL));
 	bst = BST(int, &int_cmp);
-	printf("Empty\n");
-	ft_bst_print(FTOUT, &bst, (t_bst_print_f)&int_print);
+	// ft_bst_print(FTOUT, &bst, (t_bst_print_f)&int_print);
 	for (int i = 0; i < 100; i++)
 		put_int(&bst, rand());
-	ft_bst_print(FTOUT, &bst, (t_bst_print_f)&int_print);
+	// ft_bst_print(FTOUT, &bst, (t_bst_print_f)&int_print);
 	for (int i = 100; i > 0; i--)
 		ft_bst_put(&bst, &i, 0);
+	for (int i = 0; i < 500; i++)
+		put_int(&bst, rand());
 	ft_bst_print(FTOUT, &bst, (t_bst_print_f)&int_print);
 	tmp = *(int*)ft_bst_min(&bst);
 	if (!ft_bst_iter(&bst, &int_issort, &tmp))
 		printf("ERROR: not sort\n");
+	test_height(bst.root);
+	printf("Height: %d\n", bst.root->height);
 	return (0);
 }

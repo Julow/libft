@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/19 18:23:16 by juloo             #+#    #+#             */
-/*   Updated: 2015/10/20 20:05:19 by juloo            ###   ########.fr       */
+/*   Updated: 2015/10/20 22:06:16 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 typedef struct s_bst_node	t_bst_node;
 typedef struct s_bst		t_bst;
-typedef int					(*t_bst_cmp)(void const*, void const*);
 
 # include "libft.h"
 
@@ -29,21 +28,22 @@ struct s_bst_node
 {
 	t_bst_node	*left;
 	t_bst_node	*right;
+	int32_t		height;
 };
 
 struct s_bst
 {
 	t_bst_node	*root;
-	t_bst_cmp	cmp;
+	int			(*cmp)(void const*, void const*);
 	uint32_t	length;
 	uint32_t	node_size;
 };
 
-# define BST(TYPE,CMP)	((t_bst){NULL, (t_bst_cmp)(CMP), 0, sizeof(TYPE)})
+# define BST(TYPE,CMP)	((t_bst){NULL, (void*)(CMP), 0, sizeof(TYPE)})
 
 /*
 ** Put a new node
-** 'extra_size' bytes are allocated in addition to bst->node_size + t_bst_node
+** 'extra_size' bytes are allocated in addition to 'bst->node_size'
 ** Only 'bst->node_size' bytes are copied from 'data'
 ** Return a pointer to the new data
 */
