@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/20 15:07:14 by juloo             #+#    #+#             */
-/*   Updated: 2015/10/20 21:07:56 by juloo            ###   ########.fr       */
+/*   Updated: 2015/10/21 00:19:04 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,6 @@ t_bool			int_issort(int const *a, int const *prev)
 	return (false);
 }
 
-void			put_int(t_bst *bst, int i)
-{
-	ft_bst_put(bst, &i, 0);
-}
-
 int				main(void)
 {
 	t_bst			bst;
@@ -112,17 +107,34 @@ int				main(void)
 	bst = BST(int, &int_cmp);
 	// ft_bst_print(FTOUT, &bst, (t_bst_print_f)&int_print);
 	for (int i = 0; i < 100; i++)
-		put_int(&bst, rand());
+	{
+		tmp = rand();
+		*(int*)ft_bst_put(&bst, &tmp, 0) = tmp;
+	}
 	// ft_bst_print(FTOUT, &bst, (t_bst_print_f)&int_print);
 	for (int i = 100; i > 0; i--)
-		ft_bst_put(&bst, &i, 0);
-	for (int i = 0; i < 500; i++)
-		put_int(&bst, rand());
-	ft_bst_print(FTOUT, &bst, (t_bst_print_f)&int_print);
+		*(int*)ft_bst_put(&bst, &i, 0) = i;
+	// for (int i = 0; i < 1000000; i++)
+	// {
+	// 	tmp = rand();
+	// 	*(int*)ft_bst_put(&bst, &tmp, 0) = tmp;
+	// }
+	// ft_bst_print(FTOUT, &bst, (t_bst_print_f)&int_print);
 	tmp = *(int*)ft_bst_min(&bst);
 	if (!ft_bst_iter(&bst, &int_issort, &tmp))
 		printf("ERROR: not sort\n");
+	for (int i = 100; i > 0; i--)
+	{
+		if (ft_bst_get(&bst, &i) == NULL)
+			printf("ERROR: %d not found\n", i);
+	}
+	for (int i = 100; i > 0; i--)
+	{
+		ft_bst_del(&bst, &i);
+		if (ft_bst_get(&bst, &i) != NULL)
+			printf("ERROR: %d found\n", i);
+	}
 	test_height(bst.root);
-	printf("Height: %d\n", bst.root->height);
+	printf("Height: %d\n", (bst.root == NULL) ? 0 : bst.root->height);
 	return (0);
 }

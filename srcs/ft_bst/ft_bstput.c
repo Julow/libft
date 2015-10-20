@@ -6,44 +6,33 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/20 19:52:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/10/20 22:06:41 by juloo            ###   ########.fr       */
+/*   Updated: 2015/10/20 23:08:43 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "internal/ft_bst_internal.h"
 
-static t_bst_node	*new_node(t_bst_put *tmp)
-{
-	t_bst_node	*node;
-
-	node = ft_emalloc(sizeof(t_bst_node) + tmp->bst->node_size + tmp->extra_size);
-	node->left = NULL;
-	node->right = NULL;
-	node->height = 1;
-	ft_memcpy(ENDOF(node), tmp->data, tmp->bst->node_size);
-	tmp->dst = ENDOF(node);
-	return (node);
-}
-
-static t_bst_node	*bst_put(t_bst_put *tmp, t_bst_node *node)
+static t_bst_node	*bst_put(t_bst_cmp match_f, t_bst_node *dst,
+						void const *match, t_bst_node *node)
 {
 	if (node == NULL)
-	{
-		tmp->bst->length++;
-		return (new_node(tmp));
-	}
-	if (tmp->bst->cmp(tmp->data, ENDOF(node)) < 0)
-		node->left = bst_put(tmp, node->left);
+		return (dst);
+	if (match_f(match, ENDOF(node)) < 0)
+		node->left = bst_put(match_f, dst, match, node->left);
 	else
-		node->right = bst_put(tmp, node->right);
+		node->right = bst_put(match_f, dst, match, node->right);
 	return (bst_balance(node));
 }
 
-void				*ft_bst_put(t_bst *bst, void const *data, uint32_t extra)
+void				*ft_bst_put(t_bst *bst, void const *match, uint32_t extra)
 {
-	t_bst_put	tmp;
+	t_bst_node	*node;
 
-	tmp = (t_bst_put){bst, data, extra, NULL};
-	bst->root = bst_put(&tmp, bst->root);
-	return (tmp.dst);
+	node = ft_emalloc(sizeof(t_bst_node) + bst->node_size + extra);
+	node->left = NULL;
+	node->right = NULL;
+	node->height = 1;
+	bst->root = bst_put(bst->match, node, match, bst->root);
+	bst->length++;
+	return (ENDOF(node));
 }

@@ -6,14 +6,56 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/20 19:52:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/10/20 20:05:34 by juloo            ###   ########.fr       */
+/*   Updated: 2015/10/21 00:17:52 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_bst.h"
+#include "internal/ft_bst_internal.h"
+#include <stdlib.h>
 
-void		ft_bst_del(t_bst *bst, void const *match)
+static t_bst_node	*bst_del_biggest(t_bst_node *node, t_bst_node **dst)
 {
-	(void)bst;
-	(void)match;
+	if (node->right == NULL)
+	{
+		*dst = node;
+		return (NULL);
+	}
+	node->right = bst_del_biggest(node->right, dst);
+	return (bst_balance(node));
+}
+
+static t_bst_node	*bst_del_node(t_bst *bst, t_bst_node *node)
+{
+	t_bst_node *const	right = node->right;
+	t_bst_node *const	left = node->left;
+	t_bst_node			*big;
+
+	bst->length--;
+	free(node);
+	if (left == NULL)
+		return (right);
+	big->left = bst_del_biggest(left, &big);
+	big->right = right;
+	return (big);
+}
+
+static t_bst_node	*bst_del(t_bst *bst, t_bst_node *node, void const *match)
+{
+	int			diff;
+
+	if (node == NULL)
+		return (NULL);
+	diff = bst->match(match, ENDOF(node));
+	if (diff < 0)
+		node->left = bst_del(bst, node->left, match);
+	else if (diff > 0)
+		node->right = bst_del(bst, node->right, match);
+	else if ((node = bst_del_node(bst, node)) == NULL)
+		return (NULL);
+	return (bst_balance(node));
+}
+
+void				ft_bst_del(t_bst *bst, void const *match)
+{
+	bst->root = bst_del(bst, bst->root, match);
 }

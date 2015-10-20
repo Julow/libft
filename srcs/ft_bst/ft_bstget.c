@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/20 19:52:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/10/20 19:53:53 by juloo            ###   ########.fr       */
+/*   Updated: 2015/10/20 22:46:49 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		*ft_bst_get(t_bst *bst, void const *match)
 	node = bst->root;
 	while (node != NULL)
 	{
-		diff = bst->cmp(ENDOF(node), match);
+		diff = bst->match(match, ENDOF(node));
 		if (diff < 0)
 			node = node->left;
 		else if (diff > 0)

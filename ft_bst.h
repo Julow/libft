@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/19 18:23:16 by juloo             #+#    #+#             */
-/*   Updated: 2015/10/20 22:06:16 by juloo            ###   ########.fr       */
+/*   Updated: 2015/10/20 22:58:29 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_BST_H
 
 typedef struct s_bst_node	t_bst_node;
+typedef int					(*t_bst_cmp)(void const*, void const*);
 typedef struct s_bst		t_bst;
 
 # include "libft.h"
@@ -34,20 +35,30 @@ struct s_bst_node
 struct s_bst
 {
 	t_bst_node	*root;
-	int			(*cmp)(void const*, void const*);
+	t_bst_cmp	match;
 	uint32_t	length;
 	uint32_t	node_size;
 };
 
+/*
+** The 'match' function is used to sort nodes
+** The first param is a pointer to the node's data
+** The second param is the 'match' param of get/put/del
+** The two parameters can be of different type
+*/
+
+/*
+** Init a t_bst
+*/
 # define BST(TYPE,CMP)	((t_bst){NULL, (void*)(CMP), 0, sizeof(TYPE)})
 
 /*
 ** Put a new node
 ** 'extra_size' bytes are allocated in addition to 'bst->node_size'
-** Only 'bst->node_size' bytes are copied from 'data'
+** 'match' is only used for comparaison and is not copied
 ** Return a pointer to the new data
 */
-void		*ft_bst_put(t_bst *bst, void const *data, uint32_t extra_size);
+void		*ft_bst_put(t_bst *bst, void const *match, uint32_t extra_size);
 
 /*
 ** Get the first node that match 'match'
