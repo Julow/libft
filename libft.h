@@ -6,12 +6,14 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/10/11 19:18:09 by juloo            ###   ########.fr       */
+/*   Updated: 2015/10/20 15:12:00 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# include <stdint.h>
 
 /*
 ** ========================================================================== **
@@ -118,6 +120,10 @@ typedef struct s_opt			t_opt;
 
 # define G_ARRAY_LEN(g)	((int)(sizeof(g) / sizeof(*(g))))
 
+# define S(t,l)			(sizeof(t) * (l))
+
+# define ENDOF(s)		(((void*)s) + sizeof(*(s)))
+
 /*
 ** ========================================================================== **
 ** Memory
@@ -133,8 +139,6 @@ typedef struct s_opt			t_opt;
 #  define MAL			EMAL
 #  define MAL1			EMAL1
 # endif
-
-# define S(t,l)			(sizeof(t) * (l))
 
 void			*ft_emalloc(t_uint size);
 void			*ft_memdup(const void *src, t_uint len);

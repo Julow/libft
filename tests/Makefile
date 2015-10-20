@@ -6,11 +6,11 @@
 #    By: juloo <juloo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/10 22:34:26 by juloo             #+#    #+#              #
-#    Updated: 2015/09/20 00:03:45 by juloo            ###   ########.fr        #
+#    Updated: 2015/10/20 15:07:30 by juloo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-TESTS := deque evalexpr hmap list vector rmatch rfind sort var
+TESTS := deque evalexpr hmap list vector rmatch rfind sort var bst
 
 FLAGS := -Wall -Wextra -O2 -g
 HEADS := -I ..
