@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 01:28:18 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/21 11:42:26 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/07 17:12:26 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*g_escapes = "a\ab\bf\fn\nr\rt\tv\v0\0\0";
+char			*g_escapes = "a\ab\bf\fn\nr\rt\tv\v0\0\0";
 
 char			ft_escape(char c)
 {
