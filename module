@@ -1,0 +1,91 @@
+
+module ft::base: srcs/ft_base
+	public include public
+
+module ft::argv: srcs/ft_argv
+	public include public
+
+	public require ft::base
+
+module ft::bst: srcs/ft_bst
+	public include public
+	private include .
+
+	public require ft::base
+
+module ft::buff: srcs/ft_buff
+	public include public
+
+	public require ft::base
+
+module ft::deque: srcs/ft_deque
+	public include public
+
+	public require ft::base
+
+module ft::dstr: srcs/ft_dstr
+	public include public
+
+	public require ft::base
+
+module ft::evalexpr: srcs/ft_evalexpr
+	public include public
+
+	public require ft::base
+
+module ft::hmap: srcs/ft_hmap
+	public include public
+	private include .
+
+	public require ft::base
+
+module ft::list: srcs/ft_list
+	public include public
+
+	public require ft::base
+
+module ft::out: srcs/ft_out
+	public include public
+
+	public require ft::base
+	private require ft::dstr
+
+module ft::rmatch: srcs/ft_rmatch
+	public include public
+	private include .
+
+	public require ft::base
+
+module ft::vector: srcs/ft_vector
+	public include public
+
+	public require ft::base
+
+module ft::get_next_line: srcs/get_next_line
+	public include public
+	private include .
+
+	public require ft::base
+
+module ft::printf: srcs/ft_printf
+	public include public
+	private include .
+
+	public require ft::base
+	private require ft::out
+	private require ft::dstr
+
+module ft::sort: srcs/ft_sort
+	public include public
+
+	private require ft::base
+
+module ft::draw: srcs/ft_draw
+	public include public
+
+	public require ft::base
+
+module ft::term: srcs/ft_term
+	public include public
+
+	public require ft::base

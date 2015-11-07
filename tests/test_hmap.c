@@ -6,13 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/22 23:33:02 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/23 14:03:05 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/07 15:16:15 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_hmap.h"
-#include "ft_internal.h"
+#include "../hmap_internal.h"
 #include <stdlib.h>
 
 t_sub const		g_test_keys[] = {
