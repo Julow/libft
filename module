@@ -75,11 +75,6 @@ module ft::printf: ft_printf
 	private require ft::out
 	private require ft::dstr
 
-module ft::sort: ft_sort
-	public include public
-
-	private require ft::base
-
 module ft::draw: ft_draw
 	public include public
 
