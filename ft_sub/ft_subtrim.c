@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_subindex.c                                      :+:      :+:    :+:   */
+/*   ft_subtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/18 00:48:41 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/25 00:05:19 by juloo            ###   ########.fr       */
+/*   Created: 2015/05/23 01:02:14 by juloo             #+#    #+#             */
+/*   Updated: 2015/11/11 19:39:34 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_sub.h"
 
-int				ft_subindex(t_sub sub, char c)
+/*
+** ft_subtrim
+** ----
+** See ft_subtriml
+** See ft_subtrimr
+*/
+
+int				ft_subtrim(t_sub *sub, t_is mask)
 {
-	int				i;
-
-	i = -1;
-	while (++i < sub.length)
-		if (sub.str[i] == c)
-			return (i);
-	return (-1);
+	return (ft_subtriml(sub, mask) + ft_subtrimr(sub, mask));
 }

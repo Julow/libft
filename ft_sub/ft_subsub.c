@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_subtrim.c                                       :+:      :+:    :+:   */
+/*   ft_subsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/23 01:02:14 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/21 12:32:38 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/05/23 01:04:51 by juloo             #+#    #+#             */
+/*   Updated: 2015/11/11 19:39:36 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_sub.h"
 
 /*
-** ft_subtrim
+** ft_subsub
 ** ----
-** See ft_subtriml
-** See ft_subtrimr
+** See ft_sub
 */
 
-int				ft_subtrim(t_sub *sub, t_is mask)
+t_sub			ft_subsub(t_sub sub, int from, int to)
 {
-	return (ft_subtriml(sub, mask) + ft_subtrimr(sub, mask));
+	if (from < 0)
+		from += sub.length + 1;
+	if (to < 0)
+		to += sub.length + 1;
+	return ((t_sub){sub.str + from, to - from});
 }

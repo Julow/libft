@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/04 21:55:06 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/04 22:07:50 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/11 19:39:46 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_sub.h"
 
 t_bool			ft_subequ(t_sub a, t_sub b)
 {

@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_subsub.c                                        :+:      :+:    :+:   */
+/*   ft_subint.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/23 01:04:51 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/21 12:32:32 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/09/04 21:56:49 by juloo             #+#    #+#             */
+/*   Updated: 2015/11/11 19:39:40 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_sub.h"
 
-/*
-** ft_subsub
-** ----
-** See ft_sub
-*/
-
-t_sub			ft_subsub(t_sub sub, int from, int to)
+int				ft_subint(t_sub sub, int *dst)
 {
-	if (from < 0)
-		from += sub.length + 1;
-	if (to < 0)
-		to += sub.length + 1;
-	return ((t_sub){sub.str + from, to - from});
+	int			tmp;
+	int			i;
+
+	tmp = 0;
+	i = -1;
+	while (++i < sub.length && IS(sub.str[i], IS_DIGIT))
+		tmp = tmp * 10 + sub.str[i] - '0';
+	*dst = tmp;
+	return (i);
 }

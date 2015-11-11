@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_subchr.c                                        :+:      :+:    :+:   */
+/*   ft_subindex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/18 00:47:48 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/25 00:05:15 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/18 00:48:41 by juloo             #+#    #+#             */
+/*   Updated: 2015/11/11 19:39:41 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_sub.h"
 
-int				ft_subchr(t_sub sub, t_is mask)
+int				ft_subindex(t_sub sub, char c)
 {
 	int				i;
 
 	i = -1;
 	while (++i < sub.length)
-		if (IS(sub.str[i], mask))
+		if (sub.str[i] == c)
 			return (i);
 	return (-1);
 }

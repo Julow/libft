@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_subcount.c                                      :+:      :+:    :+:   */
+/*   ft_subtrimr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/23 01:03:25 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/21 12:26:13 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/05/23 01:02:39 by juloo             #+#    #+#             */
+/*   Updated: 2015/11/11 19:39:29 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_sub.h"
 
 /*
-** ft_subcount
+** ft_subtrimr
 ** ----
-** Return the count of blocks of characters that match the mask
+** Reduce from the right (end) while mask match
 ** ----
-** See ft_subextract
+** Return the total of reduced chars
+** ----
 */
 
-int				ft_subcount(t_sub sub, t_is mask)
+int				ft_subtrimr(t_sub *sub, t_is mask)
 {
-	int				count;
 	int				i;
+	int				tmp;
 
-	count = 0;
-	i = 0;
-	while (!IS(sub.str[i], mask) && i < sub.length)
-		i++;
-	while (i < sub.length)
-	{
-		while (IS(sub.str[i], mask))
-			i++;
-		count++;
-		while (!IS(sub.str[i], mask) && i < sub.length)
-			i++;
-	}
-	return (count);
+	i = sub->length - 1;
+	while (i >= 0 && IS(sub->str[i], mask))
+		i--;
+	i++;
+	tmp = sub->length - i;
+	sub->length = i;
+	return (tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/07 15:36:13 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/11 19:32:40 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,24 +204,7 @@ t_bool			ft_is(char c, t_is mask);
 */
 
 t_uint			ft_strlen(const char *str);
-
-t_bool			ft_match(char *str, char *pattern);
-int				ft_nmatch(char *str, char *pattern);
-t_bool			ft_hidenp(char *hide, char *str);
-
-t_bool			ft_sisint(const char *s);
-
 int				ft_strchri(const char *str, char c);
-int				ft_strichri(const char *str, char c);
-char			*ft_strchr(const char *s, char c);
-
-t_uint			ft_strcskipe(const char *str, const char *skip);
-t_bool			ft_strequ(const char *s1, const char *s2);
-
-t_bool			ft_strncase(const char *s1, const char *s2, t_uint n);
-
-char			*ft_strdup(const char *str);
-char			*ft_strndup(const char *src, t_uint len);
 
 /*
 ** ========================================================================== **
@@ -241,40 +224,6 @@ struct			s_sub
 };
 
 t_sub			ft_sub(char const *str, int from, int to);
-t_sub			ft_subsub(t_sub sub, int from, int to);
-
-t_bool			ft_subequ(t_sub a, t_sub b);
-
-int				ft_subtrim(t_sub *sub, t_is mask);
-int				ft_subtrimr(t_sub *sub, t_is mask);
-int				ft_subtriml(t_sub *sub, t_is mask);
-
-t_bool			ft_subnext(t_sub *sub, t_is mask);
-t_bool			ft_subnextc(t_sub *sub, char c);
-int				ft_subcount(t_sub sub, t_is mask);
-int				ft_subextract(t_sub sub, t_sub *dst, int max, t_is mask);
-
-int				ft_subindex(t_sub sub, char c);
-int				ft_subchr(t_sub sub, t_is mask);
-
-int				ft_subint(t_sub sub, int *dst);
-
-/*
-** ft_subfloat
-** -
-** Parse a float number
-** Stop at the first invalid char
-** Store result in the *f param
-** -
-** Return the length of the float (in the string)
-**  on error return 0 (0 char parsed)
-** -
-** Allow hexa (0x) and binary (0b) number
-** -
-** Valid float:
-**  -?[0-9]*([.,][0-9]*)?
-*/
-int				ft_subfloat(t_sub sub, float *f);
 
 /*
 ** ========================================================================== **
@@ -291,16 +240,7 @@ int				ft_subfloat(t_sub sub, float *f);
 # define LOWER(c)		(((c) >= 'A' && (c) <= 'Z') ? (c) + 32 : (c))
 # define UPPER(c)		(((c) >= 'a' && (c) <= 'z') ? (c) - 32 : (c))
 
-int				ft_atoi(const char *str);
-t_long			ft_atol(const char *str);
-double			ft_atod(const char *str);
-
 int				ft_atoib(const char *str, int *nb);
-int				ft_atoub(const char *str, t_uint *nb);
-
-int				ft_itoab(int n, char *buff);
-
-t_ulong			ft_basetoi(const char *str, const char *base);
 
 char			ft_escape(char c);
 char			ft_unescape(char c);
@@ -331,28 +271,6 @@ t_ulong			ft_nanoclock(t_ulong start);
 
 int				ft_rand(int min, int max);
 t_bool			ft_randbool(double chance);
-
-/*
-** ========================================================================== **
-** Misc
-*/
-
-int				ft_exec(char **argv, char **env);
-
-char			*ft_getenv(char const *name, char **env);
-
-/*
-** ========================================================================== **
-** Sort
-*/
-
-void			ft_simplesort(void **tab, int length, int (*cmp)());
-void			ft_mergesort(void **tab, int length, int (*cmp)());
-void			ft_bubblesort(void **tab, int length, int (*cmp)());
-void			ft_insertsort(void **tab, int length, int (*cmp)());
-void			ft_quicksort(void **tab, int length, int (*cmp)());
-
-t_bool			ft_issort(void **tab, int length, int (*cmp)());
 
 /*
 ** ========================================================================== **

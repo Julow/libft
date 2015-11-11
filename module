@@ -1,86 +1,91 @@
 
 module ft::base: ft_base
-	public include public
+	public include public/
+
+module ft::sub: ft_sub
+	public include public/
+
+	public require ft::base
 
 module ft::argv: ft_argv
-	public include public
+	public include public/
 
 	public require ft::base
 
 module ft::bst: ft_bst
-	public include public
-	private include .
+	public include public/
+	private include ./
 
 	public require ft::base
 
 module ft::buff: ft_buff
-	public include public
+	public include public/
 
 	public require ft::base
 
 module ft::deque: ft_deque
-	public include public
+	public include public/
 
 	public require ft::base
 
 module ft::dstr: ft_dstr
-	public include public
+	public include public/
 
 	public require ft::base
 
 module ft::evalexpr: ft_evalexpr
-	public include public
+	public include public/
 
 	public require ft::base
 
 module ft::hmap: ft_hmap
-	public include public
-	private include .
+	public include public/
+	private include ./
 
 	public require ft::base
 
 module ft::list: ft_list
-	public include public
+	public include public/
 
 	public require ft::base
 
 module ft::out: ft_out
-	public include public
+	public include public/
 
 	public require ft::base
 	private require ft::dstr
 
 module ft::rmatch: ft_rmatch
-	public include public
-	private include .
+	public include public/
+	private include ./
 
 	public require ft::base
 
 module ft::vector: ft_vector
-	public include public
+	public include public/
 
 	public require ft::base
 
 module ft::get_next_line: get_next_line
-	public include public
-	private include .
+	public include public/
+	private include ./
 
 	public require ft::base
 
 module ft::printf: ft_printf
-	public include public
-	private include .
+	public include public/
+	private include ./
 
 	public require ft::base
 	private require ft::out
 	private require ft::dstr
 
 module ft::draw: ft_draw
-	public include public
+	public include public/
 
 	public require ft::base
 
 module ft::term: ft_term
-	public include public
+	public include public/
 
 	public require ft::base
