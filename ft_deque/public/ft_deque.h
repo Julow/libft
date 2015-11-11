@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 02:55:42 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/19 12:11:27 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/11 19:49:40 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define FT_DEQUE_H
 
 # include "libft.h"
+
+typedef struct s_deque		t_deque;
+typedef struct s_deque_it	t_deque_it;
 
 /*
 ** ========================================================================== **

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/11 19:32:40 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/11 19:51:20 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,38 +62,15 @@
 ** Types
 */
 
-enum			e_bool
-{
-	false = 0,
-	true = 1
-};
-
 typedef unsigned char			t_byte;
 typedef unsigned char			t_uchar;
 typedef unsigned int			t_uint;
 typedef long long int			t_long;
 typedef unsigned long long int	t_ulong;
 
-typedef struct s_vector			t_vector;
-typedef struct s_list			t_list;
-typedef struct s_hmap			t_hmap;
-typedef struct s_hpair			t_hpair;
-typedef struct s_deque			t_deque;
-typedef struct s_dstr			t_dstr;
-
-typedef struct s_deque_it		t_deque_it;
-
 typedef enum e_bool				t_bool;
 
 typedef struct s_sub			t_sub;
-
-typedef struct s_var			t_var;
-
-typedef struct s_out			t_out;
-typedef struct s_buff			t_buff;
-
-typedef struct s_args			t_args;
-typedef struct s_opt			t_opt;
 
 # define MASK(f,m)		((m) == ((f) & (m)))
 # define FLAG(f,b)		(((f) & (1 << (b))) != 0)
@@ -123,6 +100,12 @@ typedef struct s_opt			t_opt;
 # define S(t,l)			(sizeof(t) * (l))
 
 # define ENDOF(s)		(((void*)s) + sizeof(*(s)))
+
+enum			e_bool
+{
+	false = 0,
+	true = 1
+};
 
 /*
 ** ========================================================================== **
