@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 17:00:20 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/11 19:50:49 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/13 22:11:07 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,69 +19,59 @@ typedef struct s_out		t_out;
 
 /*
 ** ========================================================================== **
-** Use the struct s_out (t_out) to write to a fd
-** ----
-** Constructors:
-**  OUT (fd, buff, buff_size)	Create a file out
-**  DSTR_OUT (dstr)				Create a dynamic string (ft_dstr) out
-**  BUFF_OUT (buff, buff_size)	Create a static (circular) buffer out
+** Out stream
+** --
+** Handle conversions and formating
+** Flags:
+**  OUT_CENTER		Center aligned
+**  OUT_TOUPPER		To upper case
+**  OUT_TOLOWER		To lower case
+**  OUT_REVCASE		Reverse case
+**  OUT_PLUS		Add '+' symbol for positive numbers
+**  OUT_SPACE		Add ' ' for positive numbers (overrided by OUT_PLUS)
+**  OUT_GROUP		(not implemented)
 */
 
-# define OUT_NOFLUSH	(1 << 1)
-# define OUT_DSTR		(1 << 2)
-
-# define OUT(f,b,l)		((t_out){(b), 0, (l), (f), 0})
-# define DSTR_OUT(d)	((t_out){(char*)(d), 0, 0, -1, OUT_DSTR})
-# define BUFF_OUT(b,l)	((t_out){(b), 0, (l), -1, OUT_NOFLUSH})
+# define OUT_CENTER		(1 << 1)
+# define OUT_GROUP		(1 << 2)
+# define OUT_PLUS		(1 << 3)
+# define OUT_SPACE		(1 << 4)
+# define OUT_TOUPPER	(1 << 5)
+# define OUT_TOLOWER	(1 << 6)
+# define OUT_REVCASE	(OUT_TOLOWER | OUT_TOUPPER)
 
 struct			s_out
 {
 	char			*buff;
-	int				i;
-	int				length;
-	int				fd;
-	int				flags;
+	void			(*flush)(t_out *);
+	uint32_t		buff_i;
+	uint32_t		buff_size;
+	t_sub			base;
+	char			fill;
+	uint8_t			precision;
+	uint16_t		flags;
+	int16_t			width;
 };
 
-void			ft_write(t_out *out, const char *data, t_uint len);
-void			ft_writestr(t_out *out, const char *str);
-void			ft_writechar(t_out *out, char c);
-void			ft_writenchar(t_out *out, char c, int n);
-void			ft_writenl(t_out *out);
-void			ft_writeint(t_out *out, int n);
-void			ft_writebase(t_out *out, t_ulong n, const char *base);
-void			ft_writedouble(t_out *out, double d, int preci);
-int				ft_flush(t_out *out);
+# define OUT(BUFF,SIZE,F)	((t_out){(BUFF), (F), 0, (SIZE), _OUT_DEFAULT})
 
-/*
-** Same as ft_printf but write to a t_out
-*/
-int				ft_writef(t_out *out, const char *format, ...);
+# define OUT_DEFAULT_FILL		' '
+# define OUT_DEFAULT_BASE		SUBC(BASE_10)
+# define OUT_DEFAULT_WIDTH		0
 
-/*
-** ========================================================================== **
-** static t_out FTOUT
-*/
+void			ft_write(t_out *out, char const *data, int32_t len);
+void			ft_write_sub(t_out *out, t_sub sub);
+void			ft_write_char(t_out *out, char c);
+void			ft_write_nchar(t_out *out, char c, uint32_t n);
 
-extern t_out	g_ftout;
+void			ft_write_int(t_out *out, int64_t val);
+void			ft_write_uint(t_out *out, uint64_t val);
+void			ft_write_float(t_out *out, double val);
 
-# define DEF_PRECI		7
+void			ft_write_endl(t_out *out);
 
-# define FTOUT			(&g_ftout)
+void			ft_flush(t_out *out);
 
-# define P(f, ...)		(ft_writef(FTOUT, (f), __VA_ARGS__))
-# define PS(s)			(ft_writestr(FTOUT, (s)))
-# define PC(c)			(ft_writechar(FTOUT, (c)))
-# define PCN(c,n)		(ft_writenchar(FTOUT, (c), (n)))
-# define PI(i)			(ft_writeint(FTOUT, (i)))
-# define PB(i,b)		(ft_writebase(FTOUT, (i), (b)))
-# define PF(f)			(ft_writedouble(FTOUT, (f), DEF_PRECI))
-# define PFP(f,p)		(ft_writedouble(FTOUT, (f), (p)))
-# define NL				(ft_writenl(FTOUT))
-# define FL				(ft_flush(FTOUT))
-
-void			ft_out(int fd);
-
-void			ft_hexdump(const void *data, t_uint len);
+# define _OUT_DEFAULT	OUT_DEFAULT_BASE,OUT_DEFAULT_FILL,0,0,OUT_DEFAULT_WIDTH
 
 #endif

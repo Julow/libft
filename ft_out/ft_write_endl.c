@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_write.c                                         :+:      :+:    :+:   */
+/*   ft_write_endl.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/13 14:19:11 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/13 21:32:21 by juloo            ###   ########.fr       */
+/*   Created: 2015/11/13 21:58:38 by juloo             #+#    #+#             */
+/*   Updated: 2015/11/13 22:00:58 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "out_internal.h"
 
-void			ft_write(t_out *out, char const *data, int32_t len)
+void			ft_write_endl(t_out *out)
 {
-	if (len < 0)
-		len = ft_strlen(data) + len + 1;
-	ft_write_sub(out, SUB(data, len));
+	if (out->buff_i >= out->buff_size)
+		out->flush(out);
+	out->buff[out->buff_i++] = '\n';
+	out->flush(out);
 }
