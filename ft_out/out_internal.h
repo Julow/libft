@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/13 14:19:34 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/13 21:27:21 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/14 21:10:14 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,16 @@
 # define SHOULD_TRANSFORM(FLAGS)	((FLAGS) & OUT_TOLOWER | OUT_TOUPPER)
 
 # define WRITE_INT_BUFF				(64 + 1 + 6 + 1)
+# define WRITE_FLOAT_BUFF			(128)
+
+# define DEF_PRECI					6
 
 # define BOOL_OF(E)					((E) ? true : false)
+
+/*
+** Write str
+*/
+void			out_writestr(t_out *out, char const *str, uint32_t len);
 
 /*
 ** Write n time 'c'

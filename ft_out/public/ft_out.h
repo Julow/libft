@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 17:00:20 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/13 22:11:07 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/14 21:29:05 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,46 @@ struct			s_out
 # define OUT_DEFAULT_BASE		SUBC(BASE_10)
 # define OUT_DEFAULT_WIDTH		0
 
+/*
+** Write a string
+** if 'len' is negative use the same rule as ft_sub
+*/
 void			ft_write(t_out *out, char const *data, int32_t len);
+
+/*
+** Write a sub
+*/
 void			ft_write_sub(t_out *out, t_sub sub);
+
+/*
+** Write a char
+*/
 void			ft_write_char(t_out *out, char c);
+
+/*
+** Write 'n' time the char 'c'
+*/
 void			ft_write_nchar(t_out *out, char c, uint32_t n);
 
+/*
+** Write the representation of an int
+*/
 void			ft_write_int(t_out *out, int64_t val);
 void			ft_write_uint(t_out *out, uint64_t val);
+
+/*
+** Write the representation of a float
+*/
 void			ft_write_float(t_out *out, double val);
 
+/*
+** Put a '\n' without formating and flush
+*/
 void			ft_write_endl(t_out *out);
 
+/*
+** Flush
+*/
 void			ft_flush(t_out *out);
 
 # define _OUT_DEFAULT	OUT_DEFAULT_BASE,OUT_DEFAULT_FILL,0,0,OUT_DEFAULT_WIDTH
