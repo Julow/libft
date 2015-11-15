@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 14:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 19:35:28 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 19:56:36 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,6 @@ static int		parse_width(t_out *out, const char *f, va_list *ap)
 		width = (int)(va_arg(*ap, int));
 	else
 		width = 0;
-	if (width < INT_MIN(uint16_t) || width > INT_MIN(uint16_t))
-		width = 0;
 	out->width = width;
 	while (is_separator(f[len]))
 		len++;
@@ -125,9 +123,7 @@ static int		parse_precision(t_out *out, const char *f, va_list *ap)
 		preci = (int)(va_arg(*ap, int));
 	else
 		preci = 0;
-	if (preci < 0 || ((uint32_t)preci) > INT_MAX(uint8_t))
-		preci = 0;
-	out->precision = (uint8_t)preci;
+	out->precision = (preci < 0) ? 0 : (uint8_t)preci;
 	while (is_separator(f[len]))
 		len++;
 	return (len);

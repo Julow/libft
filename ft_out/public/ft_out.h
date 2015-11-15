@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 17:00:20 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/15 19:38:59 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 20:23:48 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,38 +65,38 @@ struct			s_out
 ** Write a string
 ** if 'len' is negative use the same rule as ft_sub
 */
-void			ft_write(t_out *out, char const *data, int32_t len);
+void			ft_put_str(t_out *out, char const *data, int32_t len);
 
 /*
 ** Write a sub
 */
-void			ft_write_sub(t_out *out, t_sub sub);
+void			ft_put_sub(t_out *out, t_sub sub);
 
 /*
 ** Write a char
 */
-void			ft_write_char(t_out *out, char c);
+void			ft_put_char(t_out *out, char c);
 
 /*
 ** Write 'n' time the char 'c'
 */
-void			ft_write_nchar(t_out *out, char c, uint32_t n);
+void			ft_put_nchar(t_out *out, char c, uint32_t n);
 
 /*
 ** Write the representation of an int
 */
-void			ft_write_int(t_out *out, int64_t val);
-void			ft_write_uint(t_out *out, uint64_t val);
+void			ft_put_int(t_out *out, int64_t val);
+void			ft_put_uint(t_out *out, uint64_t val);
 
 /*
 ** Write the representation of a float
 */
-void			ft_write_float(t_out *out, double val);
+void			ft_put_float(t_out *out, double val);
 
 /*
 ** Put a '\n' without formating and flush
 */
-void			ft_write_endl(t_out *out);
+void			ft_put_endl(t_out *out);
 
 /*
 ** Flush

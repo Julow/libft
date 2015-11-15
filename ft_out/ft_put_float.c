@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_write_float.c                                   :+:      :+:    :+:   */
+/*   ft_put_float.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/13 14:19:11 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 00:59:25 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 20:24:34 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static uint32_t	left_part(t_out *out, char *buff, uint32_t i, double val)
 	return (i + 1);
 }
 
-void			ft_write_float(t_out *out, double val)
+void			ft_put_float(t_out *out, double val)
 {
 	char			buff[WRITE_FLOAT_BUFF];
 	uint32_t		precision;

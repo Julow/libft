@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:41:08 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 16:33:17 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 20:25:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void			ft_printf(char const *format, ...)
 	va_list			ap;
 
 	va_start(ap, format);
-	ft_write_f(FTOUT, format, &ap);
+	ft_put_f(FTOUT, format, &ap);
 	va_end(ap);
 }
 
@@ -28,7 +28,7 @@ void			ft_dprintf(int fd, char const *format, ...)
 
 	va_start(ap, format);
 	ft_out(fd);
-	ft_write_f(FTOUT, format, &ap);
+	ft_put_f(FTOUT, format, &ap);
 	ft_out(old_fd);
 	va_end(ap);
 }
@@ -38,7 +38,7 @@ void			ft_fprintf(t_out *out, char const *format, ...)
 	va_list			ap;
 
 	va_start(ap, format);
-	ft_write_f(out, format, &ap);
+	ft_put_f(out, format, &ap);
 	va_end(ap);
 }
 

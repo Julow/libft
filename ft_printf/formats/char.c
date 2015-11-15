@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 15:44:26 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 19:36:29 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 20:26:33 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void		format_wc(t_out *out, wchar_t c)
 	int				length;
 
 	length = ft_widetoa(buff, c);
-	ft_write(out, buff, length);
+	ft_put_str(out, buff, length);
 }
 
 void			format_c(t_out *out, t_f_info *info, va_list *ap)
@@ -37,9 +37,9 @@ void			format_c(t_out *out, t_f_info *info, va_list *ap)
 	}
 	c = (char)va_arg(*ap, int);
 	if (out->precision > 1)
-		ft_write_nchar(out, c, out->precision);
+		ft_put_nchar(out, c, out->precision);
 	else
-		ft_write_char(out, c);
+		ft_put_char(out, c);
 }
 
 void			format_default(t_out *out, t_f_info *info, va_list *ap)
@@ -47,8 +47,8 @@ void			format_default(t_out *out, t_f_info *info, va_list *ap)
 	if (info->format == '\0')
 		return ;
 	if (out->precision > 1)
-		ft_write_nchar(out, info->format, out->precision);
+		ft_put_nchar(out, info->format, out->precision);
 	else
-		ft_write_char(out, info->format);
+		ft_put_char(out, info->format);
 	(void)ap;
 }

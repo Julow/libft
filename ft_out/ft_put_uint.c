@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_write_int.c                                     :+:      :+:    :+:   */
+/*   ft_put_uint.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/13 14:19:11 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 00:47:09 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 20:24:10 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "out_internal.h"
 
-void			ft_write_int(t_out *out, int64_t val)
+void			ft_put_uint(t_out *out, uint64_t val)
 {
-	int32_t const	sign = (val < 0) ? -1 : 1;
 	uint32_t const	buff_size = MAX(WRITE_INT_BUFF, out->precision);
 	char			buff[buff_size];
 	uint32_t		i;
 
 	i = buff_size - 1;
-	while (val != 0)
+	while (val > 0)
 	{
-		buff[i--] = out->base.str[val % out->base.length * sign];
+		buff[i--] = out->base.str[val % out->base.length];
 		val /= out->base.length;
 	}
-	if (sign < 0)
-		buff[i--] = '-';
-	else if (out->flags & (OUT_PLUS | OUT_SPACE))
+	if (out->flags & (OUT_PLUS | OUT_SPACE))
 	{
 		buff[i--] = (out->flags & OUT_PLUS) ? '+' : ' ';
 		out->flags &= ~(OUT_SPACE | OUT_PLUS);

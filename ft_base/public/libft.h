@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/15 19:40:10 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 20:21:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,6 @@ typedef struct s_sub			t_sub;
 # define ENDOF(s)		(((void*)s) + sizeof(*(s)))
 
 # define BOOL_OF(E)		((E) ? true : false)
-
-# define _INT_MIN(T)	(((T)1) << (sizeof(T) * 8 - 1))
-# define _UINT_MIN(T)	((T)0)
-
-# define IS_UNSIGNED(T)	(((T)-1) > ((T)0))
-
-# define INT_MIN(T)		(IS_UNSIGNED(T) ? _UINT_MIN(T) : _INT_MIN(T))
-# define INT_MAX(T)		(~(INT_MIN(T)))
 
 enum			e_bool
 {

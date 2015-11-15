@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 15:22:25 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 16:53:51 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 20:26:05 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		format_ws(t_out *out, wchar_t const *wstr)
 
 	length = ft_wstrnconv(str, wstr,
 		(out->precision == 0) ? wlen : out->precision);
-	ft_write(out, str, length);
+	ft_put_str(out, str, length);
 }
 
 static t_sub	get_string_arg(t_out *out, t_f_length length, va_list *ap)
@@ -59,5 +59,5 @@ void			format_s(t_out *out, t_f_info *info, va_list *ap)
 	sub = get_string_arg(out, info->length, ap);
 	if (sub.str == NULL)
 		sub = SUBC("(null)");
-	ft_write_sub(out, sub);
+	ft_put_sub(out, sub);
 }

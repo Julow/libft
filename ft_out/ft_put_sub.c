@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_write_endl.c                                    :+:      :+:    :+:   */
+/*   ft_put_sub.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/13 21:58:38 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/13 22:00:58 by juloo            ###   ########.fr       */
+/*   Created: 2015/11/13 14:19:11 by juloo             #+#    #+#             */
+/*   Updated: 2015/11/15 20:24:14 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "out_internal.h"
 
-void			ft_write_endl(t_out *out)
+void			ft_put_sub(t_out *out, t_sub sub)
 {
-	if (out->buff_i >= out->buff_size)
-		out->flush(out);
-	out->buff[out->buff_i++] = '\n';
-	out->flush(out);
+	out_before(out, sub.length);
+	out_writestr(out, sub.str, sub.length);
+	out_after(out, sub.length);
 }
