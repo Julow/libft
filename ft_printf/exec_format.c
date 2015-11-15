@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 14:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 21:05:00 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/16 00:11:43 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static const t_f_flag_def	g_flags[] = {
 	{' ', OUT_SPACE, 0},
-	{'-', OUT_MINUS, OUT_CENTER},
+	{'-', OUT_MINUS, 0},
 	{'+', OUT_PLUS, 0},
 	{'\'', OUT_GROUP, 0},
-	{'^', OUT_CENTER, OUT_MINUS},
+	{'^', OUT_CENTER, 0},
 	{'m', OUT_TOLOWER, 0},
 	{'M', OUT_TOUPPER, 0},
 	{'\0', 0, 0}
