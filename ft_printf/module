@@ -3,4 +3,4 @@ module ft::printf:
 	private include ./
 
 	public require ft::base
-	private require ft::out
+	public require ft::out

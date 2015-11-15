@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/13 14:19:11 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 20:46:05 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 21:27:41 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,5 @@ void			ft_putfloat(t_out *out, double val)
 	}
 	ft_write(out, buff, i);
 	ft_putpad_right(out, len);
+	out->base = SUBC(BASE_10);
 }

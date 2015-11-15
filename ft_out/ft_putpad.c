@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 20:40:16 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 20:50:52 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 21:26:46 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			ft_putpad_left(t_out *out, int32_t len)
 {
-	int32_t const	width = (out->flags & OUT_MINUS) ? -out->width : out->width;
+	int32_t const	width = (out->flags & OUT_MINUS) ? out->width : -out->width;
 
 	if (width < 0 && (len += width) < 0)
 		ft_write_nchar(out, out->fill, -len);
@@ -25,7 +25,7 @@ void			ft_putpad_left(t_out *out, int32_t len)
 
 void			ft_putpad_right(t_out *out, int32_t len)
 {
-	int32_t const	width = (out->flags & OUT_MINUS) ? -out->width : out->width;
+	int32_t const	width = (out->flags & OUT_MINUS) ? out->width : -out->width;
 
 	if (width > 0 && (len = width - len) > 0)
 	{
