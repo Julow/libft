@@ -1,0 +1,5 @@
+module ft::get_next_line:
+	public include public/
+	private include ./
+
+	public require ft::base

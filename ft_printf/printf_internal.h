@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:32:23 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 16:27:34 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 21:05:07 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,6 @@ void			format_s(t_out *out, t_f_info *info, va_list *ap);
 void			format_c(t_out *out, t_f_info *info, va_list *ap);
 
 void			format_f(t_out *out, t_f_info *info, va_list *ap);
-
-// void			format_r(t_out *out, t_f_info *info, va_list *ap);
-// void			format_w(t_out *out, t_f_info *info, va_list *ap);
 
 void			format_flush(t_out *out, t_f_info *info, va_list *ap);
 void			format_endl(t_out *out, t_f_info *info, va_list *ap);

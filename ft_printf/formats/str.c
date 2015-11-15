@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 15:22:25 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 20:47:03 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 20:58:53 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 #include "ft_wchar.h"
 #include <wchar.h>
 
-/*
-** TODO: improve
-*/
 static void		format_ws(t_out *out, wchar_t const *wstr)
 {
-	int const		wlen = ft_wstrlen(wstr) * 4;
-	char			str[wlen];
+	int const		wlen = ft_wstrlen(wstr);
+	char			str[wlen * 4];
 	int				length;
 
 	length = ft_wstrnconv(str, wstr,
-		(out->precision == 0) ? wlen : out->precision);
-	ft_putstr(out, str, length);
+		(out->precision == 0) ? wlen * 4: out->precision);
+	ft_putpad_left(out, wlen);
+	ft_write(out, str, length);
+	ft_putpad_right(out, wlen);
 }
 
 static t_sub	get_string_arg(t_out *out, t_f_length length, va_list *ap)

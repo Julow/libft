@@ -1,0 +1,4 @@
+module ft::dstr:
+	public include public/
+
+	public require ft::base

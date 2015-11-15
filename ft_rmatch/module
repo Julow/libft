@@ -1,0 +1,5 @@
+module ft::rmatch:
+	public include public/
+	private include ./
+
+	public require ft::base

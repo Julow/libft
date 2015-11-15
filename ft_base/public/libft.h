@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/15 20:21:22 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 21:05:37 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,6 @@ t_bool			ft_is(char c, t_is mask);
 /*
 ** ========================================================================== **
 ** String
-** TODO: deprecate ft_str* (except ft_strlen)
 */
 
 t_uint			ft_strlen(const char *str);

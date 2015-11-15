@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 14:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 19:56:36 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 21:05:00 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,6 @@ static const t_format_def	g_formats[] = {
 	{'B', &format_b},
 	{'u', &format_u},
 	{'U', &format_u},
-	// {'r', &format_r},
-	// {'R', &format_rr},
-	// {'w', &format_w},
-	// {'W', &format_w},
 	{'f', &format_f},
 	{'!', &format_flush},
 	{'n', &format_endl},
@@ -133,11 +129,10 @@ static int		parse_length(t_f_info *info, const char *format)
 {
 	int				i;
 
-	i = -1;
-	while (true)
-		if (ft_memcmp(format, g_lengths[i].name.str,
-			g_lengths[i].name.length) == 0)
-			break ;
+	i = 0;
+	while (ft_memcmp(format, g_lengths[i].name.str,
+			g_lengths[i].name.length) != 0)
+		i++;
 	info->length = g_lengths[i].length;
 	i = g_lengths[i].name.length;
 	while (is_separator(format[i]))
@@ -155,10 +150,6 @@ int				exec_format(t_out *out, char const *format, va_list *ap)
 	len += parse_width(out, format + len, ap);
 	len += parse_precision(out, format + len, ap);
 	len += parse_length(&info, format + len);
-	// if (format[len] == '\0')
-	// 	return (0);
-	// if (format[len] == '{')
-	// 	return (parse_meta(pf, &info, format + len + 1) + len + 1);
 	info.format = format[len];
 	i = 0;
 	while (g_formats[i].name != '\0' && g_formats[i].name != info.format)
