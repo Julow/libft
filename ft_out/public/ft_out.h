@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 17:00:20 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/14 21:29:05 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 19:38:59 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_out		t_out;
 **  OUT_REVCASE		Reverse case
 **  OUT_PLUS		Add '+' symbol for positive numbers
 **  OUT_SPACE		Add ' ' for positive numbers (overrided by OUT_PLUS)
+**  OUT_MINUS		Width as negative
 **  OUT_GROUP		(not implemented)
 */
 
@@ -38,12 +39,13 @@ typedef struct s_out		t_out;
 # define OUT_SPACE		(1 << 4)
 # define OUT_TOUPPER	(1 << 5)
 # define OUT_TOLOWER	(1 << 6)
+# define OUT_MINUS		(1 << 7)
 # define OUT_REVCASE	(OUT_TOLOWER | OUT_TOUPPER)
 
 struct			s_out
 {
 	char			*buff;
-	void			(*flush)(t_out *);
+	void			(*flush)();
 	uint32_t		buff_i;
 	uint32_t		buff_size;
 	t_sub			base;

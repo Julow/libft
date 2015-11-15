@@ -1,47 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_vprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:41:08 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 16:33:17 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 16:33:00 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf_internal.h"
 
-void			ft_printf(char const *format, ...)
+void	ft_vprintf(char const *format, va_list ap)
 {
-	va_list			ap;
+	va_list		ap_cpy;
 
-	va_start(ap, format);
-	ft_write_f(FTOUT, format, &ap);
-	va_end(ap);
+	va_copy(ap_cpy, ap);
+	ft_write_f(FTOUT, format, &ap_cpy);
+	va_end(ap_cpy);
 }
 
-void			ft_dprintf(int fd, char const *format, ...)
+void	ft_vdprintf(int fd, char const *format, va_list ap)
 {
-	int const		old_fd = g_ftout.fd;
-	va_list			ap;
+	int const	old_fd = g_ftout.fd;
+	va_list		ap_cpy;
 
-	va_start(ap, format);
 	ft_out(fd);
-	ft_write_f(FTOUT, format, &ap);
+	va_copy(ap_cpy, ap);
+	ft_write_f(FTOUT, format, &ap_cpy);
+	va_end(ap_cpy);
 	ft_out(old_fd);
-	va_end(ap);
 }
 
-void			ft_fprintf(t_out *out, char const *format, ...)
+void	ft_vfprintf(t_out *out, char const *format, va_list ap)
 {
-	va_list			ap;
+	va_list		ap_cpy;
 
-	va_start(ap, format);
-	ft_write_f(out, format, &ap);
-	va_end(ap);
+	va_copy(ap_cpy, ap);
+	ft_write_f(out, format, &ap_cpy);
+	va_end(ap_cpy);
 }
 
-void			ft_sprintf(char *buff, char const *format, ...);
+void	ft_vsprintf(char *buff, char const *format, va_list ap);
 
-void			ft_snprintf(char *buff, uint32_t len, char const *format, ...);
+void	ft_vsnprintf(char *buff, uint32_t len, char const *format, va_list ap);

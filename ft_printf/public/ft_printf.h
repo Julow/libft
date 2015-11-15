@@ -5,38 +5,103 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/07 15:36:06 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/07 15:36:20 by juloo            ###   ########.fr       */
+/*   Created: 2015/11/15 01:05:48 by juloo             #+#    #+#             */
+/*   Updated: 2015/11/15 19:40:47 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft.h"
+# include "ft_out.h"
 
 /*
 ** ========================================================================== **
-** A format sequence be like:
-**    %[flags][width][.precision]format
-** flags can be 0 or more: '#', ' ', '-', '+', '^', '0', ''', '>', 'm', 'M'
-** width is a positive integer
-** precision is a positive integer or '*', precision start with '.'
-** format can be one of "%sSdDoOuUxXicCnpfFeE"
-** A meta sequence be like:
-**    {meta_name}
-** (list of meta in srcs/ft_printf/parse_meta.c)
+** Formatter
+** ---
+** Process a string containing format sequence
+** ---
+** Format:
+**  %[flags][width][.precision][length]format
 ** -
-** ft_printf
-** -
-** Process the format sequence like printf and print the result to stdout
-** -
-** Return the total of char printed.
+**  flags: 0 or more characters that represent ft_out flags
+**    OUT_CENTER		"^"
+**    OUT_TOUPPER		"M"
+**    OUT_TOLOWER		"m"
+**    OUT_REVCASE		"mM" or "Mm"
+**    OUT_PLUS			"+"
+**    OUT_SPACE			" "
+**    OUT_GROUP			"'"
+**    negative width	"-"
+**  width: integer or '*' (width is taken from the argument list as an int)
+**  precision: '.' character then integer or '*'
+**  length: type
+**    -		sS				dDi			oOuUxX			cC			fFeEaA
+**    -		char const*		int			unsigned int	char		double
+**    hh	-				char		unsigned char	-			float
+**    h		-				short		unsigned short	-			float
+**    ll L	wchar_t const*	long long	ull				wchar_t		long double
+**    l		wchar_t const*	long		unsigned long	wchar_t		-
+**    j		-				intmax_t	uintmax_t		-			-
+**    t		t_sub			ptrdiff_t	ptrdiff_t		-			-
+**    z		t_dstr const*	ssize_t		size_t			-			-
+**    q		-				int64_t		uint64_t		-			-
+**  format: one of "sSdDoOuUxXicCnpfFeE"
 */
 
-int				ft_printf(const char *format, ...);
-int				ft_fdprintf(const int fd, const char *format, ...);
-int				ft_sprintf(char *dst, char const *format, ...);
-int				ft_snprintf(char *dst, int max_len, char const *format, ...);
+/*
+** Write to fd 1 (stdout)
+*/
+void			ft_printf(char const *format, ...);
+
+/*
+** Write to 'fd'
+*/
+void			ft_dprintf(int fd, char const *format, ...);
+
+/*
+** Write to 'out'
+*/
+void			ft_fprintf(t_out *out, char const *format, ...);
+
+/*
+** Write to a buffer
+*/
+void			ft_sprintf(char *buff, char const *format, ...);
+void			ft_snprintf(char *buff, uint32_t len, char const *format, ...);
+
+/*
+** ========================================================================== **
+** Debug
+*/
+
+# define _DEBUG	__FILE__, __LINE__, __func__
+
+# define DEBUG(f,...)	(ft_printf("%s:%d [%s] " f "\n", _DEBUG, ##__VA_ARGS__))
+# define TRACE			(DEBUG("TRACE", NULL))
+
+/*
+** ========================================================================== **
+** FTOUT
+** ---
+** Out used by ft_printf
+*/
+
+typedef struct s_ftout		t_ftout;
+
+struct s_ftout
+{
+	t_out			out;
+	int				fd;
+};
+
+extern t_ftout	g_ftout;
+
+# define FTOUT		(&(g_ftout.out))
+
+/*
+** Flush FTOUT and change it's destination fd
+*/
+void			ft_out(int fd);
 
 #endif

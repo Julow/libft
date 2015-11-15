@@ -5,145 +5,99 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/07 15:12:10 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/07 15:12:41 by juloo            ###   ########.fr       */
+/*   Created: 2015/11/15 01:32:23 by juloo             #+#    #+#             */
+/*   Updated: 2015/11/15 16:27:34 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTF_INTERNAL_H
 # define PRINTF_INTERNAL_H
 
-# include "libft.h"
+# include "ft_printf.h"
+# include "ft_vprintf.h"
 # include "ft_out.h"
 
-# include <stdarg.h>
+/*
+** ========================================================================== **
+** Formatter
+*/
 
-typedef struct	s_printf
+typedef enum e_f_length		t_f_length;
+typedef struct s_f_info		t_f_info;
+
+typedef struct s_f_len_def	t_f_len_def;
+typedef struct s_f_flag_def	t_f_flag_def;
+typedef struct s_format_def	t_format_def;
+
+enum e_f_length
 {
-	t_out			*out;
-	int				printed;
-	va_list			*ap;
-}				t_printf;
+	f_length_hh,
+	f_length_h,
+	f_length_ll,
+	f_length_l,
+	f_length_j,
+	f_length_t,
+	f_length_z,
+	f_length_q,
+	f_length_def
+};
 
-# define SPRINTF_MAX	(1024 * 1024)
-
-typedef enum	e_pflen_t
+struct s_f_info
 {
-	pflen_hh,
-	pflen_h,
-	pflen_ll,
-	pflen_l,
-	pflen_L,
-	pflen_j,
-	pflen_t,
-	pflen_I,
-	pflen_z,
-	pflen_q,
-	pflen_def
-}				t_pflen_t;
-
-# define PFLAG_ALT		(BIT(1))
-# define PFLAG_SPACE	(BIT(2))
-# define PFLAG_ZERO		(BIT(3))
-# define PFLAG_MOINS	(BIT(4))
-# define PFLAG_PLUS		(BIT(5))
-# define PFLAG_GROUP	(BIT(6))
-# define PFLAG_CENTER	(BIT(7))
-# define PFLAG_RIGHT	(BIT(8))
-# define PFLAG_LOWER	(BIT(9))
-# define PFLAG_UPPER	(BIT(10))
-
-# define PFLAG_PRECI	(BIT(24))
-
-# define PUTLONG_BUFF	21
-
-typedef struct	s_pfopt
-{
-	int				flags;
-	int				width;
-	int				preci;
-	t_pflen_t		length;
+	t_f_length		length;
 	char			format;
-}				t_pfopt;
+};
 
-typedef struct	s_pflen
+struct s_f_len_def
 {
-	char			*name;
-	t_pflen_t		length;
-}				t_pflen;
+	t_sub			name;
+	t_f_length		length;
+};
 
-typedef struct	s_pfflag
+struct s_f_flag_def
 {
 	char			name;
 	int				mask;
 	int				override;
-}				t_pfflag;
+};
 
-typedef struct	s_pformat
+struct s_format_def
 {
 	char			name;
-	void			(*f)(t_printf*, t_pfopt*);
-}				t_pformat;
+	void			(*f)(t_out*, t_f_info*, va_list*);
+};
 
-typedef enum	e_meta_t
-{
-	meta_t_str,
-	meta_t_func,
-	meta_t_nope
-}				t_meta_t;
+int				exec_format(t_out *out, char const *format, va_list *ap);
 
-# define META_T(s,t,d)	{(s), sizeof(s) - 1, (t), (d)}
+int64_t			get_signed_arg(va_list *ap, t_f_length length);
+uint64_t		get_unsigned_arg(va_list *ap, t_f_length length);
+double			get_float_arg(va_list *ap, t_f_length length);
 
-typedef struct	s_meta
-{
-	char			*name;
-	int				name_len;
-	int				type;
-	void			*data;
-}				t_meta;
+void			format_d(t_out *out, t_f_info *info, va_list *ap);
+void			format_x(t_out *out, t_f_info *info, va_list *ap);
+void			format_o(t_out *out, t_f_info *info, va_list *ap);
+void			format_u(t_out *out, t_f_info *info, va_list *ap);
+void			format_b(t_out *out, t_f_info *info, va_list *ap);
 
-void			writef(t_printf *pf, const char *format);
+void			format_s(t_out *out, t_f_info *info, va_list *ap);
+void			format_c(t_out *out, t_f_info *info, va_list *ap);
 
-/*
-** formats
-*/
-int				parse_format(t_printf *pf, const char *format);
+void			format_f(t_out *out, t_f_info *info, va_list *ap);
 
-t_long			get_arg(t_printf *pf, t_pfopt *opt);
-t_ulong			get_unsigned_arg(t_printf *pf, t_pfopt *opt);
-long double		get_float_arg(t_printf *pf, t_pfopt *opt);
+// void			format_r(t_out *out, t_f_info *info, va_list *ap);
+// void			format_w(t_out *out, t_f_info *info, va_list *ap);
 
-t_bool			is_separator(char c);
-void			margin_before(t_printf *pf, t_pfopt *opt, int len);
-void			margin_after(t_printf *pf, t_pfopt *opt, int len);
-int				ft_numlen(t_long num, int base);
-int				ft_unumlen(t_ulong num, int base);
-
-void			flag_d(t_printf *pf, t_pfopt *opt);
-void			flag_c(t_printf *pf, t_pfopt *opt);
-void			flag_percent(t_printf *pf, t_pfopt *opt);
-void			flag_s(t_printf *pf, t_pfopt *opt);
-void			flag_n(t_printf *pf, t_pfopt *opt);
-void			flag_x(t_printf *pf, t_pfopt *opt);
-void			flag_o(t_printf *pf, t_pfopt *opt);
-void			flag_b(t_printf *pf, t_pfopt *opt);
-void			flag_p(t_printf *pf, t_pfopt *opt);
-void			flag_u(t_printf *pf, t_pfopt *opt);
-void			flag_other(t_printf *pf, t_pfopt *opt, char c);
-void			flag_r(t_printf *pf, t_pfopt *opt);
-void			flag_rr(t_printf *pf, t_pfopt *opt);
-void			flag_w(t_printf *pf, t_pfopt *opt);
-void			flag_f(t_printf *pf, t_pfopt *opt);
+void			format_flush(t_out *out, t_f_info *info, va_list *ap);
+void			format_endl(t_out *out, t_f_info *info, va_list *ap);
+void			format_default(t_out *out, t_f_info *info, va_list *ap);
 
 /*
-** metas
+** ========================================================================== **
+** FTOUT
 */
-int				parse_meta(t_printf *pf, t_pfopt *opt, const char *format);
 
-int				end_meta(const char *format);
+# define FTOUT_BUFF		512
 
-int				meta_t(t_printf *pf, t_pfopt *opt, const char *format);
-int				meta_nl(t_printf *pf, t_pfopt *opt, const char *format);
-int				meta_fl(t_printf *pf, t_pfopt *opt, const char *format);
+void			ftout_flush(t_ftout *out);
 
 #endif

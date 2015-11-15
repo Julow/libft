@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/02 17:27:23 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/07 15:13:25 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 16:20:55 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,53 +15,57 @@
 #include <inttypes.h>
 #include <stddef.h>
 
-t_long			get_arg(t_printf *pf, t_pfopt *opt)
+int64_t			get_signed_arg(va_list *ap, t_f_length length)
 {
-	if (opt->length == pflen_hh)
-		return ((t_long)(signed char)(va_arg(*(pf->ap), int)));
-	if (opt->length == pflen_h)
-		return ((t_long)(short)(va_arg(*(pf->ap), int)));
-	if (opt->length == pflen_ll)
-		return ((t_long)(va_arg(*(pf->ap), long long)));
-	if (opt->length == pflen_l)
-		return ((t_long)(va_arg(*(pf->ap), long)));
-	if (opt->length == pflen_j)
-		return ((t_long)(va_arg(*(pf->ap), intmax_t)));
-	if (opt->length == pflen_t)
-		return ((t_long)(va_arg(*(pf->ap), ptrdiff_t)));
-	if (opt->length == pflen_z)
-		return ((t_long)(va_arg(*(pf->ap), long)));
-	if (opt->length == pflen_q)
-		return ((t_long)(va_arg(*(pf->ap), int64_t)));
-	return ((t_long)(va_arg(*(pf->ap), int)));
+	if (length != f_length_def)
+	{
+		if (length == f_length_hh)
+			return ((int64_t)(signed char)(va_arg(*ap, int)));
+		if (length == f_length_h)
+			return ((int64_t)(short)(va_arg(*ap, int)));
+		if (length == f_length_ll)
+			return ((int64_t)(va_arg(*ap, long long)));
+		if (length == f_length_l)
+			return ((int64_t)(va_arg(*ap, long)));
+		if (length == f_length_j)
+			return ((int64_t)(va_arg(*ap, intmax_t)));
+		if (length == f_length_t)
+			return ((int64_t)(va_arg(*ap, ptrdiff_t)));
+		if (length == f_length_z)
+			return ((int64_t)(va_arg(*ap, ssize_t)));
+		if (length == f_length_q)
+			return ((int64_t)(va_arg(*ap, int64_t)));
+	}
+	return ((int64_t)(va_arg(*ap, int)));
 }
 
-t_ulong			get_unsigned_arg(t_printf *pf, t_pfopt *opt)
+uint64_t		get_unsigned_arg(va_list *ap, t_f_length length)
 {
-	if (opt->length == pflen_hh)
-		return ((t_ulong)(unsigned char)(va_arg(*(pf->ap), int)));
-	if (opt->length == pflen_h)
-		return ((t_ulong)(unsigned short)(va_arg(*(pf->ap), int)));
-	if (opt->length == pflen_ll)
-		return ((t_ulong)(va_arg(*(pf->ap), unsigned long long)));
-	if (opt->length == pflen_l)
-		return ((t_ulong)(va_arg(*(pf->ap), unsigned long)));
-	if (opt->length == pflen_j)
-		return ((t_ulong)(va_arg(*(pf->ap), uintmax_t)));
-	if (opt->length == pflen_t)
-		return ((t_ulong)(va_arg(*(pf->ap), ptrdiff_t)));
-	if (opt->length == pflen_z)
-		return ((t_ulong)(va_arg(*(pf->ap), size_t)));
-	if (opt->length == pflen_q)
-		return ((t_ulong)(va_arg(*(pf->ap), u_int64_t)));
-	return ((t_ulong)(va_arg(*(pf->ap), unsigned int)));
+	if (length != f_length_def)
+	{
+		if (length == f_length_hh)
+			return ((uint64_t)(unsigned char)(va_arg(*ap, int)));
+		if (length == f_length_h)
+			return ((uint64_t)(unsigned short)(va_arg(*ap, int)));
+		if (length == f_length_ll)
+			return ((uint64_t)(va_arg(*ap, unsigned long long)));
+		if (length == f_length_l)
+			return ((uint64_t)(va_arg(*ap, unsigned long)));
+		if (length == f_length_j)
+			return ((uint64_t)(va_arg(*ap, uintmax_t)));
+		if (length == f_length_t)
+			return ((uint64_t)(va_arg(*ap, ptrdiff_t)));
+		if (length == f_length_z)
+			return ((uint64_t)(va_arg(*ap, size_t)));
+		if (length == f_length_q)
+			return ((uint64_t)(va_arg(*ap, u_int64_t)));
+	}
+	return ((uint64_t)(va_arg(*ap, unsigned int)));
 }
 
-long double		get_float_arg(t_printf *pf, t_pfopt *opt)
+double			get_float_arg(va_list *ap, t_f_length length)
 {
-	if (opt->length == pflen_L)
-		return (va_arg(*(pf->ap), long double));
-	if (opt->length == pflen_l)
-		return ((long double)(va_arg(*(pf->ap), double)));
-	return ((long double)(va_arg(*(pf->ap), double)));
+	if (length == f_length_ll)
+		return ((double)va_arg(*ap, long double));
+	return (va_arg(*ap, double));
 }

@@ -66,14 +66,6 @@ module ft::get_next_line: get_next_line
 
 	public require ft::base
 
-module ft::printf: ft_printf
-	public include public/
-	private include ./
-
-	public require ft::base
-	private require ft::out
-	private require ft::dstr
-
 module ft::draw: ft_draw
 	public include public/
 

@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_wstrlen.c                                       :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 23:26:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/15 16:18:56 by juloo            ###   ########.fr       */
+/*   Created: 2015/03/31 13:42:59 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/11/07 15:13:14 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_wchar.h"
+#include "printf_internal.h"
 
-t_uint			ft_wstrlen(wchar_t const *wstr)
+int				ft_printf(const char *format, ...)
 {
-	t_uint			i;
+	t_printf		pf;
+	va_list			ap;
 
-	if (wstr == NULL)
-		return (0);
-	i = 0;
-	while (wstr[i] != 0)
-		i++;
-	return (i);
+	va_start(ap, format);
+	pf = (t_printf){FTOUT, 0, &ap};
+	writef(&pf, format);
+	va_end(ap);
+	ft_flush(pf.out);
+	return (pf.printed);
 }

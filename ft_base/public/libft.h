@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/11 19:51:20 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 19:40:10 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,6 @@
 # ifndef EMAL_EXIT
 #  define EMAL_EXIT		1
 # endif
-
-/*
-** ========================================================================== **
-** Debug
-*/
-
-# define _DEBUG	__FILE__, __LINE__, __func__
-
-# define DEBUG(f,...)	(ft_printf("%s:%d [%s] " f "\n", _DEBUG, ##__VA_ARGS__))
-# define TRACE			(DEBUG("TRACE", NULL))
 
 /*
 ** ========================================================================== **
@@ -100,6 +90,16 @@ typedef struct s_sub			t_sub;
 # define S(t,l)			(sizeof(t) * (l))
 
 # define ENDOF(s)		(((void*)s) + sizeof(*(s)))
+
+# define BOOL_OF(E)		((E) ? true : false)
+
+# define _INT_MIN(T)	(((T)1) << (sizeof(T) * 8 - 1))
+# define _UINT_MIN(T)	((T)0)
+
+# define IS_UNSIGNED(T)	(((T)-1) > ((T)0))
+
+# define INT_MIN(T)		(IS_UNSIGNED(T) ? _UINT_MIN(T) : _INT_MIN(T))
+# define INT_MAX(T)		(~(INT_MIN(T)))
 
 enum			e_bool
 {
