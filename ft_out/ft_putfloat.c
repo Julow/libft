@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_float.c                                     :+:      :+:    :+:   */
+/*   ft_putfloat.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/13 14:19:11 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 20:24:34 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/15 20:46:05 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static uint32_t	left_part(t_out *out, char *buff, uint32_t i, double val)
 	return (i + 1);
 }
 
-void			ft_put_float(t_out *out, double val)
+void			ft_putfloat(t_out *out, double val)
 {
 	char			buff[WRITE_FLOAT_BUFF];
 	uint32_t		precision;
@@ -49,8 +49,8 @@ void			ft_put_float(t_out *out, double val)
 	i = left_part(out, buff, WRITE_FLOAT_BUFF - 1, val);
 	precision = (out->precision == 0) ? DEF_PRECI : out->precision;
 	len = WRITE_FLOAT_BUFF - i + precision;
-	out_before(out, len);
-	out_writestr(out, buff + i, WRITE_FLOAT_BUFF - i);
+	ft_putpad_left(out, len);
+	ft_write(out, buff + i, WRITE_FLOAT_BUFF - i);
 	if (val < 0.0)
 		val = -val;
 	i = 0;
@@ -59,6 +59,6 @@ void			ft_put_float(t_out *out, double val)
 		val *= 10.0;
 		buff[i++] = out->base.str[((uint64_t)val) % out->base.length];
 	}
-	out_writestr(out, buff, i);
-	out_after(out, len);
+	ft_write(out, buff, i);
+	ft_putpad_right(out, len);
 }
