@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/15 21:05:37 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/16 22:53:12 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef struct s_sub			t_sub;
 # define BIT(b)			(1 << (b))
 
 # define DB(l,v)		{[0 ... ((l) - 1)] = (v)}
+
+# define V(v)			((void*)(v))
 
 # define VOID			((void)0)
 

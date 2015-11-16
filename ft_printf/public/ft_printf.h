@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:05:48 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 19:40:47 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/16 23:06:28 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 ** ---
 ** Format:
 **  %[flags][width][.precision][length]format
+** Sub format:
+**  %[flags][width](<format sequence>)
 ** -
 **  flags: 0 or more characters that represent ft_out flags
 **    OUT_CENTER		"^"
