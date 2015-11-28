@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:30:22 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/08/23 14:02:04 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:23 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vector.h"
+#include "ft/ft_vector.h"
 #include <stdlib.h>
 
 void			ft_vreserve(t_vector *v, int count)

@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:12:42 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/07 15:05:09 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:33 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rmatch.h"
+#include "ft/ft_rmatch.h"
 #include "rmatch_internal.h"
 
 /*

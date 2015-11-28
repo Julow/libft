@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/23 00:01:49 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/26 00:54:59 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:59 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft/libft.h"
 
 t_is			g_is_table[(unsigned char)-1] = {
 	0,

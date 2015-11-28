@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/10 00:31:05 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/19 12:20:01 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:28 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_evalexpr.h"
+#include "ft/ft_evalexpr.h"
 #include <math.h>
 
 static struct s_op	g_ops[] = {

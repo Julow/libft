@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/11 17:45:01 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 16:54:34 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:06 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_draw.h"
+#include "ft/ft_draw.h"
 
 void			ft_drawvert(t_image *img, t_pt pt, int height, t_color color)
 {

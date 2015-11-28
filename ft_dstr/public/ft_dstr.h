@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/08 22:10:54 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/11 19:49:31 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:36 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_DSTR_H
 # define FT_DSTR_H
 
-# include "libft.h"
+# include "ft/libft.h"
 
 typedef struct s_dstr	t_dstr;
 

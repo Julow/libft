@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/09 14:07:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/19 12:18:53 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:42 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_dstr.h"
+#include "ft/ft_dstr.h"
 #include <stdlib.h>
 
 void			ft_dstrclear(t_dstr *str)

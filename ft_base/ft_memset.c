@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 12:05:54 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/16 18:46:33 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:59 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft/libft.h"
 
 void			*ft_memset(void *b, int c, t_uint len)
 {

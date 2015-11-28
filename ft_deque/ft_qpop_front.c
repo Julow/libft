@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 19:59:06 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/23 12:15:10 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:11 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_deque.h"
+#include "ft/libft.h"
+#include "ft/ft_deque.h"
 
 void			ft_qpop_front(t_deque *v, void *data)
 {

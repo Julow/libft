@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:30:30 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/08/23 15:25:51 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vector.h"
+#include "ft/ft_vector.h"
 
 void			ft_vremove(t_vector *v, int index, int count)
 {

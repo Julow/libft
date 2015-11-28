@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/11 01:35:55 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/11 19:50:52 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:20 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_HMAP_H
 # define FT_HMAP_H
 
-# include "libft.h"
+# include "ft/libft.h"
 
 typedef struct s_hmap		t_hmap;
 typedef struct s_hpair		t_hpair;

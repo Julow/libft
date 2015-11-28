@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 00:42:32 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/21 12:17:59 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:59 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft/libft.h"
 
 /*
 ** Copy as many time as necessary 'src' to fill 'dst'

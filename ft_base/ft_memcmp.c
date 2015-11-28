@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memstart.c                                      :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/09/12 00:42:32 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/21 12:18:05 by jaguillo         ###   ########.fr       */
+/*   Created: 2014/11/03 15:06:42 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/11/27 23:46:00 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft/libft.h"
 
-/*
-** Return the number of byte that are equals in 's1' and 's2'
-** Return 'n' if all bytes match
-*/
-
-t_uint			ft_memstart(void const *s1, void const *s2, t_uint n)
+int				ft_memcmp(const void *s1, const void *s2, t_uint n)
 {
-	t_uint const	length = n;
-
 	while (n > sizeof(MEM_TYPE))
 	{
 		if (*((MEM_TYPE*)s1) != *((MEM_TYPE*)s2))
@@ -32,9 +25,9 @@ t_uint			ft_memstart(void const *s1, void const *s2, t_uint n)
 	while (n-- > 0)
 	{
 		if (*((t_byte*)s1) != *((t_byte*)s2))
-			return (length - n);
+			return ((int)(*((t_byte*)s1) - *((t_byte*)s2)));
 		s1++;
 		s2++;
 	}
-	return (length);
+	return (0);
 }

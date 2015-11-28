@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 01:22:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 17:02:11 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:43 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_buff.h"
+#include "ft/ft_buff.h"
 
 void			ft_buffclear(t_buff *buff)
 {

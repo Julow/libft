@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 02:55:42 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/11 19:49:40 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:08 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_DEQUE_H
 # define FT_DEQUE_H
 
-# include "libft.h"
+# include "ft/libft.h"
 
 typedef struct s_deque		t_deque;
 typedef struct s_deque_it	t_deque_it;

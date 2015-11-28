@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/19 21:43:26 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/21 12:19:34 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:15 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
+#include "ft/ft_list.h"
 
 static void		*list_push(void *lst, void *add)
 {

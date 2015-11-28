@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 01:12:38 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/16 16:00:56 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:14 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
+#include "ft/ft_list.h"
 #include <stdlib.h>
 
 void			*ft_listremove(t_list *lst, void *node)

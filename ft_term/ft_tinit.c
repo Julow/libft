@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:48:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/16 01:54:44 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:23 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_term.h"
+#include "ft/ft_term.h"
 
 t_bool			ft_tinit(t_term *term)
 {

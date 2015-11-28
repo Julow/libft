@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/18 21:19:59 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/11 19:51:09 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:46:09 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_ARGV_H
 # define FT_ARGV_H
 
-# include "libft.h"
+# include "ft/libft.h"
 
 typedef struct s_args		t_args;
 typedef struct s_opt		t_opt;

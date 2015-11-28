@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 01:55:14 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 01:55:23 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:25 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_term.h"
+#include "ft/ft_term.h"
 
 void			ft_tmakeraw(t_term *term)
 {

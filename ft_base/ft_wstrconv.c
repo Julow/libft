@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_wstrlen.c                                       :+:      :+:    :+:   */
+/*   ft_wstrconv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 23:26:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/15 16:18:56 by juloo            ###   ########.fr       */
+/*   Created: 2015/01/09 11:37:41 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/11/27 23:46:06 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_wchar.h"
+#include "ft/ft_wchar.h"
 
-t_uint			ft_wstrlen(wchar_t const *wstr)
+int				ft_wstrconv(char *buff, wchar_t const *wstr)
 {
-	t_uint			i;
+	int				i;
+	int				len;
 
-	if (wstr == NULL)
-		return (0);
-	i = 0;
-	while (wstr[i] != 0)
-		i++;
-	return (i);
+	len = 0;
+	i = -1;
+	while (wstr[++i] != 0)
+		len += ft_widetoa(buff + len, wstr[i]);
+	return (len);
 }

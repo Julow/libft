@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 01:04:59 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/04 21:43:57 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:16 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
+#include "ft/ft_list.h"
 
 void			*ft_listadd(t_list *lst, void *after, int extra_size)
 {

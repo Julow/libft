@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/13 14:19:34 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 20:41:46 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:41 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OUT_INTERNAL_H
 # define OUT_INTERNAL_H
 
-# include "ft_out.h"
+# include "ft/ft_out.h"
 
 # define SHOULD_TRANSFORM(FLAGS)	((FLAGS) & OUT_TOLOWER | OUT_TOUPPER)
 

@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/14 02:01:06 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/17 16:54:50 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:53 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_draw.h"
+#include "ft/ft_draw.h"
 
 void			ft_drawcirclef(t_image *img, t_pt o, int radius, t_color color)
 {

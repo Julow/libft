@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/18 00:48:41 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/11 19:39:41 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:31 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sub.h"
+#include "ft/ft_sub.h"
 
 int				ft_subindex(t_sub sub, char c)
 {

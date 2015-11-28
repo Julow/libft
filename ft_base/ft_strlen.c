@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:26:28 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/12 22:35:55 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:46:05 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft/libft.h"
 
 inline t_uint	ft_strlen(const char *str)
 {

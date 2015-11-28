@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdup.c                                        :+:      :+:    :+:   */
+/*   ft_rand.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/01 18:38:16 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/01 18:38:16 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/02 12:41:54 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/11/27 23:45:58 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft/libft.h"
 #include <stdlib.h>
 
-void			*ft_memdup(const void *src, t_uint len)
+int				ft_rand(int min, int max)
 {
-	void			*dup;
-
-	if ((dup = MAL(t_byte, len)) == NULL)
-		return (NULL);
-	ft_memcpy(dup, src, len);
-	return (dup);
+	return (rand() % (max - min + 1) + min);
 }

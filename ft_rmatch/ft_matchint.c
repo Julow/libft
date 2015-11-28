@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/29 21:25:54 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/21 12:24:50 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:34 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rmatch.h"
+#include "ft/ft_rmatch.h"
 
 #define MIN_INT_STR		"-2147483648"
 #define MAX_INT_STR		"2147483647"

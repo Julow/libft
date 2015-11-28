@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 16:09:23 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 16:54:08 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:50 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_draw.h"
+#include "ft/ft_draw.h"
 
 inline void		ft_resrect(t_rect *rect, t_rect bounds)
 {

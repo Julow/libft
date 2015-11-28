@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_randbool.c                                      :+:      :+:    :+:   */
+/*   ft_wstrnconv.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/02 12:43:05 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/02 12:43:10 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/01/09 11:37:54 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/11/27 23:46:06 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "ft/ft_wchar.h"
 
-t_bool			ft_randbool(double chance)
+int				ft_wstrnconv(char *buff, wchar_t const *wstr, int n)
 {
-	double			r;
+	int				i;
+	int				tmp;
+	int				len;
 
-	r = rand();
-	r /= RAND_MAX;
-	if (r < chance)
-		return (true);
-	return (false);
+	len = 0;
+	i = -1;
+	while (wstr[++i] != 0)
+	{
+		tmp = ft_widetoa(buff + len, wstr[i]);
+		if ((tmp + len) > n)
+			break ;
+		len += tmp;
+	}
+	return (len);
 }

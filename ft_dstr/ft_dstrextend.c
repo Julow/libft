@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/09 13:15:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/09 14:06:22 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:37 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_dstr.h"
+#include "ft/ft_dstr.h"
 #include <stdlib.h>
 
 void			ft_dstrextend(t_dstr *str, int need)

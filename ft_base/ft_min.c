@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/01 00:14:14 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/02/01 00:15:11 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:46:04 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft/libft.h"
 
 inline int		ft_min(int a, int b)
 {

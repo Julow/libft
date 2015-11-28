@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/04 23:29:03 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/12 22:24:48 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:46:05 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft/libft.h"
 
 inline int		ft_max(int a, int b)
 {

@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 14:48:22 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 16:54:46 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:54 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_draw.h"
+#include "ft/ft_draw.h"
 
 void			ft_drawline(t_image *img, t_pt p1, t_pt p2, t_color color)
 {

@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/07 14:54:43 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/07 14:54:58 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:21 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GNL_INTERNAL_H
 # define GNL_INTERNAL_H
 
-# include "get_next_line.h"
+# include "ft/get_next_line.h"
 
 # ifndef GNL_BUFF
 #  define GNL_BUFF		256

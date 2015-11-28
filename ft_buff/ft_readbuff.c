@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 20:15:15 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/21 12:16:30 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:43 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_buff.h"
+#include "ft/ft_buff.h"
 #include <unistd.h>
 #include <stdlib.h>
 

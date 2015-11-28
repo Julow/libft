@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/28 18:47:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/11 19:39:37 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:29 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sub.h"
+#include "ft/ft_sub.h"
 
 /*
 ** ft_subnextc

@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memrcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 12:35:28 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/16 18:47:10 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/02/13 15:21:04 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/11/27 23:46:00 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft/libft.h"
 
-void			*ft_memmove(void *dst, const void *src, t_uint len)
+void			*ft_memrcpy(void *dst, const void *src, t_uint len)
 {
 	void			*tmp_dst;
 	void			*tmp_src;
 
-	if (src >= dst)
-		return (ft_memcpy(dst, src, len));
 	tmp_dst = dst + len;
 	tmp_src = ((void*)src) + len;
 	while (len >= sizeof(MEM_TYPE))

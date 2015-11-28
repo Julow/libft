@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 18:21:59 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/23 12:15:12 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:08 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_deque.h"
+#include "ft/ft_deque.h"
 #include <stdlib.h>
 
 void			ft_qclear(t_deque *v)

@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/27 14:13:14 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/07 15:04:58 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:35 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rmatch.h"
+#include "ft/ft_rmatch.h"
 #include "rmatch_internal.h"
 
 static void		skip_or(const char **pattern)

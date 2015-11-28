@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 15:44:26 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 21:04:09 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:40 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf_internal.h"
-#include "ft_wchar.h"
+#include "ft/ft_wchar.h"
 
 static void		format_wc(t_out *out, wchar_t c)
 {

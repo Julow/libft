@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/23 17:57:44 by juloo             #+#    #+#             */
-/*   Updated: 2015/01/16 18:45:31 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:46:02 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft/libft.h"
 
 void			ft_memswap(void *mem1, void *mem2, t_uint len)
 {

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/19 18:23:16 by juloo             #+#    #+#             */
-/*   Updated: 2015/10/20 22:58:29 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:48 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ typedef struct s_bst_node	t_bst_node;
 typedef int					(*t_bst_cmp)(void const*, void const*);
 typedef struct s_bst		t_bst;
 
-# include "libft.h"
+# include "ft/libft.h"
 
 /*
 ** ========================================================================== **

@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/04 21:58:12 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/04 21:59:41 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:57 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft/libft.h"
 
 #ifdef __APPLE__
 # include <mach/mach_time.h>

@@ -6,14 +6,14 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 17:00:20 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/15 20:50:54 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:41 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_OUT_H
 # define FT_OUT_H
 
-# include "libft.h"
+# include "ft/libft.h"
 
 typedef struct s_out		t_out;
 

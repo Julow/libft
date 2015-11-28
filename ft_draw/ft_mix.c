@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 18:49:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 16:54:16 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:06 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_draw.h"
+#include "ft/ft_draw.h"
 
 inline int		ft_mix(int a, int b, t_big pos)
 {

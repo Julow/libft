@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/20 19:52:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/10/20 22:46:49 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:50 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_bst.h"
+#include "ft/ft_bst.h"
 
 void		*ft_bst_get(t_bst *bst, void const *match)
 {

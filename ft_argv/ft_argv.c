@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/07 22:59:17 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/19 12:04:47 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:46:09 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_argv.h"
+#include "ft/libft.h"
+#include "ft/ft_argv.h"
 
 static t_bool	argv_error(t_args *args, char *opt, char const *msg)
 {

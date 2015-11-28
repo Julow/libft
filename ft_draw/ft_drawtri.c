@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/25 20:24:30 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/17 16:54:38 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:52 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_draw.h"
+#include "ft/ft_draw.h"
 
 void			ft_drawtri(t_image *img, t_pt pts[3], t_color color)
 {

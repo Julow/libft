@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 20:46:06 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/23 12:15:04 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:42 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_deque.h"
+#include "ft/libft.h"
+#include "ft/ft_deque.h"
 
 void			ft_qremove(t_deque_it *it)
 {

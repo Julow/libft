@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/17 17:25:51 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 16:54:12 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:56 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_draw.h"
+#include "ft/ft_draw.h"
 
 inline void		ft_resalpha(t_color *c, t_color bg)
 {

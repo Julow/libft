@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_clock.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 12:16:53 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/31 23:54:11 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/04/27 19:23:34 by juloo             #+#    #+#             */
+/*   Updated: 2015/11/27 23:45:58 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft/libft.h"
+#include <sys/time.h>
 
-inline void		*ft_bzero(void *s, t_uint n)
+t_ulong			ft_clock(t_ulong start)
 {
-	return (ft_memset(s, 0, n));
+	struct timeval	tval;
+
+	gettimeofday(&tval, NULL);
+	return (tval.tv_sec * MICRO_SEC + tval.tv_usec - start);
 }

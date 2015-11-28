@@ -6,14 +6,14 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 16:59:59 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/11 19:51:01 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:43 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_BUFF_H
 # define FT_BUFF_H
 
-# include "libft.h"
+# include "ft/libft.h"
 
 typedef struct s_buff		t_buff;
 

@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/07 15:03:24 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/07 15:04:16 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:33 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RMATCH_INTERNAL_H
 # define RMATCH_INTERNAL_H
 
-# include "ft_rmatch.h"
+# include "ft/ft_rmatch.h"
 
 typedef struct	s_reg
 {

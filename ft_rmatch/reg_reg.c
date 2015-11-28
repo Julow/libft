@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/29 20:25:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/07 15:04:53 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:33 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rmatch.h"
+#include "ft/ft_rmatch.h"
 #include "rmatch_internal.h"
 
 #define MATCH_NOT(r,f)	(((r)->flags & FLAG_R_NOT) ? !(f) : (f))

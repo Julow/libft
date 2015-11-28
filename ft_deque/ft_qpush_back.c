@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 16:38:02 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/23 12:15:09 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:09 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_deque.h"
+#include "ft/libft.h"
+#include "ft/ft_deque.h"
 
 void			*ft_qpush_back(t_deque *v, void *data)
 {

@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 01:00:32 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/11 19:49:47 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:12 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LIST_H
 # define FT_LIST_H
 
-# include "libft.h"
+# include "ft/libft.h"
 
 typedef struct s_list		t_list;
 

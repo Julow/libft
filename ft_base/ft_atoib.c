@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/30 13:12:56 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/18 15:01:40 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:59 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft/libft.h"
 
 int				ft_atoib(const char *str, int *nb)
 {

@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/18 00:47:48 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/11 19:39:49 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:30 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sub.h"
+#include "ft/ft_sub.h"
 
 int				ft_subchr(t_sub sub, t_is mask)
 {

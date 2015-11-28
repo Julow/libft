@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/18 21:19:45 by juloo             #+#    #+#             */
-/*   Updated: 2015/05/26 00:51:22 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:46:10 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_argv.h"
+#include "ft/libft.h"
+#include "ft/ft_argv.h"
 
 static char		*argvopt_long(t_args *args, char *tmp)
 {

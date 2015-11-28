@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/11 16:40:16 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 16:54:31 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:45 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_draw.h"
+#include "ft/ft_draw.h"
 
 inline void		ft_drawxy(t_image *img, int x, int y, t_color color)
 {

@@ -6,14 +6,14 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:22:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/11 19:49:53 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:21 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_VECTOR_H
 # define FT_VECTOR_H
 
-# include "libft.h"
+# include "ft/libft.h"
 
 typedef struct s_vector		t_vector;
 

@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/13 20:02:16 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/13 20:36:44 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:44 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_dstr.h"
+#include "ft/ft_dstr.h"
 
 char			*ft_dstrspan(t_dstr *str, int from, int to, int size)
 {

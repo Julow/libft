@@ -6,15 +6,15 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/07 14:56:07 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/07 14:59:15 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HMAP_INTERNAL_H
 # define HMAP_INTERNAL_H
 
-# include "libft.h"
-# include "ft_hmap.h"
+# include "ft/libft.h"
+# include "ft/ft_hmap.h"
 
 typedef struct	s_h
 {

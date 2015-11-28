@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:01:27 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 21:08:41 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:44:27 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_evalexpr.h"
-#include "ft_sub.h"
+#include "ft/ft_evalexpr.h"
+#include "ft/ft_sub.h"
 
 static t_bool	exec_expr(struct s_expr *expr)
 {

@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 15:50:44 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 17:01:57 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:43 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_buff.h"
+#include "ft/ft_buff.h"
 
 t_bool			ft_parsen(t_buff *buff, char *dst, int len)
 {

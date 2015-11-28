@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/09 11:38:19 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/19 12:18:37 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:46:06 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_wchar.h"
+#include "ft/ft_wchar.h"
 
 #define FUCK		((*buff = ((w & 0x7F) | 0)), 1)
 

@@ -6,16 +6,16 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:32:23 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 21:05:07 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTF_INTERNAL_H
 # define PRINTF_INTERNAL_H
 
-# include "ft_printf.h"
-# include "ft_vprintf.h"
-# include "ft_out.h"
+# include "ft/ft_printf.h"
+# include "ft/ft_vprintf.h"
+# include "ft/ft_out.h"
 
 /*
 ** ========================================================================== **

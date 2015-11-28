@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/18 15:18:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 16:54:49 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/11/27 23:45:01 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_draw.h"
+#include "ft/ft_draw.h"
 
 void			ft_drawdiv(t_image *img, int y, int height, t_color color)
 {
