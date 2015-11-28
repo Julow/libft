@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:32:23 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:38 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/28 16:17:12 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ struct s_format_def
 };
 
 int				exec_format(t_out *out, char const *format, va_list *ap);
+
+int				exec_subformat(t_out *out, char const *format, char end,
+					va_list *ap);
 
 int64_t			get_signed_arg(va_list *ap, t_f_length length);
 uint64_t		get_unsigned_arg(va_list *ap, t_f_length length);

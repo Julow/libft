@@ -1,7 +1,5 @@
-module ft::printf:
+module ft::strout:
 	public include public/
-	private include ./
 
 	public require ft::base
 	public require ft::out
-	private require ft::count_out

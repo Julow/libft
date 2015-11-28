@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 14:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:40 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/28 16:17:24 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static const t_f_flag_def	g_flags[] = {
 	{' ', OUT_SPACE, 0},
-	{'-', OUT_MINUS, OUT_CENTER},
+	{'-', OUT_MINUS, 0},
 	{'+', OUT_PLUS, 0},
 	{'\'', OUT_GROUP, 0},
-	{'^', OUT_CENTER, OUT_MINUS},
+	{'^', OUT_CENTER, 0},
 	{'m', OUT_TOLOWER, 0},
 	{'M', OUT_TOUPPER, 0},
 	{'\0', 0, 0}
@@ -67,7 +67,6 @@ static int		parse_flags(t_out *out, const char *format)
 	int				len;
 	int				i;
 
-	out->flags = 0;
 	len = -1;
 	while (format[++len] != '\0')
 	{
@@ -150,6 +149,8 @@ int				exec_format(t_out *out, char const *format, va_list *ap)
 	len += parse_width(out, format + len, ap);
 	len += parse_precision(out, format + len, ap);
 	len += parse_length(&info, format + len);
+	if (format[len] == '(')
+		return (exec_subformat(out, format + len + 1, ')', ap) + len + 1);
 	info.format = format[len];
 	i = 0;
 	while (g_formats[i].name != '\0' && g_formats[i].name != info.format)

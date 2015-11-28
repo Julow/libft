@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/15 21:05:37 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/18 16:20:07 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ typedef struct s_sub			t_sub;
 
 # define DB(l,v)		{[0 ... ((l) - 1)] = (v)}
 
+# define V(v)			((void*)(v))
+
 # define VOID			((void)0)
 
 # ifndef NULL
@@ -78,7 +80,7 @@ typedef struct s_sub			t_sub;
 #  define EOF			-1
 # endif
 
-# define IGNORE(f)		((void)((f) + 1))
+#define IGNORE(VAL)		((void)sizeof(VAL))
 
 # define CAT(a,b)		a##b
 
@@ -264,6 +266,55 @@ t_bool			ft_randbool(double chance);
 int				ft_abs(int a);
 int				ft_max(int a, int b);
 int				ft_min(int a, int b);
+
+/*
+** ========================================================================== **
+** Assert
+** -
+** TRACE(MSG)				Print the current code location
+** ASSERT(C, MSG)			Test C, print on fail, do nothing on success
+** TEST_ASSERT(C, MSG)		Test C, print on success, do nothing on error
+** DEBUG_ASSERT(C, MSG)		Same as ASSERT(C, MSG) but print on success
+** HARD_ASSERT(C, MSG)		Same as ASSERT(C, MSG) but exit on error
+** -
+** ASSERT(C, MSG)
+** 		C		Tested code (everything that fit in 'if (( C ))')
+** 		MSG		Optionnal description (literal string only)
+** 	Return false if C fail, true otherwise
+** -
+** TRACE(MSG)
+** 		MSG		Optionnal description (literal string only)
+** -
+** Defining ASSERT_DISABLE will disable all asserts
+*/
+
+#ifdef ASSERT_DISABLE
+# define TRACE(...)				IGNORE(NULL)
+# define ASSERT(C, ...)			BOOL_OF(sizeof(C) || 1)
+# define TEST_ASSERT(C, ...)	BOOL_OF(sizeof(C) || 1)
+# define DEBUG_ASSERT(C, ...)	BOOL_OF(sizeof(C) || 1)
+# define HARD_ASSERT(C, ...)	BOOL_OF(sizeof(C) || 1)
+#else
+# define TRACE(...)				_ASSERT_TRACE(""__VA_ARGS__)
+# define ASSERT(C, ...)			((C) || _ASSERT_CALL(STR(C), ""__VA_ARGS__))
+# define TEST_ASSERT(C, ...)	((C) && _ASSERT_DCALL(STR(C), ""__VA_ARGS__))
+# define DEBUG_ASSERT(C, ...)	((C) && _ASSERT_DEBUG(STR(C), ""__VA_ARGS__))
+# define HARD_ASSERT(C, ...)	((C) || _ASSERT_HCALL(STR(C), ""__VA_ARGS__))
+#endif
+
+t_bool			ft_assert(char const *err, char const *func);
+t_bool			ft_assert_hard(char const *err, char const *func);
+
+#define _ASSERT_LOCATION	__FILE__ ":" STR_VALUE(__LINE__) " "
+#define _ASSERT_CODE(C)		"[\033[31m" C "\033[39m] "
+#define _ASSERT_MIN(C)		_ASSERT_CODE(C) _ASSERT_LOCATION "\033[90m"
+#define _ASSERT_FULL(C,V)	_ASSERT_CODE(C) V " \033[90m" _ASSERT_LOCATION
+#define _ASSERT_ERR(C,V)	(sizeof(V)==1)?_ASSERT_MIN(C):_ASSERT_FULL(C,V)
+#define _ASSERT_CALL(C,V)	ft_assert(_ASSERT_ERR(C, V), __func__)
+#define _ASSERT_HCALL(C,V)	ft_assert_hard(_ASSERT_ERR(C, V), __func__)
+#define _ASSERT_DCALL(C,V)	!ft_assert(_ASSERT_ERR("\033[32m" C, V), __func__)
+#define _ASSERT_TRACE(V)	ft_assert(_ASSERT_ERR("\033[33mTRACE",V),__func__)
+#define _ASSERT_DEBUG(C,V)	_ASSERT_DCALL(C, V) || _ASSERT_CALL(C, V)
 
 /*
 ** ========================================================================== **

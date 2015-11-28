@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:05:48 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:37 by juloo            ###   ########.fr       */
+/*   Updated: 2015/11/28 16:20:01 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 ** ---
 ** Format:
 **  %[flags][width][.precision][length]format
+** Sub format:
+**  %[flags][width](<format sequence>)
 ** -
 **  flags: 0 or more characters that represent ft_out flags
 **    OUT_CENTER		"^"
@@ -69,16 +71,6 @@ void			ft_fprintf(t_out *out, char const *format, ...);
 */
 void			ft_sprintf(char *buff, char const *format, ...);
 void			ft_snprintf(char *buff, uint32_t len, char const *format, ...);
-
-/*
-** ========================================================================== **
-** Debug
-*/
-
-# define _DEBUG	__FILE__, __LINE__, __func__
-
-# define DEBUG(f,...)	(ft_printf("%s:%d [%s] " f "\n", _DEBUG, ##__VA_ARGS__))
-# define TRACE			(DEBUG("TRACE", NULL))
 
 /*
 ** ========================================================================== **
