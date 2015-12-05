@@ -1,4 +1,0 @@
-module ft::count_out:
-	public include public/
-
-	public require ft::out

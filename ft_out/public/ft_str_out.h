@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strout.h                                        :+:      :+:    :+:   */
+/*   ft_str_out.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 22:31:01 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 22:40:59 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/05 17:26:05 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,23 @@
 ** String out
 */
 
-typedef t_out		t_strout;
+typedef t_out		t_str_out;
 
-# define STROUT()		(OUT("", 0, &ft_strout_flush))
+# define STR_OUT()		(OUT("", 0, &ft_str_out_flush))
 
 /*
 ** Return a sub of the buffer
 */
-t_sub			ft_strout_sub(t_strout const *out);
+t_sub			ft_str_out_sub(t_str_out const *out);
 
 /*
 ** Free the buffer
 */
-void			ft_strout_clear(t_strout *out);
+void			ft_str_out_clear(t_str_out *out);
 
 /*
 ** Flush (used by ft::out)
 */
-void			ft_strout_flush(t_strout *out);
+void			ft_str_out_flush(t_str_out *out);
 
 #endif

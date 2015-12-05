@@ -4,4 +4,3 @@ module ft::printf:
 
 	public require ft::base
 	public require ft::out
-	private require ft::count_out

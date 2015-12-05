@@ -1,5 +1,0 @@
-module ft::strout:
-	public include public/
-
-	public require ft::base
-	public require ft::out

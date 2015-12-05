@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/16 22:40:19 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/16 22:51:55 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/05 17:24:39 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,18 @@ struct s_count_out
 /*
 ** Create a count_out
 */
-# define COUNT_OUT()		((t_count_out){OUT(g_countout_buff, COUNT_OUT_BUFF, &count_out_flush), 0})
+# define COUNT_OUT()	((t_count_out){_COUNT_OUT, 0})
 
 /*
 ** -
 */
 
+# define _COUNT_OUT()	OUT(g_countout_buff, COUNT_OUT_BUFF, &count_out_flush)
+
 void			count_out_flush(t_count_out *out);
 
 extern char		g_countout_buff[];
 
-# define COUNT_OUT_BUFF		128
+# define COUNT_OUT_BUFF	256
 
 #endif
