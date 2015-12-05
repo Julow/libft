@@ -1,0 +1,5 @@
+module ft::in:
+	public include public/
+
+	public require ft::base
+	public require ft::dstr

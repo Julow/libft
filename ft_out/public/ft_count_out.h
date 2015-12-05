@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/16 22:40:19 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/05 17:24:39 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/05 19:29:59 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ struct s_count_out
 /*
 ** Create a count_out
 */
-# define COUNT_OUT()	((t_count_out){_COUNT_OUT, 0})
+# define COUNT_OUT()	((t_count_out){_COUNT_OUT(), 0})
 
 /*
 ** -
