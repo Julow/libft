@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 19:45:32 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/05 21:12:17 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/06 01:44:33 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ struct s_in
 	uint32_t	buff_len;
 };
 
-# define IN(B,S,R)		((t_in){B, R, 0, S})
+# define IN(B,S,R)		((t_in){(B), (void*)(R), 0, (S)})
 
 /*
 ** Return the next char on the buffer without moving the cursor
