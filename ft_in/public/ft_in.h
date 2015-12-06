@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 19:45:32 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/06 01:44:33 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/07 00:31:58 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,21 @@ struct s_in
 	uint32_t	buff_len;
 };
 
-# define IN(B,S,R)		((t_in){(B), (void*)(R), 0, (S)})
+# define IN(B,S,R)			((t_in){(B), (void*)(R), 0, (S)})
 
 /*
 ** Return the next char on the buffer without moving the cursor
 ** Refresh the buffer if needed
 ** Return EOF on end-of-file
 */
-# define IN_PEEK(IN)	(IN_REFRESH(IN) ? (IN)->buff[(IN)->buff_i] : EOF)
+# define IN_PEEK(IN)		(IN_REFRESH(IN) ? (IN)->buff[(IN)->buff_i] : EOF)
 
 /*
 ** Like IN_PEEK but increment the cursor
 */
-# define IN_READ(IN)	(IN_REFRESH(IN) ? (IN)->buff[(IN)->buff_i++] : EOF)
+# define IN_READ(IN)		(IN_REFRESH(IN) ? (IN)->buff[(IN)->buff_i++] : EOF)
+
+# define IN_READ_IF(IN,C)	((IN_PEEK(IN) == (C)) ? ++((IN)->buff_i) : false)
 
 /*
 ** Refresh the buffer if needed
@@ -64,12 +66,14 @@ t_bool			ft_read(t_in *in, char *dst, uint32_t n);
 ** Read and copy char to 'dst' until 'end' parameter match
 ** 'dst' can be NULL
 ** 'dst' is not cleared
-** 'end' is not copied into 'dst' but is read
 ** Return false on end-of-file but it may have copied char into 'dst'
 ** Return true otherwise
 */
 t_bool			ft_readto_char(t_in *in, char end, t_dstr *dst);
 t_bool			ft_readto_if(t_in *in, t_is end, t_dstr *dst);
+t_bool			ft_readto_not(t_in *in, t_is end, t_dstr *dst);
+t_bool			ft_readto_func(t_in *in, t_bool (*f)(char, void*), void *env,
+					t_dstr *dst);
 
 /*
 ** Like IN_REFRESH
