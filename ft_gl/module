@@ -1,0 +1,4 @@
+module ft::gl:
+	public include .
+
+	makefile import gl.mk

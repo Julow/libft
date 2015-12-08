@@ -1,0 +1,5 @@
+module ft::math:
+
+	public include public/
+
+	put LINK_FLAGS -lm
