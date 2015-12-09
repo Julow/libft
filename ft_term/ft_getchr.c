@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:47:59 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:24 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/09 12:13:22 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/ft_term.h"
+#include "ft/term.h"
 #include <unistd.h>
 
 int				ft_getchr(void)

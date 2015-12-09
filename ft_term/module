@@ -2,3 +2,6 @@ module ft::term:
 	public include public/
 
 	public require ft::base
+	public require ft::out
+
+	put LINK_FLAGS -ltermcap
