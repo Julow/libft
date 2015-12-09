@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/18 16:20:07 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/09 14:45:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,6 @@ typedef enum e_bool				t_bool;
 
 typedef struct s_sub			t_sub;
 
-# define MASK(f,m)		((m) == ((f) & (m)))
-# define FLAG(f,b)		(((f) & (1 << (b))) != 0)
-# define BIT(b)			(1 << (b))
-
-# define DB(l,v)		{[0 ... ((l) - 1)] = (v)}
-
 # define V(v)			((void*)(v))
 
 # define VOID			((void)0)
@@ -77,23 +71,33 @@ typedef struct s_sub			t_sub;
 # endif
 
 # ifndef EOF
-#  define EOF			-1
+#  define EOF			(-1)
 # endif
 
-#define IGNORE(VAL)		((void)sizeof(VAL))
+# define IGNORE(VAL)	((void)sizeof(VAL))
 
 # define CAT(a,b)		a##b
 
-# define STR(s)			#s
-# define STR_VALUE(s)	STR(s)
+# define STR_VALUE(s)	#s
+# define TO_STR(s)		STR_VALUE(s)
 
-# define G_ARRAY_LEN(g)	((int)(sizeof(g) / sizeof(*(g))))
+# define ARRAY_LEN(g)	((int)(sizeof(g) / sizeof(*(g))))
 
 # define S(t,l)			(sizeof(t) * (l))
 
 # define ENDOF(s)		(((void*)s) + sizeof(*(s)))
 
 # define BOOL_OF(E)		((E) ? true : false)
+
+# define MIN(a,b)		(((a) < (b)) ? (a) : (b))
+# define MAX(a,b)		(((a) > (b)) ? (a) : (b))
+# define ABS(a)			(((a) < 0) ? -(a) : (a))
+
+# define CEIL(n)		((int)(1 + (n)))
+# define ROUND(n)		((int)(0.5 + (n)))
+# define FLOOR(n)		((int)(n))
+
+# define ISNAN(d)		((d) != (d))
 
 enum			e_bool
 {
@@ -112,9 +116,11 @@ enum			e_bool
 # ifdef NO_EMAL
 #  define MAL(t,l)		((t*)malloc(sizeof(t) * (l)))
 #  define MAL1(t)		((t*)malloc(sizeof(t)))
+#  define NEW			MAL1
 # else
 #  define MAL			EMAL
 #  define MAL1			EMAL1
+#  define NEW			MAL1
 # endif
 
 void			*ft_emalloc(t_uint size);
@@ -162,7 +168,7 @@ t_uint			ft_memstart(void const *s1, void const *s2, t_uint n);
 # define IS_XALPHA		(1 << 8)
 # define IS_UNDERSCORE	(1 << 9)
 
-typedef int		t_is;
+typedef uint32_t	t_is;
 
 extern t_is		g_is_table[];
 
@@ -250,18 +256,18 @@ t_bool			ft_randbool(double chance);
 
 /*
 ** ========================================================================== **
-** Math
+** Misc
 */
 
-# define MIN(a,b)		(((a) < (b)) ? (a) : (b))
-# define MAX(a,b)		(((a) > (b)) ? (a) : (b))
-# define ABS(a)			(((a) < 0) ? -(a) : (a))
-
-# define CEIL(n)		((int)(1 + (n)))
-# define ROUND(n)		((int)(0.5 + (n)))
-# define FLOOR(n)		((int)(n))
-
-# define ISNAN(d)		((d) != (d))
+/*
+** ft_getenv
+** -
+** Retrieve an environ variable
+** -
+** Return a ptr to the value if found
+** Return NULL if not found
+*/
+char const		*ft_getenv(t_sub key);
 
 int				ft_abs(int a);
 int				ft_max(int a, int b);
@@ -296,16 +302,16 @@ int				ft_min(int a, int b);
 # define HARD_ASSERT(C, ...)	BOOL_OF(sizeof(C) || 1)
 #else
 # define TRACE(...)				_ASSERT_TRACE(""__VA_ARGS__)
-# define ASSERT(C, ...)			((C) || _ASSERT_CALL(STR(C), ""__VA_ARGS__))
-# define TEST_ASSERT(C, ...)	((C) && _ASSERT_DCALL(STR(C), ""__VA_ARGS__))
-# define DEBUG_ASSERT(C, ...)	((C) && _ASSERT_DEBUG(STR(C), ""__VA_ARGS__))
-# define HARD_ASSERT(C, ...)	((C) || _ASSERT_HCALL(STR(C), ""__VA_ARGS__))
+# define ASSERT(C, ...)			((C)||_ASSERT_CALL(STR_VALUE(C),""__VA_ARGS__))
+# define TEST_ASSERT(C, ...)	((C)&&_ASSERT_DCALL(STR_VALUE(C),""__VA_ARGS__))
+# define DEBUG_ASSERT(C, ...)	((C)&&_ASSERT_DEBUG(STR_VALUE(C),""__VA_ARGS__))
+# define HARD_ASSERT(C, ...)	((C)||_ASSERT_HCALL(STR_VALUE(C),""__VA_ARGS__))
 #endif
 
 t_bool			ft_assert(char const *err, char const *func);
 t_bool			ft_assert_hard(char const *err, char const *func);
 
-#define _ASSERT_LOCATION	__FILE__ ":" STR_VALUE(__LINE__) " "
+#define _ASSERT_LOCATION	__FILE__ ":" TO_STR(__LINE__) " "
 #define _ASSERT_CODE(C)		"[\033[31m" C "\033[39m] "
 #define _ASSERT_MIN(C)		_ASSERT_CODE(C) _ASSERT_LOCATION "\033[90m"
 #define _ASSERT_FULL(C,V)	_ASSERT_CODE(C) V " \033[90m" _ASSERT_LOCATION
