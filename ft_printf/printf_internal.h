@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:32:23 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/28 16:17:12 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/09 14:10:21 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_f_info		t_f_info;
 
 typedef struct s_f_len_def	t_f_len_def;
 typedef struct s_f_flag_def	t_f_flag_def;
-typedef struct s_format_def	t_format_def;
+typedef void				(*t_format_def)(t_out *, t_f_info *, va_list *);
 
 enum e_f_length
 {
@@ -59,12 +59,6 @@ struct s_f_flag_def
 	char			name;
 	int				mask;
 	int				override;
-};
-
-struct s_format_def
-{
-	char			name;
-	void			(*f)(t_out*, t_f_info*, va_list*);
 };
 
 int				exec_format(t_out *out, char const *format, va_list *ap);

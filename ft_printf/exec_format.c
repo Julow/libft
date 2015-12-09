@@ -6,21 +6,26 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 14:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/28 16:17:24 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/09 14:50:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf_internal.h"
 
-static const t_f_flag_def	g_flags[] = {
-	{' ', OUT_SPACE, 0},
-	{'-', OUT_MINUS, 0},
-	{'+', OUT_PLUS, 0},
-	{'\'', OUT_GROUP, 0},
-	{'^', OUT_CENTER, 0},
-	{'m', OUT_TOLOWER, 0},
-	{'M', OUT_TOUPPER, 0},
-	{'\0', 0, 0}
+#define DEF_FLAG(NAME, FLAG, OVER)	[NAME] = {NAME, FLAG, OVER}
+
+static const t_f_flag_def	g_flags[(uint8_t)-1] = {
+	DEF_FLAG(' ', OUT_SPACE, 0),
+	DEF_FLAG('-', OUT_MINUS, 0),
+	DEF_FLAG('+', OUT_PLUS, 0),
+	DEF_FLAG('\'', OUT_GROUP, 0),
+	DEF_FLAG('^', OUT_CENTER, 0),
+	DEF_FLAG('m', OUT_TOLOWER, 0),
+	DEF_FLAG('M', OUT_TOUPPER, 0),
+	DEF_FLAG(',', 0, 0),
+	DEF_FLAG(';', 0, 0),
+	DEF_FLAG(':', 0, 0),
+	DEF_FLAG('_', 0, 0),
 };
 
 static const t_f_len_def	g_lengths[] = {
@@ -35,26 +40,25 @@ static const t_f_len_def	g_lengths[] = {
 	{SUBC(""), f_length_def}
 };
 
-static const t_format_def	g_formats[] = {
-	{'d', &format_d},
-	{'D', &format_d},
-	{'i', &format_d},
-	{'c', &format_c},
-	{'C', &format_c},
-	{'s', &format_s},
-	{'S', &format_s},
-	{'x', &format_x},
-	{'X', &format_x},
-	{'o', &format_o},
-	{'O', &format_o},
-	{'b', &format_b},
-	{'B', &format_b},
-	{'u', &format_u},
-	{'U', &format_u},
-	{'f', &format_f},
-	{'!', &format_flush},
-	{'n', &format_endl},
-	{'\0', &format_default}
+static const t_format_def	g_formats[(uint8_t)-1] = {
+	['d'] = &format_d,
+	['D'] = &format_d,
+	['i'] = &format_d,
+	['c'] = &format_c,
+	['C'] = &format_c,
+	['s'] = &format_s,
+	['S'] = &format_s,
+	['x'] = &format_x,
+	['X'] = &format_x,
+	['o'] = &format_o,
+	['O'] = &format_o,
+	['b'] = &format_b,
+	['B'] = &format_b,
+	['u'] = &format_u,
+	['U'] = &format_u,
+	['f'] = &format_f,
+	['!'] = &format_flush,
+	['n'] = &format_endl,
 };
 
 static t_bool	is_separator(char c)
@@ -64,24 +68,17 @@ static t_bool	is_separator(char c)
 
 static int		parse_flags(t_out *out, const char *format)
 {
-	int				len;
-	int				i;
+	int					len;
+	t_f_flag_def const	*flag;
 
 	len = -1;
 	while (format[++len] != '\0')
 	{
-		if (is_separator(format[len]))
-			continue ;
-		i = -1;
-		while (g_flags[++i].name != '\0')
-			if (g_flags[i].name == format[len])
-			{
-				out->flags &= ~(g_flags[i].override);
-				out->flags |= g_flags[i].mask;
-				break ;
-			}
-		if (g_flags[i].name == '\0')
+		flag = g_flags + (uint8_t)format[len];
+		if (flag->name == '\0')
 			break ;
+		out->flags &= ~(flag->override);
+		out->flags |= flag->mask;
 	}
 	return (len);
 }
@@ -128,6 +125,8 @@ static int		parse_length(t_f_info *info, const char *format)
 {
 	int				i;
 
+	if (g_formats[(uint8_t)format[0]] != NULL)
+		return (0);
 	i = 0;
 	while (ft_memcmp(format, g_lengths[i].name.str,
 			g_lengths[i].name.length) != 0)
@@ -143,7 +142,7 @@ int				exec_format(t_out *out, char const *format, va_list *ap)
 {
 	int				len;
 	t_f_info		info;
-	uint32_t		i;
+	t_format_def	f;
 
 	len = parse_flags(out, format);
 	len += parse_width(out, format + len, ap);
@@ -152,9 +151,9 @@ int				exec_format(t_out *out, char const *format, va_list *ap)
 	if (format[len] == '(')
 		return (exec_subformat(out, format + len + 1, ')', ap) + len + 1);
 	info.format = format[len];
-	i = 0;
-	while (g_formats[i].name != '\0' && g_formats[i].name != info.format)
-		i++;
-	g_formats[i].f(out, &info, ap);
+	f = g_formats[(uint8_t)info.format];
+	if (f == NULL)
+		f = &format_default;
+	f(out, &info, ap);
 	return (len + 1);
 }
