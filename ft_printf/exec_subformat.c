@@ -6,15 +6,19 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/16 22:49:00 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/28 16:19:07 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 17:55:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf_internal.h"
 #include "ft/ft_count_out.h"
 
-static int		put_subformat(t_out *out, char const *format, char end,
-					va_list *ap, uint32_t extra_flags)
+/*
+** TODO: change to str_out
+** TODO: precision repeat
+*/
+static int	put_subformat(t_out *out, char const *format, char end,
+				va_list *ap, uint32_t extra_flags)
 {
 	int32_t			i;
 	int32_t			last;
@@ -41,8 +45,8 @@ static int		put_subformat(t_out *out, char const *format, char end,
 	return (i + 1);
 }
 
-int				exec_subformat(t_out *out, char const *format, char end,
-					va_list *ap)
+int			exec_subformat(t_out *out, char const *format, char end,
+				va_list *ap)
 {
 	uint32_t const	out_flags = out->flags;
 	uint32_t const	out_width = out->width;

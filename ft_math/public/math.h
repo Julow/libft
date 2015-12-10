@@ -6,12 +6,12 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/18 12:48:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/08 17:05:33 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 17:52:42 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATH_UTILS_H
-# define MATH_UTILS_H
+#ifndef MATH_H
+# define MATH_H
 
 typedef struct s_vec2		t_vec2;
 typedef struct s_vec3		t_vec3;

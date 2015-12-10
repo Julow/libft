@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 14:52:47 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 16:37:24 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 18:07:20 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_key		t_key;
 ** Get key
 */
 
-struct s_key
+struct		s_key
 {
 	int			c;
 	uint32_t	mods;
@@ -59,6 +59,6 @@ struct s_key
 ** -
 ** Require TERM_RAW mode
 */
-t_key			ft_getkey(int fd);
+t_key		ft_getkey(int fd);
 
 #endif

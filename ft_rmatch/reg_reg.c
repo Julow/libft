@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/29 20:25:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:33 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 18:06:56 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ static t_bool	reg_match_str(t_reg *reg, const char **str)
 	}
 	else if (MATCH_NOT(reg, ft_memcmp(*str, reg->reg, reg->reg_len) != 0))
 		return (false);
-	return (((*str) += reg->reg_len), true);
+	(*str) += reg->reg_len;
+	return (true);
 }
 
 static t_bool	reg_match_1(t_reg *reg, const char **str)
@@ -87,7 +88,8 @@ static t_bool	reg_match_1(t_reg *reg, const char **str)
 	else if (reg->flags & FLAG_R_SET)
 	{
 		c = MATCH_I(reg, (**str));
-		return (((*str)++), MATCH_NOT(reg, reg_match_set(reg, c)));
+		(*str)++;
+		return (MATCH_NOT(reg, reg_match_set(reg, c)));
 	}
 	else if (reg->flags & FLAG_R_SUB)
 		return (reg_match_sub(reg, str));

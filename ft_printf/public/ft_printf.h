@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:05:48 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/28 16:20:01 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 17:57:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,28 +49,31 @@
 **    z		t_dstr const*	ssize_t		size_t			-			-
 **    q		-				int64_t		uint64_t		-			-
 **  format: one of "sSdDoOuUxXicCnpfFeE"
+** ---
+** TODO: implement ft_sprintf and ft_snprintf
 */
 
 /*
 ** Write to fd 1 (stdout)
 */
-void			ft_printf(char const *format, ...);
+void		ft_printf(char const *format, ...);
 
 /*
 ** Write to 'fd'
 */
-void			ft_dprintf(int fd, char const *format, ...);
+void		ft_dprintf(int fd, char const *format, ...);
 
 /*
 ** Write to 'out'
 */
-void			ft_fprintf(t_out *out, char const *format, ...);
+void		ft_fprintf(t_out *out, char const *format, ...);
 
 /*
 ** Write to a buffer
+** WARNING: not implemented
 */
-void			ft_sprintf(char *buff, char const *format, ...);
-void			ft_snprintf(char *buff, uint32_t len, char const *format, ...);
+void		ft_sprintf(char *buff, char const *format, ...);
+void		ft_snprintf(char *buff, uint32_t len, char const *format, ...);
 
 /*
 ** ========================================================================== **
@@ -81,10 +84,10 @@ void			ft_snprintf(char *buff, uint32_t len, char const *format, ...);
 
 typedef struct s_ftout		t_ftout;
 
-struct s_ftout
+struct		s_ftout
 {
-	t_out			out;
-	int				fd;
+	t_out		out;
+	int			fd;
 };
 
 extern t_ftout	g_ftout;
@@ -94,6 +97,6 @@ extern t_ftout	g_ftout;
 /*
 ** Flush FTOUT and change it's destination fd
 */
-void			ft_out(int fd);
+void		ft_out(int fd);
 
 #endif

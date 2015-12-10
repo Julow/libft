@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 12:12:55 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 15:15:48 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 18:07:32 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** term
 */
 
-void			term_out_flush(t_term *term);
+void		term_out_flush(t_term *term);
 
 /*
 ** ========================================================================== **
@@ -29,7 +29,7 @@ void			term_out_flush(t_term *term);
 
 typedef struct s_seq_end	t_seq_end;
 
-struct s_seq_end
+struct		s_seq_end
 {
 	int			end;
 	int			c;

@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 22:31:01 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/05 17:26:05 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 17:53:42 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STROUT_H
-# define FT_STROUT_H
+#ifndef FT_STR_OUT_H
+# define FT_STR_OUT_H
 
 # include "libft.h"
 # include "ft_out.h"

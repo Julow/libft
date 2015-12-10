@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:41:08 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:39 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 17:55:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,3 @@ void			ft_fprintf(t_out *out, char const *format, ...)
 	ft_putf(out, format, &ap);
 	va_end(ap);
 }
-
-void			ft_sprintf(char *buff, char const *format, ...);
-
-void			ft_snprintf(char *buff, uint32_t len, char const *format, ...);

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 15:22:25 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:39 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 17:56:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		format_ws(t_out *out, wchar_t const *wstr)
 	int				length;
 
 	length = ft_wstrnconv(str, wstr,
-		(out->precision == 0) ? wlen * 4: out->precision);
+		(out->precision == 0) ? wlen * 4 : out->precision);
 	ft_putpad_left(out, wlen);
 	ft_write(out, str, length);
 	ft_putpad_right(out, wlen);

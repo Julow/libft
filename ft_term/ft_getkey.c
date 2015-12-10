@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 14:58:48 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 16:34:30 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 16:47:36 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "term_internal.h"
 #include <unistd.h>
 
-#define GETKEY_DEBUG
+// #define GETKEY_DEBUG
 #ifdef GETKEY_DEBUG
 # define DEBUG(...)		ft_dprintf(2, ##__VA_ARGS__)
 #else
@@ -36,7 +36,6 @@ static t_seq_end const	g_seq_ends[] = {
 	{3, KEY_DELETE, 0},
 	{5, KEY_PAGEUP, 0},
 	{6, KEY_PAGEDOWN, 0},
-	{'\0', 0, 0}
 };
 
 static char		next_char(int fd)
@@ -95,7 +94,7 @@ static t_key	parse_seq_end(uint32_t mods, char end)
 			return (key);
 		}
 	}
-	ft_printf("\r\nDEBUG: Invalid end: (%d) %c (%.1r)\r\n", mods, end, &end);
+	DEBUG("PARSE SEQ END: Invalid end: (%d) %c (%.1r)%n", mods, end, &end);
 	return (key);
 }
 

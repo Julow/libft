@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/19 21:43:26 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:44:15 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 17:52:05 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@ static void		*list_split(void *lst, int length, int (*cmp)(void*, void*))
 	return (list_merge(
 		list_split(list_n(lst, length / 2), (length + 1) / 2, cmp),
 		list_split(lst, length / 2, cmp),
-		cmp
-	));
+		cmp));
 }
 
 void			ft_listsort(t_list *lst, int (*cmp)())

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/11 01:35:55 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:44:20 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 17:44:10 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ t_uint			ft_djb2(t_sub sub);
 
 struct			s_hmap
 {
-	int				size;
-	int const		alloc_size;
-	struct s_h		**const data;
-	t_uint			(*const hash)(t_sub key);
+	int					size;
+	int const			alloc_size;
+	struct s_h **const	data;
+	t_uint				(*const hash)(t_sub key);
 };
 
 struct			s_hpair

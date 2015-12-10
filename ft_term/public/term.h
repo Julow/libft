@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:45:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 14:53:02 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 18:07:53 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef enum e_term_caps	t_term_caps;
 ** Termcaps
 */
 
-enum e_term_caps
+enum		e_term_caps
 {
 	TERMCAP_up = 0,
 	TERMCAP_cl,
@@ -35,7 +35,7 @@ enum e_term_caps
 	_TERMCAP_COUNT
 };
 
-struct s_term
+struct		s_term
 {
 	t_out			out;
 	void			*term_config;
@@ -77,22 +77,22 @@ struct s_term
 ** -
 ** Return NULL on error
 */
-t_term			*ft_tinit(int fd, int flags);
+t_term		*ft_tinit(int fd, int flags);
 
 /*
 ** Clear screen (or written lines if TERM_LINE is enabled)
 */
-void			ft_tclear(t_term *term);
+void		ft_tclear(t_term *term);
 
 /*
 ** Enable/Disable term attributes
 */
-void			ft_trestore(t_term *term, t_bool enable);
+void		ft_trestore(t_term *term, t_bool enable);
 
 /*
 ** Update with and height attribute
 ** Must be call when receiving SIGWINCH signal
 */
-void			ft_tupdate(t_term *term);
+void		ft_tupdate(t_term *term);
 
 #endif

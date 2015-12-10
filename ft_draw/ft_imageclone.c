@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 15:08:27 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:05 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 17:41:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ t_image			*ft_imageclone(t_image *img)
 		return (NULL);
 	clone->data = MAL(t_uchar, img->width * img->height * img->opp);
 	if (clone->data == NULL)
-		return (free(clone), NULL);
+	{
+		free(clone);
+		return (NULL);
+	}
 	clone->img = img->img;
 	clone->width = img->width;
 	clone->height = img->height;

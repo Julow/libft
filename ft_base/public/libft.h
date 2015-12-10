@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/09 14:45:43 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 17:40:07 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -294,33 +294,33 @@ int				ft_min(int a, int b);
 ** Defining ASSERT_DISABLE will disable all asserts
 */
 
-#ifdef ASSERT_DISABLE
-# define TRACE(...)				IGNORE(NULL)
-# define ASSERT(C, ...)			BOOL_OF(sizeof(C) || 1)
-# define TEST_ASSERT(C, ...)	BOOL_OF(sizeof(C) || 1)
-# define DEBUG_ASSERT(C, ...)	BOOL_OF(sizeof(C) || 1)
-# define HARD_ASSERT(C, ...)	BOOL_OF(sizeof(C) || 1)
-#else
-# define TRACE(...)				_ASSERT_TRACE(""__VA_ARGS__)
-# define ASSERT(C, ...)			((C)||_ASSERT_CALL(STR_VALUE(C),""__VA_ARGS__))
-# define TEST_ASSERT(C, ...)	((C)&&_ASSERT_DCALL(STR_VALUE(C),""__VA_ARGS__))
-# define DEBUG_ASSERT(C, ...)	((C)&&_ASSERT_DEBUG(STR_VALUE(C),""__VA_ARGS__))
-# define HARD_ASSERT(C, ...)	((C)||_ASSERT_HCALL(STR_VALUE(C),""__VA_ARGS__))
-#endif
+# ifdef ASSERT_DISABLE
+#  define TRACE(...)			IGNORE(NULL)
+#  define ASSERT(C, ...)		BOOL_OF(sizeof(C) || 1)
+#  define TEST_ASSERT(C, ...)	BOOL_OF(sizeof(C) || 1)
+#  define DEBUG_ASSERT(C, ...)	BOOL_OF(sizeof(C) || 1)
+#  define HARD_ASSERT(C, ...)	BOOL_OF(sizeof(C) || 1)
+# else
+#  define TRACE(...)			_ASSERT_TRACE(""__VA_ARGS__)
+#  define ASSERT(C, ...)		((C)||_ASSERT_CALL(STR_VALUE(C),""__VA_ARGS__))
+#  define TEST_ASSERT(C, ...)	((C)&&_ASSERT_DCALL(STR_VALUE(C),""__VA_ARGS__))
+#  define DEBUG_ASSERT(C, ...)	((C)&&_ASSERT_DEBUG(STR_VALUE(C),""__VA_ARGS__))
+#  define HARD_ASSERT(C, ...)	((C)||_ASSERT_HCALL(STR_VALUE(C),""__VA_ARGS__))
+# endif
 
 t_bool			ft_assert(char const *err, char const *func);
 t_bool			ft_assert_hard(char const *err, char const *func);
 
-#define _ASSERT_LOCATION	__FILE__ ":" TO_STR(__LINE__) " "
-#define _ASSERT_CODE(C)		"[\033[31m" C "\033[39m] "
-#define _ASSERT_MIN(C)		_ASSERT_CODE(C) _ASSERT_LOCATION "\033[90m"
-#define _ASSERT_FULL(C,V)	_ASSERT_CODE(C) V " \033[90m" _ASSERT_LOCATION
-#define _ASSERT_ERR(C,V)	(sizeof(V)==1)?_ASSERT_MIN(C):_ASSERT_FULL(C,V)
-#define _ASSERT_CALL(C,V)	ft_assert(_ASSERT_ERR(C, V), __func__)
-#define _ASSERT_HCALL(C,V)	ft_assert_hard(_ASSERT_ERR(C, V), __func__)
-#define _ASSERT_DCALL(C,V)	!ft_assert(_ASSERT_ERR("\033[32m" C, V), __func__)
-#define _ASSERT_TRACE(V)	ft_assert(_ASSERT_ERR("\033[33mTRACE",V),__func__)
-#define _ASSERT_DEBUG(C,V)	_ASSERT_DCALL(C, V) || _ASSERT_CALL(C, V)
+# define _ASSERT_LOCATION	__FILE__ ":" TO_STR(__LINE__) " "
+# define _ASSERT_CODE(C)	"[\033[31m" C "\033[39m] "
+# define _ASSERT_MIN(C)		_ASSERT_CODE(C) _ASSERT_LOCATION "\033[90m"
+# define _ASSERT_FULL(C,V)	_ASSERT_CODE(C) V " \033[90m" _ASSERT_LOCATION
+# define _ASSERT_ERR(C,V)	(sizeof(V)==1)?_ASSERT_MIN(C):_ASSERT_FULL(C,V)
+# define _ASSERT_CALL(C,V)	ft_assert(_ASSERT_ERR(C, V), __func__)
+# define _ASSERT_HCALL(C,V)	ft_assert_hard(_ASSERT_ERR(C, V), __func__)
+# define _ASSERT_DCALL(C,V)	!ft_assert(_ASSERT_ERR("\033[32m" C, V), __func__)
+# define _ASSERT_TRACE(V)	ft_assert(_ASSERT_ERR("\033[33mTRACE",V),__func__)
+# define _ASSERT_DEBUG(C,V)	_ASSERT_DCALL(C, V) || _ASSERT_CALL(C, V)
 
 /*
 ** ========================================================================== **

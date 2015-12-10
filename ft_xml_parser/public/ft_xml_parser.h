@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 16:27:41 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/07 00:10:04 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 18:08:50 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_XML_H
-# define FT_XML_H
+#ifndef FT_XML_PARSER_H
+# define FT_XML_PARSER_H
 
 # include "ft/libft.h"
 # include "ft/ft_in.h"
@@ -25,7 +25,7 @@ typedef enum e_xml_token	t_xml_token;
 ** XML Parser
 */
 
-enum e_xml_token
+enum		e_xml_token
 {
 	XML_TOKEN_START,
 	XML_TOKEN_END,
@@ -34,7 +34,7 @@ enum e_xml_token
 	XML_TOKEN_ERROR
 };
 
-struct s_xml_parser
+struct		s_xml_parser
 {
 	t_in		*in;
 	uint32_t	line;

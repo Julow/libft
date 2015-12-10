@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:48:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 14:50:43 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 18:26:51 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ static char *const	g_termcap_names0[_TERMCAP_COUNT] = {
 	[TERMCAP_ch0] = "ch",
 };
 
+/*
+** termios->c_oflag &= ~(OPOST);
+*/
 static void		ft_tmakeraw(struct termios *termios)
 {
 	termios->c_iflag &= ~(IGNBRK | BRKINT | PARMRK
 		| IGNCR | ICRNL | ISTRIP | IXON);
-	// termios->c_oflag &= ~(OPOST);
 	termios->c_oflag = ONLCR | OPOST;
 	termios->c_lflag &= ~(ECHO | ECHONL | ICANON | ISIG | IEXTEN);
 	termios->c_cflag &= ~(CSIZE | PARENB);

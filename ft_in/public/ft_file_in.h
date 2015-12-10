@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 00:09:35 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/06 12:50:30 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 17:50:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_file_in	t_file_in;
 ** File input stream
 */
 
-struct s_file_in
+struct		s_file_in
 {
 	t_in		in;
 	char		*buff;

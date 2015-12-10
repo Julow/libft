@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/16 22:40:19 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/05 19:29:59 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 17:53:24 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_count_out	t_count_out;
 ** Does not output characters, instead it count them
 */
 
-struct s_count_out
+struct		s_count_out
 {
 	t_out		out;
 	uint32_t	count;
@@ -42,9 +42,9 @@ struct s_count_out
 
 # define _COUNT_OUT()	OUT(g_countout_buff, COUNT_OUT_BUFF, &count_out_flush)
 
-void			count_out_flush(t_count_out *out);
+void		count_out_flush(t_count_out *out);
 
-extern char		g_countout_buff[];
+extern char	g_countout_buff[];
 
 # define COUNT_OUT_BUFF	256
 

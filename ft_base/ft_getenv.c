@@ -6,17 +6,16 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 14:37:57 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/09 14:51:44 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 17:39:23 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/libft.h"
 
-extern char const *const	*environ;
-
 char const		*ft_getenv(t_sub key)
 {
 	int							i;
+	extern char const *const	*environ;
 
 	i = -1;
 	while (environ[++i] != NULL)

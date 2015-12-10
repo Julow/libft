@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/20 19:52:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:52 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 17:39:38 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_bool	bst_iter(t_bst_node *node, t_bool (*f)(void*, void*), void *env)
 	return (true);
 }
 
-t_bool		ft_bst_iter(t_bst *bst, t_bool (*f)(void*, void*), void *env)
+t_bool			ft_bst_iter(t_bst *bst, t_bool (*f)(void*, void*), void *env)
 {
 	if (bst->root == NULL)
 		return (true);
