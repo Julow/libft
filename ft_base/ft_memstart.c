@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 00:42:32 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:46:00 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 ** Return 'n' if all bytes match
 */
 
-t_uint			ft_memstart(void const *s1, void const *s2, t_uint n)
+uint32_t			ft_memstart(void const *s1, void const *s2, uint32_t n)
 {
-	t_uint const	length = n;
+	uint32_t const	length = n;
 
 	while (n > sizeof(MEM_TYPE))
 	{
@@ -31,7 +31,7 @@ t_uint			ft_memstart(void const *s1, void const *s2, t_uint n)
 	}
 	while (n-- > 0)
 	{
-		if (*((t_byte*)s1) != *((t_byte*)s2))
+		if (*((uint8_t*)s1) != *((uint8_t*)s2))
 			return (length - n);
 		s1++;
 		s2++;

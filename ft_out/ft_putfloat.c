@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/13 14:19:11 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:42 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static uint32_t	left_part(t_out *out, char *buff, uint32_t i, double val)
 {
-	t_bool			neg;
+	bool			neg;
 
 	if (val < 0.0)
 	{

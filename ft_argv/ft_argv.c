@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/07 22:59:17 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:46:09 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:19:00 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/libft.h"
 #include "ft/ft_argv.h"
 
-static t_bool	argv_error(t_args *args, char *opt, char const *msg)
+static bool		argv_error(t_args *args, char *opt, char const *msg)
 {
 	if (opt[1] != '\0')
 		ft_fdprintf(2, msg, args->argv[0], opt - 1);
@@ -22,7 +22,7 @@ static t_bool	argv_error(t_args *args, char *opt, char const *msg)
 	return (false);
 }
 
-t_bool			ft_argv(t_args *args, t_opt const *opts, int len, void *data)
+bool			ft_argv(t_args *args, t_opt const *opts, int len, void *data)
 {
 	char			*name;
 	char			*value;

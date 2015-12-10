@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:48:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 18:26:51 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:24:48 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <stdlib.h>
 #include <termios.h>
 #include <termcap.h>
+
+/*
+** termios->c_oflag &= ~(OPOST);
+*/
 
 static char *const	g_termcap_names[_TERMCAP_COUNT] = {
 	[TERMCAP_up] = "up",
@@ -29,9 +33,6 @@ static char *const	g_termcap_names0[_TERMCAP_COUNT] = {
 	[TERMCAP_ch0] = "ch",
 };
 
-/*
-** termios->c_oflag &= ~(OPOST);
-*/
 static void		ft_tmakeraw(struct termios *termios)
 {
 	termios->c_iflag &= ~(IGNBRK | BRKINT | PARMRK
@@ -44,7 +45,7 @@ static void		ft_tmakeraw(struct termios *termios)
 	termios->c_cc[VTIME] = 0;
 }
 
-static t_bool	init_tgetent(struct termios *term_conf, int *flags)
+static bool		init_tgetent(struct termios *term_conf, int *flags)
 {
 	char const *const	term_name = ft_getenv(SUBC("TERM"));
 

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/19 18:23:16 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 17:41:10 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:20:17 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ typedef struct s_bst		t_bst;
 ** (implementation: AVL)
 */
 
-struct	s_bst_node
+struct		s_bst_node
 {
 	t_bst_node	*left;
 	t_bst_node	*right;
 	int32_t		height;
 };
 
-struct	s_bst
+struct		s_bst
 {
 	t_bst_node	*root;
 	t_bst_cmp	match;
@@ -88,6 +88,6 @@ void		*ft_bst_max(t_bst *bst);
 ** Return true
 ** 'env' is passed as 2nd argument of 'f'
 */
-t_bool		ft_bst_iter(t_bst *bst, t_bool (*f)(void*, void*), void *env);
+bool		ft_bst_iter(t_bst *bst, bool (*f)(void*, void*), void *env);
 
 #endif

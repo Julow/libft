@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 15:08:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:04 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void			ft_drawimage(t_image *dst, t_image *src, t_pt pos, t_rect part)
 {
-	t_byte			*dstpos;
-	t_byte			*srcpos;
+	uint8_t			*dstpos;
+	uint8_t			*srcpos;
 
 	if (pos.x < 0)
 		part.width += pos.x;

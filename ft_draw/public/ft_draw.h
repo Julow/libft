@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 16:48:15 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:44:50 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:20:39 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_pt			ft_farthest(t_pt pos, t_pt p1, t_pt p2);
 ** Draw
 */
 
-# define C(c)			((t_color)(t_uint)(c))
+# define C(c)			((t_color)(uint32_t)(c))
 # define RGBA(r,g,b,a)	((t_color)((t_rgb){(b), (g), (r), (a)}))
 # define RGB(r,g,b)		RGBA(r, g, b, 0)
 # define INVI(c)		((c).u > 0xFF000000)
@@ -76,7 +76,7 @@ t_pt			ft_farthest(t_pt pos, t_pt p1, t_pt p2);
 
 typedef struct	s_image
 {
-	t_byte			*data;
+	uint8_t			*data;
 	void			*img;
 	int				width;
 	int				height;
@@ -87,18 +87,18 @@ typedef struct	s_image
 
 typedef struct	s_rgb
 {
-	t_uchar			b;
-	t_uchar			g;
-	t_uchar			r;
-	t_uchar			a;
+	uint8_t			b;
+	uint8_t			g;
+	uint8_t			r;
+	uint8_t			a;
 }				t_rgb;
 
 typedef union	u_color
 {
 	t_rgb			b;
-	t_uint			u;
+	uint32_t		u;
 	int				i;
-	t_uchar			t[4];
+	uint8_t			t[4];
 }				t_color;
 
 void			ft_resalpha(t_color *c, t_color bg);

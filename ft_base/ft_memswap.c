@@ -6,15 +6,15 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/23 17:57:44 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:46:02 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/libft.h"
 
-void			ft_memswap(void *mem1, void *mem2, t_uint len)
+void			ft_memswap(void *mem1, void *mem2, uint32_t len)
 {
-	t_byte			tmp8;
+	uint8_t			tmp8;
 	MEM_TYPE		tmp64;
 
 	while (len >= sizeof(MEM_TYPE))
@@ -28,9 +28,9 @@ void			ft_memswap(void *mem1, void *mem2, t_uint len)
 	}
 	while (len > 0)
 	{
-		tmp8 = *((t_byte*)mem1);
-		*((t_byte*)mem1) = *((t_byte*)mem2);
-		*((t_byte*)mem2) = tmp8;
+		tmp8 = *((uint8_t*)mem1);
+		*((uint8_t*)mem1) = *((uint8_t*)mem2);
+		*((uint8_t*)mem2) = tmp8;
 		mem1++;
 		mem2++;
 		len--;

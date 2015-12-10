@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/16 22:55:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/16 22:47:11 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:52 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_bool			ft_hidenp(char *hide, char *str)
+bool			ft_hidenp(char *hide, char *str)
 {
 	while (*(str++) != '\0')
 		if (*hide == *str)

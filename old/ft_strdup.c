@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:59:42 by jaguillo          #+#    #+#             */
-/*   Updated: 2014/11/03 11:59:46 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 char			*ft_strdup(const char *src)
 {
-	t_uint			len;
+	uint32_t			len;
 	char			*dst;
 
 	len = ft_strlen(src);

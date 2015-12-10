@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/29 20:25:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 18:06:56 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:23:35 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #define MATCH_NOT(r,f)	(((r)->flags & FLAG_R_NOT) ? !(f) : (f))
 #define MATCH_I(r,c)	(((r)->flags & FLAG_R_CASE) ? LOWER(c) : (c))
 
-static t_bool	reg_match_set(t_reg *reg, char c)
+static bool		reg_match_set(t_reg *reg, char c)
 {
 	int				i;
 
@@ -35,7 +35,7 @@ static t_bool	reg_match_set(t_reg *reg, char c)
 	return (false);
 }
 
-static t_bool	reg_match_sub(t_reg *reg, const char **str)
+static bool		reg_match_sub(t_reg *reg, const char **str)
 {
 	char			tmp[reg->reg_len + 1];
 	const char		*ptr = tmp;
@@ -55,7 +55,7 @@ static t_bool	reg_match_sub(t_reg *reg, const char **str)
 	return (true);
 }
 
-static t_bool	reg_match_str(t_reg *reg, const char **str)
+static bool		reg_match_str(t_reg *reg, const char **str)
 {
 	if (reg->reg_len == 0)
 		return (false);
@@ -70,7 +70,7 @@ static t_bool	reg_match_str(t_reg *reg, const char **str)
 	return (true);
 }
 
-static t_bool	reg_match_1(t_reg *reg, const char **str)
+static bool		reg_match_1(t_reg *reg, const char **str)
 {
 	int				c;
 
@@ -96,7 +96,7 @@ static t_bool	reg_match_1(t_reg *reg, const char **str)
 	return (reg_match_str(reg, str));
 }
 
-const char		*reg_reg(t_reg *r, const char *s, const char *p, t_uint l)
+const char		*reg_reg(t_reg *r, const char *s, const char *p, uint32_t l)
 {
 	char const		*tmp;
 

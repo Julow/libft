@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 16:59:59 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:43 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,22 @@ char			ft_readbuff(t_buff *buff);
 char			ft_buffget(t_buff *buff);
 void			ft_buffclear(t_buff *buff);
 
-t_bool			ft_parseint(t_buff *buff, int *nb);
-t_bool			ft_parselong(t_buff *buff, t_long *nb);
-t_bool			ft_parsebase(t_buff *buff, const char *base, t_ulong *nb);
-t_bool			ft_parsebasei(t_buff *buff, const char *base, t_ulong *nb);
-t_bool			ft_parsenumber(t_buff *buff, t_ulong *nb);
-t_bool			ft_parsedouble(t_buff *buff, double *nb);
+bool			ft_parseint(t_buff *buff, int *nb);
+bool			ft_parselong(t_buff *buff, int64_t *nb);
+bool			ft_parsebase(t_buff *buff, const char *base, uint64_t *nb);
+bool			ft_parsebasei(t_buff *buff, const char *base, uint64_t *nb);
+bool			ft_parsenumber(t_buff *buff, uint64_t *nb);
+bool			ft_parsedouble(t_buff *buff, double *nb);
 
-t_bool			ft_parse(t_buff *buff, const char *parse);
-t_bool			ft_parsenot(t_buff *buff, const char *parse);
-t_bool			ft_parsestr(t_buff *buff, const char *str);
+bool			ft_parse(t_buff *buff, const char *parse);
+bool			ft_parsenot(t_buff *buff, const char *parse);
+bool			ft_parsestr(t_buff *buff, const char *str);
 
 void			ft_parseendl(t_buff *buff);
-t_bool			ft_parsen(t_buff *buff, char *dst, int len);
+bool			ft_parsen(t_buff *buff, char *dst, int len);
 
-t_bool			ft_parsef(t_buff *buff, t_bool (*f)(int c));
-t_bool			ft_parsespace(t_buff *buff);
-t_bool			ft_parsewhite(t_buff *buff);
+bool			ft_parsef(t_buff *buff, bool (*f)(int c));
+bool			ft_parsespace(t_buff *buff);
+bool			ft_parsewhite(t_buff *buff);
 
 #endif

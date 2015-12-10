@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:01:35 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:44:25 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ struct			s_expr
 
 # define MAX_PRIORITY	3
 
-t_bool			parse_op(char c, struct s_expr *expr);
-t_bool			parse_func(t_sub sub, int *i_ptr, float *value);
+bool			parse_op(char c, struct s_expr *expr);
+bool			parse_func(t_sub sub, int *i_ptr, float *value);
 
-t_bool			eval_value(t_sub sub, int *i_ptr, float *value);
+bool			eval_value(t_sub sub, int *i_ptr, float *value);
 
 float			op_plus(float a, float b);
 float			op_moins(float a, float b);
@@ -59,6 +59,6 @@ float			op_div(float a, float b);
 **   exp  log   log2  log10 sqrt
 **   ceil floor round abs
 */
-t_bool			ft_evalexpr(t_sub expr, float *result);
+bool			ft_evalexpr(t_sub expr, float *result);
 
 #endif

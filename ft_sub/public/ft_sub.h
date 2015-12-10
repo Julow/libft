@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/11 19:25:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:27 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@
 
 t_sub			ft_subsub(t_sub sub, int from, int to);
 
-t_bool			ft_subequ(t_sub a, t_sub b);
+bool			ft_subequ(t_sub a, t_sub b);
 
 int				ft_subtrim(t_sub *sub, t_is mask);
 int				ft_subtrimr(t_sub *sub, t_is mask);
 int				ft_subtriml(t_sub *sub, t_is mask);
 
-t_bool			ft_subnext(t_sub *sub, t_is mask);
-t_bool			ft_subnextc(t_sub *sub, char c);
+bool			ft_subnext(t_sub *sub, t_is mask);
+bool			ft_subnextc(t_sub *sub, char c);
 int				ft_subcount(t_sub sub, t_is mask);
 int				ft_subextract(t_sub sub, t_sub *dst, int max, t_is mask);
 

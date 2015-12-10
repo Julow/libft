@@ -6,13 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 20:38:37 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/05 21:30:42 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_in.h"
 
-t_bool			ft_in_refresh(t_in *in)
+bool			ft_in_refresh(t_in *in)
 {
 	if (in->buff_i < in->buff_len)
 		return (true);

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/29 20:29:07 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/18 15:15:45 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:47 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int				main(int argc, char **argv)
 {
 	int				i;
-	t_bool			tmp;
+	bool			tmp;
 
 	if (argc > 2)
 	{

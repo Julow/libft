@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 19:56:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/07 14:57:20 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:20:55 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_hpair			ft_hmapget(t_hmap const *map, t_sub key)
 {
-	t_uint			hash;
+	uint32_t		hash;
 	t_h				*h;
 
 	hash = map->hash(key);

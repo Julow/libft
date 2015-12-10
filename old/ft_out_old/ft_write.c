@@ -6,16 +6,16 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 21:23:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 17:05:50 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_out.h"
 #include "ft_dstr.h"
 
-void			ft_write(t_out *out, const char *data, t_uint len)
+void			ft_write(t_out *out, const char *data, uint32_t len)
 {
-	t_uint			free_buff;
+	uint32_t			free_buff;
 
 	if (out->flags & OUT_DSTR)
 	{

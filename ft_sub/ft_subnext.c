@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/23 01:03:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:31 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 ** 'true' otherwise
 */
 
-t_bool			ft_subnext(t_sub *sub, t_is mask)
+bool			ft_subnext(t_sub *sub, t_is mask)
 {
 	int				i;
 

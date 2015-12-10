@@ -6,16 +6,16 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/31 18:30:26 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/07 15:13:40 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf_internal.h"
 
-static void		ft_writeulong(t_out *out, t_ulong n)
+static void		ft_writeulong(t_out *out, uint64_t n)
 {
 	char			nb[PUTLONG_BUFF];
-	t_uint			i;
+	uint32_t			i;
 
 	i = PUTLONG_BUFF;
 	if (n == 0)
@@ -30,11 +30,11 @@ static void		ft_writeulong(t_out *out, t_ulong n)
 
 void			flag_u(t_printf *pf, t_pfopt *opt)
 {
-	t_ulong			d;
+	uint64_t			d;
 	int				len;
 
 	if (opt->format == 'U')
-		d = (t_ulong)va_arg(*(pf->ap), unsigned long int);
+		d = (uint64_t)va_arg(*(pf->ap), unsigned long int);
 	else
 		d = get_unsigned_arg(pf, opt);
 	len = ft_unumlen(d, 10);

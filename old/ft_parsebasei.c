@@ -6,15 +6,15 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 19:14:44 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 17:02:05 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_buff.h"
 
-t_bool			ft_parsebasei(t_buff *buff, const char *base, t_ulong *nb)
+bool			ft_parsebasei(t_buff *buff, const char *base, uint64_t *nb)
 {
-	const t_uint	base_len = ft_strlen(base);
+	const uint32_t	base_len = ft_strlen(base);
 	int				tmp;
 
 	if ((tmp = ft_strichri(base, BG(buff))) == -1)

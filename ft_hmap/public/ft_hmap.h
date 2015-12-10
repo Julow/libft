@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/11 01:35:55 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 17:44:10 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:21:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_hpair		t_hpair;
 ** Hash
 */
 
-t_uint			ft_djb2(t_sub sub);
+uint32_t		ft_djb2(t_sub sub);
 
 /*
 ** ========================================================================== **
@@ -43,7 +43,7 @@ struct			s_hmap
 	int					size;
 	int const			alloc_size;
 	struct s_h **const	data;
-	t_uint				(*const hash)(t_sub key);
+	uint32_t			(*const hash)(t_sub key);
 };
 
 struct			s_hpair
@@ -55,7 +55,7 @@ struct			s_hpair
 /*
 ** Alloc a new hmap
 */
-t_hmap			*ft_hmapnew(int size, t_uint (*h)(t_sub));
+t_hmap			*ft_hmapnew(int size, uint32_t (*h)(t_sub));
 
 /*
 ** Retrieve an element

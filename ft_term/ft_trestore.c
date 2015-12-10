@@ -6,14 +6,14 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:50:28 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 01:09:33 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/term.h"
 #include <termios.h>
 
-void			ft_trestore(t_term *term, t_bool enable)
+void			ft_trestore(t_term *term, bool enable)
 {
 	if (enable)
 	{

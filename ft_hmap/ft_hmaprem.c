@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 19:56:04 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/07 14:56:58 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:21:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void			ft_hmaprem(t_hmap *map, t_sub key, void (*f)(void*))
 {
-	t_uint			hash;
+	uint32_t		hash;
 	t_h				**h;
 	t_h				*tmp;
 

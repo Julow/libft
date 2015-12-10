@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 22:36:23 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/18 15:06:29 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define MIN_INT_STR		"-2147483648"
 #define MAX_INT_STR		"2147483647"
 
-t_bool			ft_sisint(const char *s)
+bool			ft_sisint(const char *s)
 {
 	int				len;
 

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 12:46:06 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/06 12:47:52 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void		ft_in_close(t_file_in *in)
 	free(in);
 }
 
-t_bool		file_in_refresh(t_file_in *in)
+bool		file_in_refresh(t_file_in *in)
 {
 	int			len;
 

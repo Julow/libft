@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/10 00:31:05 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:44:28 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static struct s_op	g_ops[] = {
 	{'\0', 0, NULL}
 };
 
-t_bool			parse_op(char c, struct s_expr *expr)
+bool			parse_op(char c, struct s_expr *expr)
 {
 	int				i;
 

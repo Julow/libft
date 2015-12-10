@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/30 13:18:03 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/18 15:01:54 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int				ft_atoub(const char *str, t_uint *nb)
+int				ft_atoub(const char *str, uint32_t *nb)
 {
 	int				i;
 

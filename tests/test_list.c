@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 01:46:45 by juloo             #+#    #+#             */
-/*   Updated: 2015/09/20 01:50:38 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static int		test_cmp(t_data *a, t_data *b)
 
 static void		test_sort(t_list *list)
 {
-	t_ulong			t;
+	uint64_t			t;
 
 	t = ft_clock(0);
 	ft_listsort(list, &test_cmp);

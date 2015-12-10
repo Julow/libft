@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/28 18:13:26 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/07 15:13:53 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void			flag_o(t_printf *pf, t_pfopt *opt)
 {
-	t_ulong			nb;
+	uint64_t			nb;
 	int				len;
 
 	if (opt->format == 'O')
-		nb = (t_long)(va_arg(*(pf->ap), unsigned long int));
+		nb = (int64_t)(va_arg(*(pf->ap), unsigned long int));
 	else
 		nb = get_unsigned_arg(pf, opt);
 	len = ft_unumlen(nb, 8);

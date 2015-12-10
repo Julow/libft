@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/28 18:13:26 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/07 15:14:01 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void			flag_b(t_printf *pf, t_pfopt *opt)
 {
-	t_ulong			nb;
+	uint64_t			nb;
 	int				len;
-	t_bool			upper;
+	bool			upper;
 
 	nb = get_unsigned_arg(pf, opt);
 	len = ft_unumlen(nb, 2);

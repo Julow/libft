@@ -6,14 +6,14 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/01 18:34:47 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/01/01 18:34:47 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-char			*ft_strndup(const char *src, t_uint len)
+char			*ft_strndup(const char *src, uint32_t len)
 {
 	char			*dup;
 

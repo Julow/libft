@@ -6,15 +6,15 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/11 17:32:54 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:42 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:55 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_buff.h"
 
-t_bool			ft_parsedouble(t_buff *buff, double *nb)
+bool			ft_parsedouble(t_buff *buff, double *nb)
 {
-	t_bool			negatif;
+	bool			negatif;
 	double			po;
 
 	negatif = (!BIS(buff, '+') && BIS(buff, '-')) ? true : false;

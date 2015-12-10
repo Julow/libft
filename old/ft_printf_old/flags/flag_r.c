@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/03 01:31:36 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/07 15:13:45 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static int		write_r(t_out *out, const char *str, int len)
 			else
 			{
 				ft_writechar(out, 'x');
-				if (((t_byte)str[i]) < 16)
+				if (((uint8_t)str[i]) < 16)
 					ft_writechar(out, '0');
-				ft_writebase(out, (t_byte)(str[i]), BASE_16);
+				ft_writebase(out, (uint8_t)(str[i]), BASE_16);
 				printed += 2;
 			}
 		}

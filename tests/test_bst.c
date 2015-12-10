@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/20 15:07:14 by juloo             #+#    #+#             */
-/*   Updated: 2015/10/21 00:19:04 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:48 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 typedef void				(*t_bst_print_f)(t_out *out, void const*);
 
 static void		bst_print(t_out *out, t_bst_node const *node, int indent,
-					t_bool right, t_bst_print_f print)
+					bool right, t_bst_print_f print)
 {
 	int				i;
 
@@ -91,7 +91,7 @@ void			int_print(t_out *out, int const *a)
 	ft_writeint(out, *a);
 }
 
-t_bool			int_issort(int const *a, int const *prev)
+bool			int_issort(int const *a, int const *prev)
 {
 	if (a <= prev)
 		return (true);

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/04 21:58:12 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:57 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #endif
 #ifdef __APPLE__
 
-t_ulong			ft_nanoclock(t_ulong start)
+uint64_t			ft_nanoclock(uint64_t start)
 {
 	static mach_timebase_info_data_t	timebase = {0, 0};
 
@@ -31,7 +31,7 @@ t_ulong			ft_nanoclock(t_ulong start)
 
 #else
 
-t_ulong			ft_nanoclock(t_ulong start)
+uint64_t			ft_nanoclock(uint64_t start)
 {
 	struct timespec	spec;
 

@@ -6,15 +6,15 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 21:55:25 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:47 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_buff.h"
 
-t_bool			ft_parsebase(t_buff *buff, const char *base, t_ulong *nb)
+bool			ft_parsebase(t_buff *buff, const char *base, uint64_t *nb)
 {
-	const t_uint	base_len = ft_strlen(base);
+	const uint32_t	base_len = ft_strlen(base);
 	int				tmp;
 
 	if ((tmp = ft_strchri(base, BG(buff))) == -1)

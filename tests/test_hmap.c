@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/22 23:33:02 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/07 15:16:15 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,9 +237,9 @@ t_sub const		g_test_keys[] = {
 #define HASH_FUNCTION	ft_djb2
 
 // #define HASH_FUNCTION	test_h
-t_uint			test_h(t_sub s)
+uint32_t			test_h(t_sub s)
 {
-	t_uint			h;
+	uint32_t			h;
 	int				i;
 
 	i = -1;
@@ -250,9 +250,9 @@ t_uint			test_h(t_sub s)
 }
 
 // #define HASH_FUNCTION	test_h_ignorecase
-t_uint			test_h_ignorecase(t_sub s)
+uint32_t			test_h_ignorecase(t_sub s)
 {
-	t_uint			h;
+	uint32_t			h;
 	int				i;
 
 	i = -1;
@@ -263,9 +263,9 @@ t_uint			test_h_ignorecase(t_sub s)
 }
 
 // #define HASH_FUNCTION	test_bad_h
-t_uint			test_bad_h(t_sub s)
+uint32_t			test_bad_h(t_sub s)
 {
-	t_uint			h;
+	uint32_t			h;
 	int				i;
 
 	i = -1;
@@ -275,10 +275,10 @@ t_uint			test_bad_h(t_sub s)
 	return (h);
 }
 
-static t_ulong	test_add(t_hmap *map, int count)
+static uint64_t	test_add(t_hmap *map, int count)
 {
 	int				i;
-	t_ulong			t;
+	uint64_t			t;
 
 	t = ft_clock(0);
 	for (i = 0; i < count; ++i)
@@ -351,11 +351,11 @@ static void		print_hmap_debug(t_hmap *map)
 		P("Error: total_len != size (%d, %d)", total_len, map->size), NL;
 }
 
-static t_ulong	test_get(t_hmap *map, int count)
+static uint64_t	test_get(t_hmap *map, int count)
 {
 	int				i;
 	int				found;
-	t_ulong			t;
+	uint64_t			t;
 
 	found = 0;
 	t = ft_clock(0);
@@ -369,10 +369,10 @@ static t_ulong	test_get(t_hmap *map, int count)
 	return (t);
 }
 
-static t_ulong	test_add_all(t_hmap *map)
+static uint64_t	test_add_all(t_hmap *map)
 {
 	int				i;
-	t_ulong			t;
+	uint64_t			t;
 
 	i = -1;
 	t = ft_clock(0);
@@ -386,7 +386,7 @@ static t_ulong	test_add_all(t_hmap *map)
 int				main(int argc, char **argv)
 {
 	t_hmap			*map;
-	t_ulong			t;
+	uint64_t			t;
 	int				alloc_size;
 
 	alloc_size = (argc > 1) ? ft_atoi(argv[1]) : 50;

@@ -6,16 +6,16 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/07 23:56:18 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/18 15:01:23 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_long			ft_atol(const char *str)
+int64_t			ft_atol(const char *str)
 {
-	t_long			nb;
-	t_bool			negatif;
+	int64_t			nb;
+	bool			negatif;
 
 	negatif = false;
 	nb = 0;

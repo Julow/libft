@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 00:09:35 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 17:50:02 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ t_file_in	*ft_in_fdopen(int fd);
 
 void		ft_in_close(t_file_in *in);
 
-t_bool		file_in_refresh(t_file_in *in);
+bool		file_in_refresh(t_file_in *in);
 
 #endif

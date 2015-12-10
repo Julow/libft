@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 19:23:34 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:58 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/libft.h"
 #include <sys/time.h>
 
-t_ulong			ft_clock(t_ulong start)
+uint64_t			ft_clock(uint64_t start)
 {
 	struct timeval	tval;
 

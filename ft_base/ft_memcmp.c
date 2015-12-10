@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 15:06:42 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:46:00 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/libft.h"
 
-int				ft_memcmp(const void *s1, const void *s2, t_uint n)
+int				ft_memcmp(const void *s1, const void *s2, uint32_t n)
 {
 	while (n > sizeof(MEM_TYPE))
 	{
@@ -24,8 +24,8 @@ int				ft_memcmp(const void *s1, const void *s2, t_uint n)
 	}
 	while (n-- > 0)
 	{
-		if (*((t_byte*)s1) != *((t_byte*)s2))
-			return ((int)(*((t_byte*)s1) - *((t_byte*)s2)));
+		if (*((uint8_t*)s1) != *((uint8_t*)s2))
+			return ((int)(*((uint8_t*)s1) - *((uint8_t*)s2)));
 		s1++;
 		s2++;
 	}

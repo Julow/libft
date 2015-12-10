@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   test_vector.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/22 23:33:02 by juloo             #+#    #+#             */
-/*   Updated: 2015/08/24 12:09:26 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ typedef struct	s_lol
 	int				a;
 }				t_lol;
 
-static t_ulong	test_add(t_vector *v, int count)
+static uint64_t	test_add(t_vector *v, int count)
 {
 	int				i;
-	t_ulong			t;
+	uint64_t			t;
 
 	i = -1;
 	t = ft_clock(0);
@@ -34,10 +34,10 @@ static t_ulong	test_add(t_vector *v, int count)
 	return (t);
 }
 
-static t_ulong	test_min_max(t_vector const *v)
+static uint64_t	test_min_max(t_vector const *v)
 {
 	int				i;
-	t_ulong			t;
+	uint64_t			t;
 	int				min;
 	int				max;
 
@@ -57,11 +57,11 @@ static t_ulong	test_min_max(t_vector const *v)
 	return (t);
 }
 
-static t_ulong	test_remove_bigger(t_vector *v, int than)
+static uint64_t	test_remove_bigger(t_vector *v, int than)
 {
 	int				i;
 	int				removed;
-	t_ulong			t;
+	uint64_t			t;
 
 	removed = 0;
 	i = v->length;
@@ -80,9 +80,9 @@ static t_ulong	test_remove_bigger(t_vector *v, int than)
 int				main(void)
 {
 	t_vector		v;
-	t_ulong			add_t;
-	t_ulong			rem_t;
-	t_ulong			minmax_t;
+	uint64_t			add_t;
+	uint64_t			rem_t;
+	uint64_t			minmax_t;
 
 	add_t = 0;
 	rem_t = 0;

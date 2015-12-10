@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/23 00:01:49 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:59 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ t_is			g_is_table[(unsigned char)-1] = {
 	0
 };
 
-t_bool			ft_is(char c, t_is mask)
+bool			ft_is(char c, t_is mask)
 {
 	if (IS(c, mask))
 		return (true);

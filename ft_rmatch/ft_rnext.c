@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/29 20:59:13 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:34 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 ** ---
 */
 
-t_bool			ft_rnext(t_sub *last, const char *pattern)
+bool			ft_rnext(t_sub *last, const char *pattern)
 {
 	return (ft_rfind(last, last->str + last->length, pattern));
 }

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/10 02:56:41 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:44:30 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static struct s_func	g_funcs[] = {
 	{SUB(NULL, 0), NULL}
 };
 
-t_bool			parse_func(t_sub sub, int *i_ptr, float *value)
+bool			parse_func(t_sub sub, int *i_ptr, float *value)
 {
 	int				len;
 	int				i;

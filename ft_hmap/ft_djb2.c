@@ -6,15 +6,15 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/04 21:50:54 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/07 14:57:27 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:20:47 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hmap_internal.h"
 
-t_uint			ft_djb2(t_sub sub)
+uint32_t		ft_djb2(t_sub sub)
 {
-	t_uint			hash;
+	uint32_t		hash;
 	int				i;
 
 	hash = 5381;

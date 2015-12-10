@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/20 00:16:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/17 17:05:44 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 
 static void		writedi(t_out *out, double d)
 {
-	t_ulong			tmp;
+	uint64_t			tmp;
 
 	if (d < 1)
 		return ;
 	writedi(out, d / 10);
-	tmp = (t_ulong)d;
+	tmp = (uint64_t)d;
 	d -= tmp;
 	ft_writechar(out, tmp % 10 + '0');
 }
 
 static void		writedd(t_out *out, double d, int preci)
 {
-	t_ulong			tmp;
+	uint64_t			tmp;
 
 	while (preci--)
 	{
 		d *= 10;
 		if (preci == 0)
 			d += 0.5;
-		tmp = (t_ulong)d;
+		tmp = (uint64_t)d;
 		d -= tmp;
 		ft_writechar(out, tmp % 10 + '0');
 	}

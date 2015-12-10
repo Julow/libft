@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/29 17:16:26 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:34 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 ** ---
 */
 
-t_bool			ft_rfind(t_sub *dst, const char *str, const char *pattern)
+bool			ft_rfind(t_sub *dst, const char *str, const char *pattern)
 {
 	char const		*tmp;
 

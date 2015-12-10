@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/07 15:12:10 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/15 14:20:50 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,15 +109,15 @@ void			writef(t_printf *pf, const char *format);
 */
 int				parse_format(t_printf *pf, const char *format);
 
-t_long			get_arg(t_printf *pf, t_pfopt *opt);
-t_ulong			get_unsigned_arg(t_printf *pf, t_pfopt *opt);
+int64_t			get_arg(t_printf *pf, t_pfopt *opt);
+uint64_t			get_unsigned_arg(t_printf *pf, t_pfopt *opt);
 long double		get_float_arg(t_printf *pf, t_pfopt *opt);
 
-t_bool			is_separator(char c);
+bool			is_separator(char c);
 void			margin_before(t_printf *pf, t_pfopt *opt, int len);
 void			margin_after(t_printf *pf, t_pfopt *opt, int len);
-int				ft_numlen(t_long num, int base);
-int				ft_unumlen(t_ulong num, int base);
+int				ft_numlen(int64_t num, int base);
+int				ft_unumlen(uint64_t num, int base);
 
 void			flag_d(t_printf *pf, t_pfopt *opt);
 void			flag_c(t_printf *pf, t_pfopt *opt);

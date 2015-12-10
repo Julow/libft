@@ -6,13 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 20:38:37 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/05 21:30:33 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_in.h"
 
-t_bool			ft_read(t_in *in, char *dst, uint32_t n)
+bool			ft_read(t_in *in, char *dst, uint32_t n)
 {
 	uint32_t		i;
 	uint32_t		tmp;

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 15:03:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/04/29 19:36:52 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int				g_cmp_count = 0;
 
 char const		*g_best_name = NULL;
-t_ulong			g_best_time = 0;
+uint64_t			g_best_time = 0;
 int				g_best_cmp = 0;
 
 static int		test_cmp(char *s1, char *s2)
@@ -31,7 +31,7 @@ static void		test(char **argv, int length,
 {
 	char			*array[length];
 	int				i;
-	t_ulong			start;
+	uint64_t			start;
 
 	ft_memcpy(array, argv, S(char*, length));
 	g_cmp_count = 0;

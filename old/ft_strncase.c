@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/09 12:51:20 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/21 12:26:17 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 ** Compare 'n' characters
 */
 
-t_bool			ft_strncase(const char *s1, const char *s2, t_uint n)
+bool			ft_strncase(const char *s1, const char *s2, uint32_t n)
 {
-	t_uint			i;
+	uint32_t			i;
 
 	if (n == 0)
 		return (true);

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 17:40:07 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:19:48 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 # define LIBFT_H
 
 # include <stdint.h>
+# include <stdbool.h>
+
+/*
+** TODO: unsigned t_sub
+*/
 
 /*
 ** ========================================================================== **
@@ -51,14 +56,6 @@
 ** ========================================================================== **
 ** Types
 */
-
-typedef unsigned char			t_byte;
-typedef unsigned char			t_uchar;
-typedef unsigned int			t_uint;
-typedef long long int			t_long;
-typedef unsigned long long int	t_ulong;
-
-typedef enum e_bool				t_bool;
 
 typedef struct s_sub			t_sub;
 
@@ -99,12 +96,6 @@ typedef struct s_sub			t_sub;
 
 # define ISNAN(d)		((d) != (d))
 
-enum			e_bool
-{
-	false = 0,
-	true = 1
-};
-
 /*
 ** ========================================================================== **
 ** Memory
@@ -123,22 +114,22 @@ enum			e_bool
 #  define NEW			MAL1
 # endif
 
-void			*ft_emalloc(t_uint size);
-void			*ft_memdup(const void *src, t_uint len);
+void			*ft_emalloc(uint32_t size);
+void			*ft_memdup(const void *src, uint32_t len);
 
-void			*ft_bzero(void *mem, t_uint len);
-void			*ft_memset(void *mem, int c, t_uint len);
+void			*ft_bzero(void *mem, uint32_t len);
+void			*ft_memset(void *mem, int c, uint32_t len);
 
-void			*ft_memcpy(void *dst, const void *src, t_uint len);
-void			*ft_memrcpy(void *dst, const void *src, t_uint len);
-void			*ft_memmove(void *dst, const void *src, t_uint len);
+void			*ft_memcpy(void *dst, const void *src, uint32_t len);
+void			*ft_memrcpy(void *dst, const void *src, uint32_t len);
+void			*ft_memmove(void *dst, const void *src, uint32_t len);
 
 void			ft_memfill(void *dst, void const *src, int size, int dst_size);
-void			ft_memswap(void *mem1, void *mem2, t_uint len);
+void			ft_memswap(void *mem1, void *mem2, uint32_t len);
 
-int				ft_memcmp(const void *mem1, const void *mem2, t_uint len);
+int				ft_memcmp(const void *mem1, const void *mem2, uint32_t len);
 
-t_uint			ft_memstart(void const *s1, void const *s2, t_uint n);
+uint32_t		ft_memstart(void const *s1, void const *s2, uint32_t n);
 
 /*
 ** ========================================================================== **
@@ -178,14 +169,14 @@ extern t_is		g_is_table[];
 ** ft_is function is equivalent to IS macro
 ** also the IS macro use only once it's arguments
 */
-t_bool			ft_is(char c, t_is mask);
+bool			ft_is(char c, t_is mask);
 
 /*
 ** ========================================================================== **
 ** String
 */
 
-t_uint			ft_strlen(const char *str);
+uint32_t		ft_strlen(const char *str);
 int				ft_strchri(const char *str, char c);
 
 /*
@@ -238,12 +229,12 @@ char			ft_unescape(char c);
 /*
 ** Return the current time in micro second since start
 */
-t_ulong			ft_clock(t_ulong start);
+uint64_t		ft_clock(uint64_t start);
 
 /*
 ** Return the current time in nano second since start
 */
-t_ulong			ft_nanoclock(t_ulong start);
+uint64_t		ft_nanoclock(uint64_t start);
 
 /*
 ** ========================================================================== **
@@ -252,7 +243,7 @@ t_ulong			ft_nanoclock(t_ulong start);
 */
 
 int				ft_rand(int min, int max);
-t_bool			ft_randbool(double chance);
+bool			ft_randbool(double chance);
 
 /*
 ** ========================================================================== **
@@ -308,8 +299,8 @@ int				ft_min(int a, int b);
 #  define HARD_ASSERT(C, ...)	((C)||_ASSERT_HCALL(STR_VALUE(C),""__VA_ARGS__))
 # endif
 
-t_bool			ft_assert(char const *err, char const *func);
-t_bool			ft_assert_hard(char const *err, char const *func);
+bool			ft_assert(char const *err, char const *func);
+bool			ft_assert_hard(char const *err, char const *func);
 
 # define _ASSERT_LOCATION	__FILE__ ":" TO_STR(__LINE__) " "
 # define _ASSERT_CODE(C)	"[\033[31m" C "\033[39m] "

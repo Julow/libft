@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:21:00 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:30 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define RETURN(...)		return (__VA_ARGS__)
 
-static int		sub_float(t_sub sub, t_bool neg, float *f)
+static int		sub_float(t_sub sub, bool neg, float *f)
 {
 	int				i;
 	int				base_i;
@@ -47,7 +47,7 @@ int				ft_subfloat(t_sub sub, float *f)
 {
 	int				i;
 	float			tmp;
-	t_bool			negative;
+	bool			negative;
 
 	if (sub.length <= 0)
 		RETURN((*f = 0.f), 0);

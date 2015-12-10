@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/07 14:56:07 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:44:22 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:21:10 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct	s_h
 {
-	t_uint			hash;
+	uint32_t		hash;
 	int				key_len;
 	void			*data;
 	struct s_h		*next;

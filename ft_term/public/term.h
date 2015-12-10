@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:45:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 18:07:53 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		ft_tclear(t_term *term);
 /*
 ** Enable/Disable term attributes
 */
-void		ft_trestore(t_term *term, t_bool enable);
+void		ft_trestore(t_term *term, bool enable);
 
 /*
 ** Update with and height attribute

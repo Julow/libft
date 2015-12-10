@@ -6,15 +6,15 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/11 17:35:29 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:44 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_buff.h"
 
-t_bool			ft_parselong(t_buff *buff, t_long *nb)
+bool			ft_parselong(t_buff *buff, int64_t *nb)
 {
-	t_bool			negatif;
+	bool			negatif;
 
 	negatif = false;
 	if ((BG(buff) == '-' && (negatif = true)) || BG(buff) == '+')

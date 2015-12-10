@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/18 21:19:45 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:46:10 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/libft.h"
 #include "ft/ft_argv.h"
 
-static char		*argvopt_long(t_args *args, char *tmp)
+static char		*argvopint64_t(t_args *args, char *tmp)
 {
 	if (tmp[2] == '\0')
 	{
@@ -50,7 +50,7 @@ char			*ft_argvopt(t_args *args)
 		if (!(tmp[0] == '-' && tmp[1] != '\0'))
 			break ;
 		if (tmp[1] == '-')
-			return (argvopt_long(args, tmp));
+			return (argvopint64_t(args, tmp));
 		if (tmp[args->i] != '\0')
 		{
 			args->opt[0] = tmp[args->i++];

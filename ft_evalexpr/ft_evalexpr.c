@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 23:01:27 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:44:27 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:21:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_evalexpr.h"
 #include "ft/ft_sub.h"
 
-static t_bool	exec_expr(struct s_expr *expr)
+static bool		exec_expr(struct s_expr *expr)
 {
 	int				priority;
 	struct s_expr	*tmp;
@@ -38,7 +38,7 @@ static t_bool	exec_expr(struct s_expr *expr)
 	return (true);
 }
 
-static t_bool	eval_subexpr(t_sub sub, int i, int *i_ptr, float *value)
+static bool		eval_subexpr(t_sub sub, int i, int *i_ptr, float *value)
 {
 	int				tmp;
 
@@ -55,8 +55,8 @@ static t_bool	eval_subexpr(t_sub sub, int i, int *i_ptr, float *value)
 	return (ft_evalexpr(SUB(sub.str + tmp + 1, i - tmp - 1), value));
 }
 
-static t_bool	eval_next(t_sub sub, int i, struct s_expr *prev,
-		struct s_expr *first)
+static bool		eval_next(t_sub sub, int i, struct s_expr *prev,
+					struct s_expr *first)
 {
 	struct s_expr	expr;
 
@@ -74,7 +74,7 @@ static t_bool	eval_next(t_sub sub, int i, struct s_expr *prev,
 	return (eval_next(sub, i, &expr, first));
 }
 
-t_bool			eval_value(t_sub sub, int *i_ptr, float *value)
+bool			eval_value(t_sub sub, int *i_ptr, float *value)
 {
 	int				tmp;
 	int				i;
@@ -93,7 +93,7 @@ t_bool			eval_value(t_sub sub, int *i_ptr, float *value)
 	return (parse_func(sub, i_ptr, value));
 }
 
-t_bool			ft_evalexpr(t_sub expr, float *result)
+bool			ft_evalexpr(t_sub expr, float *result)
 {
 	struct s_expr	first;
 

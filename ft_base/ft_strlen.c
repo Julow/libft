@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:26:28 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:46:05 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/libft.h"
 
-inline t_uint	ft_strlen(const char *str)
+inline uint32_t	ft_strlen(const char *str)
 {
 	char			*tmp;
 

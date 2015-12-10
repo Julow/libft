@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/07 15:03:24 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:33 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:23:19 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 typedef struct	s_reg
 {
 	int				flags;
-	t_uint			from;
-	t_uint			to;
+	uint32_t		from;
+	uint32_t		to;
 	int				reg_len;
 	char			*reg;
 }				t_reg;
@@ -41,7 +41,7 @@ const char		*parse_reg_is(t_reg *reg, const char *pattern);
 const char		*parse_reg_sub(t_reg *reg, const char *str);
 const char		*reg_parse(t_reg *reg, const char *pattern);
 
-const char		*reg_reg(t_reg *r, const char *s, const char *p, t_uint l);
+const char		*reg_reg(t_reg *r, const char *s, const char *p, uint32_t l);
 const char		*reg_match(const char *str, const char **pattern);
 const char		*reg_test(const char *str, const char *pattern);
 

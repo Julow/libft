@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/31 00:00:01 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/21 12:25:25 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 ** Allow char from 'str' to be escaped with '\'
 */
 
-t_uint			ft_strcskipe(const char *str, const char *skip)
+uint32_t			ft_strcskipe(const char *str, const char *skip)
 {
-	t_uint			i;
-	t_bool			escaped;
+	uint32_t			i;
+	bool			escaped;
 
 	i = 0;
 	escaped = false;

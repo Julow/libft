@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 17:11:28 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:33 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@
 ** ---
 */
 
-t_bool			ft_rmatch(const char *str, const char *pattern);
+bool			ft_rmatch(const char *str, const char *pattern);
 int				ft_rtest(const char *str, const char *pattern);
-t_bool			ft_rfind(t_sub *dst, const char *str, const char *pattern);
-t_bool			ft_rnext(t_sub *last, const char *pattern);
+bool			ft_rfind(t_sub *dst, const char *str, const char *pattern);
+bool			ft_rnext(t_sub *last, const char *pattern);
 
 int				ft_matchint(const char *str);
 

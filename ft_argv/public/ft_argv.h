@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/18 21:19:59 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:46:09 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ char			*ft_argvarg(t_args *args);
 **  t_opt.arg     If require a argument
 **  t_opt.f       Callback(opt name, argument if t_opt.arg else NULL)
 ** ----
-** t_bool			callback(void *data, t_args *args, char *opt, char *arg);
+** bool			callback(void *data, t_args *args, char *opt, char *arg);
 **  If the callback function return false, ft_argv stop
 ** ----
 ** Warning: An empty opt name cause an undefined behavior
@@ -125,11 +125,11 @@ struct			s_opt
 {
 	char			*opt;
 	char const		*alias;
-	t_bool			arg;
-	t_bool			(*f)();
+	bool			arg;
+	bool			(*f)();
 };
 
-t_bool			ft_argv(t_args *args, t_opt const *opts, int len, void *data);
+bool			ft_argv(t_args *args, t_opt const *opts, int len, void *data);
 
 /*
 ** Error messages

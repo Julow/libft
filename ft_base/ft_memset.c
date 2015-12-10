@@ -6,20 +6,20 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 12:05:54 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:59 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/libft.h"
 
-void			*ft_memset(void *b, int c, t_uint len)
+void			*ft_memset(void *b, int c, uint32_t len)
 {
 	MEM_TYPE		*bytes64;
 	MEM_TYPE		value64;
-	t_byte			*bytes8;
-	t_byte			value8;
+	uint8_t			*bytes8;
+	uint8_t			value8;
 
-	value8 = (t_byte)c;
+	value8 = (uint8_t)c;
 	value64 = (MEM_TYPE)value8;
 	value64 = (value64 << 8) | (MEM_TYPE)value8;
 	value64 = (value64 << 16) | value64;
@@ -30,7 +30,7 @@ void			*ft_memset(void *b, int c, t_uint len)
 		*(bytes64++) = value64;
 		len -= sizeof(MEM_TYPE);
 	}
-	bytes8 = (t_byte*)bytes64;
+	bytes8 = (uint8_t*)bytes64;
 	while (len-- > 0)
 		*(bytes8++) = value8;
 	return (b);

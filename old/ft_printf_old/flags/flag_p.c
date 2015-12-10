@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/31 18:08:47 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/07 15:13:49 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void			flag_p(t_printf *pf, t_pfopt *opt)
 {
-	t_ulong			nb;
+	uint64_t			nb;
 	int				len;
-	t_bool			upper;
+	bool			upper;
 
-	nb = (t_ulong)va_arg(*(pf->ap), void*);
+	nb = (uint64_t)va_arg(*(pf->ap), void*);
 	len = (nb == 0) ? 3 : ft_unumlen(nb, 16) + 2;
 	upper = (opt->flags & PFLAG_UPPER || opt->format == 'P') ? true : false;
 	if (opt->flags & PFLAG_ALT)

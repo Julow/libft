@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 21:20:31 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/07 00:32:20 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_xml_token	xml_next_start(t_xml_parser *xml)
 	return (XML_TOKEN_PARAM);
 }
 
-t_bool		is_xml_name_char(char c, void *env)
+bool		is_xml_name_char(char c, void *env)
 {
 	if (IS(c, IS_SPACE) || c == '>')
 		return (true);

@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 12:20:34 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:46:00 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/libft.h"
 
-void			*ft_memcpy(void *dst, const void *src, t_uint len)
+void			*ft_memcpy(void *dst, const void *src, uint32_t len)
 {
 	void			*tmp_dst;
 	void			*tmp_src;
@@ -30,7 +30,7 @@ void			*ft_memcpy(void *dst, const void *src, t_uint len)
 	}
 	while (len > 0)
 	{
-		*((t_byte*)tmp_dst) = *((t_byte*)tmp_src);
+		*((uint8_t*)tmp_dst) = *((uint8_t*)tmp_src);
 		tmp_dst++;
 		tmp_src++;
 		len--;

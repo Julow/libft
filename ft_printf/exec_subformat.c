@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/16 22:49:00 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 19:10:24 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:22:51 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,14 @@ static int	put_subformat(t_out *out, char const *fmt, char end, va_list *ap)
 
 int			exec_subformat(t_out *out, char const *fmt, char end, va_list *ap)
 {
-	uint32_t const	out_flags = out->flags;
-	uint32_t const	out_width = out->width;
 	uint32_t const	repeat = (out->precision > 0) ? out->precision : 1;
 	uint32_t		i;
 	t_str_out		str_out;
 	int				len;
 
 	str_out = STR_OUT();
-	out->flags = 0;
-	out->width = 0;
 	out->precision = 0;
 	len = put_subformat(V(&str_out), fmt, end, ap);
-	out->flags = out_flags;
-	out->width = out_width;
 	ft_putpad_left(out, str_out.buff_i * repeat);
 	i = 0;
 	while (i < repeat)

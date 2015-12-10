@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 17:00:20 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/11 19:50:49 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ struct			s_out
 	int				flags;
 };
 
-void			ft_write(t_out *out, const char *data, t_uint len);
+void			ft_write(t_out *out, const char *data, uint32_t len);
 void			ft_writestr(t_out *out, const char *str);
 void			ft_writechar(t_out *out, char c);
 void			ft_writenchar(t_out *out, char c, int n);
 void			ft_writenl(t_out *out);
 void			ft_writeint(t_out *out, int n);
-void			ft_writebase(t_out *out, t_ulong n, const char *base);
+void			ft_writebase(t_out *out, uint64_t n, const char *base);
 void			ft_writedouble(t_out *out, double d, int preci);
 int				ft_flush(t_out *out);
 
@@ -82,6 +82,6 @@ extern t_out	g_ftout;
 
 void			ft_out(int fd);
 
-void			ft_hexdump(const void *data, t_uint len);
+void			ft_hexdump(const void *data, uint32_t len);
 
 #endif

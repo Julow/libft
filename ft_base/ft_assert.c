@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/18 16:17:51 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/28 16:18:28 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #define ASSERT_WRITE(STR)	write(2, STR, sizeof(STR) - 1)
 
-t_bool			ft_assert(char const *err, char const *func)
+bool			ft_assert(char const *err, char const *func)
 {
 	write(2, err, ft_strlen(err));
 	write(2, func, ft_strlen(func));
@@ -24,7 +24,7 @@ t_bool			ft_assert(char const *err, char const *func)
 	return (false);
 }
 
-t_bool			ft_assert_hard(char const *err, char const *func)
+bool			ft_assert_hard(char const *err, char const *func)
 {
 	write(2, err, ft_strlen(err));
 	write(2, func, ft_strlen(func));

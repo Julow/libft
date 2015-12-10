@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 19:18:36 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/09/21 12:16:13 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** hexa is case insensitive
 */
 
-t_bool			ft_parsenumber(t_buff *buff, t_ulong *nb)
+bool			ft_parsenumber(t_buff *buff, uint64_t *nb)
 {
 	if (BIS(buff, '0'))
 	{
