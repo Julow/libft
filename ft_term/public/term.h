@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:45:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 01:17:39 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 14:53:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,6 @@ struct s_term
 ** Set at init if $TERM is invalid and TERM_DEFAULT_TERM is used instead
 */
 # define TERM_USE_DEFAULT	(1 << 4)
-
-/*
-** Read and return a char from stdin
-*/
-int				ft_getchr(void);
 
 /*
 ** Init and update a t_term and init the termcap lib

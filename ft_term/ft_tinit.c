@@ -6,18 +6,18 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:48:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 01:10:23 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 14:50:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/term.h"
 #include "ft/ft_str_out.h"
+#include "term_internal.h"
 #include <stdlib.h>
-#include <unistd.h>
 #include <termios.h>
 #include <termcap.h>
 
-static char const *const	g_termcap_names[_TERMCAP_COUNT] = {
+static char *const	g_termcap_names[_TERMCAP_COUNT] = {
 	[TERMCAP_up] = "up",
 	[TERMCAP_cl] = "cl",
 	[TERMCAP_cd] = "cd",
@@ -25,44 +25,21 @@ static char const *const	g_termcap_names[_TERMCAP_COUNT] = {
 	[TERMCAP_te] = "te",
 };
 
-static char const *const	g_termcap_names0[_TERMCAP_COUNT] = {
+static char *const	g_termcap_names0[_TERMCAP_COUNT] = {
 	[TERMCAP_ch0] = "ch",
 };
 
 static void		ft_tmakeraw(struct termios *termios)
 {
 	termios->c_iflag &= ~(IGNBRK | BRKINT | PARMRK
-		| INLCR | IGNCR | ICRNL | ISTRIP | IXON);
-	termios->c_oflag &= ~(OPOST);
+		| IGNCR | ICRNL | ISTRIP | IXON);
+	// termios->c_oflag &= ~(OPOST);
+	termios->c_oflag = ONLCR | OPOST;
 	termios->c_lflag &= ~(ECHO | ECHONL | ICANON | ISIG | IEXTEN);
 	termios->c_cflag &= ~(CSIZE | PARENB);
 	termios->c_cflag |= CS8;
 	termios->c_cc[VMIN] = 1;
 	termios->c_cc[VTIME] = 0;
-}
-
-static void		term_out_flush(t_term *term)
-{
-	uint32_t		i;
-	uint32_t		tmp;
-
-	if (term->flags & TERM_LINE)
-	{
-		i = 0;
-		while (i < term->out.buff_i)
-		{
-			tmp = i;
-			while (i < term->out.buff_i)
-				if (term->out.buff[i++] == '\n')
-				{
-					term->line_count++;
-					break ;
-				}
-			term->line_count += (i - tmp) / term->width;
-		}
-	}
-	write(term->fd, term->out.buff, term->out.buff_i);
-	term->out.buff_i = 0;
 }
 
 static t_bool	init_tgetent(struct termios *term_conf, int *flags)

@@ -1,5 +1,6 @@
 module ft::term:
 	public include public/
+	private include ./
 
 	public require ft::base
 	public require ft::out

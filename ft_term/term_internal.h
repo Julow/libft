@@ -1,24 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getchr.c                                        :+:      :+:    :+:   */
+/*   term_internal.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/16 16:47:59 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/09 12:13:22 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/12/10 12:12:55 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/12/10 15:15:48 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/term.h"
-#include <unistd.h>
+#ifndef TERM_INTERNAL_H
+# define TERM_INTERNAL_H
 
-int				ft_getchr(void)
+# include "ft/term.h"
+
+/*
+** ========================================================================== **
+** term
+*/
+
+void			term_out_flush(t_term *term);
+
+/*
+** ========================================================================== **
+** getkey
+*/
+
+typedef struct s_seq_end	t_seq_end;
+
+struct s_seq_end
 {
-	int				chr;
+	int			end;
+	int			c;
+	uint32_t	mods;
+};
 
-	chr = 0;
-	if (read(0, &chr, sizeof(int)) <= 0)
-		return (EOF);
-	return (chr);
-}
+#endif
