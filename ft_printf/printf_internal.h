@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:32:23 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 18:02:54 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 18:50:28 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef enum e_f_length		t_f_length;
 typedef struct s_f_info		t_f_info;
 
 typedef struct s_f_len_def	t_f_len_def;
-typedef struct s_f_flag_def	t_f_flag_def;
 typedef void				(*t_format_def)(t_out *, t_f_info *, va_list *);
 
 enum		e_f_length
@@ -56,8 +55,7 @@ struct		s_f_len_def
 
 int			exec_format(t_out *out, char const *format, va_list *ap);
 
-int			exec_subformat(t_out *out, char const *format, char end,
-				va_list *ap);
+int			exec_subformat(t_out *out, char const *fmt, char end, va_list *ap);
 
 int64_t		get_signed_arg(va_list *ap, t_f_length length);
 uint64_t	get_unsigned_arg(va_list *ap, t_f_length length);

@@ -6,13 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 14:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 18:04:21 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 18:50:45 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf_internal.h"
 
-static const t_f_flag_def	g_flags[(uint8_t)-1] = {
+static const uint32_t		g_flags[(uint8_t)-1] = {
 	[' '] = OUT_SPACE,
 	['-'] = OUT_MINUS,
 	['+'] = OUT_PLUS,
