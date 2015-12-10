@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:45:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/09 19:59:55 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 01:17:39 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "ft/libft.h"
 # include "ft/ft_out.h"
-# include <termios.h>
-# include <termcap.h>
 
 typedef struct s_term		t_term;
 typedef enum e_term_caps	t_term_caps;
@@ -28,7 +26,7 @@ typedef enum e_term_caps	t_term_caps;
 
 enum e_term_caps
 {
-	TERMCAP_UP = 0,
+	TERMCAP_up = 0,
 	TERMCAP_cl,
 	TERMCAP_ch0,
 	TERMCAP_cd,
@@ -40,7 +38,7 @@ enum e_term_caps
 struct s_term
 {
 	t_out			out;
-	struct termios	*termios;
+	void			*term_config;
 	t_sub			termcaps[_TERMCAP_COUNT];
 	int				fd;
 	uint32_t		flags;
@@ -76,8 +74,6 @@ struct s_term
 
 /*
 ** Read and return a char from stdin
-** -
-** See keys below
 */
 int				ft_getchr(void);
 

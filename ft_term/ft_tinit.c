@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:48:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/09 20:07:53 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 01:10:23 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 #include "ft/ft_str_out.h"
 #include <stdlib.h>
 #include <unistd.h>
+#include <termios.h>
+#include <termcap.h>
 
 static char const *const	g_termcap_names[_TERMCAP_COUNT] = {
-	[TERMCAP_UP] = "UP",
+	[TERMCAP_up] = "up",
 	[TERMCAP_cl] = "cl",
 	[TERMCAP_cd] = "cd",
 	[TERMCAP_ti] = "ti",
@@ -108,7 +110,7 @@ static void		put_termcaps(t_sub *termcaps, char *dst, t_str_out *str)
 	{
 		termcaps[i].str = dst + last;
 		termcaps[i].length = ft_strlen(dst + last);
-		last += termcaps[i].length;
+		last += termcaps[i].length + 1;
 		i++;
 	}
 	ft_str_out_clear(str);
@@ -127,16 +129,17 @@ t_term			*ft_tinit(int fd, int flags)
 			+ TERM_OUT_BUFF_SIZE + S(struct termios, 2) + termcaps.buff_i);
 	term->out = OUT(V(term) + sizeof(t_term), TERM_OUT_BUFF_SIZE,
 		(void*)&term_out_flush);
-	term->termios = V(term) + sizeof(t_term) + TERM_OUT_BUFF_SIZE;
-	ft_memcpy(term->termios + 0, &term_config, sizeof(struct termios));
-	ft_memcpy(term->termios + 1, &term_config, sizeof(struct termios));
+	term->term_config = V(term) + sizeof(t_term) + TERM_OUT_BUFF_SIZE;
+	ft_memcpy(term->term_config, &term_config, sizeof(struct termios));
+	ft_memcpy(term->term_config + sizeof(struct termios),
+		&term_config, sizeof(struct termios));
 	put_termcaps(term->termcaps, V(term) + sizeof(t_term) + TERM_OUT_BUFF_SIZE
 		+ S(struct termios, 2), &termcaps);
 	term->fd = fd;
 	term->flags = flags;
 	term->line_count = 0;
 	if (flags & TERM_RAW)
-		ft_tmakeraw(term->termios);
+		ft_tmakeraw(term->term_config);
 	ft_tupdate(term);
 	return (term);
 }

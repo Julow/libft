@@ -6,20 +6,21 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:50:28 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/09 20:00:35 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/10 01:09:33 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/term.h"
+#include <termios.h>
 
 void			ft_trestore(t_term *term, t_bool enable)
 {
 	if (enable)
 	{
-		tcsetattr(0, TCSADRAIN, term->termios);
+		tcsetattr(0, TCSADRAIN, term->term_config);
 		if (term->flags & TERM_FULLSCREEN)
 		{
-			ft_putstr(&(term->out), tgetstr("ti", NULL), -1);
+			ft_putsub(&(term->out), term->termcaps[TERMCAP_ti]);
 			ft_flush(&(term->out));
 		}
 	}
@@ -27,10 +28,10 @@ void			ft_trestore(t_term *term, t_bool enable)
 	{
 		if (term->flags & TERM_FULLSCREEN)
 		{
-			ft_putstr(&(term->out), tgetstr("te", NULL), -1);
+			ft_putsub(&(term->out), term->termcaps[TERMCAP_te]);
 			ft_flush(&(term->out));
 		}
-		tcsetattr(0, TCSADRAIN, term->termios + 1);
+		tcsetattr(0, TCSADRAIN, term->term_config + sizeof(struct termios));
 	}
 	term->line_count = 0;
 }
