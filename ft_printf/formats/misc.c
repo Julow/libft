@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 16:03:45 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:40 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/10 13:07:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			format_f(t_out *out, t_f_info *info, va_list *ap)
 
 void			format_flush(t_out *out, t_f_info *info, va_list *ap)
 {
-	out->flush(out);
+	ft_flush(out);
 	(void)info;
 	(void)ap;
 }
