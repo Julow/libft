@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:50:28 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/11 17:48:30 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/term.h"
-#include <termios.h>
 
+#include <termios.h>
 void			ft_trestore(t_term *term, bool enable)
 {
 	if (enable)
@@ -34,4 +34,5 @@ void			ft_trestore(t_term *term, bool enable)
 		tcsetattr(0, TCSADRAIN, term->term_config + sizeof(struct termios));
 	}
 	term->line_count = 0;
+	term->line_offset = 0;
 }

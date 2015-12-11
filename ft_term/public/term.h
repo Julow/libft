@@ -6,15 +6,15 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:45:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/11 17:47:44 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_TERM_H
 # define FT_TERM_H
 
-# include "ft/libft.h"
 # include "ft/ft_out.h"
+# include "ft/libft.h"
 
 typedef struct s_term		t_term;
 typedef enum e_term_caps	t_term_caps;
@@ -45,6 +45,7 @@ struct		s_term
 	uint32_t		width;
 	uint32_t		height;
 	uint32_t		line_count;
+	uint32_t		line_offset;
 };
 
 # define TERM_DEFAULT_TERM	"xterm"

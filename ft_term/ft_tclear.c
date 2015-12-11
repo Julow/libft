@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 15:54:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 14:50:23 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/11 17:48:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void			ft_tclear(t_term *term)
 		ft_putsub(&term->out, term->termcaps[TERMCAP_up]);
 		term->line_count--;
 	}
+	term->line_offset = 0;
 	ft_putsub(&term->out, term->termcaps[TERMCAP_ch0]);
 	ft_putsub(&term->out, term->termcaps[TERMCAP_cd]);
 	ft_flush(&term->out);

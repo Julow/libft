@@ -6,17 +6,18 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:48:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 19:24:48 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/11 17:48:23 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/term.h"
 #include "ft/ft_str_out.h"
-#include "term_internal.h"
-#include <stdlib.h>
-#include <termios.h>
-#include <termcap.h>
+#include "ft/term.h"
 
+#include "term_internal.h"
+
+#include <stdlib.h>
+#include <termcap.h>
+#include <termios.h>
 /*
 ** termios->c_oflag &= ~(OPOST);
 */
@@ -118,6 +119,7 @@ t_term			*ft_tinit(int fd, int flags)
 	term->fd = fd;
 	term->flags = flags;
 	term->line_count = 0;
+	term->line_offset = 0;
 	if (flags & TERM_RAW)
 		ft_tmakeraw(term->term_config);
 	ft_tupdate(term);
