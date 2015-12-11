@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getkey.c                                        :+:      :+:    :+:   */
+/*   get_seq.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/10 14:58:48 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 16:47:36 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/12/11 11:39:09 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/12/11 11:40:05 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/getkey.h"
-#include "term_internal.h"
-#include <unistd.h>
+#include "getkey_internal.h"
 
-// #define GETKEY_DEBUG
-#ifdef GETKEY_DEBUG
-# define DEBUG(...)		ft_dprintf(2, ##__VA_ARGS__)
-#else
-# define DEBUG(...)		VOID
-#endif
+/*
+** '\033' start (n1 (';' n2)?)? end
+** start (char): '[' | 'O'
+** n1 (digit, def: 1)
+** n2 (digit, def: 0): 2 (shift) | 3|9 (alt) | 5 (ctrl)
+** end (char)
+** if end == '~': n1 is used
+*/
 
 static t_seq_end const	g_seq_ends[] = {
 	{'A', KEY_UP, 0},
@@ -38,46 +38,6 @@ static t_seq_end const	g_seq_ends[] = {
 	{6, KEY_PAGEDOWN, 0},
 };
 
-static char		next_char(int fd)
-{
-	fd_set			fdr;
-	char			c;
-
-	FD_ZERO(&fdr);
-	FD_SET(fd, &fdr);
-	if (select(fd + 1, &fdr, NULL, NULL, &(struct timeval)GETKEY_MAX_WAIT) < 0)
-	{
-		DEBUG("NEXT CHAR: TIMEOUT%n");
-		return (EOF);
-	}
-	if (FD_ISSET(fd, &fdr))
-	{
-		if (read(fd, &c, 1) <= 0)
-		{
-			DEBUG("NEXT CHAR: FAIL%n");
-			return (EOF);
-		}
-		DEBUG("NEXT CHAR: %d '%c'%n", c, c);
-		return (c);
-	}
-	DEBUG("NEXT CHAR: 0%n");
-	return ('\0');
-}
-
-static t_key	parse_utf8(char c)
-{
-	return (KEY(c, 0));
-	// TODO utf-8
-}
-
-/*
-** '\033' start (n1 (';' n2)?)? end
-** start (char): '[' | 'O'
-** n1 (digit, def: 1)
-** n2 (digit, def: 0): 2 (shift) | 3|9 (alt) | 5 (ctrl)
-** end (char)
-** if end == '~': n1 is used
-*/
 static t_key	parse_seq_end(uint32_t mods, char end)
 {
 	int				i;
@@ -94,7 +54,7 @@ static t_key	parse_seq_end(uint32_t mods, char end)
 			return (key);
 		}
 	}
-	DEBUG("PARSE SEQ END: Invalid end: (%d) %c (%.1r)%n", mods, end, &end);
+	// DEBUG("PARSE SEQ END: Invalid end: (%d) %c (%.1r)%n", mods, end, &end);
 	return (key);
 }
 
@@ -125,7 +85,7 @@ static t_key	parse_seq(int fd, uint32_t mods)
 	return (parse_seq_end(mods, (c == '~') ? n1 : c));
 }
 
-static t_key	get_esc_seq(int fd)
+t_key			get_esc_seq(int fd)
 {
 	char			c;
 	uint32_t		mods;
@@ -137,26 +97,5 @@ static t_key	get_esc_seq(int fd)
 		return (parse_seq(fd, mods));
 	else if (c == '\0')
 		c = '\033';
-	return (KEY(c, 0));
-}
-
-t_key			ft_getkey(int fd)
-{
-	char			c;
-
-	if (read(fd, &c, 1) <= 0)
-		c = EOF;
-	else
-	{
-		DEBUG("GETCHAR: %d: %d '%c'%n", fd, c, c);
-		if (c < 0 || c > 127)
-			return (parse_utf8(c));
-		else if (c == '\033')
-			return (get_esc_seq(fd));
-		else if (c >= 1 && c <= 26)
-			return (KEY('a' + c - 1, KEY_MOD_CTRL));
-		else if (IS(c, IS_UPPER))
-			return (KEY(c, KEY_MOD_SHIFT));
-	}
 	return (KEY(c, 0));
 }

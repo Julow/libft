@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   term_internal.h                                    :+:      :+:    :+:   */
+/*   getkey_internal.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/10 12:12:55 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/11 11:38:21 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/12/11 11:37:37 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/12/11 11:43:23 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TERM_INTERNAL_H
-# define TERM_INTERNAL_H
+#ifndef GETKEY_INTERNAL_H
+# define GETKEY_INTERNAL_H
 
-# include "ft/term.h"
+# include "ft/getkey.h"
 
-void		term_out_flush(t_term *term);
+typedef struct s_seq_end	t_seq_end;
+
+struct		s_seq_end
+{
+	int			end;
+	int			c;
+	uint32_t	mods;
+};
+
+char			next_char(int fd);
+
+t_key			get_esc_seq(int fd);
 
 #endif

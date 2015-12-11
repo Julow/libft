@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 14:52:47 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 18:07:20 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/11 11:40:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ struct		s_key
 /*
 ** Wait for a key and return it
 ** -
-** Require TERM_RAW mode
+** If used with ft::term, require TERM_RAW mode
 */
 t_key		ft_getkey(int fd);
 
