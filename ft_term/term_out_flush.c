@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 12:13:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/12 01:56:08 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/13 18:04:47 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "term_internal.h"
-
 #include <unistd.h>
+
 static uint32_t	scan_nl(t_term *term, char const *buff, uint32_t i)
 {
 	uint32_t const	end = term->out.buff_i;

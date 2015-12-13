@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:45:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/11 17:47:44 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/13 18:12:25 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ typedef enum e_term_caps	t_term_caps;
 enum		e_term_caps
 {
 	TERMCAP_up = 0,
+	TERMCAP_do,
 	TERMCAP_cl,
 	TERMCAP_ch0,
+	TERMCAP_ch,
 	TERMCAP_cd,
 	TERMCAP_ti,
 	TERMCAP_te,
@@ -89,6 +91,17 @@ void		ft_tclear(t_term *term);
 ** Enable/Disable term attributes
 */
 void		ft_trestore(t_term *term, bool enable);
+
+/*
+** Move the cursor relatively
+*/
+void		ft_tcursor(t_term *term, int x, int y);
+
+/*
+** Put a termcap
+*/
+void		ft_tgoto(t_term *term, t_term_caps cap, int x, int y);
+void		ft_tput(t_term *term, t_term_caps cap);
 
 /*
 ** Update with and height attribute

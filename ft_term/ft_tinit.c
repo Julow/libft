@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:48:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/11 17:48:23 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/13 18:05:30 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@
 #include <stdlib.h>
 #include <termcap.h>
 #include <termios.h>
+
 /*
 ** termios->c_oflag &= ~(OPOST);
 */
 
 static char *const	g_termcap_names[_TERMCAP_COUNT] = {
 	[TERMCAP_up] = "up",
+	[TERMCAP_do] = "do",
+	[TERMCAP_ch] = "ch",
 	[TERMCAP_cl] = "cl",
 	[TERMCAP_cd] = "cd",
 	[TERMCAP_ti] = "ti",
