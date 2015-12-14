@@ -6,30 +6,21 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/13 18:00:37 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/14 13:09:23 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/14 13:50:48 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "term_internal.h"
 #include <termcap.h>
 
-void			ft_tgoto(t_term *term, t_termcaps cap, int x, int y)
+void			ft_tput(t_term *term, t_termcaps cap, int x, int y)
 {
-	char const		*str;
-	uint32_t		len;
+	t_sub			sub;
 
-	str = tgoto(term->termcaps[cap->id].str, x, y);
-	len = ft_strlen(str);
-	if ((term->out.buff_size - term->out.buff_i) < len)
+	sub = term->termcaps[cap->id];
+	if (cap->tgoto)
+		sub = ft_sub(tgoto(sub.str, x, y), 0, -1);
+	if ((term->out.buff_size - term->out.buff_i) < (uint32_t)sub.length)
 		ft_flush(&term->out);
-	ft_write(&term->out, str, len);
-}
-
-void			ft_tput(t_term *term, t_termcaps cap)
-{
-	t_sub const		*sub = term->termcaps + cap->id;
-
-	if ((term->out.buff_size - term->out.buff_i) < (uint32_t)sub->length)
-		ft_flush(&term->out);
-	ft_write(&term->out, sub->str, sub->length);
+	ft_write(&term->out, sub.str, sub.length);
 }

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:45:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/14 13:14:55 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/14 13:52:03 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ t_term		*ft_tinit(int fd, int flags);
 
 /*
 ** Clear screen (or written lines if TERM_LINE is enabled)
+** (automatic flush)
 */
 void		ft_tclear(t_term *term);
 
@@ -131,14 +132,15 @@ void		ft_trestore(t_term *term, bool enable);
 
 /*
 ** Move the cursor
+** (automatic flush)
 */
 void		ft_tcursor(t_term *term, uint32_t x, uint32_t y);
 
 /*
 ** Put a termcap
+** x and y are only used by termcaps with tgoto set
 */
-void		ft_tgoto(t_term *term, t_termcaps cap, int x, int y);
-void		ft_tput(t_term *term, t_termcaps cap);
+void		ft_tput(t_term *term, t_termcaps cap, int x, int y);
 
 /*
 ** Update with and height attribute

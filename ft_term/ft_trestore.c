@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:50:28 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/14 13:15:34 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/14 13:52:50 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			ft_trestore(t_term *term, bool enable)
 		tcsetattr(0, TCSADRAIN, term->term_config);
 		if (term->flags & TERM_FULLSCREEN)
 		{
-			ft_tput(term, g_termcaps.ti);
+			ft_tput(term, g_termcaps.ti, 0, 0);
 			ft_flush(&(term->out));
 		}
 	}
@@ -28,7 +28,7 @@ void			ft_trestore(t_term *term, bool enable)
 	{
 		if (term->flags & TERM_FULLSCREEN)
 		{
-			ft_tput(term, g_termcaps.te);
+			ft_tput(term, g_termcaps.te, 0, 0);
 			ft_flush(&(term->out));
 		}
 		tcsetattr(0, TCSADRAIN, term->term_config + sizeof(struct termios));
