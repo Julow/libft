@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:48:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/13 18:05:30 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/14 12:33:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 static char *const	g_termcap_names[_TERMCAP_COUNT] = {
 	[TERMCAP_up] = "up",
+	[TERMCAP_cm] = "cm",
 	[TERMCAP_do] = "do",
 	[TERMCAP_ch] = "ch",
 	[TERMCAP_cl] = "cl",
@@ -121,8 +122,8 @@ t_term			*ft_tinit(int fd, int flags)
 		+ S(struct termios, 2), &termcaps);
 	term->fd = fd;
 	term->flags = flags;
-	term->line_count = 0;
-	term->line_offset = 0;
+	term->cursor_x = 0;
+	term->cursor_y = 0;
 	if (flags & TERM_RAW)
 		ft_tmakeraw(term->term_config);
 	ft_tupdate(term);

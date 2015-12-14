@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/13 18:00:37 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/14 00:06:15 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/14 11:57:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 void			ft_tgoto(t_term *term, t_term_caps cap, int x, int y)
 {
 	char const		*str;
-	int				len;
+	uint32_t		len;
 
 	str = tgoto(term->termcaps[cap].str, x, y);
 	len = ft_strlen(str);
-	if ((term->out.buff_size - term->out.buff_i) < (uint32_t)len)
+	if ((term->out.buff_size - term->out.buff_i) < len)
 		ft_flush(&term->out);
 	ft_write(&term->out, str, len);
 }

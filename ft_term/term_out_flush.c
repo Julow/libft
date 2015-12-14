@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 12:13:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/13 18:04:47 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/14 12:32:47 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static uint32_t	scan_nl(t_term *term, char const *buff, uint32_t i)
 	while (i < end)
 		if ((c = buff[i++]) == '\n')
 		{
-			term->line_count += (i - tmp + term->line_offset) / term->width + 1;
-			term->line_offset = 0;
+			term->cursor_y += (i - tmp + term->cursor_x) / term->width + 1;
+			term->cursor_x = 0;
 			return (i);
 		}
 		else if (c == '\033')
@@ -32,10 +32,10 @@ static uint32_t	scan_nl(t_term *term, char const *buff, uint32_t i)
 			while (i < end && !IS(buff[i++], IS_ALPHA))
 				tmp++;
 		}
-	if ((term->line_offset += (i - tmp)) >= term->width)
+	if ((term->cursor_x += (i - tmp)) >= term->width)
 	{
-		term->line_count += (term->line_offset - 1) / term->width;
-		term->line_offset = term->line_offset % term->width;
+		term->cursor_y += (term->cursor_x - 1) / term->width;
+		term->cursor_x = term->cursor_x % term->width;
 	}
 	return (i);
 }

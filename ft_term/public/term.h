@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:45:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/13 18:12:25 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/14 12:30:00 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef enum e_term_caps	t_term_caps;
 enum		e_term_caps
 {
 	TERMCAP_up = 0,
+	TERMCAP_cm,
 	TERMCAP_do,
 	TERMCAP_cl,
 	TERMCAP_ch0,
@@ -46,8 +47,8 @@ struct		s_term
 	uint32_t		flags;
 	uint32_t		width;
 	uint32_t		height;
-	uint32_t		line_count;
-	uint32_t		line_offset;
+	uint32_t		cursor_x;
+	uint32_t		cursor_y;
 };
 
 # define TERM_DEFAULT_TERM	"xterm"
@@ -93,9 +94,9 @@ void		ft_tclear(t_term *term);
 void		ft_trestore(t_term *term, bool enable);
 
 /*
-** Move the cursor relatively
+** Move the cursor
 */
-void		ft_tcursor(t_term *term, int x, int y);
+void		ft_tcursor(t_term *term, uint32_t x, uint32_t y);
 
 /*
 ** Put a termcap

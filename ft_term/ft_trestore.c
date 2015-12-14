@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:50:28 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/13 18:05:11 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/14 12:32:21 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void			ft_trestore(t_term *term, bool enable)
 		}
 		tcsetattr(0, TCSADRAIN, term->term_config + sizeof(struct termios));
 	}
-	term->line_count = 0;
-	term->line_offset = 0;
+	term->cursor_x = 0;
+	term->cursor_y = 0;
 }
