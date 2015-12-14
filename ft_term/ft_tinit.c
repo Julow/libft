@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:48:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/14 12:33:02 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/14 13:10:50 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,27 @@
 ** termios->c_oflag &= ~(OPOST);
 */
 
-static char *const	g_termcap_names[_TERMCAP_COUNT] = {
-	[TERMCAP_up] = "up",
-	[TERMCAP_cm] = "cm",
-	[TERMCAP_do] = "do",
-	[TERMCAP_ch] = "ch",
-	[TERMCAP_cl] = "cl",
-	[TERMCAP_cd] = "cd",
-	[TERMCAP_ti] = "ti",
-	[TERMCAP_te] = "te",
+/*
+** ?enum-def termcaps
+*/
+
+struct s_enum_termcaps const	g_termcaps = {
+	&(struct s_evalue_termcaps){0, "up", false, false},
+	&(struct s_evalue_termcaps){1, "cm", true, false},
+	&(struct s_evalue_termcaps){2, "do", false, false},
+	&(struct s_evalue_termcaps){3, "cl", false, false},
+	&(struct s_evalue_termcaps){4, "ch0", false, true},
+	&(struct s_evalue_termcaps){5, "ch", true, false},
+	&(struct s_evalue_termcaps){6, "cd", false, false},
+	&(struct s_evalue_termcaps){7, "ti", false, false},
+	&(struct s_evalue_termcaps){8, "te", false, false},
+	9,
+	(t_termcaps const*)&g_termcaps
 };
 
-static char *const	g_termcap_names0[_TERMCAP_COUNT] = {
-	[TERMCAP_ch0] = "ch",
-};
+/*
+** ?end
+*/
 
 static void		ft_tmakeraw(struct termios *termios)
 {
@@ -68,16 +75,17 @@ static bool		init_tgetent(struct termios *term_conf, int *flags)
 static void		load_termcaps(t_str_out *termcaps)
 {
 	uint32_t		i;
+	t_termcaps		t;
 
 	*termcaps = STR_OUT();
 	i = 0;
-	while (i < _TERMCAP_COUNT)
+	while (i < TERMCAP_COUNT)
 	{
-		if (g_termcap_names[i] != NULL)
-			ft_putstr(termcaps, tgetstr(g_termcap_names[i], NULL), -1);
-		else if (g_termcap_names0[i] != NULL)
-			ft_putstr(termcaps,
-				tgoto(tgetstr(g_termcap_names0[i], NULL), 0, 0), -1);
+		t = g_termcaps.values[i];
+		if (t->tgoto0)
+			ft_putstr(termcaps, tgoto(tgetstr(t->name, NULL), 0, 0), -1);
+		else
+			ft_putstr(termcaps, tgetstr(t->name, NULL), -1);
 		ft_putchar(termcaps, '\0');
 		i++;
 	}
@@ -91,7 +99,7 @@ static void		put_termcaps(t_sub *termcaps, char *dst, t_str_out *str)
 	i = 0;
 	ft_memcpy(dst, str->buff, str->buff_i);
 	last = 0;
-	while (i < _TERMCAP_COUNT)
+	while (i < TERMCAP_COUNT)
 	{
 		termcaps[i].str = dst + last;
 		termcaps[i].length = ft_strlen(dst + last);
