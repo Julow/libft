@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 11:39:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/11 11:40:05 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/15 12:03:34 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ static t_key	parse_seq(int fd, uint32_t mods)
 		}
 		mods |= n2 - 1;
 	}
+	if (mods & KEY_MOD_ALT)
+		mods |= KEY_MOD_ALT;
 	return (parse_seq_end(mods, (c == '~') ? n1 : c));
 }
 
