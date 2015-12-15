@@ -6,15 +6,15 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 19:19:48 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/15 18:46:13 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stdint.h>
 # include <stdbool.h>
+# include <stdint.h>
 
 /*
 ** TODO: unsigned t_sub
@@ -220,6 +220,33 @@ char			ft_unescape(char c);
 
 /*
 ** ========================================================================== **
+** Bit array
+*/
+
+typedef unsigned int	t_bitarray;
+
+/*
+** Return the required number of t_bitarray
+** ex: t_bitarray array[BITARRAY(32)];
+*/
+# define BITARRAY(SIZE)			(((SIZE) + BITARRAY_SIZE - 1) / BITARRAY_SIZE)
+
+/*
+** Check if a bit is set
+*/
+# define BITARRAY_GET(ARRAY, B)	((ARRAY)[BITARRAY_CHUNK(B)] & BITARRAY_BIT(B))
+
+/*
+** Set a bit
+*/
+# define BITARRAY_SET(ARRAY, B)	((ARRAY)[BITARRAY_CHUNK(B)] |= BITARRAY_BIT(B))
+
+# define BITARRAY_SIZE			(sizeof(t_bitarray) * 8)
+# define BITARRAY_CHUNK(B)		((B) / BITARRAY_SIZE)
+# define BITARRAY_BIT(B)		(1 << ((B) % BITARRAY_SIZE))
+
+/*
+** ========================================================================== **
 ** Clock
 */
 
@@ -235,6 +262,18 @@ uint64_t		ft_clock(uint64_t start);
 ** Return the current time in nano second since start
 */
 uint64_t		ft_nanoclock(uint64_t start);
+
+/*
+** Push the current time on the clock stack
+** Return the current time in micro second
+*/
+uint64_t		ft_cstart(void);
+
+/*
+** Return the time elapsed since the time on the top of the clock stack
+** Pop from the clock stack
+*/
+uint64_t		ft_cend(void);
 
 /*
 ** ========================================================================== **
