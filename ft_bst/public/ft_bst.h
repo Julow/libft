@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/19 18:23:16 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/16 18:09:04 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/16 22:35:27 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,10 @@ void		*ft_bst_put(t_bst *bst, void const *match, uint32_t extra_size);
 
 /*
 ** Get the first node that match 'match'
+** If 'prev' is not NULL, return the next match
 ** Return NULL if no match found
 */
-void		*ft_bst_get(t_bst const *bst, void const *match);
+void		*ft_bst_get(t_bst const *bst, void *prev, void const *match);
 
 /*
 ** Delete the first node that match 'match'
