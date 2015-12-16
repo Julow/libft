@@ -6,13 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/20 19:52:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:50 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/16 19:16:35 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_bst.h"
 
-void		*ft_bst_get(t_bst *bst, void const *match)
+void		*ft_bst_get(t_bst const *bst, void const *match)
 {
 	t_bst_node	*node;
 	int			diff;
@@ -20,7 +20,7 @@ void		*ft_bst_get(t_bst *bst, void const *match)
 	node = bst->root;
 	while (node != NULL)
 	{
-		diff = bst->match(match, ENDOF(node));
+		diff = bst->match(ENDOF(node), match);
 		if (diff < 0)
 			node = node->left;
 		else if (diff > 0)

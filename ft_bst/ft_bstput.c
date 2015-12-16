@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/20 19:52:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/07 15:18:12 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/16 18:38:34 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_bst_node	*bst_put(t_bst_cmp match_f, t_bst_node *dst,
 {
 	if (node == NULL)
 		return (dst);
-	if (match_f(match, ENDOF(node)) < 0)
+	if (match_f(ENDOF(node), match) < 0)
 		node->left = bst_put(match_f, dst, match, node->left);
 	else
 		node->right = bst_put(match_f, dst, match, node->right);

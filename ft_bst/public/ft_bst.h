@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/19 18:23:16 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/11 17:00:36 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/16 18:09:04 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void		*ft_bst_put(t_bst *bst, void const *match, uint32_t extra_size);
 ** Get the first node that match 'match'
 ** Return NULL if no match found
 */
-void		*ft_bst_get(t_bst *bst, void const *match);
+void		*ft_bst_get(t_bst const *bst, void const *match);
 
 /*
 ** Delete the first node that match 'match'
@@ -75,12 +75,12 @@ void		ft_bst_del(t_bst *bst, void const *match);
 /*
 ** Return the smallest element (left)
 */
-void		*ft_bst_min(t_bst *bst);
+void		*ft_bst_min(t_bst const *bst);
 
 /*
 ** Return the biggest element (right)
 */
-void		*ft_bst_max(t_bst *bst);
+void		*ft_bst_max(t_bst const *bst);
 
 /*
 ** Iter each node in sorted order

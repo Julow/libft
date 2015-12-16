@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/20 19:52:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/07 15:18:18 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/16 18:39:04 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_bst_node	*bst_del(t_bst *bst, t_bst_node *node, void const *match)
 
 	if (node == NULL)
 		return (NULL);
-	diff = bst->match(match, ENDOF(node));
+	diff = bst->match(ENDOF(node), match);
 	if (diff < 0)
 		node->left = bst_del(bst, node->left, match);
 	else if (diff > 0)
