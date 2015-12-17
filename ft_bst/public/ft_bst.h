@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/19 18:23:16 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/16 22:35:27 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/17 18:03:52 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,16 @@ void		*ft_bst_put(t_bst *bst, void const *match, uint32_t extra_size);
 ** Return NULL if no match found
 */
 void		*ft_bst_get(t_bst const *bst, void *prev, void const *match);
+
+/*
+** Call 'f' for each node that match 'match'
+** Can replace ft_bst_get if the cmp function is bad
+** If 'f' return false, break the iteration and return false
+** Return true
+** 'f' is of type: bool (*f)(void *node, void const *match, void *env)
+*/
+bool		ft_bst_getall(t_bst const *bst, void const *match, bool (*f)(),
+				void *env);
 
 /*
 ** Delete the first node that match 'match'
