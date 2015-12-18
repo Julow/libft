@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/15 18:46:13 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/18 23:51:54 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -313,6 +313,10 @@ int				ft_min(int a, int b);
 ** DEBUG_ASSERT(C, MSG)		Same as ASSERT(C, MSG) but print on success
 ** HARD_ASSERT(C, MSG)		Same as ASSERT(C, MSG) but exit on error
 ** -
+** STATIC_ASSERT(C)			Test C at compile-time, break compilation on error
+** ISSAME_ASSERT(T1, T2)	STATIC_ASSERT that test if T1 and T2 are same
+** TYPE_ASSERT(A, TYPE)		STATIC_ASSERT that test if A is of type TYPE
+** -
 ** ASSERT(C, MSG)
 ** 		C		Tested code (everything that fit in 'if (( C ))')
 ** 		MSG		Optionnal description (literal string only)
@@ -323,6 +327,10 @@ int				ft_min(int a, int b);
 ** -
 ** Defining ASSERT_DISABLE will disable all asserts
 */
+
+# define STATIC_ASSERT(C)	 	((void)sizeof(char[1 - 2*!(C)]))
+# define ISSAME_ASSERT(T1, T2)	((void)sizeof(true ? (T1*)NULL : (T2*)NULL))
+# define TYPE_ASSERT(A, TYPE)	((void)sizeof(true ? &(A) : (TYPE*)NULL))
 
 # ifdef ASSERT_DISABLE
 #  define TRACE(...)			IGNORE(NULL)
