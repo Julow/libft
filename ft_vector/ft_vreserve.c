@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:30:22 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:23 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/18 16:49:50 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void			ft_vreserve(t_vector *v, int count)
 	if (v->data != NULL)
 	{
 		ft_memcpy(data, v->data, v->length * v->element_size);
-		free(v->data);
+		if (v->capacity > 0)
+			free(v->data);
 	}
 	v->data = data;
 	v->capacity = capacity;

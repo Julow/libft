@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:22:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:21 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/18 17:15:12 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ struct			s_vector
 # define VECTOR_MIN_CAP		16
 
 # define VECTOR(t)			((t_vector){NULL, 0, 0, sizeof(t)})
+# define VECTORC(A)			((t_vector){(A), ARRAY_LEN(A), 0, sizeof((A)[0])})
 
 /*
 ** Get an element by index

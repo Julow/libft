@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 15:39:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:22 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/18 16:54:08 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 void			ft_vclear(t_vector *v)
 {
-	free(v->data);
+	if (v->capacity > 0)
+		free(v->data);
 	v->data = NULL;
 	v->length = 0;
 	v->capacity = 0;
