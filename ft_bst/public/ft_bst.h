@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/19 18:23:16 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/17 18:03:52 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/19 13:47:30 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ void		*ft_bst_max(t_bst const *bst);
 ** If 'f' return false, break the iteration and return false
 ** Return true
 ** 'env' is passed as 2nd argument of 'f'
+** f is of type bool (*)(void *node, void *env)
 */
-bool		ft_bst_iter(t_bst *bst, bool (*f)(void*, void*), void *env);
+bool		ft_bst_iter(t_bst *bst, bool (*f)(), void *env);
 
 #endif

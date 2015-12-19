@@ -6,13 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/20 19:52:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 19:19:58 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/19 13:47:54 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_bst.h"
 
-static bool		bst_iter(t_bst_node *node, bool (*f)(void*, void*), void *env)
+static bool		bst_iter(t_bst_node *node, bool (*f)(), void *env)
 {
 	while (true)
 	{
@@ -27,7 +27,7 @@ static bool		bst_iter(t_bst_node *node, bool (*f)(void*, void*), void *env)
 	return (true);
 }
 
-bool			ft_bst_iter(t_bst *bst, bool (*f)(void*, void*), void *env)
+bool			ft_bst_iter(t_bst *bst, bool (*f)(), void *env)
 {
 	if (bst->root == NULL)
 		return (true);
