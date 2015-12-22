@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/18 23:51:54 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/23 00:11:06 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,13 +223,31 @@ char			ft_unescape(char c);
 ** Bit array
 */
 
-typedef unsigned int	t_bitarray;
+typedef uint_fast32_t	t_bits;
+
+# define BSIZEOF(T)				(sizeof(T) * 8)
 
 /*
-** Return the required number of t_bitarray
-** ex: t_bitarray array[BITARRAY(32)];
+** Return a range of bit true
 */
-# define BITARRAY(SIZE)			(((SIZE) + BITARRAY_SIZE - 1) / BITARRAY_SIZE)
+# define BIT_RANGE(BIT,N)		((N > 0) ? BIT_RANGE_T(t_bits, BIT, N) : 0)
+# define BIT_RANGE_T(T,BIT,N)	((((T)-1) >> (BSIZEOF(T) - (N))) << (BIT))
+
+/*
+** Set a range of bits
+*/
+void			ft_bitset(t_bits *array, uint32_t bit, uint32_t n);
+
+/*
+** Clear a range of bits
+*/
+void			ft_bitclear(t_bits *array, uint32_t bit, uint32_t n);
+
+/*
+** Return the required number of t_bits
+** ex: t_bits array[BITARRAY(32)];
+*/
+# define BITARRAY(SIZE)			(((SIZE) + BSIZEOF(t_bits)-1) / BSIZEOF(t_bits))
 
 /*
 ** Check if a bit is set
@@ -241,9 +259,9 @@ typedef unsigned int	t_bitarray;
 */
 # define BITARRAY_SET(ARRAY, B)	((ARRAY)[BITARRAY_CHUNK(B)] |= BITARRAY_BIT(B))
 
-# define BITARRAY_SIZE			(sizeof(t_bitarray) * 8)
-# define BITARRAY_CHUNK(B)		((B) / BITARRAY_SIZE)
-# define BITARRAY_BIT(B)		(1 << ((B) % BITARRAY_SIZE))
+# define BITARRAY_BIT_INDEX(B)	((B) % BSIZEOF(t_bits))
+# define BITARRAY_CHUNK(B)		((B) / BSIZEOF(t_bits))
+# define BITARRAY_BIT(B)		(1 << BITARRAY_BIT_INDEX(B))
 
 /*
 ** ========================================================================== **
