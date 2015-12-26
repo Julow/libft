@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:05:48 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 17:57:29 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/26 18:52:15 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 ** Format:
 **  %[flags][width][.precision][length]format
 ** Sub format:
-**  %[flags][width](<format sequence>)
+**  %[flags][width][.repeat](<format sequence>)
 ** -
 **  flags: 0 or more characters that represent ft_out flags
 **    OUT_CENTER		"^"
@@ -34,6 +34,7 @@
 **    OUT_PLUS			"+"
 **    OUT_SPACE			" "
 **    OUT_GROUP			"'"
+**    alternate form	"#"
 **    negative width	"-"
 **  width: integer or '*' (width is taken from the argument list as an int)
 **  precision: '.' character then integer or '*'

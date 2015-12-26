@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 14:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 18:50:45 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/26 18:49:40 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static const uint32_t		g_flags[(uint8_t)-1] = {
 	['^'] = OUT_CENTER,
 	['m'] = OUT_TOLOWER,
 	['M'] = OUT_TOUPPER,
+	['#'] = PRINTF_F_ALT,
 };
 
 static const t_f_len_def	g_lengths[] = {

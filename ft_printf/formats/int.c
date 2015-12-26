@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 14:27:41 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:39 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/26 18:50:49 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void			format_x(t_out *out, t_f_info *info, va_list *ap)
 	else
 		out->base = SUBC(BASE_16_LOWER);
 	val = get_unsigned_arg(ap, info->length);
+	if (out->flags & PRINTF_F_ALT)
+		out->prefix = SUBC("0x");
 	ft_putuint(out, val);
 }
 
@@ -44,6 +46,8 @@ void			format_o(t_out *out, t_f_info *info, va_list *ap)
 	else
 		val = get_unsigned_arg(ap, info->length);
 	out->base = SUBC(BASE_8);
+	if (out->flags & PRINTF_F_ALT)
+		out->prefix = SUBC("0");
 	ft_putuint(out, val);
 }
 
@@ -53,6 +57,8 @@ void			format_b(t_out *out, t_f_info *info, va_list *ap)
 
 	val = get_unsigned_arg(ap, info->length);
 	out->base = SUBC(BASE_2);
+	if (out->flags & PRINTF_F_ALT)
+		out->prefix = SUBC("0b");
 	ft_putuint(out, val);
 }
 

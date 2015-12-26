@@ -6,21 +6,23 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:32:23 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 18:50:28 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/12/26 18:49:36 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTF_INTERNAL_H
 # define PRINTF_INTERNAL_H
 
+# include "ft/ft_out.h"
 # include "ft/ft_printf.h"
 # include "ft/ft_vprintf.h"
-# include "ft/ft_out.h"
 
 /*
 ** ========================================================================== **
 ** Formatter
 */
+
+# define PRINTF_F_ALT		(1 << 15)
 
 typedef enum e_f_length		t_f_length;
 typedef struct s_f_info		t_f_info;
