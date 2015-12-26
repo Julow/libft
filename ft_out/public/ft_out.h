@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 17:00:20 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:41 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/26 18:46:33 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,22 @@ typedef struct s_out		t_out;
 **  OUT_SPACE		Add ' ' for positive numbers (overrided by OUT_PLUS)
 **  OUT_MINUS		Width as negative
 **  OUT_GROUP		(not implemented)
+**  OUT_PRINTABLE	Print '\xXX' or '\X' form for non-printable char (putchar)
+** -
+** Configs:
+**  Field name	Auto reset
+** 	base		on use		Change the base for numeric outputs
+**  prefix		always		Prefix string to output after the padding
+**  suffix		always		Suffix string to output before the end padding
+**  fill		always		Character used for padding
+**  precision	on use		Number of digit to output (decimal digit for float)
+**  flags		always
+**  width		always		Minimum width (pad with 'fill' character if needed)
 */
+
+# define OUT_DEFAULT_FILL		' '
+# define OUT_DEFAULT_BASE		SUB("0123456789abcdef", 10)
+# define OUT_DEFAULT_WIDTH		0
 
 # define OUT_CENTER		(1 << 1)
 # define OUT_GROUP		(1 << 2)
@@ -49,17 +64,15 @@ struct			s_out
 	uint32_t		buff_i;
 	uint32_t		buff_size;
 	t_sub			base;
+	t_sub			prefix;
+	t_sub			suffix;
 	char			fill;
-	uint8_t			precision;
-	uint16_t		flags;
-	int16_t			width;
+	uint32_t		precision;
+	uint32_t		flags;
+	int32_t			width;
 };
 
 # define OUT(BUFF,SIZE,F)	((t_out){(BUFF), (F), 0, (SIZE), _OUT_DEFAULT})
-
-# define OUT_DEFAULT_FILL		' '
-# define OUT_DEFAULT_BASE		SUBC(BASE_10)
-# define OUT_DEFAULT_WIDTH		0
 
 /*
 ** Write a string
@@ -106,8 +119,9 @@ void			ft_write_char(t_out *out, char c);
 void			ft_write_nchar(t_out *out, char c, uint32_t n);
 
 /*
-** Put padding (width)
-** ft_putpad_right also reset 'fill', 'width' and 'flags' fields
+** Put padding (width) and prefix/suffix
+** ft_putpad_left reset prefix config
+** ft_putpad_right reset fill, suffix, width and flags configs
 */
 void			ft_putpad_left(t_out *out, int32_t len);
 void			ft_putpad_right(t_out *out, int32_t len);
@@ -117,6 +131,7 @@ void			ft_putpad_right(t_out *out, int32_t len);
 */
 void			ft_flush(t_out *out);
 
-# define _OUT_DEFAULT	OUT_DEFAULT_BASE,OUT_DEFAULT_FILL,0,0,OUT_DEFAULT_WIDTH
+# define _OUT_DEFAULT	OUT_DEFAULT_BASE,SUB0(),SUB0(),_OUT_DEFAULT2
+# define _OUT_DEFAULT2	OUT_DEFAULT_FILL,0,0,OUT_DEFAULT_WIDTH
 
 #endif
