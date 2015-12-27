@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/23 00:11:06 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/26 17:53:14 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,16 +252,17 @@ void			ft_bitclear(t_bits *array, uint32_t bit, uint32_t n);
 /*
 ** Check if a bit is set
 */
-# define BITARRAY_GET(ARRAY, B)	((ARRAY)[BITARRAY_CHUNK(B)] & BITARRAY_BIT(B))
+# define BITARRAY_GET(ARRAY, B)	(BITARRAY_CHUNK_OF(ARRAY, B) & BITARRAY_BIT(B))
 
 /*
 ** Set a bit
 */
-# define BITARRAY_SET(ARRAY, B)	((ARRAY)[BITARRAY_CHUNK(B)] |= BITARRAY_BIT(B))
+# define BITARRAY_SET(ARRAY, B)	(BITARRAY_CHUNK_OF(ARRAY, B) |= BITARRAY_BIT(B))
 
+# define BITARRAY_CHUNK_OF(A,B)	(((t_bits*)(A))[BITARRAY_CHUNK(B)])
 # define BITARRAY_BIT_INDEX(B)	((B) % BSIZEOF(t_bits))
 # define BITARRAY_CHUNK(B)		((B) / BSIZEOF(t_bits))
-# define BITARRAY_BIT(B)		(1 << BITARRAY_BIT_INDEX(B))
+# define BITARRAY_BIT(B)		(((t_bits)1) << BITARRAY_BIT_INDEX(B))
 
 /*
 ** ========================================================================== **

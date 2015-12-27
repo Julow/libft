@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 00:19:37 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/26 18:15:48 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/27 17:53:50 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ typedef struct s_reg_str		t_reg_str;
 typedef struct s_reg_char		t_reg_char;
 typedef struct s_reg_is			t_reg_is;
 typedef struct s_reg_set		t_reg_set;
+typedef struct s_reg			t_reg_eol;
+typedef struct s_reg			t_reg_wbound;
 typedef struct s_reg_group		t_reg_group;
 typedef enum e_reg_type			t_reg_type;
 
@@ -37,7 +39,9 @@ enum			e_reg_type
 	REG_T_CHAR,
 	REG_T_IS,
 	REG_T_SET,
-	REG_T_GROUP
+	REG_T_GROUP,
+	REG_T_EOL,
+	REG_T_WBOUND,
 };
 
 # define REG_F_NOT		(1 << 0)
@@ -93,8 +97,12 @@ struct			s_reg_group
 	t_reg			*group;
 };
 
-uint32_t		parse_reg_type_is(t_sub pattern, uint32_t offset, t_reg **reg);
-uint32_t		parse_reg_type_str(t_sub pattern, uint32_t offset, t_reg **reg);
-uint32_t		parse_reg_type_set(t_sub pattern, uint32_t offset, t_reg **reg);
+uint32_t		parse_reg_is(t_sub pattern, uint32_t offset, t_reg **reg);
+uint32_t		parse_reg_str(t_sub pattern, uint32_t offset, t_reg **reg);
+uint32_t		parse_reg_set(t_sub pattern, uint32_t offset, t_reg **reg);
+uint32_t		parse_reg_eol(t_sub pattern, uint32_t offset, t_reg **reg);
+uint32_t		parse_reg_char(t_sub pattern, uint32_t offset, t_reg **reg);
+uint32_t		parse_reg_wbound(t_sub pattern, uint32_t offset, t_reg **reg);
+uint32_t		parse_reg_group(t_sub pattern, uint32_t offset, t_reg **reg);
 
 #endif
