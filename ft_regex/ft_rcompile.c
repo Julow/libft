@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 11:18:40 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/31 14:05:03 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/31 20:18:53 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool			ft_rcompile(t_regex *dst, t_sub pattern)
 	offset = 0;
 	dst->reg = NULL;
 	tmp = &dst->reg;
-	parser = (t_parse_reg){pattern.str, pattern.length, 0, NULL};
+	parser = (t_parse_reg){pattern.str, pattern.length, NULL};
 	while (offset < parser.len)
 	{
 		start = offset;

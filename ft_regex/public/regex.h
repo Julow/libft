@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/31 18:25:35 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/31 20:09:20 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,10 @@ typedef struct s_reg			t_reg;
 **   <n> ','			match n or more times
 **   ',' <m>			1,m
 **   <n> ',' <m>		match n to m times
-**   n and m are positive integer or:
-**     TODO: '%' <index>?		take the value from va args
+**   n and m are positive integer
 ** -
 ** TODO: capture: (optionnal)
-**   '&' <flags>? <index>?
-**   write captured sub string to a t_sub* from va args
-**   flags: (optionnal)
-**     'f'				take a function from va args instead of t_sub*
-**                      if the function return false, the match fail
-**                      bool (*f)(t_sub, void*)
-**     '*'				next argument is a void* and is passed to 'f'
+**   '&' <index>?		save matched sub string
 ** -
 ** reg:
 **   '.'				IS_PRINT
@@ -67,9 +60,6 @@ typedef struct s_reg			t_reg;
 **   '<' <is>* '>'		OR multiple IS_*
 **   'b'				word boundary
 **   '$'				end of string
-**   ':' <index>? 's'	string (t_sub from va args)
-**   ':' <index>? 'S'	string (char const* from va args)
-**   ':' <index>? 'r'	sub regex (t_regex const* from va args)
 **   "'" <str> "'"		string
 **   '"' <str> '"'		string
 **   '[' <set> ']'		char set

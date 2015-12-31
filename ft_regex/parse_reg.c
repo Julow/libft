@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/27 17:37:42 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/31 14:00:35 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/31 20:29:09 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** Have to alloc the t_reg struct and set the 'type' property
 ** Should set '*reg' to NULL on error
 */
-static uint32_t	(*g_parse_reg_type[(uint8_t)-1])(t_parse_reg*, uint32_t, t_reg**) = {
+static uint32_t	(*g_parse_reg_type[((uint8_t)-1)>>1])(t_parse_reg*, uint32_t, t_reg**) = {
 	['.'] = &parse_reg_is,
 	['a'] = &parse_reg_is,
 	['l'] = &parse_reg_is,
@@ -34,7 +34,6 @@ static uint32_t	(*g_parse_reg_type[(uint8_t)-1])(t_parse_reg*, uint32_t, t_reg**
 	['['] = &parse_reg_set,
 	['('] = &parse_reg_group,
 	['{'] = &parse_reg_named,
-	[':'] = &parse_reg_va,
 };
 
 static uint32_t	parse_name(t_parse_reg *p, uint32_t offset, bool *named,
@@ -133,7 +132,8 @@ uint32_t		parse_reg(t_parse_reg *p, uint32_t offset, t_reg **reg)
 		return (REG_FAIL);
 	offset = parse_flags(p, offset, &flags);
 	offset = parse_n(p, offset, &min, &max);
-	if (offset >= p->len || (f = g_parse_reg_type[p->str[offset]]) == NULL
+	if (offset >= p->len || p->str[offset] < 0
+		|| (f = g_parse_reg_type[(uint8_t)p->str[offset]]) == NULL
 		|| (offset = f(p, offset, reg)) == REG_FAIL)
 		return (REG_FAIL);
 	if (reg_named)

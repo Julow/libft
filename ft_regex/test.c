@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 19:25:26 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/31 18:28:13 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/31 20:16:45 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,24 @@ static void		print_regex(t_reg const *reg, int indent)
 				ft_printf("'%ts'", *(t_sub const*)ENDOF(r));
 				break ;
 			case REG_T_IS:
-				ft_printf("<%0.8b>", *(t_is const*)ENDOF(r));
+				ft_printf("<");
+				if (((*(t_is const*)ENDOF(r)) & IS_PRINT) == IS_PRINT)
+					ft_printf(".");
+				if (((*(t_is const*)ENDOF(r)) & IS_ALPHA) == IS_ALPHA)
+					ft_printf("a");
+				if (((*(t_is const*)ENDOF(r)) & IS_LOWER) == IS_LOWER)
+					ft_printf("l");
+				if (((*(t_is const*)ENDOF(r)) & IS_UPPER) == IS_UPPER)
+					ft_printf("u");
+				if (((*(t_is const*)ENDOF(r)) & IS_DIGIT) == IS_DIGIT)
+					ft_printf("d");
+				if (((*(t_is const*)ENDOF(r)) & IS_ALNUM) == IS_ALNUM)
+					ft_printf("n");
+				if (((*(t_is const*)ENDOF(r)) & IS_SPACE) == IS_SPACE)
+					ft_printf("s");
+				if (((*(t_is const*)ENDOF(r)) & IS_WORD) == IS_WORD)
+					ft_printf("w");
+				ft_printf(">");
 				break ;
 			case REG_T_SET:
 				{
@@ -79,10 +96,6 @@ static void		print_regex(t_reg const *reg, int indent)
 				break ;
 			case REG_T_WBOUND:
 				ft_printf("WBOUND");
-				break ;
-			case REG_T_VA:
-				ft_printf(":%d;%d", ((t_reg_va const*)r)->index,
-					((t_reg_va const*)r)->type);
 				break ;
 			default:
 				ft_printf("??");

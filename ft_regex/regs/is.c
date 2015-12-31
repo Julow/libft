@@ -6,13 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 18:10:44 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/30 17:51:19 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/31 20:29:46 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "regex_internal.h"
 
-static uint32_t	g_reg_is[(uint8_t)-1] = {
+static t_is		g_reg_is[((uint8_t)-1)>>1] = {
 	['.'] = IS_PRINT,
 	['a'] = IS_ALPHA,
 	['l'] = IS_LOWER,
@@ -23,16 +23,18 @@ static uint32_t	g_reg_is[(uint8_t)-1] = {
 	['w'] = IS_WORD,
 };
 
+#define REG_IS(C)		(((C) > 0) ? g_reg_is[(uint8_t)(C)] : 0)
+
 uint32_t		parse_reg_is(t_parse_reg *p, uint32_t offset, t_reg **reg)
 {
 	t_reg_is		*r;
 	t_is			is;
 
-	is = g_reg_is[p->str[offset]];
+	is = REG_IS(p->str[offset]);
 	if (p->str[offset] == '<')
 	{
-		while (++offset < p->len && p->str[++offset] != '>')
-			is |= g_reg_is[p->str[offset]];
+		while (++offset < p->len && p->str[offset] != '>')
+			is |= REG_IS(p->str[offset]);
 		if (offset >= p->len)
 			return (REG_FAIL);
 	}

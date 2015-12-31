@@ -6,11 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 20:26:19 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/30 17:49:44 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/31 20:21:00 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "regex_internal.h"
+#include <stdlib.h>
 
 uint32_t		parse_reg_group(t_parse_reg *p, uint32_t offset, t_reg **reg)
 {
