@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 19:25:26 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/31 20:16:45 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/01 00:45:17 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,30 @@ static void		print_regex(t_reg const *reg, int indent)
 	}
 }
 
+static void		test_regex(t_regex const *regex, char const *str)
+{
+	t_sub const		test_sub = ft_sub(str, 0, -1);
+	t_sub			captures[regex->capture_count];
+	uint32_t		match;
+	uint32_t		i;
+
+	ft_bzero(captures, sizeof(t_sub) * regex->capture_count);
+	match = ft_rmatch(test_sub, regex, captures);
+	ft_printf("test: '%ts'%n", test_sub);
+	if (match == REG_FAIL)
+	{
+		ft_printf("fail%n");
+		return ;
+	}
+	ft_printf("match: '%ts'%n", SUB(str, match));
+	i = 0;
+	while (i < regex->capture_count)
+	{
+		ft_printf("capture#%u: '%ts'%n", i, captures[i]);
+		i++;
+	}
+}
+
 int				main(int argc, char **argv)
 {
 	t_regex			regex;
@@ -118,6 +142,8 @@ int				main(int argc, char **argv)
 	if (!ft_rcompile(&regex, ft_sub(argv[1], 0, -1)))
 		return (1);
 	print_regex(regex.reg, 0);
+	if (argc > 2)
+		test_regex(&regex, argv[2]);
 	ft_rdestroy(&regex);
 	return (0);
 }

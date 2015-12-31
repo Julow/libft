@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 11:18:40 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/31 20:18:53 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/01 00:43:53 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ static void		destroy_parser(t_parse_reg *p)
 
 bool			ft_rcompile(t_regex *dst, t_sub pattern)
 {
-	t_reg			**tmp;
+	t_reg			*reg;
+	t_reg			*tmp;
 	uint32_t		offset;
 	uint32_t		start;
 	t_parse_reg		parser;
 
 	offset = 0;
-	dst->reg = NULL;
-	tmp = &dst->reg;
+	reg = NULL;
+	*dst = (t_regex){NULL, 0};
 	parser = (t_parse_reg){pattern.str, pattern.length, NULL};
 	while (offset < parser.len)
 	{
@@ -44,12 +45,14 @@ bool			ft_rcompile(t_regex *dst, t_sub pattern)
 		while (offset < parser.len && parser.str[offset] != '?')
 			offset++;
 		if (start == offset)
-			offset = parse_reg(&parser, offset + 1, tmp);
+			offset = parse_reg(&parser, offset + 1, &tmp);
 		else
-			*tmp = create_reg_str(SUB(parser.str + start, offset - start));
+			tmp = create_reg_str(SUB(parser.str + start, offset - start));
 		if (offset == REG_FAIL)
 			return (destroy_reg(dst->reg), destroy_parser(&parser), false);
-		tmp = &(*tmp)->next;
+		reg = append_reg_next(reg, tmp);
+		if (dst->reg == NULL)
+			dst->reg = reg;
 	}
 	destroy_parser(&parser);
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 00:19:37 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/31 20:19:09 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/31 22:23:37 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ typedef struct s_reg_group		t_reg_group;
 typedef struct s_reg			t_reg_eol;
 typedef struct s_reg			t_reg_wbound;
 typedef enum e_reg_type			t_reg_type;
+
 typedef struct s_parse_reg		t_parse_reg;
 typedef struct s_parse_reg_n	t_parse_reg_n;
+
+typedef struct s_rmatch			t_rmatch;
 
 /*
 ** ========================================================================== **
@@ -33,6 +36,11 @@ typedef struct s_parse_reg_n	t_parse_reg_n;
 */
 
 # define REG_FAIL		((uint32_t)-1)
+
+/*
+** ========================================================================== **
+** Reg def
+*/
 
 enum			e_reg_type
 {
@@ -51,20 +59,6 @@ enum			e_reg_type
 # define REG_F_MINIMAL	(1 << 3)
 # define REG_F_UNUSED	(1 << 4)
 
-struct			s_parse_reg
-{
-	char const		*str;
-	uint32_t		len;
-	t_parse_reg_n	*named_regs;
-};
-
-struct			s_parse_reg_n
-{
-	t_sub			name;
-	t_reg			*reg;
-	t_parse_reg_n	*prev;
-};
-
 struct			s_reg
 {
 	uint32_t		min;
@@ -74,16 +68,6 @@ struct			s_reg
 	t_reg			*or_next;
 	t_reg			*next;
 };
-
-uint32_t		parse_reg(t_parse_reg *p, uint32_t offset, t_reg **reg);
-
-t_reg			*create_reg_str(t_sub str);
-void			destroy_reg(t_reg *reg);
-
-/*
-** ========================================================================== **
-** Reg def
-*/
 
 struct			s_reg_str
 {
@@ -114,17 +98,40 @@ struct			s_reg_group
 ** Reg exec
 */
 
-// uint32_t		exec_reg_str(t_rmatch *m, t_reg_str const *reg, uint32_t offset);
-// uint32_t		exec_reg_is(t_rmatch *m, t_reg_is const *reg, uint32_t offset);
-// uint32_t		exec_reg_set(t_rmatch *m, t_reg_set const *reg, uint32_t offset);
-// uint32_t		exec_reg_group(t_rmatch *m, t_reg_group const *reg, uint32_t offset);
-// uint32_t		exec_reg_eol(t_rmatch *m, t_reg_eol const *reg, uint32_t offset);
-// uint32_t		exec_reg_wbound(t_rmatch *m, t_reg_wbound const *reg, uint32_t offset);
+struct			s_rmatch
+{
+	char const		*str;
+	uint32_t		len;
+	t_sub			*captures;
+};
+
+uint32_t		exec_reg_str(t_rmatch *m, t_reg_str const *reg, uint32_t offset);
+uint32_t		exec_reg_is(t_rmatch *m, t_reg_is const *reg, uint32_t offset);
+uint32_t		exec_reg_set(t_rmatch *m, t_reg_set const *reg, uint32_t offset);
+uint32_t		exec_reg_group(t_rmatch *m, t_reg_group const *reg, uint32_t offset);
+uint32_t		exec_reg_eol(t_rmatch *m, t_reg_eol const *reg, uint32_t offset);
+uint32_t		exec_reg_wbound(t_rmatch *m, t_reg_wbound const *reg, uint32_t offset);
+
+uint32_t		exec_reg(t_rmatch *m, t_reg const *reg, uint32_t offset);
 
 /*
 ** ========================================================================== **
 ** Reg parse
 */
+
+struct			s_parse_reg
+{
+	char const		*str;
+	uint32_t		len;
+	t_parse_reg_n	*named_regs;
+};
+
+struct			s_parse_reg_n
+{
+	t_sub			name;
+	t_reg			*reg;
+	t_parse_reg_n	*prev;
+};
 
 uint32_t		parse_reg_str(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_is(t_parse_reg *p, uint32_t offset, t_reg **reg);
@@ -133,5 +140,12 @@ uint32_t		parse_reg_group(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_eol(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_wbound(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_named(t_parse_reg *p, uint32_t offset, t_reg **reg);
+
+uint32_t		parse_reg(t_parse_reg *p, uint32_t offset, t_reg **reg);
+
+t_reg			*append_reg_next(t_reg *reg, t_reg *next);
+
+t_reg			*create_reg_str(t_sub str);
+void			destroy_reg(t_reg *reg);
 
 #endif

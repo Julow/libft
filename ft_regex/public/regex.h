@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/31 20:09:20 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/31 22:24:13 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ typedef struct s_reg			t_reg;
 **   '##{' <name> '}'	name a reg, the current reg is not used for matching
 ** -
 ** flags: (optionnal, cumulable)
-**   '!'				not
-**   'i'				ignore case
+**   '!'				not						TODO: match
+**   'i'				ignore case (assume the reg is in lower case)
+**                      TODO: i flag for groups
 **   '='				lookahead assertion
 **   '-'				non-greedy search
 ** -
@@ -45,7 +46,7 @@ typedef struct s_reg			t_reg;
 **   <n> ',' <m>		match n to m times
 **   n and m are positive integer
 ** -
-** TODO: capture: (optionnal)
+** capture: (optionnal)							TODO: parse, match
 **   '&' <index>?		save matched sub string
 ** -
 ** reg:
@@ -66,12 +67,13 @@ typedef struct s_reg			t_reg;
 **   '(' <regex> ')'	sub regex
 **   '{' <name> '}'		use a named regex
 ** -
-** TODO: ft_rmatch
+** TODO: start of string (?^)
 */
 
 struct			s_regex
 {
 	t_reg			*reg;
+	uint32_t		capture_count;
 };
 
 /*
@@ -79,6 +81,13 @@ struct			s_regex
 ** Return true otherwise or false on error
 */
 bool			ft_rcompile(t_regex *dst, t_sub pattern);
+
+/*
+** Test a string
+** Return the number of char that match
+** 'captures' have to be of size of 'regex->capture_count' t_subs or NULL
+*/
+uint32_t		ft_rmatch(t_sub str, t_regex const *regex, t_sub *captures);
 
 /*
 ** Free a regex
