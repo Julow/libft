@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/26 18:06:57 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/31 01:07:05 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,60 @@ typedef struct s_reg			t_reg;
 /*
 ** ========================================================================== **
 ** Regex
+** -
+** '?' <name>? <flags>? <n>? <capture>? <reg> ('|' ...)*
+** -
+** name: (optionnal)
+**   '#{' <name> '}'	name a reg
+**   '##{' <name> '}'	name a reg, the current reg is not used for matching
+** -
+** flags: (optionnal, cumulable)
+**   '!'				not
+**   'i'				ignore case
+**   '='				lookahead assertion
+**   '-'				non-greedy search
+** -
+** n: (optionnal, default: 1,1)
+**   '?'				0,1
+**   '*'				0,
+**   '+'				1,
+**   n					match n times
+**   n,					match n or more times
+**   ,m					match 1 to m times
+**   n,m				match n to m times
+**   n and m are positive integer or:
+**     TODO: '%' <index>?		take the value from va args
+** -
+** TODO: capture: (optionnal)
+**   '&' <flags>? <index>?
+**   write captured sub string to a t_sub* from va args
+**   flags: (optionnal)
+**     'f'				take a function from va args instead of t_sub*
+**                      if the function return false, the match fail
+**                      bool (*f)(t_sub, void*)
+**     '*'				next argument is a void* and is passed to 'f'
+** -
+** reg:
+**   '.'				IS_PRINT
+**   'a'				IS_ALPHA
+**   'l'				IS_LOWER
+**   'u'				IS_UPPER
+**   'd'				IS_DIGIT
+**   'n'				IS_ALNUM
+**   's'				IS_SPACE
+**   'w'				IS_WORD
+**   '<' <is>* '>'		OR multiple IS_*
+**   'b'				word boundary
+**   '$'				end of string
+**   TODO: ':' <index>? 's'	string (t_sub from va args)
+**   TODO: ':' <index>? 'S'	string (char const* from va args)
+**   TODO: ':' <index>? '%'	sub regex (t_regex const* from va args)
+**   '\'' <str> '\''	string
+**   '"' <str> '"'		string
+**   '[' <set> ']'		char set
+**   '(' <regex> ')'	sub regex
+**   '{' <name> '}'		use a named regex
+** -
 */
 
 struct			s_regex

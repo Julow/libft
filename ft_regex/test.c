@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 19:25:26 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/27 17:55:30 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/31 01:09:07 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 
 #include "regex_internal.h"
 
-/*
-** TODO: '%#c' print hexa if not printable
-*/
+// ?#{FLOAT}(?+d??(.?*d)), ?{FLOAT}, ?{FLOAT}
 
 static void		print_regex(t_reg const *reg, int indent)
 {
@@ -27,6 +25,16 @@ static void		print_regex(t_reg const *reg, int indent)
 	{
 		r = reg;
 		ft_printf("%.*c?", indent * 4, ' ');
+		if (r->flags & REG_F_NOT)
+			ft_printf("!");
+		if (r->flags & REG_F_ICASE)
+			ft_printf("i");
+		if (r->flags & REG_F_ASSERT)
+			ft_printf("=");
+		if (r->flags & REG_F_MINIMAL)
+			ft_printf("-");
+		if (r->flags & REG_F_UNUSED)
+			ft_printf("#");
 		while (true)
 		{
 			ft_printf("%u,%u", r->min, r->max);

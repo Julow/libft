@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 18:10:44 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/26 20:34:05 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/30 17:51:19 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ static uint32_t	g_reg_is[(uint8_t)-1] = {
 	['w'] = IS_WORD,
 };
 
-uint32_t		parse_reg_is(t_sub pattern, uint32_t offset, t_reg **reg)
+uint32_t		parse_reg_is(t_parse_reg *p, uint32_t offset, t_reg **reg)
 {
 	t_reg_is		*r;
 	t_is			is;
 
-	is = g_reg_is[pattern.str[offset]];
-	if (pattern.str[offset] == '<')
+	is = g_reg_is[p->str[offset]];
+	if (p->str[offset] == '<')
 	{
-		while (++offset < pattern.length && pattern.str[++offset] != '>')
-			is |= g_reg_is[pattern.str[offset]];
-		if (offset >= pattern.length)
+		while (++offset < p->len && p->str[++offset] != '>')
+			is |= g_reg_is[p->str[offset]];
+		if (offset >= p->len)
 			return (REG_FAIL);
 	}
 	r = MAL1(t_reg_is);
