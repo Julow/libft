@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 00:19:37 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/30 21:24:59 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/31 14:09:03 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 # include "ft/regex.h"
 
 typedef struct s_reg_str		t_reg_str;
-typedef struct s_reg_char		t_reg_char;
 typedef struct s_reg_is			t_reg_is;
 typedef struct s_reg_set		t_reg_set;
 typedef struct s_reg			t_reg_eol;
 typedef struct s_reg			t_reg_wbound;
 typedef struct s_reg_group		t_reg_group;
+typedef struct s_reg_va			t_reg_va;
+typedef enum e_reg_va_t			t_reg_va_t;
 typedef enum e_reg_type			t_reg_type;
 typedef struct s_parse_reg		t_parse_reg;
 typedef struct s_parse_reg_n	t_parse_reg_n;
@@ -38,12 +39,12 @@ typedef struct s_parse_reg_n	t_parse_reg_n;
 enum			e_reg_type
 {
 	REG_T_STR,
-	REG_T_CHAR,
 	REG_T_IS,
 	REG_T_SET,
 	REG_T_GROUP,
 	REG_T_EOL,
 	REG_T_WBOUND,
+	REG_T_VA,
 	__REG_T_COUNT
 };
 
@@ -57,6 +58,7 @@ struct			s_parse_reg
 {
 	char const		*str;
 	uint32_t		len;
+	uint32_t		va_index;
 	t_parse_reg_n	*named_regs;
 };
 
@@ -99,12 +101,6 @@ struct			s_reg_str
 	t_sub			str;
 };
 
-struct			s_reg_char
-{
-	t_reg			reg;
-	char			c;
-};
-
 struct			s_reg_is
 {
 	t_reg			reg;
@@ -123,13 +119,27 @@ struct			s_reg_group
 	t_reg			*group;
 };
 
+enum			e_reg_va_t
+{
+	REG_VA_T_SUB,
+	REG_VA_T_STR,
+	REG_VA_T_REGEX,
+};
+
+struct			s_reg_va
+{
+	t_reg			reg;
+	uint32_t		index;
+	t_reg_va_t		type;
+};
+
 uint32_t		parse_reg_is(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_str(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_set(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_eol(t_parse_reg *p, uint32_t offset, t_reg **reg);
-uint32_t		parse_reg_char(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_wbound(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_group(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_named(t_parse_reg *p, uint32_t offset, t_reg **reg);
+uint32_t		parse_reg_va(t_parse_reg *p, uint32_t offset, t_reg **reg);
 
 #endif

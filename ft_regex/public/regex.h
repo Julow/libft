@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/31 01:07:05 by juloo            ###   ########.fr       */
+/*   Updated: 2015/12/31 18:25:35 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,15 @@ typedef struct s_reg			t_reg;
 **   '='				lookahead assertion
 **   '-'				non-greedy search
 ** -
-** n: (optionnal, default: 1,1)
+** n: (optionnal, default: '1,1')
 **   '?'				0,1
 **   '*'				0,
 **   '+'				1,
-**   n					match n times
-**   n,					match n or more times
-**   ,m					match 1 to m times
-**   n,m				match n to m times
+**   <n>				n,n
+**   ','				+
+**   <n> ','			match n or more times
+**   ',' <m>			1,m
+**   <n> ',' <m>		match n to m times
 **   n and m are positive integer or:
 **     TODO: '%' <index>?		take the value from va args
 ** -
@@ -66,15 +67,16 @@ typedef struct s_reg			t_reg;
 **   '<' <is>* '>'		OR multiple IS_*
 **   'b'				word boundary
 **   '$'				end of string
-**   TODO: ':' <index>? 's'	string (t_sub from va args)
-**   TODO: ':' <index>? 'S'	string (char const* from va args)
-**   TODO: ':' <index>? '%'	sub regex (t_regex const* from va args)
-**   '\'' <str> '\''	string
+**   ':' <index>? 's'	string (t_sub from va args)
+**   ':' <index>? 'S'	string (char const* from va args)
+**   ':' <index>? 'r'	sub regex (t_regex const* from va args)
+**   "'" <str> "'"		string
 **   '"' <str> '"'		string
 **   '[' <set> ']'		char set
 **   '(' <regex> ')'	sub regex
 **   '{' <name> '}'		use a named regex
 ** -
+** TODO: ft_rmatch
 */
 
 struct			s_regex
