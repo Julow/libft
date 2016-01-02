@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 00:19:37 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 20:48:14 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 23:07:00 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_parse_reg		t_parse_reg;
 typedef struct s_parse_reg_n	t_parse_reg_n;
 
 typedef struct s_rmatch			t_rmatch;
+typedef struct s_exec_reg		t_exec_reg;
 
 /*
 ** ========================================================================== **
@@ -109,6 +110,19 @@ struct			s_rmatch
 	t_sub			*captures;
 };
 
+/*
+** the exec function have to handle '!' and 'i' flags
+** return REG_FAIL on error, incremented offset otherwise
+** -
+** if no_bt is true, change the expected behavior of the exec function:
+**   it have to handle every flags, capture and backtracking
+*/
+struct			s_exec_reg
+{
+	uint32_t		(*exec)(t_rmatch*, t_reg const*, uint32_t);
+	bool			no_bt;
+};
+
 uint32_t		exec_reg_str(t_rmatch *m, t_reg_str const *reg, uint32_t offset);
 uint32_t		exec_reg_is(t_rmatch *m, t_reg_is const *reg, uint32_t offset);
 uint32_t		exec_reg_set(t_rmatch *m, t_reg_set const *reg, uint32_t offset);
@@ -117,7 +131,17 @@ uint32_t		exec_reg_eol(t_rmatch *m, t_reg_eol const *reg, uint32_t offset);
 uint32_t		exec_reg_sol(t_rmatch *m, t_reg_eol const *reg, uint32_t offset);
 uint32_t		exec_reg_wbound(t_rmatch *m, t_reg_wbound const *reg, uint32_t offset);
 
+/*
+** exec a reg
+*/
 uint32_t		exec_reg(t_rmatch *m, t_reg const *reg, uint32_t offset);
+
+/*
+** exec next reg
+** handle '=' flag and capture
+*/
+uint32_t		exec_reg_next(t_rmatch *m, t_reg const *reg,
+					uint32_t start, uint32_t offset);
 
 /*
 ** ========================================================================== **

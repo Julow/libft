@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 11:18:40 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 20:48:36 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 22:26:55 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static bool		check_capture_indexes(t_reg *reg, uint32_t count)
 {
 	while (reg != NULL)
 	{
-		if (reg->capture_index >= count)
+		if (reg->flags & REG_F_CAPTURE && reg->capture_index >= count)
 			return (false);
 		if (reg->or_next != NULL && check_capture_indexes(reg->or_next, count))
 			return (false);

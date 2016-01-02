@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 19:25:26 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 20:28:43 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 23:24:06 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 #include "regex_internal.h"
 
-// ?#{FLOAT}(?+d??(.?*d)), ?{FLOAT}, ?{FLOAT}
+// ?##{FLOAT}(?+d??(.?*d))
+// ?*&d?-*&w?+&a?+&d
+// ?*&[0-9]?-*&[a-zA-Z0-9]?+&[a-z]?+&[0-9]
 
 static void		print_regex(t_reg const *reg, int indent)
 {

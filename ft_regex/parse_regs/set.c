@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 18:09:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/30 17:50:27 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 23:32:24 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ uint32_t		parse_reg_set(t_parse_reg *p, uint32_t offset, t_reg **reg)
 	while (i < offset)
 	{
 		c = p->str[i++];
-		if ((i + 2) < offset && p->str[i] == '-')
+		if ((i + 2) <= offset && p->str[i] == '-')
 		{
 			if (c < (end = p->str[++i]))
-				ft_bitset(r->set, c, end - c);
+				ft_bitset(r->set, c, end - c + 1);
 			else
-				ft_bitset(r->set, end, c - end);
+				ft_bitset(r->set, end, c - end + 1);
 			i++;
 		}
 		else
