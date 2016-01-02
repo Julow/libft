@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 21:01:19 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/31 20:20:08 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 18:17:28 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ uint32_t		parse_reg_named(t_parse_reg *p, uint32_t offset, t_reg **reg)
 			r->reg.type = REG_T_GROUP;
 			r->group = ENDOF(r);
 			ft_memcpy(r->group, n->reg, size);
+			r->group->flags &= ~REG_F_UNUSED;
 			r->group->next = NULL;
 			*reg = V(r);
 			return (offset + 1);

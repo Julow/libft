@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/31 22:24:13 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 17:42:03 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_reg			t_reg;
 **   '##{' <name> '}'	name a reg, the current reg is not used for matching
 ** -
 ** flags: (optionnal, cumulable)
-**   '!'				not						TODO: match
+**   '!'				not
 **   'i'				ignore case (assume the reg is in lower case)
 **                      TODO: i flag for groups
 **   '='				lookahead assertion
