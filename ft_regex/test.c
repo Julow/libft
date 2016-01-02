@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 19:25:26 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/01 00:45:17 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 19:29:53 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,25 +112,28 @@ static void		print_regex(t_reg const *reg, int indent)
 static void		test_regex(t_regex const *regex, char const *str)
 {
 	t_sub const		test_sub = ft_sub(str, 0, -1);
+	t_sub			match;
 	t_sub			captures[regex->capture_count];
-	uint32_t		match;
+	uint32_t		match_count;
 	uint32_t		i;
 
 	ft_bzero(captures, sizeof(t_sub) * regex->capture_count);
-	match = ft_rmatch(test_sub, regex, captures);
 	ft_printf("test: '%ts'%n", test_sub);
-	if (match == REG_FAIL)
+	match_count = 0;
+	match = SUB(test_sub.str, 0);
+	while (ft_rmatch(test_sub, &match, regex, captures))
 	{
-		ft_printf("fail%n");
-		return ;
+		ft_printf("match: '%ts'%n", match);
+		i = 0;
+		while (i < regex->capture_count)
+		{
+			ft_printf("capture#%u: '%ts'%n", i, captures[i]);
+			i++;
+		}
+		match_count++;
 	}
-	ft_printf("match: '%ts'%n", SUB(str, match));
-	i = 0;
-	while (i < regex->capture_count)
-	{
-		ft_printf("capture#%u: '%ts'%n", i, captures[i]);
-		i++;
-	}
+	if (match_count == 0)
+		ft_printf("0 match%n");
 }
 
 int				main(int argc, char **argv)

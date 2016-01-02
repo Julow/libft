@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 17:42:03 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 18:39:39 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,29 +70,31 @@ typedef struct s_reg			t_reg;
 ** TODO: start of string (?^)
 */
 
-struct			s_regex
+struct		s_regex
 {
-	t_reg			*reg;
-	uint32_t		capture_count;
+	t_reg		*reg;
+	uint32_t	capture_count;
 };
+
+/*
+** Test a string
+** 'match' should be initialized with SUB(str.str, 0)
+** 'c' is where captures are saved (can be NULL)
+** Return true on success, false on fail
+** 'c' have to be of size of 'regex->capture_count' t_subs or NULL
+*/
+bool		ft_rmatch(t_sub str, t_sub *match, t_regex const *regex, t_sub *c);
 
 /*
 ** Compile a regex
 ** Return true otherwise or false on error
 */
-bool			ft_rcompile(t_regex *dst, t_sub pattern);
-
-/*
-** Test a string
-** Return the number of char that match
-** 'captures' have to be of size of 'regex->capture_count' t_subs or NULL
-*/
-uint32_t		ft_rmatch(t_sub str, t_regex const *regex, t_sub *captures);
+bool		ft_rcompile(t_regex *dst, t_sub pattern);
 
 /*
 ** Free a regex
 ** (Do not free the 'regex' pointer)
 */
-void			ft_rdestroy(t_regex *regex);
+void		ft_rdestroy(t_regex *regex);
 
 #endif

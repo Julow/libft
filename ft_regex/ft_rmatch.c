@@ -6,16 +6,30 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 10:58:38 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/31 22:27:23 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 19:31:19 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "regex_internal.h"
 
-uint32_t		ft_rmatch(t_sub str, t_regex const *regex, t_sub *captures)
+bool		ft_rmatch(t_sub str, t_sub *match, t_regex const *regex, t_sub *c)
 {
 	t_rmatch		rmatch;
+	uint32_t		offset;
+	uint32_t		tmp;
 
-	rmatch = (t_rmatch){str.str, str.length, captures};
-	return (exec_reg(&rmatch, regex->reg, 0));
+	rmatch = (t_rmatch){str.str, str.length, c};
+	offset = match->str + match->length - str.str;
+	while (offset < str.length)
+	{
+		tmp = exec_reg(&rmatch, regex->reg, offset);
+		if (tmp != REG_FAIL && tmp > offset)
+		{
+			*match = SUB(str.str + offset, tmp - offset);
+			return (true);
+		}
+		offset++;
+	}
+	*match = SUB(str.str + offset, 0);
+	return (false);
 }
