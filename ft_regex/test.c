@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 19:25:26 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 19:29:53 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 20:28:43 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,12 +117,14 @@ static void		test_regex(t_regex const *regex, char const *str)
 	uint32_t		match_count;
 	uint32_t		i;
 
-	ft_bzero(captures, sizeof(t_sub) * regex->capture_count);
 	ft_printf("test: '%ts'%n", test_sub);
 	match_count = 0;
 	match = SUB(test_sub.str, 0);
-	while (ft_rmatch(test_sub, &match, regex, captures))
+	while (true)
 	{
+		ft_bzero(captures, sizeof(t_sub) * regex->capture_count);
+		if (!ft_rmatch(test_sub, &match, regex, captures))
+			break ;
 		ft_printf("match: '%ts'%n", match);
 		i = 0;
 		while (i < regex->capture_count)

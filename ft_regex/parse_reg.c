@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/27 17:37:42 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 20:09:57 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 20:48:19 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,30 @@ static uint32_t	parse_n(t_parse_reg *p, uint32_t offset,
 	return (offset);
 }
 
+static uint32_t	parse_capture(t_parse_reg *p, uint32_t offset,
+					uint32_t *capture_i, uint32_t *flags)
+{
+	if (offset >= p->len || p->str[offset] != '&')
+	{
+		*capture_i = 0;
+		return (offset);
+	}
+	offset++;
+	if (offset < p->len && IS(p->str[offset], IS_DIGIT))
+		offset += ft_subint(SUB(p->str + offset, p->len - offset), capture_i);
+	else
+		*capture_i = p->capture_index++;
+	p->capture_count++;
+	*flags |= REG_F_CAPTURE;
+	return (offset);
+}
+
 uint32_t		parse_reg(t_parse_reg *p, uint32_t offset, t_reg **reg)
 {
 	uint32_t		min;
 	uint32_t		max;
 	uint32_t		flags;
+	uint32_t		capture_index;
 	bool			reg_named;
 	uint32_t		(*f)(t_parse_reg*, uint32_t, t_reg**);
 
@@ -133,6 +152,7 @@ uint32_t		parse_reg(t_parse_reg *p, uint32_t offset, t_reg **reg)
 		return (REG_FAIL);
 	offset = parse_flags(p, offset, &flags);
 	offset = parse_n(p, offset, &min, &max);
+	offset = parse_capture(p, offset, &capture_index, &flags);
 	if (offset >= p->len || p->str[offset] < 0
 		|| (f = g_parse_reg_type[(uint8_t)p->str[offset]]) == NULL
 		|| (offset = f(p, offset, reg)) == REG_FAIL)
@@ -142,6 +162,7 @@ uint32_t		parse_reg(t_parse_reg *p, uint32_t offset, t_reg **reg)
 	(*reg)->min = min;
 	(*reg)->max = max;
 	(*reg)->flags = flags;
+	(*reg)->capture_index = capture_index;
 	(*reg)->or_next = NULL;
 	(*reg)->next = NULL;
 	if (offset < p->len && p->str[offset] == '|')

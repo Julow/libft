@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 20:06:01 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 20:23:03 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_reg			t_reg;
 **   <n> ',' <m>		match n to m times
 **   n and m are positive integer
 ** -
-** capture: (optionnal)							TODO: parse, match
+** capture: (optionnal)
 **   '&' <index>?		save matched sub string
 ** -
 ** reg:

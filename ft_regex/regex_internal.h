@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 00:19:37 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 20:09:40 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 20:48:14 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,14 @@ enum			e_reg_type
 # define REG_F_ASSERT	(1 << 2)
 # define REG_F_MINIMAL	(1 << 3)
 # define REG_F_UNUSED	(1 << 4)
+# define REG_F_CAPTURE	(1 << 5)
 
 struct			s_reg
 {
 	uint32_t		min;
 	uint32_t		max;
 	uint32_t		flags;
+	uint32_t		capture_index;
 	t_reg_type		type;
 	t_reg			*or_next;
 	t_reg			*next;
@@ -126,6 +128,8 @@ struct			s_parse_reg
 {
 	char const		*str;
 	uint32_t		len;
+	uint32_t		capture_index;
+	uint32_t		capture_count;
 	t_parse_reg_n	*named_regs;
 };
 

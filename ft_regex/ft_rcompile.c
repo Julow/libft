@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 11:18:40 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/01 00:43:53 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 20:48:36 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ static void		destroy_parser(t_parse_reg *p)
 	}
 }
 
+static bool		check_capture_indexes(t_reg *reg, uint32_t count)
+{
+	while (reg != NULL)
+	{
+		if (reg->capture_index >= count)
+			return (false);
+		if (reg->or_next != NULL && check_capture_indexes(reg->or_next, count))
+			return (false);
+		reg = reg->next;
+	}
+	return (true);
+}
+
 bool			ft_rcompile(t_regex *dst, t_sub pattern)
 {
 	t_reg			*reg;
@@ -38,7 +51,7 @@ bool			ft_rcompile(t_regex *dst, t_sub pattern)
 	offset = 0;
 	reg = NULL;
 	*dst = (t_regex){NULL, 0};
-	parser = (t_parse_reg){pattern.str, pattern.length, NULL};
+	parser = (t_parse_reg){pattern.str, pattern.length, 0, 0, NULL};
 	while (offset < parser.len)
 	{
 		start = offset;
@@ -54,6 +67,9 @@ bool			ft_rcompile(t_regex *dst, t_sub pattern)
 		if (dst->reg == NULL)
 			dst->reg = reg;
 	}
+	dst->capture_count = parser.capture_count;
 	destroy_parser(&parser);
+	if (!check_capture_indexes(dst->reg, dst->capture_count))
+		return (destroy_reg(dst->reg), false);
 	return (true);
 }
