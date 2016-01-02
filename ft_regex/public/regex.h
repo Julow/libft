@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 18:39:39 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 20:06:01 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,17 @@ typedef struct s_reg			t_reg;
 **   '&' <index>?		save matched sub string
 ** -
 ** reg:
-**   '.'				IS_PRINT
-**   'a'				IS_ALPHA
-**   'l'				IS_LOWER
-**   'u'				IS_UPPER
-**   'd'				IS_DIGIT
-**   'n'				IS_ALNUM
-**   's'				IS_SPACE
-**   'w'				IS_WORD
-**   '<' <is>* '>'		OR multiple IS_*
+**   '.'				IS_PRINT [ -~]
+**   'a'				IS_ALPHA [a-zA-Z]
+**   'l'				IS_LOWER [a-z]
+**   'u'				IS_UPPER [A-Z]
+**   'd'				IS_DIGIT [0-9]
+**   'n'				IS_ALNUM [a-zA-Z0-9]
+**   's'				IS_SPACE [ \t]
+**   'w'				IS_WORD  [a-zA-Z0-9_]
+**   '<' <IS>* '>'		join multiple IS_*
 **   'b'				word boundary
+**   '^'				start of string
 **   '$'				end of string
 **   "'" <str> "'"		string
 **   '"' <str> '"'		string

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 00:19:37 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/31 22:23:37 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 20:09:40 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_reg_str		t_reg_str;
 typedef struct s_reg_is			t_reg_is;
 typedef struct s_reg_set		t_reg_set;
 typedef struct s_reg_group		t_reg_group;
+typedef struct s_reg			t_reg_sol;
 typedef struct s_reg			t_reg_eol;
 typedef struct s_reg			t_reg_wbound;
 typedef enum e_reg_type			t_reg_type;
@@ -49,6 +50,7 @@ enum			e_reg_type
 	REG_T_SET,
 	REG_T_GROUP,
 	REG_T_EOL,
+	REG_T_SOL,
 	REG_T_WBOUND,
 	__REG_T_COUNT
 };
@@ -110,6 +112,7 @@ uint32_t		exec_reg_is(t_rmatch *m, t_reg_is const *reg, uint32_t offset);
 uint32_t		exec_reg_set(t_rmatch *m, t_reg_set const *reg, uint32_t offset);
 uint32_t		exec_reg_group(t_rmatch *m, t_reg_group const *reg, uint32_t offset);
 uint32_t		exec_reg_eol(t_rmatch *m, t_reg_eol const *reg, uint32_t offset);
+uint32_t		exec_reg_sol(t_rmatch *m, t_reg_eol const *reg, uint32_t offset);
 uint32_t		exec_reg_wbound(t_rmatch *m, t_reg_wbound const *reg, uint32_t offset);
 
 uint32_t		exec_reg(t_rmatch *m, t_reg const *reg, uint32_t offset);
@@ -138,6 +141,7 @@ uint32_t		parse_reg_is(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_set(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_group(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_eol(t_parse_reg *p, uint32_t offset, t_reg **reg);
+uint32_t		parse_reg_sol(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_wbound(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_named(t_parse_reg *p, uint32_t offset, t_reg **reg);
 

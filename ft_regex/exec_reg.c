@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 22:27:12 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 18:14:05 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/02 20:08:57 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static uint32_t	(*g_exec_regs[__REG_T_COUNT])(t_rmatch*, t_reg const*, uint32_t)
 	[REG_T_SET] = &exec_reg_set,
 	[REG_T_GROUP] = &exec_reg_group,
 	[REG_T_EOL] = &exec_reg_eol,
+	[REG_T_SOL] = &exec_reg_sol,
 	[REG_T_WBOUND] = &exec_reg_wbound,
 };
 
