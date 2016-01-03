@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 19:25:26 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 14:35:04 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 17:49:08 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,10 +137,17 @@ static void		test_regex(t_regex const *regex, char const *str)
 static bool		test_test(char const *regex_str, char const *str)
 {
 	t_regex			regex;
+	t_regex_err		reg_err;
 
-	ft_printf("[%s] '%s' ", regex_str, str);
-	if (!ft_rcompile(&regex, ft_sub(regex_str, 0, -1)))
-		return (ft_printf("ERROR%n"), false);
+	ft_printf("[%s] ", regex_str);
+	if (!ft_rcompile(&regex, ft_sub(regex_str, 0, -1), &reg_err))
+	{
+		ft_printf("ERROR: %ts\n%*c%n", reg_err.str, reg_err.offset + 2, '^');
+		return (false);
+	}
+	if (regex.capture_count > 0)
+		ft_printf("(%u captures) ", regex.capture_count);
+	ft_printf("'%s' ", str);
 
 	t_sub const		test_sub = ft_sub(str, 0, -1);
 	uint32_t		match_count;
@@ -176,12 +183,21 @@ int				main(int argc, char **argv)
 
 	if (argc <= 1)
 	{
+		test_test("?&'a'", "a");
 		test_test("abc", "abc");
 		test_test("lol", "abc");
 		test_test("a", "abc");
 		test_test("?w", "abc");
 		test_test("?^?w", "abc");
 		test_test("?w?$", "abc");
+		test_test("?#{REG}(?'?'?\?(#?\?'#'{?-*.})?*[!i=-]??[*?+]|(?*d?\?(,?*d))?\?(&?*d)?[.aludnswb$^]|(\"?-*.\")|('?-*.')|([?-*.])|((?-*.?')')|({?-*.})|<?-*.>)", "lol");
+		test_test("?#{REG}(?'?'?\?(#?\?'#'{?-*.})?*[!i=-]??[*?+]|(?*d?\?(,?*d))?\?(&?*d)?[.aludnswb$^]|(\"?-*.\")|('?-*.')|([?-*.])|((?-*.?')')|({?-*.})|<?-*.>)", "?^?w");
+		test_test("?#{REG}(?'?'?\?(#?\?'#'{?-*&.})?*&[!i=-]?&2[*?+]|&2(?*d?\?(,?*d))?\?&3(&?*d)?&4[.aludnswb$^]|&4(\"?-*.\")|&4('?-*.')|&4([?-*.])|&4((?-*.?')')|&4({?-*.})|&4<?-*.>)", "?^?w");
+		test_test("?#{REG}(?'?'?\?(#?\?'#'{?-*&.})?*&[!i=-]?&2[*?+]|&2(?*d?\?(,?*d))?\?&3(&?*d)?&4[.aludnswb$^]|&4(\"?-*.\")|&4('?-*.')|&4([?-*.])|&4((?-*.?')')|&4({?-*.})|&4<?-*.>)", "?##{FLOAT}(?+d?\?(.?*d))<?{FLOAT}>");
+		test_test("?#{REG}(?'?'?\?(#?\?'#'{?-*&.})?*&[!i=-]?&2[*?+]|&2(?*d?\?(,?*d))?\?&3(&?*d)?&4[.aludnswb$^]|&4(\"?-*.\")|&4('?-*.')|&4([?-*.])|&4((?-*.?')')|&4({?-*.})|&4<?-*.>)", "?#{FLOAT}!=-i1,2&5d");
+		test_test("?#{REG}(?'?'?\?(#?\?'#'{?-*&.})?*&[!i=-]?&2[*?+]|&2(?*d?\?(,?*d))?\?&3(&?*d)?&4[.aludnswb$^]|&4(\"?-*.\")|&4('?-*.')|&4([?-*.])|&4((?-*.?')')|&4({?-*.})|&4<?-*.>)", "?#{FLOAT}!=-i*&d");
+		test_test("?#{REG}(?'?'?\?(#?\?'#'{?-*.})?*[!i=-]??[*?+]|(?*d?\?(,?*d))?\?(&?*d)?[.aludnswb$^]|(\"?-*.\")|('?-*.')|([?-*.])|((?-*.?')')|({?-*.})|<?-*.>)", "?*&d?-*&w?+&a?+&d");
+		test_test("?#{REG}(?'?'?\?(#?\?'#'{?-*.})?*[!i=-]??[*?+]|(?*d?\?(,?*d))?\?(&?*d)?[.aludnswb$^]|(\"?-*.\")|('?-*.')|([?-*.])|((?-*.?')')|({?-*.})|<?-*.>)", "?##{FLOAT}(?+d?\?(.?*d))<?{FLOAT}>");
 		test_test("?##{FLOAT}(?+d?\?(.?*d))<?{FLOAT}>", "<5>");
 		test_test("?##{FLOAT}(?+d?\?(.?*d))<?{FLOAT}>", "<5.>");
 		test_test("?##{FLOAT}(?+d?\?(.?*d))<?{FLOAT}>", "<5.5>");
@@ -194,7 +210,7 @@ int				main(int argc, char **argv)
 		test_test("?-*&d?-*&w?+&a?+&d", "42lol42");
 		return (0);
 	}
-	if (!ft_rcompile(&regex, ft_sub(argv[1], 0, -1)))
+	if (!ft_rcompile(&regex, ft_sub(argv[1], 0, -1), NULL))
 		return (1);
 	print_regex(regex.reg, 0);
 	if (argc > 2)

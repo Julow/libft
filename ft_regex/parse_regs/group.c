@@ -6,12 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 20:26:19 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/31 22:30:48 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 15:04:41 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "regex_internal.h"
 #include <stdlib.h>
+
+#define GROUP_DESTROY(R)		(destroy_reg((R)->group), free(R))
 
 uint32_t		parse_reg_group(t_parse_reg *p, uint32_t offset, t_reg **reg)
 {
@@ -35,13 +37,13 @@ uint32_t		parse_reg_group(t_parse_reg *p, uint32_t offset, t_reg **reg)
 		else
 			tmp = create_reg_str(SUB(p->str + start, offset - start));
 		if (offset == REG_FAIL)
-			return (destroy_reg(r->group), free(r), REG_FAIL);
+			return (GROUP_DESTROY(r), REG_FAIL);
 		lst = append_reg_next(lst, tmp);
 		if (r->group == NULL)
 			r->group = lst;
 	}
 	if (offset >= p->len)
-		return (destroy_reg(r->group), free(r), REG_FAIL);
+		return (GROUP_DESTROY(r), REG_ERROR(p, "Unclosed group", start));
 	*reg = V(r);
 	return (offset + 1);
 }

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 21:01:19 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 01:54:50 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 15:08:29 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ uint32_t		parse_reg_named(t_parse_reg *p, uint32_t offset, t_reg **reg)
 	while (offset < p->len && p->str[offset] != '}')
 		offset++;
 	if (start >= offset || offset >= p->len)
-		return (REG_FAIL);
+		return (REG_ERROR(p, "Unclosed name braces", start));
 	n = p->named_regs;
 	while (n != NULL)
 	{
 		if (ft_subequ(SUB(p->str + start, offset - start), n->name))
 		{
 			if (n->reg == NULL || (size = g_reg_type_sizeof[n->reg->type]) == 0)
-				return (REG_FAIL);
+				return (REG_ERROR(p, "Unsupported named reg", start));
 			r = ft_emalloc(sizeof(t_reg_group) + size);
 			r->reg.type = REG_T_GROUP;
 			r->group = ENDOF(r);
@@ -51,5 +51,5 @@ uint32_t		parse_reg_named(t_parse_reg *p, uint32_t offset, t_reg **reg)
 		}
 		n = n->prev;
 	}
-	return (REG_FAIL);
+	return (REG_ERROR(p, "Unknown reg", start));
 }

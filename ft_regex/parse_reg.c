@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/27 17:37:42 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 02:02:23 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 15:12:36 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static uint32_t	parse_name(t_parse_reg *p, uint32_t offset, bool *named,
 			*named = true;
 			return (offset + 1);
 		}
-	return (REG_FAIL);
+	return (REG_ERROR(p, "Invalid syntax", offset));
 }
 
 static uint32_t	parse_flags(t_parse_reg *p, uint32_t offset, uint32_t *flags)
@@ -154,8 +154,9 @@ uint32_t		parse_reg(t_parse_reg *p, uint32_t offset, t_reg **reg)
 	offset = parse_n(p, offset, &min, &max);
 	offset = parse_capture(p, offset, &capture_index, &flags);
 	if (offset >= p->len || p->str[offset] < 0
-		|| (f = g_parse_reg_type[(uint8_t)p->str[offset]]) == NULL
-		|| (offset = f(p, offset, reg)) == REG_FAIL)
+		|| (f = g_parse_reg_type[(uint8_t)p->str[offset]]) == NULL)
+		return (REG_ERROR(p, "Unsupported reg", offset));
+	if ((offset = f(p, offset, reg)) == REG_FAIL)
 		return (REG_FAIL);
 	if (reg_named)
 		p->named_regs->reg = *reg;

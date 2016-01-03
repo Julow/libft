@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 00:19:37 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 02:03:15 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 16:00:05 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,15 @@ struct			s_parse_reg
 	uint32_t		capture_index;
 	uint32_t		capture_count;
 	t_parse_reg_n	*named_regs;
+	uint32_t		err_offset;
+	t_sub			err_str;
 };
+
+/*
+** Set err_offset and err_str in P
+** Return REG_FAIL
+*/
+# define REG_ERROR(P,S,O)	((P)->err_offset=O),((P)->err_str=SUBC(S)),REG_FAIL
 
 struct			s_parse_reg_n
 {

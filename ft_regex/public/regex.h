@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 02:22:55 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 17:22:12 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "ft/libft.h"
 
 typedef struct s_regex			t_regex;
+typedef struct s_regex_err		t_regex_err;
 typedef struct s_reg			t_reg;
 
 /*
@@ -50,15 +51,15 @@ typedef struct s_reg			t_reg;
 **   '&' <index>?		save matched sub string
 ** -
 ** reg:
-**   '.'				IS_PRINT [ -~]
-**   'a'				IS_ALPHA [a-zA-Z]
-**   'l'				IS_LOWER [a-z]
-**   'u'				IS_UPPER [A-Z]
-**   'd'				IS_DIGIT [0-9]
-**   'n'				IS_ALNUM [a-zA-Z0-9]
-**   's'				IS_SPACE [ \t]
-**   'w'				IS_WORD  [a-zA-Z0-9_]
-**   '<' <IS>* '>'		join multiple IS_*
+**   '.'				is IS_PRINT [ -~]
+**   'a'				is IS_ALPHA [a-zA-Z]
+**   'l'				is IS_LOWER [a-z]
+**   'u'				is IS_UPPER [A-Z]
+**   'd'				is IS_DIGIT [0-9]
+**   'n'				is IS_ALNUM [a-zA-Z0-9]
+**   's'				is IS_SPACE [ \t]
+**   'w'				is IS_WORD  [a-zA-Z0-9_]
+**   '<' <IS>* '>'		join multiple IS_* (TODO: remove)
 **   'b'				word boundary
 **   '^'				start of string
 **   '$'				end of string
@@ -67,12 +68,20 @@ typedef struct s_reg			t_reg;
 **   '[' <set> ']'		char set
 **   '(' <regex> ')'	sub regex
 **   '{' <name> '}'		use a named regex
+** TODO: '{&' <index> '}'	match the content of a capture
+** TODO: '{:' <is>* '}'		join multiple is regs
 */
 
 struct		s_regex
 {
 	t_reg		*reg;
 	uint32_t	capture_count;
+};
+
+struct		s_regex_err
+{
+	t_sub		str;
+	uint32_t	offset;
 };
 
 /*
@@ -87,8 +96,10 @@ bool		ft_rmatch(t_sub str, t_sub *match, t_regex const *regex, t_sub *c);
 /*
 ** Compile a regex
 ** Return true otherwise or false on error
+** On error, 'err' is fill with error data
+** 'err' can be NULL
 */
-bool		ft_rcompile(t_regex *dst, t_sub pattern);
+bool		ft_rcompile(t_regex *dst, t_sub pattern, t_regex_err *err);
 
 /*
 ** Free a regex
