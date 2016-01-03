@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 19:25:26 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 18:49:03 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 22:36:43 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,17 @@ static bool		test_test(char const *regex_str, char const *str)
 	}
 	if (match_count == 0)
 		ft_printf("NO MATCH");
+	// ft_cstart();
+	// i = 1000000;
+	// while (i > 0)
+	// {
+	// 	match = SUB(test_sub.str, 0);
+	// 	while (ft_rmatch(test_sub, &match, &regex, captures))
+	// 		;
+	// 	// ft_subequ(match, ft_sub(regex_str, 0, -1));
+	// 	i--;
+	// }
+	// ft_printf(" T:%llu", ft_cend());
 	ft_printf("%n");
 
 	ft_rdestroy(&regex);

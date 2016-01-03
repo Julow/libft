@@ -6,31 +6,49 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 10:58:38 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 18:34:29 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 22:35:55 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "regex_internal.h"
 
-bool		ft_rmatch(t_sub str, t_sub *match, t_regex const *regex, t_sub *c)
+#define RMATCH(STR,R,C)	((t_rmatch){(STR).str, (STR).length, (C), _RMATCH(R,C)})
+#define _RMATCH(R,C)	(((C) == NULL) ? 0 : (R)->capture_count)
+
+static bool	rmatch(t_rmatch *r, t_sub *match, t_reg const *reg, bool search)
 {
-	t_rmatch		rmatch;
 	uint32_t		offset;
 	uint32_t		tmp;
 
-	rmatch = (t_rmatch){str.str, str.length, c,
-		(c == NULL) ? 0 : regex->capture_count};
-	offset = match->str + match->length - str.str;
-	while (offset < str.length)
+	offset = match->str + match->length - r->str;
+	while (offset < r->len)
 	{
-		tmp = exec_reg(&rmatch, regex->reg, offset);
+		tmp = exec_reg(r, reg, offset);
 		if (tmp != REG_FAIL && tmp > offset)
 		{
-			*match = SUB(str.str + offset, tmp - offset);
+			*match = SUB(r->str + offset, tmp - offset);
 			return (true);
 		}
+		if (!search)
+			break ;
 		offset++;
 	}
-	*match = SUB(str.str + offset, 0);
+	*match = SUB(r->str + offset, 0);
 	return (false);
+}
+
+bool		ft_rmatch(t_sub str, t_sub *match, t_regex const *regex, t_sub *c)
+{
+	t_rmatch		r;
+
+	r = RMATCH(str, regex, c);
+	return (rmatch(&r, match, regex->reg, false));
+}
+
+bool		ft_rsearch(t_sub str, t_sub *match, t_regex const *regex, t_sub *c)
+{
+	t_rmatch		r;
+
+	r = RMATCH(str, regex, c);
+	return (rmatch(&r, match, regex->reg, true));
 }

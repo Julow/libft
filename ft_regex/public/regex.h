@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 18:36:15 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 22:32:19 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ typedef struct s_reg			t_reg;
 **   's'				is IS_SPACE [ \t]
 **   'w'				is IS_WORD  [a-zA-Z0-9_]
 **   'b'				word boundary
-**   '^'				start of string
-**   '$'				end of string
+**   '^'				start of line (or string)
+**   '$'				end of line (or string)
 **   "'" <str> "'"		string
 **   '"' <str> '"'		string
 **   '[' <set> ']'		char set
@@ -91,6 +91,11 @@ struct		s_regex_err
 ** 'c' have to be of size of 'regex->capture_count' t_subs or NULL
 */
 bool		ft_rmatch(t_sub str, t_sub *match, t_regex const *regex, t_sub *c);
+
+/*
+** Like ft_rmatch but allow unmatched char between matchs
+*/
+bool		ft_rsearch(t_sub str, t_sub *match, t_regex const *regex, t_sub *c);
 
 /*
 ** Compile a regex
