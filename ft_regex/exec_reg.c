@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 22:27:12 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 01:59:40 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 12:36:59 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static uint32_t	exec_reg_n(t_rmatch *m, t_reg const *reg, uint32_t offset,
 		return (tmp);
 	if (n < reg->max
 		&& (tmp = g_exec_regs[reg->type].exec(m, reg, offset)) != REG_FAIL
+		&& (tmp != offset || n < reg->min)
 		&& (tmp = exec_reg_n(m, reg, tmp, start, n + 1)) != REG_FAIL)
 		return (tmp);
 	if (n >= reg->min)
@@ -49,10 +50,9 @@ uint32_t		exec_reg(t_rmatch *m, t_reg const *reg, uint32_t offset)
 			reg = reg->next;
 			continue ;
 		}
-		if (g_exec_regs[reg->type].no_bt)
-			tmp = g_exec_regs[reg->type].exec(m, reg, offset);
-		else
-			tmp = exec_reg_n(m, reg, offset, offset, 0);
+		tmp = (g_exec_regs[reg->type].no_bt)
+			? g_exec_regs[reg->type].exec(m, reg, offset)
+			: exec_reg_n(m, reg, offset, offset, 0);
 		if (tmp != REG_FAIL)
 			return (tmp);
 		reg = reg->or_next;

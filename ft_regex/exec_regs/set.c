@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 22:25:52 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 02:11:07 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 14:14:07 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ uint32_t		exec_reg_set(t_rmatch *m, t_reg_set const *reg, uint32_t offset)
 	uint32_t const	start = offset;
 	uint32_t		tmp;
 
-	if (min >= m->len)
+	if (min > m->len)
 		return (REG_FAIL);
 	while (true)
 	{

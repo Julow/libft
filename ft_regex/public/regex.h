@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 20:23:03 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 02:22:55 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ typedef struct s_reg			t_reg;
 **   '[' <set> ']'		char set
 **   '(' <regex> ')'	sub regex
 **   '{' <name> '}'		use a named regex
-** -
-** TODO: start of string (?^)
 */
 
 struct		s_regex
