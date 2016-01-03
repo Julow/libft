@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 18:09:39 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 15:09:36 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 18:12:24 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,41 @@ static t_is		g_reg_is[((uint8_t)-1)>>1] = {
 };
 
 #define REG_IS(C)		(((C) > 0) ? g_reg_is[(uint8_t)(C)] : 0)
+
+bool			parse_reg_block_is(t_sub sub, t_reg **reg)
+{
+	t_reg_set		*r;
+	uint32_t		i;
+	t_is			is;
+
+	i = 0;
+	is = 0;
+	while (i < sub.length)
+	{
+		is |= REG_IS(sub.str[i]);
+		i++;
+	}
+	r = MAL1(t_reg_set);
+	ft_bzero(r, sizeof(t_reg_set));
+	r->reg.type = REG_T_SET;
+	r->is = is;
+	*reg = V(r);
+	return (true);
+}
+
+uint32_t		parse_reg_is(t_parse_reg *p, uint32_t offset, t_reg **reg)
+{
+	t_reg_set		*r;
+	t_is			is;
+
+	is = REG_IS(p->str[offset]);
+	r = MAL1(t_reg_set);
+	ft_bzero(r, sizeof(t_reg_set));
+	r->reg.type = REG_T_SET;
+	r->is = is;
+	*reg = V(r);
+	return (offset + 1);
+}
 
 uint32_t		parse_reg_set(t_parse_reg *p, uint32_t offset, t_reg **reg)
 {
@@ -54,27 +89,6 @@ uint32_t		parse_reg_set(t_parse_reg *p, uint32_t offset, t_reg **reg)
 			BITARRAY_SET(r->set, c);
 	}
 	r->reg.type = REG_T_SET;
-	*reg = V(r);
-	return (offset + 1);
-}
-
-uint32_t		parse_reg_is(t_parse_reg *p, uint32_t offset, t_reg **reg)
-{
-	t_reg_set		*r;
-	t_is			is;
-
-	is = REG_IS(p->str[offset]);
-	if (p->str[offset] == '<')
-	{
-		while (++offset < p->len && p->str[offset] != '>')
-			is |= REG_IS(p->str[offset]);
-		if (offset >= p->len)
-			return (REG_ERROR(p, "Unclosed is block", offset));
-	}
-	r = MAL1(t_reg_set);
-	ft_bzero(r, sizeof(t_reg_set));
-	r->reg.type = REG_T_SET;
-	r->is = is;
 	*reg = V(r);
 	return (offset + 1);
 }

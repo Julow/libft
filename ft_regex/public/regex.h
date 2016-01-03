@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 17:22:12 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 18:04:30 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_reg			t_reg;
 **   'n'				is IS_ALNUM [a-zA-Z0-9]
 **   's'				is IS_SPACE [ \t]
 **   'w'				is IS_WORD  [a-zA-Z0-9_]
-**   '<' <IS>* '>'		join multiple IS_* (TODO: remove)
 **   'b'				word boundary
 **   '^'				start of string
 **   '$'				end of string
@@ -68,8 +67,8 @@ typedef struct s_reg			t_reg;
 **   '[' <set> ']'		char set
 **   '(' <regex> ')'	sub regex
 **   '{' <name> '}'		use a named regex
+**   '{:' <is>* '}'		join multiple is regs
 ** TODO: '{&' <index> '}'	match the content of a capture
-** TODO: '{:' <is>* '}'		join multiple is regs
 */
 
 struct		s_regex

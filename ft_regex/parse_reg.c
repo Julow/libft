@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/27 17:37:42 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 15:12:36 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 17:52:15 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,11 @@ static uint32_t	(*g_parse_reg_type[((uint8_t)-1)>>1])(t_parse_reg*, uint32_t, t_
 	['b'] = &parse_reg_wbound,
 	['^'] = &parse_reg_sol,
 	['$'] = &parse_reg_eol,
-	['<'] = &parse_reg_is,
 	['\''] = &parse_reg_str,
 	['"'] = &parse_reg_str,
 	['['] = &parse_reg_set,
 	['('] = &parse_reg_group,
-	['{'] = &parse_reg_named,
+	['{'] = &parse_reg_block,
 };
 
 static uint32_t	parse_name(t_parse_reg *p, uint32_t offset, bool *named,

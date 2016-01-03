@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 00:19:37 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 16:00:05 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 18:12:31 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,8 @@ uint32_t		parse_reg_group(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_eol(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_sol(t_parse_reg *p, uint32_t offset, t_reg **reg);
 uint32_t		parse_reg_wbound(t_parse_reg *p, uint32_t offset, t_reg **reg);
-uint32_t		parse_reg_named(t_parse_reg *p, uint32_t offset, t_reg **reg);
+uint32_t		parse_reg_block(t_parse_reg *p, uint32_t offset, t_reg **reg);
+bool			parse_reg_block_is(t_sub sub, t_reg **reg);
 
 uint32_t		parse_reg(t_parse_reg *p, uint32_t offset, t_reg **reg);
 
