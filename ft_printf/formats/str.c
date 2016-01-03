@@ -6,12 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 15:22:25 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 17:56:43 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/01/03 14:06:44 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf_internal.h"
 #include "ft/ft_wchar.h"
+#include "printf_internal.h"
+
 #include <wchar.h>
 
 static void		format_ws(t_out *out, wchar_t const *wstr)
@@ -37,6 +38,8 @@ static t_sub	get_string_arg(t_out *out, t_f_length length, va_list *ap)
 		return (*(va_arg(*ap, t_sub const*)));
 	tmp.str = va_arg(*ap, char const*);
 	tmp.length = 0;
+	if (tmp.str == NULL)
+		return (tmp);
 	if (out->precision == 0)
 		tmp.length = ft_strlen(tmp.str);
 	else

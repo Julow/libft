@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 14:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/26 18:49:40 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 14:12:06 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ int				exec_format(t_out *out, char const *format, va_list *ap)
 	len = parse_flags(out, format);
 	len += parse_width(out, format + len, ap);
 	len += parse_precision(out, format + len, ap);
+	info.length = f_length_def;
 	if (g_formats[(uint8_t)format[len]] == NULL)
 		len += parse_length(&info, format + len);
 	if (format[len] == '(')
