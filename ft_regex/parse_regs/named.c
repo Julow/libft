@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 21:01:19 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 18:17:28 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 01:54:50 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 static uint32_t	g_reg_type_sizeof[__REG_T_COUNT] = {
 	[REG_T_STR] = sizeof(t_reg_str),
-	[REG_T_IS] = sizeof(t_reg_is),
 	[REG_T_SET] = sizeof(t_reg_set),
 	[REG_T_GROUP] = sizeof(t_reg_group),
+	[REG_T_SOL] = sizeof(t_reg_sol),
 	[REG_T_EOL] = sizeof(t_reg_eol),
 	[REG_T_WBOUND] = sizeof(t_reg_wbound),
 };

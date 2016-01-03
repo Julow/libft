@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/27 17:37:42 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 20:48:19 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 02:02:23 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ static uint32_t	parse_n(t_parse_reg *p, uint32_t offset,
 	if (c == '?')
 		return (*min = 0, *max = 1, offset + 1);
 	else if (c == '*')
-		return (*min = 0, *max = -1, offset + 1);
+		return (*min = 0, *max = REG_INFINITY, offset + 1);
 	else if (c == '+')
-		return (*min = 1, *max = -1, offset + 1);
+		return (*min = 1, *max = REG_INFINITY, offset + 1);
 	else if (IS(c, IS_DIGIT))
 		offset += ft_subint(SUB(p->str + offset, p->len - offset), min);
 	else
@@ -113,7 +113,7 @@ static uint32_t	parse_n(t_parse_reg *p, uint32_t offset,
 			offset += ft_subint(SUB(p->str + offset,
 					p->len - offset), max);
 		else
-			*max = -1;
+			*max = REG_INFINITY;
 	}
 	else
 		*max = *min;

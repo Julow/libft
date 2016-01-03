@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 00:19:37 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 23:07:00 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 02:03:15 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "ft/regex.h"
 
 typedef struct s_reg_str		t_reg_str;
-typedef struct s_reg_is			t_reg_is;
 typedef struct s_reg_set		t_reg_set;
 typedef struct s_reg_group		t_reg_group;
 typedef struct s_reg			t_reg_sol;
@@ -38,6 +37,7 @@ typedef struct s_exec_reg		t_exec_reg;
 */
 
 # define REG_FAIL		((uint32_t)-1)
+# define REG_INFINITY	(((uint32_t)-1)>>1)
 
 /*
 ** ========================================================================== **
@@ -47,7 +47,6 @@ typedef struct s_exec_reg		t_exec_reg;
 enum			e_reg_type
 {
 	REG_T_STR,
-	REG_T_IS,
 	REG_T_SET,
 	REG_T_GROUP,
 	REG_T_EOL,
@@ -80,15 +79,10 @@ struct			s_reg_str
 	t_sub			str;
 };
 
-struct			s_reg_is
-{
-	t_reg			reg;
-	t_is			is;
-};
-
 struct			s_reg_set
 {
 	t_reg			reg;
+	t_is			is;
 	t_bits			set[BITARRAY(128)];
 };
 
@@ -124,7 +118,6 @@ struct			s_exec_reg
 };
 
 uint32_t		exec_reg_str(t_rmatch *m, t_reg_str const *reg, uint32_t offset);
-uint32_t		exec_reg_is(t_rmatch *m, t_reg_is const *reg, uint32_t offset);
 uint32_t		exec_reg_set(t_rmatch *m, t_reg_set const *reg, uint32_t offset);
 uint32_t		exec_reg_group(t_rmatch *m, t_reg_group const *reg, uint32_t offset);
 uint32_t		exec_reg_eol(t_rmatch *m, t_reg_eol const *reg, uint32_t offset);

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 22:27:12 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 23:10:50 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 01:59:40 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 static t_exec_reg	g_exec_regs[__REG_T_COUNT] = {
 	[REG_T_STR] = {V(&exec_reg_str), false},
-	[REG_T_IS] = {V(&exec_reg_is), true},
-	[REG_T_SET] = {V(&exec_reg_set), false},
+	[REG_T_SET] = {V(&exec_reg_set), true},
 	[REG_T_GROUP] = {V(&exec_reg_group), false},
 	[REG_T_EOL] = {V(&exec_reg_eol), false},
 	[REG_T_SOL] = {V(&exec_reg_sol), false},

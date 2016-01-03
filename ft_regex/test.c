@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 19:25:26 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 23:24:06 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 01:58:43 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,6 @@ static void		print_regex(t_reg const *reg, int indent)
 			case REG_T_STR:
 				ft_printf("'%ts'", *(t_sub const*)ENDOF(r));
 				break ;
-			case REG_T_IS:
-				ft_printf("<");
-				if (((*(t_is const*)ENDOF(r)) & IS_PRINT) == IS_PRINT)
-					ft_printf(".");
-				if (((*(t_is const*)ENDOF(r)) & IS_ALPHA) == IS_ALPHA)
-					ft_printf("a");
-				if (((*(t_is const*)ENDOF(r)) & IS_LOWER) == IS_LOWER)
-					ft_printf("l");
-				if (((*(t_is const*)ENDOF(r)) & IS_UPPER) == IS_UPPER)
-					ft_printf("u");
-				if (((*(t_is const*)ENDOF(r)) & IS_DIGIT) == IS_DIGIT)
-					ft_printf("d");
-				if (((*(t_is const*)ENDOF(r)) & IS_ALNUM) == IS_ALNUM)
-					ft_printf("n");
-				if (((*(t_is const*)ENDOF(r)) & IS_SPACE) == IS_SPACE)
-					ft_printf("s");
-				if (((*(t_is const*)ENDOF(r)) & IS_WORD) == IS_WORD)
-					ft_printf("w");
-				ft_printf(">");
-				break ;
 			case REG_T_SET:
 				{
 					char			c;
@@ -72,11 +52,11 @@ static void		print_regex(t_reg const *reg, int indent)
 					c = 0;
 					while (c < 127)
 					{
-						if (BITARRAY_GET(((t_bits const*)ENDOF(r)), c))
+						if (BITARRAY_GET(ENDOF((t_is const*)ENDOF(r)), c))
 						{
 							tmp = c++;
 							while (c < 127
-								&& BITARRAY_GET(((t_bits const*)ENDOF(r)), c))
+								&& BITARRAY_GET(ENDOF((t_is const*)ENDOF(r)), c))
 								c++;
 							c--;
 							if (tmp < c)
@@ -86,6 +66,24 @@ static void		print_regex(t_reg const *reg, int indent)
 						}
 						c++;
 					}
+					ft_printf("<");
+					if (((*(t_is const*)ENDOF(r)) & IS_PRINT) == IS_PRINT)
+						ft_printf(".");
+					if (((*(t_is const*)ENDOF(r)) & IS_ALPHA) == IS_ALPHA)
+						ft_printf("a");
+					if (((*(t_is const*)ENDOF(r)) & IS_LOWER) == IS_LOWER)
+						ft_printf("l");
+					if (((*(t_is const*)ENDOF(r)) & IS_UPPER) == IS_UPPER)
+						ft_printf("u");
+					if (((*(t_is const*)ENDOF(r)) & IS_DIGIT) == IS_DIGIT)
+						ft_printf("d");
+					if (((*(t_is const*)ENDOF(r)) & IS_ALNUM) == IS_ALNUM)
+						ft_printf("n");
+					if (((*(t_is const*)ENDOF(r)) & IS_SPACE) == IS_SPACE)
+						ft_printf("s");
+					if (((*(t_is const*)ENDOF(r)) & IS_WORD) == IS_WORD)
+						ft_printf("w");
+					ft_printf(">");
 				}
 				break ;
 			case REG_T_GROUP:
