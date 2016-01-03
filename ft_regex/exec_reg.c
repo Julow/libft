@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 22:27:12 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 12:36:59 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 18:46:28 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static t_exec_reg	g_exec_regs[__REG_T_COUNT] = {
 	[REG_T_EOL] = {V(&exec_reg_eol), false},
 	[REG_T_SOL] = {V(&exec_reg_sol), false},
 	[REG_T_WBOUND] = {V(&exec_reg_wbound), false},
+	[REG_T_CSTR] = {V(&exec_reg_cstr), false},
 };
 
 static uint32_t	exec_reg_n(t_rmatch *m, t_reg const *reg, uint32_t offset,
@@ -66,9 +67,9 @@ uint32_t		exec_reg_next(t_rmatch *m, t_reg const *reg,
 	uint32_t		tmp;
 
 	tmp = (reg->flags & REG_F_ASSERT) ? start : offset;
-	if ((reg->next == NULL
-			|| (tmp = exec_reg(m, reg->next, tmp)) != REG_FAIL)
-		&& reg->flags & REG_F_CAPTURE && m->captures != NULL)
+	if (reg->flags & REG_F_CAPTURE && reg->capture_index < m->capture_count)
 		m->captures[reg->capture_index] = SUB(m->str + start, offset - start);
-	return (tmp);
+	if (reg->next == NULL)
+		return (tmp);
+	return (exec_reg(m, reg->next, tmp));
 }

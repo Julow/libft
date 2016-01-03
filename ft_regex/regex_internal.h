@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 00:19:37 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 18:12:31 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 18:36:48 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_reg_group		t_reg_group;
 typedef struct s_reg			t_reg_sol;
 typedef struct s_reg			t_reg_eol;
 typedef struct s_reg			t_reg_wbound;
+typedef struct s_reg_cstr		t_reg_cstr;
 typedef enum e_reg_type			t_reg_type;
 
 typedef struct s_parse_reg		t_parse_reg;
@@ -52,6 +53,7 @@ enum			e_reg_type
 	REG_T_EOL,
 	REG_T_SOL,
 	REG_T_WBOUND,
+	REG_T_CSTR,
 	__REG_T_COUNT
 };
 
@@ -92,6 +94,12 @@ struct			s_reg_group
 	t_reg			*group;
 };
 
+struct			s_reg_cstr
+{
+	t_reg			reg;
+	uint32_t		index;
+};
+
 /*
 ** ========================================================================== **
 ** Reg exec
@@ -102,6 +110,7 @@ struct			s_rmatch
 	char const		*str;
 	uint32_t		len;
 	t_sub			*captures;
+	uint32_t		capture_count;
 };
 
 /*
@@ -121,8 +130,9 @@ uint32_t		exec_reg_str(t_rmatch *m, t_reg_str const *reg, uint32_t offset);
 uint32_t		exec_reg_set(t_rmatch *m, t_reg_set const *reg, uint32_t offset);
 uint32_t		exec_reg_group(t_rmatch *m, t_reg_group const *reg, uint32_t offset);
 uint32_t		exec_reg_eol(t_rmatch *m, t_reg_eol const *reg, uint32_t offset);
-uint32_t		exec_reg_sol(t_rmatch *m, t_reg_eol const *reg, uint32_t offset);
+uint32_t		exec_reg_sol(t_rmatch *m, t_reg_sol const *reg, uint32_t offset);
 uint32_t		exec_reg_wbound(t_rmatch *m, t_reg_wbound const *reg, uint32_t offset);
+uint32_t		exec_reg_cstr(t_rmatch *m, t_reg_cstr const *reg, uint32_t offset);
 
 /*
 ** exec a reg

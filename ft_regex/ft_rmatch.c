@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 10:58:38 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/02 19:31:19 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 18:34:29 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ bool		ft_rmatch(t_sub str, t_sub *match, t_regex const *regex, t_sub *c)
 	uint32_t		offset;
 	uint32_t		tmp;
 
-	rmatch = (t_rmatch){str.str, str.length, c};
+	rmatch = (t_rmatch){str.str, str.length, c,
+		(c == NULL) ? 0 : regex->capture_count};
 	offset = match->str + match->length - str.str;
 	while (offset < str.length)
 	{

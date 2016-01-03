@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 18:04:30 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/03 18:36:15 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_reg			t_reg;
 **   '(' <regex> ')'	sub regex
 **   '{' <name> '}'		use a named regex
 **   '{:' <is>* '}'		join multiple is regs
-** TODO: '{&' <index> '}'	match the content of a capture
+**   '{&' <index> '}'	match the content of a capture (or input)
 */
 
 struct		s_regex
