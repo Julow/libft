@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/11 19:25:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/01/04 00:40:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ int				ft_subextract(t_sub sub, t_sub *dst, int max, t_is mask);
 
 int				ft_subindex(t_sub sub, char c);
 int				ft_subchr(t_sub sub, t_is mask);
+
+/*
+** Return the end offset of the sub string of 'sub' starting at 'offset' and
+** ending at the first char mapped by the bitarray 'end' except if it's escaped
+** Return sub.length if there is no unescaped end
+*/
+uint32_t		ft_subchr_e(t_sub sub, uint32_t offset, char chr);
 
 int				ft_subint(t_sub sub, int *dst);
 

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/18 00:47:48 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:30 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/04 00:40:14 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,17 @@ int				ft_subchr(t_sub sub, t_is mask)
 		if (IS(sub.str[i], mask))
 			return (i);
 	return (-1);
+}
+
+uint32_t		ft_subchr_e(t_sub sub, uint32_t offset, char chr)
+{
+	while (offset < sub.length)
+	{
+		if (sub.str[offset] == '\\' && (offset + 1) < sub.length)
+			offset++;
+		else if (sub.str[offset] == chr)
+			break ;
+		offset++;
+	}
+	return (offset);
 }
