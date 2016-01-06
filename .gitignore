@@ -1,2 +1,5 @@
 libft.a
 o/*
+_objs/*
+libft
+depend.mk

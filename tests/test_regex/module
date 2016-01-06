@@ -1,0 +1,6 @@
+module test::regex:
+	private include ./
+
+	private require ft::base
+	private require ft::printf
+	private require ft::regex
