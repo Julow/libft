@@ -1,5 +1,0 @@
-module ft::evalexpr:
-	public include public/
-
-	public require ft::base
-	private require ft::sub
