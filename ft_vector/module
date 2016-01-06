@@ -1,4 +1,0 @@
-module ft::vector:
-	public include public/
-
-	public require ft::base

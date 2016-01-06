@@ -1,6 +1,0 @@
-module ft::printf:
-	public include public/
-	private include ./
-
-	public require ft::base
-	public require ft::out

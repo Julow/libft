@@ -1,7 +1,0 @@
-main module ft::regex:
-	public include public/
-	private include ./
-
-	public require ft::base
-	private require ft::printf
-	private require ft::sub

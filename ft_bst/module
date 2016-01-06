@@ -1,5 +1,0 @@
-module ft::bst:
-	public include public/
-	private include ./
-
-	public require ft::base
