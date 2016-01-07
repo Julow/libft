@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/19 18:23:16 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/19 13:47:30 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/07 15:13:12 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,13 @@ void		*ft_bst_max(t_bst const *bst);
 ** f is of type bool (*)(void *node, void *env)
 */
 bool		ft_bst_iter(t_bst *bst, bool (*f)(), void *env);
+
+/*
+** Destroy a bst
+** If 'f' is not NULL, it is applyied to each data
+** The 'bst' pointer is not freed
+** 'f' is of type void (*)(void *data, void *env);
+*/
+void		ft_bst_destroy(t_bst *bst, void (*f)(), void *env);
 
 #endif
