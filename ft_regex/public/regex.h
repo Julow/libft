@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/04 01:04:03 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/07 23:22:18 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,18 @@ typedef struct s_reg			t_reg;
 **   '&' <index>?		save matched sub string
 ** -
 ** reg:
-**   '.'				is IS_PRINT [ -~]
-**   'a'				is IS_ALPHA [a-zA-Z]
-**   'l'				is IS_LOWER [a-z]
-**   'u'				is IS_UPPER [A-Z]
-**   'd'				is IS_DIGIT [0-9]
-**   'n'				is IS_ALNUM [a-zA-Z0-9]
-**   's'				is IS_SPACE [ \t]
-**   'w'				is IS_WORD  [a-zA-Z0-9_]
+**   '.'				class IS_PRINT				{:print:}
+**   TODO: 'p'			class IS_PRINT				{:print:}
+**   TODO: 't'			class IS_PUNCT				{:punct:}
+**   'a'				class IS_ALPHA [a-zA-Z]		{:alpha:}
+**   'l'				class IS_LOWER [a-z]		{:lower:}
+**   'u'				class IS_UPPER [A-Z]		{:upper:}
+**   'd'				class IS_DIGIT [0-9]		{:digit:}
+**   'n'				class IS_ALNUM [a-zA-Z0-9]	{:alnum:}
+**   's'				class IS_SPACE [ \t]		{:space:}
+**   'w'				class IS_WORD  [a-zA-Z0-9_]	{:word:}
+**   TODO: 'h'			class          [a-zA-Z_]	{:head:}
+**   TODO: 'x'			class          [a-fA-F0-9]	{:xdigit:}
 **   'b'				word boundary
 **   '^'				start of line (or string)
 **   '$'				end of line (or string)
@@ -67,7 +71,8 @@ typedef struct s_reg			t_reg;
 **   '[' <set> ']'		char set
 **   '(' <regex> ')'	sub regex
 **   '{' <name> '}'		use a named regex
-**   '{:' <is>* '}'		join multiple is regs
+**   '{:' <class>* '}'	join multiple class
+**   TODO: '{:' <name> ':}'	fullname class
 **   '{&' <index> '}'	match the content of a capture (or input)
 */
 
