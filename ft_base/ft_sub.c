@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/23 00:28:50 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:53 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/11 16:14:54 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 t_sub			ft_sub(char const *str, int from, int to)
 {
-	int				str_len;
+	uint32_t		str_len;
 
 	if (from < 0 || to < 0)
 	{
@@ -46,5 +46,42 @@ t_sub			ft_sub(char const *str, int from, int to)
 		if (to < 0)
 			to += str_len;
 	}
+	if (from > to)
+		return ((t_sub){str + to, from - to});
 	return ((t_sub){str + from, to - from});
+}
+
+t_sub			ft_subsub(t_sub sub, int from, int to)
+{
+	if (from < 0)
+		from += sub.length + 1;
+	if (to < 0)
+		to += sub.length + 1;
+	if (from > to)
+		return ((t_sub){sub.str + to, from - to});
+	return ((t_sub){sub.str + from, to - from});
+}
+
+bool			ft_subequ(t_sub a, t_sub b)
+{
+	return (BOOL_OF(SUBEQU(a, b)));
+}
+
+/*
+** TODO: try to opti
+*/
+bool			ft_subequi(t_sub a, t_sub b)
+{
+	uint32_t		i;
+
+	if (a.length != b.length)
+		return (false);
+	i = 0;
+	while (i < a.length)
+	{
+		if (LOWER(a.str[i]) != LOWER(b.str[i]))
+			return (false);
+		i++;
+	}
+	return (true);
 }

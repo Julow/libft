@@ -1,16 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_subfloat.c                                      :+:      :+:    :+:   */
+/*   ft_subto.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/08/09 23:21:00 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
+/*   Created: 2016/01/11 19:38:31 by jaguillo          #+#    #+#             */
+/*   Updated: 2016/01/11 19:42:05 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/ft_sub.h"
+#include "ft/libft.h"
+
+int				ft_subto_int(t_sub sub, int *dst)
+{
+	int			tmp;
+	int			i;
+
+	tmp = 0;
+	i = -1;
+	while (++i < sub.length && IS(sub.str[i], IS_DIGIT))
+		tmp = tmp * 10 + sub.str[i] - '0';
+	*dst = tmp;
+	return (i);
+}
 
 #define RETURN(...)		return (__VA_ARGS__)
 
@@ -43,7 +56,7 @@ static int		sub_float(t_sub sub, bool neg, float *f)
 	return (i);
 }
 
-int				ft_subfloat(t_sub sub, float *f)
+int				ft_subto_float(t_sub sub, float *f)
 {
 	int				i;
 	float			tmp;

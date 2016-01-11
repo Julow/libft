@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/26 17:53:14 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/11 19:41:27 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 # include <stdbool.h>
 # include <stdint.h>
-
-/*
-** TODO: unsigned t_sub
-*/
 
 /*
 ** ========================================================================== **
@@ -184,19 +180,80 @@ int				ft_strchri(const char *str, char c);
 ** Sub
 ** ----
 ** Represent a sub-string
+** -
+** SUB(STR, LEN)			Sub constructor
+** SUB0()					Empty sub constructor
+** SUBC(STR+)				Sub constructor from literal C string
+** SUB_START(S)				Equivalent to SUB(S.str, 0)
+** SUB_FOR(S+, N+)			Equivalent to SUB(S.str + N, S.length - N)
+** SUB_LEN(S, LEN)			Equivalent to SUB(S.str, LEN)
+** SUB_SUB(S, FROM, LEN)	Equivalent to SUB(S.str + FROM, LEN)
+** SUB_EQU(A+, B+)			Sub comparaison
+** -
+** Params marked with '+' are used several times into the macro
 */
-
-# define SUB(s,l)		((t_sub){(s), (l)})
-# define SUB0()			(SUB("", 0))
-# define SUBC(s)		SUB(s, sizeof(s) - 1)
 
 struct			s_sub
 {
 	char const		*str;
-	int				length;
+	uint32_t		length;
 };
 
+# define SUB(S, L)		((t_sub){(S), (L)})
+# define SUB0()			(SUB("", 0))
+# define SUBC(S)		(SUB(S, sizeof(S) - 1))
+# define SUB_START(S)	(SUB((S).str, 0))
+# define SUB_FOR(S,N)	(SUB((S).str + (N), (S).length - (N)))
+# define SUB_LEN(S,L)	(SUB((S).str, (L)))
+# define SUB_SUB(S,F,L)	(SUB((S).str + (F), (L)))
+# define SUB_EQU(A, B)	(A.length==B.length&&!ft_memcmp(A.str,B.str,A.length))
+
+/*
+** Sub constructor
+** if 'from' or 'to' are negative the following is used:
+**  n = ft_strlen(str) + n + 1
+** Argument are swapped if from > to
+*/
 t_sub			ft_sub(char const *str, int from, int to);
+t_sub			ft_subsub(t_sub sub, int from, int to);
+
+/*
+** Function equivalent of the macro SUBEQU
+*/
+bool			ft_subequ(t_sub a, t_sub b);
+
+/*
+** Like ft_subequ but ignore case
+*/
+bool			ft_subequi(t_sub a, t_sub b);
+
+/*
+** Return the start index of the first sub string that match 'search'
+** Return sub.length if not found
+** Start search at offset 'start'
+*/
+uint32_t		ft_subfind(t_sub sub, t_sub search, uint32_t start);
+uint32_t		ft_subfind_c(t_sub sub, char search, uint32_t start);
+uint32_t		ft_subfind_is(t_sub sub, t_is search, uint32_t start);
+
+/*
+** Iterate through 'sub' looking for substrings separated by 'sep'
+** 'match' should be initialized with SUBSTART(sub)
+** Return false when hit the end of 'sub', true otherwise
+*/
+bool			ft_subnext(t_sub sub, t_sub *match, t_sub sep);
+bool			ft_subnext_c(t_sub sub, t_sub *match, char sep);
+bool			ft_subnext_is(t_sub sub, t_sub *match, t_is sep);
+
+/*
+** Convert the content of the sub to 'dst'
+** Stop at the first invalid char
+** Return the length of the converted sub string
+** Return 0 on error
+*/
+uint32_t		ft_subto_int(t_sub sub, int32_t *dst);
+// TODO: uint32_t		ft_subto_uint(t_sub sub, uint32_t *dst);
+uint32_t		ft_subto_float(t_sub sub, float *dst);
 
 /*
 ** ========================================================================== **
