@@ -6,11 +6,10 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 21:01:19 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 18:42:57 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/11 22:58:46 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/ft_sub.h"
 #include "regex_internal.h"
 
 static uint32_t	g_reg_type_sizeof[__REG_T_COUNT] = {

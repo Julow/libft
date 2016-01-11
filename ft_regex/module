@@ -3,4 +3,3 @@ module ft::regex:
 	private include ./
 
 	public require ft::base
-	private require ft::sub

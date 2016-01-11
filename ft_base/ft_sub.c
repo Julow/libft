@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/23 00:28:50 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/11 16:14:54 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/01/11 23:04:19 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_sub			ft_subsub(t_sub sub, int from, int to)
 
 bool			ft_subequ(t_sub a, t_sub b)
 {
-	return (BOOL_OF(SUBEQU(a, b)));
+	return (BOOL_OF(SUB_EQU(a, b)));
 }
 
 /*

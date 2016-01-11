@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/01/11 19:41:27 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/01/11 22:01:41 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,7 +252,7 @@ bool			ft_subnext_is(t_sub sub, t_sub *match, t_is sep);
 ** Return 0 on error
 */
 uint32_t		ft_subto_int(t_sub sub, int32_t *dst);
-// TODO: uint32_t		ft_subto_uint(t_sub sub, uint32_t *dst);
+uint32_t		ft_subto_uint(t_sub sub, uint32_t *dst);
 uint32_t		ft_subto_float(t_sub sub, float *dst);
 
 /*

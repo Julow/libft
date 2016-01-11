@@ -6,80 +6,70 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 19:38:31 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/01/11 19:42:05 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/01/11 23:10:02 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/libft.h"
 
-int				ft_subto_int(t_sub sub, int *dst)
+uint32_t		ft_subto_int(t_sub sub, int32_t *dst)
 {
-	int			tmp;
-	int			i;
+	uint32_t		i;
+	int32_t			n;
+	bool			neg;
 
-	tmp = 0;
-	i = -1;
-	while (++i < sub.length && IS(sub.str[i], IS_DIGIT))
-		tmp = tmp * 10 + sub.str[i] - '0';
-	*dst = tmp;
-	return (i);
-}
-
-#define RETURN(...)		return (__VA_ARGS__)
-
-static int		sub_float(t_sub sub, bool neg, float *f)
-{
-	int				i;
-	int				base_i;
-	t_sub			base;
-	float			tmp;
-
-	if (sub.length <= 0)
-		RETURN((*f = 0.f), 0);
-	if (sub.str[0] == 'X' || sub.str[0] == 'x')
-		base = SUBC(BASE_16);
-	else if (sub.str[0] == 'b')
-		base = SUBC(BASE_2);
-	tmp = 0.f;
-	i = 0;
-	while (++i < sub.length
-		&& (base_i = ft_subindex(base, UPPER(sub.str[i]))) >= 0)
-		tmp = tmp * ((float)base.length) + ((float)base_i);
-	*f = neg ? -tmp : tmp;
-	if (i >= sub.length || (sub.str[i] != '.' && sub.str[i] != ','))
-		return (i);
-	tmp = 0.f;
-	while (++i < sub.length
-		&& (base_i = ft_subindex(base, UPPER(sub.str[i]))) >= 0)
-		tmp = (tmp + (float)base_i) / (float)base.length;
-	*f += neg ? -tmp : tmp;
-	return (i);
-}
-
-int				ft_subto_float(t_sub sub, float *f)
-{
-	int				i;
-	float			tmp;
-	bool			negative;
-
-	if (sub.length <= 0)
-		RETURN((*f = 0.f), 0);
-	negative = (sub.str[0] == '-') ? true : false;
-	i = (negative || sub.str[0] == '+') ? 1 : 0;
-	if ((i + 1) < sub.length && sub.str[i] == '0'
-		&& (sub.str[++i] == 'X' || sub.str[i] == 'x' || sub.str[i] == 'b'))
-		return (i + sub_float(SUB(sub.str + i, sub.length - i), negative, f));
-	tmp = 0.f;
+	neg = BOOL_OF(sub.length > 0 && sub.str[0] == '-');
+	i = neg ? 1 : 0;
+	n = 0;
 	while (i < sub.length && IS(sub.str[i], IS_DIGIT))
-		tmp = tmp * 10.f + (float)(sub.str[i++] - '0');
-	*f = negative ? -tmp : tmp;
-	if (i >= sub.length || (sub.str[i] != '.' && sub.str[i] != ','))
-		return (i);
-	tmp = 0.f;
-	while (++i < sub.length && IS(sub.str[i], IS_DIGIT))
-		;
-	sub.length = i;
-	while (sub.str[--i] != '.' && sub.str[i] != ',')
-		tmp = (tmp + (float)(sub.str[i] - '0')) / 10.f;
-	RETURN((*f += negative ? -tmp : tmp), sub.length);
+	{
+		n = n * 10 + sub.str[i] - '0';
+		i++;
+	}
+	*dst = neg ? -n : n;
+	return (i);
+}
+
+uint32_t		ft_subto_uint(t_sub sub, uint32_t *dst)
+{
+	uint32_t		i;
+	uint32_t		n;
+
+	i = 0;
+	n = 0;
+	while (i < sub.length && IS(sub.str[i], IS_DIGIT))
+	{
+		n = n * 10 + sub.str[i] - '0';
+		i++;
+	}
+	*dst = n;
+	return (i);
+}
+
+uint32_t		ft_subto_float(t_sub sub, float *dst)
+{
+	uint32_t		i;
+	uint32_t		tmp;
+	float			f;
+	bool			neg;
+
+	neg = BOOL_OF(sub.length > 0 && sub.str[0] == '-');
+	i = neg ? 1 : 0;
+	f = 0.f;
+	while (i < sub.length && IS(sub.str[i], IS_DIGIT))
+		f = f * 10.f + (float)(sub.str[i++] - '0');
+	*dst = f;
+	if (i < sub.length && sub.str[i] == '.')
+	{
+		while (++i < sub.length && IS(sub.str[i], IS_DIGIT))
+			;
+		tmp = i;
+		f = 0.f;
+		while (sub.str[--tmp] != '.')
+			f = (f + (float)(sub.str[tmp] - '0')) / 10.f;
+		*dst += f;
+	}
+	if (neg)
+		*dst = -(*dst);
+	return (i);
 }

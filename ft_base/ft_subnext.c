@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 16:15:29 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/01/11 19:24:45 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/01/11 23:03:47 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool			ft_subnext(t_sub sub, t_sub *match, t_sub sep)
 	return (false);
 }
 
-bool			ft_subnext_c(t_sub sub, t_sub *match, t_sub sep)
+bool			ft_subnext_c(t_sub sub, t_sub *match, char sep)
 {
 	uint32_t		start;
 	uint32_t		tmp;
@@ -54,7 +54,7 @@ bool			ft_subnext_c(t_sub sub, t_sub *match, t_sub sep)
 	return (false);
 }
 
-bool			ft_subnext_is(t_sub sub, t_sub *match, t_sub sep)
+bool			ft_subnext_is(t_sub sub, t_sub *match, t_is sep)
 {
 	uint32_t		start;
 	uint32_t		tmp;
