@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/01/11 22:01:41 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/13 00:42:25 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ int				ft_strchri(const char *str, char c);
 ** SUB_START(S)				Equivalent to SUB(S.str, 0)
 ** SUB_FOR(S+, N+)			Equivalent to SUB(S.str + N, S.length - N)
 ** SUB_LEN(S, LEN)			Equivalent to SUB(S.str, LEN)
+** SUB_OFF(A, B)			Equivalent to B.str - A.str
 ** SUB_SUB(S, FROM, LEN)	Equivalent to SUB(S.str + FROM, LEN)
 ** SUB_EQU(A+, B+)			Sub comparaison
 ** -
@@ -205,8 +206,10 @@ struct			s_sub
 # define SUB_START(S)	(SUB((S).str, 0))
 # define SUB_FOR(S,N)	(SUB((S).str + (N), (S).length - (N)))
 # define SUB_LEN(S,L)	(SUB((S).str, (L)))
+# define SUB_OFF(A,B)	((B).str - (A).str)
 # define SUB_SUB(S,F,L)	(SUB((S).str + (F), (L)))
-# define SUB_EQU(A, B)	(A.length==B.length&&!ft_memcmp(A.str,B.str,A.length))
+# define SUB_EQU(A,B)	((A).length == (B).length && _SUB_EQU(A, B))
+# define _SUB_EQU(A,B)	(ft_memcmp((A).str, (B).str, (A).length) == 0)
 
 /*
 ** Sub constructor
@@ -218,7 +221,7 @@ t_sub			ft_sub(char const *str, int from, int to);
 t_sub			ft_subsub(t_sub sub, int from, int to);
 
 /*
-** Function equivalent of the macro SUBEQU
+** Function equivalent of the macro SUB_EQU
 */
 bool			ft_subequ(t_sub a, t_sub b);
 
