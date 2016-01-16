@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:22:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/19 15:39:14 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/16 18:53:24 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,42 +25,43 @@ typedef struct s_vector		t_vector;
 struct			s_vector
 {
 	void			*data;
-	int				length;
-	int				capacity;
-	int const		element_size;
+	uint32_t		length;
+	uint32_t		capacity;
+	uint32_t const	element_size;
 };
 
 # define VECTOR_MIN_CAP		16
 
-# define VECTOR(t)			((t_vector){NULL, 0, 0, sizeof(t)})
+# define VECTOR(T)			((t_vector){NULL, 0, 0, sizeof(T)})
 # define VECTORC(A)			((t_vector){V(A), ARRAY_LEN(A), 0, sizeof((A)[0])})
 
 /*
 ** Get an element by index
-** v		vector
-** i		index (used once)
+** V		vector
+** I		index (used once)
+** (params are used once)
 */
-# define VECTOR_GET(v,i)	(((v).data) + ((i) * (v).element_size))
+# define VECTOR_GET(V,I)	((V).data + ((V).element_size * (I)))
 
 /*
-** Push 'count' elements to the back of the vector
-** if 'data' is not NULL it is copied else bzero
-** Return a pointer to the first new element
+** Add 'count' element to the end
+** If 'data' is not NULL, copy 'data'
+** Return a pointer to the new elements
 */
-void			*ft_vpush_back(t_vector *v, void *data, int count);
+void			*ft_vpush(t_vector *v, void *data, uint32_t count);
 
 /*
 ** Remove a span of elements
-** if index < 0 it's set to v->length + index
-** if count < 0 it's set to v->length - index + count
+** If 'index' < 0, use length + index
+** If 'count' < 0, remove backward
 */
-void			ft_vremove(t_vector *v, int index, int count);
+void			ft_vremove(t_vector *v, int32_t index, int32_t count);
 
 /*
-** Extend the vector to store 'count' elements
-** Do nothing if there already enougth space
+** Change capacity
+** Use length if length > 'capacity'
 */
-void			ft_vreserve(t_vector *v, int count);
+void			ft_vreserve(t_vector *v, uint32_t capacity);
 
 /*
 ** Completly free all datas

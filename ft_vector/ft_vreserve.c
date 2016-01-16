@@ -6,30 +6,25 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:30:22 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/18 16:49:50 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/16 17:09:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_vector.h"
 #include <stdlib.h>
 
-void			ft_vreserve(t_vector *v, int count)
+void			ft_vreserve(t_vector *v, uint32_t capacity)
 {
-	int				capacity;
-	void			*data;
+	void			*tmp;
 
-	capacity = MAX(v->capacity, VECTOR_MIN_CAP);
-	while ((v->length + count) > capacity)
-		capacity *= 2;
+	if (capacity < v->length)
+		capacity = v->length;
 	if (capacity == v->capacity)
 		return ;
-	data = ft_emalloc(capacity * v->element_size);
-	if (v->data != NULL)
-	{
-		ft_memcpy(data, v->data, v->length * v->element_size);
-		if (v->capacity > 0)
-			free(v->data);
-	}
-	v->data = data;
+	tmp = ft_emalloc(capacity * v->element_size);
+	ft_memcpy(tmp, v->data, v->length * v->element_size);
+	if (v->capacity > 0)
+		free(v->data);
+	v->data = tmp;
 	v->capacity = capacity;
 }

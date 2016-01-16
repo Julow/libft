@@ -6,22 +6,27 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:30:30 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:22 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/16 18:34:06 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_vector.h"
 
-void			ft_vremove(t_vector *v, int index, int count)
+void			ft_vremove(t_vector *v, int32_t index, int32_t count)
 {
-	int				to;
+	int32_t			to;
 
 	if (index < 0)
-		index += v->length;
+		index += v->length + 1;
 	if (count < 0)
-		count += v->length - index;
-	index *= v->element_size;
-	to = count * v->element_size + index;
-	ft_memmove(v->data + index, v->data + to, v->length * v->element_size - to);
+	{
+		index += count;
+		count = -count;
+	}
+	to = index + count;
+	if (v->length > to)
+		ft_memmove(v->data + (index * v->element_size),
+			v->data + (to * v->element_size),
+			(v->length - to) * v->element_size);
 	v->length -= count;
 }
