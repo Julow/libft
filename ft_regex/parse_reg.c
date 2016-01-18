@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/27 17:37:42 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/11 22:58:39 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/18 18:10:56 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,13 @@ static uint32_t	parse_n(t_parse_reg *p, uint32_t offset,
 	else if (c == '+')
 		return (*min = 1, *max = REG_INFINITY, offset + 1);
 	else if (IS(c, IS_DIGIT))
-		offset += ft_subint(SUB(p->str + offset, p->len - offset), min);
+		offset += ft_subto_uint(SUB(p->str + offset, p->len - offset), min);
 	else
 		*min = 1;
 	if (offset < p->len && p->str[offset] == ',')
 	{
 		if (++offset < p->len && IS(p->str[offset], IS_DIGIT))
-			offset += ft_subint(SUB(p->str + offset,
+			offset += ft_subto_uint(SUB(p->str + offset,
 					p->len - offset), max);
 		else
 			*max = REG_INFINITY;
@@ -128,7 +128,7 @@ static uint32_t	parse_capture(t_parse_reg *p, uint32_t offset,
 	}
 	offset++;
 	if (offset < p->len && IS(p->str[offset], IS_DIGIT))
-		offset += ft_subint(SUB(p->str + offset, p->len - offset), capture_i);
+		offset += ft_subto_uint(SUB(p->str + offset, p->len - offset), capture_i);
 	else
 		*capture_i = p->capture_index++;
 	p->capture_count++;

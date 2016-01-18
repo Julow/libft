@@ -6,16 +6,16 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/09 13:15:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/27 23:44:37 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/18 18:29:55 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_dstr.h"
 #include <stdlib.h>
 
-void			ft_dstrextend(t_dstr *str, int need)
+void			ft_dstrextend(t_dstr *str, uint32_t need)
 {
-	int				capacity;
+	uint32_t		capacity;
 	char			*tmp;
 
 	capacity = MAX(str->capacity, DSTR_MIN);

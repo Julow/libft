@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 00:19:37 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/04 00:49:25 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/18 18:16:34 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,8 @@ uint32_t		parse_regex(t_parse_reg *p, uint32_t offset, t_reg **reg,
 					char end);
 
 t_reg			*append_reg_next(t_reg *reg, t_reg *next);
+
+uint32_t		ft_subchr_e(t_sub sub, uint32_t offset, char chr);
 
 t_reg			*create_reg_str(t_sub str);
 void			destroy_reg(t_reg *reg);

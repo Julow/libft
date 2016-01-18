@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 18:11:27 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/04 00:24:10 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/18 18:16:01 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,19 @@ t_reg			*append_reg_next(t_reg *reg, t_reg *next)
 		reg = reg->or_next;
 	}
 	return (next);
+}
+
+uint32_t		ft_subchr_e(t_sub sub, uint32_t offset, char chr)
+{
+	while (offset < sub.length)
+	{
+		if (sub.str[offset] == '\\' && (offset + 1) < sub.length)
+			offset++;
+		else if (sub.str[offset] == chr)
+			break ;
+		offset++;
+	}
+	return (offset);
 }
 
 /*

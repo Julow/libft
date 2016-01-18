@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/08 22:10:54 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:44:36 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/18 18:29:14 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct s_dstr	t_dstr;
 struct			s_dstr
 {
 	char			*str;
-	int				length;
-	int				capacity;
+	uint32_t		length;
+	uint32_t		capacity;
 };
 
 # define DSTR_MIN		16
@@ -93,7 +93,7 @@ char			*ft_dstrspan(t_dstr *str, int from, int to, int size);
 ** Test if the string can store 'need' more chars
 ** Extend the alloc if needed
 */
-void			ft_dstrextend(t_dstr *str, int need);
+void			ft_dstrextend(t_dstr *str, uint32_t need);
 
 /*
 ** ft_dstrclear

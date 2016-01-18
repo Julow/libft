@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/04 21:50:54 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 19:20:47 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/01/18 18:18:51 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 uint32_t		ft_djb2(t_sub sub)
 {
 	uint32_t		hash;
-	int				i;
+	uint32_t		i;
 
 	hash = 5381;
-	i = -1;
-	while (++i < sub.length)
-		hash = ((hash << 5) + hash) + sub.str[i];
+	i = 0;
+	while (i < sub.length)
+		hash = ((hash << 5) + hash) + sub.str[i++];
 	return (hash);
 }
