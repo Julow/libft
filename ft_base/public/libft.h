@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/01/19 16:07:26 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/01/19 19:43:35 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,38 @@ void			ft_memswap(void *mem1, void *mem2, uint32_t len);
 int				ft_memcmp(const void *mem1, const void *mem2, uint32_t len);
 
 uint32_t		ft_memstart(void const *s1, void const *s2, uint32_t n);
+
+/*
+** ========================================================================== **
+** Callback
+*/
+
+typedef struct s_callback		t_callback;
+
+struct			s_callback
+{
+	void			*f;
+	void			*data;
+};
+
+/*
+** Init a callback struct
+** -
+** F		the function to call
+** DATA		custom data (first arg of F)
+*/
+# define CALLBACK(F,DATA)	((t_callback){V(F), (DATA)})
+
+/*
+** Call a callback
+** -
+** RET		return type of the function to call
+** C		the callback struct (used twice)
+** ...		argument to pass
+** -
+** C.data is automatically passed as first argument
+*/
+# define CALL(RET,C,...)	((RET (*)())((C).f)((C).data, ##__VA_ARGS__))
 
 /*
 ** ========================================================================== **
