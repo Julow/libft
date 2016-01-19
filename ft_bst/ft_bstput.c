@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/20 19:52:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/16 18:38:34 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/01/19 16:12:28 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void				*ft_bst_put(t_bst *bst, void const *match, uint32_t extra)
 {
 	t_bst_node	*node;
 
-	node = ft_emalloc(sizeof(t_bst_node) + bst->node_size + extra);
+	node = MALLOC(sizeof(t_bst_node) + bst->node_size + extra);
 	node->left = NULL;
 	node->right = NULL;
 	node->height = 1;

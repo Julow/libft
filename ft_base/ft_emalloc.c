@@ -6,11 +6,12 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/16 22:33:49 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/10 19:17:02 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/01/19 16:04:07 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/libft.h"
+
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -19,7 +20,7 @@
 ** If malloc fail, put EMAL_ERROR on stderr and exit with code EMAL_EXIT
 */
 
-inline void		*ft_emalloc(uint32_t size)
+void			*ft_emalloc(uint32_t size)
 {
 	void			*mem;
 

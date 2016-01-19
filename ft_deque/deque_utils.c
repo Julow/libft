@@ -6,12 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 17:03:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:12 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/19 16:12:22 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/libft.h"
 #include "ft/ft_deque.h"
+#include "ft/libft.h"
+
 #include <stdlib.h>
 
 void			*deque_it_c(t_deque_it *it)
@@ -44,7 +45,7 @@ void			deque_c_after(t_deque *v, t_que_c *c)
 {
 	t_que_c			*after;
 
-	after = (t_que_c*)ft_emalloc(sizeof(t_que_c) + QUE_C_SIZE);
+	after = (t_que_c*)MALLOC(sizeof(t_que_c) + QUE_C_SIZE);
 	after->start = 0;
 	after->end = 0;
 	after->prev = c;
@@ -69,7 +70,7 @@ void			deque_c_before(t_deque *v, t_que_c *c)
 {
 	t_que_c			*before;
 
-	before = (t_que_c*)ft_emalloc(sizeof(t_que_c) + QUE_C_SIZE);
+	before = (t_que_c*)MALLOC(sizeof(t_que_c) + QUE_C_SIZE);
 	before->start = QUE_C_SIZE;
 	before->end = QUE_C_SIZE;
 	before->next = c;

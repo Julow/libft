@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/09 13:15:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/01/18 18:29:55 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/01/19 16:09:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void			ft_dstrextend(t_dstr *str, uint32_t need)
 		capacity *= 2;
 	if (capacity <= str->capacity)
 		return ;
-	tmp = MAL(char, capacity + 1);
+	tmp = MALLOC(capacity + 1);
 	ft_memcpy(tmp, str->str, str->length);
 	tmp[str->length] = '\0';
 	if (str->capacity > 0)

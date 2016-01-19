@@ -6,11 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 12:47:04 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/06 12:50:40 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/19 16:12:06 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_file_in.h"
+
 #include <fcntl.h>
 #include <sys/stat.h>
 
@@ -38,7 +39,7 @@ t_file_in	*ft_in_fdopen(int fd)
 		buff_size = F_IN_BUFF_SIZE;
 	else
 		buff_size = MIN(MAX(F_IN_MIN_BS, stat.st_blksize), F_IN_MAX_BS);
-	in = ft_emalloc(sizeof(t_file_in) + buff_size);
+	in = MALLOC(sizeof(t_file_in) + buff_size);
 	*in = F_IN(fd, ENDOF(in), buff_size);
 	return (in);
 }

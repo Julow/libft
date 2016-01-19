@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:48:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/14 13:10:50 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/01/19 16:11:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ t_term			*ft_tinit(int fd, int flags)
 	if (!init_tgetent(&term_config, &flags))
 		return (NULL);
 	load_termcaps(&termcaps);
-	term = ft_emalloc(sizeof(t_term)
+	term = MALLOC(sizeof(t_term)
 			+ TERM_OUT_BUFF_SIZE + S(struct termios, 2) + termcaps.buff_i);
 	term->out = OUT(V(term) + sizeof(t_term), TERM_OUT_BUFF_SIZE,
 		(void*)&term_out_flush);

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/01/13 00:42:25 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/19 16:07:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 # include <stdbool.h>
 # include <stdint.h>
+
+# ifdef NO_EMAL
+
+#  include <stdlib.h>
+
+# endif
 
 /*
 ** ========================================================================== **
@@ -42,7 +48,7 @@
 #  define MEM_TYPE		unsigned long long int
 # endif
 # ifndef EMAL_ERROR
-#  define EMAL_ERROR	"Error: not enougth memory"
+#  define EMAL_ERROR	"Error: not enougth memory\n"
 # endif
 # ifndef EMAL_EXIT
 #  define EMAL_EXIT		1
@@ -97,18 +103,14 @@ typedef struct s_sub			t_sub;
 ** Memory
 */
 
-# define EMAL(t,l)		((t*)ft_emalloc(sizeof(t) * (l)))
-# define EMAL1(t)		((t*)ft_emalloc(sizeof(t)))
-
 # ifdef NO_EMAL
-#  define MAL(t,l)		((t*)malloc(sizeof(t) * (l)))
-#  define MAL1(t)		((t*)malloc(sizeof(t)))
-#  define NEW			MAL1
+#  define MALLOC(BYTES)	(malloc(BYTES))
 # else
-#  define MAL			EMAL
-#  define MAL1			EMAL1
-#  define NEW			MAL1
+#  define MALLOC(BYTES)	(ft_emalloc(BYTES))
 # endif
+
+# define NEW(TYPE)		((TYPE*)MALLOC(sizeof(TYPE)))
+# define NEW_N(TYPE,N)	((TYPE*)MALLOC(sizeof(TYPE) * (N)))
 
 void			*ft_emalloc(uint32_t size);
 void			*ft_memdup(const void *src, uint32_t len);
@@ -188,6 +190,7 @@ int				ft_strchri(const char *str, char c);
 ** SUB_FOR(S+, N+)			Equivalent to SUB(S.str + N, S.length - N)
 ** SUB_LEN(S, LEN)			Equivalent to SUB(S.str, LEN)
 ** SUB_OFF(A, B)			Equivalent to B.str - A.str
+** SUB_BEF(A+, B)			Equivalent to SUB(A.str, SUB_OFF(A, B))
 ** SUB_SUB(S, FROM, LEN)	Equivalent to SUB(S.str + FROM, LEN)
 ** SUB_EQU(A+, B+)			Sub comparaison
 ** -
@@ -207,6 +210,7 @@ struct			s_sub
 # define SUB_FOR(S,N)	(SUB((S).str + (N), (S).length - (N)))
 # define SUB_LEN(S,L)	(SUB((S).str, (L)))
 # define SUB_OFF(A,B)	((B).str - (A).str)
+# define SUB_BEF(A,B)	(SUB((A).str, (B).str - (A).str))
 # define SUB_SUB(S,F,L)	(SUB((S).str + (F), (L)))
 # define SUB_EQU(A,B)	((A).length == (B).length && _SUB_EQU(A, B))
 # define _SUB_EQU(A,B)	(ft_memcmp((A).str, (B).str, (A).length) == 0)

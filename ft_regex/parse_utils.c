@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 18:11:27 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/18 18:16:01 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/01/19 16:11:52 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void		unescape(t_sub sub, char *dst)
 
 t_reg			*create_reg_str(t_sub str)
 {
-	t_reg_str *const	r = ft_emalloc(sizeof(t_reg_str) + str.length);
+	t_reg_str *const	r = MALLOC(sizeof(t_reg_str) + str.length);
 
 	unescape(str, ENDOF(r));
 	r->str = SUB(ENDOF(r), str.length);

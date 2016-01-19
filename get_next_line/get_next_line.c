@@ -6,11 +6,12 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/05 12:23:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/11/07 14:55:09 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/19 16:08:55 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gnl_internal.h"
+
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -26,7 +27,7 @@ static t_gnlfd	*get_gnlfd(int const fd)
 			return (tmp);
 		tmp = tmp->next;
 	}
-	if ((tmp = MAL1(t_gnlfd)) == NULL)
+	if ((tmp = NEW(t_gnlfd)) == NULL)
 		return (NULL);
 	*tmp = (t_gnlfd){NULL, fd, 0, 0, 0, gnlfd_list};
 	gnlfd_list = tmp;
@@ -38,7 +39,7 @@ static int		buff_read(t_gnlfd *gnlfd)
 	char			*tmp;
 	int				len;
 
-	if ((tmp = MAL(char, gnlfd->length + GNL_BUFF + 1)) == NULL)
+	if ((tmp = MALLOC(gnlfd->length + GNL_BUFF + 1)) == NULL)
 		return (-1);
 	ft_memcpy(tmp, gnlfd->buff, gnlfd->length);
 	if (gnlfd->buff != NULL)

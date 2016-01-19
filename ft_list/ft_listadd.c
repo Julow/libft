@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 01:04:59 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:44:16 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/19 16:12:00 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void			*ft_listadd(t_list *lst, void *after, int extra_size)
 {
 	void			*node;
 
-	node = ft_emalloc(S(void*, 2) + lst->node_size + extra_size) + S(void*, 2);
+	node = MALLOC(S(void*, 2) + lst->node_size + extra_size) + S(void*, 2);
 	ft_bzero(node, lst->node_size + extra_size);
 	lst->length++;
 	if (after == lst->last)

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 18:09:39 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 18:12:24 by juloo            ###   ########.fr       */
+/*   Updated: 2016/01/19 16:10:04 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool			parse_reg_block_is(t_sub sub, t_reg **reg)
 		is |= REG_IS(sub.str[i]);
 		i++;
 	}
-	r = MAL1(t_reg_set);
+	r = NEW(t_reg_set);
 	ft_bzero(r, sizeof(t_reg_set));
 	r->reg.type = REG_T_SET;
 	r->is = is;
@@ -52,7 +52,7 @@ uint32_t		parse_reg_is(t_parse_reg *p, uint32_t offset, t_reg **reg)
 	t_is			is;
 
 	is = REG_IS(p->str[offset]);
-	r = MAL1(t_reg_set);
+	r = NEW(t_reg_set);
 	ft_bzero(r, sizeof(t_reg_set));
 	r->reg.type = REG_T_SET;
 	r->is = is;
@@ -72,7 +72,7 @@ uint32_t		parse_reg_set(t_parse_reg *p, uint32_t offset, t_reg **reg)
 		offset++;
 	if (offset >= p->len)
 		return (REG_ERROR(p, "Unclosed set", i));
-	r = MAL1(t_reg_set);
+	r = NEW(t_reg_set);
 	ft_bzero(r, sizeof(t_reg_set));
 	while (i < offset)
 	{

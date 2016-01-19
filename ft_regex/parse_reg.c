@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/27 17:37:42 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/18 18:10:56 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/01/19 16:10:21 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static uint32_t	parse_name(t_parse_reg *p, uint32_t offset, bool *named,
 				offset++;
 			if (offset >= p->len)
 				break ;
-			n = MAL1(t_parse_reg_n);
+			n = NEW(t_parse_reg_n);
 			*n = (t_parse_reg_n){SUB(p->str + start, offset - start), NULL,
 				p->named_regs};
 			p->named_regs = n;

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 21:01:19 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/18 18:11:29 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/01/19 16:11:56 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static bool		parse_reg_block_named(t_parse_reg *p, t_sub sub,
 		{
 			if (n->reg == NULL || (size = g_reg_type_sizeof[n->reg->type]) == 0)
 				return (REG_ERROR(p, "Unsupported named reg", start), false);
-			r = ft_emalloc(sizeof(t_reg_group) + size);
+			r = MALLOC(sizeof(t_reg_group) + size);
 			r->reg.type = REG_T_GROUP;
 			r->group = ENDOF(r);
 			ft_memcpy(r->group, n->reg, size);
@@ -59,7 +59,7 @@ static bool		parse_reg_block_cstr(t_parse_reg *p, t_sub sub,
 	tmp = ft_subto_uint(sub, &index);
 	if (tmp < sub.length || sub.length == 0)
 		return (REG_ERROR(p, "Invalid capture index", start), false);
-	r = MAL1(t_reg_cstr);
+	r = NEW(t_reg_cstr);
 	r->reg.type = REG_T_CSTR;
 	r->index = index;
 	*reg = V(r);
