@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/01/19 19:43:35 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/01/20 16:02:59 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@
 */
 
 typedef struct s_sub			t_sub;
+
+typedef struct s_callback		t_callback;
+
+typedef struct s_vec2i			t_vec2i;
+typedef struct s_vec2u			t_vec2u;
 
 # define V(v)			((void*)(v))
 
@@ -134,8 +139,6 @@ uint32_t		ft_memstart(void const *s1, void const *s2, uint32_t n);
 ** Callback
 */
 
-typedef struct s_callback		t_callback;
-
 struct			s_callback
 {
 	void			*f;
@@ -159,7 +162,27 @@ struct			s_callback
 ** -
 ** C.data is automatically passed as first argument
 */
-# define CALL(RET,C,...)	((RET (*)())((C).f)((C).data, ##__VA_ARGS__))
+# define CALL(RET,C,...)	(((RET (*)())((C).f))((C).data, ##__VA_ARGS__))
+
+/*
+** ========================================================================== **
+** Vec2i
+*/
+
+struct			s_vec2i
+{
+	int32_t			x;
+	int32_t			y;
+};
+
+struct			s_vec2u
+{
+	uint32_t		x;
+	uint32_t		y;
+};
+
+# define VEC2I(X,Y)		((t_vec2i){(X), (Y)})
+# define VEC2U(X,Y)		((t_vec2u){(X), (Y)})
 
 /*
 ** ========================================================================== **
