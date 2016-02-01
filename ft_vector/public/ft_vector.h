@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:22:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/02/01 22:26:56 by juloo            ###   ########.fr       */
+/*   Updated: 2016/02/02 00:22:27 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ struct			s_vector
 # define VECTORC(A)			((t_vector){V(A), ARRAY_LEN(A), 0, sizeof((A)[0])})
 
 /*
-** Get an element by index
-** V		vector
-** I		index (used once)
-** (params are used once)
+** VECTOR_GET(V+, INDEX)	Get an element by index
+** VECTOR_OFF(V, INDEX)		Get the offset for an index
 */
-# define VECTOR_GET(V,I)	((V).data + ((V).element_size * (I)))
+# define VECTOR_GET(V,I)	((V).data + VECTOR_OFF(V, I))
+# define VECTOR_OFF(V,I)	((V).element_size * (I))
 
 /*
 ** Add 'count' element to the end
