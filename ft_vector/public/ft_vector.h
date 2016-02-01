@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:22:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/01/16 18:53:24 by juloo            ###   ########.fr       */
+/*   Updated: 2016/02/01 22:26:56 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_vector		t_vector;
 
 /*
 ** ========================================================================== **
-** Vector (Continuous dynamic array)
+** Vector (Dynamic array)
 */
 
 struct			s_vector
@@ -48,25 +48,27 @@ struct			s_vector
 ** If 'data' is not NULL, copy 'data'
 ** Return a pointer to the new elements
 */
-void			*ft_vpush(t_vector *v, void *data, uint32_t count);
+void		*ft_vpush(t_vector *v, void *data, uint32_t count);
 
 /*
-** Remove a span of elements
-** If 'index' < 0, use length + index
-** If 'count' < 0, remove backward
+** Change span length
+** (Insert/remove spans of element)
+** Change the length of the span 'span' to 'n' elements
+** If 'data' is not NULL, copy 'n' elements, else do not initialize data
+** Return a ptr to the start of the new span
 */
-void			ft_vremove(t_vector *v, int32_t index, int32_t count);
+void		*ft_vspan(t_vector *v, t_vec2u span, void const *data, uint32_t n);
 
 /*
 ** Change capacity
 ** Use length if length > 'capacity'
 */
-void			ft_vreserve(t_vector *v, uint32_t capacity);
+void		ft_vreserve(t_vector *v, uint32_t capacity);
 
 /*
 ** Completly free all datas
 ** The vector is reusable after a clear
 */
-void			ft_vclear(t_vector *v);
+void		ft_vclear(t_vector *v);
 
 #endif
