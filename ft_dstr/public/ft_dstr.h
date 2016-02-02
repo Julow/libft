@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/08 22:10:54 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/18 18:29:14 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/02/02 15:23:52 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct s_dstr	t_dstr;
 ** Dynamic string
 ** ----
 ** No memory is allocated if capacity is <= 0
-** literal "" is used as default string
 ** Capacity field does not count the terminating '\0'
 */
 
@@ -33,42 +32,35 @@ struct			s_dstr
 	uint32_t		capacity;
 };
 
-# define DSTR_MIN		16
+/*
+** DSTR_NEED(D+, N)		Check if the string can store N char without extending
+** DSTR_EXTEND(D+, N+)	Extend the string if needed
+** DSTR_APPEND(D+, C)	Append a char to the dstr (Does not put the '\0')
+** DSTR(STR, LEN)		Construct a dstr from a const string
+** DSTRC(STR)			Construct a dstr from a c string
+** DSTR0()				Construct an empty dstr
+** DSTR_SUB(DSTR)		Construct a sub from a dstr
+*/
 
-# define DSTR_NEED(d,n)	(((d)->length + (n) + 1) > (d)->capacity)
+# define DSTR_NEED(D, N)	(((D)->length + (N) + 1) > (D)->capacity)
 
-# define DSTR(s,l)		((t_dstr){(s), (l), 0})
-# define DSTRC(s)		((t_dstr){(s), sizeof(s) - 1, 0})
-# define DSTR0()		((t_dstr){"", 0, 0})
+# define DSTR_EXTEND(D, N)	(DSTR_NEED(D, N) ? ft_dstrextend(D, N) : (void)0)
 
-# define DBEGIN(d)		((d)->str)
-# define DEND(d)		((d)->str + (d)->length)
+# define DSTR_APPEND(D, C)	(DSTR_EXTEND(D, 1), (D)->str[(D)->length++] = (C))
+
+# define DSTR(STR,LEN)		((t_dstr){(STR), (LEN), 0})
+# define DSTRC(STR)			((t_dstr){(STR), sizeof(STR) - 1, 0})
+# define DSTR0()			((t_dstr){"", 0, 0})
+
+# define DSTR_SUB(DSTR)		(*(t_sub const*)(&(DSTR)))
 
 /*
 ** ft_dstradd
 ** ----
 ** Add a sub to the dstr
+** (Care about the terminating '\0')
 */
 void			ft_dstradd(t_dstr *str, t_sub add);
-
-/*
-** ft_aprintf
-** ----
-** Process the format sequence using ft_printf rules
-** and return it's result into a dstr
-** ----
-** Return a dstr
-*/
-t_dstr			ft_aprintf(char const *format, ...);
-
-/*
-** ft_asprintf
-** ----
-** Like ft_aprintf but the result is added to 'dst'
-** ----
-** Return the number of char added
-*/
-int				ft_asprintf(t_dstr *dst, char const *format, ...);
 
 /*
 ** ft_dstrspan
@@ -102,5 +94,10 @@ void			ft_dstrextend(t_dstr *str, uint32_t need);
 ** The dstr is still usable
 */
 void			ft_dstrclear(t_dstr *str);
+
+/*
+** -
+*/
+# define DSTR_MIN			16
 
 #endif
