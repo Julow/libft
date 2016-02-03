@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/01/20 16:02:59 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/02/03 12:40:06 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ struct			s_callback
 /*
 ** ========================================================================== **
 ** Vec2i
+** Vec2u
 */
 
 struct			s_vec2i
@@ -181,14 +182,24 @@ struct			s_vec2u
 	uint32_t		y;
 };
 
+/*
+** VEC2*(X, Y)			Create a vec2*
+** VEC2*1(N+)			Create a vec2* with X = Y = N
+** N_VEC2*(FROM+, TO+)	Create a vec2* where X <= Y
+*/
+
 # define VEC2I(X,Y)		((t_vec2i){(X), (Y)})
 # define VEC2U(X,Y)		((t_vec2u){(X), (Y)})
+
+# define VEC2I1(N)		(VEC2I(N, N))
+# define VEC2U1(N)		(VEC2U(N, N))
+
+# define N_VEC2U(X, Y)	(((X) > (Y)) ? VEC2U(Y, X) : VEC2U(X, Y))
+# define N_VEC2I(X, Y)	(((X) > (Y)) ? VEC2I(Y, X) : VEC2I(X, Y))
 
 /*
 ** ========================================================================== **
 ** Char classification
-** ----
-** '\0' is not classified
 */
 
 # define IS_GRAPH		(IS_PUNCT | IS_ALNUM)
