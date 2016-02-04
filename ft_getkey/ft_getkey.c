@@ -6,12 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 14:58:48 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/11 11:44:58 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/02/04 12:29:44 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/getkey.h"
 #include "getkey_internal.h"
+
 #include <unistd.h>
 
 static t_key	parse_utf8(char c)
@@ -31,8 +32,8 @@ t_key			ft_getkey(int fd)
 	else if (c == '\033')
 		return (get_esc_seq(fd));
 	else if (c >= 1 && c <= 26)
-		return (KEY('a' + c - 1, KEY_MOD_CTRL));
+		return (KEY('a' + c - 1, MOD_CTRL));
 	else if (IS(c, IS_UPPER))
-		return (KEY(c, KEY_MOD_SHIFT));
+		return (KEY(c, MOD_SHIFT));
 	return (KEY(c, 0));
 }

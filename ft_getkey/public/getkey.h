@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 14:52:47 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/11 11:40:49 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/02/04 12:28:03 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ struct		s_key
 
 # define KEY(C,F)			((t_key){(C), (F)})
 
-# define KEY_MOD_CTRL		(1 << 2)
-# define KEY_MOD_ALT		((1 << 1) | (1 << 3))
-# define KEY_MOD_SHIFT		(1 << 0)
+# define MOD_CTRL			(1 << 2)
+# define MOD_ALT			((1 << 1) | (1 << 3))
+# define MOD_SHIFT			(1 << 0)
 
 # define GETKEY_SPECIAL		0xF0000
 

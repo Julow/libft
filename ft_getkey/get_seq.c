@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 11:39:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/15 12:03:34 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/02/04 12:29:32 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_seq_end const	g_seq_ends[] = {
 	{'Q', KEY_F2, 0},
 	{'R', KEY_F3, 0},
 	{'S', KEY_F4, 0},
-	{'Z', '\t', KEY_MOD_SHIFT},
+	{'Z', '\t', MOD_SHIFT},
 	{3, KEY_DELETE, 0},
 	{5, KEY_PAGEUP, 0},
 	{6, KEY_PAGEDOWN, 0},
@@ -82,8 +82,8 @@ static t_key	parse_seq(int fd, uint32_t mods)
 		}
 		mods |= n2 - 1;
 	}
-	if (mods & KEY_MOD_ALT)
-		mods |= KEY_MOD_ALT;
+	if (mods & MOD_ALT)
+		mods |= MOD_ALT;
 	return (parse_seq_end(mods, (c == '~') ? n1 : c));
 }
 
@@ -94,7 +94,7 @@ t_key			get_esc_seq(int fd)
 
 	mods = 0;
 	while ((c = next_char(fd)) == '\033')
-		mods |= KEY_MOD_ALT;
+		mods |= MOD_ALT;
 	if (c == '[' || c == 'O')
 		return (parse_seq(fd, mods));
 	else if (c == '\0')
