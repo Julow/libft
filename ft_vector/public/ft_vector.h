@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:22:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/02/02 00:22:27 by juloo            ###   ########.fr       */
+/*   Updated: 2016/02/08 19:18:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,21 @@ struct			s_vector
 
 # define VECTOR_MIN_CAP		16
 
-# define VECTOR(T)			((t_vector){NULL, 0, 0, sizeof(T)})
-# define VECTORC(A)			((t_vector){V(A), ARRAY_LEN(A), 0, sizeof((A)[0])})
-
 /*
+** VECTOR(TYPE, ...)		Create a vector of TYPE (... are default elements)
+** VECTORC(ARRAY)			Create a vector from a literal array
+** -
 ** VECTOR_GET(V+, INDEX)	Get an element by index
 ** VECTOR_OFF(V, INDEX)		Get the offset for an index
 */
+
 # define VECTOR_GET(V,I)	((V).data + VECTOR_OFF(V, I))
 # define VECTOR_OFF(V,I)	((V).element_size * (I))
+
+# define VECTOR(TYPE, ...)	(_VECTOR(((TYPE[]){__VA_ARGS__}), TYPE))
+# define VECTORC(ARRAY)		(_VECTOR((ARRAY), ((ARRAY)[0])))
+
+# define _VECTOR(A,S)		((t_vector){V(A), ARRAY_LEN(A), 0, sizeof(S)})
 
 /*
 ** Add 'count' element to the end
