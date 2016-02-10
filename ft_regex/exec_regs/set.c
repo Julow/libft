@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 22:25:52 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/10 17:29:11 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/02/10 18:34:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ uint32_t		exec_reg_set(t_rmatch *m, t_reg_set const *reg, uint32_t offset)
 		offset++;
 	}
 	if (!(reg->reg.flags & REG_F_MINIMAL))
-		while (offset >= min)
+		while (offset >= min && offset < max)
 			if ((tmp = exec_reg_next(m, V(reg), start, offset--)) != REG_FAIL)
 				return (tmp);
 	return (REG_FAIL);

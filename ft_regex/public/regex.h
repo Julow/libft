@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/10 17:37:59 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/02/10 17:41:21 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,11 @@ typedef struct s_rmatch			t_rmatch;
 ** 'match'		Match sub string (should be initialized with SUB(str.str, 0))
 ** 'captures'	Capture array (t_sub)
 ** 'capture_count'		Size of the 'captures' array
-** 'lookahead_extra'	Character after the end of 'str' for lookahead assertion
+** TODO: 'lookahead_extra'	Character after the end of 'str' for lookahead assertion
 ** 'flags'		Flags:
 ** 			RMATCH_F_SEARCH		Allow unmatched character between matchs
-** 			TODO: RMATCH_F_NBOL		'?^' will not match at the begin of the string
-** 			TODO: RMATCH_F_NEOL		'?$' will not match at the end of the string
+** 			RMATCH_F_NBOL		'?^' will not match at the begin of the string
+** 			RMATCH_F_NEOL		'?$' will not match at the end of the string
 ** 			TODO: RMATCH_F_ICASE	global ignore case
 ** -
 ** 'str' should not be modified between call to ft_rmatch
@@ -110,6 +110,8 @@ struct		s_rmatch
 };
 
 # define RMATCH_F_SEARCH	(1 << 0)
+# define RMATCH_F_NBOL		(1 << 1)
+# define RMATCH_F_NEOL		(1 << 2)
 
 /*
 ** Test a string
