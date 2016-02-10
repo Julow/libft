@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/02/03 12:40:06 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/02/10 16:52:27 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ typedef struct s_vec2u			t_vec2u;
 # ifndef EOF
 #  define EOF			(-1)
 # endif
+
+# define C(T, ...)		((T){__VA_ARGS__})
 
 # define IGNORE(VAL)	((void)sizeof(VAL))
 

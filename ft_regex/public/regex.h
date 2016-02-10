@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/07 23:22:18 by juloo            ###   ########.fr       */
+/*   Updated: 2016/02/10 17:37:59 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct s_regex			t_regex;
 typedef struct s_regex_err		t_regex_err;
 typedef struct s_reg			t_reg;
+typedef struct s_rmatch			t_rmatch;
 
 /*
 ** ========================================================================== **
@@ -76,6 +77,51 @@ typedef struct s_reg			t_reg;
 **   '{&' <index> '}'	match the content of a capture (or input)
 */
 
+/*
+** ========================================================================== **
+** Regex match
+*/
+
+/*
+** Store match result
+** -
+** 'str'		Input string
+** 'match'		Match sub string (should be initialized with SUB(str.str, 0))
+** 'captures'	Capture array (t_sub)
+** 'capture_count'		Size of the 'captures' array
+** 'lookahead_extra'	Character after the end of 'str' for lookahead assertion
+** 'flags'		Flags:
+** 			RMATCH_F_SEARCH		Allow unmatched character between matchs
+** 			TODO: RMATCH_F_NBOL		'?^' will not match at the begin of the string
+** 			TODO: RMATCH_F_NEOL		'?$' will not match at the end of the string
+** 			TODO: RMATCH_F_ICASE	global ignore case
+** -
+** 'str' should not be modified between call to ft_rmatch
+*/
+
+struct		s_rmatch
+{
+	t_sub		str;
+	t_sub		match;
+	t_sub		*captures;
+	uint32_t	capture_count;
+	uint32_t	lookahead_extra;
+	uint32_t	flags;
+};
+
+# define RMATCH_F_SEARCH	(1 << 0)
+
+/*
+** Test a string
+** Return true on success, false on fail
+*/
+bool		ft_rmatch(t_rmatch *rmatch, t_regex const *regex);
+
+/*
+** ========================================================================== **
+** Regex object
+*/
+
 struct		s_regex
 {
 	t_reg		*reg;
@@ -87,20 +133,6 @@ struct		s_regex_err
 	t_sub		str;
 	uint32_t	offset;
 };
-
-/*
-** Test a string
-** 'match' should be initialized with SUB(str.str, 0)
-** 'c' is where captures are saved (can be NULL)
-** Return true on success, false on fail
-** 'c' have to be of size of 'regex->capture_count' t_subs or NULL
-*/
-bool		ft_rmatch(t_sub str, t_sub *match, t_regex const *regex, t_sub *c);
-
-/*
-** Like ft_rmatch but allow unmatched char between matchs
-*/
-bool		ft_rsearch(t_sub str, t_sub *match, t_regex const *regex, t_sub *c);
 
 /*
 ** Compile a regex

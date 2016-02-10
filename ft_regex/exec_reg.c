@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 22:27:12 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 18:46:28 by juloo            ###   ########.fr       */
+/*   Updated: 2016/02/10 17:25:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ uint32_t		exec_reg_next(t_rmatch *m, t_reg const *reg,
 
 	tmp = (reg->flags & REG_F_ASSERT) ? start : offset;
 	if (reg->flags & REG_F_CAPTURE && reg->capture_index < m->capture_count)
-		m->captures[reg->capture_index] = SUB(m->str + start, offset - start);
+		m->captures[reg->capture_index] =
+			SUB(m->str.str + start, offset - start);
 	if (reg->next == NULL)
 		return (tmp);
 	return (exec_reg(m, reg->next, tmp));

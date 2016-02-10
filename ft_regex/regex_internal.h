@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 00:19:37 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/18 18:16:34 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/02/10 16:54:59 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef enum e_reg_type			t_reg_type;
 typedef struct s_parse_reg		t_parse_reg;
 typedef struct s_parse_reg_n	t_parse_reg_n;
 
-typedef struct s_rmatch			t_rmatch;
 typedef struct s_exec_reg		t_exec_reg;
 
 /*
@@ -104,14 +103,6 @@ struct			s_reg_cstr
 ** ========================================================================== **
 ** Reg exec
 */
-
-struct			s_rmatch
-{
-	char const		*str;
-	uint32_t		len;
-	t_sub			*captures;
-	uint32_t		capture_count;
-};
 
 /*
 ** the exec function have to handle '!' and 'i' flags

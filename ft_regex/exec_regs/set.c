@@ -6,23 +6,23 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 22:25:52 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 14:14:07 by juloo            ###   ########.fr       */
+/*   Updated: 2016/02/10 17:29:11 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "regex_internal.h"
 
-#define REG_SET(F)		(IS(F(m->str[offset]), reg->is) || _REG_SET(F))
-#define _REG_SET(F)		(BITARRAY_GET(reg->set, (uint8_t)F(m->str[offset])))
+#define REG_SET(F)	(IS(F(m->str.str[offset]), reg->is) || _REG_SET(F))
+#define _REG_SET(F)	(BITARRAY_GET(reg->set, (uint8_t)F(m->str.str[offset])))
 
 uint32_t		exec_reg_set(t_rmatch *m, t_reg_set const *reg, uint32_t offset)
 {
 	uint32_t const	min = reg->reg.min + offset;
-	uint32_t const	max = MIN(reg->reg.max + offset, m->len);
+	uint32_t const	max = MIN(reg->reg.max + offset, m->str.length);
 	uint32_t const	start = offset;
 	uint32_t		tmp;
 
-	if (min > m->len)
+	if (min > m->str.length)
 		return (REG_FAIL);
 	while (true)
 	{
