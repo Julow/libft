@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:22:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/02/08 19:18:02 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/02/15 17:02:41 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,17 @@ struct			s_vector
 ** VECTORC(ARRAY)			Create a vector from a literal array
 ** -
 ** VECTOR_GET(V+, INDEX)	Get an element by index
-** VECTOR_OFF(V, INDEX)		Get the offset for an index
+** VECTOR_OFF(V, INDEX)		Get the byte offset for an index
+** -
+** VGET(TYPE, V+, INDEX)	Get an element by index (cast to TYPE)
+** VGETC(TYPE, V+, INDEX)	Get an element by index (cast to TYPE const)
 */
 
 # define VECTOR_GET(V,I)	((V).data + VECTOR_OFF(V, I))
 # define VECTOR_OFF(V,I)	((V).element_size * (I))
+
+# define VGET(TYPE,V,I)		(*((TYPE*)VECTOR_GET(V, I)))
+# define VGETC(TYPE,V,I)	(VGET(TYPE const, V, I))
 
 # define VECTOR(TYPE, ...)	(_VECTOR(((TYPE[]){__VA_ARGS__}), TYPE))
 # define VECTORC(ARRAY)		(_VECTOR((ARRAY), ((ARRAY)[0])))
