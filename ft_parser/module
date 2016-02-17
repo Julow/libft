@@ -1,0 +1,8 @@
+module ft::parser:
+	public include public/
+
+	public require ft::base
+	public require ft::tokenizer
+	public require ft::vector
+	public require ft::regex
+	public require ft::hmap
