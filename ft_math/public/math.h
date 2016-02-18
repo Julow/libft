@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/18 12:48:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/01/13 19:18:10 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/02/18 17:51:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ struct			s_vec2
 
 # define VEC2_ADD(A, B)		(_VEC2_OP((A), +, (B)))
 # define VEC2_SUB(A, B)		(_VEC2_OP((A), -, (B)))
-# define VEC2_MULT(A, B)	(_VEC2_OP((A), *, (B)))
+# define VEC2_MUL(A, B)		(_VEC2_OP((A), *, (B)))
 # define VEC2_DIV(A, B)		(_VEC2_OP((A), /, (B)))
 
 # define _VEC2_OP(A,O,B)	(VEC2(A.x O B.x, A.y O B.y))
@@ -56,8 +56,13 @@ struct			s_vec3
 
 # define VEC3_ADD(A, B)		(_VEC3_OP((A), +, (B)))
 # define VEC3_SUB(A, B)		(_VEC3_OP((A), -, (B)))
-# define VEC3_MULT(A, B)	(_VEC3_OP((A), *, (B)))
+# define VEC3_MUL(A, B)		(_VEC3_OP((A), *, (B)))
 # define VEC3_DIV(A, B)		(_VEC3_OP((A), /, (B)))
+
+# define VEC3_ADD1(A, B)	(_VEC3_OP1((A), +, (B)))
+# define VEC3_SUB1(A, B)	(_VEC3_OP1((A), -, (B)))
+# define VEC3_MUL1(A, B)	(_VEC3_OP1((A), *, (B)))
+# define VEC3_DIV1(A, B)	(_VEC3_OP1((A), /, (B)))
 
 t_vec3			ft_vec3front(t_vec2 a);
 
@@ -69,6 +74,7 @@ t_vec3			ft_vec3cross(t_vec3 a, t_vec3 b);
 float			ft_vec3dot(t_vec3 a, t_vec3 b);
 
 # define _VEC3_OP(A,O,B)	(VEC3(A.x O B.x, A.y O B.y, A.z O B.z))
+# define _VEC3_OP1(A,O,B)	(VEC3(A.x O B, A.y O B, A.z O B))
 
 /*
 ** ========================================================================== **
