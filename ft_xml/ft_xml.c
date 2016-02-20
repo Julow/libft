@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_xml_parser.c                                    :+:      :+:    :+:   */
+/*   ft_xml.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 17:08:50 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 18:20:08 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/02/20 14:51:12 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/ft_xml_parser.h"
+#include "ft/ft_xml.h"
 #include "xml_parser.h"
 
-static t_xml_token (const *g_next_f[])(t_xml_parser *xml) = {
+static t_xml_token (*const g_next_f[])(t_xml_parser *xml) = {
 	[XML_TOKEN_START] = &xml_next_start,
 	[XML_TOKEN_PARAM] = &xml_next_start,
 	[XML_TOKEN_END] = &xml_next_end,
@@ -21,13 +21,15 @@ static t_xml_token (const *g_next_f[])(t_xml_parser *xml) = {
 	[XML_TOKEN_ERROR] = &xml_next_error,
 };
 
-t_xml_token	ft_xml_next(t_xml_parser *xml)
+bool		ft_xml_next(t_xml_parser *xml)
 {
 	t_xml_token	token;
 
-	token = g_next_f[xml->last](xml);
-	xml->last = token;
-	return (token);
+	token = g_next_f[xml->token](xml);
+	xml->token = token;
+	if (token == XML_TOKEN_ERROR || token == XML_TOKEN_EOF)
+		return (false);
+	return (true);
 }
 
 t_sub		ft_xml_name(t_xml_parser const *xml)
@@ -41,7 +43,7 @@ t_sub		ft_xml_value(t_xml_parser const *xml)
 		xml->tmp_str.length - xml->tmp_offset));
 }
 
-void		ft_xml_stop(t_xml_parser *xml)
+void		ft_xml_clear(t_xml_parser *xml)
 {
 	ft_dstrclear(&(xml->tmp_str));
 }

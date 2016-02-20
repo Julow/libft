@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_xml_parser.h                                    :+:      :+:    :+:   */
+/*   ft_xml.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 16:27:41 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 18:08:50 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/02/20 14:51:34 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_XML_PARSER_H
 # define FT_XML_PARSER_H
 
-# include "ft/libft.h"
-# include "ft/ft_in.h"
 # include "ft/ft_dstr.h"
+# include "ft/ft_in.h"
+# include "ft/libft.h"
 
 typedef struct s_xml_parser	t_xml_parser;
 typedef enum e_xml_token	t_xml_token;
@@ -40,18 +40,20 @@ struct		s_xml_parser
 	uint32_t	line;
 	t_dstr		tmp_str;
 	uint32_t	tmp_offset;
-	t_xml_token	last;
+	t_xml_token	token;
 };
 
 /*
-** Init a xml parser from an in stream
+** Init a xml parser from a stream
 */
 # define XML_PARSER(IN)	((t_xml_parser){(IN), 1, DSTR0(), 0, XML_TOKEN_END})
 
 /*
 ** Read the next token
+** Return true on success, false on EOF or ERROR
+** 'xml->token' is set to the current token type
 */
-t_xml_token	ft_xml_next(t_xml_parser *xml);
+bool		ft_xml_next(t_xml_parser *xml);
 
 /*
 ** Return markup name after XML_TOKEN_START
@@ -61,13 +63,13 @@ t_sub		ft_xml_name(t_xml_parser const *xml);
 
 /*
 ** Return param value after XML_TOKEN_PARAM
-** Return error string after XML_TOKEN_ERROR
+** TODO: Return error string after XML_TOKEN_ERROR
 */
 t_sub		ft_xml_value(t_xml_parser const *xml);
 
 /*
-** Just free the internal string
+** Clear the internal buffer
 */
-void		ft_xml_stop(t_xml_parser *xml);
+void		ft_xml_clear(t_xml_parser *xml);
 
 #endif

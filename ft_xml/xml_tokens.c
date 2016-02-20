@@ -6,24 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 21:20:31 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/02/20 14:50:33 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/ft_xml_parser.h"
+#include "ft/ft_xml.h"
 #include "xml_parser.h"
-
-static void	xml_parse_spaces(t_xml_parser *xml)
-{
-	char		c;
-
-	while (IS(c = IN_PEEK(xml->in), IS_SPACE))
-	{
-		xml->in->buff_i++;
-		if (c == '\n')
-			xml->line++;
-	}
-}
 
 t_xml_token	xml_next_start(t_xml_parser *xml)
 {
@@ -54,14 +42,6 @@ t_xml_token	xml_next_start(t_xml_parser *xml)
 	return (XML_TOKEN_PARAM);
 }
 
-bool		is_xml_name_char(char c, void *env)
-{
-	if (IS(c, IS_SPACE) || c == '>')
-		return (true);
-	IGNORE(env);
-	return (false);
-}
-
 t_xml_token	xml_next_end(t_xml_parser *xml)
 {
 	xml_parse_spaces(xml);
@@ -80,7 +60,7 @@ t_xml_token	xml_next_end(t_xml_parser *xml)
 	{
 		if (!IN_READ_IF(xml->in, '-') || !IN_READ_IF(xml->in, '-'))
 			return (XML_TOKEN_ERROR);
-		// TODO: parse comment
+		return (xml_parse_comment(xml));
 	}
 	xml->tmp_str.length = 0;
 	if (!ft_readto_func(xml->in, &is_xml_name_char, NULL, &(xml->tmp_str)))
@@ -91,5 +71,5 @@ t_xml_token	xml_next_end(t_xml_parser *xml)
 
 t_xml_token	xml_next_error(t_xml_parser *xml)
 {
-	return (xml->last);
+	return (xml->token);
 }

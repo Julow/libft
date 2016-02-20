@@ -1,4 +1,4 @@
-module ft::xml_parser:
+module ft::xml:
 	public include public/
 
 	private include .

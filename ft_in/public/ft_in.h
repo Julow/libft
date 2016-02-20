@@ -6,15 +6,15 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 19:45:32 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/02/20 14:38:02 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_IN_H
 # define FT_IN_H
 
-# include "ft/libft.h"
 # include "ft/ft_dstr.h"
+# include "ft/libft.h"
 
 typedef struct s_in			t_in;
 
@@ -69,6 +69,7 @@ bool		ft_read(t_in *in, char *dst, uint32_t n);
 ** Return false on end-of-file but it may have copied char into 'dst'
 ** Return true otherwise
 */
+bool		ft_readto_str(t_in *in, t_sub end, t_dstr *dst);
 bool		ft_readto_char(t_in *in, char end, t_dstr *dst);
 bool		ft_readto_if(t_in *in, t_is end, t_dstr *dst);
 bool		ft_readto_not(t_in *in, t_is end, t_dstr *dst);
