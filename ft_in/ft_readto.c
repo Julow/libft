@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 20:38:37 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/20 14:37:57 by juloo            ###   ########.fr       */
+/*   Updated: 2016/02/23 19:01:46 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ bool		ft_readto_str(t_in *in, t_sub end, t_dstr *dst)
 {
 	uint32_t	i;
 
-	if (end.str == 0)
+	if (end.length == 0)
 		return (true);
 	while (IN_REFRESH(in))
 	{
@@ -124,12 +124,13 @@ bool		ft_readto_str(t_in *in, t_sub end, t_dstr *dst)
 		{
 			if (i >= end.length)
 				return (true);
-			if (IN_READ(in) != end.str[i])
+			if (IN_PEEK(in) != end.str[i])
 				break ;
+			in->buff_i++;
 			i++;
 		}
 		if (dst != NULL)
-			ft_dstradd(dst, SUB(end.str, i));
+			ft_dstradd(dst, SUB(end.str, i - 1));
 	}
 	return (false);
 }

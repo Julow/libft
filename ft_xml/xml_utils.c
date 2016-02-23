@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/20 12:53:44 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/20 14:47:05 by juloo            ###   ########.fr       */
+/*   Updated: 2016/02/23 19:37:25 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,22 @@ void		xml_parse_spaces(t_xml_parser *xml)
 
 t_xml_token	xml_parse_comment(t_xml_parser *xml)
 {
-	if (!ft_readto_str(xml->in, SUBC("-->"), NULL))
-		return (XML_TOKEN_ERROR);
+	char		c;
+
+	while (true)
+	{
+		if (!IN_REFRESH(xml->in))
+			return (ft_xml_error(xml, SUBC("Unexpected EOF")), XML_TOKEN_ERROR);
+		;
+		if ((c = IN_READ(xml->in)) == '-' && (c = IN_READ(xml->in)) == '-')
+		{
+			while (IN_READ_IF(xml->in, '-'))
+				;
+			if (IN_READ_IF(xml->in, '>'))
+				break ;
+		}
+		else if (c == '\n')
+			xml->line++;
+	}
 	return (xml_next_end(xml));
 }
