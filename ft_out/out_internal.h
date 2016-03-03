@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/13 14:19:34 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:41 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/01 23:32:39 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "ft/ft_out.h"
 
-# define SHOULD_TRANSFORM(FLAGS)	((FLAGS) & OUT_TOLOWER | OUT_TOUPPER)
+# define SHOULD_TRANSFORM(FLAGS)	((FLAGS) & (OUT_TOLOWER | OUT_TOUPPER))
 
 # define WRITE_INT_BUFF				(64 + 1 + 6 + 1)
 # define WRITE_FLOAT_BUFF			(128)
