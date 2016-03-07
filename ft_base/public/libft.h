@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/02/10 16:52:27 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/05 16:28:19 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -433,7 +433,8 @@ uint64_t		ft_cend(void);
 */
 
 int				ft_rand(int min, int max);
-bool			ft_randbool(double chance);
+float			ft_randf(void);
+bool			ft_randbool(float chance);
 
 /*
 ** ========================================================================== **
