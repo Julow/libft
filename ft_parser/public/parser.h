@@ -6,12 +6,12 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 16:01:45 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/02/17 11:26:19 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 14:51:55 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SYNTAX_H
-# define SYNTAX_H
+#ifndef PARSER_H
+# define PARSER_H
 
 # include "ft/ft_vector.h"
 # include "ft/libft.h"

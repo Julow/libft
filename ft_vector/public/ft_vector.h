@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:22:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/02/15 17:02:41 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 15:12:32 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_vector		t_vector;
 ** Vector (Dynamic array)
 */
 
-struct			s_vector
+struct		s_vector
 {
 	void			*data;
 	uint32_t		length;

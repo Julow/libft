@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 20:26:19 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/19 16:10:07 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 15:03:51 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 uint32_t		parse_reg_group(t_parse_reg *p, uint32_t offset, t_reg **reg)
 {
 	t_reg			*group;
-	t_reg_group 	*r;
+	t_reg_group		*r;
 
 	if ((offset = parse_regex(p, offset + 1, &group, ')')) == REG_FAIL)
 		return (REG_FAIL);

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/23 00:28:50 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/11 23:04:19 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/07 14:46:39 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,6 @@ bool			ft_subequ(t_sub a, t_sub b)
 	return (BOOL_OF(SUB_EQU(a, b)));
 }
 
-/*
-** TODO: try to opti
-*/
 bool			ft_subequi(t_sub a, t_sub b)
 {
 	uint32_t		i;

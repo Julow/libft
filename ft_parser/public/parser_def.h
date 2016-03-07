@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 21:02:47 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/09 12:46:36 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 14:52:10 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SYNTAX_DEF_H
-# define SYNTAX_DEF_H
+#ifndef PARSER_DEF_H
+# define PARSER_DEF_H
 
 # include "ft/ft_hmap.h"
 # include "ft/ft_vector.h"

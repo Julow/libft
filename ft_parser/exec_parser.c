@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/19 20:18:26 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/17 11:29:12 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 14:53:04 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ bool			ft_parse(t_parse_data *p, t_parser const *parser)
 	p->frame = &frame;
 	p->t.token_map = &parser->token_map;
 	ret = parser->f(p);
-	p->t.token_map = (frame.prev == NULL ) ? NULL
-		: &frame.prev->parser->token_map;
+	p->t.token_map = (frame.prev == NULL) ?
+		NULL : &frame.prev->parser->token_map;
 	p->frame = frame.prev;
 	return (ret);
 }

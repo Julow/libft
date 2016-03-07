@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 18:11:27 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/19 16:11:52 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 15:09:01 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ uint32_t		ft_subchr_e(t_sub sub, uint32_t offset, char chr)
 	return (offset);
 }
 
-/*
-** TODO: move to ft::sub ?
-** Copy sub into 'dst' removing escaping '\'
-*/
 static void		unescape(t_sub sub, char *dst)
 {
 	uint32_t		i;

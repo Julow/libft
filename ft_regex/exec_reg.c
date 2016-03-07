@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 22:27:12 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/10 18:24:31 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 15:01:28 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@ static t_exec_reg	g_exec_regs[__REG_T_COUNT] = {
 	[REG_T_CSTR] = {V(&exec_reg_cstr), false},
 };
 
-static uint32_t	exec_reg_n(t_rmatch *m, t_reg const *reg, uint32_t offset,
-					uint32_t start, uint32_t n)
+static uint32_t	exec_reg_n(t_rmatch *m, t_reg const *reg, t_vec2u offsets,
+					uint32_t n)
 {
 	uint32_t		tmp;
 
 	if (reg->flags & REG_F_MINIMAL && n >= reg->min
-		&& (tmp = exec_reg_next(m, reg, start, offset) != REG_FAIL))
+		&& (tmp = exec_reg_next(m, reg, offsets.x, offsets.y) != REG_FAIL))
 		return (tmp);
 	if (n < reg->max
-		&& (tmp = g_exec_regs[reg->type].exec(m, reg, offset)) != REG_FAIL
-		&& (tmp != offset || n < reg->min)
-		&& (tmp = exec_reg_n(m, reg, tmp, start, n + 1)) != REG_FAIL)
+		&& (tmp = g_exec_regs[reg->type].exec(m, reg, offsets.y)) != REG_FAIL
+		&& (tmp != offsets.y || n < reg->min)
+		&& (tmp = exec_reg_n(m, reg, VEC2U(tmp, offsets.x), n + 1)) != REG_FAIL)
 		return (tmp);
 	if (n >= reg->min)
-		return (exec_reg_next(m, reg, start, offset));
+		return (exec_reg_next(m, reg, offsets.x, offsets.y));
 	return (REG_FAIL);
 }
 
@@ -53,7 +53,7 @@ uint32_t		exec_reg(t_rmatch *m, t_reg const *reg, uint32_t offset)
 		}
 		tmp = (g_exec_regs[reg->type].no_bt)
 			? g_exec_regs[reg->type].exec(m, reg, offset)
-			: exec_reg_n(m, reg, offset, offset, 0);
+			: exec_reg_n(m, reg, VEC2U(offset, offset), 0);
 		if (tmp != REG_FAIL)
 			return (tmp);
 		reg = reg->or_next;

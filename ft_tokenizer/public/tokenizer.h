@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 17:19:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/02/10 22:00:30 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/07 15:12:15 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void			ft_tokenizer_reset(t_tokenizer *t, bool destroy);
 /*
 ** ========================================================================== **
 ** Token map
-** -
-** Used to store 
 */
 
 struct			s_token_def
@@ -76,7 +74,7 @@ struct			s_token_def
 struct			s_token_map
 {
 	t_bst			tokens;
-	t_bits			token_starts[BITARRAY((uint8_t)-1)];
+	t_bits			token_starts[BITARRAY((uint8_t)(-1))];
 };
 
 /*

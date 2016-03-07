@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 21:01:19 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/19 16:11:56 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 15:05:39 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ uint32_t		parse_reg_block(t_parse_reg *p, uint32_t offset, t_reg **reg)
 	if (p->str[start] == ':')
 		tmp = parse_reg_block_is(SUB(sub.str + 1, sub.length - 1), reg);
 	else if (p->str[start] == '&')
-		tmp = parse_reg_block_cstr(p, SUB(sub.str + 1, sub.length - 1), start, reg);
+		tmp = parse_reg_block_cstr(p, SUB(sub.str + 1, sub.length - 1),
+				start, reg);
 	else
 		tmp = parse_reg_block_named(p, sub, start, reg);
 	if (!tmp)

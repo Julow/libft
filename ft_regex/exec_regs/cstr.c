@@ -6,13 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/03 18:29:56 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/10 17:32:51 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 14:53:44 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "regex_internal.h"
 
-uint32_t		exec_reg_cstr(t_rmatch *m, t_reg_cstr const *reg, uint32_t offset)
+uint32_t		exec_reg_cstr(t_rmatch *m, t_reg_cstr const *reg,
+					uint32_t offset)
 {
 	t_sub			sub;
 

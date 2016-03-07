@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 22:27:12 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/04 12:48:42 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 15:12:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void		*ft_vspan(t_vector *v, t_vec2u span, void const *data, uint32_t n)
 
 	move = ((int32_t)n) - ((int32_t)(span.y - span.x));
 	if ((v->length + move) > v->capacity)
-		ft_vreserve(v, MAX(v->capacity * 2, MAX(VECTOR_MIN_CAP, v->length + move)));
+		ft_vreserve(v,
+			MAX(v->capacity * 2, MAX(VECTOR_MIN_CAP, v->length + move)));
 	if (move != 0)
 	{
 		if (v->length > span.y)

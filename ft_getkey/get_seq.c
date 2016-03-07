@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 11:39:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/02/04 12:29:32 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 14:48:22 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ static t_key	parse_seq_end(uint32_t mods, char end)
 			return (key);
 		}
 	}
-	// DEBUG("PARSE SEQ END: Invalid end: (%d) %c (%.1r)%n", mods, end, &end);
 	return (key);
 }
 

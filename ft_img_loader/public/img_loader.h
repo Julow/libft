@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_img_loader.h                                    :+:      :+:    :+:   */
+/*   img_loader.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 13:16:16 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/17 11:54:52 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 14:49:38 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_IMAGE_LOADER_H
-# define FT_IMAGE_LOADER_H
+#ifndef IMAGE_LOADER_H
+# define IMAGE_LOADER_H
 
 # include "ft/img.h"
 # include "ft/libft.h"

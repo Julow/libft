@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/13 13:52:02 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/14 13:53:08 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 15:10:24 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ void			ft_tcursor(t_term *term, uint32_t x, uint32_t y)
 		term->cursor_y--;
 	}
 	if (x != term->cursor_x)
-	{
-		term->cursor_x = x;
-		ft_tput(term, g_termcaps.ch, 0, x);
-	}
+		ft_tput(term, g_termcaps.ch, 0, (term->cursor_x = x));
 	ft_flush(&term->out);
 }

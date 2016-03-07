@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 14:58:48 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/02/04 12:29:44 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 14:47:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 #include <unistd.h>
 
+/*
+** TODO utf-8
+*/
+
 static t_key	parse_utf8(char c)
 {
 	return (KEY(c, 0));
-	// TODO utf-8
 }
 
 t_key			ft_getkey(int fd)

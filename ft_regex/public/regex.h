@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 14:56:34 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/10 17:41:21 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 15:09:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct s_rmatch			t_rmatch;
 ** 'match'		Match sub string (should be initialized with SUB(str.str, 0))
 ** 'captures'	Capture array (t_sub)
 ** 'capture_count'		Size of the 'captures' array
-** TODO: 'lookahead_extra'	Character after the end of 'str' for lookahead assertion
+** TODO: 'lookahead_extra'	Character after the end of 'str' for assertion
 ** 'flags'		Flags:
 ** 			RMATCH_F_SEARCH		Allow unmatched character between matchs
 ** 			RMATCH_F_NBOL		'?^' will not match at the begin of the string

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 12:47:04 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/19 16:12:06 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 14:50:55 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@
 #define F_IN_MIN_BS		258
 #define F_IN_MAX_BS		8192
 
-t_file_in	*ft_in_open(char const *file)
+t_file_in		*ft_in_open(char const *file)
 {
-	int			fd;
+	int				fd;
 
 	if ((fd = open(file, O_RDONLY)) < 0)
 		return (NULL);
 	return (ft_in_fdopen(fd));
 }
 
-t_file_in	*ft_in_fdopen(int fd)
+t_file_in		*ft_in_fdopen(int fd)
 {
-	struct stat	stat;
-	t_file_in	*in;
-	uint32_t	buff_size;
+	struct stat		stat;
+	t_file_in		*in;
+	uint32_t		buff_size;
 
 	if (fstat(fd, &stat) < 0)
 		buff_size = F_IN_BUFF_SIZE;

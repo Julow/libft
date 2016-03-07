@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 21:20:31 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/23 18:49:22 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/07 15:16:24 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ t_xml_token	xml_next_end(t_xml_parser *xml)
 {
 	xml_parse_spaces(xml);
 	if (!IN_READ_IF(xml->in, '<'))
-		return (IN_REFRESH(xml->in) ? XML_ERROR(xml, "Invalid syntax") : XML_TOKEN_EOF);
+		return (IN_REFRESH(xml->in) ?
+			XML_ERROR(xml, "Invalid syntax") : XML_TOKEN_EOF);
 	xml_parse_spaces(xml);
 	if (IN_READ_IF(xml->in, '/'))
 	{

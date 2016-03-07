@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 16:27:41 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/23 19:27:31 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/07 15:13:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_XML_PARSER_H
-# define FT_XML_PARSER_H
+#ifndef FT_XML_H
+# define FT_XML_H
 
 # include "ft/ft_dstr.h"
 # include "ft/ft_in.h"

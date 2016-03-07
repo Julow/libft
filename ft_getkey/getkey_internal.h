@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 11:37:37 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/11 11:43:23 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 14:48:36 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 
 typedef struct s_seq_end	t_seq_end;
 
-struct		s_seq_end
+struct			s_seq_end
 {
-	int			end;
-	int			c;
-	uint32_t	mods;
+	int				end;
+	int				c;
+	uint32_t		mods;
 };
 
 char			next_char(int fd);

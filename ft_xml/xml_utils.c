@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/20 12:53:44 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/23 19:37:25 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/07 15:14:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ t_xml_token	xml_parse_comment(t_xml_parser *xml)
 	{
 		if (!IN_REFRESH(xml->in))
 			return (ft_xml_error(xml, SUBC("Unexpected EOF")), XML_TOKEN_ERROR);
-		;
-		if ((c = IN_READ(xml->in)) == '-' && (c = IN_READ(xml->in)) == '-')
+		if ((c = IN_READ(xml->in)) == '-'
+			&& (c = IN_READ(xml->in)) == '-')
 		{
 			while (IN_READ_IF(xml->in, '-'))
 				;

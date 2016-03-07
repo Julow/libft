@@ -6,13 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 18:09:39 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/19 16:10:04 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 15:06:57 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "regex_internal.h"
 
-static t_is		g_reg_is[((uint8_t)-1)>>1] = {
+static t_is		g_reg_is[((uint8_t)-1) >> 1] = {
 	['.'] = IS_PRINT,
 	['a'] = IS_ALPHA,
 	['l'] = IS_LOWER,

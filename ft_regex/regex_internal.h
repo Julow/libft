@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 00:19:37 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/10 16:54:59 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/07 15:10:44 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,13 +117,20 @@ struct			s_exec_reg
 	bool			no_bt;
 };
 
-uint32_t		exec_reg_str(t_rmatch *m, t_reg_str const *reg, uint32_t offset);
-uint32_t		exec_reg_set(t_rmatch *m, t_reg_set const *reg, uint32_t offset);
-uint32_t		exec_reg_group(t_rmatch *m, t_reg_group const *reg, uint32_t offset);
-uint32_t		exec_reg_eol(t_rmatch *m, t_reg_eol const *reg, uint32_t offset);
-uint32_t		exec_reg_sol(t_rmatch *m, t_reg_sol const *reg, uint32_t offset);
-uint32_t		exec_reg_wbound(t_rmatch *m, t_reg_wbound const *reg, uint32_t offset);
-uint32_t		exec_reg_cstr(t_rmatch *m, t_reg_cstr const *reg, uint32_t offset);
+uint32_t		exec_reg_str(t_rmatch *m, t_reg_str const *reg,
+					uint32_t offset);
+uint32_t		exec_reg_set(t_rmatch *m, t_reg_set const *reg,
+					uint32_t offset);
+uint32_t		exec_reg_group(t_rmatch *m, t_reg_group const *reg,
+					uint32_t offset);
+uint32_t		exec_reg_eol(t_rmatch *m, t_reg_eol const *reg,
+					uint32_t offset);
+uint32_t		exec_reg_sol(t_rmatch *m, t_reg_sol const *reg,
+					uint32_t offset);
+uint32_t		exec_reg_wbound(t_rmatch *m, t_reg_wbound const *reg,
+					uint32_t offset);
+uint32_t		exec_reg_cstr(t_rmatch *m, t_reg_cstr const *reg,
+					uint32_t offset);
 
 /*
 ** exec a reg
