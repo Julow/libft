@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/26 15:01:12 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/08 16:59:52 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/13 22:37:07 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/math.h"
+#include "ft/math_mat4.h"
 
 t_mat4			ft_mat4look_at(t_vec3 pos, t_vec3 target, t_vec3 up)
 {

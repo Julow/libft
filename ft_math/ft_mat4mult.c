@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/18 13:04:14 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/08 16:59:52 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/13 22:37:03 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/math.h"
+#include "ft/math_mat4.h"
 
 t_mat4			*ft_mat4mult(t_mat4 const *a, t_mat4 const *b, t_mat4 *dst)
 {

@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/18 14:57:48 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/08 16:59:50 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/13 22:36:44 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/math.h"
+#include "ft/math_mat4.h"
 #include <math.h>
 
 static void		ft_mat4rotate_x(t_mat4 *m_a, float x)

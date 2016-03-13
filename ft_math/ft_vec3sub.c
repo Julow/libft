@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/26 15:12:42 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/08 16:59:44 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/13 22:35:43 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/math.h"
+#include "ft/math_vec3.h"
 
 t_vec3			ft_vec3sub(t_vec3 a, t_vec3 b)
 {

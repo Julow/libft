@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/09 18:02:48 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/08 16:59:47 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/13 22:35:59 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/math.h"
+#include "ft/math_vec3.h"
 #include <math.h>
 
 t_vec3			ft_vec3front(t_vec2 a)

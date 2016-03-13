@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/23 09:21:00 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/08 16:59:51 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/13 22:36:56 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/math.h"
+#include "ft/math_mat4.h"
 
 void			ft_mat4reflect(t_mat4 *mat, int flags)
 {

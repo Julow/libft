@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/26 16:52:55 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/08 16:59:45 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/13 22:35:52 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/math.h"
+#include "ft/math_vec3.h"
 #include <math.h>
 
 static void		ft_vec3rotate_x(t_vec3 *v_a, float x)

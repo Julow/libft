@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/23 10:23:18 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/08 16:59:49 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/13 22:36:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/math.h"
+#include "ft/math_mat4.h"
 
 void			ft_mat4shear(t_mat4 *mat, t_vec3 shear)
 {

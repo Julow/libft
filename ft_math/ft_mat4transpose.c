@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/09 17:21:47 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/08 16:59:48 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/13 22:36:33 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/math.h"
+#include "ft/math_mat4.h"
 
 void			ft_mat4transpose(t_mat4 *m)
 {

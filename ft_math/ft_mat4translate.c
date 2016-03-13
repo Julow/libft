@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/18 12:56:38 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/08 16:59:49 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/13 22:36:36 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/math.h"
+#include "ft/math_mat4.h"
 
 void			ft_mat4translate(t_mat4 *m_a, t_vec3 t)
 {

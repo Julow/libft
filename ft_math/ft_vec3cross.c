@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/26 15:12:35 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/08 16:59:48 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/13 22:36:26 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/math.h"
+#include "ft/math_vec3.h"
 
 t_vec3			ft_vec3cross(t_vec3 a, t_vec3 b)
 {
