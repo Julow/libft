@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/13 22:31:55 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/13 22:33:57 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/13 22:55:06 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATH_VEC__H
-# define MATH_VEC__H
+#ifndef MATH_VEC3_H
+# define MATH_VEC3_H
 
-# include "math_vec2.h"
+# include "ft/math_vec2.h"
 
 typedef struct s_vec3		t_vec3;
 
@@ -24,6 +24,7 @@ typedef struct s_vec3		t_vec3;
 ** VEC3(X, Y, Z)		t_vec3 constructor {X, Y, Z}
 ** VEC3_0()				t_vec3 constructor {0, 0, 0}
 ** VEC3_1(A+)			t_vec3 constructor {A, A, A}
+** VEC3_UP()			t_vec3 constructor {0, 1, 0}
 ** -
 ** VEC3_X(A+, X)		t_vec3 constructor {X, A.y, A.z}
 ** VEC3_Y(A+, Y)		t_vec3 constructor {A.X, Y, A.z}
@@ -40,15 +41,22 @@ typedef struct s_vec3		t_vec3;
 ** VEC3_DIV1(A+, B+)	t_vec3 A / float B
 ** -
 ** VEC3_DOT(A+, B+)		t_vec3 A dot t_vec3 B
+** VEC3_CROSS(A+, B+)	t_vec3 A cross t_vec3 B
 ** -
 ** ft_vec3norm(V)		Return normalized vector of V
 ** ft_vec3cross(A, B)	Return cross product between A and B
 ** ft_vec3dot(A, B)		Function version of VEC3_DOT
+** ft_vec3mix(A, B, M)	Return the mix of A and B for M
+** ft_vec3length(V)		Return the length of V
+** ft_vec3dist(A, B)	Return the distance between A and B
+** ft_vec3dist2(A, B)	Return the sqare of the distance between A and B
 */
 
 # define VEC3(X, Y, Z)		((t_vec3){(X), (Y), (Z)})
 # define VEC3_0()			((t_vec3){0.f, 0.f, 0.f})
 # define VEC3_1(A)			((t_vec3){(A), (A), (A)})
+
+# define VEC3_UP()			(VEC3(0.f, 1.f, 0.f))
 
 struct			s_vec3
 {
@@ -72,11 +80,18 @@ struct			s_vec3
 # define VEC3_DIV1(A, B)	(_VEC3_OP1((A), /, (B)))
 
 # define VEC3_DOT(A, B)		(((A).x*(B).x) + ((A).y*(B).y) + ((A).z*(B).z))
+# define VEC3_CROSS(A, B)	(VEC3 _VEC3_CROSS((A), (B)))
 
 t_vec3			ft_vec3norm(t_vec3 v);
 
 t_vec3			ft_vec3cross(t_vec3 a, t_vec3 b);
 float			ft_vec3dot(t_vec3 a, t_vec3 b);
+
+t_vec3			ft_vec3mix(t_vec3 a, t_vec3 b, float mix);
+
+float			ft_vec3length(t_vec3 v);
+float			ft_vec3dist(t_vec3 a, t_vec3 b);
+float			ft_vec3dist2(t_vec3 a, t_vec3 b);
 
 /*
 ** -
@@ -85,6 +100,8 @@ float			ft_vec3dot(t_vec3 a, t_vec3 b);
 t_vec3			ft_vec3sub(t_vec3 a, t_vec3 b);
 t_vec3			ft_vec3front(t_vec2 a);
 void			ft_vec3rotate(t_vec3 *v, t_vec3 rotate);
+
+# define _VEC3_CROSS(A, B)	(A.y*B.z-A.z*B.y,A.z*B.x-A.x*B.z,A.x*B.y-A.y*B.x)
 
 # define _VEC3_OP(A,O,B)	(VEC3(A.x O B.x, A.y O B.y, A.z O B.z))
 # define _VEC3_OP1(A,O,B)	(VEC3(A.x O B, A.y O B, A.z O B))

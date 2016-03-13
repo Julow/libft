@@ -6,15 +6,15 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/13 22:34:18 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/13 22:34:56 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/13 22:53:54 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATH_MAT__H
 # define MATH_MAT__H
 
-# include "math_vec3.h"
-# include "math_vec4.h"
+# include "ft/math_vec3.h"
+# include "ft/math_vec4.h"
 
 typedef struct s_mat4		t_mat4;
 
@@ -60,6 +60,14 @@ void			ft_mat4reflect_inv(t_mat4 *mat, int flags);
 t_mat4			*ft_mat4mult(t_mat4 const *a, t_mat4 const *b, t_mat4 *dst);
 
 void			ft_mat4transpose(t_mat4 *m);
+
+t_mat4			ft_mat4transform(t_vec3 pos, t_vec3 rot,
+					t_vec3 shear, t_vec3 scale);
+t_mat4			ft_mat4transform_inv(t_vec3 pos, t_vec3 rot,
+					t_vec3 shear, t_vec3 scale);
+
+void			ft_mat4apply_vec3(t_mat4 const *m, t_vec3 *v, float w);
+void			ft_mat4apply_vec4(t_mat4 const *m, t_vec4 *v);
 
 /*
 ** -

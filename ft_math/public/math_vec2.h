@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/13 22:31:03 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/13 22:31:29 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/13 22:55:12 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATH_VEC__H
-# define MATH_VEC__H
+#ifndef MATH_VEC2_H
+# define MATH_VEC2_H
 
 typedef struct s_vec2		t_vec2;
 
