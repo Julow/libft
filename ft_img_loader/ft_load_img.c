@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_load_image.c                                    :+:      :+:    :+:   */
+/*   ft_load_img.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 13:27:31 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 19:45:00 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/14 12:06:17 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/ft_image_loader.h"
 #include "ft/ft_file_in.h"
-#include "image_loader.h"
+#include "ft/img_loader.h"
+#include "ft/libft.h"
+
+#include "internal.h"
 
 static t_imgtype const	g_imgtypes[] = {
 	{SUBC(".tga"), &load_tga_image},
 	{SUB("", 0), NULL}
 };
 
-bool			ft_load_image(char const *file_name, t_img *dst)
+bool			ft_load_img(char const *file_name, t_img *dst)
 {
 	t_sub			ext;
 	int				i;

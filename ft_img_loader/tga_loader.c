@@ -6,14 +6,15 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 13:27:30 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/17 12:01:06 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/14 12:04:45 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_in.h"
 #include "ft/img_loader.h"
+#include "ft/libft.h"
 
-#include "img_loader.h"
+#include "internal.h"
 
 #define AT(t,p,i)			((t*)(((void*)(p)) + (i)))
 
@@ -62,6 +63,6 @@ bool			load_tga_image(t_in *in, t_img *dst)
 		return (false);
 	dst->width = (int)*AT(short, header, OFFSET_WIDTH);
 	dst->height = (int)*AT(short, header, OFFSET_HEIGHT);
-	dst->data = MAL(uint32_t, dst->width * dst->height);
+	dst->data = NEW_N(uint32_t, dst->width * dst->height);
 	return (read_pixels(in, dst, dst->width * dst->height * 4, pixel_size / 8));
 }

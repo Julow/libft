@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img_loader.h                                       :+:      :+:    :+:   */
+/*   internal.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 13:29:46 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/07 14:50:09 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/14 12:04:09 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMG_LOADER_H
-# define IMG_LOADER_H
+#ifndef INTERNAL_H
+# define INTERNAL_H
 
 # include "ft/ft_in.h"
+# include "ft/img.h"
 # include "ft/img_loader.h"
+# include "ft/libft.h"
 
 typedef struct	s_imgtype
 {
