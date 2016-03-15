@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 11:54:35 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/02/18 17:53:05 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/15 11:34:25 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ typedef struct s_img		t_img;
 /*
 ** ========================================================================== **
 ** Img
+** -
+** IMG_PIXEL(IMG+, X, Y)	Get/set a pixel at X, Y
 */
 
 struct			s_img
@@ -29,9 +31,11 @@ struct			s_img
 	uint32_t		height;
 };
 
-/*
-** Access to a pixel
-*/
 # define IMG_PIXEL(IMG,X,Y)		(IMG).data[(IMG).width * (Y) + (X)]
+
+/*
+** Apply 'f' to each pixel of the image
+*/
+void			ft_img_map(t_img *img, uint32_t (*f)(uint32_t pixel));
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/13 22:31:55 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/13 22:55:06 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/15 11:31:59 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ struct			s_vec3
 
 # define VEC3_DOT(A, B)		(((A).x*(B).x) + ((A).y*(B).y) + ((A).z*(B).z))
 # define VEC3_CROSS(A, B)	(VEC3 _VEC3_CROSS((A), (B)))
+
+# define VEC3_MIN(A, B)		(VEC3(MIN(A.x, B.x), MIN(A.y, B.y), MIN(A.z, B.z)))
 
 t_vec3			ft_vec3norm(t_vec3 v);
 
