@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:32:23 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/26 18:49:36 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/15 15:06:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,20 @@ void		format_f(t_out *out, t_f_info *info, va_list *ap);
 void		format_flush(t_out *out, t_f_info *info, va_list *ap);
 void		format_endl(t_out *out, t_f_info *info, va_list *ap);
 void		format_default(t_out *out, t_f_info *info, va_list *ap);
+
+/*
+** ========================================================================== **
+** Logs
+*/
+
+typedef struct s_log_info		t_log_info;
+
+struct		s_log_info
+{
+	t_sub		prefix;
+	int			fd;
+	bool		enabled;
+};
 
 /*
 ** ========================================================================== **

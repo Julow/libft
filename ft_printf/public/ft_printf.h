@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:05:48 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/26 18:52:15 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/15 15:09:52 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FT_PRINTF_H
 
 # include "ft/ft_out.h"
+
+typedef enum e_log_level		t_log_level;
 
 /*
 ** ========================================================================== **
@@ -75,6 +77,25 @@ void		ft_fprintf(t_out *out, char const *format, ...);
 */
 void		ft_sprintf(char *buff, char const *format, ...);
 void		ft_snprintf(char *buff, uint32_t len, char const *format, ...);
+
+/*
+** ========================================================================== **
+** Logs
+*/
+
+enum		e_log_level
+{
+	LOG_DEBUG,
+	LOG_VERBOSE,
+	LOG_INFO,
+	LOG_SUCCESS,
+	LOG_WARNING,
+	LOG_ERROR
+};
+
+void		ft_logf(t_log_level level, char const *format, ...);
+
+void		ft_logf_set_enabled(t_log_level level, bool enabled);
 
 /*
 ** ========================================================================== **
