@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:22:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/03/07 15:12:32 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/21 09:33:20 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,22 @@ struct		s_vector
 ** VECTOR(TYPE, ...)		Create a vector of TYPE (... are default elements)
 ** VECTORC(ARRAY)			Create a vector from a literal array
 ** -
+** VECTOR_IT(V)				Start iterator
+** VECTOR_NEXT(V+, IT+)		Increment iterator
+** -
+** VECTOR_END(V+)			Pointer to the end of the vector
+** -
 ** VECTOR_GET(V+, INDEX)	Get an element by index
 ** VECTOR_OFF(V, INDEX)		Get the byte offset for an index
 ** -
 ** VGET(TYPE, V+, INDEX)	Get an element by index (cast to TYPE)
 ** VGETC(TYPE, V+, INDEX)	Get an element by index (cast to TYPE const)
 */
+
+# define VECTOR_IT(V)		((V).data - (V).element_size)
+# define VECTOR_NEXT(VC,IT)	(V(IT = V(IT) + (VC).element_size) < VECTOR_END(VC))
+
+# define VECTOR_END(V)		((V).data + ((V).length * (V).element_size))
 
 # define VECTOR_GET(V,I)	((V).data + VECTOR_OFF(V, I))
 # define VECTOR_OFF(V,I)	((V).element_size * (I))
