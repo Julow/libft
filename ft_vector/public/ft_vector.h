@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:22:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/03/21 09:33:20 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/24 09:09:07 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ struct		s_vector
 ** If 'data' is not NULL, copy 'data'
 ** Return a pointer to the new elements
 */
-void		*ft_vpush(t_vector *v, void *data, uint32_t count);
+void		*ft_vpush(t_vector *v, void const *data, uint32_t count);
 
 /*
 ** Change span length

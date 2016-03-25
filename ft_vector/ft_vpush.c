@@ -6,13 +6,13 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:30:34 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/02/01 22:50:49 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/24 09:09:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_vector.h"
 
-void			*ft_vpush(t_vector *v, void *data, uint32_t count)
+void			*ft_vpush(t_vector *v, void const *data, uint32_t count)
 {
 	void			*start;
 

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/03/05 16:28:19 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/25 15:56:36 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,16 @@
 /*
 ** ========================================================================== **
 ** Types
+** -
+** ARRAY_LEN(ARRAY+)	Length of a fixed size array
+** ENDOF(S)				Pointer to the end of S
+** BOOL_OF(C)			Convert the result of the condition C to a bool
+** -
+** MIN(A+, B+)			Min value between A and B
+** MAX(A+, B+)			Max value between A and B
+** ABS(A+)				Absolute value of A
+** MIX(A, B, RATIO+)	Value at RATIO between A and B (0 <= RATIO <= 1)
+** DIFF(A+, B+)			Positive difference between A and B
 */
 
 typedef struct s_sub			t_sub;
@@ -82,7 +92,7 @@ typedef struct s_vec2u			t_vec2u;
 
 # define IGNORE(VAL)	((void)sizeof(VAL))
 
-# define CAT(a,b)		a##b
+# define CAT(A,B)		A##B
 
 # define STR_VALUE(s)	#s
 # define TO_STR(s)		STR_VALUE(s)
@@ -102,6 +112,12 @@ typedef struct s_vec2u			t_vec2u;
 # define CEIL(n)		((int)(1 + (n)))
 # define ROUND(n)		((int)(0.5 + (n)))
 # define FLOOR(n)		((int)(n))
+
+# define MIX(A,B,RATIO)	((A) * (RATIO) + ((B) * (1.f - (RATIO))))
+
+# define DIFF(A,B)		(((A) > (B)) ? (A) - (B) : (B) - (A))
+
+# define IS_POSITIVE(A)	(BOOL_OF((A) >= 0))
 
 # define ISNAN(d)		((d) != (d))
 
