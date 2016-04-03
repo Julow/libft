@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 13:16:16 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/14 11:28:48 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/04/03 11:04:13 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 ** Image loader
 ** -
 ** Supported formats:
-** .tga		24 or 32 bits		no color map and no compression
+** .tga		8, 24 or 32 bits	no color palette and no compression
 ** -
 ** Output 32 bits color map
 */
