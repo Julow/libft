@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/26 15:12:45 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/03/13 22:36:18 by juloo            ###   ########.fr       */
+/*   Updated: 2016/03/30 10:46:27 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ t_vec3			ft_vec3norm(t_vec3 v)
 	float			tmp;
 
 	tmp = VEC3_DOT(v, v);
+	if (tmp == 0.f)
+		return (VEC3_UP());
 	if (tmp > 0.99999f && tmp < 1.00001)
 		return (v);
 	tmp = sqrtf(tmp);

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/13 14:19:11 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/03/30 10:09:54 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void			ft_putfloat(t_out *out, double val)
 	uint32_t		len;
 	uint32_t		i;
 
+	if (ISNAN(val))
+		return (ft_putsub(out, SUBC("NaN")));
 	i = left_part(out, buff, WRITE_FLOAT_BUFF - 1, val);
 	precision = (out->precision == 0) ? DEF_PRECI : out->precision;
 	len = WRITE_FLOAT_BUFF - i + precision;
