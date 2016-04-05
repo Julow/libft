@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/13 22:33:27 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/25 19:11:08 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/04/05 09:24:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef struct s_vec4		t_vec4;
 ** VEC4(X, Y, Z, W)		t_vec4 constructor {X, Y, Z, W}
 ** VEC4_0()				t_vec4 constructor {0, 0, 0, 0}
 ** VEC4_1(A+)			t_vec4 constructor {A, A, A, A}
+** VEC4_2(XY, ZW)		t_vec4 constructor {XY.x, XY.y, ZW.x, ZW.y}
+** VEC4_3(V, W)			t_vec4 constructor {V.x, V.y, V.z, W}
 ** -
 ** VEC4_ADD(A+, B+)		t_vec4 A + t_vec4 B
 ** VEC4_SUB(A+, B+)		t_vec4 A - t_vec4 B
@@ -39,6 +41,8 @@ typedef struct s_vec4		t_vec4;
 # define VEC4(X, Y, Z, W)	((t_vec4){(X), (Y), (Z), (W)})
 # define VEC4_0()			((t_vec4){0.f, 0.f, 0.f, 0.f})
 # define VEC4_1(A)			((t_vec4){(A), (A), (A), (A)})
+# define VEC4_2(XY, ZW)		((t_vec4){(XY).x, (XY).y, (ZW).x, (ZW).y})
+# define VEC4_3(V, W)		((t_vec4){(V).x, (V).y, (V).z, (W)})
 
 struct			s_vec4
 {

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/13 22:31:55 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/15 11:31:59 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/04/05 09:23:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_vec3		t_vec3;
 ** VEC3(X, Y, Z)		t_vec3 constructor {X, Y, Z}
 ** VEC3_0()				t_vec3 constructor {0, 0, 0}
 ** VEC3_1(A+)			t_vec3 constructor {A, A, A}
+** VEC3_2(V, Z)			t_vec3 constructor {V.x, V.y, Z}
 ** VEC3_UP()			t_vec3 constructor {0, 1, 0}
 ** -
 ** VEC3_X(A+, X)		t_vec3 constructor {X, A.y, A.z}
@@ -55,6 +56,7 @@ typedef struct s_vec3		t_vec3;
 # define VEC3(X, Y, Z)		((t_vec3){(X), (Y), (Z)})
 # define VEC3_0()			((t_vec3){0.f, 0.f, 0.f})
 # define VEC3_1(A)			((t_vec3){(A), (A), (A)})
+# define VEC3_2(V, Z)		((t_vec3){(V).x, (V).y, (Z)})
 
 # define VEC3_UP()			(VEC3(0.f, 1.f, 0.f))
 

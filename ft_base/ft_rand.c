@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/02 12:41:54 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/03/05 16:27:48 by juloo            ###   ########.fr       */
+/*   Updated: 2016/04/05 09:13:54 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static int		r(void)
 	static bool		init = false;
 
 	if (!init)
+	{
+		init = true;
 		srand(ft_clock(0));
+	}
 	return (rand());
 }
 
