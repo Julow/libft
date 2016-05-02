@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/03/25 15:56:36 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/05/02 16:49:59 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@
 ** MIN(A+, B+)			Min value between A and B
 ** MAX(A+, B+)			Max value between A and B
 ** ABS(A+)				Absolute value of A
-** MIX(A, B, RATIO+)	Value at RATIO between A and B (0 <= RATIO <= 1)
+** LERP(A, B, T+)		Linear interpolation
 ** DIFF(A+, B+)			Positive difference between A and B
 */
 
@@ -113,7 +113,7 @@ typedef struct s_vec2u			t_vec2u;
 # define ROUND(n)		((int)(0.5 + (n)))
 # define FLOOR(n)		((int)(n))
 
-# define MIX(A,B,RATIO)	((A) * (RATIO) + ((B) * (1.f - (RATIO))))
+# define LERP(A,B,T)	((A) * (1.f - (T)) + ((B) * (T)))
 
 # define DIFF(A,B)		(((A) > (B)) ? (A) - (B) : (B) - (A))
 
