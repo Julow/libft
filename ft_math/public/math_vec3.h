@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/13 22:31:55 by juloo             #+#    #+#             */
-/*   Updated: 2016/04/05 09:23:49 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/05/04 21:43:04 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ struct			s_vec3
 # define VEC3_DIV1(A, B)	(_VEC3_OP1((A), /, (B)))
 
 # define VEC3_DOT(A, B)		(((A).x*(B).x) + ((A).y*(B).y) + ((A).z*(B).z))
-# define VEC3_CROSS(A, B)	(VEC3 _VEC3_CROSS((A), (B)))
+# define VEC3_CROSS(A, B)	(VEC3_SUB(_VEC3_CROSSL(A, B), _VEC3_CROSSR(A, B)))
 
 # define VEC3_MIN(A, B)		(VEC3(MIN(A.x, B.x), MIN(A.y, B.y), MIN(A.z, B.z)))
 
@@ -105,7 +105,8 @@ t_vec3			ft_vec3sub(t_vec3 a, t_vec3 b);
 t_vec3			ft_vec3front(t_vec2 a);
 void			ft_vec3rotate(t_vec3 *v, t_vec3 rotate);
 
-# define _VEC3_CROSS(A, B)	(A.y*B.z-A.z*B.y,A.z*B.x-A.x*B.z,A.x*B.y-A.y*B.x)
+# define _VEC3_CROSSL(A, B)	(VEC3((A).y*(B).z,(A).z*(B).x,(A).x*(B).y))
+# define _VEC3_CROSSR(A, B)	(VEC3((A).z*(B).y,(A).x*(B).z,(A).y*(B).x))
 
 # define _VEC3_OP(A,O,B)	(VEC3(A.x O B.x, A.y O B.y, A.z O B.z))
 # define _VEC3_OP1(A,O,B)	(VEC3(A.x O B, A.y O B, A.z O B))
