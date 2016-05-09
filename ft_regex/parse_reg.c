@@ -6,17 +6,21 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/27 17:37:42 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/19 16:10:21 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/05/09 17:59:11 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "regex_internal.h"
 
+#define FUCK(...)		__VA_ARGS__
+
+typedef uint32_t		(*t_parse_reg_f)(t_parse_reg*, uint32_t, t_reg**);
+
 /*
 ** Have to alloc the t_reg struct and set the 'type' property
 ** Should set '*reg' to NULL on error
 */
-static uint32_t	(*g_parse_reg_type[((uint8_t)-1)>>1])(t_parse_reg*, uint32_t, t_reg**) = {
+static t_parse_reg_f	g_parse_reg_type[((uint8_t)-1) >> 1] = {
 	['.'] = &parse_reg_is,
 	['a'] = &parse_reg_is,
 	['l'] = &parse_reg_is,
@@ -42,7 +46,7 @@ static uint32_t	parse_name(t_parse_reg *p, uint32_t offset, bool *named,
 	t_parse_reg_n	*n;
 
 	if (offset >= p->len || p->str[offset] != '#')
-		return ((*named = false), offset);
+		return (FUCK((*named = false), offset));
 	while (++offset < p->len)
 		if (p->str[offset] == '#')
 			*flags |= REG_F_UNUSED;
@@ -87,8 +91,7 @@ static uint32_t	parse_flags(t_parse_reg *p, uint32_t offset, uint32_t *flags)
 	return (offset);
 }
 
-static uint32_t	parse_n(t_parse_reg *p, uint32_t offset,
-					uint32_t *min, uint32_t *max)
+static uint32_t	parse_n(t_parse_reg *p, uint32_t offset, t_vecu *range)
 {
 	char			c;
 
@@ -96,25 +99,23 @@ static uint32_t	parse_n(t_parse_reg *p, uint32_t offset,
 		return (offset);
 	c = p->str[offset];
 	if (c == '?')
-		return (*min = 0, *max = 1, offset + 1);
+		return (FUCK(*range = VEC2U(0, 1), offset + 1));
 	else if (c == '*')
-		return (*min = 0, *max = REG_INFINITY, offset + 1);
+		return (FUCK(*range = VEC2U(0, REG_INFINITY), offset + 1));
 	else if (c == '+')
-		return (*min = 1, *max = REG_INFINITY, offset + 1);
+		return (FUCK(*range = VEC2U(1, REG_INFINITY), offset + 1));
 	else if (IS(c, IS_DIGIT))
-		offset += ft_subto_uint(SUB(p->str + offset, p->len - offset), min);
+		offset += ft_subto_uint(SUB(p->str + offset, p->len - offset),
+				&range->x);
 	else
-		*min = 1;
-	if (offset < p->len && p->str[offset] == ',')
-	{
-		if (++offset < p->len && IS(p->str[offset], IS_DIGIT))
-			offset += ft_subto_uint(SUB(p->str + offset,
-					p->len - offset), max);
-		else
-			*max = REG_INFINITY;
-	}
+		range->x = 1;
+	if (offset > p->len || p->str[offset] != ',')
+		range->y = range->x;
+	else if (++offset < p->len && IS(p->str[offset], IS_DIGIT))
+		offset += ft_subto_uint(SUB(p->str + offset, p->len - offset),
+				&range->y);
 	else
-		*max = *min;
+		range->y = REG_INFINITY;
 	return (offset);
 }
 
@@ -128,7 +129,8 @@ static uint32_t	parse_capture(t_parse_reg *p, uint32_t offset,
 	}
 	offset++;
 	if (offset < p->len && IS(p->str[offset], IS_DIGIT))
-		offset += ft_subto_uint(SUB(p->str + offset, p->len - offset), capture_i);
+		offset += ft_subto_uint(SUB(p->str + offset, p->len - offset),
+				capture_i);
 	else
 		*capture_i = p->capture_index++;
 	p->capture_count++;
@@ -138,18 +140,16 @@ static uint32_t	parse_capture(t_parse_reg *p, uint32_t offset,
 
 uint32_t		parse_reg(t_parse_reg *p, uint32_t offset, t_reg **reg)
 {
-	uint32_t		min;
-	uint32_t		max;
+	t_vec2u			range;
 	uint32_t		flags;
 	uint32_t		capture_index;
 	bool			reg_named;
-	uint32_t		(*f)(t_parse_reg*, uint32_t, t_reg**);
+	t_parse_reg_f	f;
 
 	flags = 0;
 	if ((offset = parse_name(p, offset, &reg_named, &flags)) == REG_FAIL)
 		return (REG_FAIL);
-	offset = parse_flags(p, offset, &flags);
-	offset = parse_n(p, offset, &min, &max);
+	offset = parse_n(p, parse_flags(p, offset, &flags), &range);
 	offset = parse_capture(p, offset, &capture_index, &flags);
 	if (offset >= p->len || p->str[offset] < 0
 		|| (f = g_parse_reg_type[(uint8_t)p->str[offset]]) == NULL)
@@ -158,13 +158,8 @@ uint32_t		parse_reg(t_parse_reg *p, uint32_t offset, t_reg **reg)
 		return (REG_FAIL);
 	if (reg_named)
 		p->named_regs->reg = *reg;
-	(*reg)->min = min;
-	(*reg)->max = max;
-	(*reg)->flags = flags;
-	(*reg)->capture_index = capture_index;
-	(*reg)->or_next = NULL;
-	(*reg)->next = NULL;
-	if (offset < p->len && p->str[offset] == '|')
-		offset = parse_reg(p, offset + 1, &((*reg)->or_next));
-	return (offset);
+	**reg = (t_reg){range.x, range.y, flags,
+			capture_index, (*reg)->type, NULL, NULL};
+	return ((offset < p->len && p->str[offset] == '|') ?
+			parse_reg(p, offset + 1, &((*reg)->or_next)) : offset);
 }

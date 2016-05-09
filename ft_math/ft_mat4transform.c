@@ -6,14 +6,15 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/13 22:39:00 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/13 22:56:51 by juloo            ###   ########.fr       */
+/*   Updated: 2016/05/09 16:43:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/math_mat4.h"
 #include "ft/math_vec3.h"
 
-t_mat4			ft_mat4transform(t_vec3 pos, t_vec3 rot, t_vec3 shear, t_vec3 scale)
+t_mat4			ft_mat4transform(t_vec3 pos, t_vec3 rot,
+					t_vec3 shear, t_vec3 scale)
 {
 	t_mat4			m;
 
@@ -25,7 +26,8 @@ t_mat4			ft_mat4transform(t_vec3 pos, t_vec3 rot, t_vec3 shear, t_vec3 scale)
 	return (m);
 }
 
-t_mat4			ft_mat4transform_inv(t_vec3 pos, t_vec3 rot, t_vec3 shear, t_vec3 scale)
+t_mat4			ft_mat4transform_inv(t_vec3 pos, t_vec3 rot,
+					t_vec3 shear, t_vec3 scale)
 {
 	t_mat4			m;
 

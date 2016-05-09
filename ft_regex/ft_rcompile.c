@@ -6,12 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 11:18:40 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/04 01:00:41 by juloo            ###   ########.fr       */
+/*   Updated: 2016/05/09 18:04:21 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "regex_internal.h"
 #include <stdlib.h>
+
+#define FUCK(...)		__VA_ARGS__
 
 static void		destroy_parser(t_parse_reg *p)
 {
@@ -58,7 +60,7 @@ static t_reg	*compile_regex(t_parse_reg *p)
 	p->capture_index = 0;
 	if (check_capture_indexes(p, reg))
 		return (reg);
-	return (destroy_reg(reg), NULL);
+	return (FUCK(destroy_reg(reg), NULL));
 }
 
 uint32_t		parse_regex(t_parse_reg *p, uint32_t offset, t_reg **reg,
@@ -76,25 +78,20 @@ uint32_t		parse_regex(t_parse_reg *p, uint32_t offset, t_reg **reg,
 	while (offset < next_end)
 	{
 		start = offset;
-		offset = ft_subchr_e(SUB(p->str, p->len), offset, '?');
-		if (offset > next_end)
+		if ((offset = ft_subchr_e(SUB(p->str, p->len), offset, '?')) > next_end)
 			offset = next_end;
-		if (start == offset)
-			offset = parse_reg(p, offset + 1, &tmp);
-		else
+		if (start != offset)
 			tmp = create_reg_str(SUB(p->str + start, offset - start));
-		if (offset == REG_FAIL)
-			return (destroy_reg(*reg), (*reg = NULL), REG_FAIL);
+		else if ((offset = parse_reg(p, offset + 1, &tmp)) == REG_FAIL)
+			return (FUCK(destroy_reg(*reg), (*reg = NULL), REG_FAIL));
 		if (offset >= next_end && end != '\0')
 			next_end = ft_subchr_e(SUB(p->str, p->len), offset, end);
 		r = append_reg_next(r, tmp);
 		if (*reg == NULL)
 			*reg = r;
 	}
-	if (end != '\0' && offset >= p->len)
-		return (REG_ERROR(p, "Unclosed group", offset), destroy_reg(*reg),
-			(*reg = NULL), REG_FAIL);
-	return (offset);
+	return ((end == '\0' || offset < p->len) ? offset : FUCK(REG_ERROR(p,
+		"Unclosed group", offset), destroy_reg(*reg), (*reg = NULL), REG_FAIL));
 }
 
 bool			ft_rcompile(t_regex *dst, t_sub pattern, t_regex_err *err)

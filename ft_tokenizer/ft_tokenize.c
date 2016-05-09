@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 17:15:24 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/02/10 22:40:53 by juloo            ###   ########.fr       */
+/*   Updated: 2016/05/09 16:39:25 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,7 @@ bool			ft_tokenize(t_tokenizer *t)
 	}
 	t->token = SUB(t->buff.str + start, t->end - start);
 	t->token_data = NULL;
-	if (start >= t->end)
-		return (false);
-	return (true);
+	return (start < t->end);
 }
 
 void			ft_tokenizer_reset(t_tokenizer *t, bool destroy)

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 13:27:30 by juloo             #+#    #+#             */
-/*   Updated: 2016/04/03 11:03:44 by juloo            ###   ########.fr       */
+/*   Updated: 2016/05/09 16:43:04 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static bool		read_pixels(t_in *in, t_img *dst, uint32_t size, uint32_t bps)
 {
 	uint8_t					*tmp;
 	const uint8_t *const	end = (uint8_t*)dst->data + size;
-	uint32_t						i;
+	uint32_t				i;
 
 	tmp = (uint8_t*)dst->data;
 	while (tmp < end)

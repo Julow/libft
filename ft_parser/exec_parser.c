@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/19 20:18:26 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/07 14:53:04 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/05/09 17:36:45 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,23 @@ static bool		exec_token(t_parse_data *p)
 	return (!t->end);
 }
 
+static bool		exec_match_match(t_parse_data *p, uint32_t offset,
+					t_rmatch const *rmatch, t_sub const *token)
+{
+	if (offset > 0)
+	{
+		p->t.end -= p->t.token.length - offset;
+		p->t.token.length = offset;
+		p->token = p->t.token;
+		p->token_data = NULL;
+		return (true);
+	}
+	p->t.end -= p->t.token.length - rmatch->match.length;
+	p->t.token.length = rmatch->match.length;
+	p->t.token_data = token;
+	return (exec_token(p));
+}
+
 static bool		exec_match(t_parse_data *p)
 {
 	t_parser_match	*m;
@@ -45,18 +62,7 @@ static bool		exec_match(t_parse_data *p)
 			m = VECTOR_GET(p->frame->parser->match, i);
 			rmatch.match = SUB(p->t.token.str + offset, 0);
 			if (ft_rmatch(&rmatch, &m->regex))
-			{
-				if (offset > 0)
-				{
-					p->t.end -= p->t.token.length - offset;
-					p->t.token.length = offset;
-					break ;
-				}
-				p->t.end -= p->t.token.length - rmatch.match.length;
-				p->t.token.length = rmatch.match.length;
-				p->t.token_data = &m->token;
-				return (exec_token(p));
-			}
+				return (exec_match_match(p, offset, &rmatch, &m->token));
 			if (++i >= p->frame->parser->match.length)
 			{
 				rmatch.flags &= ~RMATCH_F_NBOL;

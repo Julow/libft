@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 13:16:16 by juloo             #+#    #+#             */
-/*   Updated: 2016/04/03 11:04:13 by juloo            ###   ########.fr       */
+/*   Updated: 2016/05/09 16:42:44 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMAGE_LOADER_H
-# define IMAGE_LOADER_H
+#ifndef IMG_LOADER_H
+# define IMG_LOADER_H
 
 # include "ft/img.h"
 # include "ft/libft.h"

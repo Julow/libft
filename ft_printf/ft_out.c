@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:31:54 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 18:15:42 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/05/09 17:40:59 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf_internal.h"
 #include <unistd.h>
 
-static char		g_ftout_buff[FTOUT_BUFF] = {};
+static char		g_ftout_buff[FTOUT_BUFF] = {0};
 t_ftout			g_ftout = {OUT(g_ftout_buff, FTOUT_BUFF, &ftout_flush), 1};
 
 void			ftout_flush(t_ftout *out)

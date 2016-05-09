@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/13 22:34:18 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/13 22:53:54 by juloo            ###   ########.fr       */
+/*   Updated: 2016/05/09 16:43:44 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATH_MAT__H
-# define MATH_MAT__H
+#ifndef MATH_MAT4_H
+# define MATH_MAT4_H
 
 # include "ft/math_vec3.h"
 # include "ft/math_vec4.h"

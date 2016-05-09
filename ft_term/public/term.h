@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:45:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/14 13:52:03 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/05/09 18:17:10 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "ft/ft_out.h"
 # include "ft/libft.h"
 
-typedef struct s_term		t_term;
-typedef enum e_term_caps	t_term_caps;
+typedef struct s_term						t_term;
+typedef enum e_term_caps					t_term_caps;
 
 /*
 ** ========================================================================== **
@@ -43,10 +43,10 @@ typedef enum e_term_caps	t_term_caps;
 
 struct			s_evalue_termcaps
 {
-	uint32_t		id;
-	char			*name;
-	bool			tgoto;
-	bool			tgoto0;
+	uint32_t			id;
+	char				*name;
+	bool				tgoto;
+	bool				tgoto0;
 };
 
 typedef struct s_evalue_termcaps const*		t_termcaps;
@@ -74,17 +74,17 @@ extern struct s_enum_termcaps const		g_termcaps;
 ** ?end
 */
 
-struct		s_term
+struct			s_term
 {
-	t_out			out;
-	void			*term_config;
-	t_sub			termcaps[TERMCAP_COUNT];
-	int				fd;
-	uint32_t		flags;
-	uint32_t		width;
-	uint32_t		height;
-	uint32_t		cursor_x;
-	uint32_t		cursor_y;
+	t_out				out;
+	void				*term_config;
+	t_sub				termcaps[TERMCAP_COUNT];
+	int					fd;
+	uint32_t			flags;
+	uint32_t			width;
+	uint32_t			height;
+	uint32_t			cursor_x;
+	uint32_t			cursor_y;
 };
 
 # define TERM_DEFAULT_TERM	"xterm"
@@ -117,35 +117,35 @@ struct		s_term
 ** -
 ** Return NULL on error
 */
-t_term		*ft_tinit(int fd, int flags);
+t_term			*ft_tinit(int fd, int flags);
 
 /*
 ** Clear screen (or written lines if TERM_LINE is enabled)
 ** (automatic flush)
 */
-void		ft_tclear(t_term *term);
+void			ft_tclear(t_term *term);
 
 /*
 ** Enable/Disable term attributes
 */
-void		ft_trestore(t_term *term, bool enable);
+void			ft_trestore(t_term *term, bool enable);
 
 /*
 ** Move the cursor
 ** (automatic flush)
 */
-void		ft_tcursor(t_term *term, uint32_t x, uint32_t y);
+void			ft_tcursor(t_term *term, uint32_t x, uint32_t y);
 
 /*
 ** Put a termcap
 ** x and y are only used by termcaps with tgoto set
 */
-void		ft_tput(t_term *term, t_termcaps cap, int x, int y);
+void			ft_tput(t_term *term, t_termcaps cap, int x, int y);
 
 /*
 ** Update with and height attribute
 ** Must be call when receiving SIGWINCH signal
 */
-void		ft_tupdate(t_term *term);
+void			ft_tupdate(t_term *term);
 
 #endif

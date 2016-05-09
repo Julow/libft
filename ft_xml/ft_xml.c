@@ -6,14 +6,16 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 17:08:50 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/23 19:25:50 by juloo            ###   ########.fr       */
+/*   Updated: 2016/05/09 18:23:09 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_xml.h"
 #include "xml_parser.h"
 
-static t_xml_token (*const g_next_f[])(t_xml_parser *xml) = {
+typedef t_xml_token		(*t_token_f)(t_xml_parser *xml);
+
+static t_token_f const	g_next_f[] = {
 	[XML_TOKEN_START] = &xml_next_start,
 	[XML_TOKEN_PARAM] = &xml_next_start,
 	[XML_TOKEN_END] = &xml_next_end,
