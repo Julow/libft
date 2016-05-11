@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 01:18:47 by juloo             #+#    #+#             */
-/*   Updated: 2016/05/11 01:19:10 by juloo            ###   ########.fr       */
+/*   Updated: 2016/05/11 15:41:35 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool			ft_argv_arg(t_argv *argv, t_sub *arg)
 		if (arg->str[0] == '\0' && !(argv->flags & _ARGV_FLAG_VALUE))
 			continue ;
 		argv->flags = 0;
-		arg->length = strlen(arg->str);
+		arg->length = ft_strlen(arg->str);
 		return (true);
 	}
 	argv->flags = 0;
