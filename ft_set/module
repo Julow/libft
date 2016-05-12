@@ -1,0 +1,5 @@
+module ft::set:
+	public include public/
+	private include ./
+
+	public require ft::base
