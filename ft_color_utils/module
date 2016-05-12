@@ -1,0 +1,7 @@
+module ft::color_utils:
+	public include public/
+
+	public require ft::math
+	public require ft::base
+
+	put LINK_FLAGS -lm
