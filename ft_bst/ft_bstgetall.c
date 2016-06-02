@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/17 16:10:16 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/05/09 18:46:28 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/02 15:08:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static bool	bst_getall(t_bst_node *node, t_bst_cmp cmp, void const *match,
 			node = node->left;
 		else
 		{
-			if (diff == 0 && (!CALL(bool, *callback, ENDOF(node), match, env)
-				|| !bst_getall(node->left, cmp, match, &callback)))
+			if (diff == 0 && (!CALL(bool, *callback, ENDOF(node), match)
+				|| !bst_getall(node->left, cmp, match, callback)))
 				return (false);
 			node = node->right;
 		}
