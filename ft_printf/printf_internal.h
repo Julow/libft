@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:32:23 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/15 15:06:16 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/06 17:10:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,22 @@ struct		s_log_info
 # define FTOUT_BUFF		512
 
 void		ftout_flush(t_ftout *out);
+
+/*
+** ========================================================================== **
+** Dstr append out
+*/
+
+typedef struct s_append_out		t_append_out;
+
+struct		s_append_out
+{
+	t_out		out;
+	t_dstr		*dst;
+};
+
+# define APPEND_OUT(S)	((t_append_out){OUT("", 0, &append_out_flush), (S)})
+
+void		append_out_flush(t_append_out *out);
 
 #endif

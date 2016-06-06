@@ -6,13 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:05:48 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/15 15:09:52 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/06 17:18:27 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include "ft/ft_dstr.h"
 # include "ft/ft_out.h"
 
 typedef enum e_log_level		t_log_level;
@@ -72,11 +73,21 @@ void		ft_dprintf(int fd, char const *format, ...);
 void		ft_fprintf(t_out *out, char const *format, ...);
 
 /*
-** Write to a buffer
-** WARNING: not implemented
+** Write to 'buff'
+** Terminate with a '\0'
+** Return the length
 */
-void		ft_sprintf(char *buff, char const *format, ...);
-void		ft_snprintf(char *buff, uint32_t len, char const *format, ...);
+uint32_t	ft_sprintf(char *buff, char const *format, ...);
+
+/*
+** Write to a new dstr
+*/
+t_dstr		ft_aprintf(char const *format, ...);
+
+/*
+** Append to 'str'
+*/
+void		ft_asprintf(t_dstr *str, char const *format, ...);
 
 /*
 ** ========================================================================== **
