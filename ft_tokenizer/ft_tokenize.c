@@ -6,14 +6,14 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 17:15:24 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/05/09 16:39:25 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/09 11:46:20 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/tokenizer.h"
 
-static bool		find_max_t(t_token_def const *def, t_sub const *match,
-					t_tokenizer *t)
+static bool		find_max_t(t_tokenizer *t,
+					t_token_def const *def, t_sub const *match)
 {
 	uint32_t const	to = t->end + def->sub.length;
 	uint32_t		i;

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 20:06:51 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/17 11:29:29 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/09 11:47:09 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static void		add_match(t_parser *parser, t_sub pattern, void *data,
 	ft_vpush(&parser->match, &match, 1);
 }
 
-static bool		has_dupplicated_token(t_token_def const *token,
-					t_sub const *name, void *env)
+static bool		has_dupplicated_token(void *env,
+					t_token_def const *token, t_sub const *name)
 {
 	if (SUB_EQU(token->sub, *name))
 		return (false);
