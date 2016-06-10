@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/05/02 16:49:59 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/10 19:47:48 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,20 @@ typedef struct s_vec2u			t_vec2u;
 #  define EOF			(-1)
 # endif
 
+/*
+** ========================================================================== **
+** Preprocessor utils
+** -
+** TODO: doc
+*/
+
 # define C(T, ...)		((T){__VA_ARGS__})
 
 # define IGNORE(VAL)	((void)sizeof(VAL))
 
-# define CAT(A,B)		A##B
+# define CAT(A,B)		_CAT(A,B)
+
+# define DO(A,...)			A (__VA_ARGS__)
 
 # define STR_VALUE(s)	#s
 # define TO_STR(s)		STR_VALUE(s)
@@ -120,6 +129,31 @@ typedef struct s_vec2u			t_vec2u;
 # define IS_POSITIVE(A)	(BOOL_OF((A) >= 0))
 
 # define ISNAN(d)		((d) != (d))
+
+# define FOR_EACH(F,S,P,...)	_FOR_EACH_S(,__VA_ARGS__)(F,S,P,##__VA_ARGS__)
+
+# define FOR_EACH2(F,S,P,...)	_FOR_EACH_S(2,__VA_ARGS__)(F,S,P,##__VA_ARGS__)
+
+# define ARG_COUNT(...)			_ARG_COUNT(A, ##__VA_ARGS__, _ARG_COUNT_L)
+
+/*
+** ========================================================================== **
+** Variant type
+** -
+** VARIANT_T(NAME, ...)		Create the variant type NAME
+** 								arguments are pairs of ATTR, TYPE
+** VARIANT(T, ATTR, VAL)	Construct ATTR (of type T) with value VAL
+** VARIANT_GET(V, T, ATTR)	Return the value of a variant
+** VARIANT_IS(V, T, ATTR)	Check if a variant is constructed using ATTR
+*/
+
+# define VARIANT_T(N, ...)		 _VARIANT_S(N) { _VARIANT_T0(N,__VA_ARGS__) }
+
+# define VARIANT(T, ATTR, VAL)		((_VARIANT_S(T))_VARIANT_INIT(T,ATTR,VAL))
+
+# define VARIANT_GET(V, T, ATTR)	(ASSERT(VARIANT_IS(V,T,ATTR)), (V).u.ATTR)
+
+# define VARIANT_IS(V, T, ATTR)		((V).e == (_VARIANT_ATTR(ATTR, T)))
 
 /*
 ** ========================================================================== **
@@ -297,7 +331,6 @@ struct			s_sub
 # define SUB_BEF(A,B)	(SUB((A).str, (B).str - (A).str))
 # define SUB_SUB(S,F,L)	(SUB((S).str + (F), (L)))
 # define SUB_EQU(A,B)	((A).length == (B).length && _SUB_EQU(A, B))
-# define _SUB_EQU(A,B)	(ft_memcmp((A).str, (B).str, (A).length) == 0)
 
 /*
 ** Sub constructor
@@ -517,19 +550,10 @@ int				ft_min(int a, int b);
 bool			ft_assert(char const *err, char const *func);
 bool			ft_assert_hard(char const *err, char const *func);
 
-# define _ASSERT_LOCATION	__FILE__ ":" TO_STR(__LINE__) " "
-# define _ASSERT_CODE(C)	"[\033[31m" C "\033[39m] "
-# define _ASSERT_MIN(C)		_ASSERT_CODE(C) _ASSERT_LOCATION "\033[90m"
-# define _ASSERT_FULL(C,V)	_ASSERT_CODE(C) V " \033[90m" _ASSERT_LOCATION
-# define _ASSERT_ERR(C,V)	(sizeof(V)==1)?_ASSERT_MIN(C):_ASSERT_FULL(C,V)
-# define _ASSERT_CALL(C,V)	ft_assert(_ASSERT_ERR(C, V), __func__)
-# define _ASSERT_HCALL(C,V)	ft_assert_hard(_ASSERT_ERR(C, V), __func__)
-# define _ASSERT_DCALL(C,V)	!ft_assert(_ASSERT_ERR("\033[32m" C, V), __func__)
-# define _ASSERT_TRACE(V)	ft_assert(_ASSERT_ERR("\033[33mTRACE",V),__func__)
-# define _ASSERT_DEBUG(C,V)	_ASSERT_DCALL(C, V) || _ASSERT_CALL(C, V)
-
 /*
 ** ========================================================================== **
 */
+
+# include "pp_impl.h"
 
 #endif
