@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/06/10 19:47:48 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/11 20:49:57 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,19 +141,22 @@ typedef struct s_vec2u			t_vec2u;
 ** Variant type
 ** -
 ** VARIANT_T(NAME, ...)		Create the variant type NAME
-** 								arguments are pairs of ATTR, TYPE
-** VARIANT(T, ATTR, VAL)	Construct ATTR (of type T) with value VAL
-** VARIANT_GET(V, T, ATTR)	Return the value of a variant
-** VARIANT_IS(V, T, ATTR)	Check if a variant is constructed using ATTR
+** 								arguments are pairs of CNSTR OF TYPE
+** VARIANT(T, CNSTR, VAL)	Construct CNSTR (of variant T) with value VAL
+** VARIANT_GET(V, T, CNSTR)	Return the value of a variant
+** VARIANT_IS(V, T, CNSTR)	Check if a variant is constructed using CNSTR
+** OF						Keyword used in variant type declaration
 */
 
-# define VARIANT_T(N, ...)		 _VARIANT_S(N) { _VARIANT_T0(N,__VA_ARGS__) }
+# define OF							,
 
-# define VARIANT(T, ATTR, VAL)		((_VARIANT_S(T))_VARIANT_INIT(T,ATTR,VAL))
+# define VARIANT_T(N, ...)			_VARIANT_S(N) { _VARIANT_T0(N,__VA_ARGS__) }
 
-# define VARIANT_GET(V, T, ATTR)	(ASSERT(VARIANT_IS(V,T,ATTR)), (V).u.ATTR)
+# define VARIANT(T, CNSTR, VAL)		((_VARIANT_S(T))_VARIANT_INIT(T,CNSTR,VAL))
 
-# define VARIANT_IS(V, T, ATTR)		((V).e == (_VARIANT_ATTR(ATTR, T)))
+# define VARIANT_GET(V, T, CNSTR)	(ASSERT(VARIANT_IS(V,T,CNSTR)), (V).u.CNSTR)
+
+# define VARIANT_IS(V, T, CNSTR)	((V).e == (_VARIANT_ATTR(CNSTR, T)))
 
 /*
 ** ========================================================================== **
