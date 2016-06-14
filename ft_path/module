@@ -1,0 +1,4 @@
+module ft::path:
+	public include public/
+
+	public require ft::base
