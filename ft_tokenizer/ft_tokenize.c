@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 17:15:24 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/06/09 11:46:20 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/14 15:19:34 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,31 @@ static uint32_t	clean_buff(t_tokenizer *t)
 	return (t->end);
 }
 
+static bool		tokenize(t_tokenizer *t, uint32_t start)
+{
+	t_sub const		match = SUB(t->buff.str + t->end, 1);
+
+	t->token.length = 0;
+	ft_bst_getall(&t->token_map->tokens, &match, &find_max_t, t);
+	if (t->token.length > 0)
+	{
+		if (t->end > start)
+		{
+			t->token.length = 0;
+			return (true);
+		}
+		t->token.str = t->buff.str + t->end;
+		t->end += t->token.length;
+		return (true);
+	}
+	return (false);
+}
+
 bool			ft_tokenize(t_tokenizer *t)
 {
 	uint32_t const	start = clean_buff(t);
-	t_sub			match;
 
+	t->token.length = 0;
 	while (true)
 	{
 		if (t->end >= t->buff.length)
@@ -64,22 +84,13 @@ bool			ft_tokenize(t_tokenizer *t)
 			DSTR_APPEND(&t->buff, IN_READ(t->in));
 			t->char_count++;
 		}
-		if (BITARRAY_GET(t->token_map->token_starts, t->buff.str[t->end]))
-		{
-			match = SUB(t->buff.str + t->end, 1);
-			t->token.length = 0;
-			ft_bst_getall(&t->token_map->tokens, &match, &find_max_t, t);
-			if (t->token.length > 0)
-			{
-				if (t->end > start)
-					break ;
-				t->token.str = t->buff.str + t->end;
-				t->end += t->token.length;
-				return (true);
-			}
-		}
+		if (BITARRAY_GET(t->token_map->token_starts, t->buff.str[t->end])
+			&& tokenize(t, start))
+			break ;
 		t->end++;
 	}
+	if (t->token.length > 0)
+		return (true);
 	t->token = SUB(t->buff.str + start, t->end - start);
 	t->token_data = NULL;
 	return (start < t->end);

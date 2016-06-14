@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:32:23 by juloo             #+#    #+#             */
-/*   Updated: 2016/06/06 17:34:15 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/14 14:46:28 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,6 @@ struct		s_append_out
 
 # define APPEND_OUT(S)	((t_append_out){OUT("", 0, &append_out_flush), (S)})
 
-void			append_out_flush(t_append_out *out);
+void		append_out_flush(t_append_out *out);
 
 #endif

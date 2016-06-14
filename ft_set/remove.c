@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 11:31:30 by juloo             #+#    #+#             */
-/*   Updated: 2016/05/09 14:45:55 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/14 14:50:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,14 @@ static void		set_balance(t_set *set, t_set_node *node)
 			set_node_rotate(set, parent, i.x == 1);
 			sibling = SET_CHILD(parent, i.y);
 		}
-		if ((sibling->left == NULL || !SET_ISRED(sibling->left))
-			&& (sibling->right == NULL || !SET_ISRED(sibling->right)))
+		if (!((sibling->left == NULL || !SET_ISRED(sibling->left))
+			&& (sibling->right == NULL || !SET_ISRED(sibling->right))))
 		{
-			SET_SETRED(sibling);
-			node = parent;
-			continue ;
+			set_balance_end(set, sibling, parent, i);
+			break ;
 		}
-		set_balance_end(set, sibling, parent, i);
-		break ;
+		SET_SETRED(sibling);
+		node = parent;
 	}
 	SET_SETBLACK(node);
 }
