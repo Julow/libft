@@ -1,0 +1,6 @@
+module ft::file_out:
+	public include public/
+
+	public require ft::out
+	public require ft::base
+	private require ft::file

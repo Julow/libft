@@ -1,0 +1,6 @@
+module ft::file_in:
+	public include public/
+
+	public require ft::in
+	public require ft::base
+	private require ft::file

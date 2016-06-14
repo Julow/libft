@@ -6,17 +6,19 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 12:46:06 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/14 19:19:57 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/ft_file_in.h"
-#include <unistd.h>
+#include "ft/file_in.h"
+
 #include <stdlib.h>
+#include <unistd.h>
 
 void		ft_in_close(t_file_in *in)
 {
-	close(in->fd);
+	if (in->opened)
+		close(in->fd);
 	free(in);
 }
 
