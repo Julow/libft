@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 17:15:24 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/06/14 15:19:34 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/15 19:05:31 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ bool			ft_tokenize(t_tokenizer *t)
 			DSTR_APPEND(&t->buff, IN_READ(t->in));
 			t->char_count++;
 		}
-		if (BITARRAY_GET(t->token_map->token_starts, t->buff.str[t->end])
-			&& tokenize(t, start))
+		if (BITARRAY_GET(t->token_map->token_starts,
+				(uint8_t)t->buff.str[t->end]) && tokenize(t, start))
 			break ;
 		t->end++;
 	}
