@@ -1,6 +1,8 @@
 module ft::parser:
 	public include public/
 
+	private include ./
+
 	public require ft::base
 	public require ft::tokenizer
 	public require ft::vector

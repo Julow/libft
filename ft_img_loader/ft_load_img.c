@@ -6,11 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 13:27:31 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/14 12:06:17 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/17 18:51:17 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/ft_file_in.h"
+#include "ft/file_in.h"
 #include "ft/img_loader.h"
 #include "ft/libft.h"
 
@@ -39,7 +39,7 @@ bool			ft_load_img(char const *file_name, t_img *dst)
 				if (g_imgtypes[i].ext.length == ext.length
 					&& !ft_memcmp(g_imgtypes[i].ext.str, ext.str, ext.length))
 				{
-					if ((in = ft_in_open(file_name)) == NULL)
+					if ((in = ft_in_open(ft_sub(file_name, 0, -1))) == NULL)
 						return (false);
 					ret = g_imgtypes[i].f((void*)in, dst);
 					ft_in_close(in);

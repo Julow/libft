@@ -5,3 +5,4 @@ module ft::img_loader:
 	public require ft::base
 	public require ft::img
 	private require ft::in
+	private require ft::file_in

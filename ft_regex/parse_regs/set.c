@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 18:09:39 by juloo             #+#    #+#             */
-/*   Updated: 2016/05/09 16:40:34 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/17 18:42:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,19 @@ uint32_t		parse_reg_is(t_parse_reg *p, uint32_t offset, t_reg **reg)
 	return (offset + 1);
 }
 
+static void		bitset_range(t_reg_set *r, char a, char b)
+{
+	if (a < b)
+		ft_bitset(r->set, a, b - a + 1);
+	else
+		ft_bitset(r->set, b, a - b + 1);
+}
+
 uint32_t		parse_reg_set(t_parse_reg *p, uint32_t offset, t_reg **reg)
 {
 	t_reg_set			*r;
 	uint32_t			i;
 	char				c;
-	char				end;
 
 	i = ++offset;
 	while (offset < p->len && p->str[offset] != ']')
@@ -79,10 +86,7 @@ uint32_t		parse_reg_set(t_parse_reg *p, uint32_t offset, t_reg **reg)
 		c = p->str[i++];
 		if ((i + 2) <= offset && p->str[i] == '-')
 		{
-			if (c < (end = p->str[++i]))
-				ft_bitset(r->set, c, end - c + 1);
-			else
-				ft_bitset(r->set, end, c - end + 1);
+			bitset_range(r, c, p->str[++i]);
 			i++;
 		}
 		else

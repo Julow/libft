@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 13:16:16 by juloo             #+#    #+#             */
-/*   Updated: 2016/05/09 16:42:44 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/17 18:51:34 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 ** dst->data is allocated and can be free using free() function
 ** -
 ** Return true on success, false on error
+** TODO: file_name as sub
 */
 bool			ft_load_img(char const *file_name, t_img *dst);
 
