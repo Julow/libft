@@ -1,0 +1,7 @@
+module ft::thread_pool:
+	public include public/
+	private include ./
+
+	public require ft::base
+
+	put LINK_FLAGS -lpthread
