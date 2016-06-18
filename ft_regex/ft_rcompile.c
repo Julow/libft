@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 11:18:40 by juloo             #+#    #+#             */
-/*   Updated: 2016/06/17 18:39:13 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/18 15:51:07 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static t_reg	*compile_regex(t_parse_reg *p)
 	return (FUCK(destroy_reg(reg), NULL));
 }
 
-#define SUB_P(P)		(SUB((P)->str, (P)->length))
+#define SUB_P(P)		(SUB((P)->str, (P)->len))
 
 uint32_t		parse_regex(t_parse_reg *p, uint32_t offset, t_reg **reg,
 					char end)

@@ -6,30 +6,15 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/19 20:18:26 by juloo             #+#    #+#             */
-/*   Updated: 2016/06/17 18:49:59 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/18 15:57:17 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_colors.h"
 #include "p_parser.h"
 
-static bool		exec_token(t_parse_data *p)
-{
-	t_parser_token const *const	t = p->t.token_data;
-
-	p->token = p->t.token;
-	p->token_data = t->data;
-	if (t->parser != NULL)
-	{
-		if (!ft_parse(p, t->parser) || t->end)
-			return (false);
-		return (ft_parse_token(p));
-	}
-	return (!t->end);
-}
-
 static bool		exec_match_match(t_parse_data *p, uint32_t offset,
-					t_rmatch const *rmatch, t_sub const *token)
+					t_rmatch const *rmatch, t_parser_token const *token)
 {
 	if (offset > 0)
 	{
@@ -43,6 +28,21 @@ static bool		exec_match_match(t_parse_data *p, uint32_t offset,
 	p->t.token.length = rmatch->match.length;
 	p->t.token_data = token;
 	return (exec_token(p));
+}
+
+bool			exec_token(t_parse_data *p)
+{
+	t_parser_token const *const	t = p->t.token_data;
+
+	p->token = p->t.token;
+	p->token_data = t->data;
+	if (t->parser != NULL)
+	{
+		if (!ft_parse(p, t->parser) || t->end)
+			return (false);
+		return (ft_parse_token(p));
+	}
+	return (!t->end);
 }
 
 bool			exec_match(t_parse_data *p)

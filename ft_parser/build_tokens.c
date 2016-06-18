@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_utils.c                                      :+:      :+:    :+:   */
+/*   build_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 18:52:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/06/17 19:10:06 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/18 15:53:26 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "p_parser.h"
 
-static void		add_token(t_parser *parser, t_sub token_str,
+void			add_token(t_parser *parser, t_sub token_str,
 					t_parser_token token)
 {
 	t_token_def		token_def;

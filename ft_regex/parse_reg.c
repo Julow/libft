@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/27 17:37:42 by juloo             #+#    #+#             */
-/*   Updated: 2016/05/09 17:59:11 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/18 15:51:49 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static uint32_t	parse_flags(t_parse_reg *p, uint32_t offset, uint32_t *flags)
 	return (offset);
 }
 
-static uint32_t	parse_n(t_parse_reg *p, uint32_t offset, t_vecu *range)
+static uint32_t	parse_n(t_parse_reg *p, uint32_t offset, t_vec2u *range)
 {
 	char			c;
 

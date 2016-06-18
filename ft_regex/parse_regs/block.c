@@ -6,13 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 21:01:19 by juloo             #+#    #+#             */
-/*   Updated: 2016/05/09 18:09:02 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/18 15:58:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "regex_internal.h"
 
-#define RETURN(...)		__VA_ARGS__
+#define RETURN(...)		return (__VA_ARGS__)
 
 static uint32_t	g_reg_type_sizeof[__REG_T_COUNT] = {
 	[REG_T_STR] = sizeof(t_reg_str),

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 11:13:12 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/06/14 19:19:25 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/18 15:26:43 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_file_out		*ft_out_open(t_sub file)
 	int				fd;
 	t_file_out		*out;
 
-	if ((fd = ft_open(file, O_WRONLY | O_CREAT | O_EXCL | O_EXLOCK)) < 0)
+	if ((fd = ft_open(file, O_WRONLY | O_CREAT | O_EXCL)) < 0)
 		return (NULL);
 	if ((out = ft_out_fdopen(fd)) == NULL)
 		return (NULL);
