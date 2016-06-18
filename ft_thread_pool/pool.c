@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 11:32:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/06/18 21:14:59 by juloo            ###   ########.fr       */
+/*   Updated: 2016/06/19 00:48:02 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ t_thread_pool	*ft_thread_pool_create(uint32_t thread_count,
 
 	p = MALLOC(sizeof(t_thread_pool) + sizeof(t_thread_pool_shared)
 			+ S(pthread_t, thread_count));
-	*p = (t_thread_pool){start_f, env, thread_count};
+	*p = (t_thread_pool){start_f, env, task_data_size, thread_count};
 	shared = THREAD_POOL_SHARED(p);
 	*shared = (t_thread_pool_shared){p, PTHREAD_MUTEX_INITIALIZER,
 			PTHREAD_COND_INITIALIZER, PTHREAD_COND_INITIALIZER, 0,
-			THREAD_POOL_F_ASLEEP, task_data_size};
+			THREAD_POOL_F_ASLEEP};
 	pthread_mutex_lock(&shared->lock);
 	threads = THREAD_POOL_THREADS(p);
 	i = 0;

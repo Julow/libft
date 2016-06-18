@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 11:31:28 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/06/18 20:48:28 by juloo            ###   ########.fr       */
+/*   Updated: 2016/06/19 00:40:00 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ struct			s_thread_pool_shared
 	pthread_cond_t		notify_cond;
 	uint32_t			working_threads;
 	uint32_t			flags;
-	uint32_t			task_data_size;
 };
 
 /*

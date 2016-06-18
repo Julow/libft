@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 22:22:55 by juloo             #+#    #+#             */
-/*   Updated: 2016/06/18 21:14:29 by juloo            ###   ########.fr       */
+/*   Updated: 2016/06/19 00:45:50 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ typedef void					(*t_task_f)(void *task_data);
 ** The start function
 ** -
 ** Called by threads to start a new task
-** 	'*f' have to be set to the function to call
-** 	'task_data' can be used to transfer data to 'f'
+** 	*f			=> have to be set to the function to call
+** 	task_data	=> can be used to transfer data to 'f'
 ** -
 ** Never called twice in parallel
 ** -
@@ -40,12 +40,18 @@ typedef bool			(*t_start_f)(void *env, t_task_f *f, void *task_data);
 
 /*
 ** The thread_pool object
+** start_f			=> the start function
+** env				=> param of the start function
+** task_data_size	=> size of task data
+** thread_count		=> number of thread created
+** -
+** 'start_f', 'env' and 'task_data_size' can be modified
 */
-
 struct			s_thread_pool
 {
 	t_start_f		start_f;
 	void			*env;
+	uint32_t		task_data_size;
 	uint32_t		thread_count;
 };
 
