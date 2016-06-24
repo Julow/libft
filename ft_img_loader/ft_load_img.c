@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 13:27:31 by juloo             #+#    #+#             */
-/*   Updated: 2016/06/17 18:51:17 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/25 01:40:04 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ static t_imgtype const	g_imgtypes[] = {
 	{SUB("", 0), NULL}
 };
 
-bool			ft_load_img(char const *file_name, t_img *dst)
+bool			ft_load_img(t_sub file_name, t_img *dst)
 {
 	t_sub			ext;
 	int				i;
 	t_file_in		*in;
 	bool			ret;
 
-	ext = ft_sub((char*)file_name, -1, -1);
-	while (--(ext.str) >= file_name)
+	ext = SUB(file_name.str + file_name.length, 0);
+	while (--(ext.str) >= file_name.str)
 	{
 		ext.length++;
 		if (ext.str[0] == '.')
@@ -39,7 +39,7 @@ bool			ft_load_img(char const *file_name, t_img *dst)
 				if (g_imgtypes[i].ext.length == ext.length
 					&& !ft_memcmp(g_imgtypes[i].ext.str, ext.str, ext.length))
 				{
-					if ((in = ft_in_open(ft_sub(file_name, 0, -1))) == NULL)
+					if ((in = ft_in_open(file_name)) == NULL)
 						return (false);
 					ret = g_imgtypes[i].f((void*)in, dst);
 					ft_in_close(in);
