@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 11:32:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/06/19 00:47:29 by juloo            ###   ########.fr       */
+/*   Updated: 2016/06/24 17:04:24 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 static void		thread_pool_t_exec(t_thread_pool_shared *shared)
 {
 	t_task_f		task_f;
-	uint8_t			task_data[shared->pool->task_data_size];
+	uint8_t			task_data[shared->pool->task_manager->task_size];
 
-	if (!shared->pool->start_f(shared->pool->env, &task_f, task_data))
+	if (!shared->pool->task_manager->init_f(shared->pool->task_manager,
+			&task_f, task_data))
 	{
 		shared->flags |= THREAD_POOL_F_ASLEEP;
 	}

@@ -6,15 +6,14 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 11:32:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/06/19 00:48:02 by juloo            ###   ########.fr       */
+/*   Updated: 2016/06/24 17:50:09 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "p_thread_pool.h"
 #include <stdlib.h>
 
-t_thread_pool	*ft_thread_pool_create(uint32_t thread_count,
-					uint32_t task_data_size, t_start_f start_f, void *env)
+t_thread_pool	*ft_thread_pool_create(uint32_t thread_count)
 {
 	t_thread_pool			*p;
 	t_thread_pool_shared	*shared;
@@ -23,7 +22,7 @@ t_thread_pool	*ft_thread_pool_create(uint32_t thread_count,
 
 	p = MALLOC(sizeof(t_thread_pool) + sizeof(t_thread_pool_shared)
 			+ S(pthread_t, thread_count));
-	*p = (t_thread_pool){start_f, env, task_data_size, thread_count};
+	*p = (t_thread_pool){NULL, thread_count};
 	shared = THREAD_POOL_SHARED(p);
 	*shared = (t_thread_pool_shared){p, PTHREAD_MUTEX_INITIALIZER,
 			PTHREAD_COND_INITIALIZER, PTHREAD_COND_INITIALIZER, 0,
@@ -48,27 +47,38 @@ void			ft_thread_pool_lock(t_thread_pool *p, bool lock)
 	t_thread_pool_shared *const	shared = THREAD_POOL_SHARED(p);
 
 	if (lock)
-	{
 		pthread_mutex_lock(&shared->lock);
-	}
 	else
-	{
-		shared->flags &= ~THREAD_POOL_F_ASLEEP;
-		pthread_cond_broadcast(&shared->notify_cond);
 		pthread_mutex_unlock(&shared->lock);
-	}
+}
+
+void			ft_thread_pool_notify(t_thread_pool *p)
+{
+	t_thread_pool_shared *const	shared = THREAD_POOL_SHARED(p);
+
+	shared->flags &= ~THREAD_POOL_F_ASLEEP;
+	pthread_cond_broadcast(&shared->notify_cond);
+}
+
+bool			ft_thread_pool_wait(t_thread_pool *p)
+{
+	t_thread_pool_shared *const	shared = THREAD_POOL_SHARED(p);
+
+	if (shared->flags & (THREAD_POOL_F_ASLEEP | THREAD_POOL_F_DEAD)
+		&& shared->working_threads == 0)
+		return (false);
+	pthread_cond_wait(&shared->join_cond, &shared->lock);
+	return (true);
 }
 
 void			ft_thread_pool_join(t_thread_pool *p)
 {
 	t_thread_pool_shared *const	shared = THREAD_POOL_SHARED(p);
 
-	pthread_mutex_lock(&shared->lock);
 	while (!(shared->flags & (THREAD_POOL_F_ASLEEP | THREAD_POOL_F_DEAD)))
 		thread_pool_t_work(shared);
 	while (shared->working_threads > 0)
 		pthread_cond_wait(&shared->join_cond, &shared->lock);
-	pthread_mutex_unlock(&shared->lock);
 }
 
 void			ft_thread_pool_destroy(t_thread_pool *p)
