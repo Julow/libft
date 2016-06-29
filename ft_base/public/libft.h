@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/06/13 14:57:06 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/29 17:30:57 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,15 @@ typedef struct s_vec2u			t_vec2u;
 ** Preprocessor utils
 ** -
 ** TODO: doc
+** -
+** SWAP(A+, B+)			Swap values of A and B
+** ARRAY_LEN(ARRAY)		Return the length of a static array
+** BOOL_OF(VAL)			Cast to bool
+** LERP(A, B, T+)		Linear interpolation
+** DIFF(A+, B+)			Positive difference
 */
+
+# define SWAP(A, B)		({typeof(A) _swap_tmp=(A);(A)=(B);(B)=_swap_tmp;VOID;})
 
 # define C(T, ...)		((T){__VA_ARGS__})
 

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 22:22:55 by juloo             #+#    #+#             */
-/*   Updated: 2016/06/24 17:25:54 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/06/29 18:02:38 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ typedef void					(*t_task_f)(void *task_data);
 ** Called by threads to init a new task
 ** -
 ** *f			=> have to be set to the function to call
-** task_data	=> can be used to transfer data to 'f'
+** data			=> can be used to transfer data to 'f'
 ** -
 ** Never called twice asynchronously
 ** -
 ** If it return false, the thread pool goes to sleep
 */
-typedef bool			(*t_init_f)(t_task_manager *m, t_task_f *f, void *task_data);
+typedef bool			(*t_init_f)(t_task_manager *m, t_task_f *f, void *data);
 
 /*
 ** The task_manager object
@@ -73,8 +73,6 @@ struct			s_thread_pool
 ** It must be wake up by:
 **  ft_thread_pool_notify(p);
 **  followed by unlock, wait or join
-** -
-** the task_manager attribute should be 
 ** -
 ** If pthread_create() fail, continue with thread_count--
 ** Return NULL if no thread have been created or an error occured
