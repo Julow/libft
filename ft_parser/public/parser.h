@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 16:01:45 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/03/07 14:51:55 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/07/06 21:56:09 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ bool			ft_parse_error(t_parse_data *p, t_sub err);
 
 struct			s_parser_token
 {
-	void			*data;
+	void const		*data;
 	t_parser		*parser;
 	bool			end;
 };

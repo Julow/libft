@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 17:19:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/03/07 15:12:15 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/07/06 21:56:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ struct			s_tokenizer
 	uint32_t			end;
 	uint32_t			char_count;
 	t_sub				token;
-	void				*token_data;
+	void const			*token_data;
 };
 
 /*

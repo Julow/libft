@@ -6,14 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 11:18:40 by juloo             #+#    #+#             */
-/*   Updated: 2016/06/18 15:51:07 by juloo            ###   ########.fr       */
+/*   Updated: 2016/07/06 21:54:51 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "regex_internal.h"
 #include <stdlib.h>
 
-#define FUCK(...)		__VA_ARGS__
+#define FUCK(...)		(__VA_ARGS__)
 
 static void		destroy_parser(t_parse_reg *p)
 {
@@ -91,7 +91,7 @@ uint32_t		parse_regex(t_parse_reg *p, uint32_t offset, t_reg **reg,
 		if (*reg == NULL)
 			*reg = r;
 	}
-	return ((end == '\0' || offset < p->len) ? offset : FUCK(REG_ERROR(p,
+	return ((end == '\0' || offset < p->len) ? offset : FUCK((void)REG_ERROR(p,
 		"Unclosed group", offset), destroy_reg(*reg), (*reg = NULL), REG_FAIL));
 }
 

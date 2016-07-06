@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 00:19:37 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/07 15:10:44 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/07/06 21:54:03 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ struct			s_parse_reg
 ** Set err_offset and err_str in P
 ** Return REG_FAIL
 */
-# define REG_ERROR(P,S,O)	((P)->err_offset=O),((P)->err_str=SUBC(S)),REG_FAIL
+# define REG_ERROR(P,S,O)	(((P)->err_offset=O),((P)->err_str=SUBC(S)),REG_FAIL)
 
 struct			s_parse_reg_n
 {
