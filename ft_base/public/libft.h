@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/06/29 17:30:57 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/07/07 14:33:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,7 +290,7 @@ typedef uint32_t	t_is;
 
 extern t_is		g_is_table[];
 
-# define IS(c,f)		(g_is_table[(unsigned char)(c)] & (f))
+# define IS(c,f)		((bool)(g_is_table[(uint8_t)(c)] & (f)))
 
 /*
 ** ft_is function is equivalent to IS macro

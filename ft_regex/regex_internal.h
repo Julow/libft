@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/23 00:19:37 by juloo             #+#    #+#             */
-/*   Updated: 2016/07/06 21:54:03 by juloo            ###   ########.fr       */
+/*   Updated: 2016/07/07 13:12:18 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ struct			s_reg_str
 struct			s_reg_set
 {
 	t_reg			reg;
-	t_is			is;
 	t_bits			set[BITARRAY(128)];
 };
 

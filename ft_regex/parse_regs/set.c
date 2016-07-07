@@ -6,13 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 18:09:39 by juloo             #+#    #+#             */
-/*   Updated: 2016/06/17 18:42:16 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/07/07 14:45:52 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "regex_internal.h"
 
-static t_is		g_reg_is[((uint8_t)(-1)) >> 1] = {
+static t_is		g_reg_is[256] = {
 	['.'] = IS_PRINT,
 	['a'] = IS_ALPHA,
 	['l'] = IS_LOWER,
@@ -23,11 +23,28 @@ static t_is		g_reg_is[((uint8_t)(-1)) >> 1] = {
 	['w'] = IS_WORD,
 };
 
-#define REG_IS(C)		(((C) > 0) ? g_reg_is[(uint8_t)(C)] : 0)
+#define REG_IS(C)		(((C) > 0) ? g_reg_is[(C) & 0xFF] : 0)
+
+static void		reg_is(t_is is, t_reg **reg)
+{
+	t_reg_set		*r;
+	uint32_t		i;
+
+	r = NEW(t_reg_set);
+	ft_bzero(r, sizeof(t_reg_set));
+	r->reg.type = REG_T_SET;
+	i = 0;
+	while (i < 128)
+	{
+		if (IS(i, is))
+			BITARRAY_SET(r->set, i);
+		i++;
+	}
+	*reg = V(r);
+}
 
 bool			parse_reg_block_is(t_sub sub, t_reg **reg)
 {
-	t_reg_set		*r;
 	uint32_t		i;
 	t_is			is;
 
@@ -38,29 +55,17 @@ bool			parse_reg_block_is(t_sub sub, t_reg **reg)
 		is |= REG_IS(sub.str[i]);
 		i++;
 	}
-	r = NEW(t_reg_set);
-	ft_bzero(r, sizeof(t_reg_set));
-	r->reg.type = REG_T_SET;
-	r->is = is;
-	*reg = V(r);
+	reg_is(is, reg);
 	return (true);
 }
 
 uint32_t		parse_reg_is(t_parse_reg *p, uint32_t offset, t_reg **reg)
 {
-	t_reg_set		*r;
-	t_is			is;
-
-	is = REG_IS(p->str[offset]);
-	r = NEW(t_reg_set);
-	ft_bzero(r, sizeof(t_reg_set));
-	r->reg.type = REG_T_SET;
-	r->is = is;
-	*reg = V(r);
+	reg_is(REG_IS(p->str[offset]), reg);
 	return (offset + 1);
 }
 
-static void		bitset_range(t_reg_set *r, char a, char b)
+static void		bitset_range(t_reg_set *r, uint32_t a, uint32_t b)
 {
 	if (a < b)
 		ft_bitset(r->set, a, b - a + 1);

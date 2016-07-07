@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 22:27:12 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/07 15:01:28 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/07/07 14:42:59 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static uint32_t	exec_reg_n(t_rmatch *m, t_reg const *reg, t_vec2u offsets,
 		&& (tmp = exec_reg_n(m, reg, VEC2U(tmp, offsets.x), n + 1)) != REG_FAIL)
 		return (tmp);
 	if (n >= reg->min)
-		return (exec_reg_next(m, reg, offsets.x, offsets.y));
+		return (exec_reg_next(m, reg, offsets.y, offsets.x));
 	return (REG_FAIL);
 }
 

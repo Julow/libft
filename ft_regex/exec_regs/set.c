@@ -6,14 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/31 22:25:52 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/11 17:40:43 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/07/07 13:12:42 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "regex_internal.h"
 
-#define REG_SET(F)	(IS(F(m->str.str[offset]), reg->is) || _REG_SET(F))
-#define _REG_SET(F)	(BITARRAY_GET(reg->set, (uint8_t)F(m->str.str[offset])))
+#define REG_SET(F)	(BITARRAY_GET(reg->set, (uint8_t)F(m->str.str[offset])))
 
 uint32_t		exec_reg_set(t_rmatch *m, t_reg_set const *reg, uint32_t offset)
 {
