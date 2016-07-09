@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 18:45:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/06/17 18:49:05 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/07/09 16:06:03 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,8 @@ bool			ft_parse_token(t_parse_data *p)
 	return (exec_token(p));
 }
 
-bool			ft_parse_error(t_parse_data *p, t_sub err)
+bool			ft_parse_error(t_parse_data *p)
 {
-	p->token = err;
 	p->flags |= PARSE_F_ERROR;
 	return (false);
 }
