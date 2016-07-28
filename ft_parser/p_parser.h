@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 18:45:07 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/06/18 15:57:31 by juloo            ###   ########.fr       */
+/*   Updated: 2016/07/28 17:34:08 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ struct			s_subparser_resolver
 	t_hmap			*map;
 	t_vector const	*parsers;
 };
-
-bool			exec_match(t_parse_data *p);
-
-bool			exec_token(t_parse_data *p);
 
 /*
 ** -

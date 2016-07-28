@@ -4,7 +4,6 @@ module ft::parser:
 	private include ./
 
 	public require ft::base
+	public require ft::hmap
 	public require ft::tokenizer
 	public require ft::vector
-	public require ft::regex
-	public require ft::hmap

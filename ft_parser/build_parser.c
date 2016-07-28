@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 20:06:51 by juloo             #+#    #+#             */
-/*   Updated: 2016/06/18 15:57:58 by juloo            ###   ########.fr       */
+/*   Updated: 2016/07/28 17:44:21 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static t_parser	*build(t_hmap *map, t_vector const *parsers,
 	parser->data = def->data;
 	parser->f = def->f;
 	parser->token_map = TOKEN_MAP();
-	parser->match = VECTOR(t_parser_match);
 	parser->resolved = false;
 	build_tokens(parser, def);
 	build_inheritance(map, parser, parsers, def);

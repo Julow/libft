@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 19:09:07 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/06/18 15:53:11 by juloo            ###   ########.fr       */
+/*   Updated: 2016/07/28 17:44:14 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,6 @@ static bool		inherit_tokens(t_token_def const *token, t_parser *parser)
 	return (true);
 }
 
-/*
-** TODO: dup regex
-*/
-
-static void		inherit_match(t_parser *parser, t_parser const *parent)
-{
-	uint32_t				i;
-	t_parser_match			match;
-	t_parser_match const	*m;
-
-	i = 0;
-	while (i < parent->match.length)
-	{
-		m = VECTOR_GET(parent->match, i);
-		match.regex = m->regex;
-		match.token = (t_parser_token){m->token.data, m->token.parser, false};
-		ft_vpush(&parser->match, &match, 1);
-		i++;
-	}
-}
-
 void			build_inheritance(t_hmap *map, t_parser *parser,
 					t_vector const *parsers, t_parser_def const *def)
 {
@@ -65,6 +44,5 @@ void			build_inheritance(t_hmap *map, t_parser *parser,
 					0, -1), map, parsers)) == NULL)
 			continue ;
 		ft_bst_iter(&parent->token_map.tokens, &inherit_tokens, parser);
-		inherit_match(parser, parent);
 	}
 }

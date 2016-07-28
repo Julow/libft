@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 21:02:47 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/07 14:52:10 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/07/28 18:19:53 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_DEF_H
-# define PARSER_DEF_H
+#ifndef FT__PARSER_DEF_H
+# define FT__PARSER_DEF_H
 
 # include "ft/ft_hmap.h"
 # include "ft/ft_vector.h"
@@ -32,17 +32,16 @@ typedef struct s_parser_def_t	t_parser_def_t;
 struct			s_parser_def
 {
 	t_sub			name;
-	void			*data;
-	bool			(*f)(t_parse_data *);
+	void const		*data;
+	bool			(*f)(t_parse_data*, void const*, void*);
 	t_vector		parents;
 	t_vector		tokens;
-	t_vector		match;
 };
 
 struct			s_parser_def_t
 {
 	t_sub			token;
-	void			*data;
+	void const		*data;
 	char const		*parser;
 	bool			end;
 };

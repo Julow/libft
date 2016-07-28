@@ -6,43 +6,32 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 16:01:45 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/07/09 16:08:37 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/07/28 18:18:52 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef FT__PARSER_H
+# define FT__PARSER_H
 
 # include "ft/ft_vector.h"
 # include "ft/libft.h"
-# include "ft/regex.h"
 # include "ft/tokenizer.h"
 
 typedef struct s_parser			t_parser;
 typedef struct s_parser_token	t_parser_token;
-typedef struct s_parser_match	t_parser_match;
 
 typedef struct s_parse_data		t_parse_data;
-typedef struct s_parse_frame	t_parse_frame;
 
 /*
 ** ========================================================================== **
 ** Parsing
 */
 
-struct			s_parse_frame
-{
-	t_parser const	*parser;
-	void			*data;
-	t_parse_frame	*prev;
-};
-
 /*
 ** Parse data
 ** -
 ** 'env'		User data
 ** 't'			Tokenizer
-** 'frame'		The current frame
 ** 'flags'		Flags:
 ** 			PARSE_F_FIRST	Set when parse_token return it's first token
 ** 			PARSE_F_EOF		Set on EOF
@@ -55,7 +44,6 @@ struct			s_parse_data
 {
 	void			*env;
 	t_tokenizer		t;
-	t_parse_frame	*frame;
 	uint32_t		flags;
 	t_sub			token;
 	void const		*token_data;
@@ -75,22 +63,18 @@ struct			s_parse_data
 
 /*
 ** Iterate over tokens
-** 'p->eof' is set to true on EOF
-** 'p->token' represent the token string
-** 'p->token_data' represent the token data
+** 'param' is passed to the new frame (if any)
 ** Return false when current frame should stop
-** On returning false: 'p->token' and 'p->token_data'
-**  are set to the end token's datas
+** 'p->token' and 'p->token_data' are set to the current token
+** On EOF, return false and set the EOF flag
 */
-bool			ft_parse_token(t_parse_data *p);
+bool			ft_parse_token(t_parse_data *p, void *param);
 
 /*
-** Create a new frame and execute 'parser'
-** Call 'f' function store in each parsers
-** 'p->token' and 'p->token_data' are set to the begin token's datas
-** Parsing stop when 'f' return false
+** Execute 'parser'
+** 'p->token' and 'p->token_data' are set to the begin token
 */
-bool			ft_parse(t_parse_data *p, t_parser const *parser);
+bool			ft_parse(t_parse_data *p, t_parser const *parser, void *param);
 
 /*
 ** Set error flag
@@ -113,18 +97,17 @@ struct			s_parser_token
 	bool			end;
 };
 
-struct			s_parser_match
-{
-	t_regex			regex;
-	t_parser_token	token;
-};
-
+/*
+** data			=> parser's custom data
+** f			=> frame function
+** token_map	=> ft::tokenizer's token_map
+** resolved		=> TODO: remove this shit
+*/
 struct			s_parser
 {
-	void			*data;
-	bool			(*f)(t_parse_data *);
+	void const		*data;
+	bool			(*f)(t_parse_data*, void const *data, void *param);
 	t_token_map		token_map;
-	t_vector		match;
 	bool			resolved;
 };
 

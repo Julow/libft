@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/17 18:52:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/06/18 15:53:26 by juloo            ###   ########.fr       */
+/*   Updated: 2016/07/28 17:45:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,6 @@ void			add_token(t_parser *parser, t_sub token_str,
 	ft_token_map(&parser->token_map, &token_def);
 }
 
-static void		add_match(t_parser *parser, t_sub pattern,
-					t_parser_token token)
-{
-	t_parser_match	match;
-	t_regex_err		err;
-
-	if (!ft_rcompile(&match.regex, pattern, &err))
-	{
-		ft_printf("%ts: '%ts'\n%.*c^%n",
-			err.str, pattern, err.str.length + 3, ' ');
-		return ;
-	}
-	match.token = token;
-	ft_vpush(&parser->match, &match, 1);
-}
-
 void			build_tokens(t_parser *parser, t_parser_def const *def)
 {
 	t_parser_def_t const	*token;
@@ -51,14 +35,6 @@ void			build_tokens(t_parser *parser, t_parser_def const *def)
 	{
 		token = VECTOR_GET(def->tokens, i);
 		add_token(parser, token->token,
-			(t_parser_token){token->data, V(token->parser), token->end});
-		i++;
-	}
-	i = 0;
-	while (i < def->match.length)
-	{
-		token = VECTOR_GET(def->match, i);
-		add_match(parser, token->token,
 			(t_parser_token){token->data, V(token->parser), token->end});
 		i++;
 	}
