@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 16:06:57 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/08/03 18:23:28 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/04 00:42:44 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,7 @@ void		*ft_tokenmap_add(t_token_map *map, t_sub str, uint32_t data_size)
 
 	ASSERT(str.length > 0);
 	if (!ft_bst_getall(&map->tokens, &str, &unique_token, NULL))
-	{
-		ft_printf("DUP TOKEN %ts%n", str);
 		return (NULL);
-	}
-	ft_printf("    TOKEN %ts%n", str);
 	BITARRAY_SET(map->token_starts, str.str[0]);
 	t = ft_bst_put(&map->tokens, &str, data_size + str.length);
 	str_dst = ENDOF(t) + data_size;

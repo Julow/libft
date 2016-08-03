@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/02 13:22:23 by juloo             #+#    #+#             */
-/*   Updated: 2016/08/03 18:11:20 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/04 01:00:10 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ bool			ft_lexer_next(t_lexer *l)
 
 	lexer_assert(l);
 	if (!ft_tokenize(&l->t))
+	{
+		l->token = NULL;
+		l->eof = true;
 		return (false);
+	}
 	if ((token = l->t.token_data) == NULL)
 	{
 		l->token = NULL;
@@ -47,8 +51,12 @@ bool			ft_lexer_ahead(t_lexer *l, t_sub *s, void const **data)
 
 	lexer_assert(l);
 	if (!ft_tokenize_ahead(&l->t, s, V(&token)))
+	{
+		if (data != NULL)
+			*data = NULL;
 		return (false);
+	}
 	if (data != NULL)
-		*data = token->data;
+		*data = (token == NULL) ? NULL : token->data;
 	return (true);
 }

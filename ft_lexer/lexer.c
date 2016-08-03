@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/02 13:50:51 by juloo             #+#    #+#             */
-/*   Updated: 2016/08/03 18:09:36 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/04 00:58:39 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ void			ft_lexer_pop(t_lexer *l)
 void			ft_lexer_destroy(t_lexer *l, bool destroy)
 {
 	ft_tokenizer_reset(&l->t, destroy);
-	l->states.length = 0;
-	l->token = NULL;
 	if (destroy)
 		ft_vclear(&l->states);
+	else
+		l->states.length = 0;
+	l->token = NULL;
+	l->eof = false;
 }

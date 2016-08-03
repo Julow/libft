@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 18:32:55 by juloo             #+#    #+#             */
-/*   Updated: 2016/08/03 16:18:34 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/04 00:58:10 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,17 @@ typedef struct s_lexer_token_def	t_lexer_token_def;
 ** 't'			=> tokenizer object
 ** 'states'		=> state stack
 ** 'token'		=> current token data or NULL for unmatched tokens
+** 'eof'		=> set to true when EOF is hit
 */
 struct			s_lexer
 {
 	t_tokenizer		t;
 	t_vector		states;
 	void const		*token;
+	bool			eof;
 };
 
-# define LEXER(IN)		((t_lexer){TOKENIZER(IN, NULL), VECTOR(t_lexer_state const*), NULL})
+# define LEXER(IN)		((t_lexer){TOKENIZER(IN, NULL), VECTOR(t_lexer_state const*), NULL, false})
 
 /*
 ** Push a state
