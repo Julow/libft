@@ -1,0 +1,9 @@
+module ft::lexer:
+	public include public/
+	private include ./
+
+	public require ft::base
+	public require ft::tokenizer
+	public require ft::vector
+
+	private require ft::set
