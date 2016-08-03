@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/07/07 14:33:46 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/08/03 17:52:47 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,23 +148,33 @@ typedef struct s_vec2u			t_vec2u;
 ** ========================================================================== **
 ** Variant type
 ** -
-** VARIANT_T(NAME, ...)		Create the variant type NAME
-** 								arguments are pairs of CNSTR OF TYPE
-** VARIANT(T, CNSTR, VAL)	Construct CNSTR (of variant T) with value VAL
-** VARIANT_GET(V, T, CNSTR)	Return the value of a variant
-** VARIANT_IS(V, T, CNSTR)	Check if a variant is constructed using CNSTR
 ** OF						Keyword used in variant type declaration
+** -
+** VARIANT(NAME, ...)		Declare a variant, arguments are of the form:
+** 								constructor OF type
+** VARIANT_T(NAME)			Variant type
+** -
+** VARIANT_C(NAME, C, VAL)	Construct C (of variant NAME) with value VAL
+** -
+** VARIANT_GET(NAME, V, C)	Get the value of the variant V with constructor C
+** VARIANT_IS(NAME, V, C)	Check if the value of V was constructed with C
+** -
+** VARIANT_GET_C(V)			Get the constructor of the value of V
+** VARIANT_C_VAL(NAME, C)	Get the constructor C of variant NAME
 */
 
 # define OF							,
 
-# define VARIANT_T(N, ...)			_VARIANT_S(N) { _VARIANT_T0(N,__VA_ARGS__) }
+# define VARIANT_T(N)				struct VARIANT_##N
+# define VARIANT(N, ...)			VARIANT_T(N) { _VARIANT_T0(N,__VA_ARGS__) }
 
-# define VARIANT(T, CNSTR, VAL)		((_VARIANT_S(T))_VARIANT_INIT(T,CNSTR,VAL))
+# define VARIANT_C(N, C, VAL)		((VARIANT_T(N))_VARIANT_INIT(N,C,VAL))
 
-# define VARIANT_GET(V, T, CNSTR)	(ASSERT(VARIANT_IS(V,T,CNSTR)), (V).u.CNSTR)
+# define VARIANT_GET(N, V, C)		(ASSERT(VARIANT_IS(N,V,C)), (V).u.C)
+# define VARIANT_IS(N, V, C)		(VARIANT_GET_C(V) == VARIANT_C_VAL(N, C))
 
-# define VARIANT_IS(V, T, CNSTR)	((V).e == (_VARIANT_ATTR(CNSTR, T)))
+# define VARIANT_GET_C(V)			((V).e)
+# define VARIANT_C_VAL(N, C)		_VARIANT_##N##_##C
 
 /*
 ** ========================================================================== **
@@ -321,7 +331,8 @@ int				ft_strchri(const char *str, char c);
 ** SUB_OFF(A, B)			Equivalent to B.str - A.str
 ** SUB_BEF(A+, B)			Equivalent to SUB(A.str, SUB_OFF(A, B))
 ** SUB_SUB(S, FROM, LEN)	Equivalent to SUB(S.str + FROM, LEN)
-** SUB_EQU(A+, B+)			Sub comparaison
+** SUB_EQU(A+, B+)			(==)
+** SUB_CMP(A+, B+)			(-)
 ** -
 ** Params marked with '+' are used several times into the macro
 */
@@ -342,6 +353,7 @@ struct			s_sub
 # define SUB_BEF(A,B)	(SUB((A).str, (B).str - (A).str))
 # define SUB_SUB(S,F,L)	(SUB((S).str + (F), (L)))
 # define SUB_EQU(A,B)	((A).length == (B).length && _SUB_EQU(A, B))
+# define SUB_CMP(A,B)	(((A).length != (B).length) ? _SUB_CMP((A),(B)))
 
 /*
 ** Sub constructor
@@ -570,8 +582,7 @@ bool			ft_assert_hard(char const *err, char const *func);
 ** Variant
 */
 
-# define _VARIANT_S(TYPE)			struct s_VARIANT_##TYPE
-# define _VARIANT_INIT(TYPE, A, V)	{ .e = _VARIANT_ATTR(A, TYPE), .u.A = (V) }
+# define _VARIANT_INIT(N, C, VAL)	{ .e = VARIANT_C_VAL(N, C), .u.C = (VAL) }
 
 # define _VARIANT_T0(...)	_VARIANT_T1(__VA_ARGS__) _VARIANT_T3(__VA_ARGS__)
 # define _VARIANT_T1(...)	enum { _VARIANT_T2(__VA_ARGS__) } e;
@@ -579,16 +590,16 @@ bool			ft_assert_hard(char const *err, char const *func);
 # define _VARIANT_T3(...)	union { _VARIANT_T4(__VA_ARGS__) } u;
 # define _VARIANT_T4(N,...)	FOR_EACH2(_VARIANT_UNION_FOR, , N, __VA_ARGS__)
 
-# define _VARIANT_ENUM_FOR(ATTR,TYPE,NAME)	_VARIANT_ATTR(ATTR, NAME),
-# define _VARIANT_UNION_FOR(ATTR,TYPE,NAME)	TYPE ATTR;
-
-# define _VARIANT_ATTR(ATTR, NAME)	_VARIANT_##NAME##_##ATTR
+# define _VARIANT_ENUM_FOR(C,TYPE,NAME)		VARIANT_C_VAL(NAME, C),
+# define _VARIANT_UNION_FOR(C,TYPE,NAME)	TYPE C;
 
 /*
 ** Sub
 */
 
 # define _SUB_EQU(A,B)	(ft_memcmp((A).str, (B).str, (A).length) == 0)
+
+# define _SUB_CMP(A,B)	A.length - B.length : ft_memcmp(A.str, B.str, A.length)
 
 /*
 ** Assert
