@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 18:32:55 by juloo             #+#    #+#             */
-/*   Updated: 2016/08/04 00:58:10 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/04 15:16:07 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ typedef struct s_lexer_token_def	t_lexer_token_def;
 
 /*
 ** Lexer object
-** 't'			=> tokenizer object
-** 'states'		=> state stack
-** 'token'		=> current token data or NULL for unmatched tokens
-** 'eof'		=> set to true when EOF is hit
+** 't'				=> tokenizer object
+** 'states'			=> state stack
+** 'token'			=> current token data or NULL for unmatched tokens
+** 'eof'			=> Set when end-of-file is hit
+** 'should_push'	=> Token with push attribute
+** 'should_pop'		=> Token with pop attribute
 */
 struct			s_lexer
 {
@@ -44,27 +46,41 @@ struct			s_lexer
 	t_vector		states;
 	void const		*token;
 	bool			eof;
+	bool			should_push;
+	bool			should_pop;
 };
 
-# define LEXER(IN)		((t_lexer){TOKENIZER(IN, NULL), VECTOR(t_lexer_state const*), NULL, false})
+/*
+** Init lexer
+*/
+void			ft_lexer_init(t_in *in, t_lexer_state const *s, t_lexer *dst);
 
 /*
-** Push a state
+** Push the 'push' attribute of the last token
+** unset 'should_push'
+** Should not be called if 'should_push' is not set
 */
-void			ft_lexer_push(t_lexer *l, t_lexer_state const *state);
+void			ft_lexer_push(t_lexer *l);
+
+/*
+** Pop current state
+** unset 'should_pop'
+*/
 void			ft_lexer_pop(t_lexer *l);
 
 /*
 ** Go to the next token
 ** Return true on success, false on EOF or error
 ** l->token is updated
+** Should not be called if 'should_push' or 'should_pop' is set
 */
 bool			ft_lexer_next(t_lexer *l);
 
 /*
 ** Look ahead for the next token
 ** 's' and 'data' are set to the next token's string and data
-** Return true on success, false on EOF
+** Return true on success, false on EOF or error
+** Should not be called if 'should_push' or 'should_pop' is set
 */
 bool			ft_lexer_ahead(t_lexer *l, t_sub *s, void const **data);
 
