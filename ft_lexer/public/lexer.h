@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 18:32:55 by juloo             #+#    #+#             */
-/*   Updated: 2016/08/04 15:16:07 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/09 18:56:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "ft/tokenizer.h"
 
 typedef struct s_lexer				t_lexer;
+typedef struct s_lexer_frame		t_lexer_frame;
 
 typedef struct s_lexer_state		t_lexer_state;
 typedef struct s_lexer_token		t_lexer_token;
@@ -33,40 +34,44 @@ typedef struct s_lexer_token_def	t_lexer_token_def;
 
 /*
 ** Lexer object
-** 't'				=> tokenizer object
-** 'states'			=> state stack
-** 'token'			=> current token data or NULL for unmatched tokens
-** 'eof'			=> Set when end-of-file is hit
-** 'should_push'	=> Token with push attribute
-** 'should_pop'		=> Token with pop attribute
+** t				=> tokenizer object
+** state			=> current state
+** token			=> current token data or NULL for unmatched tokens
+** eof				=> Set when end-of-file is hit
+** should_push		=> Token with push attribute
+** should_pop		=> Token with pop attribute
 */
 struct			s_lexer
 {
-	t_tokenizer		t;
-	t_vector		states;
-	void const		*token;
-	bool			eof;
-	bool			should_push;
-	bool			should_pop;
+	t_tokenizer			t;
+	t_lexer_state const	*state;
+	void const			*token;
+	bool				eof:1;
+	bool				should_push:1;
+	bool				should_pop:1;
 };
 
 /*
 ** Init lexer
+** IN				=> In stream
+** S+				=> Initial state
 */
-void			ft_lexer_init(t_in *in, t_lexer_state const *s, t_lexer *dst);
+# define LEXER(IN, S)	((t_lexer){TOKENIZER(IN,&(S)->token_map),.state=S})
 
 /*
-** Push the 'push' attribute of the last token
+** Begin a new frame after a token with the 'push' attribute
+** Previous frame data is saved in 'save'
 ** unset 'should_push'
-** Should not be called if 'should_push' is not set
+** Must not be called if 'should_push' is not set
 */
-void			ft_lexer_push(t_lexer *l);
+void			ft_lexer_push(t_lexer *l, t_lexer_state const **save);
 
 /*
-** Pop current state
+** Restore the previously pushed frame
 ** unset 'should_pop'
+** If 'prev' is NULL, terminate lexing
 */
-void			ft_lexer_pop(t_lexer *l);
+void			ft_lexer_pop(t_lexer *l, t_lexer_state const *prev);
 
 /*
 ** Go to the next token
@@ -85,10 +90,9 @@ bool			ft_lexer_next(t_lexer *l);
 bool			ft_lexer_ahead(t_lexer *l, t_sub *s, void const **data);
 
 /*
-** Reset a lexer
-** If 'destroy' is true, also free internal buffers
+** Destroy a lexer
 */
-void			ft_lexer_destroy(t_lexer *l, bool destroy);
+void			ft_lexer_destroy(t_lexer *l);
 
 /*
 ** ========================================================================== **

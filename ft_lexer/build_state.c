@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/02 14:13:41 by juloo             #+#    #+#             */
-/*   Updated: 2016/08/03 16:19:56 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/09 18:18:39 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,19 @@ static bool		state_inherit(t_set *state_set, t_vector const *parents,
 		name = ft_sub(*(char const**)VECTOR_GET(*parents, i), 0, -1);
 		if ((state = ft_set_get(state_set, &name)) == NULL)
 			return (ft_printf("ft::lexer: Unknown state %ts%n", name), false);
-		if (!build_state(state_set, state->def, dst))
+		if (!push_tokens(state_set, &state->def->tokens, dst)
+			|| !state_inherit(state_set, &state->def->parents, dst))
 			return (false);
 		i++;
 	}
 	return (true);
 }
 
-bool			build_state(t_set *state_set, t_lexer_state_def const *def,
+static bool		build_state(t_set *state_set, t_lexer_state_def const *def,
 					t_lexer_state *dst)
 {
-	if (!push_tokens(state_set, &def->tokens, dst))
-		return (false);
-	if (!state_inherit(state_set, &def->parents, dst))
+	if (!push_tokens(state_set, &def->tokens, dst)
+		|| !state_inherit(state_set, &def->parents, dst))
 		return (false);
 	return (true);
 }

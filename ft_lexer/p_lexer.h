@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 20:36:57 by juloo             #+#    #+#             */
-/*   Updated: 2016/08/04 14:55:39 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/08 20:03:27 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,6 @@ struct			s_lexer_state_node
 };
 
 t_lexer_state	*get_state(t_set *state_set, t_sub name);
-
-bool			build_state(t_set *state_set, t_lexer_state_def const *def,
-					t_lexer_state *dst);
 
 /*
 ** ========================================================================== **

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/02 13:22:23 by juloo             #+#    #+#             */
-/*   Updated: 2016/08/04 15:11:34 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/09 18:52:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 
 static void		lexer_assert(t_lexer const *l) // TODO: tmp
 {
-	t_lexer_state const *const	last_state = LAST_STATE(l);
-
-	ASSERT(l->states.length > 0);
-	ASSERT(l->t.token_map == &last_state->token_map);
+	ASSERT(l->state != NULL);
+	ASSERT(l->t.token_map == &l->state->token_map);
 	ASSERT(!l->should_push);
 	ASSERT(!l->should_pop);
 }
