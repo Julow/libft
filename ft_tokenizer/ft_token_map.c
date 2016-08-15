@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 16:06:57 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/08/04 00:42:44 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/15 15:51:29 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void		*ft_tokenmap_add(t_token_map *map, t_sub str, uint32_t data_size)
 	t_token_map_t	*t;
 	char			*str_dst;
 
-	ASSERT(str.length > 0);
 	if (!ft_bst_getall(&map->tokens, &str, &unique_token, NULL))
 		return (NULL);
 	BITARRAY_SET(map->token_starts, str.str[0]);
@@ -38,6 +37,11 @@ void		*ft_tokenmap_add(t_token_map *map, t_sub str, uint32_t data_size)
 	str_dst = ENDOF(t) + data_size;
 	*t = (t_token_map_t){SUB(str_dst, str.length)};
 	ft_memcpy(str_dst, str.str, str.length);
+	if (str.length == 0)
+	{
+		ASSERT(map->def == NULL);
+		map->def = ENDOF(t);
+	}
 	return (ENDOF(t));
 }
 

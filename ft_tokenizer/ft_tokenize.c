@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 17:15:24 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/08/03 18:23:10 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/15 15:25:39 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static bool		tokenize(t_tokenizer *t)
 	if (t->token.length > 0)
 		return (true);
 	t->token = SUB(t->buff.str + start, t->end - start);
-	t->token_data = NULL;
+	t->token_data = t->token_map->def;
 	return (start < t->end);
 }
 

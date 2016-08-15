@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:22:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/03/24 09:09:07 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/08/14 14:37:36 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,13 @@ struct		s_vector
 ** VECTOR_END(V+)			Pointer to the end of the vector
 ** -
 ** VECTOR_GET(V+, INDEX)	Get an element by index
+** VECTOR_LAST(V+)			Get the last element
 ** VECTOR_OFF(V, INDEX)		Get the byte offset for an index
 ** -
 ** VGET(TYPE, V+, INDEX)	Get an element by index (cast to TYPE)
 ** VGETC(TYPE, V+, INDEX)	Get an element by index (cast to TYPE const)
+** -
+** VLAST(TYPE, V+)			Get the last element (cast to TYPE)
 */
 
 # define VECTOR_IT(V)		((V).data - (V).element_size)
@@ -54,10 +57,13 @@ struct		s_vector
 # define VECTOR_END(V)		((V).data + ((V).length * (V).element_size))
 
 # define VECTOR_GET(V,I)	((V).data + VECTOR_OFF(V, I))
+# define VECTOR_LAST(V)		((V).data + VECTOR_OFF(V, (V).length - 1))
 # define VECTOR_OFF(V,I)	((V).element_size * (I))
 
 # define VGET(TYPE,V,I)		(*((TYPE*)VECTOR_GET(V, I)))
 # define VGETC(TYPE,V,I)	(VGET(TYPE const, V, I))
+
+# define VLAST(T, V)		(VGET(T, V, (V).length - 1))
 
 # define VECTOR(TYPE, ...)	(_VECTOR(((TYPE[]){__VA_ARGS__}), TYPE))
 # define VECTORC(ARRAY)		(_VECTOR((ARRAY), ((ARRAY)[0])))

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 17:19:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/08/03 18:17:59 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/15 15:38:31 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ struct			s_tokenizer
 ** Read from 'in' and found tokens of 'map'
 ** 't' have to be initialized with TOKENIZER()
 ** 't->token' is a sub string of the token
-** 't->token_data' is the token's data (or NULL if it's an unmatched token)
+** 't->token_data' is the token's data
+** 		(or default token data if it's an unmatched token)
 ** It's safe to set 't->in' and 't->token_map' between 2 calls
 */
 bool			ft_tokenize(t_tokenizer *t);
@@ -90,16 +91,18 @@ struct			s_token_map
 {
 	t_bst			tokens;
 	t_bits			token_starts[BITARRAY((uint8_t)(-1))];
+	void const		*def;
 };
 
 /*
 ** Init a token map
 */
-# define TOKEN_MAP()   ((t_token_map){BST(t_token_map_t, &token_map_cmp), {}})
+# define TOKEN_MAP()	((t_token_map){BST(t_token_map_t, &token_map_cmp), {}, NULL})
 
 /*
 ** Add a token
 ** 'str' is copied
+** If 'str' is empty, set a default token (for unmatched tokens)
 ** Return a ptr to an alloc of 'size' byte
 ** Return NULL if the token is already in the token map
 */

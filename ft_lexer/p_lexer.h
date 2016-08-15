@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 20:36:57 by juloo             #+#    #+#             */
-/*   Updated: 2016/08/08 20:03:27 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/14 14:35:04 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ typedef struct s_lexer_state_destroy	t_lexer_state_destroy;
 ** ========================================================================== **
 ** Lexer
 */
-
-# define VLAST(T, V)	(VGET(T, V, (V).length - 1))
 
 # define LAST_STATE(L)	(VLAST(t_lexer_state const*, (L)->states))
 
