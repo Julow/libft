@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/08/03 17:52:47 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/24 22:16:25 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,10 @@ typedef struct s_vec2u			t_vec2u;
 ** BOOL_OF(VAL)			Cast to bool
 ** LERP(A, B, T+)		Linear interpolation
 ** DIFF(A+, B+)			Positive difference
+** FOR_EACH(MACRO+, SEP+, PARAM+, ...)
+** 						Call 'MACRO' for each param
+** 						'PARAM' is passed as 2nd param of MACRO
+** 						'SEP' is used between each call of MACRO
 */
 
 # define SWAP(A, B)		({typeof(A) _swap_tmp=(A);(A)=(B);(B)=_swap_tmp;VOID;})
@@ -475,6 +479,14 @@ void			ft_bitclear(t_bits *array, uint32_t bit, uint32_t n);
 
 # define MICRO_SEC		1000000
 # define NANO_SEC		1000000000
+
+# define T_HOUR		(T_SEC * 60 * 60)
+# define T_MIN		(T_SEC * 60)
+# define T_SEC		((uint64_t)1000000)
+# define T_MSEC		((uint64_t)1000)
+# define T_USEC		((uint64_t)1)
+
+# define TIMEVAL_TO_USEC(TM)	((TM).tv_sec * T_SEC + (TM).tv_usec)
 
 /*
 ** Return the current time in micro second since start
