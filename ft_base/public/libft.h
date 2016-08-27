@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/08/24 22:16:25 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/27 17:19:35 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_vec2u			t_vec2u;
 ** 						Call 'MACRO' for each param
 ** 						'PARAM' is passed as 2nd param of MACRO
 ** 						'SEP' is used between each call of MACRO
+** ALIGN_UP(I, A)		Align 'I' to the next 'A'
 */
 
 # define SWAP(A, B)		({typeof(A) _swap_tmp=(A);(A)=(B);(B)=_swap_tmp;VOID;})
@@ -147,6 +148,8 @@ typedef struct s_vec2u			t_vec2u;
 # define FOR_EACH2(F,S,P,...)	_FOR_EACH_S(2,__VA_ARGS__)(F,S,P,##__VA_ARGS__)
 
 # define ARG_COUNT(...)			_ARG_COUNT(A, ##__VA_ARGS__, _ARG_COUNT_L)
+
+# define ALIGN_UP(I, A)		((I) + ((A) - 1) & ~((A) - 1))
 
 /*
 ** ========================================================================== **
@@ -471,6 +474,21 @@ void			ft_bitclear(t_bits *array, uint32_t bit, uint32_t n);
 # define BITARRAY_BIT_INDEX(B)	((B) % BSIZEOF(t_bits))
 # define BITARRAY_CHUNK(B)		((B) / BSIZEOF(t_bits))
 # define BITARRAY_BIT(B)		(((t_bits)1) << BITARRAY_BIT_INDEX(B))
+
+/*
+** ========================================================================== **
+** Sort
+*/
+
+/*
+** Sort
+** Impl: in-place non-stable quicksort
+** 'cmp' must compare the element at index a with the element at index b
+** 'swap' must swap the element at index a with the element at index b
+*/
+void			ft_sort(void *data, uint32_t length,
+					int (*cmp)(void const *data, uint32_t a, uint32_t b),
+					void (*swap)(void *data, uint32_t a, uint32_t b));
 
 /*
 ** ========================================================================== **
