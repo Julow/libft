@@ -6,14 +6,17 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/02 14:13:41 by juloo             #+#    #+#             */
-/*   Updated: 2016/08/09 18:18:39 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/27 19:06:59 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft/tokenmap_builder.h"
 #include "p_lexer.h"
 
+#include <stdlib.h>
+
 static bool		push_tokens(t_set *state_set, t_vector const *tokens,
-					t_lexer_state *dst)
+					t_tokenmap_builder *tb)
 {
 	t_lexer_token_def const	*token_def;
 	t_lexer_token			*token;
@@ -21,7 +24,7 @@ static bool		push_tokens(t_set *state_set, t_vector const *tokens,
 	token_def = VECTOR_IT(*tokens);
 	while (VECTOR_NEXT(*tokens, token_def))
 	{
-		if ((token = ft_tokenmap_add(&dst->token_map, token_def->str,
+		if ((token = ft_tokenmap_builder_add(tb, token_def->str,
 					sizeof(t_lexer_token))) == NULL)
 			continue ;
 		token->data = token_def->data;
@@ -36,7 +39,7 @@ static bool		push_tokens(t_set *state_set, t_vector const *tokens,
 }
 
 static bool		state_inherit(t_set *state_set, t_vector const *parents,
-					t_lexer_state *dst)
+					t_tokenmap_builder *tb)
 {
 	t_lexer_state_node const	*state;
 	t_sub						name;
@@ -48,8 +51,8 @@ static bool		state_inherit(t_set *state_set, t_vector const *parents,
 		name = ft_sub(*(char const**)VECTOR_GET(*parents, i), 0, -1);
 		if ((state = ft_set_get(state_set, &name)) == NULL)
 			return (ft_printf("ft::lexer: Unknown state %ts%n", name), false);
-		if (!push_tokens(state_set, &state->def->tokens, dst)
-			|| !state_inherit(state_set, &state->def->parents, dst))
+		if (!push_tokens(state_set, &state->def->tokens, tb)
+			|| !state_inherit(state_set, &state->def->parents, tb))
 			return (false);
 		i++;
 	}
@@ -57,10 +60,10 @@ static bool		state_inherit(t_set *state_set, t_vector const *parents,
 }
 
 static bool		build_state(t_set *state_set, t_lexer_state_def const *def,
-					t_lexer_state *dst)
+					t_tokenmap_builder *tb)
 {
-	if (!push_tokens(state_set, &def->tokens, dst)
-		|| !state_inherit(state_set, &def->parents, dst))
+	if (!push_tokens(state_set, &def->tokens, tb)
+		|| !state_inherit(state_set, &def->parents, tb))
 		return (false);
 	return (true);
 }
@@ -68,21 +71,23 @@ static bool		build_state(t_set *state_set, t_lexer_state_def const *def,
 t_lexer_state	*get_state(t_set *state_set, t_sub name)
 {
 	t_lexer_state_node *const	state = ft_set_get(state_set, &name);
+	t_tokenmap_builder			tb;
 
 	if (state == NULL)
 		return (ft_printf("ft::lexer: Unknown state %ts%n", name), NULL);
 	if (state->state != NULL)
 		return (state->state);
 	state->state = MALLOC(sizeof(t_lexer_state) + name.length);
-	*state->state = (t_lexer_state){
-		SUB(ENDOF(state->state), name.length),
-		TOKEN_MAP()
-	};
 	ft_memcpy(ENDOF(state->state), name.str, name.length);
-	if (!build_state(state_set, state->def, state->state))
+	state->state->name = SUB(ENDOF(state->state), name.length);
+	tb = TOKENMAP_BUILDER();
+	if (!build_state(state_set, state->def, &tb))
 	{
-		destroy_state(state->state);
+		free(state->state);
+		ASSERT(!"TODO: destroy tokenmap_builder");
 		state->state = NULL;
 	}
+	else
+		state->state->token_map = ft_tokenmap_builder_done(&tb);
 	return (state->state);
 }

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 18:32:55 by juloo             #+#    #+#             */
-/*   Updated: 2016/08/09 18:56:22 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/27 19:14:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ struct			s_lexer
 ** IN				=> In stream
 ** S+				=> Initial state
 */
-# define LEXER(IN, S)	((t_lexer){TOKENIZER(IN,&(S)->token_map),.state=S})
+# define LEXER(IN, S)	((t_lexer){TOKENIZER(IN,(S)->token_map),.state=S})
 
 /*
 ** Begin a new frame after a token with the 'push' attribute
@@ -102,7 +102,7 @@ void			ft_lexer_destroy(t_lexer *l);
 struct			s_lexer_state
 {
 	t_sub			name;
-	t_token_map		token_map;
+	t_tokenmap		*token_map;
 };
 
 struct			s_lexer_token

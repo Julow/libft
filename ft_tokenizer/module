@@ -1,7 +1,8 @@
 module ft::tokenizer:
 	public include public/
+	private include ./
 
 	public require ft::base
 	public require ft::dstr
 	public require ft::in
-	public require ft::bst
+	public require ft::vector

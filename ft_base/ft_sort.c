@@ -6,11 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 17:12:31 by juloo             #+#    #+#             */
-/*   Updated: 2016/08/27 17:25:40 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/27 18:53:11 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/libft.h"
+#include "p_sort.h"
 
 static void		insertsort(t_sort_data *d, uint32_t length)
 {

@@ -6,21 +6,20 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 17:19:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/08/15 15:38:31 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/28 00:18:33 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKENIZER_H
 # define TOKENIZER_H
 
-# include "ft/ft_bst.h"
 # include "ft/ft_dstr.h"
 # include "ft/ft_in.h"
 # include "ft/libft.h"
 
-typedef struct s_token_map		t_token_map;
-typedef struct s_token_map_t	t_token_map_t;
-typedef struct s_tokenizer		t_tokenizer;
+typedef struct s_tokenmap_state		t_tokenmap_state;
+typedef struct s_tokenmap			t_tokenmap;
+typedef struct s_tokenizer			t_tokenizer;
 
 /*
 ** ========================================================================== **
@@ -39,11 +38,11 @@ typedef struct s_tokenizer		t_tokenizer;
 struct			s_tokenizer
 {
 	t_in				*in;
-	t_token_map const	*token_map;
+	t_tokenmap const	*token_map;
 	t_dstr				buff;
 	uint32_t			end;
-	t_sub				token;
-	void const			*token_data;
+	t_sub				token_str;
+	void const			*token;
 };
 
 /*
@@ -82,43 +81,18 @@ void			ft_tokenizer_reset(t_tokenizer *t, bool destroy);
 ** Token map
 */
 
-struct			s_token_map_t
+struct			s_tokenmap_state
 {
-	t_sub			str;
+	uint32_t				count;
+	void const				*data;
+	char const				*c;
+	t_tokenmap_state *const	*states;
 };
 
-struct			s_token_map
+struct			s_tokenmap
 {
-	t_bst			tokens;
-	t_bits			token_starts[BITARRAY((uint8_t)(-1))];
-	void const		*def;
+	t_bits				first[BITARRAY((uint8_t)(-1))];
+	t_tokenmap_state	*s;
 };
-
-/*
-** Init a token map
-*/
-# define TOKEN_MAP()	((t_token_map){BST(t_token_map_t, &token_map_cmp), {}, NULL})
-
-/*
-** Add a token
-** 'str' is copied
-** If 'str' is empty, set a default token (for unmatched tokens)
-** Return a ptr to an alloc of 'size' byte
-** Return NULL if the token is already in the token map
-*/
-void			*ft_tokenmap_add(t_token_map *map, t_sub str, uint32_t size);
-
-/*
-** Destroy a token map
-** The 'map' ptr is not freed
-** If 'f' is not NULL, it is called for each token data
-*/
-void			ft_tokenmap_destroy(t_token_map *map, void (*f)(void*));
-
-/*
-** -
-*/
-
-int				token_map_cmp(t_token_map_t const *a, t_sub const *b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/09 13:15:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/01/19 16:09:29 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/08/27 21:28:02 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			ft_dstrextend(t_dstr *str, uint32_t need)
 	char			*tmp;
 
 	capacity = MAX(str->capacity, DSTR_MIN);
-	need += str->capacity;
+	need += str->length;
 	while (capacity < need)
 		capacity *= 2;
 	if (capacity <= str->capacity)

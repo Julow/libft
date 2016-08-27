@@ -1,2 +1,3 @@
 module ft::base:
 	public include public/
+	private include ./
