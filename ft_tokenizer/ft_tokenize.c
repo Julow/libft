@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 17:15:24 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/08/28 00:18:12 by juloo            ###   ########.fr       */
+/*   Updated: 2016/08/28 23:41:47 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,13 @@ void			ft_tokenizer_reset(t_tokenizer *t, bool destroy)
 	t->end = 0;
 	t->token_str = SUB0();
 	t->token = NULL;
+}
+
+void			ft_tokenizer_inject(t_tokenizer *t, t_sub s)
+{
+	t_vec2u const		curr_token_str =
+			VEC2U(t->token_str.str - t->buff.str, t->token_str.length);
+
+	ft_memcpy(ft_dstrspan(&t->buff, t->end, t->end, s.length), s.str, s.length);
+	t->token_str = SUB(t->buff.str + curr_token_str.x, curr_token_str.y);
 }
