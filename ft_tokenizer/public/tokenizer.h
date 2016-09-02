@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 17:19:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/08/28 23:42:11 by juloo            ###   ########.fr       */
+/*   Updated: 2016/09/02 15:08:41 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@
 # include "ft/ft_in.h"
 # include "ft/libft.h"
 
-typedef struct s_tokenmap_state		t_tokenmap_state;
+typedef struct s_tokenmap_idx		t_tokenmap_idx;
+typedef struct s_tokenmap_match		t_tokenmap_match;
+typedef struct s_tokenmap_t			t_tokenmap_t;
 typedef struct s_tokenmap			t_tokenmap;
+
 typedef struct s_tokenizer			t_tokenizer;
 
 /*
@@ -86,18 +89,40 @@ void			ft_tokenizer_reset(t_tokenizer *t, bool destroy);
 ** Token map
 */
 
-struct			s_tokenmap_state
+struct			s_tokenmap_idx
 {
-	uint32_t				count;
-	void const				*data;
-	char const				*c;
-	t_tokenmap_state *const	*states;
+	uint16_t		idx;
+	uint16_t		len;
+};
+
+struct			s_tokenmap_match
+{
+	enum {
+		TOKENMAP_MATCH_STR,
+		TOKENMAP_MATCH_SET,
+		TOKENMAP_MATCH_SET_REPEAT,
+	}				type;
+	union {
+		struct {
+			char			c[28];
+			uint32_t		length;
+		}				str;
+		t_bits			set[BITARRAY(256)];
+	};
+};
+
+struct			s_tokenmap_t
+{
+	t_tokenmap_match	*match;
+	uint32_t			match_count;
+	void const			*data;
 };
 
 struct			s_tokenmap
 {
-	t_bits				first[BITARRAY((uint8_t)(-1))];
-	t_tokenmap_state	*s;
+	t_tokenmap_idx		idx[256];
+	t_tokenmap_t const	**t;
+	void const			*def;
 };
 
 #endif

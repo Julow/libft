@@ -6,53 +6,81 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 17:15:24 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/08/28 23:41:47 by juloo            ###   ########.fr       */
+/*   Updated: 2016/09/02 16:48:34 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/tokenizer.h"
 
-static t_tokenmap_state const	*next_state(t_tokenmap_state const *state, char c)
-{
-	t_vec2u					i;
-	uint32_t				tmp;
+#define T_READ(T, I)	((I) < (T)->buff.length || _T_READ(T))
 
-	i = VEC2U(0, state->count);
-	while (i.x < i.y)
+#define _T_READ(T)		(IN_REFRESH((T)->in) && (__T_READ((T)), true))
+#define __T_READ(T)		DSTR_APPEND(&T->buff, T->in->buff[T->in->buff_i++])
+
+static bool		match_match(t_tokenizer *t,
+					t_tokenmap_match const *m, uint32_t *offset)
+{
+	uint32_t		i;
+
+	if (m->type == TOKENMAP_MATCH_STR)
 	{
-		tmp = (i.y - i.x) / 2 + i.x;
-		if (state->c[tmp] == c)
-			return (state->states[tmp]);
-		i = (state->c[tmp] > c) ? VEC2U(i.x, tmp) : VEC2U(tmp + 1, i.y);
+		i = 0;
+		while (i < m->str.length)
+		{
+			if (!T_READ(t, *offset) || m->str.c[i] != t->buff.str[*offset])
+				return (false);
+			i++;
+			(*offset)++;
+		}
 	}
-	return (NULL);
+	else
+	{
+		if (!T_READ(t, *offset) || !BITARRAY_GET(m->set, t->buff.str[*offset]))
+			return (false);
+		(*offset)++;
+		if (m->type == TOKENMAP_MATCH_SET_REPEAT)
+			while (T_READ(t, *offset) && BITARRAY_GET(m->set, t->buff.str[*offset]))
+				(*offset)++;
+	}
+	return (true);
 }
 
-static bool		get_token(t_tokenizer *t)
+static uint32_t	tokenizer_match(t_tokenizer *t, t_tokenmap_t const *token)
 {
-	t_tokenmap_state const	*state;
-	uint32_t				offset;
-	uint32_t				token_len;
+	uint32_t		match_i;
+	uint32_t		i;
 
-	state = t->token_map->s;
-	offset = t->end;
-	token_len = 0;
+	match_i = 0;
+	i = t->end;
 	while (true)
 	{
-		if (state->data != NULL)
-		{
-			token_len = offset - t->end;
-			t->token = state->data;
-		}
-		if (offset >= t->buff.length)
-		{
-			if (!IN_REFRESH(t->in))
-				break ;
-			DSTR_APPEND(&t->buff, IN_READ(t->in));
-		}
-		if ((state = next_state(state, t->buff.str[offset])) == NULL)
+		if (!match_match(t, &token->match[match_i], &i))
 			break ;
-		offset++;
+		if (++match_i >= token->match_count)
+			return (i - t->end);
+	}
+	return (0);
+}
+
+static bool		tokenizer_get_token(t_tokenizer *t)
+{
+	uint32_t		i;
+	uint32_t		end;
+	uint32_t		tmp;
+	uint32_t		token_len;
+
+	i = t->token_map->idx[(uint8_t)t->buff.str[t->end]].idx;
+	end = i + t->token_map->idx[(uint8_t)t->buff.str[t->end]].len;
+	token_len = 0;
+	while (i < end)
+	{
+		tmp = tokenizer_match(t, t->token_map->t[i]);
+		if (tmp > token_len)
+		{
+			t->token = t->token_map->t[i]->data;
+			token_len = tmp;
+		}
+		i++;
 	}
 	if (token_len == 0)
 		return (false);
@@ -67,14 +95,10 @@ static bool		tokenize(t_tokenizer *t)
 	t->token_str.length = 0;
 	while (true)
 	{
-		if (t->end >= t->buff.length)
-		{
-			if (!IN_REFRESH(t->in))
-				break ;
-			DSTR_APPEND(&t->buff, IN_READ(t->in));
-		}
-		if (BITARRAY_GET(t->token_map->first, (uint8_t)t->buff.str[t->end])
-				&& get_token(t))
+		if (!T_READ(t, t->end))
+			break ;
+		if (t->token_map->idx[(uint8_t)t->buff.str[t->end]].len != 0
+				&& tokenizer_get_token(t))
 		{
 			if (start < t->end)
 				break ;
@@ -84,7 +108,7 @@ static bool		tokenize(t_tokenizer *t)
 		t->end++;
 	}
 	t->token_str = SUB(t->buff.str + start, t->end - start);
-	t->token = t->token_map->s->data;
+	t->token = t->token_map->def;
 	return (start < t->end);
 }
 
