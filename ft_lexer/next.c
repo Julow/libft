@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/02 13:22:23 by juloo             #+#    #+#             */
-/*   Updated: 2016/08/27 19:07:34 by juloo            ###   ########.fr       */
+/*   Updated: 2016/09/05 17:33:20 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool			ft_lexer_next(t_lexer *l)
 	if (!ft_tokenize(&l->t))
 	{
 		l->token = NULL;
-		l->eof = true;
+		l->eof = l->t.eof;
 		return (false);
 	}
 	if ((token = l->t.token) == NULL)

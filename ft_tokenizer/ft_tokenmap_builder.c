@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 15:55:22 by juloo             #+#    #+#             */
-/*   Updated: 2016/09/02 16:51:38 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/05 17:23:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ void			*ft_tokenmap_builder_add(t_tokenmap_builder *b,
 	t_tokenmap_builder_t	t;
 	void					*data;
 
-	if (dupplicated_token(b, str))
+	if (dupplicated_token(b, pattern))
 		return (NULL);
 	data_size = ALIGN_UP(data_size, 8);
-	t.str = VEC2U(b->str_buff.length, str.length);
-	ft_dstradd(&b->str_buff, str);
+	t.str = VEC2U(b->str_buff.length, pattern.length);
+	ft_dstradd(&b->str_buff, pattern);
 	t.data = VEC2U(b->data_buff.length, data_size);
 	ft_dstrextend(&b->data_buff, data_size);
 	data = b->data_buff.str + b->data_buff.length;
 	b->data_buff.length += data_size;
-	if (str.length == 0)
+	if (pattern.length == 0)
 	{
 		ASSERT(b->def.y == 0, "dupplicated empty token");
 		b->def = t.data;
@@ -162,8 +162,8 @@ t_tokenmap		*ft_tokenmap_builder_done(t_tokenmap_builder *b)
 			+ b->def.y);
 	ft_memcpy(tokenmap->idx, idx, sizeof(idx));
 	tokenmap->t = ENDOF(tokenmap);
-	tokenmap->def = ENDOF(tokenmap)
-			+ S(t_tokenmap_t const*, tokens_t_idx.length);
+	tokenmap->def = (b->def.y == 0) ? NULL
+			: ENDOF(tokenmap) + S(t_tokenmap_t const*, tokens_t_idx.length);
 	ft_memcpy(ENDOF(tokenmap), tokens_t_idx.data,
 		S(t_tokenmap_t const*, tokens_t_idx.length));
 	ft_memcpy((void*)tokenmap->def, b->data_buff.str + b->def.x, b->def.y);

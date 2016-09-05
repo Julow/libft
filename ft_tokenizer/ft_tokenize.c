@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 17:15:24 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/02 16:48:34 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/05 17:32:13 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define T_READ(T, I)	((I) < (T)->buff.length || _T_READ(T))
 
-#define _T_READ(T)		(IN_REFRESH((T)->in) && (__T_READ((T)), true))
+#define _T_READ(T)		(IN_REFRESH((T)->in) ? (__T_READ((T)), true) : ((T)->eof = true, false))
 #define __T_READ(T)		DSTR_APPEND(&T->buff, T->in->buff[T->in->buff_i++])
 
 static bool		match_match(t_tokenizer *t,
@@ -105,6 +105,8 @@ static bool		tokenize(t_tokenizer *t)
 			t->end += t->token_str.length;
 			return (true);
 		}
+		if (t->token_map->def == NULL)
+			break ;
 		t->end++;
 	}
 	t->token_str = SUB(t->buff.str + start, t->end - start);
@@ -147,6 +149,7 @@ void			ft_tokenizer_reset(t_tokenizer *t, bool destroy)
 	t->end = 0;
 	t->token_str = SUB0();
 	t->token = NULL;
+	t->eof = false;
 }
 
 void			ft_tokenizer_inject(t_tokenizer *t, t_sub s)

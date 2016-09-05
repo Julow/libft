@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 17:19:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/02 15:08:41 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/05 17:31:48 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,23 @@ struct			s_tokenizer
 	uint32_t			end;
 	t_sub				token_str;
 	void const			*token;
+	bool				eof;
 };
 
 /*
 ** TOKENIZER(IN, TOKEN_MAP)		Init a tokenizer
 */
-# define TOKENIZER(IN,MAP)	((t_tokenizer){(IN),(MAP),DSTR0(),0,SUB0(),NULL})
+# define TOKENIZER(IN,MAP)	((t_tokenizer){(IN),(MAP),DSTR0(),0,SUB0(),NULL,false})
 
 /*
 ** Read from 'in' and found tokens of 'map'
 ** 't' have to be initialized with TOKENIZER()
 ** 't->token' is a sub string of the token
 ** 't->token_data' is the token's data
-** 		(or default token data if it's an unmatched token)
+** 		or default token data if it's an unmatched token
+** 		(if there is no default token data, return false)
 ** It's safe to set 't->in' and 't->token_map' between 2 calls
+** Return false on EOF or on unmatched token with no default token
 */
 bool			ft_tokenize(t_tokenizer *t);
 
