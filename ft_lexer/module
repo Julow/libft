@@ -5,5 +5,3 @@ module ft::lexer:
 	public require ft::base
 	public require ft::tokenizer
 	public require ft::vector
-
-	private require ft::set

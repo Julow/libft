@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 18:32:55 by juloo             #+#    #+#             */
-/*   Updated: 2016/08/27 19:14:38 by juloo            ###   ########.fr       */
+/*   Updated: 2016/09/08 18:12:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@
 # include "ft/tokenizer.h"
 
 typedef struct s_lexer				t_lexer;
-typedef struct s_lexer_frame		t_lexer_frame;
 
 typedef struct s_lexer_state		t_lexer_state;
 typedef struct s_lexer_token		t_lexer_token;
 
-typedef t_vector					t_lexer_def;
+typedef t_lexer_state const			*t_lexer_frame;
+
+typedef struct s_lexer_def			t_lexer_def;
 typedef struct s_lexer_state_def	t_lexer_state_def;
 typedef struct s_lexer_token_def	t_lexer_token_def;
 
@@ -38,54 +39,43 @@ typedef struct s_lexer_token_def	t_lexer_token_def;
 ** state			=> current state
 ** token			=> current token data or NULL for unmatched tokens
 ** eof				=> Set when end-of-file is hit
-** should_push		=> Token with push attribute
-** should_pop		=> Token with pop attribute
 */
 struct			s_lexer
 {
 	t_tokenizer			t;
 	t_lexer_state const	*state;
 	void const			*token;
-	bool				eof:1;
-	bool				should_push:1;
-	bool				should_pop:1;
+	bool				eof;
 };
 
 /*
 ** Init lexer
 ** IN				=> In stream
-** S+				=> Initial state
 */
-# define LEXER(IN, S)	((t_lexer){TOKENIZER(IN,(S)->token_map),.state=S})
+# define LEXER(IN)		((t_lexer){TOKENIZER(IN, NULL), NULL, NULL, false})
 
 /*
-** Begin a new frame after a token with the 'push' attribute
+** Begin a new frame
 ** Previous frame data is saved in 'save'
-** unset 'should_push'
-** Must not be called if 'should_push' is not set
 */
-void			ft_lexer_push(t_lexer *l, t_lexer_state const **save);
+void			ft_lexer_push(t_lexer *l, t_lexer_frame *save, t_lexer_def *def);
 
 /*
-** Restore the previously pushed frame
-** unset 'should_pop'
-** If 'prev' is NULL, terminate lexing
+** End of the current frame, restore 'prev'
 */
-void			ft_lexer_pop(t_lexer *l, t_lexer_state const *prev);
+void			ft_lexer_pop(t_lexer *l, t_lexer_frame const *prev);
 
 /*
-** Go to the next token
+** Just call ft_tokenize
 ** Return true on success, false on EOF or error
 ** l->token is updated
-** Should not be called if 'should_push' or 'should_pop' is set
 */
 bool			ft_lexer_next(t_lexer *l);
 
 /*
-** Look ahead for the next token
+** Just call ft_tokenize_ahead
 ** 's' and 'data' are set to the next token's string and data
 ** Return true on success, false on EOF or error
-** Should not be called if 'should_push' or 'should_pop' is set
 */
 bool			ft_lexer_ahead(t_lexer *l, t_sub *s, void const **data);
 
@@ -101,24 +91,40 @@ void			ft_lexer_destroy(t_lexer *l);
 
 struct			s_lexer_state
 {
-	t_sub			name;
 	t_tokenmap		*token_map;
 };
 
 struct			s_lexer_token
 {
 	void const		*data;
-	t_lexer_state	*push;
-	bool			pop;
 };
-
-void			ft_lexer_destroy_state(t_lexer_state *state);
 
 /*
 ** ========================================================================== **
 ** Lexer def
 */
 
+/*
+** Lexer def object
+** state			=> State object (initially NULL, build when needed)
+** libs				=> Libs of reusable states (vector of t_lexer_def const*)
+** def				=> Defined states (vector of t_lexer_state_def)
+** main_state		=> Name of the main state
+*/
+struct			s_lexer_def
+{
+	t_lexer_state	*state;
+	t_vector		libs;
+	t_vector		def;
+	t_sub			main_state;
+};
+
+/*
+** Lexer state def
+** name				=> State name
+** parents			=> Name of parent states (vector of char const*)
+** tokens			=> Defined tokens (vector of t_lexer_token_def)
+*/
 struct			s_lexer_state_def
 {
 	t_sub			name;
@@ -126,24 +132,29 @@ struct			s_lexer_state_def
 	t_vector		tokens;
 };
 
+/*
+** Lexer token def
+** str				=> Token string (to be passed to ft_tokenmap_builder_add)
+** data				=> Custom data ptr
+*/
 struct			s_lexer_token_def
 {
 	t_sub			str;
 	void const		*data;
-	char const		*push;
-	bool			pop;
 };
 
 /*
 ** Init a t_lexer_def
+** L			=> Libs (list of t_lexer_def const*)
+** M			=> Main state (string)
 ** ...			=> List of t_lexer_state_def
 */
-# define LEXER_DEF(...)		((t_lexer_def)VECTOR(t_lexer_state_def, ##__VA_ARGS__))
+# define LEXER_DEF(L, M, ...)	((t_lexer_def){NULL, VECTORC((t_lexer_def const*[])LST L), VECTOR(t_lexer_state_def, ##__VA_ARGS__), SUBC(M)})
 
 /*
 ** Init a t_lexer_state_def
 ** N			=> State name (string)
-** P			=> Parent states (array of string)
+** P			=> Parent states (list of string)
 ** ...			=> Tokens (list of t_lexer_token_def)
 */
 # define LEXER_STATE(N,P,...)	((t_lexer_state_def){SUBC(N),VECTORC(((char const*[])LST P)),VECTORC(((t_lexer_token_def[]){__VA_ARGS__}))})
@@ -152,17 +163,8 @@ struct			s_lexer_token_def
 ** Init a t_lexer_token_def
 ** S			=> Token string
 ** D			=> Data
-** ...			=> Optionnal params:
-** 					.push=		Name of the state to push (string)
-** 					.pop=		Pop flag (bool)
 */
-# define LEXER_T(S,D,...)	((t_lexer_token_def){SUBC(S), .data=(D), __VA_ARGS__})
-
-/*
-** Build a t_lexer_state
-** Return NULL on error
-*/
-t_lexer_state	*ft_lexer_build(t_lexer_def const *def, t_sub main_state);
+# define LEXER_T(S,D)		((t_lexer_token_def){SUBC(S), .data=(D)})
 
 // TODO: move
 # define LST(...)			{ __VA_ARGS__ }
