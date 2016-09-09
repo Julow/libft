@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 17:19:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/05 17:31:48 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/08 23:54:52 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ typedef struct s_tokenizer			t_tokenizer;
 ** token_map	=> tokens
 ** buff			=> (internal) buffer
 ** end			=> (internal)
-** token		=> current token string
-** token_data	=> current token's data
+** token_str	=> current token string
+** token		=> current token's data
+** eof			=> set when EOF is hit
 */
 struct			s_tokenizer
 {

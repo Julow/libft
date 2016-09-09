@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 19:34:58 by juloo             #+#    #+#             */
-/*   Updated: 2016/09/08 17:52:03 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/09 12:56:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,11 @@ static void		push_tokens(t_lexer_state_def const *state_def,
 					t_tokenmap_builder *tb)
 {
 	t_lexer_token_def const	*token_def;
-	t_lexer_token			*token;
 
 	token_def = VECTOR_IT(state_def->tokens);
 	while (VECTOR_NEXT(state_def->tokens, token_def))
 	{
-		if ((token = ft_tokenmap_builder_add(tb, token_def->str,
-				sizeof(t_lexer_token))) == NULL)
-			continue ;
-		token->data = token_def->data;
+		ft_tokenmap_builder_add(tb, token_def->str, token_def->data);
 	}
 }
 
@@ -71,14 +67,11 @@ static void		state_inherit(t_lexer_def const *def, t_sub name,
 	}
 }
 
-t_lexer_state	*lexer_build_state(t_lexer_def const *def)
+t_tokenmap		*lexer_build_state(t_lexer_def const *def)
 {
 	t_tokenmap_builder			tb;
-	t_lexer_state				*state;
 
 	tb = TOKENMAP_BUILDER();
 	state_inherit(def, def->main_state, &tb);
-	state = NEW(t_lexer_state);
-	state->token_map = ft_tokenmap_builder_done(&tb);
-	return (state);
+	return (ft_tokenmap_builder_done(&tb));
 }

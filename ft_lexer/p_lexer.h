@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 20:36:57 by juloo             #+#    #+#             */
-/*   Updated: 2016/09/08 17:51:12 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/09 00:01:26 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@
 ** Build
 */
 
-t_lexer_state	*lexer_build_state(t_lexer_def const *def);
+t_tokenmap	*lexer_build_state(t_lexer_def const *def);
 
 #endif

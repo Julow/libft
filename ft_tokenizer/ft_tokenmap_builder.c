@@ -6,12 +6,11 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 15:55:22 by juloo             #+#    #+#             */
-/*   Updated: 2016/09/05 17:23:26 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/09 13:01:35 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/tokenmap_builder.h"
-#include "p_tokenmap_builder.h"
 
 static bool		dupplicated_token(t_tokenmap_builder *b, t_sub str)
 {
@@ -24,29 +23,25 @@ static bool		dupplicated_token(t_tokenmap_builder *b, t_sub str)
 	return (false);
 }
 
-void			*ft_tokenmap_builder_add(t_tokenmap_builder *b,
-					t_sub pattern, uint32_t data_size)
+bool			ft_tokenmap_builder_add(t_tokenmap_builder *b,
+					t_sub pattern, void const *data)
 {
 	t_tokenmap_builder_t	t;
-	void					*data;
 
 	if (dupplicated_token(b, pattern))
-		return (NULL);
-	data_size = ALIGN_UP(data_size, 8);
+		return (false);
 	t.str = VEC2U(b->str_buff.length, pattern.length);
 	ft_dstradd(&b->str_buff, pattern);
-	t.data = VEC2U(b->data_buff.length, data_size);
-	ft_dstrextend(&b->data_buff, data_size);
-	data = b->data_buff.str + b->data_buff.length;
-	b->data_buff.length += data_size;
+	t.data = data;
 	if (pattern.length == 0)
 	{
-		ASSERT(b->def.y == 0, "dupplicated empty token");
-		b->def = t.data;
+		if (b->def != NULL)
+			return (false);
+		b->def = data;
 	}
 	else
 		ft_vpush(&b->tokens, &t, 1);
-	return (data);
+	return (true);
 }
 
 static void		build_token_match(t_tokenmap_builder const *b,
@@ -105,13 +100,12 @@ static void		build_tokens(t_tokenmap_builder const *b, t_tokenmap_t **dst)
 		t = VECTOR_GET(b->tokens, i);
 		build_token_match(b, t, &match);
 		dst[i] = MALLOC(sizeof(t_tokenmap_match)
-				+ t->data.y + S(t_tokenmap_match, match.length));
+				+ S(t_tokenmap_match, match.length));
 		*dst[i] = (t_tokenmap_t){
-			ENDOF(dst[i]) + t->data.y,
+			ENDOF(dst[i]),
 			match.length,
-			ENDOF(dst[i])
+			t->data
 		};
-		ft_memcpy(ENDOF(dst[i]), b->data_buff.str + t->data.x, t->data.y);
 		ft_memcpy(dst[i]->match, match.data, S(t_tokenmap_match, match.length));
 		i++;
 	}
@@ -158,18 +152,14 @@ t_tokenmap		*ft_tokenmap_builder_done(t_tokenmap_builder *b)
 	build_tokens(b, tokens_t);
 	build_idx(b, V(tokens_t), idx, &tokens_t_idx);
 	tokenmap = MALLOC(sizeof(t_tokenmap)
-			+ S(t_tokenmap_t const*, tokens_t_idx.length)
-			+ b->def.y);
+			+ S(t_tokenmap_t const*, tokens_t_idx.length));
 	ft_memcpy(tokenmap->idx, idx, sizeof(idx));
 	tokenmap->t = ENDOF(tokenmap);
-	tokenmap->def = (b->def.y == 0) ? NULL
-			: ENDOF(tokenmap) + S(t_tokenmap_t const*, tokens_t_idx.length);
+	tokenmap->def = b->def;
 	ft_memcpy(ENDOF(tokenmap), tokens_t_idx.data,
 		S(t_tokenmap_t const*, tokens_t_idx.length));
-	ft_memcpy((void*)tokenmap->def, b->data_buff.str + b->def.x, b->def.y);
 	ft_vclear(&tokens_t_idx);
 	ft_dstrclear(&b->str_buff);
-	ft_dstrclear(&b->data_buff);
 	ft_vclear(&b->tokens);
 	return (tokenmap);
 }
