@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 17:15:24 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/05 17:32:13 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/10 17:40:13 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define T_READ(T, I)	((I) < (T)->buff.length || _T_READ(T))
 
-#define _T_READ(T)		(IN_REFRESH((T)->in) ? (__T_READ((T)), true) : ((T)->eof = true, false))
+#define _T_READ(T)		(IN_REFRESH((T)->in) && (__T_READ((T)), true))
 #define __T_READ(T)		DSTR_APPEND(&T->buff, T->in->buff[T->in->buff_i++])
 
 static bool		match_match(t_tokenizer *t,
@@ -96,7 +96,11 @@ static bool		tokenize(t_tokenizer *t)
 	while (true)
 	{
 		if (!T_READ(t, t->end))
+		{
+			if (start >= t->end)
+				t->eof = true;
 			break ;
+		}
 		if (t->token_map->idx[(uint8_t)t->buff.str[t->end]].len != 0
 				&& tokenizer_get_token(t))
 		{
