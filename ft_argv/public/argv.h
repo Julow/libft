@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 00:55:44 by juloo             #+#    #+#             */
-/*   Updated: 2016/06/14 14:44:29 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/12 21:19:07 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ typedef struct s_argv		t_argv;
 
 struct			s_argv
 {
-	char *const		*argv;
-	uint32_t		argc;
-	uint32_t		flags;
-	t_vec2u			i;
+	char const *const	*argv;
+	uint32_t			argc;
+	uint32_t			flags;
+	t_vec2u				i;
 };
 
 /*
@@ -46,6 +46,11 @@ struct			s_argv
 ** Example: "--option"
 */
 # define ARGV_IS_LONG(ARGV)		((bool)((ARGV)->flags & _ARGV_FLAG_LONG))
+
+/*
+** Check if the last argument has been read
+*/
+# define ARGV_END(ARGV)			((bool)(((ARGV)->i.x >= (ARGV)->argc)))
 
 /*
 ** Look for the next option
