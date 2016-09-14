@@ -6,16 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/16 17:15:24 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/10 17:40:13 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/14 19:51:20 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/tokenizer.h"
-
-#define T_READ(T, I)	((I) < (T)->buff.length || _T_READ(T))
-
-#define _T_READ(T)		(IN_REFRESH((T)->in) && (__T_READ((T)), true))
-#define __T_READ(T)		DSTR_APPEND(&T->buff, T->in->buff[T->in->buff_i++])
 
 static bool		match_match(t_tokenizer *t,
 					t_tokenmap_match const *m, uint32_t *offset)
@@ -27,7 +22,8 @@ static bool		match_match(t_tokenizer *t,
 		i = 0;
 		while (i < m->str.length)
 		{
-			if (!T_READ(t, *offset) || m->str.c[i] != t->buff.str[*offset])
+			if (!BUFF_IN_CHECK(t->buff, *offset)
+					|| m->str.c[i] != BUFF_IN_GETC(t->buff, *offset))
 				return (false);
 			i++;
 			(*offset)++;
@@ -35,46 +31,49 @@ static bool		match_match(t_tokenizer *t,
 	}
 	else
 	{
-		if (!T_READ(t, *offset) || !BITARRAY_GET(m->set, t->buff.str[*offset]))
+		if (!BUFF_IN_CHECK(t->buff, *offset)
+				|| !BITARRAY_GET(m->set, BUFF_IN_GETC(t->buff, *offset)))
 			return (false);
 		(*offset)++;
 		if (m->type == TOKENMAP_MATCH_SET_REPEAT)
-			while (T_READ(t, *offset) && BITARRAY_GET(m->set, t->buff.str[*offset]))
+			while (BUFF_IN_CHECK(t->buff, *offset)
+					&& BITARRAY_GET(m->set, BUFF_IN_GETC(t->buff, *offset)))
 				(*offset)++;
 	}
 	return (true);
 }
 
-static uint32_t	tokenizer_match(t_tokenizer *t, t_tokenmap_t const *token)
+static uint32_t	tokenizer_match(t_tokenizer *t,
+					t_tokenmap_t const *token, uint32_t end)
 {
 	uint32_t		match_i;
 	uint32_t		i;
 
 	match_i = 0;
-	i = t->end;
+	i = end;
 	while (true)
 	{
 		if (!match_match(t, &token->match[match_i], &i))
 			break ;
 		if (++match_i >= token->match_count)
-			return (i - t->end);
+			return (i - end);
 	}
 	return (0);
 }
 
-static bool		tokenizer_get_token(t_tokenizer *t)
+static bool		tokenizer_get_token(t_tokenizer *t, uint32_t *end)
 {
 	uint32_t		i;
-	uint32_t		end;
+	uint32_t		len;
 	uint32_t		tmp;
 	uint32_t		token_len;
 
-	i = t->token_map->idx[(uint8_t)t->buff.str[t->end]].idx;
-	end = i + t->token_map->idx[(uint8_t)t->buff.str[t->end]].len;
+	i = t->token_map->idx[(uint8_t)BUFF_IN_GETC(t->buff, *end)].idx;
+	len = i + t->token_map->idx[(uint8_t)BUFF_IN_GETC(t->buff, *end)].len;
 	token_len = 0;
-	while (i < end)
+	while (i < len)
 	{
-		tmp = tokenizer_match(t, t->token_map->t[i]);
+		tmp = tokenizer_match(t, t->token_map->t[i], *end);
 		if (tmp > token_len)
 		{
 			t->token = t->token_map->t[i]->data;
@@ -84,73 +83,78 @@ static bool		tokenizer_get_token(t_tokenizer *t)
 	}
 	if (token_len == 0)
 		return (false);
-	t->token_str = SUB(t->buff.str + t->end, token_len);
+	t->token_str = SUB(t->buff.buff + t->buff.i + *end, token_len);
 	return (true);
 }
 
-static bool		tokenize(t_tokenizer *t)
+static bool		tokenize(t_tokenizer *t, uint32_t *end)
 {
-	uint32_t const	start = t->end;
+	uint32_t const	start = *end; // = 0
 
 	t->token_str.length = 0;
 	while (true)
 	{
-		if (!T_READ(t, t->end))
+		if (!BUFF_IN_CHECK(t->buff, *end))
 		{
-			if (start >= t->end)
+			if (start >= *end)
 				t->eof = true;
 			break ;
 		}
-		if (t->token_map->idx[(uint8_t)t->buff.str[t->end]].len != 0
-				&& tokenizer_get_token(t))
+		if (t->token_map->idx[(uint8_t)BUFF_IN_GETC(t->buff, *end)].len != 0
+				&& tokenizer_get_token(t, end))
 		{
-			if (start < t->end)
+			if (start < *end)
 				break ;
-			t->end += t->token_str.length;
+			*end += t->token_str.length;
 			return (true);
 		}
 		if (t->token_map->def == NULL)
 			break ;
-		t->end++;
+		(*end)++;
 	}
-	t->token_str = SUB(t->buff.str + start, t->end - start);
+	t->token_str = SUB(t->buff.buff + t->buff.i + start, *end - start);
 	t->token = t->token_map->def;
-	return (start < t->end);
+	return (start < *end);
 }
 
 bool			ft_tokenize(t_tokenizer *t)
 {
-	if (t->end >= t->buff.length)
-	{
-		t->buff.length = 0;
-		t->end = 0;
-	}
-	return (tokenize(t));
+	uint32_t		end;
+	bool			r;
+
+	end = 0;
+	r = tokenize(t, &end);
+	t->buff.i += end;
+	return (r);
 }
 
 bool			ft_tokenize_ahead(t_tokenizer *t, t_sub *str, void const **data)
 {
-	t_vec2u const		curr_token_str =
-			VEC2U(t->token_str.str - t->buff.str, t->token_str.length);
+	t_vec2u				curr_token_str;
 	void *const *const	curr_token_data = t->token;
-	bool const			r = tokenize(t);
+	uint32_t			end;
+	bool				r;
 
+	curr_token_str.y = t->token_str.length;
+	end = curr_token_str.y;
+	t->buff.i -= curr_token_str.y;
+	curr_token_str.x = t->token_str.str - t->buff.buff - t->buff.i;
+	r = tokenize(t, &end);
 	if (str != NULL)
 		*str = t->token_str;
 	if (data != NULL)
 		*data = t->token;
-	t->end = curr_token_str.x + curr_token_str.y;
-	t->token_str = SUB(t->buff.str + curr_token_str.x, curr_token_str.y);
+	t->token_str.str = t->buff.buff + curr_token_str.x + t->buff.i;
+	t->token_str.length = curr_token_str.y;
 	t->token = curr_token_data;
+	t->buff.i += curr_token_str.y;
 	return (r);
 }
 
-void			ft_tokenizer_reset(t_tokenizer *t, bool destroy)
+void			ft_tokenizer_reset(t_tokenizer *t)
 {
-	if (destroy)
-		ft_dstrclear(&t->buff);
-	t->buff.length = 0;
-	t->end = 0;
+	ft_buff_in_clear(&t->buff);
+	t->token_map = NULL;
 	t->token_str = SUB0();
 	t->token = NULL;
 	t->eof = false;
@@ -158,9 +162,10 @@ void			ft_tokenizer_reset(t_tokenizer *t, bool destroy)
 
 void			ft_tokenizer_inject(t_tokenizer *t, t_sub s)
 {
-	t_vec2u const		curr_token_str =
-			VEC2U(t->token_str.str - t->buff.str, t->token_str.length);
+	ASSERT(!"TODO: reimplement tokenizer inject");
+	// t_vec2u const		curr_token_str =
+	// 		VEC2U(t->token_str.str - t->buff.str, t->token_str.length);
 
-	ft_memcpy(ft_dstrspan(&t->buff, t->end, t->end, s.length), s.str, s.length);
-	t->token_str = SUB(t->buff.str + curr_token_str.x, curr_token_str.y);
+	// ft_memcpy(ft_dstrspan(&t->buff, t->end, t->end, s.length), s.str, s.length);
+	// t->token_str = SUB(t->buff.str + curr_token_str.x, curr_token_str.y);
 }

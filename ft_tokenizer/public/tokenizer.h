@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 17:19:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/08 23:54:52 by juloo            ###   ########.fr       */
+/*   Updated: 2016/09/14 19:52:32 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,58 @@ typedef struct s_tokenmap			t_tokenmap;
 
 typedef struct s_tokenizer			t_tokenizer;
 
+typedef struct s_buff_in			t_buff_in;
+
+/*
+** ========================================================================== **
+** Buffered in
+** -
+** TODO: export to it's own module
+*/
+
+/*
+** in				=> source stream
+** buff				=> buffer
+** buff_end			=> end offset in the buffer
+** buff_capacity	=> allocated buff size
+*/
+struct			s_buff_in
+{
+	t_in			*in;
+	char			*buff;
+	uint32_t		i;
+	uint32_t		length;
+	uint32_t		buff_capacity;
+};
+
+# define BUFF_IN(IN)		((t_buff_in){(IN), NULL, 0, 0, 0})
+
+# define BUFF_IN_MIN_BUFF	32
+
+/*
+** Check if 'B.i + I' is a valid index
+** Read if needed
+*/
+# define BUFF_IN_CHECK(B,I)	(((B).i + (I)) < (B).length || ft_buff_in_read(&(B)))
+
+/*
+** Return char at 'B.i + I'
+*/
+# define BUFF_IN_GETC(B,I)	((B).buff[(B).i + (I)])
+
+/*
+** Read a full buffer from the source stream
+** Discard characters not in the range ['i', 'length')
+** Return true on success, false on EOF
+*/
+bool			ft_buff_in_read(t_buff_in *in);
+
+/*
+** Clear/free
+** The object is reusable after a clear
+*/
+void			ft_buff_in_clear(t_buff_in *in);
+
 /*
 ** ========================================================================== **
 ** Tokenizer
@@ -31,38 +83,34 @@ typedef struct s_tokenizer			t_tokenizer;
 
 /*
 ** Tokenizer object
-** in			=> source stream
+** buff			=> source stream
 ** token_map	=> tokens
-** buff			=> (internal) buffer
-** end			=> (internal)
 ** token_str	=> current token string
 ** token		=> current token's data
 ** eof			=> set when EOF is hit
 */
 struct			s_tokenizer
 {
-	t_in				*in;
+	t_buff_in			buff;
 	t_tokenmap const	*token_map;
-	t_dstr				buff;
-	uint32_t			end;
 	t_sub				token_str;
 	void const			*token;
 	bool				eof;
 };
 
 /*
-** TOKENIZER(IN, TOKEN_MAP)		Init a tokenizer
+** TOKENIZER(BUFF, TOKEN_MAP)		Init a tokenizer
 */
-# define TOKENIZER(IN,MAP)	((t_tokenizer){(IN),(MAP),DSTR0(),0,SUB0(),NULL,false})
+# define TOKENIZER(IN,M)	((t_tokenizer){BUFF_IN(IN),(M),SUB0(),NULL,false})
 
 /*
-** Read from 'in' and found tokens of 'map'
+** Read from 'buff' and recognize tokens of 'map'
 ** 't' have to be initialized with TOKENIZER()
 ** 't->token' is a sub string of the token
 ** 't->token_data' is the token's data
 ** 		or default token data if it's an unmatched token
 ** 		(if there is no default token data, return false)
-** It's safe to set 't->in' and 't->token_map' between 2 calls
+** It's safe to set 't->token_map' between 2 calls
 ** Return false on EOF or on unmatched token with no default token
 */
 bool			ft_tokenize(t_tokenizer *t);
@@ -82,11 +130,10 @@ void			ft_tokenizer_inject(t_tokenizer *t, t_sub s);
 
 /*
 ** Reset a tokenizer
-** If 'destroy' is true, also free the temporary buffer
 ** Does not unset/destroy 'in' and 'token_map'
 ** The tokenizer is reusable after a reset
 */
-void			ft_tokenizer_reset(t_tokenizer *t, bool destroy);
+void			ft_tokenizer_reset(t_tokenizer *t);
 
 /*
 ** ========================================================================== **
