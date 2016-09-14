@@ -3,6 +3,7 @@ module ft::tokenizer:
 	private include ./
 
 	public require ft::base
+	public require ft::buff_in
 	public require ft::dstr
 	public require ft::in
 	public require ft::vector
