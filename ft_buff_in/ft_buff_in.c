@@ -6,28 +6,36 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/14 17:36:21 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/14 19:32:53 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/18 11:43:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/tokenizer.h"
+#include "ft/buff_in.h"
 #include <stdlib.h>
 
 static void		buff_in_shift(t_buff_in *in, char *dst)
 {
-	ft_memcpy(dst, in->buff + in->i, in->length - in->i);
+	ft_memmove(dst, in->buff + in->i, in->length - in->i);
 	in->length -= in->i;
 	in->i = 0;
 }
 
-static void		buff_in_realloc(t_buff_in *in)
+static void		buff_in_realloc(t_buff_in *in, uint32_t need)
 {
 	uint32_t		tmp;
 	char			*dst;
 
-	tmp = (in->length - in->i) * 2 + in->in->buff_len - in->in->buff_i;
-	if (tmp < BUFF_IN_MIN_BUFF)
-		tmp = BUFF_IN_MIN_BUFF;
+	if ((need + in->length) <= in->buff_capacity)
+		return ;
+	need += in->length - in->i;
+	if (need <= in->buff_capacity)
+	{
+		buff_in_shift(in, in->buff);
+		return ;
+	}
+	tmp = MAX(BUFF_IN_MIN_BUFF, in->buff_capacity);
+	while (tmp < need)
+		tmp *= 2;
 	dst = MALLOC(tmp);
 	buff_in_shift(in, dst);
 	if (in->buff_capacity > 0)
@@ -43,16 +51,23 @@ bool			ft_buff_in_read(t_buff_in *in)
 	if (!ft_in_refresh(in->in))
 		return (false);
 	ASSERT(in->in->buff_i < in->in->buff_len);
-	tmp = in->length - in->i + in->in->buff_len - in->in->buff_i;
-	if (tmp > in->buff_capacity)
-		buff_in_realloc(in);
-	else
-		buff_in_shift(in, in->buff);
 	tmp = in->in->buff_len - in->in->buff_i;
+	buff_in_realloc(in, tmp);
 	ft_memcpy(in->buff + in->length, in->in->buff + in->in->buff_i, tmp);
 	in->length += tmp;
 	in->in->buff_i = in->in->buff_len;
 	return (true);
+}
+
+void			ft_buff_in_inject(t_buff_in *in, t_sub str)
+{
+	char			*dst;
+
+	buff_in_realloc(in, str.length);
+	dst = in->buff + in->i;
+	ft_memmove(dst + str.length, dst, in->length - in->i);
+	ft_memcpy(dst, str.str, str.length);
+	in->length += str.length;
 }
 
 void			ft_buff_in_clear(t_buff_in *in)

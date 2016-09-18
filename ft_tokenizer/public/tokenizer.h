@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/15 17:19:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/14 22:34:40 by juloo            ###   ########.fr       */
+/*   Updated: 2016/09/18 11:14:54 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,6 @@ bool			ft_tokenize(t_tokenizer *t);
 ** Return false on EOF
 */
 bool			ft_tokenize_ahead(t_tokenizer *t, t_sub *s, void const **data);
-
-/*
-** -
-*/
-void			ft_tokenizer_inject(t_tokenizer *t, t_sub s);
 
 /*
 ** Reset a tokenizer

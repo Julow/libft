@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/14 22:18:02 by juloo             #+#    #+#             */
-/*   Updated: 2016/09/14 22:19:12 by juloo            ###   ########.fr       */
+/*   Updated: 2016/09/18 11:13:39 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ struct			s_buff_in
 ** Return true on success, false on EOF
 */
 bool			ft_buff_in_read(t_buff_in *in);
+
+/*
+** Inject 'str' in the buffer at the current position
+*/
+void			ft_buff_in_inject(t_buff_in *in, t_sub str);
 
 /*
 ** Clear/free
