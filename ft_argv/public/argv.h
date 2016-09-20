@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 00:55:44 by juloo             #+#    #+#             */
-/*   Updated: 2016/09/12 21:19:07 by juloo            ###   ########.fr       */
+/*   Updated: 2016/09/20 19:36:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "ft/libft.h"
 
 typedef struct s_argv		t_argv;
+
+typedef struct s_argv_opt		t_argv_opt;
+typedef enum e_argv_opt_err		t_argv_opt_err;
 
 /*
 ** ========================================================================== **
@@ -33,7 +36,7 @@ struct			s_argv
 /*
 ** Init a argv object
 */
-# define ARGV(ARGC, ARGV)		((t_argv){ARGV, ARGC, 0, VEC2U(1, 0)})
+# define ARGV(ARGC, ARGV)		((t_argv){V(ARGV), ARGC, 0, VEC2U(1, 0)})
 
 /*
 ** Check if the last option has a value
@@ -69,9 +72,91 @@ bool			ft_argv_opt(t_argv *argv, t_sub *opt);
 bool			ft_argv_arg(t_argv *argv, t_sub *arg);
 
 /*
+** ========================================================================== **
+** Improved argv parser
+*/
+
+/*
+** Used to declare accepted options
+** -
+** name				=> Option name
+** type				=> Type of option
+** 		ARGV_OPT_FLAG		=> The option put (OR) a flag
+** 		ARGV_OPT_VALUE		=> The option parse a value
+** 		ARGV_OPT_ALIAS		=> Alias to an other option
+** (ARGV_OPT_FLAG) flag			=> flag value
+** (ARGV_OPT_VALUE) value_type	=> type of the value to parse
+** 		ARGV_OPT_VALUE_INT			=> any int			(int32_t)
+** 		ARGV_OPT_VALUE_UINT			=> any int >= 0		(uint32_t)
+** 		ARGV_OPT_VALUE_P_UINT		=> any int >= 1		(uint32_t)
+** 		ARGV_OPT_VALUE_STR			=> plain string		(char const*)
+** 		ARGV_OPT_VALUE_SUB			=> plain string		(t_sub)
+** (ARGV_OPT_ALIAS) alias		=> aliased option name
+** offset			=> Destination offset (where the value is write)
+** -
+** ARGV_OPT_FLAG(NAME, FLAG, OFFSET)	Declare a flag option
+** ARGV_OPT_VALUE(NAME, FLAG, OFFSET)	Declare a value option
+** ARGV_OPT_ALIAS(NAME, OPT)			Declare an alias to the option 'OPT'
+*/
+struct			s_argv_opt
+{
+	t_sub			name;
+	enum {
+		ARGV_OPT_FLAG,
+		ARGV_OPT_VALUE,
+		ARGV_OPT_ALIAS,
+	}				type;
+	union {
+		uint32_t		flag;
+		enum {
+			ARGV_OPT_VALUE_INT,
+			ARGV_OPT_VALUE_UINT,
+			ARGV_OPT_VALUE_P_UINT,
+			ARGV_OPT_VALUE_STR,
+			ARGV_OPT_VALUE_SUB,
+		}				value_type;
+		t_sub			alias;
+	};
+	uint32_t		offset;
+};
+
+# define ARGV_OPT_FLAG(N,F,O)	_ARGV_OPT(N, FLAG, .flag=(F), O)
+# define ARGV_OPT_VALUE(N,T,O)	_ARGV_OPT(N, VALUE, .value_type=ARGV_OPT_VALUE_##T, O)
+# define ARGV_OPT_ALIAS(N,A)	_ARGV_OPT(N, ALIAS, .alias=SUBC(A), 0)
+
+enum			e_argv_opt_err
+{
+	ARGV_OPT_OK = 0,
+	ARGV_OPT_MISSING_VALUE,
+	ARGV_OPT_INVALID_VALUE,
+	ARGV_OPT_UNKNOWN_OPT,
+};
+
+/*
+** Parse options
+** -
+** Option are parsed respecting their declaration (t_argv_opt)
+** Their value are written to 'dst' at the corresponding offset
+** -
+** Stop on error or at the end of options (like ft_argv_opt)
+** -
+** On error, return the corresponding t_argv_opt_err value,
+** 	the next argument (ft_argv_arg) is set to the option that caused the error
+** On success, return ARGV_OPT_OK
+*/
+t_argv_opt_err	ft_argv_argv(t_argv *args, t_argv_opt const *opts,
+					uint32_t opt_count, void *dst);
+
+/*
+** Map error (t_argv_opt_err) to error string
+*/
+extern t_sub	g_argv_opt_strerr[];
+
+/*
 ** -
 */
 
+# define _ARGV_OPT(N,T,V,O)		{SUBC(N), ARGV_OPT_##T, {V}, (O)}
 # define _ARGV_FLAG_VALUE		(1 << 0)
 # define _ARGV_FLAG_LONG		(1 << 1)
 

@@ -1,4 +1,5 @@
 module ft::argv:
 	public include public/
+	private include ./
 
 	public require ft::base
