@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/08 18:11:11 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/20 11:45:54 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -495,9 +495,6 @@ void			ft_sort(void *data, uint32_t length,
 ** Clock
 */
 
-# define MICRO_SEC		1000000
-# define NANO_SEC		1000000000
-
 # define T_HOUR		(T_SEC * 60 * 60)
 # define T_MIN		(T_SEC * 60)
 # define T_SEC		((uint64_t)1000000)
@@ -510,23 +507,6 @@ void			ft_sort(void *data, uint32_t length,
 ** Return the current time in micro second since start
 */
 uint64_t		ft_clock(uint64_t start);
-
-/*
-** Return the current time in nano second since start
-*/
-uint64_t		ft_nanoclock(uint64_t start);
-
-/*
-** Push the current time on the clock stack
-** Return the current time in micro second
-*/
-uint64_t		ft_cstart(void);
-
-/*
-** Return the time elapsed since the time on the top of the clock stack
-** Pop from the clock stack
-*/
-uint64_t		ft_cend(void);
 
 /*
 ** ========================================================================== **
