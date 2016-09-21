@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 18:27:23 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/21 11:46:37 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/21 12:48:51 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ t_argv_opt_err	ft_argv_argv(t_argv *args, t_argv_opt const *opts,
 			err = ARGV_OPT_UNKNOWN_OPT;
 		else if (opt->type == ARGV_OPT_T_FLAG)
 			*(uint32_t*)(dst + opt->offset) |= opt->flag;
+		else if (opt->type == ARGV_OPT_T_SET)
+			*(uint32_t*)(dst + opt->offset) = opt->set;
 		else if (opt->type == ARGV_OPT_T_FUNC)
 			err = opt->func(args, dst + opt->offset);
 		else
