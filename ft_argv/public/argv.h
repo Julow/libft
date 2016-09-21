@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 00:55:44 by juloo             #+#    #+#             */
-/*   Updated: 2016/09/20 19:36:46 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/21 11:34:05 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,10 @@ bool			ft_argv_arg(t_argv *argv, t_sub *arg);
 ** -
 ** name				=> Option name
 ** type				=> Type of option
-** 		ARGV_OPT_FLAG		=> The option put (OR) a flag
-** 		ARGV_OPT_VALUE		=> The option parse a value
-** 		ARGV_OPT_ALIAS		=> Alias to an other option
+** 		ARGV_OPT_T_FLAG		=> The option put (OR) a flag
+** 		ARGV_OPT_T_VALUE	=> The option parse a value
+** 		ARGV_OPT_T_ALIAS	=> Alias to an other option
+** 		ARGV_OPT_T_FUNC		=> The option call a custom callback
 ** (ARGV_OPT_FLAG) flag			=> flag value
 ** (ARGV_OPT_VALUE) value_type	=> type of the value to parse
 ** 		ARGV_OPT_VALUE_INT			=> any int			(int32_t)
@@ -92,19 +93,22 @@ bool			ft_argv_arg(t_argv *argv, t_sub *arg);
 ** 		ARGV_OPT_VALUE_STR			=> plain string		(char const*)
 ** 		ARGV_OPT_VALUE_SUB			=> plain string		(t_sub)
 ** (ARGV_OPT_ALIAS) alias		=> aliased option name
+** (ARGV_OPT_FUNC) func			=> callback
 ** offset			=> Destination offset (where the value is write)
 ** -
 ** ARGV_OPT_FLAG(NAME, FLAG, OFFSET)	Declare a flag option
 ** ARGV_OPT_VALUE(NAME, FLAG, OFFSET)	Declare a value option
 ** ARGV_OPT_ALIAS(NAME, OPT)			Declare an alias to the option 'OPT'
+** ARGV_OPT_FUNC(NAME, FUNC, OFFSET)	Declare an option with callback
 */
 struct			s_argv_opt
 {
 	t_sub			name;
 	enum {
-		ARGV_OPT_FLAG,
-		ARGV_OPT_VALUE,
-		ARGV_OPT_ALIAS,
+		ARGV_OPT_T_FLAG,
+		ARGV_OPT_T_VALUE,
+		ARGV_OPT_T_ALIAS,
+		ARGV_OPT_T_FUNC,
 	}				type;
 	union {
 		uint32_t		flag;
@@ -116,6 +120,7 @@ struct			s_argv_opt
 			ARGV_OPT_VALUE_SUB,
 		}				value_type;
 		t_sub			alias;
+		t_argv_opt_err	(*func)(t_argv*, void*);
 	};
 	uint32_t		offset;
 };
@@ -123,6 +128,7 @@ struct			s_argv_opt
 # define ARGV_OPT_FLAG(N,F,O)	_ARGV_OPT(N, FLAG, .flag=(F), O)
 # define ARGV_OPT_VALUE(N,T,O)	_ARGV_OPT(N, VALUE, .value_type=ARGV_OPT_VALUE_##T, O)
 # define ARGV_OPT_ALIAS(N,A)	_ARGV_OPT(N, ALIAS, .alias=SUBC(A), 0)
+# define ARGV_OPT_FUNC(N,F,O)	_ARGV_OPT(N, FUNC, .func=V(F), O)
 
 enum			e_argv_opt_err
 {
@@ -156,7 +162,7 @@ extern t_sub	g_argv_opt_strerr[];
 ** -
 */
 
-# define _ARGV_OPT(N,T,V,O)		{SUBC(N), ARGV_OPT_##T, {V}, (O)}
+# define _ARGV_OPT(N,T,V,O)		{SUBC(N), ARGV_OPT_T_##T, {V}, (O)}
 # define _ARGV_FLAG_VALUE		(1 << 0)
 # define _ARGV_FLAG_LONG		(1 << 1)
 

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 18:27:23 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/20 19:18:47 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/21 11:46:37 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,27 @@ t_argv_opt_err	ft_argv_argv(t_argv *args, t_argv_opt const *opts,
 	t_argv_state		prev_state;
 	t_argv_opt_err		err;
 
-	while (true)
+	err = ARGV_OPT_OK;
+	while (err == ARGV_OPT_OK)
 	{
 		prev_state = ARGV_STATE(args);
 		if (!ft_argv_opt(args, &opt_str))
 			break ;
 		while ((opt = argv_get_opt(opts, opt_count, opt_str)) != NULL
-				&& opt->type == ARGV_OPT_ALIAS)
+				&& opt->type == ARGV_OPT_T_ALIAS)
 			opt_str = opt->alias;
 		if (opt == NULL)
-			return (ARGV_RESTORE(args, prev_state), ARGV_OPT_UNKNOWN_OPT);
-		if (opt->type == ARGV_OPT_FLAG)
+			err = ARGV_OPT_UNKNOWN_OPT;
+		else if (opt->type == ARGV_OPT_T_FLAG)
 			*(uint32_t*)(dst + opt->offset) |= opt->flag;
+		else if (opt->type == ARGV_OPT_T_FUNC)
+			err = opt->func(args, dst + opt->offset);
 		else
-		{
-			if (!ft_argv_arg(args, &opt_str))
-				return (ARGV_RESTORE(args, prev_state), ARGV_OPT_MISSING_VALUE);
-			err = g_argv_opt_value[opt->value_type](opt_str, dst + opt->offset);
-			if (err != ARGV_OPT_OK)
-				return (ARGV_RESTORE(args, prev_state), err);
-		}
+			err = (!ft_argv_arg(args, &opt_str)) ?
+				ARGV_OPT_MISSING_VALUE :
+				g_argv_opt_value[opt->value_type](opt_str, dst + opt->offset);
 	}
-	return (ARGV_OPT_OK);
+	if (err != ARGV_OPT_OK)
+		ARGV_RESTORE(args, prev_state);
+	return (err);
 }
