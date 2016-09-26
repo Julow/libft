@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 00:55:44 by juloo             #+#    #+#             */
-/*   Updated: 2016/09/21 12:50:47 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/25 18:17:28 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,11 @@ bool			ft_argv_arg(t_argv *argv, t_sub *arg);
 ** 		ARGV_OPT_T_FUNC		=> The option call a custom callback
 ** (ARGV_OPT_FLAG) flag			=> flag value
 ** (ARGV_OPT_VALUE) value_type	=> type of the value to parse
-** 		ARGV_OPT_VALUE_INT			=> any int			(int32_t)
-** 		ARGV_OPT_VALUE_UINT			=> any int >= 0		(uint32_t)
-** 		ARGV_OPT_VALUE_P_UINT		=> any int >= 1		(uint32_t)
-** 		ARGV_OPT_VALUE_STR			=> plain string		(char const*)
-** 		ARGV_OPT_VALUE_SUB			=> plain string		(t_sub)
+** 		ARGV_OPT_VALUE_INT			=> any int					(int32_t)
+** 		ARGV_OPT_VALUE_UINT			=> any int >= 0				(uint32_t)
+** 		ARGV_OPT_VALUE_P_UINT		=> any int >= 1				(uint32_t)
+** 		ARGV_OPT_VALUE_STR			=> plain string				(t_sub)
+** 		ARGV_OPT_VALUE_P_STR		=> plain string (non-empty)	(t_sub)
 ** (ARGV_OPT_ALIAS) alias		=> aliased option name
 ** (ARGV_OPT_FUNC) func			=> callback
 ** offset			=> Destination offset (where the value is write)
@@ -102,6 +102,7 @@ bool			ft_argv_arg(t_argv *argv, t_sub *arg);
 ** ARGV_OPT_ALIAS(NAME, OPT)			Declare an alias to the option 'OPT'
 ** ARGV_OPT_FUNC(NAME, FUNC, OFFSET)	Declare an option with callback
 */
+
 struct			s_argv_opt
 {
 	t_sub			name;
@@ -120,7 +121,7 @@ struct			s_argv_opt
 			ARGV_OPT_VALUE_UINT,
 			ARGV_OPT_VALUE_P_UINT,
 			ARGV_OPT_VALUE_STR,
-			ARGV_OPT_VALUE_SUB,
+			ARGV_OPT_VALUE_P_STR,
 		}				value_type;
 		t_sub			alias;
 		t_argv_opt_err	(*func)(t_argv*, void*);

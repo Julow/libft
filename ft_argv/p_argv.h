@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 18:56:45 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/20 19:12:31 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/25 18:40:58 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ struct			s_argv_state
 # define ARGV_RESTORE(A, S)		((A)->i = (S).i, (A)->flags = (S).flags)
 
 extern t_argv_opt_err	(*const g_argv_opt_value[])(t_sub, void*);
+extern t_argv_opt_err	(*const g_argv_opt[])(t_argv *args,
+							t_argv_opt const *opt, void *dst);
 
 #endif

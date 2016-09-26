@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 18:56:19 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/20 19:20:38 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/25 18:02:02 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,15 @@ static t_argv_opt_err	argv_opt_p_uint(t_sub value, void *dst)
 
 static t_argv_opt_err	argv_opt_str(t_sub value, void *dst)
 {
-	*(char const**)dst = value.str;
+	*(t_sub*)dst = value;
 	return (ARGV_OPT_OK);
 }
 
-static t_argv_opt_err	argv_opt_sub(t_sub value, void *dst)
+static t_argv_opt_err	argv_opt_p_str(t_sub value, void *dst)
 {
-	*(t_sub*)dst = value;
-	return (ARGV_OPT_OK);
+	if (value.length == 0)
+		return (ARGV_OPT_INVALID_VALUE);
+	return (argv_opt_str(value, dst));
 }
 
 t_argv_opt_err			(*const g_argv_opt_value[])(t_sub, void*) = {
@@ -60,5 +61,5 @@ t_argv_opt_err			(*const g_argv_opt_value[])(t_sub, void*) = {
 	[ARGV_OPT_VALUE_UINT] = &argv_opt_uint,
 	[ARGV_OPT_VALUE_P_UINT] = &argv_opt_p_uint,
 	[ARGV_OPT_VALUE_STR] = &argv_opt_str,
-	[ARGV_OPT_VALUE_SUB] = &argv_opt_sub,
+	[ARGV_OPT_VALUE_P_STR] = &argv_opt_p_str,
 };

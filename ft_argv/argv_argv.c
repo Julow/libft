@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 18:27:23 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/21 12:48:51 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/25 18:38:34 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,8 @@ t_argv_opt_err	ft_argv_argv(t_argv *args, t_argv_opt const *opts,
 		while ((opt = argv_get_opt(opts, opt_count, opt_str)) != NULL
 				&& opt->type == ARGV_OPT_T_ALIAS)
 			opt_str = opt->alias;
-		if (opt == NULL)
-			err = ARGV_OPT_UNKNOWN_OPT;
-		else if (opt->type == ARGV_OPT_T_FLAG)
-			*(uint32_t*)(dst + opt->offset) |= opt->flag;
-		else if (opt->type == ARGV_OPT_T_SET)
-			*(uint32_t*)(dst + opt->offset) = opt->set;
-		else if (opt->type == ARGV_OPT_T_FUNC)
-			err = opt->func(args, dst + opt->offset);
-		else
-			err = (!ft_argv_arg(args, &opt_str)) ?
-				ARGV_OPT_MISSING_VALUE :
-				g_argv_opt_value[opt->value_type](opt_str, dst + opt->offset);
+		err = (opt == NULL) ? ARGV_OPT_UNKNOWN_OPT :
+				g_argv_opt[opt->type](args, opt, dst + opt->offset);
 	}
 	if (err != ARGV_OPT_OK)
 		ARGV_RESTORE(args, prev_state);
