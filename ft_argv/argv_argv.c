@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 18:27:23 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/25 18:38:34 by juloo            ###   ########.fr       */
+/*   Updated: 2016/09/27 12:50:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_sub			g_argv_opt_strerr[] = {
 	[ARGV_OPT_OK] = SUBC("OK"),
 	[ARGV_OPT_MISSING_VALUE] = SUBC("Missing value"),
 	[ARGV_OPT_INVALID_VALUE] = SUBC("Invalid value"),
+	[ARGV_OPT_OUT_OF_BOUNDS] = SUBC("Out of bounds"),
 	[ARGV_OPT_UNKNOWN_OPT] = SUBC("Unknown option"),
 };
 
