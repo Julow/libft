@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 19:23:34 by juloo             #+#    #+#             */
-/*   Updated: 2016/09/20 11:45:42 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/27 17:03:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 uint64_t			ft_clock(uint64_t start)
 {
 	struct timeval	tval;
+	uint64_t		t;
 
 	gettimeofday(&tval, NULL);
-	return (TIMEVAL_TO_USEC(tval) - start);
+	t = TIMEVAL_TO_USEC(tval);
+	return ((t > start) ? t - start : 0);
 }
