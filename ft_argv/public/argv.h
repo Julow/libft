@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 00:55:44 by juloo             #+#    #+#             */
-/*   Updated: 2016/09/27 12:51:46 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/27 16:36:34 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ bool			ft_argv_arg(t_argv *argv, t_sub *arg);
 ** 		ARGV_OPT_T_SET		=> The option set a value (uint32_t)
 ** 		ARGV_OPT_T_INT		=> The option parse an int value (int32_t)
 ** 		ARGV_OPT_T_UINT		=> The option parse an unsigned int value (uint32_t)
+** 		ARGV_OPT_T_FLOAT	=> The option parse a floating point value (float)
 ** 		ARGV_OPT_T_STR		=> Plain string (t_sub)
 ** 		ARGV_OPT_T_ALIAS	=> Alias to an other option
 ** 		ARGV_OPT_T_FUNC		=> The option call a custom callback
@@ -100,6 +101,7 @@ bool			ft_argv_arg(t_argv *argv, t_sub *arg);
 ** 	ARGV_OPT_FLAG(NAME, FLAG, OFFSET)
 ** 	ARGV_OPT_INT(NAME, (MIN, MAX), OFFSET)
 ** 	ARGV_OPT_UINT(NAME, (MIN, MAX), OFFSET)
+** 	ARGV_OPT_FLOAT(NAME, (MIN, MAX), OFFSET)
 ** 	ARGV_OPT_STR(NAME, EMPTY_ALLOWED, OFFSET)
 ** 	ARGV_OPT_ALIAS(NAME, OPT)
 ** 	ARGV_OPT_FUNC(NAME, FUNC, OFFSET)
@@ -113,6 +115,7 @@ struct			s_argv_opt
 		ARGV_OPT_T_SET,
 		ARGV_OPT_T_INT,
 		ARGV_OPT_T_UINT,
+		ARGV_OPT_T_FLOAT,
 		ARGV_OPT_T_STR,
 		ARGV_OPT_T_ALIAS,
 		ARGV_OPT_T_FUNC,
@@ -122,6 +125,7 @@ struct			s_argv_opt
 		uint32_t		set;
 		t_vec2i			int_range;
 		t_vec2u			uint_range;
+		t_vec2			float_range;
 		bool			empty_str;
 		t_sub			alias;
 		t_argv_opt_err	(*func)(t_argv*, void*);
@@ -133,6 +137,7 @@ struct			s_argv_opt
 # define ARGV_OPT_SET(N,V,O)	_ARGV_OPT(N, SET, .set=(V), O)
 # define ARGV_OPT_INT(N,R,O)	_ARGV_OPT(N, INT, .int_range=VEC2I R, O)
 # define ARGV_OPT_UINT(N,R,O)	_ARGV_OPT(N, UINT, .uint_range=VEC2U R, O)
+# define ARGV_OPT_FLOAT(N,R,O)	_ARGV_OPT(N, FLOAT, .float_range=VEC2 R, O)
 # define ARGV_OPT_STR(N,E,O)	_ARGV_OPT(N, STR, .empty_str=(E), O)
 # define ARGV_OPT_ALIAS(N,A)	_ARGV_OPT(N, ALIAS, .alias=SUBC(A), 0)
 # define ARGV_OPT_FUNC(N,F,O)	_ARGV_OPT(N, FUNC, .func=V(F), O)

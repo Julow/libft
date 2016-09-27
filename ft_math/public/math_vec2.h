@@ -6,22 +6,20 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/13 22:31:03 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/13 22:55:12 by juloo            ###   ########.fr       */
+/*   Updated: 2016/09/27 16:40:30 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATH_VEC2_H
 # define MATH_VEC2_H
 
-typedef struct s_vec2		t_vec2;
+# include "ft/libft.h"
 
 /*
 ** ========================================================================== **
 ** Vec2
 ** -
-** VEC2(X, Y)			t_vec2 constructor {X, Y}
 ** VEC2_0()				t_vec2 constructor {0, 0}
-** VEC2_1(A+)			t_vec2 constructor {A, A}
 ** -
 ** VEC2_ADD(A+, B+)		t_vec2 A + t_vec2 B
 ** VEC2_SUB(A+, B+)		t_vec2 A - t_vec2 B
@@ -36,15 +34,7 @@ typedef struct s_vec2		t_vec2;
 ** VEC2_DOT(A+, B+)		t_vec2 A dot t_vec2 B
 */
 
-# define VEC2(X, Y)			((t_vec2){(X), (Y)})
 # define VEC2_0()			((t_vec2){0.f, 0.f})
-# define VEC2_1(A)			((t_vec2){(A), (A)})
-
-struct			s_vec2
-{
-	float			x;
-	float			y;
-};
 
 # define VEC2_ADD(A, B)		(_VEC2_OP((A), +, (B)))
 # define VEC2_SUB(A, B)		(_VEC2_OP((A), -, (B)))

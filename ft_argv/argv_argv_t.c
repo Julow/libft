@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/25 18:38:16 by juloo             #+#    #+#             */
-/*   Updated: 2016/09/27 13:18:32 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/27 16:40:04 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,22 @@ static t_argv_opt_err	argv_opt_t_uint(t_argv *args, t_argv_opt const *opt,
 	return (ARGV_OPT_OK);
 }
 
+static t_argv_opt_err	argv_opt_t_float(t_argv *args, t_argv_opt const *opt,
+							void *dst)
+{
+	t_sub					str_value;
+	float					value;
+
+	if (!ft_argv_arg(args, &str_value) || str_value.length == 0)
+		return (ARGV_OPT_MISSING_VALUE);
+	if (ft_subto_float(str_value, &value) != str_value.length)
+		return (ARGV_OPT_INVALID_VALUE);
+	if (value > opt->float_range.y || value < opt->float_range.x)
+		return (ARGV_OPT_OUT_OF_BOUNDS);
+	*(float*)dst = value;
+	return (ARGV_OPT_OK);
+}
+
 static t_argv_opt_err	argv_opt_t_str(t_argv *args, t_argv_opt const *opt,
 							void *dst)
 {
@@ -85,6 +101,7 @@ t_argv_opt_err			(*const g_argv_opt[])(t_argv *args,
 	[ARGV_OPT_T_SET] = &argv_opt_t_set,
 	[ARGV_OPT_T_INT] = &argv_opt_t_int,
 	[ARGV_OPT_T_UINT] = &argv_opt_t_uint,
+	[ARGV_OPT_T_FLOAT] = &argv_opt_t_float,
 	[ARGV_OPT_T_STR] = &argv_opt_t_str,
 	[ARGV_OPT_T_ALIAS] = NULL,
 	[ARGV_OPT_T_FUNC] = &argv_opt_t_func,

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/20 11:45:54 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/09/27 16:40:36 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_sub			t_sub;
 
 typedef struct s_callback		t_callback;
 
+typedef struct s_vec2			t_vec2;
 typedef struct s_vec2i			t_vec2i;
 typedef struct s_vec2u			t_vec2u;
 
@@ -246,9 +247,16 @@ struct			s_callback
 
 /*
 ** ========================================================================== **
+** Vec2
 ** Vec2i
 ** Vec2u
 */
+
+struct			s_vec2
+{
+	float			x;
+	float			y;
+};
 
 struct			s_vec2i
 {
@@ -268,9 +276,11 @@ struct			s_vec2u
 ** N_VEC2*(FROM+, TO+)	Create a vec2* where X <= Y
 */
 
+# define VEC2(X,Y)		((t_vec2){(X), (Y)})
 # define VEC2I(X,Y)		((t_vec2i){(X), (Y)})
 # define VEC2U(X,Y)		((t_vec2u){(X), (Y)})
 
+# define VEC2_1(A)		(VEC2(A, A))
 # define VEC2I1(N)		(VEC2I(N, N))
 # define VEC2U1(N)		(VEC2U(N, N))
 
