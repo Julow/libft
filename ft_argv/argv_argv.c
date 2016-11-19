@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 18:27:23 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/27 12:50:46 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/11/19 19:38:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static t_argv_opt const	*argv_get_opt(t_argv_opt const *opts,
 	return (NULL);
 }
 
-t_argv_opt_err	ft_argv_argv(t_argv *args, t_argv_opt const *opts,
-					uint32_t opt_count, void *dst)
+t_argv_opt_err			ft_argv_argv(t_argv *args, t_argv_opt const *opts,
+							uint32_t opt_count, void *dst)
 {
 	t_sub				opt_str;
 	t_argv_opt const	*opt;

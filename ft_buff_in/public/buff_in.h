@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/14 22:18:02 by juloo             #+#    #+#             */
-/*   Updated: 2016/09/18 11:13:39 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/11/19 19:39:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ struct			s_buff_in
 ** Check if 'B.i + I' is a valid index
 ** Read if needed
 */
-# define BUFF_IN_CHECK(B,I)	(((B).i + (I)) < (B).length || ft_buff_in_read(&(B)))
+# define BUFF_IN_CHECK(B,I)	(((B).i+(I)) < (B).length || ft_buff_in_read(&(B)))
 
 /*
 ** Return char at 'B.i + I'

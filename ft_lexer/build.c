@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 19:34:58 by juloo             #+#    #+#             */
-/*   Updated: 2016/09/09 12:56:22 by juloo            ###   ########.fr       */
+/*   Updated: 2016/11/19 19:41:31 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static t_lexer_state_def const	*get_state_def(t_lexer_def const *def, t_sub n)
 	return (NULL);
 }
 
-static void		push_tokens(t_lexer_state_def const *state_def,
-					t_tokenmap_builder *tb)
+static void						push_tokens(t_lexer_state_def const *state_def,
+									t_tokenmap_builder *tb)
 {
 	t_lexer_token_def const	*token_def;
 
@@ -48,8 +48,8 @@ static void		push_tokens(t_lexer_state_def const *state_def,
 	}
 }
 
-static void		state_inherit(t_lexer_def const *def, t_sub name,
-					t_tokenmap_builder *tb)
+static void						state_inherit(t_lexer_def const *def,
+									t_sub name, t_tokenmap_builder *tb)
 {
 	t_lexer_state_def const *const	state_def = get_state_def(def, name);
 	t_sub							parent_name;
@@ -67,7 +67,7 @@ static void		state_inherit(t_lexer_def const *def, t_sub name,
 	}
 }
 
-t_tokenmap		*lexer_build_state(t_lexer_def const *def)
+t_tokenmap						*lexer_build_state(t_lexer_def const *def)
 {
 	t_tokenmap_builder			tb;
 

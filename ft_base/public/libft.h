@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/27 16:40:36 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/11/19 19:35:09 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -591,7 +591,6 @@ int				ft_min(int a, int b);
 # endif
 
 bool			ft_assert(char const *err, char const *func);
-__attribute__ ((noreturn))
 bool			ft_assert_hard(char const *err, char const *func);
 
 /*
