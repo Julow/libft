@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:22:40 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/08/14 14:37:36 by juloo            ###   ########.fr       */
+/*   Updated: 2016/11/21 17:49:53 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ struct		s_vector
 # define VECTOR_MIN_CAP		16
 
 /*
-** VECTOR(TYPE, ...)		Create a vector of TYPE (... are default elements)
+** VECTOR(TYPE)				Create an empty vector of TYPE
 ** VECTORC(ARRAY)			Create a vector from a literal array
 ** -
 ** VECTOR_IT(V)				Start iterator
@@ -65,7 +65,7 @@ struct		s_vector
 
 # define VLAST(T, V)		(VGET(T, V, (V).length - 1))
 
-# define VECTOR(TYPE, ...)	(_VECTOR(((TYPE[]){__VA_ARGS__}), TYPE))
+# define VECTOR(TYPE)		((t_vector){NULL, 0, 0, sizeof(TYPE)})
 # define VECTORC(ARRAY)		(_VECTOR((ARRAY), ((ARRAY)[0])))
 
 # define _VECTOR(A,S)		((t_vector){V(A), ARRAY_LEN(A), 0, sizeof(S)})
