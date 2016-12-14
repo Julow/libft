@@ -6,11 +6,17 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 18:58:00 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/14 19:36:47 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/15 00:02:02 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "p_json_parser.h"
+
+static t_json_p_token	json_tokenize_error(t_json_parser *p, t_sub str)
+{
+	json_parse_error(p, str);
+	return (JSON_P_ERROR);
+}
 
 static t_json_p_token	json_tokenize_string(t_json_parser *p)
 {
@@ -20,17 +26,17 @@ static t_json_p_token	json_tokenize_string(t_json_parser *p)
 	while (true)
 	{
 		if (!IN_REFRESH(p->in))
-			return (JSON_P_ERROR); // Unexpected EOF
+			return (json_tokenize_error(p, SUBC("Unexpected EOF")));
 		c = p->in->buff[p->in->buff_i++]; // TODO: ft::in: unsafe read
 		if (c == '"')
 			break ;
 		if (c == '\\')
 		{
 			if (!IN_REFRESH(p->in))
-				return (JSON_P_ERROR); // Unexpected EOF
+				return (json_tokenize_error(p, SUBC("Unexpected EOF")));
 			c = p->in->buff[p->in->buff_i++];
 		}
-		DSTR_APPEND(p->buff, c);
+		DSTR_APPEND(&p->buff, c);
 	}
 	return (JSON_P_STRING);
 }
@@ -40,16 +46,17 @@ static t_json_p_token	json_tokenize_identifier(t_json_parser *p, char prev)
 	char			c;
 
 	p->buff.length = p->state_len;
-	DSTR_APPEND(p->buff, prev);
+	DSTR_APPEND(&p->buff, prev);
 	while (true)
 	{
 		if (!IN_REFRESH(p->in))
 			break ;
-		c = p->in->buff[p->in->buff_i++];
+		c = p->in->buff[p->in->buff_i];
 		if (!(IS(c, IS_WORD) || c == '$' || c == '~' || c == '-' || c == '+'
 			|| c == '<' || c == '>' || c == '?' || c == '.'))
 			break ;
-		DSTR_APPEND(p->buff, c);
+		p->in->buff_i++;
+		DSTR_APPEND(&p->buff, c);
 	}
 	return (JSON_P_IDENTIFIER);
 }
@@ -66,7 +73,7 @@ static t_json_p_token	json_tokenize_comment_multiline(t_json_parser *p)
 				return (json_tokenize(p));
 		}
 	}
-	return (JSON_P_ERROR); // Unexpected EOF
+	return (json_tokenize_error(p, SUBC("Unexpected EOF")));
 }
 
 static t_json_p_token	json_tokenize_comment(t_json_parser *p)
@@ -74,7 +81,7 @@ static t_json_p_token	json_tokenize_comment(t_json_parser *p)
 	char			c;
 
 	if (!IN_REFRESH(p->in))
-		return (JSON_P_ERROR); // Syntax error
+		return (json_tokenize_error(p, SUBC("Syntax error")));
 	c = p->in->buff[p->in->buff_i++];
 	if (c == '/')
 	{
@@ -84,7 +91,7 @@ static t_json_p_token	json_tokenize_comment(t_json_parser *p)
 	}
 	else if (c == '*')
 		return (json_tokenize_comment_multiline(p));
-	return (JSON_P_ERROR); // Syntax error
+	return (json_tokenize_error(p, SUBC("Syntax error")));
 }
 
 t_json_p_token			json_tokenize(t_json_parser *p)
@@ -96,7 +103,7 @@ t_json_p_token			json_tokenize(t_json_parser *p)
 		if (!IN_REFRESH(p->in))
 			return (JSON_P_EOF);
 		c = p->in->buff[p->in->buff_i++];
-		if (!IS(c, IS_WHITE))
+		if (!IS(c, IS_SPACE))
 			break ;
 	}
 	// TODO: improve
@@ -119,5 +126,5 @@ t_json_p_token			json_tokenize(t_json_parser *p)
 		return (json_tokenize_identifier(p, c));
 	if (c == '/')
 		return (json_tokenize_comment(p));
-	return (JSON_P_ERROR);
+	return (json_tokenize_error(p, SUBC("Invalid syntax")));
 }
