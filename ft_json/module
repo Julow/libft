@@ -1,0 +1,7 @@
+module ft::json:
+	public include public/
+	private include ./
+
+	public require ft::base
+	public require ft::dstr
+	public require ft::in
