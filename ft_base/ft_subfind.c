@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 16:15:29 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/01/11 17:44:28 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/15 12:41:28 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ uint32_t		ft_subfind_c(t_sub sub, char search, uint32_t start)
 	return (sub.length);
 }
 
-uint32_t		ft_subfind_is(t_sub sub, t_is search, uint32_t start)
+uint32_t		ft_subfind_is(t_sub sub, uint32_t search, uint32_t start)
 {
 	uint32_t		i;
 

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 19:45:32 by juloo             #+#    #+#             */
-/*   Updated: 2016/02/20 14:38:02 by juloo            ###   ########.fr       */
+/*   Updated: 2016/12/15 12:41:56 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ bool		ft_read(t_in *in, char *dst, uint32_t n);
 */
 bool		ft_readto_str(t_in *in, t_sub end, t_dstr *dst);
 bool		ft_readto_char(t_in *in, char end, t_dstr *dst);
-bool		ft_readto_if(t_in *in, t_is end, t_dstr *dst);
-bool		ft_readto_not(t_in *in, t_is end, t_dstr *dst);
+bool		ft_readto_if(t_in *in, uint32_t end, t_dstr *dst);
+bool		ft_readto_not(t_in *in, uint32_t end, t_dstr *dst);
 bool		ft_readto_func(t_in *in, bool (*f)(char, void*), void *env,
 				t_dstr *dst);
 

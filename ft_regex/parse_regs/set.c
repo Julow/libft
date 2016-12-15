@@ -6,13 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 18:09:39 by juloo             #+#    #+#             */
-/*   Updated: 2016/07/07 14:45:52 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/15 12:42:40 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "regex_internal.h"
 
-static t_is		g_reg_is[256] = {
+static uint32_t	g_reg_is[256] = {
 	['.'] = IS_PRINT,
 	['a'] = IS_ALPHA,
 	['l'] = IS_LOWER,
@@ -25,7 +25,7 @@ static t_is		g_reg_is[256] = {
 
 #define REG_IS(C)		(((C) > 0) ? g_reg_is[(C) & 0xFF] : 0)
 
-static void		reg_is(t_is is, t_reg **reg)
+static void		reg_is(uint32_t is, t_reg **reg)
 {
 	t_reg_set		*r;
 	uint32_t		i;
@@ -46,7 +46,7 @@ static void		reg_is(t_is is, t_reg **reg)
 bool			parse_reg_block_is(t_sub sub, t_reg **reg)
 {
 	uint32_t		i;
-	t_is			is;
+	uint32_t			is;
 
 	i = 0;
 	is = 0;

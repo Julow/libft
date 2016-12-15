@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 20:38:37 by juloo             #+#    #+#             */
-/*   Updated: 2016/05/09 16:43:18 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/15 12:42:25 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool			ft_readto_char(t_in *in, char end, t_dstr *dst)
 	return (false);
 }
 
-bool			ft_readto_if(t_in *in, t_is end, t_dstr *dst)
+bool			ft_readto_if(t_in *in, uint32_t end, t_dstr *dst)
 {
 	uint32_t		i;
 
@@ -60,7 +60,7 @@ bool			ft_readto_if(t_in *in, t_is end, t_dstr *dst)
 	return (false);
 }
 
-bool			ft_readto_not(t_in *in, t_is end, t_dstr *dst)
+bool			ft_readto_not(t_in *in, uint32_t end, t_dstr *dst)
 {
 	uint32_t		i;
 

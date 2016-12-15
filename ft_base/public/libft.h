@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/11/19 19:35:09 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/15 14:52:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,32 +290,64 @@ struct			s_vec2u
 /*
 ** ========================================================================== **
 ** Char classification
+** -
+** ?omg
+** FT_IS_CLASSES = [
+** 	("_IS_CNTRL",		'[\x00-\x08\x0e-\x1f\x7f]'),
+** 	("_IS_WHITE",		'[\v\f\r]'),
+** 	("IS_NEWLINE",		'[\n]'),
+** 	("IS_TAB",			'[\t]'),
+** 	("IS_SPACE",		'[ ]'),
+** 	("IS_DIGIT",		'[0-9]'),
+** 	("_IS_LOWER",		'[g-z]'),
+** 	("_IS_UPPER",		'[G-Z]'),
+** 	("_IS_PUNCT",		'[\x21-\x2f\x3a-\x3f@\x5b-\x5e\x60\x7b-\x7e]'),
+** 	("IS_XLOWER",		'[a-f]'),
+** 	("IS_XUPPER",		'[A-F]'),
+** 	("IS_UNDERSCORE",	'[_]'),
+** ]
+** #
+** out("\n")
+** for i, c in enumerate(FT_IS_CLASSES):
+** 	out("# define %s%s(1 << %d)\n" % (c[0], "\t" * ((18 - len(c[0])) / 4), i))
+** out("\n")
 */
+
+# define _IS_CNTRL		(1 << 0)
+# define _IS_WHITE		(1 << 1)
+# define IS_NEWLINE		(1 << 2)
+# define IS_TAB			(1 << 3)
+# define IS_SPACE		(1 << 4)
+# define IS_DIGIT		(1 << 5)
+# define _IS_LOWER		(1 << 6)
+# define _IS_UPPER		(1 << 7)
+# define _IS_PUNCT		(1 << 8)
+# define IS_XLOWER		(1 << 9)
+# define IS_XUPPER		(1 << 10)
+# define IS_UNDERSCORE	(1 << 11)
+
+/*
+** ?end
+*/
+
+# define IS_CNTRL		(IS_WHITE | _IS_CNTRL)
+# define IS_BLANK		(IS_TAB | IS_SPACE)
+# define IS_WHITE		(_IS_WHITE | IS_NEWLINE)
+# define IS_WHITESPACE	(IS_WHITE | IS_BLANK)
 
 # define IS_GRAPH		(IS_PUNCT | IS_ALNUM)
 # define IS_PRINT		(IS_GRAPH | IS_BLANK)
-# define IS_CNTRL		(1 << 1)
+# define IS_PUNCT		(_IS_PUNCT | IS_UNDERSCORE)
 
-# define IS_BLANK		(1 << 2)
-# define IS_WHITE		(1 << 3)
-# define IS_SPACE		(IS_WHITE | IS_BLANK)
-
-# define IS_DIGIT		(1 << 4)
-# define IS_LOWER		(1 << 5)
-# define IS_UPPER		(1 << 6)
+# define IS_LOWER		(_IS_LOWER | IS_XLOWER)
+# define IS_UPPER		(_IS_UPPER | IS_XUPPER)
 # define IS_ALPHA		(IS_LOWER | IS_UPPER)
 # define IS_ALNUM		(IS_DIGIT | IS_ALPHA)
 # define IS_WORD		(IS_ALNUM | IS_UNDERSCORE)
 
-# define IS_PUNCT		(1 << 7)
-# define IS_XDIGIT		(IS_DIGIT | IS_XALPHA)
+# define IS_XDIGIT		(IS_DIGIT | IS_XLOWER | IS_XUPPER)
 
-# define IS_XALPHA		(1 << 8)
-# define IS_UNDERSCORE	(1 << 9)
-
-typedef uint32_t	t_is;
-
-extern t_is		g_is_table[];
+extern uint32_t	g_is_table[];
 
 # define IS(c,f)		((bool)(g_is_table[(uint8_t)(c)] & (f)))
 
@@ -323,7 +355,7 @@ extern t_is		g_is_table[];
 ** ft_is function is equivalent to IS macro
 ** also the IS macro use only once it's arguments
 */
-bool			ft_is(char c, t_is mask);
+bool			ft_is(char c, uint32_t mask);
 
 /*
 ** ========================================================================== **
@@ -398,7 +430,7 @@ bool			ft_subequi(t_sub a, t_sub b);
 */
 uint32_t		ft_subfind(t_sub sub, t_sub search, uint32_t start);
 uint32_t		ft_subfind_c(t_sub sub, char search, uint32_t start);
-uint32_t		ft_subfind_is(t_sub sub, t_is search, uint32_t start);
+uint32_t		ft_subfind_is(t_sub sub, uint32_t search, uint32_t start);
 
 /*
 ** Iterate through 'sub' looking for substrings separated by 'sep'
@@ -407,7 +439,7 @@ uint32_t		ft_subfind_is(t_sub sub, t_is search, uint32_t start);
 */
 bool			ft_subnext(t_sub sub, t_sub *match, t_sub sep);
 bool			ft_subnext_c(t_sub sub, t_sub *match, char sep);
-bool			ft_subnext_is(t_sub sub, t_sub *match, t_is sep);
+bool			ft_subnext_is(t_sub sub, t_sub *match, uint32_t sep);
 
 /*
 ** Convert the content of the sub to 'dst'
