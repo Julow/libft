@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:20:01 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/14 23:30:38 by juloo            ###   ########.fr       */
+/*   Updated: 2016/12/16 18:45:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ enum		e_json_token
 	JSON_BEGIN_DICT,
 	JSON_BEGIN_LIST,
 	JSON_END,
-	JSON_KEY,
 	JSON_VALUE,
 	JSON_ERROR,
 	JSON_EOF,
@@ -50,13 +49,14 @@ enum		e_json_value_t
 ** in			=> Input stream
 ** buff			=> (Internal) buffer
 ** state_len	=> (Interval) part of the buffer that store states
+** key_len		=> (Interval) part of the buffer that store keys
 ** token		=> Current token
 ** value_type	=> Current value's type (only if token = JSON_VALUE)
 ** val_int		=> Int value (only if value_type = JSON_VALUE_INT)
 ** val_float	=> Float value (only if value_type = JSON_VALUE_FLOAT)
 ** val_bool		=> Bool value (only if value_type = JSON_VALUE_BOOL)
 ** -
-** JSON_KEY_STRING(P+)		Return the current key name (if token = JSON_KEY)
+** JSON_KEY_STRING(P+)		Return the current key name (only if currently in a dict)
 ** JSON_VAL_STRING(P+)		Return the current string value (if token = JSON_VALUE)
 ** JSON_VAL_NUMBER(P+)		Return the current float value
 ** 								(JSON_VALUE_INT or JSON_VALUE_FLOAT)
@@ -67,6 +67,7 @@ struct		s_json_parser
 	t_in			*in;
 	t_dstr			buff;
 	uint32_t		state_len;
+	uint32_t		key_len;
 	t_json_token	token;
 	t_json_value_t	value_type;
 	union {
@@ -76,10 +77,10 @@ struct		s_json_parser
 	};
 };
 
-# define JSON_PARSER(IN)		((t_json_parser){(IN), DSTR0(), 0, JSON_KEY, 0, {}})
+# define JSON_PARSER(IN)		((t_json_parser){(IN), DSTR0(), -1, 0, 0, 0, {}})
 
-# define JSON_KEY_STRING(P)		(JSON_VAL_STRING(P))
-# define JSON_VAL_STRING(P)		(SUB_FOR(DSTR_SUB((P)->buff), (P)->state_len))
+# define JSON_KEY_STRING(P)		(SUB((P)->buff.str + (P)->state_len, (P)->key_len - (P)->state_len))
+# define JSON_VAL_STRING(P)		(SUB_FOR(DSTR_SUB((P)->buff), (P)->key_len))
 # define JSON_VAL_NUMBER(P)		(((P)->value_type == JSON_VALUE_INT) ? (float)(P)->val_int : (P)->val_float)
 # define JSON_ERROR_STRING(P)	(JSON_VAL_STRING(P))
 
