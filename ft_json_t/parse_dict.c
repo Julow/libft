@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:28:23 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/18 16:40:52 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/18 18:17:47 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,8 @@ bool			json_t_parse_dict(t_json_parser *p,
 			return (json_parse_error(p, SUBC("Dupplicated key")), false);
 		keys_set[i] = true;
 		if (!g_json_t_parse[key->val.type](p, &key->val, data + key->offset))
-		{
-			free_dict(&t->dict, keys_set, data);
-			return (false);
-		}
+			break ;
 	}
+	free_dict(&t->dict, keys_set, data);
 	return (false);
 }

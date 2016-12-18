@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:24:24 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/18 14:58:17 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/18 18:07:38 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ bool		json_t_parse_callback(t_json_parser *p,
 bool		json_t_parse_dict(t_json_parser *p,
 				t_json_t_value const *t, void *data);
 bool		json_t_parse_list(t_json_parser *p,
+				t_json_t_value const *t, void *data);
+bool		json_t_parse_fixed_list(t_json_parser *p,
 				t_json_t_value const *t, void *data);
 
 #endif

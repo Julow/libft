@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:29:37 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/18 16:43:04 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/18 18:27:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,53 @@ bool		json_t_parse_list(t_json_parser *p,
 		if (p->token == JSON_END)
 			return (true);
 		if (!g_json_t_parse[t->list->type](p, t->list, ft_vpush(data, NULL, 1)))
-		{
-			free_list(t->list, data);
-			return (false);
-		}
+			break ;
 	}
+	free_list(t->list, data);
+	return (false);
+}
+
+static void	free_fixed_list(t_json_t_fixed_list const *t,
+				void *data, uint32_t end)
+{
+	uint32_t			i;
+
+	i = 0;
+	while (i < end)
+	{
+		ft_json_t_free(&t->items[i].val, data + t->items[i].offset);
+		i++;
+	}
+}
+
+bool		json_t_parse_fixed_list(t_json_parser *p,
+				t_json_t_value const *t, void *data)
+{
+	uint32_t			i;
+	t_json_t_item const	*item;
+
+	if (p->token != JSON_BEGIN_LIST)
+		return (json_parse_error(p, SUBC("Expecting list")), false);
+	i = 0;
+	while (ft_json_next(p))
+	{
+		if (i >= t->fixed_list.count)
+		{
+			if (p->token == JSON_END)
+				return (true);
+			json_parse_error(p, SUBC("Too many values in array"));
+			break ;
+		}
+		if (p->token == JSON_END)
+		{
+			json_parse_error(p, SUBC("Incomplete value"));
+			break ;
+		}
+		item = &t->fixed_list.items[i];
+		if (!g_json_t_parse[item->val.type](p, &item->val, data + item->offset))
+			break ;
+		i++;
+	}
+	free_fixed_list(&t->fixed_list, data, i);
 	return (false);
 }

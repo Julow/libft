@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:27:15 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/18 16:43:35 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/18 18:47:31 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 bool		json_t_parse_callback(t_json_parser *p,
 				t_json_t_value const *t, void *data)
 {
-	return (ASSERT(!"TODO"));
+	return (t->callback.f(p, data, t->callback.param));
 }
 
 bool		json_t_parse_string(t_json_parser *p,

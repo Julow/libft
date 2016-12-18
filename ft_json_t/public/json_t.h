@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:22:19 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/18 15:35:30 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/18 19:01:35 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 # include "ft/libft.h"
 
 typedef struct s_json_t_dict			t_json_t_dict;
+typedef struct s_json_t_fixed_list		t_json_t_fixed_list;
 typedef struct s_json_t_callback		t_json_t_callback;
 typedef struct s_json_t_value			t_json_t_value;
 typedef struct s_json_t_key				t_json_t_key;
+typedef struct s_json_t_item			t_json_t_item;
 
 /*
 ** ========================================================================== **
@@ -35,6 +37,18 @@ typedef struct s_json_t_key				t_json_t_key;
 struct		s_json_t_dict
 {
 	t_json_t_key const	*keys;
+	uint32_t			count;
+	uint32_t			data_size;
+};
+
+/*
+** items		=> Array of item
+** count		=> Number of item
+** data_size	=> Total size of the struct
+*/
+struct		s_json_t_fixed_list
+{
+	t_json_t_item const	*items;
 	uint32_t			count;
 	uint32_t			data_size;
 };
@@ -57,6 +71,7 @@ struct		s_json_t_callback
 ** JSON_T_VAL_CALLBACK		Call 'callback'
 ** JSON_T_VAL_LIST			t_vector
 ** JSON_T_VAL_DICT			Custom struct
+** JSON_T_VAL_FIXED_LIST	Custom struct
 ** JSON_T_VAL_STRING		t_sub*
 ** JSON_T_VAL_INT			int32_t
 ** JSON_T_VAL_FLOAT			float
@@ -68,6 +83,7 @@ struct		s_json_t_value
 		JSON_T_VAL_CALLBACK,
 		JSON_T_VAL_LIST,
 		JSON_T_VAL_DICT,
+		JSON_T_VAL_FIXED_LIST,
 		JSON_T_VAL_STRING,
 		JSON_T_VAL_INT,
 		JSON_T_VAL_FLOAT,
@@ -77,6 +93,7 @@ struct		s_json_t_value
 		t_json_t_callback		callback;
 		t_json_t_value const	*list;
 		t_json_t_dict			dict;
+		t_json_t_fixed_list		fixed_list;
 	};
 };
 
@@ -92,16 +109,30 @@ struct		s_json_t_key
 	t_json_t_value	val;
 };
 
+/*
+** offset			=> offset in 'data'
+** val				=> value
+*/
+struct		s_json_t_item
+{
+	uint32_t		offset;
+	t_json_t_value	val;
+};
+
 // TODO: optional key
 // TODO: nullable value
-// TODO: fixed_list
 
 # define JSON_T_VALUE(T,...)	((t_json_t_value){JSON_T_VAL_##T,{__VA_ARGS__}})
+
+# define JSON_T_CALLBACK(F,D,P,S)	JSON_T_VALUE(CALLBACK,.callback=((t_json_t_callback){(F),(D),(P),(S)}))
 
 # define _JSON_T_DICT(K,S)	JSON_T_VALUE(DICT,.dict=((t_json_t_dict){K,ARRAY_LEN(K),S}))
 # define JSON_T_DICT(S,...)	_JSON_T_DICT(((t_json_t_key const[]){__VA_ARGS__}),(S))
 
 # define JSON_T_LIST(VAL)	JSON_T_VALUE(LIST, .list = &(VAL))
+
+# define _JSON_T_FIXED_LIST(I,S)	JSON_T_VALUE(FIXED_LIST,.fixed_list=((t_json_t_fixed_list){I,ARRAY_LEN(I),S}))
+# define JSON_T_FIXED_LIST(S,...)	_JSON_T_FIXED_LIST(((t_json_t_item const[]){__VA_ARGS__}),(S))
 
 /*
 ** Parse some json
