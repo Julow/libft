@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:40:16 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/18 18:48:52 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/19 17:46:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	json_t_free_fixed_list(t_json_t_value const *t, void *data)
 	i = 0;
 	while (i < t->fixed_list.count)
 	{
-		ft_json_t_free(&t->fixed_list.items[i].val,
+		ft_json_t_free(t->fixed_list.items[i].val,
 				data + t->fixed_list.items[i].offset);
 		i++;
 	}
@@ -51,7 +51,7 @@ static void	json_t_free_dict(t_json_t_value const *t, void *data)
 	i = 0;
 	while (i < t->dict.count)
 	{
-		ft_json_t_free(&t->dict.keys[i].val, data + t->dict.keys[i].offset);
+		ft_json_t_free(t->dict.keys[i].val, data + t->dict.keys[i].offset);
 		i++;
 	}
 }

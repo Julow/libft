@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:22:19 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/18 19:01:35 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/19 17:59:47 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ struct		s_json_t_value
 */
 struct		s_json_t_key
 {
-	t_sub			key;
-	uint32_t		offset;
-	t_json_t_value	val;
+	t_sub					key;
+	uint32_t				offset;
+	t_json_t_value const	*val;
 };
 
 /*
@@ -115,8 +115,8 @@ struct		s_json_t_key
 */
 struct		s_json_t_item
 {
-	uint32_t		offset;
-	t_json_t_value	val;
+	uint32_t				offset;
+	t_json_t_value const	*val;
 };
 
 // TODO: optional key
@@ -135,10 +135,13 @@ struct		s_json_t_item
 # define JSON_T_FIXED_LIST(S,...)	_JSON_T_FIXED_LIST(((t_json_t_item const[]){__VA_ARGS__}),(S))
 
 /*
-** Parse some json
+** Parse a full json document
+** Write into 'data' according to 't'
 ** Return true on success, false on error
+** On error, put the error string into 'err' if it is not NULL
 */
-bool		ft_json_parse(t_json_parser *p, t_json_t_value const *t, void *data);
+bool		ft_json_parse(t_in *in, t_json_t_value const *t,
+				void *data, t_dstr *err);
 
 /*
 ** Free data allocated during parsing

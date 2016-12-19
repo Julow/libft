@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:29:37 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/18 18:27:16 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/19 18:09:47 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool		json_t_parse_list(t_json_parser *p,
 				t_json_t_value const *t, void *data)
 {
 	if (p->token != JSON_BEGIN_LIST)
-		return (json_parse_error(p, SUBC("Expecting list")), false);
+		return (ft_json_fail(p, SUBC("Expecting list")));
 	*(t_vector*)data = (t_vector){NULL, 0, 0, ft_json_t_sizeof(t->list)};
 	while (ft_json_next(p))
 	{
@@ -47,7 +47,7 @@ static void	free_fixed_list(t_json_t_fixed_list const *t,
 	i = 0;
 	while (i < end)
 	{
-		ft_json_t_free(&t->items[i].val, data + t->items[i].offset);
+		ft_json_t_free(t->items[i].val, data + t->items[i].offset);
 		i++;
 	}
 }
@@ -59,7 +59,7 @@ bool		json_t_parse_fixed_list(t_json_parser *p,
 	t_json_t_item const	*item;
 
 	if (p->token != JSON_BEGIN_LIST)
-		return (json_parse_error(p, SUBC("Expecting list")), false);
+		return (ft_json_fail(p, SUBC("Expecting list")));
 	i = 0;
 	while (ft_json_next(p))
 	{
@@ -67,16 +67,16 @@ bool		json_t_parse_fixed_list(t_json_parser *p,
 		{
 			if (p->token == JSON_END)
 				return (true);
-			json_parse_error(p, SUBC("Too many values in array"));
+			ft_json_fail(p, SUBC("Too many values in array"));
 			break ;
 		}
 		if (p->token == JSON_END)
 		{
-			json_parse_error(p, SUBC("Incomplete value"));
+			ft_json_fail(p, SUBC("Incomplete value"));
 			break ;
 		}
 		item = &t->fixed_list.items[i];
-		if (!g_json_t_parse[item->val.type](p, &item->val, data + item->offset))
+		if (!g_json_t_parse[item->val->type](p, item->val, data + item->offset))
 			break ;
 		i++;
 	}
