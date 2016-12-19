@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:20:01 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/16 18:45:29 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/19 18:03:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,18 @@ struct		s_json_parser
 ** Return true on success, false on EOF or error
 */
 bool		ft_json_next(t_json_parser *p);
+
+/*
+** Stop the parsing and report the error 'err'
+** Next call to ft_json_next will fail with the token JSON_ERROR
+** Return false
+*/
+bool		ft_json_fail(t_json_parser *p, t_sub err);
+
+/*
+** Destroy the json_parser object
+** (Do not clear 'in')
+*/
+void		ft_json_parser_clear(t_json_parser *p);
 
 #endif

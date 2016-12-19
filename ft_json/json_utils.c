@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   json_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/14 23:48:27 by juloo             #+#    #+#             */
-/*   Updated: 2016/12/15 00:02:44 by juloo            ###   ########.fr       */
+/*   Created: 2016/12/19 17:56:30 by jaguillo          #+#    #+#             */
+/*   Updated: 2016/12/19 18:10:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "p_json_parser.h"
+#include "ft/json.h"
 
-t_json_token	json_parse_error(t_json_parser *p, t_sub str)
+bool		ft_json_fail(t_json_parser *p, t_sub err)
 {
 	p->buff.length = p->state_len;
-	ft_dstradd(&p->buff, str);
-	return (JSON_ERROR);
+	p->key_len = p->state_len;
+	p->token = JSON_ERROR;
+	ft_dstradd(&p->buff, err);
+	return (false);
+}
+
+void		ft_json_parser_clear(t_json_parser *p)
+{
+	ft_dstrclear(&p->buff);
 }

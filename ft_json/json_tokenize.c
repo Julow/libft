@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 18:58:00 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/15 18:08:20 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/19 18:07:23 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ static t_json_p_token	json_tokenize_string(t_json_parser *p)
 	while (true)
 	{
 		if (!IN_REFRESH(p->in))
-			return (json_parse_error(p, SUBC("Unexpected EOF")), JSON_P_ERROR);
+			return (ft_json_fail(p, SUBC("Unexpected EOF")), JSON_P_ERROR);
 		c = p->in->buff[p->in->buff_i++]; // TODO: ft::in: unsafe read
 		if (c == '"')
 			break ;
 		if (c == '\\')
 		{
 			if (!IN_REFRESH(p->in))
-				return (json_parse_error(p, SUBC("Unexpected EOF")), JSON_P_ERROR);
+				return (ft_json_fail(p, SUBC("Unexpected EOF")), JSON_P_ERROR);
 			c = p->in->buff[p->in->buff_i++];
 		}
 		DSTR_APPEND(&p->buff, c);
@@ -96,7 +96,7 @@ static t_json_p_token	json_tokenize_comment_multiline(t_json_parser *p)
 				return (json_tokenize(p));
 		}
 	}
-	return (json_parse_error(p, SUBC("Unexpected EOF")), JSON_P_ERROR);
+	return (ft_json_fail(p, SUBC("Unexpected EOF")), JSON_P_ERROR);
 }
 
 static t_json_p_token	json_tokenize_comment(t_json_parser *p)
@@ -104,7 +104,7 @@ static t_json_p_token	json_tokenize_comment(t_json_parser *p)
 	char			c;
 
 	if (!IN_REFRESH(p->in))
-		return (json_parse_error(p, SUBC("Syntax error")), JSON_P_ERROR);
+		return (ft_json_fail(p, SUBC("Syntax error")), JSON_P_ERROR);
 	c = p->in->buff[p->in->buff_i++];
 	if (c == '/')
 	{
@@ -114,7 +114,7 @@ static t_json_p_token	json_tokenize_comment(t_json_parser *p)
 	}
 	else if (c == '*')
 		return (json_tokenize_comment_multiline(p));
-	return (json_parse_error(p, SUBC("Syntax error")), JSON_P_ERROR);
+	return (ft_json_fail(p, SUBC("Syntax error")), JSON_P_ERROR);
 }
 
 t_json_p_token			json_tokenize(t_json_parser *p)
@@ -148,5 +148,5 @@ t_json_p_token			json_tokenize(t_json_parser *p)
 		return (json_tokenize_identifier(p, c));
 	if (c == '/')
 		return (json_tokenize_comment(p));
-	return (json_parse_error(p, SUBC("Invalid syntax")), JSON_P_ERROR);
+	return (ft_json_fail(p, SUBC("Invalid syntax")), JSON_P_ERROR);
 }

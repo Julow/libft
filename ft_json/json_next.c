@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 19:02:43 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/16 18:48:59 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/19 18:06:41 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ static t_json_token	get_key(t_json_parser *p)
 		if (t == JSON_P_ERROR)
 			return (JSON_ERROR);
 		if (t == JSON_P_EOF)
-			return (json_parse_error(p, SUBC("Unexpected EOF")));
-		return (json_parse_error(p, SUBC("Unexpected token: Expecting ':'")));
+			return (ft_json_fail(p, SUBC("Unexpected EOF")), JSON_ERROR);
+		return (ft_json_fail(p, SUBC("Unexpected token: Expecting ':'")), JSON_ERROR);
 	}
 	if (t == JSON_P_BRACE_CLOSE)
 		return (JSON_END);
 	if (t == JSON_P_ERROR)
 		return (JSON_ERROR);
 	if (t == JSON_P_EOF)
-		return (json_parse_error(p, SUBC("Unexpected EOF")));
-	return (json_parse_error(p, SUBC("Unexpected token: Expecting '}'")));
+		return (ft_json_fail(p, SUBC("Unexpected EOF")), JSON_ERROR);
+	return (ft_json_fail(p, SUBC("Unexpected token: Expecting '}'")), JSON_ERROR);
 }
 
 static t_json_token	get_list_item(t_json_parser *p)
@@ -76,12 +76,12 @@ static t_json_token	json_parse_next_value(t_json_parser *p)
 	t_json_p_token		t;
 
 	if (p->state_len == 0)
-		return (json_parse_error(p, SUBC("Unexpected token")));
+		return (ft_json_fail(p, SUBC("Unexpected token")), JSON_ERROR);
 	t = json_tokenize(p);
 	if (t == JSON_P_ERROR)
 		return (JSON_ERROR);
 	if (t == JSON_P_EOF)
-		return (json_parse_error(p, SUBC("Unexpected EOF")));
+		return (ft_json_fail(p, SUBC("Unexpected EOF")), JSON_ERROR);
 	if (p->buff.str[p->state_len - 1] == JSON_STATE_DICT)
 	{
 		if (t == JSON_P_COMMA)
@@ -89,7 +89,7 @@ static t_json_token	json_parse_next_value(t_json_parser *p)
 		if (t == JSON_P_BRACE_CLOSE)
 			return (JSON_END);
 		if (t == JSON_P_SQUARE_CLOSE)
-			return (json_parse_error(p, SUBC("Unexpected ']': Expecting '}'")));
+			return (ft_json_fail(p, SUBC("Unexpected ']': Expecting '}'")), JSON_ERROR);
 	}
 	else
 	{
@@ -98,9 +98,9 @@ static t_json_token	json_parse_next_value(t_json_parser *p)
 		if (t == JSON_P_SQUARE_CLOSE)
 			return (JSON_END);
 		if (t == JSON_P_BRACE_CLOSE)
-			return (json_parse_error(p, SUBC("Unexpected '}': Expecting ']'")));
+			return (ft_json_fail(p, SUBC("Unexpected '}': Expecting ']'")), JSON_ERROR);
 	}
-	return (json_parse_error(p, SUBC("Syntax error")));
+	return (ft_json_fail(p, SUBC("Syntax error")), JSON_ERROR);
 }
 
 static t_json_token	json_parse_next_end(t_json_parser *p)
@@ -110,7 +110,7 @@ static t_json_token	json_parse_next_end(t_json_parser *p)
 	{
 		if (json_tokenize(p) == JSON_P_EOF)
 			return (JSON_EOF);
-		return (json_parse_error(p, SUBC("Expecting EOF")));
+		return (ft_json_fail(p, SUBC("Expecting EOF")), JSON_ERROR);
 	}
 	p->key_len = p->state_len;
 	return (json_parse_next_value(p));

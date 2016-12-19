@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 23:49:15 by juloo             #+#    #+#             */
-/*   Updated: 2016/12/15 16:44:07 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/19 18:08:11 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static bool			get_identifier(t_json_parser *p)
 	else if (ft_subto_float(val, &p->val_float) == val.length)
 		val_t = JSON_VALUE_FLOAT;
 	else
-		return (json_parse_error(p, SUBC("Invalid value")), false);
+		return (ft_json_fail(p, SUBC("Invalid value")));
 	p->value_type = val_t;
 	return (true);
 }
@@ -58,6 +58,7 @@ t_json_token	json_parse_value(t_json_parser *p, t_json_p_token t)
 	if (t == JSON_P_ERROR)
 		return (JSON_ERROR);
 	if (t == JSON_P_EOF)
-		return (json_parse_error(p, SUBC("Unexpected EOF")));
-	return (json_parse_error(p, SUBC("Syntax error: Expecting value")));
+		return (ft_json_fail(p, SUBC("Unexpected EOF")), JSON_ERROR);
+	ft_json_fail(p, SUBC("Syntax error: Expecting value"));
+	return (JSON_ERROR);
 }

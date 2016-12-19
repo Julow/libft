@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 18:58:25 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/15 18:36:36 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/19 18:05:38 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,5 @@ enum		e_json_state
 t_json_p_token	json_tokenize(t_json_parser *p);
 
 t_json_token	json_parse_value(t_json_parser *p, t_json_p_token t);
-
-t_json_token	json_parse_error(t_json_parser *p, t_sub str);
 
 #endif
