@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:22:19 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/19 17:59:47 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/21 17:32:19 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,13 +126,17 @@ struct		s_json_t_item
 
 # define JSON_T_CALLBACK(F,D,P,S)	JSON_T_VALUE(CALLBACK,.callback=((t_json_t_callback){(F),(D),(P),(S)}))
 
+# define __JSON_T_KEY(K,T)	{SUBC(ARG_1 K),offsetof(T,ARG_2 K),&ARG_3 K},
+# define _JSON_T_KEY(T,...)	((t_json_t_key[]){FOR_EACH(__JSON_T_KEY,,T,##__VA_ARGS__)})
 # define _JSON_T_DICT(K,S)	JSON_T_VALUE(DICT,.dict=((t_json_t_dict){K,ARRAY_LEN(K),S}))
-# define JSON_T_DICT(S,...)	_JSON_T_DICT(((t_json_t_key const[]){__VA_ARGS__}),(S))
+# define JSON_T_DICT(T,...)	_JSON_T_DICT(_JSON_T_KEY(T,##__VA_ARGS__),sizeof(T))
 
 # define JSON_T_LIST(VAL)	JSON_T_VALUE(LIST, .list = &(VAL))
 
-# define _JSON_T_FIXED_LIST(I,S)	JSON_T_VALUE(FIXED_LIST,.fixed_list=((t_json_t_fixed_list){I,ARRAY_LEN(I),S}))
-# define JSON_T_FIXED_LIST(S,...)	_JSON_T_FIXED_LIST(((t_json_t_item const[]){__VA_ARGS__}),(S))
+# define __JSON_T_ITEM(I,T)		{offsetof(T,ARG_1 I),&ARG_2 I},
+# define _JSON_T_ITEM(T,...)	((t_json_t_item[]){FOR_EACH(__JSON_T_ITEM,,T,##__VA_ARGS__)})
+# define _JSON_T_FLIST(I,S)		JSON_T_VALUE(FIXED_LIST,.fixed_list=((t_json_t_fixed_list){I,ARRAY_LEN(I),S}))
+# define JSON_T_FIXED_LIST(T,...)	_JSON_T_FLIST(_JSON_T_ITEM(T,##__VA_ARGS__),sizeof(T))
 
 /*
 ** Parse a full json document
@@ -142,6 +146,12 @@ struct		s_json_t_item
 */
 bool		ft_json_parse(t_in *in, t_json_t_value const *t,
 				void *data, t_dstr *err);
+
+/*
+** Parse some json according to 't'
+*/
+bool		ft_json_t_next(t_json_parser *p, t_json_t_value const *t,
+				void *data);
 
 /*
 ** Free data allocated during parsing

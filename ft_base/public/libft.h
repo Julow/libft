@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/15 14:52:58 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/21 17:33:45 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,9 @@ typedef struct s_vec2u			t_vec2u;
 ** 						Call 'MACRO' for each param
 ** 						'PARAM' is passed as 2nd param of MACRO
 ** 						'SEP' is used between each call of MACRO
+** ARG_1(...)			Return the first argument
+** ARG_2(...)			Return the second argument
+** ARG_3(...)			Return the third argument
 ** ALIGN_UP(I, A)		Align 'I' to the next 'A'
 */
 
@@ -149,6 +152,10 @@ typedef struct s_vec2u			t_vec2u;
 # define FOR_EACH2(F,S,P,...)	_FOR_EACH_S(2,__VA_ARGS__)(F,S,P,##__VA_ARGS__)
 
 # define ARG_COUNT(...)			_ARG_COUNT(A, ##__VA_ARGS__, _ARG_COUNT_L)
+
+# define ARG_1(A,...)		A
+# define ARG_2(A,B,...)		B
+# define ARG_3(A,B,C,...)	C
 
 # define ALIGN_UP(I, A)		((I) + ((A) - 1) & ~((A) - 1))
 

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:26:42 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/19 18:39:02 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/20 18:08:39 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,10 @@ bool		ft_json_parse(t_in *in, t_json_t_value const *t,
 		ft_dstradd(err, JSON_ERROR_STRING(&p));
 	ft_json_parser_clear(&p);
 	return (r);
+}
+
+bool		ft_json_t_next(t_json_parser *p, t_json_t_value const *t,
+				void *data)
+{
+	return (g_json_t_parse[t->type](p, t, data));
 }
