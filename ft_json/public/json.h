@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:20:01 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/19 18:03:26 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/21 14:39:13 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,18 @@ bool		ft_json_next(t_json_parser *p);
 ** Return false
 */
 bool		ft_json_fail(t_json_parser *p, t_sub err);
+
+/*
+** Check if the next token (ft_json_next) is 'except' otherwise fail
+** Return true on success, false on error
+*/
+bool		ft_json_except(t_json_parser *p, t_json_token except);
+
+/*
+** Check if the next token is JSON_VALUE and the value_type is 'except'
+** Return true on success, false on error
+*/
+bool		ft_json_except_value(t_json_parser *p, t_json_value_t except);
 
 /*
 ** Destroy the json_parser object
