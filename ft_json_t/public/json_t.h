@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:22:19 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/21 17:32:19 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/22 19:14:32 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@
 typedef struct s_json_t_dict			t_json_t_dict;
 typedef struct s_json_t_fixed_list		t_json_t_fixed_list;
 typedef struct s_json_t_callback		t_json_t_callback;
+typedef struct s_json_t_enum			t_json_t_enum;
 typedef struct s_json_t_value			t_json_t_value;
 typedef struct s_json_t_key				t_json_t_key;
 typedef struct s_json_t_item			t_json_t_item;
+typedef struct s_json_t_const			t_json_t_const;
 
 /*
 ** ========================================================================== **
@@ -54,6 +56,18 @@ struct		s_json_t_fixed_list
 };
 
 /*
+** values		=> Array of enum value
+** count		=> Number of value
+** data_size	=> Total size of the struct
+*/
+struct		s_json_t_enum
+{
+	t_json_t_const const	*values;
+	uint32_t				count;
+	uint32_t				data_size;
+};
+
+/*
 ** f			=> Called to parse a value
 ** destroy		=> Free allocated data (may be NULL)
 ** param		=> Custom param
@@ -68,15 +82,36 @@ struct		s_json_t_callback
 };
 
 /*
+** JSON_T_VAL_STRING		t_sub*			JSON_T_VALUE(STRING)
+** JSON_T_VAL_INT			int32_t			JSON_T_VALUE(INT)
+** JSON_T_VAL_FLOAT			float			JSON_T_VALUE(FLOAT)
+** JSON_T_VAL_BOOL			bool			JSON_T_VALUE(BOOL)
+** 			Simple value
+** -
+** JSON_T_VAL_LIST			t_vector		JSON_T_LIST(json_t_value)
+** 			List of any size, each elemets have the same type
+** -
+** JSON_T_VAL_DICT			Custom struct	JSON_T_DICT(struct name,
+** 												(key_name, struct_member, json_t_value),
+** 												...
+** 											)
+** 			Map a c-struct
+** -
+** JSON_T_VAL_FIXED_LIST	Custom struct	JSON_T_FIXED_LIST(struct name,
+** 												(struct_member, json_t_value),
+** 												...
+** 											)
+** 			Like a dict with unamed and ordered members
+** -
+** JSON_T_VAL_ENUM			Custom			JSON_T_ENUM(type,
+** 												(value_name, value),
+** 												...
+** 											)
+** 			Enum
+** -
 ** JSON_T_VAL_CALLBACK		Call 'callback'
-** JSON_T_VAL_LIST			t_vector
-** JSON_T_VAL_DICT			Custom struct
-** JSON_T_VAL_FIXED_LIST	Custom struct
-** JSON_T_VAL_STRING		t_sub*
-** JSON_T_VAL_INT			int32_t
-** JSON_T_VAL_FLOAT			float
-** JSON_T_VAL_BOOL			bool
 */
+
 struct		s_json_t_value
 {
 	enum {
@@ -84,6 +119,7 @@ struct		s_json_t_value
 		JSON_T_VAL_LIST,
 		JSON_T_VAL_DICT,
 		JSON_T_VAL_FIXED_LIST,
+		JSON_T_VAL_ENUM,
 		JSON_T_VAL_STRING,
 		JSON_T_VAL_INT,
 		JSON_T_VAL_FLOAT,
@@ -94,6 +130,7 @@ struct		s_json_t_value
 		t_json_t_value const	*list;
 		t_json_t_dict			dict;
 		t_json_t_fixed_list		fixed_list;
+		t_json_t_enum			_enum;
 	};
 };
 
@@ -119,6 +156,16 @@ struct		s_json_t_item
 	t_json_t_value const	*val;
 };
 
+/*
+** name				=> value name
+** value			=> value data
+*/
+struct		s_json_t_const
+{
+	t_sub		name;
+	void const	*data;
+};
+
 // TODO: optional key
 // TODO: nullable value
 
@@ -137,6 +184,11 @@ struct		s_json_t_item
 # define _JSON_T_ITEM(T,...)	((t_json_t_item[]){FOR_EACH(__JSON_T_ITEM,,T,##__VA_ARGS__)})
 # define _JSON_T_FLIST(I,S)		JSON_T_VALUE(FIXED_LIST,.fixed_list=((t_json_t_fixed_list){I,ARRAY_LEN(I),S}))
 # define JSON_T_FIXED_LIST(T,...)	_JSON_T_FLIST(_JSON_T_ITEM(T,##__VA_ARGS__),sizeof(T))
+
+# define __JSON_T_CONST(C,T)	{SUBC(ARG_1 C),&(T){ARG_2 C}},
+# define _JSON_T_CONST(T,...)	((t_json_t_const[]){FOR_EACH(__JSON_T_CONST,,T,##__VA_ARGS__)})
+# define _JSON_T_ENUM(V,S)		JSON_T_VALUE(ENUM,._enum=((t_json_t_enum){V,ARRAY_LEN(V),S}))
+# define JSON_T_ENUM(T,...)		_JSON_T_ENUM(_JSON_T_CONST(T,##__VA_ARGS__),sizeof(T))
 
 /*
 ** Parse a full json document

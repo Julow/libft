@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:40:16 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/19 17:46:02 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/22 16:47:33 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void		(*const g_json_t_free[])(t_json_t_value const*, void*) = {
 	[JSON_T_VAL_LIST] = &json_t_free_list,
 	[JSON_T_VAL_DICT] = &json_t_free_dict,
 	[JSON_T_VAL_FIXED_LIST] = &json_t_free_fixed_list,
+	[JSON_T_VAL_ENUM] = NULL,
 	[JSON_T_VAL_STRING] = &json_t_free_string,
 	[JSON_T_VAL_INT] = NULL,
 	[JSON_T_VAL_FLOAT] = NULL,

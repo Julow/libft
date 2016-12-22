@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:26:42 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/20 18:08:39 by jaguillo         ###   ########.fr       */
+/*   Updated: 2016/12/22 16:47:12 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ bool		(*const g_json_t_parse[])(t_json_parser*, t_json_t_value const*, void*) = 
 	[JSON_T_VAL_LIST] = json_t_parse_list,
 	[JSON_T_VAL_DICT] = json_t_parse_dict,
 	[JSON_T_VAL_FIXED_LIST] = json_t_parse_fixed_list,
+	[JSON_T_VAL_ENUM] = json_t_parse_enum,
 	[JSON_T_VAL_STRING] = json_t_parse_string,
 	[JSON_T_VAL_INT] = json_t_parse_int,
 	[JSON_T_VAL_FLOAT] = json_t_parse_float,
