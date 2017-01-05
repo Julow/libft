@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:29:37 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/19 18:09:47 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/05 12:04:04 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ bool		json_t_parse_list(t_json_parser *p,
 		if (p->token == JSON_END)
 			return (true);
 		if (!g_json_t_parse[t->list->type](p, t->list, ft_vpush(data, NULL, 1)))
+		{
+			((t_vector*)data)->length--;
 			break ;
+		}
 	}
 	free_list(t->list, data);
 	return (false);
