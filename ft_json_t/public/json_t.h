@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:22:19 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/22 19:14:32 by juloo            ###   ########.fr       */
+/*   Updated: 2017/01/11 15:05:14 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "ft/ft_vector.h"
 # include "ft/json.h"
 # include "ft/libft.h"
+
+# include <stddef.h>
 
 typedef struct s_json_t_dict			t_json_t_dict;
 typedef struct s_json_t_fixed_list		t_json_t_fixed_list;
