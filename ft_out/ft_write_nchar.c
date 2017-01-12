@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 20:31:12 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:41 by juloo            ###   ########.fr       */
+/*   Updated: 2017/01/12 12:15:24 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			ft_write_nchar(t_out *out, char c, uint32_t n)
 	while (true)
 	{
 		tmp = MIN(n, out->buff_size - out->buff_i);
-		ft_memset(out->buff + out->buff_i, c, tmp);
+		memset(out->buff + out->buff_i, c, tmp);
 		out->buff_i += tmp;
 		n -= tmp;
 		if (n == 0)

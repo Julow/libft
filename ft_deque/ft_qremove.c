@@ -6,19 +6,19 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 20:46:06 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:42 by juloo            ###   ########.fr       */
+/*   Updated: 2017/01/12 12:18:51 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/libft.h"
 #include "ft/ft_deque.h"
+#include "ft/libft.h"
 
 void			ft_qremove(t_deque_it *it)
 {
 	t_que_c			*c;
 
 	c = (it->next == NULL) ? it->deque->last : it->next->prev;
-	ft_memmove(it->data, it->data + it->deque->element_size,
+	memmove(it->data, it->data + it->deque->element_size,
 		(int)(it->end - it->data));
 	it->deque->length--;
 	c->end -= it->deque->element_size;

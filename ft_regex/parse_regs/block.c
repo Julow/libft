@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 21:01:19 by juloo             #+#    #+#             */
-/*   Updated: 2016/07/06 21:49:44 by juloo            ###   ########.fr       */
+/*   Updated: 2017/01/12 12:14:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static bool		parse_reg_block_named(t_parse_reg *p, t_sub sub,
 			r = MALLOC(sizeof(t_reg_group) + size);
 			r->reg.type = REG_T_GROUP;
 			r->group = ENDOF(r);
-			ft_memcpy(r->group, n->reg, size);
+			memcpy(r->group, n->reg, size);
 			r->group->flags &= ~REG_F_UNUSED;
 			r->group->next = NULL;
 			*reg = V(r);

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 21:49:30 by juloo             #+#    #+#             */
-/*   Updated: 2016/06/02 23:19:22 by juloo            ###   ########.fr       */
+/*   Updated: 2017/01/12 12:15:09 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static uint32_t	push_data(t_pqueue *q, void const *data)
 		ft_vpush(&q->data, NULL, 1);
 		q->freed = q->data.length;
 	}
-	ft_memcpy(VECTOR_GET(q->data, index), data, q->data.element_size);
+	memcpy(VECTOR_GET(q->data, index), data, q->data.element_size);
 	return (index);
 }
 

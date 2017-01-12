@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:27:15 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/19 18:36:47 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/12 12:16:01 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool		json_t_parse_string(t_json_parser *p,
 	val_string = JSON_VAL_STRING(p);
 	value = MALLOC(sizeof(t_sub) + val_string.length);
 	*value = SUB(ENDOF(value), val_string.length);
-	ft_memcpy(ENDOF(value), val_string.str, val_string.length);
+	memcpy(ENDOF(value), val_string.str, val_string.length);
 	*(t_sub**)data = value;
 	return (true);
 	(void)t;

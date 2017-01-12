@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 13:27:31 by juloo             #+#    #+#             */
-/*   Updated: 2016/06/25 01:40:04 by juloo            ###   ########.fr       */
+/*   Updated: 2017/01/12 12:16:37 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool			ft_load_img(t_sub file_name, t_img *dst)
 			i = -1;
 			while (g_imgtypes[++i].f != NULL)
 				if (g_imgtypes[i].ext.length == ext.length
-					&& !ft_memcmp(g_imgtypes[i].ext.str, ext.str, ext.length))
+					&& !memcmp(g_imgtypes[i].ext.str, ext.str, ext.length))
 				{
 					if ((in = ft_in_open(file_name)) == NULL)
 						return (false);

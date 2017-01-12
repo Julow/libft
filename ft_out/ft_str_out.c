@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 22:30:26 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/19 16:09:22 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/12 12:15:39 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void			ft_str_out_flush(t_str_out *out)
 	new_size = MAX(out->buff_size * 2, STR_OUT_MIN_BUFF);
 	out->buff = MALLOC(new_size);
 	if (out->buff_i > 0)
-		ft_memcpy(out->buff, tmp, out->buff_i);
+		memcpy(out->buff, tmp, out->buff_i);
 	if (out->buff_size > 0)
 		free(tmp);
 	out->buff_size = new_size;

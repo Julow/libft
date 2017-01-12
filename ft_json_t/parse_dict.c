@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:28:23 by jaguillo          #+#    #+#             */
-/*   Updated: 2017/01/06 15:43:09 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/12 12:16:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ bool			json_t_parse_dict(t_json_parser *p,
 
 	if (p->token != JSON_BEGIN_DICT)
 		return (ft_json_fail(p, SUBC("Expecting dict")));
-	ft_bzero(keys_set, sizeof(keys_set));
+	memset(keys_set, 0, sizeof(keys_set));
 	while (ft_json_next(p))
 	{
 		if (p->token == JSON_END)

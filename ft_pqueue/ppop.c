@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 22:34:32 by juloo             #+#    #+#             */
-/*   Updated: 2016/06/02 23:51:59 by juloo            ###   ########.fr       */
+/*   Updated: 2017/01/12 12:15:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool			ft_ppop(t_pqueue *q, void *dst)
 	if (q->heap.length == 0)
 		return (false);
 	if (dst != NULL)
-		ft_memcpy(dst, VECTOR_GET(q->data, top), q->data.element_size);
+		memcpy(dst, VECTOR_GET(q->data, top), q->data.element_size);
 	*(uint32_t*)VECTOR_GET(q->data, top) = q->freed;
 	q->freed = top;
 	q->heap.length--;

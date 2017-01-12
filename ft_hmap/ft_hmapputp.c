@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 19:56:23 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/19 16:12:10 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/12 12:18:04 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_hpair			ft_hmapputp(t_hmap *map, t_sub key, void *data)
 	h->key_len = key.length;
 	h->data = data;
 	h->next = NULL;
-	ft_memcpy(HMAP_H_KEY(h), key.str, key.length + 1);
+	memcpy(HMAP_H_KEY(h), key.str, key.length + 1);
 	hmap_puth(map, h);
 	return ((t_hpair){HMAP_H_KEY(h), h->data});
 }

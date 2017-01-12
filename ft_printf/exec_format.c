@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 14:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2016/01/03 14:12:06 by juloo            ###   ########.fr       */
+/*   Updated: 2017/01/12 12:15:01 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static int		parse_length(t_f_info *info, const char *format)
 	int				i;
 
 	i = 0;
-	while (ft_memcmp(format, g_lengths[i].name.str,
+	while (memcmp(format, g_lengths[i].name.str,
 			g_lengths[i].name.length) != 0)
 		i++;
 	info->length = g_lengths[i].length;

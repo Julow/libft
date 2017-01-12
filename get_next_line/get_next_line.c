@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/05 12:23:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/01/19 16:08:55 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/12 12:12:40 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int		buff_read(t_gnlfd *gnlfd)
 
 	if ((tmp = MALLOC(gnlfd->length + GNL_BUFF + 1)) == NULL)
 		return (-1);
-	ft_memcpy(tmp, gnlfd->buff, gnlfd->length);
+	memcpy(tmp, gnlfd->buff, gnlfd->length);
 	if (gnlfd->buff != NULL)
 		free(gnlfd->buff - gnlfd->offset);
 	gnlfd->buff = tmp;

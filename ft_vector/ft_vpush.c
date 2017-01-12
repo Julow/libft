@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/23 12:30:34 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/03/24 09:09:29 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/12 12:13:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ void			*ft_vpush(t_vector *v, void const *data, uint32_t count)
 	start = v->data + (v->length * v->element_size);
 	v->length += count;
 	if (data != NULL)
-		ft_memcpy(start, data, count * v->element_size);
+		memcpy(start, data, count * v->element_size);
 	return (start);
 }

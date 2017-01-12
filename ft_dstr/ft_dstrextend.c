@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/09 13:15:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/08/27 21:28:02 by juloo            ###   ########.fr       */
+/*   Updated: 2017/01/12 12:18:05 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void			ft_dstrextend(t_dstr *str, uint32_t need)
 	if (capacity <= str->capacity)
 		return ;
 	tmp = MALLOC(capacity + 1);
-	ft_memcpy(tmp, str->str, str->length);
+	memcpy(tmp, str->str, str->length);
 	tmp[str->length] = '\0';
 	if (str->capacity > 0)
 		free(str->str);

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 16:39:30 by juloo             #+#    #+#             */
-/*   Updated: 2016/12/22 18:43:36 by juloo            ###   ########.fr       */
+/*   Updated: 2017/01/12 12:16:07 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ bool		json_t_parse_enum(t_json_parser *p,
 		return (ft_json_fail(p, SUBC("Expecting string")));
 	if ((enum_value = get_value(&t->_enum, JSON_VAL_STRING(p))) == NULL)
 		return (ft_json_fail(p, SUBC("Unknown value")));
-	ft_memcpy(data, enum_value, t->_enum.data_size);
+	memcpy(data, enum_value, t->_enum.data_size);
 	return (true);
 }

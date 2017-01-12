@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/26 18:09:39 by juloo             #+#    #+#             */
-/*   Updated: 2016/12/15 12:42:40 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/12 12:14:20 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void		reg_is(uint32_t is, t_reg **reg)
 	uint32_t		i;
 
 	r = NEW(t_reg_set);
-	ft_bzero(r, sizeof(t_reg_set));
+	memset(r, 0, sizeof(t_reg_set));
 	r->reg.type = REG_T_SET;
 	i = 0;
 	while (i < 128)
@@ -85,7 +85,7 @@ uint32_t		parse_reg_set(t_parse_reg *p, uint32_t offset, t_reg **reg)
 	if (offset >= p->len)
 		return (REG_ERROR(p, "Unclosed set", i));
 	r = NEW(t_reg_set);
-	ft_bzero(r, sizeof(t_reg_set));
+	memset(r, 0, sizeof(t_reg_set));
 	while (i < offset)
 	{
 		c = p->str[i++];

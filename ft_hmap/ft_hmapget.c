@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/03 19:56:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 19:20:55 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/12 12:18:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_hpair			ft_hmapget(t_hmap const *map, t_sub key)
 	while (h != NULL && h->hash <= hash)
 	{
 		if (h->hash == hash && h->key_len == key.length
-			&& ft_memcmp(HMAP_H_KEY(h), key.str, key.length) == 0)
+			&& memcmp(HMAP_H_KEY(h), key.str, key.length) == 0)
 			return ((t_hpair){HMAP_H_KEY(h), h->data});
 		h = h->next;
 	}

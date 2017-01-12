@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 00:42:32 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:59 by juloo            ###   ########.fr       */
+/*   Updated: 2017/01/12 12:18:09 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void			ft_memfill(void *dst, void const *src, int size, int dst_size)
 {
 	int				i;
 
-	ft_memcpy(dst, src, MIN(size, dst_size));
+	memcpy(dst, src, MIN(size, dst_size));
 	i = size;
 	while (i < dst_size)
 	{
-		ft_memcpy(dst + i, dst, MIN(dst_size - i, i));
+		memcpy(dst + i, dst, MIN(dst_size - i, i));
 		i += i;
 	}
 }

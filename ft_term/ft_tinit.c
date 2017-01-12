@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:48:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/01/19 16:11:46 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/12 12:14:01 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static void		put_termcaps(t_sub *termcaps, char *dst, t_str_out *str)
 	uint32_t		last;
 
 	i = 0;
-	ft_memcpy(dst, str->buff, str->buff_i);
+	memcpy(dst, str->buff, str->buff_i);
 	last = 0;
 	while (i < TERMCAP_COUNT)
 	{
@@ -123,8 +123,8 @@ t_term			*ft_tinit(int fd, int flags)
 	term->out = OUT(V(term) + sizeof(t_term), TERM_OUT_BUFF_SIZE,
 		(void*)&term_out_flush);
 	term->term_config = V(term) + sizeof(t_term) + TERM_OUT_BUFF_SIZE;
-	ft_memcpy(term->term_config, &term_config, sizeof(struct termios));
-	ft_memcpy(term->term_config + sizeof(struct termios),
+	memcpy(term->term_config, &term_config, sizeof(struct termios));
+	memcpy(term->term_config + sizeof(struct termios),
 		&term_config, sizeof(struct termios));
 	put_termcaps(term->termcaps, V(term) + sizeof(t_term) + TERM_OUT_BUFF_SIZE
 		+ S(struct termios, 2), &termcaps);

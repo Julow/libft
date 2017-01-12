@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/13 20:02:16 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:44:44 by juloo            ###   ########.fr       */
+/*   Updated: 2017/01/12 12:18:50 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char			*ft_dstrspan(t_dstr *str, int from, int to, int size)
 	if (move != 0)
 	{
 		if ((str->length - to) > 0)
-			ft_memmove(str->str + to + move, str->str + to, str->length - to);
+			memmove(str->str + to + move, str->str + to, str->length - to);
 		str->length += move;
 		str->str[str->length] = '\0';
 	}

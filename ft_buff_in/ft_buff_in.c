@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/14 17:36:21 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/09/18 11:43:43 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/12 12:18:52 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static void		buff_in_shift(t_buff_in *in, char *dst)
 {
-	ft_memmove(dst, in->buff + in->i, in->length - in->i);
+	memmove(dst, in->buff + in->i, in->length - in->i);
 	in->length -= in->i;
 	in->i = 0;
 }
@@ -53,7 +53,7 @@ bool			ft_buff_in_read(t_buff_in *in)
 	ASSERT(in->in->buff_i < in->in->buff_len);
 	tmp = in->in->buff_len - in->in->buff_i;
 	buff_in_realloc(in, tmp);
-	ft_memcpy(in->buff + in->length, in->in->buff + in->in->buff_i, tmp);
+	memcpy(in->buff + in->length, in->in->buff + in->in->buff_i, tmp);
 	in->length += tmp;
 	in->in->buff_i = in->in->buff_len;
 	return (true);
@@ -65,8 +65,8 @@ void			ft_buff_in_inject(t_buff_in *in, t_sub str)
 
 	buff_in_realloc(in, str.length);
 	dst = in->buff + in->i;
-	ft_memmove(dst + str.length, dst, in->length - in->i);
-	ft_memcpy(dst, str.str, str.length);
+	memmove(dst + str.length, dst, in->length - in->i);
+	memcpy(dst, str.str, str.length);
 	in->length += str.length;
 }
 

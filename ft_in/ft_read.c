@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 20:38:37 by juloo             #+#    #+#             */
-/*   Updated: 2015/12/10 19:14:58 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/12 12:16:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool			ft_read(t_in *in, char *dst, uint32_t n)
 		if (tmp > n - i)
 			tmp = n - i;
 		if (dst != NULL)
-			ft_memcpy(dst + i, in->buff + in->buff_i, tmp);
+			memcpy(dst + i, in->buff + in->buff_i, tmp);
 		in->buff_i += tmp;
 		i += tmp;
 		if (i == n)

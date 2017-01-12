@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 16:15:29 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/15 12:41:28 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/12 12:18:34 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ uint32_t		ft_subfind(t_sub sub, t_sub search, uint32_t start)
 		while (i <= max)
 		{
 			if (sub.str[i] == search.str[0]
-				&& ft_memcmp(sub.str + i, search.str, search.length) == 0)
+				&& memcmp(sub.str + i, search.str, search.length) == 0)
 				return (i);
 			i++;
 		}

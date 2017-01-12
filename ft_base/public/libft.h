@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/21 17:33:45 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/12 12:21:34 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,7 @@
 
 # include <stdbool.h>
 # include <stdint.h>
-
-# ifdef NO_EMAL
-
-#  include <stdlib.h>
-
-# endif
+# include <string.h>
 
 /*
 ** ========================================================================== **
@@ -208,17 +203,10 @@ typedef struct s_vec2u			t_vec2u;
 void			*ft_emalloc(uint32_t size);
 void			*ft_memdup(const void *src, uint32_t len);
 
-void			*ft_bzero(void *mem, uint32_t len);
-void			*ft_memset(void *mem, int c, uint32_t len);
-
-void			*ft_memcpy(void *dst, const void *src, uint32_t len);
 void			*ft_memrcpy(void *dst, const void *src, uint32_t len);
-void			*ft_memmove(void *dst, const void *src, uint32_t len);
 
 void			ft_memfill(void *dst, void const *src, int size, int dst_size);
 void			ft_memswap(void *mem1, void *mem2, uint32_t len);
-
-int				ft_memcmp(const void *mem1, const void *mem2, uint32_t len);
 
 uint32_t		ft_memstart(void const *s1, void const *s2, uint32_t n);
 
@@ -656,9 +644,9 @@ bool			ft_assert_hard(char const *err, char const *func);
 ** Sub
 */
 
-# define _SUB_EQU(A,B)	(ft_memcmp((A).str, (B).str, (A).length) == 0)
+# define _SUB_EQU(A,B)	(memcmp((A).str, (B).str, (A).length) == 0)
 
-# define _SUB_CMP(A,B)	A.length - B.length : ft_memcmp(A.str, B.str, A.length)
+# define _SUB_CMP(A,B)	A.length - B.length : memcmp(A.str, B.str, A.length)
 
 /*
 ** Assert

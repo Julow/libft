@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 16:38:02 by juloo             #+#    #+#             */
-/*   Updated: 2015/11/27 23:45:09 by juloo            ###   ########.fr       */
+/*   Updated: 2017/01/12 12:20:48 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/libft.h"
 #include "ft/ft_deque.h"
+#include "ft/libft.h"
 
 void			*ft_qpush_back(t_deque *v, void *data)
 {
@@ -23,8 +23,8 @@ void			*ft_qpush_back(t_deque *v, void *data)
 	v->last->end += v->element_size;
 	v->length++;
 	if (data == NULL)
-		ft_bzero(dst, v->element_size);
+		memset(dst, 0, v->element_size);
 	else
-		ft_memcpy(dst, data, v->element_size);
+		memcpy(dst, data, v->element_size);
 	return (dst);
 }

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 15:55:22 by juloo             #+#    #+#             */
-/*   Updated: 2016/09/09 13:01:35 by juloo            ###   ########.fr       */
+/*   Updated: 2017/01/12 12:13:45 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void		build_token_match(t_tokenmap_builder const *b,
 		{
 			match.type = (pattern.str[++i] == '+' && (++i, true)) ?
 				TOKENMAP_MATCH_SET_REPEAT : TOKENMAP_MATCH_SET;
-			ft_bzero(match.set, sizeof(match.set));
+			memset(match.set, 0, sizeof(match.set));
 			while (pattern.str[i] != '\0' && i < pattern.length)
 			{
 				BITARRAY_SET(match.set, pattern.str[i]);
@@ -106,7 +106,7 @@ static void		build_tokens(t_tokenmap_builder const *b, t_tokenmap_t **dst)
 			match.length,
 			t->data
 		};
-		ft_memcpy(dst[i]->match, match.data, S(t_tokenmap_match, match.length));
+		memcpy(dst[i]->match, match.data, S(t_tokenmap_match, match.length));
 		i++;
 	}
 	ft_vclear(&match);
@@ -153,10 +153,10 @@ t_tokenmap		*ft_tokenmap_builder_done(t_tokenmap_builder *b)
 	build_idx(b, V(tokens_t), idx, &tokens_t_idx);
 	tokenmap = MALLOC(sizeof(t_tokenmap)
 			+ S(t_tokenmap_t const*, tokens_t_idx.length));
-	ft_memcpy(tokenmap->idx, idx, sizeof(idx));
+	memcpy(tokenmap->idx, idx, sizeof(idx));
 	tokenmap->t = ENDOF(tokenmap);
 	tokenmap->def = b->def;
-	ft_memcpy(ENDOF(tokenmap), tokens_t_idx.data,
+	memcpy(ENDOF(tokenmap), tokens_t_idx.data,
 		S(t_tokenmap_t const*, tokens_t_idx.length));
 	ft_vclear(&tokens_t_idx);
 	ft_dstrclear(&b->str_buff);
