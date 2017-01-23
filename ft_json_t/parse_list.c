@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:29:37 by jaguillo          #+#    #+#             */
-/*   Updated: 2017/01/05 12:04:04 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/23 18:04:51 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ bool		json_t_parse_list(t_json_parser *p,
 	return (false);
 }
 
-static void	free_fixed_list(t_json_t_fixed_list const *t,
-				void *data, uint32_t end)
+static void	free_tuple(t_json_t_tuple const *t, void *data, uint32_t end)
 {
 	uint32_t			i;
 
@@ -55,7 +54,7 @@ static void	free_fixed_list(t_json_t_fixed_list const *t,
 	}
 }
 
-bool		json_t_parse_fixed_list(t_json_parser *p,
+bool		json_t_parse_tuple(t_json_parser *p,
 				t_json_t_value const *t, void *data)
 {
 	uint32_t			i;
@@ -66,7 +65,7 @@ bool		json_t_parse_fixed_list(t_json_parser *p,
 	i = 0;
 	while (ft_json_next(p))
 	{
-		if (i >= t->fixed_list.count)
+		if (i >= t->tuple.count)
 		{
 			if (p->token == JSON_END)
 				return (true);
@@ -78,11 +77,11 @@ bool		json_t_parse_fixed_list(t_json_parser *p,
 			ft_json_fail(p, SUBC("Incomplete value"));
 			break ;
 		}
-		item = &t->fixed_list.items[i];
+		item = &t->tuple.items[i];
 		if (!g_json_t_parse[item->val->type](p, item->val, data + item->offset))
 			break ;
 		i++;
 	}
-	free_fixed_list(&t->fixed_list, data, i);
+	free_tuple(&t->tuple, data, i);
 	return (false);
 }

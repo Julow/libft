@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:40:16 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/22 16:47:33 by juloo            ###   ########.fr       */
+/*   Updated: 2017/01/23 18:03:13 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ static void	json_t_free_list(t_json_t_value const *t, void *data)
 	ft_vclear(v);
 }
 
-static void	json_t_free_fixed_list(t_json_t_value const *t, void *data)
+static void	json_t_free_tuple(t_json_t_value const *t, void *data)
 {
 	uint32_t		i;
 
 	i = 0;
-	while (i < t->fixed_list.count)
+	while (i < t->tuple.count)
 	{
-		ft_json_t_free(t->fixed_list.items[i].val,
-				data + t->fixed_list.items[i].offset);
+		ft_json_t_free(t->tuple.items[i].val,
+				data + t->tuple.items[i].offset);
 		i++;
 	}
 }
@@ -66,7 +66,7 @@ void		(*const g_json_t_free[])(t_json_t_value const*, void*) = {
 	[JSON_T_VAL_CALLBACK] = &json_t_free_callback,
 	[JSON_T_VAL_LIST] = &json_t_free_list,
 	[JSON_T_VAL_DICT] = &json_t_free_dict,
-	[JSON_T_VAL_FIXED_LIST] = &json_t_free_fixed_list,
+	[JSON_T_VAL_TUPLE] = &json_t_free_tuple,
 	[JSON_T_VAL_ENUM] = NULL,
 	[JSON_T_VAL_STRING] = &json_t_free_string,
 	[JSON_T_VAL_INT] = NULL,

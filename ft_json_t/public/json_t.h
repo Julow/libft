@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:22:19 by jaguillo          #+#    #+#             */
-/*   Updated: 2017/01/11 15:05:14 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/23 18:05:57 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stddef.h>
 
 typedef struct s_json_t_dict			t_json_t_dict;
-typedef struct s_json_t_fixed_list		t_json_t_fixed_list;
+typedef struct s_json_t_tuple			t_json_t_tuple;
 typedef struct s_json_t_callback		t_json_t_callback;
 typedef struct s_json_t_enum			t_json_t_enum;
 typedef struct s_json_t_value			t_json_t_value;
@@ -50,7 +50,7 @@ struct		s_json_t_dict
 ** count		=> Number of item
 ** data_size	=> Total size of the struct
 */
-struct		s_json_t_fixed_list
+struct		s_json_t_tuple
 {
 	t_json_t_item const	*items;
 	uint32_t			count;
@@ -99,7 +99,7 @@ struct		s_json_t_callback
 ** 											)
 ** 			Map a c-struct
 ** -
-** JSON_T_VAL_FIXED_LIST	Custom struct	JSON_T_FIXED_LIST(struct name,
+** JSON_T_VAL_TUPLE	Custom struct	JSON_T_tuple(struct name,
 ** 												(struct_member, json_t_value),
 ** 												...
 ** 											)
@@ -120,7 +120,7 @@ struct		s_json_t_value
 		JSON_T_VAL_CALLBACK,
 		JSON_T_VAL_LIST,
 		JSON_T_VAL_DICT,
-		JSON_T_VAL_FIXED_LIST,
+		JSON_T_VAL_TUPLE,
 		JSON_T_VAL_ENUM,
 		JSON_T_VAL_STRING,
 		JSON_T_VAL_INT,
@@ -131,7 +131,7 @@ struct		s_json_t_value
 		t_json_t_callback		callback;
 		t_json_t_value const	*list;
 		t_json_t_dict			dict;
-		t_json_t_fixed_list		fixed_list;
+		t_json_t_tuple			tuple;
 		t_json_t_enum			_enum;
 	};
 };
@@ -184,8 +184,8 @@ struct		s_json_t_const
 
 # define __JSON_T_ITEM(I,T)		{offsetof(T,ARG_1 I),&ARG_2 I},
 # define _JSON_T_ITEM(T,...)	((t_json_t_item[]){FOR_EACH(__JSON_T_ITEM,,T,##__VA_ARGS__)})
-# define _JSON_T_FLIST(I,S)		JSON_T_VALUE(FIXED_LIST,.fixed_list=((t_json_t_fixed_list){I,ARRAY_LEN(I),S}))
-# define JSON_T_FIXED_LIST(T,...)	_JSON_T_FLIST(_JSON_T_ITEM(T,##__VA_ARGS__),sizeof(T))
+# define _JSON_T_TUPLE(I,S)		JSON_T_VALUE(TUPLE,.tuple=((t_json_t_tuple){I,ARRAY_LEN(I),S}))
+# define JSON_T_TUPLE(T,...)	_JSON_T_TUPLE(_JSON_T_ITEM(T,##__VA_ARGS__),sizeof(T))
 
 # define __JSON_T_CONST(C,T)	{SUBC(ARG_1 C),&(T){ARG_2 C}},
 # define _JSON_T_CONST(T,...)	((t_json_t_const[]){FOR_EACH(__JSON_T_CONST,,T,##__VA_ARGS__)})

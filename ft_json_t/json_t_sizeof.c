@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:25:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/12/22 16:46:55 by juloo            ###   ########.fr       */
+/*   Updated: 2017/01/23 18:03:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static uint32_t const	g_json_t_sizeof[] = {
 	[JSON_T_VAL_CALLBACK] = 0,
 	[JSON_T_VAL_LIST] = sizeof(t_vector),
 	[JSON_T_VAL_DICT] = 0,
-	[JSON_T_VAL_FIXED_LIST] = 0,
+	[JSON_T_VAL_TUPLE] = 0,
 	[JSON_T_VAL_ENUM] = 0,
 	[JSON_T_VAL_STRING] = sizeof(t_sub*),
 	[JSON_T_VAL_INT] = sizeof(int32_t),
@@ -30,8 +30,8 @@ uint32_t	ft_json_t_sizeof(t_json_t_value const *t)
 		return (t->callback.data_size);
 	if (t->type == JSON_T_VAL_DICT)
 		return (t->dict.data_size);
-	if (t->type == JSON_T_VAL_FIXED_LIST)
-		return (t->fixed_list.data_size);
+	if (t->type == JSON_T_VAL_TUPLE)
+		return (t->tuple.data_size);
 	if (t->type == JSON_T_VAL_ENUM)
 		return (t->_enum.data_size);
 	return (g_json_t_sizeof[t->type]);
