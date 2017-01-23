@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:28:23 by jaguillo          #+#    #+#             */
-/*   Updated: 2017/01/12 12:16:16 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/23 19:21:30 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,22 @@ static uint32_t	get_key(t_json_t_dict const *dict, t_sub name) // TODO: improve
 }
 
 static bool		check_required_keys(t_json_parser *p, t_json_t_dict const *dict,
-					bool const *set)
+					bool const *set, void *data)
 {
 	uint32_t			i;
+	t_json_t_key const	*key;
 
 	i = 0;
 	while (i < dict->count)
 	{
 		if (!set[i])
-			return (ft_json_fail(p, SUBC("Missing required key")));
+		{
+			key = &dict->keys[i];
+			if (key->default_value == NULL)
+				return (ft_json_fail(p, SUBC("Missing required key")));
+			memcpy(data + key->offset, key->default_value,
+					ft_json_t_sizeof(key->val));
+		}
 		i++;
 	}
 	return (true);
@@ -67,7 +74,7 @@ bool			json_t_parse_dict(t_json_parser *p,
 	while (ft_json_next(p))
 	{
 		if (p->token == JSON_END)
-			return (check_required_keys(p, &t->dict, keys_set));
+			return (check_required_keys(p, &t->dict, keys_set, data));
 		if ((i = get_key(&t->dict, JSON_KEY_STRING(p))) >= t->dict.count)
 			return (ft_json_fail(p, SUBC("Unknown key")));
 		key = &t->dict.keys[i];

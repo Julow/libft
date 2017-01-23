@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 14:22:19 by jaguillo          #+#    #+#             */
-/*   Updated: 2017/01/23 18:05:57 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/01/23 19:29:34 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,34 +84,42 @@ struct		s_json_t_callback
 };
 
 /*
-** JSON_T_VAL_STRING		t_sub*			JSON_T_VALUE(STRING)
-** JSON_T_VAL_INT			int32_t			JSON_T_VALUE(INT)
-** JSON_T_VAL_FLOAT			float			JSON_T_VALUE(FLOAT)
-** JSON_T_VAL_BOOL			bool			JSON_T_VALUE(BOOL)
-** 			Simple value
+** JSON_T_VAL_STRING	t_sub*		JSON_T_VALUE(STRING)
+** JSON_T_VAL_INT		int32_t		JSON_T_VALUE(INT)
+** JSON_T_VAL_FLOAT		float		JSON_T_VALUE(FLOAT)
+** JSON_T_VAL_BOOL		bool		JSON_T_VALUE(BOOL)
+** 			Scalar value
 ** -
-** JSON_T_VAL_LIST			t_vector		JSON_T_LIST(json_t_value)
+** JSON_T_VAL_LIST		t_vector	JSON_T_LIST(json_t_value)
 ** 			List of any size, each elemets have the same type
 ** -
-** JSON_T_VAL_DICT			Custom struct	JSON_T_DICT(struct name,
-** 												(key_name, struct_member, json_t_value),
-** 												...
-** 											)
+** JSON_T_VAL_DICT		Custom		JSON_T_DICT(struct name,
+** 										(key_name, struct_member,
+** 											json_t_value, default_value=NULL),
+** 										...
+** 									)
 ** 			Map a c-struct
 ** -
-** JSON_T_VAL_TUPLE	Custom struct	JSON_T_tuple(struct name,
-** 												(struct_member, json_t_value),
-** 												...
-** 											)
+** JSON_T_VAL_TUPLE		Custom		JSON_T_tuple(struct name,
+** 										(struct_member, json_t_value),
+** 										...
+** 									)
 ** 			Like a dict with unamed and ordered members
 ** -
-** JSON_T_VAL_ENUM			Custom			JSON_T_ENUM(type,
-** 												(value_name, value),
-** 												...
-** 											)
+** JSON_T_VAL_ENUM		Custom		JSON_T_ENUM(type,
+** 										(value_name, value),
+** 										...
+** 									)
 ** 			Enum
 ** -
-** JSON_T_VAL_CALLBACK		Call 'callback'
+** JSON_T_VAL_CALLBACK	Custom		JSON_T_CALLBACK(
+** 										parse_function,
+** 										destroy_function,
+** 										param,
+** 										data_size
+** 									)
+** 			Custom parsing
+** -
 */
 
 struct		s_json_t_value
@@ -140,12 +148,17 @@ struct		s_json_t_value
 ** key				=> key name
 ** offset			=> offset in 'data'
 ** val				=> value
+** default_value	=> Default value
+** 						If not NULL, the key become optional
+** 						'default_value' is shallow copied if the key is omitted
+** 						(Warning: may go through ft_json_t_free)
 */
 struct		s_json_t_key
 {
 	t_sub					key;
 	uint32_t				offset;
 	t_json_t_value const	*val;
+	void const				*default_value;
 };
 
 /*
@@ -168,14 +181,15 @@ struct		s_json_t_const
 	void const	*data;
 };
 
-// TODO: optional key
 // TODO: nullable value
 
 # define JSON_T_VALUE(T,...)	((t_json_t_value){JSON_T_VAL_##T,{__VA_ARGS__}})
 
 # define JSON_T_CALLBACK(F,D,P,S)	JSON_T_VALUE(CALLBACK,.callback=((t_json_t_callback){(F),(D),(P),(S)}))
 
-# define __JSON_T_KEY(K,T)	{SUBC(ARG_1 K),offsetof(T,ARG_2 K),&ARG_3 K},
+# define ARG_3_TAIL(A,B,C,...)	__VA_ARGS__
+
+# define __JSON_T_KEY(K,T)	{SUBC(ARG_1 K),offsetof(T,ARG_2 K),.val=&ARG_3 K,ARG_3_TAIL K},
 # define _JSON_T_KEY(T,...)	((t_json_t_key[]){FOR_EACH(__JSON_T_KEY,,T,##__VA_ARGS__)})
 # define _JSON_T_DICT(K,S)	JSON_T_VALUE(DICT,.dict=((t_json_t_dict){K,ARRAY_LEN(K),S}))
 # define JSON_T_DICT(T,...)	_JSON_T_DICT(_JSON_T_KEY(T,##__VA_ARGS__),sizeof(T))
