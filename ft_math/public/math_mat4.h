@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/13 22:34:18 by juloo             #+#    #+#             */
-/*   Updated: 2016/05/09 16:43:44 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/01 19:25:25 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ t_mat4			*ft_mat4mult(t_mat4 const *a, t_mat4 const *b, t_mat4 *dst);
 
 void			ft_mat4transpose(t_mat4 *m);
 
-t_mat4			ft_mat4transform(t_vec3 pos, t_vec3 rot,
-					t_vec3 shear, t_vec3 scale);
-t_mat4			ft_mat4transform_inv(t_vec3 pos, t_vec3 rot,
-					t_vec3 shear, t_vec3 scale);
+void			ft_mat4transform(t_vec3 const *pos, t_vec3 const *rot,
+					t_vec3 const *scale, t_mat4 *dst);
+void			ft_mat4transform_inv(t_vec3 const *pos, t_vec3 const *rot,
+					t_vec3 const *scale, t_mat4 *dst);
 
 void			ft_mat4apply_vec3(t_mat4 const *m, t_vec3 *v, float w);
 void			ft_mat4apply_vec4(t_mat4 const *m, t_vec4 *v);
