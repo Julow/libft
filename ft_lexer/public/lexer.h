@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 18:32:55 by juloo             #+#    #+#             */
-/*   Updated: 2016/09/08 23:53:04 by juloo            ###   ########.fr       */
+/*   Updated: 2017/02/13 14:48:27 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ struct			s_lexer_token_def
 ** M			=> Main state (string)
 ** ...			=> List of t_lexer_state_def
 */
-# define LEXER_DEF(L, M, ...)	((t_lexer_def){NULL, VECTORC((t_lexer_def const*[])LST L), VECTOR(t_lexer_state_def, ##__VA_ARGS__), SUBC(M)})
+# define LEXER_DEF(L, M, ...)	((t_lexer_def){NULL, VECTORC((t_lexer_def const*[])LST L), VECTORC(((t_lexer_state_def[]){__VA_ARGS__})), SUBC(M)})
 
 /*
 ** Init a t_lexer_state_def

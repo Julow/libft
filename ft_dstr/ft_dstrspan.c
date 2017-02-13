@@ -6,35 +6,30 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/13 20:02:16 by juloo             #+#    #+#             */
-/*   Updated: 2017/01/12 12:18:50 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/13 15:02:04 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/ft_dstr.h"
 
-char			*ft_dstrspan(t_dstr *str, int from, int to, int size)
+char			*ft_dstrspan(t_dstr *str, uint32_t from, uint32_t to,
+					char const *src, uint32_t size)
 {
-	int				move;
+	int32_t			move;
 
-	if (from < 0)
-		from += str->length + 1;
-	if (to < 0)
-		to += str->length + 1;
 	if (from > to)
-	{
-		move = from;
-		from = to;
-		to = move;
-	}
-	move = size - to + from;
-	if (DSTR_NEED(str, move))
-		ft_dstrextend(str, move);
+		return (ft_dstrspan(str, to, from, src, size));
+	move = (int)size - (int)to + from;
 	if (move != 0)
 	{
+		if (move > 0 && DSTR_NEED(str, move))
+			ft_dstrextend(str, move);
 		if ((str->length - to) > 0)
 			memmove(str->str + to + move, str->str + to, str->length - to);
 		str->length += move;
 		str->str[str->length] = '\0';
 	}
+	if (src != NULL)
+		memcpy(str->str + from, src, size);
 	return (str->str + from);
 }

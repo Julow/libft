@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/08 22:10:54 by juloo             #+#    #+#             */
-/*   Updated: 2016/06/14 14:44:56 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/13 14:58:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,11 @@ struct			s_dstr
 # define DSTRC(STR)			((t_dstr){(STR), sizeof(STR) - 1, 0})
 # define DSTR0()			((t_dstr){"", 0, 0})
 
-/*
-** TODO: type safety
-*/
 # define DSTR_SUB(DSTR)		(*(t_sub const*)(&(DSTR)))
 
 /*
 ** ft_dstradd
-** ----
+** -
 ** Add a sub to the dstr
 ** (Care about the terminating '\0')
 */
@@ -67,24 +64,22 @@ void			ft_dstradd(t_dstr *str, t_sub add);
 
 /*
 ** ft_dstrspan
-** ----
-** Change the size of a span ('from', 'to') to ('from', 'from' + 'size')
+** -
+** Change the size of the span ('from', 'to') to ('from', 'from' + 'size')
+** -
+** If 'src' is not NULL, 'size' characters are copied from it to the span
 ** -
 ** Can be used to remove/insert characters
 ** (Care about the terminating '\0')
 ** -
-** if 'from' or 'to' are negative then str->length + 1 is added to it
-** -1 mean str->length
-** -2 mean str->length -1
-** 'from' and 'to' are swaped if 'from' > 'to'
-** ----
 ** Return a pointer to the start of the span
 */
-char			*ft_dstrspan(t_dstr *str, int from, int to, int size);
+char			*ft_dstrspan(t_dstr *str, uint32_t from, uint32_t to,
+					char const *src, uint32_t size);
 
 /*
 ** ft_dstrextend
-** ----
+** -
 ** Test if the string can store 'need' more chars
 ** Extend the alloc if needed
 */
@@ -92,7 +87,7 @@ void			ft_dstrextend(t_dstr *str, uint32_t need);
 
 /*
 ** ft_dstrclear
-** ----
+** -
 ** Free allocated memory
 ** The dstr is still usable
 */
