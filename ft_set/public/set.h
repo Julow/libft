@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 11:34:10 by juloo             #+#    #+#             */
-/*   Updated: 2016/05/09 18:52:21 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/13 19:59:03 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,20 @@ bool			ft_set_insert(t_set *set, void *element, void const *key);
 void			ft_set_remove(t_set *set, void *element);
 
 /*
-** Return the first/last element in sorted order
-** If 'key' is not NULL, return the first/last element that match the key
-** Return NULL if the set is empty
+** Returns the first element (in sorted order) where element >= key
+** If 'key' is NULL, returns the first element in the set
+** Returns NULL if there is no match
 */
-void			*ft_set_first(t_set *set, void const *key);
-void const		*ft_set_cfirst(t_set const *set, void const *key);
+void			*ft_set_begin(t_set *set, void const *key);
+void const		*ft_set_cbegin(t_set const *set, void const *key);
 
-void			*ft_set_last(t_set *set, void const *key);
-void const		*ft_set_clast(t_set const *set, void const *key);
+/*
+** Returns the element
+** 	after the last element (in sorted order) where element >= key
+** If 'key' is NULL, returns NULL
+*/
+void			*ft_set_end(t_set *set, void const *key);
+void const		*ft_set_cend(t_set const *set, void const *key);
 
 /*
 ** Return the prev/next element in sorted order
