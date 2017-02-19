@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 16:35:36 by jaguillo          #+#    #+#             */
-/*   Updated: 2017/02/13 20:00:48 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/19 00:52:30 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void const		*ft_set_cbegin(t_set const *set, void const *key)
 
 	if (key == NULL)
 	{
-		if ((node = set->data) == NULL)
+		if ((node = set->root) == NULL)
 			return (NULL);
 		while (node->left != NULL)
 			node = node->left;
 		return (node);
 	}
 	node = NULL;
-	tmp = set->data;
+	tmp = set->root;
 	while (true)
 	{
 		while (tmp != NULL && set->cmp(tmp, key) < 0)
@@ -52,7 +52,7 @@ void const		*ft_set_cend(t_set const *set, void const *key)
 	if (key == NULL)
 		return (NULL);
 	node = NULL;
-	tmp = set->data;
+	tmp = set->root;
 	while (true)
 	{
 		while (tmp != NULL && set->cmp(tmp, key) <= 0)

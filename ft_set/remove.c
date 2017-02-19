@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 11:31:30 by juloo             #+#    #+#             */
-/*   Updated: 2016/06/14 14:50:46 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/19 01:26:50 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void		set_swap_node(t_set *set, t_set_node *a, t_set_node *b)
 	if (a->right != NULL)
 		SET_SETPARENT(a->right, a);
 	if ((parent = SET_PARENT(a)) == NULL)
-		set->data = a;
+		set->root = a;
 	else if (parent->left == b)
 		parent->left = a;
 	else if (parent->right == b)
@@ -104,7 +104,7 @@ void			ft_set_remove(t_set *set, void *element)
 		set_swap(set, ft_set_next(node), node);
 	tmp = (node->left != NULL) ? node->left : node->right;
 	if ((parent = SET_PARENT(node)) == NULL)
-		set->data = tmp;
+		set->root = tmp;
 	else if (node == parent->left)
 		parent->left = tmp;
 	else
@@ -114,5 +114,6 @@ void			ft_set_remove(t_set *set, void *element)
 	SET_SETPARENT(tmp, parent);
 	if (!SET_ISRED(node))
 		set_balance(set, tmp);
+	ft_set_update(set, tmp);
 	*node = (t_set_node){NULL, NULL, NULL};
 }

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 18:45:21 by juloo             #+#    #+#             */
-/*   Updated: 2016/04/28 21:17:21 by juloo            ###   ########.fr       */
+/*   Updated: 2017/02/19 02:54:09 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ struct			s_set_node
 
 /*
 ** Standard tree rotation
+** -
+** Update are performed where needed
 */
 void			set_node_rotate(t_set *tree, t_set_node *node, bool left);
 

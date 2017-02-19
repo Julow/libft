@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 11:34:10 by juloo             #+#    #+#             */
-/*   Updated: 2017/02/13 19:59:03 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/19 00:55:47 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ typedef struct s_set_h			t_set_h;
 
 /*
 ** set object
+** 'root' is the root node
 ** 'cmp' is used for comparing keys, take an element and the key to compare
+** 'update' is called every times a node's child change or with ft_set_update
 ** 'count' store the total element count
-** 'flags':
-** 		SET_ALLOW_DUP		allow dupplicated keys on insert
 ** -
-** SET(CMP, FLAGS) construct a set object
+** SET(CMP, UPDATE) construct a set object
 */
 struct			s_set
 {
-	void			*data;
+	void			*root;
 	int				(*cmp)(void const *element, void const *key);
+	void			(*update)(void *element);
 	uint32_t		count;
-	uint32_t		flags;
 };
 
 /*
@@ -49,14 +49,14 @@ struct			s_set
 */
 struct			s_set_h
 {
-	void const *const	data[3];
+	void const *const	data;
+	void *const			left;
+	void *const			right;
 };
 
-# define SET(CMP, FLAGS)		((t_set){NULL, V(CMP), 0, (FLAGS)})
+# define SET(CMP, UPDATE)		((t_set){NULL, V(CMP), V(UPDATE), 0})
 
-# define SET_HEAD()				((t_set_h){{NULL, NULL, NULL}})
-
-# define SET_ALLOW_DUP			(1 << 1)
+# define SET_HEAD()				((t_set_h){NULL, NULL, NULL})
 
 /*
 ** Search into the set
@@ -80,6 +80,11 @@ bool			ft_set_insert(t_set *set, void *element, void const *key);
 ** 'element' have to be an element of 'set'
 */
 void			ft_set_remove(t_set *set, void *element);
+
+/*
+** Update the tree starting at 'element' to the top
+*/
+void			ft_set_update(t_set *set, void *element);
 
 /*
 ** Returns the first element (in sorted order) where element >= key

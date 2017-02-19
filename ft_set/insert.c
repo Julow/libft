@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 13:42:55 by juloo             #+#    #+#             */
-/*   Updated: 2016/04/28 21:17:28 by juloo            ###   ########.fr       */
+/*   Updated: 2017/02/19 01:26:37 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,13 @@ bool			ft_set_insert(t_set *set, void *element, void const *key)
 {
 	t_set_node		*parent;
 	t_set_node		**next;
-	int				diff;
 
 	parent = NULL;
-	next = (t_set_node**)&set->data;
+	next = (t_set_node**)&set->root;
 	while (*next != NULL)
 	{
 		parent = *next;
-		diff = set->cmp(parent, key);
-		if (diff == 0 && !(set->flags & SET_ALLOW_DUP))
-			return (false);
-		next = (diff <= 0) ? &parent->left : &parent->right;
+		next = (set->cmp(parent, key) <= 0) ? &parent->left : &parent->right;
 	}
 	ASSERT(!(((uintptr_t)element) & 1), "IMPAIR POINTER");
 	set->count++;
@@ -84,5 +80,6 @@ bool			ft_set_insert(t_set *set, void *element, void const *key)
 		if (SET_ISRED(parent))
 			set_check_balance(set, element);
 	}
+	ft_set_update(set, element);
 	return (true);
 }

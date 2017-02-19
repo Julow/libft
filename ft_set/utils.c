@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 18:46:30 by juloo             #+#    #+#             */
-/*   Updated: 2016/04/28 21:17:05 by juloo            ###   ########.fr       */
+/*   Updated: 2017/02/19 02:54:43 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			set_node_rotate(t_set *set, t_set_node *node, bool left)
 	t_set_node *const	parent = SET_PARENT(node);
 
 	if (parent == NULL)
-		set->data = pivot;
+		set->root = pivot;
 	else if (node == parent->left)
 		parent->left = pivot;
 	else
@@ -31,4 +31,22 @@ void			set_node_rotate(t_set *set, t_set_node *node, bool left)
 		SET_SETPARENT(SET_CHILD(pivot, i.x), node);
 	SET_CHILD(pivot, i.x) = node;
 	SET_SETPARENT(node, pivot);
+	if (set->update != NULL)
+	{
+		if (SET_CHILD(pivot, i.x) != NULL)
+			set->update(SET_CHILD(pivot, i.x));
+		set->update(node);
+		set->update(pivot);
+	}
+}
+
+void			ft_set_update(t_set *set, void *element)
+{
+	if (set->update == NULL)
+		return ;
+	while (element != NULL)
+	{
+		set->update(element);
+		element = SET_PARENT(element);
+	}
 }
