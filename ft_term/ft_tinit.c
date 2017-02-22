@@ -6,44 +6,44 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:48:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2017/01/12 12:14:01 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/22 18:39:50 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft/ft_str_out.h"
+#include "ft/ft_dstr.h"
 #include "ft/term.h"
 
 #include "term_internal.h"
 
 #include <stdlib.h>
 #include <termcap.h>
-#include <termios.h>
 
 /*
 ** termios->c_oflag &= ~(OPOST);
 */
 
-/*
-** ?enum-def termcaps
-*/
-
-struct s_enum_termcaps const	g_termcaps = {
-	&(struct s_evalue_termcaps){0, "up", false, false},
-	&(struct s_evalue_termcaps){1, "cm", true, false},
-	&(struct s_evalue_termcaps){2, "do", false, false},
-	&(struct s_evalue_termcaps){3, "cl", false, false},
-	&(struct s_evalue_termcaps){4, "ch0", false, true},
-	&(struct s_evalue_termcaps){5, "ch", true, false},
-	&(struct s_evalue_termcaps){6, "cd", false, false},
-	&(struct s_evalue_termcaps){7, "ti", false, false},
-	&(struct s_evalue_termcaps){8, "te", false, false},
-	9,
-	(t_termcaps const*)&g_termcaps
+static char		g_term_cap_names[][3] = {
+	[TERM_CAP_CD] = "cd",
+	[TERM_CAP_CE] = "ce",
+	[TERM_CAP_TI] = "ti",
+	[TERM_CAP_TE] = "te",
+	[TERM_CAP_CH] = "ch",
+	[TERM_CAP_CL] = "cl",
+	[TERM_CAP_CM] = "cm",
+	[TERM_CAP_HO] = "ho",
+	[TERM_CAP_UP] = "up",
+	[TERM_CAP_UP_N] = "UP",
+	[TERM_CAP_DO] = "do",
+	[TERM_CAP_DO_N] = "DO",
+	[TERM_CAP_LE] = "le",
+	[TERM_CAP_LE_N] = "LE",
+	[TERM_CAP_ND] = "nd",
+	[TERM_CAP_RI_N] = "RI",
+	[TERM_CAP_AL] = "al",
+	[TERM_CAP_AL_N] = "AL",
+	[TERM_CAP_DL] = "dl",
+	[TERM_CAP_DL_N] = "DL",
 };
-
-/*
-** ?end
-*/
 
 static void		ft_tmakeraw(struct termios *termios)
 {
@@ -72,66 +72,62 @@ static bool		init_tgetent(struct termios *term_conf, int *flags)
 	return (true);
 }
 
-static void		load_termcaps(t_str_out *termcaps)
+static t_dstr	load_termcaps(uint32_t *offsets)
 {
+	t_dstr			dst;
 	uint32_t		i;
-	t_termcaps		t;
+	char			buff[128];
+	char			*end;
 
-	*termcaps = STR_OUT();
+	dst = DSTR0();
 	i = 0;
-	while (i < TERMCAP_COUNT)
+	while (i < _TERM_CAP_COUNT)
 	{
-		t = g_termcaps.values[i];
-		if (t->tgoto0)
-			ft_putstr(termcaps, tgoto(tgetstr(t->name, NULL), 0, 0), -1);
-		else
-			ft_putstr(termcaps, tgetstr(t->name, NULL), -1);
-		ft_putchar(termcaps, '\0');
+		offsets[i] = dst.length;
+		end = buff;
+		if (tgetstr(g_term_cap_names[i], &end) == NULL)
+			continue ;
+		ft_dstradd(&dst, SUB(buff, end - buff));
 		i++;
 	}
+	return (dst);
 }
 
-static void		put_termcaps(t_sub *termcaps, char *dst, t_str_out *str)
+static void		put_termcaps(char const **term_caps, char *dst,
+					t_dstr *buff, uint32_t const *offsets)
 {
 	uint32_t		i;
-	uint32_t		last;
 
+	memcpy(dst, buff->str, buff->length);
+	ft_dstrclear(buff);
 	i = 0;
-	memcpy(dst, str->buff, str->buff_i);
-	last = 0;
-	while (i < TERMCAP_COUNT)
+	while (i < _TERM_CAP_COUNT)
 	{
-		termcaps[i].str = dst + last;
-		termcaps[i].length = ft_strlen(dst + last);
-		last += termcaps[i].length + 1;
+		term_caps[i] = dst + offsets[i];
 		i++;
 	}
-	ft_str_out_clear(str);
 }
 
 t_term			*ft_tinit(int fd, int flags)
 {
-	t_str_out		termcaps;
+	t_dstr			term_cap_buff;
+	uint32_t		term_cap_offsets[_TERM_CAP_COUNT];
 	struct termios	term_config;
 	t_term			*term;
 
 	if (!init_tgetent(&term_config, &flags))
 		return (NULL);
-	load_termcaps(&termcaps);
-	term = MALLOC(sizeof(t_term)
-			+ TERM_OUT_BUFF_SIZE + S(struct termios, 2) + termcaps.buff_i);
-	term->out = OUT(V(term) + sizeof(t_term), TERM_OUT_BUFF_SIZE,
-		(void*)&term_out_flush);
-	term->term_config = V(term) + sizeof(t_term) + TERM_OUT_BUFF_SIZE;
-	memcpy(term->term_config, &term_config, sizeof(struct termios));
-	memcpy(term->term_config + sizeof(struct termios),
-		&term_config, sizeof(struct termios));
-	put_termcaps(term->termcaps, V(term) + sizeof(t_term) + TERM_OUT_BUFF_SIZE
-		+ S(struct termios, 2), &termcaps);
+	term_cap_buff = load_termcaps(term_cap_offsets);
+	term = MALLOC(sizeof(t_term) + TERM_OUT_BUFF_SIZE + term_cap_buff.length);
+	term->out = OUT(ENDOF(term), TERM_OUT_BUFF_SIZE, V(&term_out_flush));
 	term->fd = fd;
 	term->flags = flags;
 	term->cursor_x = 0;
 	term->cursor_y = 0;
+	term->term_config[0] = term_config;
+	term->term_config[1] = term_config;
+	put_termcaps(term->term_caps, ENDOF(term) + TERM_OUT_BUFF_SIZE,
+			&term_cap_buff, term_cap_offsets);
 	if (flags & TERM_RAW)
 		ft_tmakeraw(term->term_config);
 	ft_tupdate(term);

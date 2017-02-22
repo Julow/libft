@@ -6,35 +6,41 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/13 13:52:02 by juloo             #+#    #+#             */
-/*   Updated: 2016/03/07 15:10:24 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/22 16:15:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "term_internal.h"
 
+/*
+** TODO: RI_N, ND, LE_N, LE may be removed if CH is available
+** TODO: check ll, cr, cv
+*/
+
+static void		tcursor_relative(t_term *term, uint32_t x, uint32_t y)
+{
+	if (term->cursor_y < y)
+		term_cap_n(term, TERM_CAP_DO_N, TERM_CAP_DO, y - term->cursor_y);
+	else
+		term_cap_n(term, TERM_CAP_UP_N, TERM_CAP_UP, term->cursor_y - y);
+	term->cursor_y = y;
+	if (x != term->cursor_x && TERM_CAP_AVAILABLE(term, TERM_CAP_CH))
+		ft_tgoto(term, TERM_CAP_CH, x, 0);
+	else if (term->cursor_x < x)
+		term_cap_n(term, TERM_CAP_RI_N, TERM_CAP_ND, x - term->cursor_x);
+	else
+		term_cap_n(term, TERM_CAP_LE_N, TERM_CAP_LE, term->cursor_x - x);
+	term->cursor_x = x;
+}
+
 void			ft_tcursor(t_term *term, uint32_t x, uint32_t y)
 {
-	if (term->flags & TERM_FULLSCREEN)
-	{
-		ft_tput(term, g_termcaps.cm, x, y);
-		return ;
-	}
-	if (x > term->width)
-	{
-		y += x / term->width;
-		x = x % term->width;
-	}
-	while (term->cursor_y < y)
-	{
-		ft_tput(term, g_termcaps.cap_do, 0, 0);
-		term->cursor_y++;
-	}
-	while (term->cursor_y > y)
-	{
-		ft_tput(term, g_termcaps.up, 0, 0);
-		term->cursor_y--;
-	}
-	if (x != term->cursor_x)
-		ft_tput(term, g_termcaps.ch, 0, (term->cursor_x = x));
-	ft_flush(&term->out);
+	if (term->flags & TERM_FULLSCREEN && x == 0 && y == 0
+		&& TERM_CAP_AVAILABLE(term, TERM_CAP_HO))
+		ft_tput(term, TERM_CAP_HO);
+	else if (term->flags & TERM_FULLSCREEN
+		&& TERM_CAP_AVAILABLE(term, TERM_CAP_CM))
+		ft_tgoto(term, TERM_CAP_CM, x, y);
+	else
+		tcursor_relative(term, x, y);
 }

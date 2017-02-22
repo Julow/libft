@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:45:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2016/05/09 18:17:10 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/22 17:16:31 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 # include "ft/ft_out.h"
 # include "ft/libft.h"
 
+# include <termios.h>
+
 typedef struct s_term						t_term;
-typedef enum e_term_caps					t_term_caps;
+typedef enum e_term_cap						t_term_cap;
 
 /*
 ** ========================================================================== **
@@ -25,66 +27,44 @@ typedef enum e_term_caps					t_term_caps;
 */
 
 /*
-** ?enum termcaps length-macro(TERMCAP_COUNT)
-** uint32_t		id;
-** char			*name;
-** bool			tgoto;
-** bool			tgoto0;
-** up(?id?, "?name?", false, false),
-** cm(?id?, "?name?", true, false),
-** cap_do(?id?, "do", false, false),
-** cl(?id?, "?name?", false, false),
-** ch0(?id?, "?name?", false, true),
-** ch(?id?, "?name?", true, false),
-** cd(?id?, "?name?", false, false),
-** ti(?id?, "?name?", false, false),
-** te(?id?, "?name?", false, false),
+** Only CD and CE should be used directly
 */
-
-struct			s_evalue_termcaps
+enum			e_term_cap
 {
-	uint32_t			id;
-	char				*name;
-	bool				tgoto;
-	bool				tgoto0;
+	TERM_CAP_CD,
+	TERM_CAP_CE,
+	TERM_CAP_TI,
+	TERM_CAP_TE,
+	TERM_CAP_CH,
+	TERM_CAP_CL,
+	TERM_CAP_CM,
+	TERM_CAP_HO,
+	TERM_CAP_UP,
+	TERM_CAP_UP_N,
+	TERM_CAP_DO,
+	TERM_CAP_DO_N,
+	TERM_CAP_LE,
+	TERM_CAP_LE_N,
+	TERM_CAP_ND,
+	TERM_CAP_RI_N,
+	TERM_CAP_AL,
+	TERM_CAP_AL_N,
+	TERM_CAP_DL,
+	TERM_CAP_DL_N,
+	_TERM_CAP_COUNT
 };
-
-typedef struct s_evalue_termcaps const*		t_termcaps;
-
-struct			s_enum_termcaps
-{
-	t_termcaps			up;
-	t_termcaps			cm;
-	t_termcaps			cap_do;
-	t_termcaps			cl;
-	t_termcaps			ch0;
-	t_termcaps			ch;
-	t_termcaps			cd;
-	t_termcaps			ti;
-	t_termcaps			te;
-	int					length;
-	t_termcaps const	*values;
-};
-
-extern struct s_enum_termcaps const		g_termcaps;
-
-# define TERMCAP_COUNT		9
-
-/*
-** ?end
-*/
 
 struct			s_term
 {
 	t_out				out;
-	void				*term_config;
-	t_sub				termcaps[TERMCAP_COUNT];
 	int					fd;
 	uint32_t			flags;
 	uint32_t			width;
 	uint32_t			height;
 	uint32_t			cursor_x;
 	uint32_t			cursor_y;
+	struct termios		term_config[2];
+	char const			*term_caps[_TERM_CAP_COUNT];
 };
 
 # define TERM_DEFAULT_TERM	"xterm"
@@ -113,6 +93,11 @@ struct			s_term
 # define TERM_USE_DEFAULT	(1 << 4)
 
 /*
+** Check if a termcap is available
+*/
+# define TERM_CAP_AVAILABLE(T,CAP)	((T)->term_caps[CAP][0] != '\0')
+
+/*
 ** Init and update a t_term and init the termcap lib
 ** -
 ** Return NULL on error
@@ -132,15 +117,28 @@ void			ft_trestore(t_term *term, bool enable);
 
 /*
 ** Move the cursor
-** (automatic flush)
 */
 void			ft_tcursor(t_term *term, uint32_t x, uint32_t y);
 
 /*
-** Put a termcap
-** x and y are only used by termcaps with tgoto set
+** Insert/delete lines
+** if n < 0, delete abs(n) lines
+** otherwise, insert n lines
+** The cursor should be at the column 0
 */
-void			ft_tput(t_term *term, t_termcaps cap, int x, int y);
+void			ft_tline(t_term *term, int32_t n);
+
+/*
+** Put a termcap
+*/
+void			ft_tput(t_term *term, t_term_cap cap);
+
+/*
+** Put a termcap that take params
+** (should not be used directly)
+** Do nothing if the termcap is not available
+*/
+void			ft_tgoto(t_term *term, t_term_cap cap, int x, int y);
 
 /*
 ** Update with and height attribute

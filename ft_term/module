@@ -5,4 +5,6 @@ module ft::term:
 	public require ft::base
 	public require ft::out
 
+	private require ft::dstr
+
 	put LINK_FLAGS -ltermcap
