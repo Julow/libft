@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2017/01/12 12:21:34 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/22 19:40:04 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ typedef struct s_callback		t_callback;
 typedef struct s_vec2			t_vec2;
 typedef struct s_vec2i			t_vec2i;
 typedef struct s_vec2u			t_vec2u;
+typedef struct s_vec3i			t_vec3i;
+typedef struct s_vec3u			t_vec3u;
 
 # define V(v)			((void*)(v))
 
@@ -118,7 +120,7 @@ typedef struct s_vec2u			t_vec2u;
 # define STR_VALUE(s)	#s
 # define TO_STR(s)		STR_VALUE(s)
 
-# define ARRAY_LEN(g)	((int)(sizeof(g) / sizeof(*(g))))
+# define ARRAY_LEN(g)	((uint32_t)(sizeof(g) / sizeof(*(g))))
 
 # define S(t,l)			(sizeof(t) * (l))
 
@@ -265,19 +267,47 @@ struct			s_vec2u
 	uint32_t		y;
 };
 
+struct			s_vec3i
+{
+	int32_t			x;
+	int32_t			y;
+	int32_t			z;
+};
+
+struct			s_vec3u
+{
+	uint32_t		x;
+	uint32_t		y;
+	uint32_t		z;
+};
+
 /*
 ** VEC2*(X, Y)			Create a vec2*
-** VEC2*1(N+)			Create a vec2* with X = Y = N
+** VEC2*_1(N+)			Create a vec2* with X = Y = N
+** VEC2*_3(N+)			Create a vec2* from a vec3
 ** N_VEC2*(FROM+, TO+)	Create a vec2* where X <= Y
+** -
+** VEC3*(X, Y, Z)		Create a vec3*
+** VEC3*_1(N+)			Create a vec3* with X = Y = Z = N
+** VEC3*_2(XY, Z)		Create a vec3* from a vec2*
 */
 
 # define VEC2(X,Y)		((t_vec2){(X), (Y)})
 # define VEC2I(X,Y)		((t_vec2i){(X), (Y)})
 # define VEC2U(X,Y)		((t_vec2u){(X), (Y)})
+# define VEC3I(X,Y,Z)	((t_vec2i){(X), (Y), (Z)})
+# define VEC3U(X,Y,Z)	((t_vec2i){(X), (Y), (Z)})
+
+# define VEC2I_3(XYZ)	(VEC2I((XYZ).x, (XYZ).y))
+# define VEC2U_3(XYZ)	(VEC2U((XYZ).x, (XYZ).y))
+# define VEC3I_2(XY, Z)	(VEC3I((XY).x, (XY).y, (Z)))
+# define VEC3U_2(XY, Z)	(VEC3U((XY).x, (XY).y, (Z)))
 
 # define VEC2_1(A)		(VEC2(A, A))
-# define VEC2I1(N)		(VEC2I(N, N))
-# define VEC2U1(N)		(VEC2U(N, N))
+# define VEC2I_1(N)		(VEC2I(N, N))
+# define VEC2U_1(N)		(VEC2U(N, N))
+# define VEC3I_1(N)		(VEC3I(N, N, N))
+# define VEC3U_1(N)		(VEC3U(N, N, N))
 
 # define N_VEC2U(X, Y)	(((X) > (Y)) ? VEC2U(Y, X) : VEC2U(X, Y))
 # define N_VEC2I(X, Y)	(((X) > (Y)) ? VEC2I(Y, X) : VEC2I(X, Y))
