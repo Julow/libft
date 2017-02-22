@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/15 01:05:48 by juloo             #+#    #+#             */
-/*   Updated: 2016/06/06 17:18:27 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/22 18:27:41 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,17 @@ typedef enum e_log_level		t_log_level;
 **  %[flags][width][.repeat](<format sequence>)
 ** -
 **  flags: 0 or more characters that represent ft_out flags
-**    OUT_CENTER		"^"
-**    OUT_TOUPPER		"M"
-**    OUT_TOLOWER		"m"
-**    OUT_REVCASE		"mM" or "Mm"
-**    OUT_PLUS			"+"
-**    OUT_SPACE			" "
-**    OUT_GROUP			"'"
-**    alternate form	"#"
-**    negative width	"-"
+**    "^"				OUT_CENTER
+**    "M"				OUT_TOUPPER
+**    "m"				OUT_TOLOWER
+**    "mM", "Mm"		OUT_REVCASE
+**    "+"				OUT_PLUS
+**    " "				OUT_SPACE
+**    "'"				OUT_GROUP
+**    "w"				OUT_PRINTABLE_SHORT
+**    "W"				OUT_PRINTABLE
+**    "#"				alternate form
+**    "-"				OUT_MINUS
 **  width: integer or '*' (width is taken from the argument list as an int)
 **  precision: '.' character then integer or '*'
 **  length: type

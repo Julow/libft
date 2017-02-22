@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/17 17:00:20 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/12/26 18:46:33 by juloo            ###   ########.fr       */
+/*   Updated: 2017/02/22 18:05:32 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef struct s_out		t_out;
 **  OUT_SPACE		Add ' ' for positive numbers (overrided by OUT_PLUS)
 **  OUT_MINUS		Width as negative
 **  OUT_GROUP		(not implemented)
-**  OUT_PRINTABLE	Print '\xXX' or '\X' form for non-printable char (putchar)
+**  OUT_PRINTABLE	Print '\xXX' form for non-printable char
+**  OUT_PRINTABLE_SHORT	Print '\X' form for some non-printable char
 ** -
 ** Configs:
 **  Field name	Auto reset
@@ -48,14 +49,16 @@ typedef struct s_out		t_out;
 # define OUT_DEFAULT_BASE		SUB("0123456789abcdef", 10)
 # define OUT_DEFAULT_WIDTH		0
 
-# define OUT_CENTER		(1 << 1)
-# define OUT_GROUP		(1 << 2)
-# define OUT_PLUS		(1 << 3)
-# define OUT_SPACE		(1 << 4)
-# define OUT_TOUPPER	(1 << 5)
-# define OUT_TOLOWER	(1 << 6)
-# define OUT_MINUS		(1 << 7)
-# define OUT_REVCASE	(OUT_TOLOWER | OUT_TOUPPER)
+# define OUT_CENTER				(1 << 1)
+# define OUT_GROUP				(1 << 2)
+# define OUT_PLUS				(1 << 3)
+# define OUT_SPACE				(1 << 4)
+# define OUT_TOUPPER			(1 << 5)
+# define OUT_TOLOWER			(1 << 6)
+# define OUT_MINUS				(1 << 7)
+# define OUT_REVCASE			(OUT_TOLOWER | OUT_TOUPPER)
+# define OUT_PRINTABLE			(1 << 8)
+# define OUT_PRINTABLE_SHORT	(1 << 9)
 
 struct			s_out
 {
