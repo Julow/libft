@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2017/02/22 19:40:04 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/23 16:06:54 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,24 +293,25 @@ struct			s_vec3u
 */
 
 # define VEC2(X,Y)		((t_vec2){(X), (Y)})
-# define VEC2I(X,Y)		((t_vec2i){(X), (Y)})
-# define VEC2U(X,Y)		((t_vec2u){(X), (Y)})
-# define VEC3I(X,Y,Z)	((t_vec2i){(X), (Y), (Z)})
-# define VEC3U(X,Y,Z)	((t_vec2i){(X), (Y), (Z)})
-
-# define VEC2I_3(XYZ)	(VEC2I((XYZ).x, (XYZ).y))
-# define VEC2U_3(XYZ)	(VEC2U((XYZ).x, (XYZ).y))
-# define VEC3I_2(XY, Z)	(VEC3I((XY).x, (XY).y, (Z)))
-# define VEC3U_2(XY, Z)	(VEC3U((XY).x, (XY).y, (Z)))
-
 # define VEC2_1(A)		(VEC2(A, A))
-# define VEC2I_1(N)		(VEC2I(N, N))
-# define VEC2U_1(N)		(VEC2U(N, N))
-# define VEC3I_1(N)		(VEC3I(N, N, N))
-# define VEC3U_1(N)		(VEC3U(N, N, N))
 
-# define N_VEC2U(X, Y)	(((X) > (Y)) ? VEC2U(Y, X) : VEC2U(X, Y))
+# define VEC2I(X,Y)		((t_vec2i){(X), (Y)})
+# define VEC2I_1(N)		(VEC2I(N, N))
+# define VEC2I_3(XYZ)	(VEC2I((XYZ).x, (XYZ).y))
 # define N_VEC2I(X, Y)	(((X) > (Y)) ? VEC2I(Y, X) : VEC2I(X, Y))
+
+# define VEC2U(X,Y)		((t_vec2u){(X), (Y)})
+# define VEC2U_1(N)		(VEC2U(N, N))
+# define VEC2U_3(XYZ)	(VEC2U((XYZ).x, (XYZ).y))
+# define N_VEC2U(X, Y)	(((X) > (Y)) ? VEC2U(Y, X) : VEC2U(X, Y))
+
+# define VEC3I(X,Y,Z)	((t_vec3i){(X), (Y), (Z)})
+# define VEC3I_1(N)		(VEC3I(N, N, N))
+# define VEC3I_2(XY, Z)	(VEC3I((XY).x, (XY).y, (Z)))
+
+# define VEC3U(X,Y,Z)	((t_vec3u){(X), (Y), (Z)})
+# define VEC3U_1(N)		(VEC3U(N, N, N))
+# define VEC3U_2(XY, Z)	(VEC3U((XY).x, (XY).y, (Z)))
 
 /*
 ** ========================================================================== **

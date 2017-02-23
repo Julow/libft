@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 15:43:50 by jaguillo          #+#    #+#             */
-/*   Updated: 2017/02/22 17:18:19 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/23 17:52:20 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void			ft_tupdate(t_term *term)
 {
 	struct winsize	win;
 
-	ioctl(2, TIOCGWINSZ, &win);
+	ioctl(term->fd, TIOCGWINSZ, &win);
 	term->width = MAX(win.ws_col, 1);
 	term->height = MAX(win.ws_row, 1);
 }
