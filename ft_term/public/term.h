@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:45:17 by jaguillo          #+#    #+#             */
-/*   Updated: 2017/02/22 17:16:31 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/24 17:40:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ enum			e_term_cap
 	TERM_CAP_AL_N,
 	TERM_CAP_DL,
 	TERM_CAP_DL_N,
+	TERM_CAP_SF,
+	TERM_CAP_SF_N,
+	TERM_CAP_SR,
+	TERM_CAP_SR_N,
 	_TERM_CAP_COUNT
 };
 
@@ -58,9 +62,11 @@ struct			s_term
 {
 	t_out				out;
 	int					fd;
+	uint32_t			scan_i;
 	uint32_t			flags;
 	uint32_t			width;
 	uint32_t			height;
+	uint32_t			content_height;
 	uint32_t			cursor_x;
 	uint32_t			cursor_y;
 	struct termios		term_config[2];
@@ -129,6 +135,12 @@ void			ft_tcursor(t_term *term, uint32_t x, uint32_t y);
 void			ft_tline(t_term *term, int32_t n);
 
 /*
+** Relative scroll
+** Scroll down (y < 0) should only be used with TERM_FULLSCREEN
+*/
+void			ft_tscroll(t_term *term, int32_t y);
+
+/*
 ** Put a termcap
 */
 void			ft_tput(t_term *term, t_term_cap cap);
@@ -139,6 +151,20 @@ void			ft_tput(t_term *term, t_term_cap cap);
 ** Do nothing if the termcap is not available
 */
 void			ft_tgoto(t_term *term, t_term_cap cap, int x, int y);
+
+/*
+** Put a raw termcap
+** Allow for printing non-visible characters (ANSI sequences, termcaps, ...)
+** (must not be used to put visible characters)
+*/
+void			ft_tput_raw(t_term *term, t_sub str);
+
+/*
+** Return the content_height
+** The height of the part of the screen that is available (TERM_LINE)
+** The height of the terminal (TERM_FULLSCREEN)
+*/
+uint32_t		ft_tcontent_height(t_term *term);
 
 /*
 ** Update with and height attribute

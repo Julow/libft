@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:48:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2017/02/22 18:39:50 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/24 17:35:21 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ static char		g_term_cap_names[][3] = {
 	[TERM_CAP_AL_N] = "AL",
 	[TERM_CAP_DL] = "dl",
 	[TERM_CAP_DL_N] = "DL",
+	[TERM_CAP_SF] = "sf",
+	[TERM_CAP_SF_N] = "SF",
+	[TERM_CAP_SR] = "sr",
+	[TERM_CAP_SR_N] = "SR",
 };
 
 static void		ft_tmakeraw(struct termios *termios)
@@ -86,7 +90,10 @@ static t_dstr	load_termcaps(uint32_t *offsets)
 		offsets[i] = dst.length;
 		end = buff;
 		if (tgetstr(g_term_cap_names[i], &end) == NULL)
+		{
+			ft_dstradd(&dst, SUBC("\0"));
 			continue ;
+		}
 		ft_dstradd(&dst, SUB(buff, end - buff));
 		i++;
 	}
@@ -121,7 +128,9 @@ t_term			*ft_tinit(int fd, int flags)
 	term = MALLOC(sizeof(t_term) + TERM_OUT_BUFF_SIZE + term_cap_buff.length);
 	term->out = OUT(ENDOF(term), TERM_OUT_BUFF_SIZE, V(&term_out_flush));
 	term->fd = fd;
+	term->scan_i = 0;
 	term->flags = flags;
+	term->content_height = 0;
 	term->cursor_x = 0;
 	term->cursor_y = 0;
 	term->term_config[0] = term_config;

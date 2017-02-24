@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/13 13:52:02 by juloo             #+#    #+#             */
-/*   Updated: 2017/02/23 20:04:29 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/02/24 19:38:46 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void		tcursor_relative(t_term *term, uint32_t x, uint32_t y)
 
 void			ft_tcursor(t_term *term, uint32_t x, uint32_t y)
 {
+	term_out_scan(term);
 	if (term->flags & TERM_FULLSCREEN && x == 0 && y == 0
 		&& TERM_CAP_AVAILABLE(term, TERM_CAP_HO))
 		ft_tput(term, TERM_CAP_HO);
@@ -42,5 +43,7 @@ void			ft_tcursor(t_term *term, uint32_t x, uint32_t y)
 	else
 		tcursor_relative(term, x, y);
 	term->cursor_y = y;
+	if (term->cursor_y > term->content_height)
+		term->content_height = term->cursor_y;
 	term->cursor_x = x;
 }
