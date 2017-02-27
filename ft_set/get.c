@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 13:37:23 by juloo             #+#    #+#             */
-/*   Updated: 2017/02/19 00:52:37 by juloo            ###   ########.fr       */
+/*   Updated: 2017/02/27 22:32:18 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void const		*ft_set_cget(t_set const *set, void const *key)
 
 	node = set->root;
 	while (node != NULL && (diff = set->cmp(node, key)) != 0)
-		node = (diff < 0) ? node->left : node->right;
+		node = (diff >= 0) ? node->left : node->right;
 	return (node);
 }
 

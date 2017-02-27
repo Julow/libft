@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 13:42:55 by juloo             #+#    #+#             */
-/*   Updated: 2017/02/19 01:26:37 by juloo            ###   ########.fr       */
+/*   Updated: 2017/02/27 22:32:23 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ bool			ft_set_insert(t_set *set, void *element, void const *key)
 	while (*next != NULL)
 	{
 		parent = *next;
-		next = (set->cmp(parent, key) <= 0) ? &parent->left : &parent->right;
+		next = (set->cmp(parent, key) >= 0) ? &parent->left : &parent->right;
 	}
 	ASSERT(!(((uintptr_t)element) & 1), "IMPAIR POINTER");
 	set->count++;
