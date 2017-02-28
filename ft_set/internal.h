@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 18:45:21 by juloo             #+#    #+#             */
-/*   Updated: 2017/02/19 02:54:09 by juloo            ###   ########.fr       */
+/*   Updated: 2017/02/28 15:21:42 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ struct			s_set_node
 # define SET_SETRED(NODE)	(_SET_P(NODE) |= 1)
 # define SET_SETBLACK(NODE)	(_SET_P(NODE) &= ~1)
 
-# define SET_SETPARENT(N,P)	(_SET_P(N)=(uintptr_t)(P)|SET_ISRED(N))
+# define SET_SETPARENT(N,P)	(_SET_P(N) = (uintptr_t)(P) | SET_ISRED(N))
 
 /*
 ** Standard tree rotation
@@ -46,6 +46,6 @@ struct			s_set_node
 */
 void			set_node_rotate(t_set *tree, t_set_node *node, bool left);
 
-# define _SET_P(NODE)		*((uintptr_t*)&(((t_set_node*)(NODE))->parent))
+# define _SET_P(NODE)		*(uintptr_t*)&((t_set_node*)(NODE))->parent
 
 #endif

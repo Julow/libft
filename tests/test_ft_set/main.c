@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 20:45:02 by juloo             #+#    #+#             */
-/*   Updated: 2017/02/27 23:03:25 by juloo            ###   ########.fr       */
+/*   Updated: 2017/02/28 18:22:06 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int				test_cmp(t_test const *test, int32_t const *key)
 
 /*
 ** ========================================================================== **
+** Set test
 */
 
 uint32_t		test_order_count(t_set const *set)
@@ -95,7 +96,8 @@ uint32_t		test_begin(t_set const *set)
 		}
 		ASSERT(count > 0, "BEGIN/END ERROR");
 		max = MAX(max, count);
-		test = ft_set_cnext(test);
+		// test = ft_set_cnext(test);
+		test = end;
 	}
 	return (max);
 }
@@ -168,19 +170,24 @@ int				main(void)
 
 	{
 		uint32_t		i;
+		uint32_t		occur;
 
 		i = 0;
 		while (i < TEST_SIZE)
 		{
-			nodes[i] = TEST(ft_rand(-TEST_SIZE*2, TEST_SIZE*2));
+			nodes[i] = TEST(ft_rand(-TEST_SIZE/2, TEST_SIZE/2));
+			occur = count_occur(&set, nodes[i].key);
 			ft_set_insert(&set, &nodes[i], &nodes[i].key);
+			ASSERT(occur == count_occur(&set, nodes[i].key) - 1, "INSERT ERROR");
 			i++;
 		}
 	}
 
 	ASSERT(test_order_count(&set) == TEST_SIZE, "COUNT ERROR");
 	test_get(&set);
-	ft_printf("MAX DUPP: %u%n", test_begin(&set));
+	test_begin(&set);
+	ASSERT(max_height(set.root) <= min_height(set.root) * 2, "BALANCE ERROR");
+	TRACE("INSERT OK");
 
 	t_vec2u			range;
 
@@ -205,17 +212,16 @@ int				main(void)
 	test_get(&set);
 	test_begin(&set);
 	ASSERT(max_height(set.root) <= min_height(set.root) * 2, "BALANCE ERROR");
+	TRACE("REMOVE OK");
 
 	{
 		uint32_t		i;
-		uint32_t		occur;
 
 		i = range.y;
 		while (--i >= range.x)
 		{
-			occur = count_occur(&set, nodes[i].key);
+			nodes[i].key = range.x;
 			ft_set_insert(&set, &nodes[i], &nodes[i].key);
-			ASSERT(occur == count_occur(&set, nodes[i].key) - 1, "INSERT ERROR");
 		}
 	}
 
@@ -223,15 +229,16 @@ int				main(void)
 	test_get(&set);
 	test_begin(&set);
 	ASSERT(max_height(set.root) <= min_height(set.root) * 2, "BALANCE ERROR");
+	TRACE("INSERT REV SORTED OK");
 
 	{
 		uint32_t		i;
 
 		i = 0;
-		while (i < 100)
+		while (i < TEST_SIZE)
 		{
 			ft_set_remove(&set, &nodes[0]);
-			nodes[0].key = ft_rand(-TEST_SIZE*2, TEST_SIZE*2);
+			nodes[0].key = i;
 			ft_set_insert(&set, &nodes[0], &nodes[0].key);
 			i++;
 		}
@@ -241,6 +248,41 @@ int				main(void)
 	test_get(&set);
 	test_begin(&set);
 	ASSERT(max_height(set.root) <= min_height(set.root) * 2, "BALANCE ERROR");
+	TRACE("INSERT SORTED OK");
+
+	{
+
+#define DUP_COUNT		100000
+
+		uint32_t		i;
+		t_test			*before;
+		t_test			*tmp;
+		t_test *const	insert = NEW_N(t_test, DUP_COUNT);
+
+		before = ft_set_get(&set, &nodes[ft_rand(0, TEST_SIZE - 1)].key);
+
+		i = 0;
+		while (i < DUP_COUNT)
+		{
+			while ((tmp = ft_set_prev(before)) != NULL && tmp->key == before->key)
+				before = tmp;
+			insert[i] = TEST(before->key - 1);
+			ft_set_insert_before(&set, &insert[i], before);
+			tmp = ft_set_prev(before);
+			ASSERT(tmp == &insert[i], "INSERT_BEFORE (prev) ERROR");
+			tmp = ft_set_next(&insert[i]);
+			ASSERT(tmp == before, "INSERT_BEFORE (next) ERROR");
+			before = &insert[i];
+			i++;
+		}
+
+	}
+
+	test_order_count(&set);
+	test_get(&set);
+	test_begin(&set);
+	ASSERT(max_height(set.root) <= min_height(set.root) * 2, "BALANCE ERROR");
+	TRACE("INSERT_BEFORE OK");
 
 	// print_tree(set.root);
 	// print_iter(&set);

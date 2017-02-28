@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 11:34:10 by juloo             #+#    #+#             */
-/*   Updated: 2017/02/19 00:55:47 by juloo            ###   ########.fr       */
+/*   Updated: 2017/02/28 12:23:28 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ struct			s_set_h
 ** Search into the set
 ** 'key' is passed to the cmp function
 ** Return the matching element or NULL if not found
-** If SET_ALLOW_DUP is set, see ft_set_first
 */
 void			*ft_set_get(t_set *set, void const *key);
 void const		*ft_set_cget(t_set const *set, void const *key);
@@ -70,10 +69,16 @@ void const		*ft_set_cget(t_set const *set, void const *key);
 /*
 ** Insert an element into the set
 ** 'key' is only used for comparaison
-** Return true on success
-** Return false on dupplicated key (if SET_ALLOW_DUP flag is not set)
 */
-bool			ft_set_insert(t_set *set, void *element, void const *key);
+void			ft_set_insert(t_set *set, void *element, void const *key);
+
+/*
+** Insert an element before 'before'
+** The following condition must be true:
+** 	prev(before) <= node <= before
+** If 'before' is NULL, insert at the end
+*/
+void			ft_set_insert_before(t_set *set, void *element, void *before);
 
 /*
 ** Remove an element

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 13:42:55 by juloo             #+#    #+#             */
-/*   Updated: 2017/02/27 22:32:23 by juloo            ###   ########.fr       */
+/*   Updated: 2017/02/28 12:24:12 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,21 @@ static void		set_check_balance(t_set *set, t_set_node *node)
 	}
 }
 
-bool			ft_set_insert(t_set *set, void *element, void const *key)
+static void		insert_node(t_set *set, t_set_node *element, t_set_node *parent)
+{
+	ASSERT(!(((uintptr_t)element) & 1), "IMPAIR POINTER");
+	set->count++;
+	*element = (t_set_node){parent, NULL, NULL};
+	if (parent != NULL)
+	{
+		SET_SETRED(element);
+		if (SET_ISRED(parent))
+			set_check_balance(set, element);
+	}
+	ft_set_update(set, element);
+}
+
+void			ft_set_insert(t_set *set, void *element, void const *key)
 {
 	t_set_node		*parent;
 	t_set_node		**next;
@@ -70,16 +84,22 @@ bool			ft_set_insert(t_set *set, void *element, void const *key)
 		parent = *next;
 		next = (set->cmp(parent, key) >= 0) ? &parent->left : &parent->right;
 	}
-	ASSERT(!(((uintptr_t)element) & 1), "IMPAIR POINTER");
-	set->count++;
 	*next = element;
-	*(t_set_node*)element = (t_set_node){parent, NULL, NULL};
-	if (parent != NULL)
+	insert_node(set, element, parent);
+}
+
+void			ft_set_insert_before(t_set *set, void *element, void *before)
+{
+	t_set_node		*parent;
+	t_set_node		**next;
+
+	parent = before;
+	next = parent ? &parent->left : (t_set_node**)&set->root;
+	while (*next != NULL)
 	{
-		SET_SETRED(*next);
-		if (SET_ISRED(parent))
-			set_check_balance(set, element);
+		parent = *next;
+		next = &parent->right;
 	}
-	ft_set_update(set, element);
-	return (true);
+	*next = element;
+	insert_node(set, element, parent);
 }

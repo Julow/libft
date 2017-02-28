@@ -1,4 +1,4 @@
-main module _test_ft_set:
+main module test_ft_set:
 	require ft::base
 	require ft::printf
 	require ft::set
