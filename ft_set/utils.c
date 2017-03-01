@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 18:46:30 by juloo             #+#    #+#             */
-/*   Updated: 2017/02/19 02:54:43 by juloo            ###   ########.fr       */
+/*   Updated: 2017/03/01 13:40:36 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,25 @@ void			ft_set_update(t_set *set, void *element)
 		set->update(element);
 		element = SET_PARENT(element);
 	}
+}
+
+static void		set_clear(t_set_node *node, void (*f)(void *element))
+{
+	t_set_node		*right;
+
+	while (node != NULL)
+	{
+		right = node->right;
+		set_clear(node->left, f);
+		f(node);
+		node = right;
+	}
+}
+
+void			ft_set_clear(t_set *set, void (*f)(void *element))
+{
+	if (f != NULL)
+		set_clear(set->root, f);
+	set->root = NULL;
+	set->count = 0;
 }

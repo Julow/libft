@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 11:34:10 by juloo             #+#    #+#             */
-/*   Updated: 2017/02/28 12:23:28 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/03/01 13:39:21 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,11 @@ void const		*ft_set_cnext(void const *element);
 
 void			*ft_set_prev(void *element);
 void const		*ft_set_cprev(void const *element);
+
+/*
+** Clear the set (remove all elements)
+** If not NULL, call 'f' on each elements (in sorted order)
+*/
+void			ft_set_clear(t_set *set, void (*f)(void *element));
 
 #endif
