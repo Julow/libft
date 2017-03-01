@@ -1,0 +1,4 @@
+main module test_ft_sumset:
+	require ft::base
+	require ft::printf
+	require ft::sumset
