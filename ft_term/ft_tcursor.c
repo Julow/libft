@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/13 13:52:02 by juloo             #+#    #+#             */
-/*   Updated: 2017/02/24 19:38:46 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/03/01 14:16:07 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ static void		tcursor_relative(t_term *term, uint32_t x, uint32_t y)
 		term_cap_n(term, TERM_CAP_LE_N, TERM_CAP_LE, term->cursor_x - x);
 }
 
+/*
+** TODO: fill BC ('le') and UP ('up') when using 'cm'
+*/
 void			ft_tcursor(t_term *term, uint32_t x, uint32_t y)
 {
 	term_out_scan(term);

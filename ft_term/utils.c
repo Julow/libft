@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 15:43:50 by jaguillo          #+#    #+#             */
-/*   Updated: 2017/02/24 19:07:04 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/03/01 14:07:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 void			term_cap_n(t_term *term, t_term_cap cap_n, t_term_cap cap_1,
 					uint32_t count)
 {
-	if (count > 1 && TERM_CAP_AVAILABLE(term, cap_n))
+	if (count > TERM_CAP_AVAILABLE(term, cap_1)
+			&& TERM_CAP_AVAILABLE(term, cap_n))
 	{
 		ft_tgoto(term, cap_n, count, 0);
 		return ;

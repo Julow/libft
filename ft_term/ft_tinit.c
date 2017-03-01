@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/16 16:48:39 by jaguillo          #+#    #+#             */
-/*   Updated: 2017/02/24 17:35:21 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/03/01 14:33:58 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void		ft_tmakeraw(struct termios *termios)
 {
 	termios->c_iflag &= ~(IGNBRK | BRKINT | PARMRK
 		| IGNCR | ICRNL | ISTRIP | IXON);
-	termios->c_oflag = ONLCR | OPOST;
+	termios->c_oflag = 0;
 	termios->c_lflag &= ~(ECHO | ECHONL | ICANON | ISIG | IEXTEN);
 	termios->c_cflag &= ~(CSIZE | PARENB);
 	termios->c_cflag |= CS8;
@@ -90,11 +90,9 @@ static t_dstr	load_termcaps(uint32_t *offsets)
 		offsets[i] = dst.length;
 		end = buff;
 		if (tgetstr(g_term_cap_names[i], &end) == NULL)
-		{
 			ft_dstradd(&dst, SUBC("\0"));
-			continue ;
-		}
-		ft_dstradd(&dst, SUB(buff, end - buff));
+		else
+			ft_dstradd(&dst, SUB(buff, end - buff));
 		i++;
 	}
 	return (dst);
