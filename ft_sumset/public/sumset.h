@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 21:42:22 by juloo             #+#    #+#             */
-/*   Updated: 2017/03/01 00:19:46 by juloo            ###   ########.fr       */
+/*   Updated: 2017/03/02 13:11:32 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_sumset_node	t_sumset_node;
 ** -
 ** SUMSET()			Constructor
 ** SUMSET_LENGTH(S)	Return the number of element
-** SUMSET_SUM(S)	Return the sum at the end of the set (must not be empty)
+** SUMSET_SUM(S)	Return the sum at the end of the set
 */
 struct			s_sumset
 {
@@ -38,12 +38,12 @@ struct			s_sumset
 
 # define SUMSET()			((t_sumset){SET(NULL, &sumset_node_update)})
 # define SUMSET_LENGTH(S)	((S).set.count)
-# define SUMSET_SUM(S)		(((t_sumset_node const*)(S).set.root)->value_sum)
+# define SUMSET_SUM(S)		((S).set.root ? _SUMSET_SUM(S) : 0)
 
 /*
 ** Return the sum of all the element before and the value at 'index'
 ** -
-** 'index' must be < to SUMSET_LENGTH(s)
+** 'index' must be <= to SUMSET_LENGTH(s)
 */
 t_vec2u			ft_sumset_get(t_sumset const *s, uint32_t index);
 
@@ -70,8 +70,17 @@ void			ft_sumset_insert(t_sumset *s, uint32_t index, uint32_t value);
 void			ft_sumset_set(t_sumset *s, uint32_t index, uint32_t value);
 
 /*
+** Remove the value at 'index'
+** -
+** Return the deleted value
+*/
+uint32_t		ft_sumset_remove(t_sumset *s, uint32_t index);
+
+/*
 ** -
 */
+
+# define _SUMSET_SUM(S)		((t_sumset_node const*)(S).set.root)->value_sum
 
 struct			s_sumset_node
 {

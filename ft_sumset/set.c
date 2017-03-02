@@ -6,11 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 21:53:48 by juloo             #+#    #+#             */
-/*   Updated: 2017/02/28 23:19:15 by juloo            ###   ########.fr       */
+/*   Updated: 2017/03/02 12:33:27 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft/sumset.h"
+#include <stdlib.h>
 
 static t_sumset_node	*node_get(t_sumset_node *node, uint32_t index)
 {
@@ -46,4 +47,14 @@ void			ft_sumset_set(t_sumset *s, uint32_t index, uint32_t value)
 
 	node->value = value;
 	ft_set_update(&s->set, node);
+}
+
+uint32_t		ft_sumset_remove(t_sumset *s, uint32_t index)
+{
+	t_sumset_node *const	node = node_get(s->set.root, index);
+	uint32_t const			value = node->value;
+
+	ft_set_remove(&s->set, node);
+	free(node);
+	return (value);
 }

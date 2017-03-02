@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 21:53:31 by juloo             #+#    #+#             */
-/*   Updated: 2017/03/01 01:06:59 by juloo            ###   ########.fr       */
+/*   Updated: 2017/03/02 12:56:57 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ t_vec2u			ft_sumset_get(t_sumset const *s, uint32_t index)
 	uint32_t			length_sum;
 
 	sum = 0;
-	node = s->set.root;
+	if ((node = s->set.root) == NULL)
+		return (VEC2U(0, 0));
 	while (true)
 	{
 		length_sum = LEFT_LENGTH_SUM(node);
@@ -37,7 +38,8 @@ t_vec2u			ft_sumset_get(t_sumset const *s, uint32_t index)
 		}
 		index -= length_sum + 1;
 		sum += LEFT_VALUE_SUM(node) + node->value;
-		node = node->set_h.right;
+		if ((node = node->set_h.right) == NULL)
+			return (VEC2U(sum, 0));
 	}
 }
 
