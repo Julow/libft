@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 21:53:48 by juloo             #+#    #+#             */
-/*   Updated: 2017/03/02 12:33:27 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/03/02 17:32:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,14 @@ void			ft_sumset_set(t_sumset *s, uint32_t index, uint32_t value)
 	t_sumset_node *const	node = node_get(s->set.root, index);
 
 	node->value = value;
+	ft_set_update(&s->set, node);
+}
+
+void			ft_sumset_add(t_sumset *s, uint32_t index, int32_t add)
+{
+	t_sumset_node *const	node = node_get(s->set.root, index);
+
+	node->value += add;
 	ft_set_update(&s->set, node);
 }
 

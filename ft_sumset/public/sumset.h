@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 21:42:22 by juloo             #+#    #+#             */
-/*   Updated: 2017/03/02 13:11:32 by jaguillo         ###   ########.fr       */
+/*   Updated: 2017/03/02 17:31:42 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,14 @@ void			ft_sumset_insert(t_sumset *s, uint32_t index, uint32_t value);
 ** 'index' must be < to SUMSET_LENGTH(s)
 */
 void			ft_sumset_set(t_sumset *s, uint32_t index, uint32_t value);
+
+/*
+** Add 'add' to the value at 'index'
+** The resulting value should not be < 0
+** -
+** 'index' must be < to SUMSET_LENGTH(s)
+*/
+void			ft_sumset_add(t_sumset *s, uint32_t index, int32_t add);
 
 /*
 ** Remove the value at 'index'
